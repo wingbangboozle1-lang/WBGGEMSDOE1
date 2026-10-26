@@ -1,17 +1,26 @@
-# Local environment and caches
+# Local environments and language caches
 .venv/
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.mypy_cache/
 .ruff_cache/
+*.egg-info/
+.DS_Store
 
-# Restored scientific inputs (recreated by scripts/restore_inputs.py)
+# Restored TIP1 input (scripts/restore_inputs.py)
 data/external/lidar_scarp_features_u8.tif
 
-# Immutable registry artifacts restored on demand
+# Large optional competition inputs and partial downloads
+data/bridge/training_features.tif
+data/bridge/gems-geodawn-numerical-features.tif
+data/bridge/*.part-*
+data/registry/
+
+# Immutable comparison cache (scripts/restore_registry.py)
 registry/cache/
 
 # Experiment scratch products
-artifacts/
+/submissions/
+/artifacts/
 *.tmp
-.DS_Store

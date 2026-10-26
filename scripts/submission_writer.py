@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Shared CLI for the existing strict writer; never authorizes a weekly slot."""
+"""Shared strict writer for an aligned NPY or GeoTIFF prediction.
+
+This integration wrapper accepts both ``zero`` and inherited ``zeros`` spelling,
+never clips invalid science silently, and embeds the complete shared validator
+receipt when requested. The exact upstream CLI is retained at
+``scripts/template_submission_writer.py``.
+"""
 
 from __future__ import annotations
 
@@ -13,34 +19,44 @@ import rasterio
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-from gems.submission import check_variants, write_submission  # noqa: E402
+
+from gems import submission  # noqa: E402
 
 
-def main():
-    ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("prediction", type=Path, help="2D .npy or aligned single-band .tif")
-    ap.add_argument("output", type=Path)
-    ap.add_argument("--template", type=Path, default=ROOT / "data/bridge/sample_submission.tif")
-    ap.add_argument(
-        "--outside",
-        choices=("nan", "zero"),
-        default="zero",
-        help="exterior encoding; zero is the strict all-finite upload-safe default",
+def read_prediction(path: Path) -> np.ndarray:
+    if path.suffix.lower() == ".npy":
+        return np.load(path, allow_pickle=False)
+    if path.suffix.lower() in {".tif", ".tiff"}:
+        with rasterio.open(path) as dataset:
+            if dataset.count != 1:
+                raise ValueError("Prediction GeoTIFF must have one band")
+            return dataset.read(1)
+    raise ValueError("Prediction must be an aligned .npy, .tif or .tiff")
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("prediction", type=Path)
+    parser.add_argument("output", type=Path)
+    parser.add_argument(
+        "--template", type=Path, default=ROOT / "data/bridge/sample_submission.tif"
     )
-    args = ap.parse_args()
-    if args.prediction.suffix == ".npy":
-        a = np.load(args.prediction, allow_pickle=False)
-    else:
-        with rasterio.open(args.prediction) as s, rasterio.open(args.template) as t:
-            if (s.shape, s.crs, s.transform, s.count) != (t.shape, t.crs, t.transform, 1):
-                raise SystemExit("Prediction must match the template grid and be single-band")
-            a = s.read(1)
-    p = write_submission(a, args.template, args.output, outside=args.outside)
-    checks = check_variants(p, args.template)
-    print(json.dumps(checks, indent=2))
-    if not checks["format_valid"]:
-        raise SystemExit("Written file failed pinned-grid format validation")
+    parser.add_argument("--outside", choices=("zero", "zeros", "nan"), default="zero")
+    parser.add_argument("--receipt", type=Path, default=None)
+    args = parser.parse_args()
+    outside = "zero" if args.outside in {"zero", "zeros"} else "nan"
+    prediction = read_prediction(args.prediction)
+    submission.write_submission(
+        prediction, args.template, args.output, outside=outside
+    )
+    receipt = submission.check_variants(args.output, args.template)
+    text = json.dumps(receipt, indent=2, allow_nan=False) + "\n"
+    print(text, end="")
+    if args.receipt:
+        args.receipt.parent.mkdir(parents=True, exist_ok=True)
+        args.receipt.write_text(text)
+    return 0 if receipt["format_valid"] else 2
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

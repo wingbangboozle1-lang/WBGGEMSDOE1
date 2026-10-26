@@ -14,6 +14,10 @@ SHA-256 `148718d31ea75cfa3b7c643dfa25643cb0353483b2fa0e2696a62af2a107dca8`; 37,7
 
 [GitHub Pages dashboard](docs/index.html) · [submission instructions](docs/submission-instructions.html) · [full run card](evidence/tip1_run_card_20261026.json) · [TIP1 findings](research/01_tip1_findings.md) · [nine-site table and H33 analysis](research/02_h33_and_nine_site.md)
 
+### Preserved parallel archive from current `main`
+
+The merge with current `main` retains the separately completed **MVGZ** negative artifact and its evidence at [`evidence/run_card.json`](evidence/run_card.json). MVGZ remains **DO NOT SUBMIT**. It used evaluator `WBGGEMSDOE1-HIDE-RECOVER-v1.0` with 60,161 withheld positives, so its HOLDOUT-DTI cannot be treated as protocol-comparable to TIP1's `gems-segment-pooled-v1` result. TIP1 is the sole lane executed by this branch; inherited evidence was preserved rather than deleted.
+
 ## Mission
 
 Review the highest-scoring owner-reported artifacts from **GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33 and GEMSDOE36**; explain the GEMSDOE32 H33-B2 result without hidden-label speculation; test one genuinely distinct geological hypothesis; produce an automatically validated, uniquely named GeoTIFF; and state unambiguously whether it is safe to spend a leaderboard slot.
@@ -36,8 +40,8 @@ The full normalized requirements record is in [`research/owner_request.md`](rese
 
 ## Parallel-run protocol
 
-1. **One lane.** The owner message contains no actual assigned method paragraph. This repository explicitly records that irregularity and self-preregisters one candidate only because the same request directs autonomous ranking and validation. It never claims the lane was owner-assigned.
-2. **No private metric/writer fork.** Shared evaluator/writer/emission modules are byte-pinned to audited upstream commit `7790c3b`; one shared novelty performance fix is explicitly hashed, tested and recorded in `evidence/shared_source_lock.json` rather than hidden in an experiment fork.
+1. **One lane per autonomous branch.** The owner message contains no actual assigned method paragraph. This branch explicitly records that irregularity and self-preregisters TIP1 only because the same request directs autonomous ranking and validation. Separately merged MVGZ evidence is an inherited frozen archive, not a fourth TIP1 experiment.
+2. **No private metric/writer fork.** Shared evaluator/writer/emission modules are pinned to audited upstream commit `7790c3b`; exact template CLIs are retained as `scripts/template_*`, while repository-level wrappers preserve both frozen TIP1 verification and inherited MVGZ compatibility. One shared novelty performance fix is explicitly hashed, tested and recorded in `evidence/shared_source_lock.json`.
 3. **Labels on numbers.** Performance is either `HOLDOUT-DTI` with evaluator, withheld positives and 95% CI, or `ORGANIZER-CONFIRMED` with an artifact-linked receipt. Owner-reported leaderboard values remain `OWNER-REPORTED / UNVERIFIED`. A model projection is never labeled a score.
 4. **Leakage canary first.** Every source and transform used by the candidate is checked alone in both polarities.
 5. **Automated fail-closed selector.** Format, scientific efficacy, novelty, nuisance and governance gates are separate.

@@ -1,7 +1,11 @@
 # WBGGEMSDOE1 — blind geothermal fault discovery for DOE GEMS (DrivenData #306)
 
 **Site (GitHub Pages):** `docs/` → enable Pages on `main`, `/docs`.
-**Status:** <!--STATUS-->experiments running<!--/STATUS-->
+**Status:** ✅ OK TO DOWNLOAD: YES · 🛑 OK TO SUBMIT: NO (automated verdict `promote`; selector step pending — weekly cap + identity check)
+
+Headline file: `docs/downloads/wbg1-s_topo-blind-44090d-s2p0-20261026T223911Z-ff330e67-zeros.tif`
+(SHA-256 `8a8af7b7…`, 44,090 dots, 0 on-catalogue).
+Name `WBG1-H1-ff330e67` · note (53/140) `WBG1 s_topo 44090d SGMC 0.0846 vs bar 0.0581 d=0.0265`.
 
 ## The one-paragraph brief
 
@@ -111,7 +115,33 @@ PR, merge to main, and list remaining work + limitations.
 - INGENIOUS: https://gbcge.org/current-projects/ingenious/
 - GDR 1391: https://gdr.openei.org/submissions/1391
 
-## Limitations (owned, not hidden)
+## Run card (E3, automated — negatives are deliverables)
+
+- Hypothesis: blind faults missing from USGS/INGENIOUS catalogue are ranked by
+  label-free lineament transforms (winner: LiDAR-scarp/curvature surface).
+- Mechanism: scarp-rank surface → priority Poisson-disk (2.0 px lattice) →
+  B=2 flank exclusion; budget by SGMC holdout + transfer-ratio R.
+- Non-fault mimic: Lake Lahontan shorelines/terraces + basalt flow margins.
+- HOLDOUT-DTI (WBG1-SGMC-CAL-v1.0, 62,122 withheld, 95% CI): **0.0846
+  [0.0656, 0.1046]** vs champion bar G27-gap 0.0581 [0.0513, 0.0651];
+  paired Δ +0.0265 [0.0025, 0.0511], p(Δ≤0) = 0.014.
+- HIDE diagnostic (WBG1-HIDE-RECOVER-v1.0, 58,959 withheld): 0.0053 (floored
+  for B-excluded emissions — see `knowledge/metric_algebra.md` §7).
+- Uniqueness vs focus-9: worst corr −0.003, worst 3-px overlap 13.5% (PASS).
+- Validator: F1–F6 PASS (zeros all-finite in [0,1]; CRS/shape/transform match).
+- PROJECTION (bivariate live ~ SGMC+N, NOT a score): ~0.357, fit-noise
+  [0.354, 0.361]; true uncertainty extrapolation-dominated, unquantified.
+- Verdict: **promote** (selector step separate).
+
+## Core values (how we worked)
+
+Maximize P(Win): every number is measured from exact bytes; the selection rule
+was amended (v1→v2) when the paired test exposed a marginal pick, and the
+superseded v1 is preserved in git history. Own the Outcome: failures and
+caveats (floor effect, out-of-range projection, unverified leaderboard) are
+published in `registry/irregularities.json` and on the site — not buried.
+
+## Remaining work / limitations (owned, not hidden)
 
 1. drivendata.org unreachable from this sandbox → leaderboard + all submission
    scores are OWNER-REPORTED, never organizer-confirmed here.
@@ -119,3 +149,11 @@ PR, merge to main, and list remaining work + limitations.
 3. Data arrives via hash-pinned GitHub mirrors (integrity ✓, organizer-auth ✗).
 4. Hidden test is unobservable; SGMC off-catalogue is a proxy with transfer risk
    (documented in `knowledge/`).
+5. Selector step still open: confirm weekly cap + artifact identity, upload the
+   zeros TIF + note, record the receipt as ORGANIZER-CONFIRMED.
+
+Next experiments (new campaign, new budget): H3 radiometric alteration-halo
+emission; live-break-even per-dot pruning of the shipped mask; cream-skimming
+rank-curve to refine the live-optimal budget; H2 Euler-depth threading (needs
+implementation + QC); H4 1 m DEM pilot (needs 3DEP tiles, free/official, not
+yet obtained).

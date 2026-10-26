@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to submit · WBGGEMSDOE1</title><style>
+:root{--bg:#0e1116;--fg:#e8ecf1;--mut:#9aa4b2;--acc:#58a6ff;--ok:#3fb950;--no:#f85149;--warn:#d29922;--card:#161b22;--line:#30363d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 60px}
+nav{border-bottom:1px solid var(--line);padding:14px 20px;display:flex;gap:18px;flex-wrap:wrap;align-items:center;background:#0d1117;position:sticky;top:0}
+nav b{font-size:18px}nav a{color:var(--fg);opacity:.85}nav a:hover{opacity:1}
+.hero{padding:34px 0 10px}h1{font-size:34px;margin:.2em 0}h2{margin-top:2em;border-bottom:1px solid var(--line);padding-bottom:6px}h3{margin-top:1.4em}
+.badge{display:inline-block;padding:6px 14px;border-radius:999px;font-weight:700;margin:4px 8px 4px 0}
+.ok{background:rgba(63,185,80,.15);color:var(--ok);border:1px solid var(--ok)}
+.no{background:rgba(248,81,73,.12);color:var(--no);border:1px solid var(--no)}
+.warn{background:rgba(210,153,34,.12);color:var(--warn);border:1px solid var(--warn)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0}
+.btn{display:inline-block;background:var(--ok);color:#04120a!important;font-weight:700;padding:12px 22px;border-radius:8px;margin:8px 12px 8px 0}
+.btn.sec{background:transparent;color:var(--fg)!important;border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#1c2128}tr.hl td{background:rgba(88,166,255,.08)}
+code,kbd{background:#1c2128;padding:2px 6px;border-radius:6px;font-size:13px}
+pre{background:#0d1117;border:1px solid var(--line);border-radius:8px;padding:14px;overflow:auto;font-size:13px}
+.small{color:var(--mut);font-size:13px}ol.steps li{margin:10px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px}
+</style></head>
+<body><nav><b>WBG1 · DOE GEMS</b><a href="index.html">Overview</a><a href="executive-summary.html">Executive summary</a><a href="how-to-submit.html">How to submit</a><a href="hypotheses.html">Hypotheses</a><a href="research.html">Research</a><a href="sources.html">Sources</a></nav><div class="wrap"><h1>How to submit (exact steps)</h1><p><span class="badge ok">✅ OK TO DOWNLOAD: YES</span> <span class="badge no">🛑 OK TO SUBMIT: NO</span></p>
+<div class="card"><b>Current file:</b> <code>wbg1-s_topo-blind-44090d-s2p0-20261026T223911Z-ff330e67-zeros.tif</code> — verdict <b>promote</b>. Do not upload while the badge says 🛑.</div>
+<ol class="steps">
+<li>Open the submission page: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData #306 — DOE GEMS</a> → <i>Submit</i>. (Login required; mind the <b>weekly submission cap</b> shown on that page — promotion to a real slot is a separate selector decision.)</li>
+<li>Download the headlined file above (<a href="downloads/wbg1-s_topo-blind-44090d-s2p0-20261026T223911Z-ff330e67-zeros.tif" download>wbg1-s_topo-blind-44090d-s2p0-20261026T223911Z-ff330e67-zeros.tif</a>) or its <code>-zeros.zip</code> twin. Verify SHA-256: <code class="mono">8a8af7b74453b91d5a3797dd270496677980766cfa5d2fced3efb97e747ed38a</code> (<code>sha256sum</code>).</li>
+<li>Upload the <b>zeros-variant TIF</b> (0 outside footprint). The portal rejects NaN/out-of-range values with <i>"Predicted values must be in range [0, 1]"</i> — the zeros file is validated all-finite in [0,1]; never upload the <code>-nan</code> twin to the portal.</li>
+<li>Name the submission <code>WBG1-H1-ff330e67</code> and paste the note (<code>WBG1 s_topo 44090d SGMC 0.0846 vs bar 0.0581 d=0.0265</code>).</li>
+<li>Keep the receipt (score + submission id) and record it as ORGANIZER-CONFIRMED in <code>registry/observations.jsonl</code>. A projection is never a score.</li>
+</ol>
+<h2>Format contract (auto-checked by <code>scripts/run_checks.sh</code>)</h2>
+<table><tr><th>Gate</th><th>Requirement</th></tr>
+<tr><td>F1</td><td>single-band GeoTIFF</td></tr><tr><td>F2</td><td>CRS EPSG:32611</td></tr>
+<tr><td>F3</td><td>shape 3730 × 3292</td></tr><tr><td>F4</td><td>transform (100, 0, 243350, 0, −100, 4508550)</td></tr>
+<tr><td>F5</td><td>all inside-footprint values finite and in [0,1]</td></tr>
+<tr><td>F6</td><td>zeros-variant: whole array finite</td></tr></table>
+<hr><p class="small">Generated 2026-10-26T22:39:12Z from exact bytes + JSON receipts. No human inspection; gates fail closed. Repo: wingbangboozle1-lang/WBGGEMSDOE1.</p>
+</div></body></html>

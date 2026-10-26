@@ -1,0 +1,554 @@
+{
+  "hypothesis": "H1-lane: blind faults missing from USGS/INGENIOUS catalogue are ranked by label-free lineament transforms (winner: LiDAR-scarp/curvature surface); emission at the transfer-ratio-optimal operating point.",
+  "mechanism": "rank lineament surface, soft Andersonian gate (h1/h1w) or pure scarp rank (s_topo), priority Poisson-disk, B=2 flank exclusion; budget/spacing by SGMC holdout + transfer-ratio R for sparse live truth.",
+  "non_fault_mimic": "Pleistocene Lake Lahontan shorelines/terraces and basalt flow margins: identical short-wavelength curvature + conductivity steps; dominant expected FP.",
+  "primary_instrument": "WBG1-SGMC-CAL-v1.0",
+  "sgmc_dti": 0.08460668382264276,
+  "sgmc_ci95": [
+    0.06561137406332289,
+    0.1045580751927611
+  ],
+  "sgmc_n_truth": 62122,
+  "holdout_dti_hide": 0.005340826774481694,
+  "holdout_ci95_hide": [
+    0.0044319001645150725,
+    0.006293053405385121
+  ],
+  "hide_evaluator": "WBG1-HIDE-RECOVER-v1.0",
+  "n_withheld": 58959,
+  "champion_sgmc_bar": {
+    "id": "G27-gap",
+    "dti": 0.058125909495084296,
+    "ci95": [
+      0.051324993931433235,
+      0.06509248986462349
+    ]
+  },
+  "paired_delta_vs_bar": {
+    "delta_point": 0.026480774327558465,
+    "delta_mean": 0.026259064945062277,
+    "delta_ci95": [
+      0.0024757587830355437,
+      0.051135989334981785
+    ],
+    "p_one_sided_gt0": 0.014,
+    "n_rep": 5000,
+    "seed": 0
+  },
+  "beats_champion_holdout_bar": true,
+  "selection_rule": "v2: max-R among unique bar-beaters with paired-delta CI>0 vs bar; fallback (marginal) max-R point-beater",
+  "marginal_selection": false,
+  "R_transfer": {
+    "12226": 0.06955777891261837,
+    "20000": 0.08527259001328832,
+    "62122": 0.11233627154283544
+  },
+  "correlation_overlap_vs_registry": {
+    "worst_corr": {
+      "id": "G27-gap",
+      "corr": -0.0032305614171381156,
+      "overlap_3px": 0.13538217282830572,
+      "overlap_3px_reverse": 0.11749934776937125,
+      "exact_inter": 357,
+      "reg_dots": 61328,
+      "corr_ok": true,
+      "overlap_ok": true
+    },
+    "worst_overlap": {
+      "id": "G27-gap",
+      "corr": -0.0032305614171381156,
+      "overlap_3px": 0.13538217282830572,
+      "overlap_3px_reverse": 0.11749934776937125,
+      "exact_inter": 357,
+      "reg_dots": 61328,
+      "corr_ok": true,
+      "overlap_ok": true
+    }
+  },
+  "unique": true,
+  "uniqueness_shortlist": [
+    {
+      "key": "s_topo-B44090-S2.0",
+      "sgmc_DTI": 0.08460668382264276,
+      "sgmc_ci95": [
+        0.06561137406332289,
+        0.1045580751927611
+      ],
+      "A_sgmc": 4665.372633814812,
+      "N": 44090,
+      "R": {
+        "12226": 0.06955777891261837,
+        "20000": 0.08527259001328832,
+        "62122": 0.11233627154283544
+      },
+      "unique": true,
+      "worst_corr": {
+        "id": "G27-gap",
+        "corr": -0.0032305614171381156,
+        "overlap_3px": 0.13538217282830572,
+        "overlap_3px_reverse": 0.11749934776937125,
+        "exact_inter": 357,
+        "reg_dots": 61328,
+        "corr_ok": true,
+        "overlap_ok": true
+      },
+      "worst_overlap": {
+        "id": "G27-gap",
+        "corr": -0.0032305614171381156,
+        "overlap_3px": 0.13538217282830572,
+        "overlap_3px_reverse": 0.11749934776937125,
+        "exact_inter": 357,
+        "reg_dots": 61328,
+        "corr_ok": true,
+        "overlap_ok": true
+      },
+      "beats_bar_point": true,
+      "paired_delta": 0.026480774327558465,
+      "paired_ci95": [
+        0.0024757587830355437,
+        0.051135989334981785
+      ],
+      "paired_confident": true
+    },
+    {
+      "key": "s_topo-B44090-S2.35",
+      "sgmc_DTI": 0.07990210312664003,
+      "sgmc_ci95": [
+        0.06547992152362853,
+        0.09443092138546205
+      ],
+      "A_sgmc": 4297.153883755207,
+      "N": 44090,
+      "R": {
+        "12226": 0.06406786836989208,
+        "20000": 0.07854237380687919,
+        "62122": 0.1034700298209955
+      },
+      "unique": true,
+      "worst_corr": {
+        "id": "G28-rung30",
+        "corr": 0.0012286760688420973,
+        "overlap_3px": 0.14025856203220685,
+        "overlap_3px_reverse": 0.17349973446627723,
+        "exact_inter": 371,
+        "reg_dots": 37660,
+        "corr_ok": true,
+        "overlap_ok": true
+      },
+      "worst_overlap": {
+        "id": "G27-gap",
+        "corr": -0.0006853423683064835,
+        "overlap_3px": 0.1623497391698798,
+        "overlap_3px_reverse": 0.16328593790764415,
+        "exact_inter": 488,
+        "reg_dots": 61328,
+        "corr_ok": true,
+        "overlap_ok": true
+      },
+      "beats_bar_point": true,
+      "paired_delta": 0.021776193631555738,
+      "paired_ci95": [
+        0.0029515069622366974,
+        0.040994950946043815
+      ],
+      "paired_confident": true
+    },
+    {
+      "key": "s_topo-B44090-S2.8",
+      "twin_of": "s_topo-B44090-S2.35",
+      "skipped": true,
+      "sgmc_DTI": 0.07990210312664003
+    },
+    {
+      "key": "s_topo-B37654-S2.0",
+      "sgmc_DTI": 0.07507536442391216,
+      "sgmc_ci95": [
+        0.057436491219514156,
+        0.09347029072731455
+      ],
+      "A_sgmc": 4067.8714215382934,
+      "N": 37654,
+      "R": {
+        "12226": 0.07629626561492793,
+        "20000": 0.09182256112474824,
+        "62122": 0.11727080980481924
+      },
+      "unique": true,
+      "worst_corr": {
+        "id": "G27-gap",
+        "corr": -0.0031913421859444692,
+        "overlap_3px": 0.13140702183035002,
+        "overlap_3px_reverse": 0.09780198278111141,
+        "exact_inter": 295,
+        "reg_dots": 61328,
+        "corr_ok": true,
+        "overlap_ok": true
+      },
+      "worst_overlap": {
+        "id": "G27-gap",
+        "corr": -0.0031913421859444692,
+        "overlap_3px": 0.13140702183035002,
+        "overlap_3px_reverse": 0.09780198278111141,
+        "exact_inter": 295,
+        "reg_dots": 61328,
+        "corr_ok": true,
+        "overlap_ok": true
+      },
+      "beats_bar_point": true,
+      "paired_delta": 0.016949454928827865,
+      "paired_ci95": [
+        -0.0057129975324560845,
+        0.04038692514894651
+      ],
+      "paired_confident": false
+    },
+    {
+      "key": "s_topo-B37654-S2.35",
+      "sgmc_DTI": 0.0705805591427735,
+      "sgmc_ci95": [
+        0.057165605513144896,
+        0.0843077455892713
+      ],
+      "A_sgmc": 3740.7619404494762,
+      "N": 37654,
+      "R": {
+        "12226": 0.07016105895078123,
+        "20000": 0.08443883946561963,
+        "62122": 0.10784071977320915
+      },
+      "unique": true,
+      "worst_corr": {
+        "id": "G27-gap",
+        "corr": -0.0011532797754669902,
+        "overlap_3px": 0.1586816805651458,
+        "overlap_3px_reverse": 0.13750652230628752,
+        "exact_inter": 392,
+        "reg_dots": 61328,
+        "corr_ok": true,
+        "overlap_ok": true
+      },
+      "worst_overlap": {
+        "id": "G27-gap",
+        "corr": -0.0011532797754669902,
+        "overlap_3px": 0.1586816805651458,
+        "overlap_3px_reverse": 0.13750652230628752,
+        "exact_inter": 392,
+        "reg_dots": 61328,
+        "corr_ok": true,
+        "overlap_ok": true
+      },
+      "beats_bar_point": true,
+      "paired_delta": 0.012454649647689206,
+      "paired_ci95": [
+        -0.005619362801394952,
+        0.030973853627872357
+      ],
+      "paired_confident": false
+    },
+    {
+      "key": "s_topo-B37654-S2.8",
+      "twin_of": "s_topo-B37654-S2.35",
+      "skipped": true,
+      "sgmc_DTI": 0.0705805591427735
+    },
+    {
+      "key": "s_topo-B30000-S2.0",
+      "sgmc_DTI": 0.06263738743191025,
+      "sgmc_ci95": [
+        0.0468278343488517,
+        0.0793082544761436
+      ],
+      "A_sgmc": 3322.882198885083,
+      "N": 30000,
+      "R": {
+        "12226": 0.08581220589486173,
+        "20000": 0.10069339996621463,
+        "62122": 0.1235385893103348
+      },
+      "unique": true,
+      "worst_corr": {
+        "id": "G27-gap",
+        "corr": -0.003435315743481093,
+        "overlap_3px": 0.12703333333333333,
+        "overlap_3px_reverse": 0.07675123923819463,
+        "exact_inter": 210,
+        "reg_dots": 61328,
+        "corr_ok": true,
+        "overlap_ok": true
+      },
+      "worst_overlap": {
+        "id": "G27-gap",
+        "corr": -0.003435315743481093,
+        "overlap_3px": 0.12703333333333333,
+        "overlap_3px_reverse": 0.07675123923819463,
+        "exact_inter": 210,
+        "reg_dots": 61328,
+        "corr_ok": true,
+        "overlap_ok": true
+      },
+      "beats_bar_point": true,
+      "paired_delta": 0.00451147793682595,
+      "paired_ci95": [
+        -0.01633895564940139,
+        0.025893443912788843
+      ],
+      "paired_confident": false
+    },
+    {
+      "key": "h1w-B44090-S2.0",
+      "sgmc_DTI": 0.06263650785581586,
+      "sgmc_ci95": [
+        0.051277593107994214,
+        0.07335348469804338
+      ],
+      "A_sgmc": 3489.298555303365,
+      "N": 44090,
+      "R": {
+        "12226": 0.05202325227158784,
+        "20000": 0.063776583028706,
+        "62122": 0.08401789541129746
+      },
+      "unique": true,
+      "worst_corr": {
+        "id": "G36-pinn",
+        "corr": 0.00610084094556966,
+        "overlap_3px": 0.20585166704468133,
+        "overlap_3px_reverse": 0.20129201626602153,
+        "exact_inter": 582,
+        "reg_dots": 38854,
+        "corr_ok": true,
+        "overlap_ok": true
+      },
+      "worst_overlap": {
+        "id": "G27-gap",
+        "corr": 0.004832537096336179,
+        "overlap_3px": 0.22685416194148333,
+        "overlap_3px_reverse": 0.18026024002087138,
+        "exact_inter": 772,
+        "reg_dots": 61328,
+        "corr_ok": true,
+        "overlap_ok": true
+      },
+      "beats_bar_point": true,
+      "paired_delta": 0.00451059836073156,
+      "paired_ci95": [
+        -0.010591019447398395,
+        0.01944150487521557
+      ],
+      "paired_confident": false
+    },
+    {
+      "key": "h1w-B44090-S2.35",
+      "sgmc_DTI": 0.060852405131781834,
+      "sgmc_ci95": [
+        0.05208243603881416,
+        0.06921728852671323
+      ],
+      "A_sgmc": 3329.3687676526606,
+      "N": 44090,
+      "R": {
+        "12226": 0.049638799477759565,
+        "20000": 0.06085342376927092,
+        "62122": 0.08016698842841258
+      },
+      "unique": true,
+      "worst_corr": {
+        "id": "G36-pinn",
+        "corr": 0.0068558869795437355,
+        "overlap_3px": 0.2100929916080744,
+        "overlap_3px_reverse": 0.2482627271323416,
+        "exact_inter": 613,
+        "reg_dots": 38854,
+        "corr_ok": true,
+        "overlap_ok": true
+      },
+      "worst_overlap": {
+        "id": "G27-gap",
+        "corr": 0.005706848983339315,
+        "overlap_3px": 0.2331367657065094,
+        "overlap_3px_reverse": 0.2238944690842682,
+        "exact_inter": 817,
+        "reg_dots": 61328,
+        "corr_ok": true,
+        "overlap_ok": true
+      },
+      "beats_bar_point": true,
+      "paired_delta": 0.0027264956366975374,
+      "paired_ci95": [
+        -0.010308688150041986,
+        0.015633518128701226
+      ],
+      "paired_confident": false
+    },
+    {
+      "key": "h1w-B44090-S2.8",
+      "twin_of": "h1w-B44090-S2.35",
+      "skipped": true,
+      "sgmc_DTI": 0.060852405131781834
+    },
+    {
+      "key": "s_topo-B30000-S2.35",
+      "sgmc_DTI": 0.05909527450222918,
+      "sgmc_ci95": [
+        0.046740155848253535,
+        0.07239214511667855
+      ],
+      "A_sgmc": 3079.9293629787862,
+      "N": 30000,
+      "R": {
+        "12226": 0.07953803861185457,
+        "20000": 0.09333119281753897,
+        "62122": 0.11450605405317772
+      },
+      "unique": true,
+      "worst_corr": {
+        "id": "G27-gap",
+        "corr": -0.002000497962890421,
+        "overlap_3px": 0.15223333333333333,
+        "overlap_3px_reverse": 0.10660709626924081,
+        "exact_inter": 271,
+        "reg_dots": 61328,
+        "corr_ok": true,
+        "overlap_ok": true
+      },
+      "worst_overlap": {
+        "id": "G27-gap",
+        "corr": -0.002000497962890421,
+        "overlap_3px": 0.15223333333333333,
+        "overlap_3px_reverse": 0.10660709626924081,
+        "exact_inter": 271,
+        "reg_dots": 61328,
+        "corr_ok": true,
+        "overlap_ok": true
+      },
+      "beats_bar_point": true,
+      "paired_delta": 0.0009693650071448817,
+      "paired_ci95": [
+        -0.016559136982662606,
+        0.018802267544289056
+      ],
+      "paired_confident": false
+    }
+  ],
+  "raster_sha256": "8a8af7b74453b91d5a3797dd270496677980766cfa5d2fced3efb97e747ed38a",
+  "validator": {
+    "zeros": {
+      "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbg1-s_topo-blind-44090d-s2p0-20261026T223911Z-ff330e67-zeros.tif",
+      "pass": true,
+      "checks": {
+        "F1_single_band": {
+          "ok": true,
+          "detail": "count=1 dtype=float32"
+        },
+        "F2_crs": {
+          "ok": true,
+          "detail": "crs=EPSG:32611"
+        },
+        "F3_shape": {
+          "ok": true,
+          "detail": "shape=(3730, 3292)"
+        },
+        "F4_transform": {
+          "ok": true,
+          "detail": "transform=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+        },
+        "F5_finite_inside": {
+          "ok": true,
+          "detail": "nan_inside=0"
+        },
+        "F5_range_01": {
+          "ok": true,
+          "detail": "min=0.000000 max=1.000000"
+        },
+        "F6_all_finite": {
+          "ok": true,
+          "detail": "nan_total=0"
+        },
+        "info": {
+          "dots": 44090,
+          "binary01": true,
+          "positive_inside": 44090
+        }
+      }
+    },
+    "nan": {
+      "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbg1-s_topo-blind-44090d-s2p0-20261026T223911Z-ff330e67-nan.tif",
+      "pass": true,
+      "checks": {
+        "F1_single_band": {
+          "ok": true,
+          "detail": "count=1 dtype=float32"
+        },
+        "F2_crs": {
+          "ok": true,
+          "detail": "crs=EPSG:32611"
+        },
+        "F3_shape": {
+          "ok": true,
+          "detail": "shape=(3730, 3292)"
+        },
+        "F4_transform": {
+          "ok": true,
+          "detail": "transform=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+        },
+        "F5_finite_inside": {
+          "ok": true,
+          "detail": "nan_inside=0"
+        },
+        "F5_range_01": {
+          "ok": true,
+          "detail": "min=0.000000 max=1.000000"
+        },
+        "info": {
+          "dots": 44090,
+          "binary01": true,
+          "positive_inside": 44090
+        }
+      }
+    }
+  },
+  "submission_name": "wbg1-s_topo-blind-44090d-s2p0-20261026T223911Z-ff330e67-zeros.tif",
+  "submission_note": "WBG1 s_topo 44090d SGMC 0.0846 vs bar 0.0581 d=0.0265",
+  "projection": {
+    "method": "OLS live(owner-reported) ~ SGMC + N over 9 champions (structural DTI form: +credit, -denominator)",
+    "coef_sgmc": 2.4497785106545455,
+    "coef_N": -2.7168247230269725e-06,
+    "intercept": 0.26972249156451467,
+    "r2": 0.9855374890341204,
+    "rmse": 0.0013090237951121986,
+    "loo_rmse": 0.0017683350488859508,
+    "n": 9,
+    "champion_sgmc_range": [
+      0.04260392115557923,
+      0.058125909495084296
+    ],
+    "champion_N_range": [
+      37654,
+      61328
+    ],
+    "our_sgmc": 0.08460668382264276,
+    "our_N": 44090,
+    "in_calibration_range": false,
+    "PROJECTION": 0.3572053254127093,
+    "PROJECTION_interval": [
+      0.3537393887168928,
+      0.36067126210852574
+    ],
+    "caveats": [
+      "our SGMC above champion range (extrapolation)",
+      "n=9 incl. byte-duplicate champion rows, owner-reported live inputs (not receipts)",
+      "SGMC->live transfer assumed",
+      "interval is fit-noise-only; true uncertainty is extrapolation-dominated and UNQUANTIFIED \u2014 directional, not precise"
+    ],
+    "univariate_rejected": {
+      "slope": -1.641686790014114,
+      "intercept": 0.34121860020100886,
+      "reason": "N-confounded (negative slope); our-x out of range"
+    },
+    "label": "PROJECTION (model extrapolation, NOT a score)"
+  },
+  "verdict": "promote",
+  "ok_to_submit": false,
+  "ok_to_submit_note": "selector step separate (weekly cap)",
+  "elapsed_s": 178.6
+}

@@ -87,6 +87,8 @@ def main() -> int:
         sub_name = "WBG1-H1-" + audit.get("content_digest8", "")
         proj = card["projection"]["PROJECTION"]
         proj_ci = card["projection"]["PROJECTION_interval"]
+        proj_method = card["projection"].get("method", "PROJECTION")
+        proj_cav = "; ".join(card["projection"].get("caveats", []))
         sg, sg_ci = card["sgmc_dti"], card["sgmc_ci95"]
         hide = card["holdout_dti_hide"]
     else:
@@ -97,6 +99,7 @@ def main() -> int:
         sha = audit["zeros_tif"]["sha256"] if audit else "PENDING"
         note = sub_name = "PENDING"
         proj, proj_ci, sg, sg_ci, hide = 0, [0, 0], 0, [0, 0], 0
+        proj_method, proj_cav = "PENDING", ""
 
     def badge(ok, yes, no):
         return f'<span class="badge {"ok" if ok else "no"}">{"✅ " if ok else "🛑 "}{yes if ok else no}</span>'
@@ -114,8 +117,9 @@ def main() -> int:
                      f"<td>{r['owner_reported']:.4f} (OWNER-REPORTED)</td>"
                      f"<td>{c.get('sgmc_DTI', float('nan')):.5f}</td>"
                      f"<td>{r['dots']:,}</td><td>No — lineage duplicate (see analysis)</td></tr>")
-        rows += (f"<tr class='hl'><td><b>WBG1-H1 (ours)</b></td><td class='mono'>{fname}</td>"
-                 f"<td>PROJECTION ~{proj:.3f} [{proj_ci[0]:.3f},{proj_ci[1]:.3f}] — NOT a score</td>"
+        rows += (f"<tr class='hl'><td><b>WBG1 (ours)</b></td><td class='mono'>{fname}</td>"
+                 f"<td>PROJECTION ~{proj:.3f} (fit-noise [{proj_ci[0]:.3f},{proj_ci[1]:.3f}]; true uncertainty unquantified) — NOT a score<br>"
+                 f"<span class='small'>{proj_method}. Caveats: {proj_cav}.</span></td>"
                  f"<td><b>{sg:.5f}</b> [{sg_ci[0]:.5f},{sg_ci[1]:.5f}]</td>"
                  f"<td>{audit['positive_px']:,}</td>"
                  f"<td>{'Yes — unique' if v_uniq else 'No'} "
@@ -137,7 +141,7 @@ def main() -> int:
 <p class="small">Verdict: <b>{verdict}</b> · format {'PASS' if v_fmt else 'FAIL/PENDING'} · unique {'PASS' if v_uniq else 'FAIL/PENDING'} · beats champion SGMC-holdout bar {'YES' if v_bar else 'NO/PENDING'} · selector: {selector.get('decision', 'pending')}. Download=research OK · Submit requires promote-verdict + selector approval within the weekly cap.</p></div>
 <h2>What file to download · estimate · uniqueness</h2>
 <table><tr><th>Site</th><th>Submission</th><th>Score / estimate</th><th>HOLDOUT SGMC-DTI (ours, same instrument)</th><th>Dots</th><th>Unique?</th></tr>{rows}</table>
-<p class="small">Owner-reported = task statement / sibling pages, NOT organizer receipts. HOLDOUT-DTI = WBG1-SGMC-CAL-v1.0 (62,122 off-catalogue truth px, 256-block 95% CI). PROJECTION = OLS live~SGMC over 9 champions — a model extrapolation, never a score.</p>
+<p class="small">Owner-reported = task statement / sibling pages, NOT organizer receipts. HOLDOUT-DTI = WBG1-SGMC-CAL-v1.0 (62,122 off-catalogue truth px, 256-block 95% CI). PROJECTION = OLS live ~ SGMC+N over 9 champions (LOO interval) — a model extrapolation, never a score; univariate live~SGMC was rejected (N-confounded, wrong sign).</p>
 <h2>Why this ranking is honest</h2>
 <div class="grid"><div class="card"><b>Best proven: 0.2778 (G32 H33-B2)</b><br>But it is a strict subset of the 0.2600 D2.8 raster (denominator pruning, zero new faults) — resubmitting it or a copy violates uniqueness and likely organizer duplicate rules.</div>
 <div class="card"><b>Our lane: H1 geothermal-blind</b><br>Fresh detector, discharge-first ranking, no H19-5 input. Unique by construction; scored on the off-catalogue instrument that mimics the hidden test.</div>
@@ -163,10 +167,17 @@ def main() -> int:
                     f"<td>{v['hide_DTI']:.5f}</td></tr>")
     comp_rows = ""
     if e1:
+        e1b_comp = (e1b or {}).get("components", {}) if e1b else {}
         for name, v in e1["components"].items():
+            if name in e1b_comp:  # E1b paleo patch supersedes for s_geo/h1
+                v = e1b_comp[name]
+                can = v["canary"]["auc_two_sided"]
+                name = name + " (E1b, +paleo)"
+            else:
+                can = e1["canary"][name]["auc_two_sided"]
             comp_rows += (f"<tr><td>{name}</td><td>{v['sgmc_DTI']:.5f}</td>"
                            f"<td>{v['hide_DTI']:.5f}</td>"
-                           f"<td>{e1['canary'][name]['auc_two_sided']:.4f}</td></tr>")
+                           f"<td>{can:.4f}</td></tr>")
     card_json = json.dumps(card, indent=2) if card else "PENDING"
     ex = f"""<h1>Executive summary</h1><p>{dl_badge} {sub_badge}</p>
 <h2>1. Decision</h2><div class="card"><p class="mono">{fname}<br>SHA-256 {sha}</p>

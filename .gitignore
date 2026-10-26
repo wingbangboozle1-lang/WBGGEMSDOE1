@@ -1,9 +1,10 @@
-# Competition data and generated artifacts must be obtained locally and kept out of Git.
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Competition data and generated outputs stay local; never commit challenge rasters.
 /data/
 /submissions/
 /artifacts/
-
-# Python cache/environment artifacts.
-__pycache__/
-*.py[cod]
-.venv/

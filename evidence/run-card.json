@@ -2,8 +2,8 @@
   "run_id": "2026-10-26-review-no-experiment",
   "status": "negative",
   "verdict": "negative",
-  "hypothesis": "Candidate H1: multiscale orientation-and-persistence concordance of magnetic and isostatic-gravity edges, with strain-rate corroboration, may reveal buried fault contacts absent from the catalogue.",
-  "mechanism": "Fault-related displacement can juxtapose rocks with distinct magnetic and density properties. Coincident, directionally coherent, persistent edges across independent potential-field layers could identify a subsurface structural boundary without deriving predictions from the fault catalogue.",
+  "hypothesis": "Candidate H1: paired, persistent magnetic-contact and source-depth discontinuities may reveal buried fault contacts absent from the catalogue.",
+  "mechanism": "Fault-related displacement can juxtapose rocks with distinct magnetic properties and shift magnetic source depths. Co-located, directionally coherent magnetic edges and source-depth steps across scales could identify a subsurface structural boundary without deriving predictions from the fault catalogue.",
   "named_non_fault_mimic": "Lithologic contacts or intrusive bodies can produce coincident magnetic and gravity edges without being faults; survey seams can mimic discontinuities.",
   "lane": {
     "status": "unresolved",

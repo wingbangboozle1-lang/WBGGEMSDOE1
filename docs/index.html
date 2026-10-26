@@ -15,7 +15,8 @@
 </header>
 <nav aria-label="Main navigation">
   <a href="index.html">Overview</a>
-  <a href="executive-summary.html">Executive summary & submission guide</a>
+  <a href="executive-summary.html">Executive summary</a>
+  <a href="submission-guide.html">Submission guide</a>
   <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/main/README.md">Project charter</a>
   <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/main/evidence/run-card.json">Current run card (JSON)</a>
 </nav>
@@ -34,13 +35,13 @@
       <div class="metric"><b>0</b>submission slots used</div>
       <div class="metric"><b>Not available</b>candidate score or uniqueness result</div>
     </div>
-    <p class="small">These are checkout/readiness facts, not scientific score metrics. Run <code>python scripts/check_readiness.py</code> for the machine-readable missing-file list.</p>
+    <p class="small">These are checkout/readiness facts, not scientific score metrics. Run <code>python scripts/check_readiness.py</code> for the missing-file list. When actual files arrive, <code>python scripts/validate_submission.py candidate.tif data/sample_submission.tif</code> checks raster format/range only; it does not authorize a competition submission.</p>
   </section>
 
   <section>
     <h2>Competition snapshot</h2>
     <p>The official problem description defines the target as geological fault structures, notes that the public fault catalogue is incomplete, and describes a public/private scoring setup followed by expert review for a final expanded-label round. The same page specifies the DTI scoring mechanics and GeoTIFF contract. See the <a href="executive-summary.html#sources">official sources and evidence notes</a>.</p>
-    <div class="callout"><b>ORGANIZER-PUBLIC-LEADERBOARD snapshot, not a submission receipt (2026-10-26):</b> the official page showed a leading public score of <b>0.4437</b>. The prompt's values 0.3195 and 0.4413 do not match that retrieved snapshot; leaderboard values change over time and a public score is not a private/final award result. Details and link are in the <a href="executive-summary.html#leaderboard">executive summary</a>.</div>
+    <div class="callout"><b>ORGANIZER-PUBLIC-LEADERBOARD snapshot, not a submission receipt (2026-10-26):</b> the official page showed a leading public score of <b>0.4437</b>. The prompt's values 0.3195 and 0.4413 do not match that retrieved snapshot; leaderboard values change over time and a public score is not a private/final award result. This is a dated static snapshot, not an automatic live feed. Details and link are in the <a href="executive-summary.html#leaderboard">executive summary</a>.</div>
   </section>
 
   <section>
@@ -56,7 +57,7 @@
 
   <section>
     <h2>Research status</h2>
-    <p>Three provisional, official-layer-based hypotheses are ranked in the executive summary. They are not validated, and no experiment was run: the explicitly requested method-lane paragraph is absent from the prompt, the repo has no template/evaluator, and the data are unavailable. These limitations are called out rather than hidden.</p>
+    <p>Four provisional, official-layer-based hypotheses are ranked in the executive summary. They are not validated, and no experiment was run: the explicitly requested method-lane paragraph is absent from the prompt, the repo has no template/evaluator, and the data are unavailable. These limitations are called out rather than hidden.</p>
     <p><a href="executive-summary.html#hypotheses">Review hypotheses, likely confounders, implementation costs, and next steps →</a></p>
   </section>
 </main>

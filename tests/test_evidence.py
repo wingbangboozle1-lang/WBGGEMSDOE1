@@ -183,3 +183,19 @@ def test_inherited_small_bridge_references_match_current_lane_pins():
     pins = {row["dest"]: row["sha256"] for row in manifest["files"]}
     for name in ("labels.tif", "sample_submission.tif"):
         assert sha256(ROOT / "data/bridge" / name) == pins[name]
+
+
+def test_first_stop_time_never_moves_when_diagnostics_are_rechecked():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("registry_caller", ROOT / "scripts/audit_registry.py")
+    caller = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(caller)
+    first = load("evidence/first_registry_stop.json")
+    ledger = load("registry/experiment_ledger.json")
+    assert ledger["stop_utc"] == first["recorded_utc"]
+    later = "2099-01-01T00:00:00+00:00"  # Synthetic future verification, not an observation.
+    updated = caller.stopped_ledger(ledger, first, later)
+    assert updated["stop_utc"] == first["recorded_utc"]
+    assert updated["last_registry_verification_utc"] == later
+    assert updated["experiments_completed"] == 1 and updated["submission_slots_used"] == 0
+    assert caller.stopped_ledger(updated, None, later)["stop_utc"] == first["recorded_utc"]

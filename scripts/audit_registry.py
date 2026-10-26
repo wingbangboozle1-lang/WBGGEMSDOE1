@@ -18,6 +18,16 @@ from gems57 import uniqueness
 from wbggems.audit import dump_json, promotion_decision, sha256, utc_now
 
 
+def stopped_ledger(ledger, first_stop, verified_utc):
+    """Diagnostic rechecks must never move the original scientific STOP time."""
+    result = dict(ledger)
+    result.update(status="negative_stopped",
+        stop_utc=first_stop["recorded_utc"] if first_stop else ledger.get("stop_utc", verified_utc),
+        last_registry_verification_utc=verified_utc,
+        stop_reason="negative paired efficacy and literal surface registry duplicate; no final dot placement")
+    return result
+
+
 def main():
     exp = json.loads((ROOT / "evidence/experiment.json").read_text())
     surface_path = ROOT / exp["surface_file"]
@@ -118,7 +128,7 @@ def main():
     dump_json(ROOT / "docs/data/run-card.json", card)
     ledger_path = ROOT / "registry/experiment_ledger.json"
     ledger = json.loads(ledger_path.read_text())
-    ledger.update(status="negative_stopped", stop_utc=utc_now(), stop_reason="negative paired efficacy and literal surface registry duplicate; no final dot placement")
+    ledger = stopped_ledger(ledger, first_stop[0] if first_stop else None, report["generated_utc"])
     dump_json(ledger_path, ledger)
     print(json.dumps({"verdict": card["verdict"], "novelty": card["registry"], "download": card["artifact"]}, indent=2))
 

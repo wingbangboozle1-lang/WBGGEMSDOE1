@@ -127,6 +127,13 @@
       "title": "Pages administration permission is not available",
       "finding": "The GitHub integration can read the existing Pages site and Actions runs, but changing build_type via the Pages administration API returned HTTP 403 (Resource not accessible by integration). Existing Pages workflows previously deployed successfully.",
       "action": "Do not request credentials or bypass permissions. Keep the configured main/root publisher and stage the workflow artifact with the same root-to-/docs/ layout. Use /docs/ canonical page/download URLs and verify actual remote deployment. This is a publishing-scope limitation, not a scientific approval."
+    },
+    {
+      "id": "IR-019",
+      "severity": "fixed",
+      "title": "First STOP versus later verification timestamps",
+      "finding": "The first-STOP receipt retained 22:00:39Z, but a caller stamped the ledger stop_utc again during later diagnostic rechecks. This could misleadingly make the original stop appear later. No model, placement or upload ran after the original STOP.",
+      "action": "Set ledger stop_utc from the immutable first-STOP receipt and store last_registry_verification_utc separately. Add a regression test that subsequent diagnostics cannot move the STOP time. This is a metadata-only correction; no TIFF pixels or measured statistics change."
     }
   ]
 }

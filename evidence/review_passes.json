@@ -59,7 +59,8 @@
         "Documented OOF-seam/non-fault geometric artifacts without smoothing, tuning or changing the stopped TIFF; removed unused imports and ran syntax/undefined-name checks.",
         "Added frozen optional browser dependencies plus CI/browser and scheduled provenance-only Pages workflows; no training, contest uploader or slot selector exists in those workflows.",
         "Integrated concurrent main b9a2d53 without rerunning TIP1/MVGZ; preserved all inherited shared-source hashes, exact frozen artifacts/cards, supplied-reference validator compatibility and a byte-identical full old-site bundle. Kept active WBG-C1 and inherited scientific instruments/ledgers separate.",
-        "Pages administration PUT was denied by integration scope (HTTP 403). Preserved the existing publisher and added a checksum-verified public-only staging bundle with matching root-to-/docs/ layout and canonical URLs. No credential was requested and no setting was secretly bypassed."
+        "Pages administration PUT was denied by integration scope (HTTP 403). Preserved the existing publisher and added a checksum-verified public-only staging bundle with matching root-to-/docs/ layout and canonical URLs. No credential was requested and no setting was secretly bypassed.",
+        "Separated immutable first STOP (22:00:39Z) from later registry verification timestamps in the ledger; metadata-only fix and regression test, no new surface audit/model or artifact change."
       ],
       "regression_before_publication": "64 pytest tests passed in 7.13 seconds; Python compileall and Ruff E9/F checks passed; npm audit reported zero known vulnerabilities.",
       "receipts": [
@@ -75,7 +76,8 @@
       ],
       "outcome": "Research artifact and report are locally verified. No qualifying high-scoring, literal-unique, upload-ready candidate was obtained.",
       "final_integration_regression": "89 pytest tests passed in 7.59 seconds, including the inherited suite, archived-byte/source-pin checks and legacy CLI compatibility. Eight third-party Rasterio/Affine pending-deprecation warnings; no test failure. Both inherited frozen TIP1 verify-recorded/release checks also passed without retraining.",
-      "final_publication_layout_regression": "90 pytest tests passed in 7.39 seconds; protected public-only staging and canonical /docs/ browser checks passed. Eight third-party pending-deprecation warnings remain non-failing."
+      "final_publication_layout_regression": "90 pytest tests passed in 7.39 seconds; protected public-only staging and canonical /docs/ browser checks passed. Eight third-party pending-deprecation warnings remain non-failing.",
+      "final_metadata_regression": "91 pytest tests passed in 7.69 seconds; immutable first-STOP/last-verification regression added. No scientific pixels, statistics, thresholds, experiment count or slot decision changed."
     }
   ],
   "shared_template_files_modified": 0,

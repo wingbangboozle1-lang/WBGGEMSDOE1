@@ -10,6 +10,7 @@
   "finished_utc": "2026-10-26T21:57:49+00:00",
   "elapsed_seconds": 110.24896385700004,
   "experiments_completed": 1,
-  "stop_utc": "2026-10-26T22:39:01+00:00",
-  "stop_reason": "negative paired efficacy and literal surface registry duplicate; no final dot placement"
+  "stop_utc": "2026-10-26T22:00:39+00:00",
+  "stop_reason": "negative paired efficacy and literal surface registry duplicate; no final dot placement",
+  "last_registry_verification_utc": "2026-10-26T22:39:01+00:00"
 }

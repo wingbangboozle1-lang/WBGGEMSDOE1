@@ -1,0 +1,35 @@
+{
+ "schema": 1,
+ "items": [
+  {
+   "id": "IR-01",
+   "severity": "high",
+   "note": "Leaderboard top cited as 0.4413 AND 0.3195 in different prompt passages; sibling read 0.4437 on 2026-10-26; last pinned snapshot (2026-10-04) top 0.3262. UNVERIFIED from sandbox. All scores treated as OWNER-REPORTED."
+  },
+  {
+   "id": "IR-02",
+   "severity": "high",
+   "note": "No organizer receipt ties any score to exact raster bytes anywhere in the fleet. Byte relations proven; score attribution not."
+  },
+  {
+   "id": "IR-03",
+   "severity": "medium",
+   "note": "GEMSDOE30 d28-poisson300m (0.2600) is bit-identical in dots to GEMSDOE25 dotted-d2-8 (0.2600): same raster scored twice."
+  },
+  {
+   "id": "IR-04",
+   "severity": "medium",
+   "note": "Focus-9 champions are one lineage (86-100% mutual 3px overlap; H33 subset of D2.8; PINN = H33+1200). Uniqueness claims on derivative rasters are false; only fresh-detector rasters can be unique."
+  },
+  {
+   "id": "IR-05",
+   "severity": "medium",
+   "note": "NaN-outside variants fail strict portal validation in some modes ('Predicted values must be in range [0, 1]'); ship zeros-variant as primary."
+  },
+  {
+   "id": "IR-06",
+   "severity": "low",
+   "note": "Prompt references a 'single method paragraph below' lane and template tools (evaluate_holdout.py, submission_writer.py) that do not exist in this empty repo; this repo DEFINES the lane (H1) and IMPLEMENTS the template. Parallel-lane collision is enforced via focus9.json trip-wires."
+  }
+ ]
+}

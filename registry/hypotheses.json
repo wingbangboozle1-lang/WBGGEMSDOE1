@@ -1,0 +1,98 @@
+{
+ "schema": 1,
+ "campaign": "H1-geothermal-blind",
+ "budget": {
+  "max_experiments": 3
+ },
+ "hypotheses": [
+  {
+   "id": "H1",
+   "status": "implemented",
+   "title": "Geothermal-discharge-anchored blind faults",
+   "rank": 1,
+   "layers": [
+    "wellspring(CSV,temp)",
+    "vents",
+    "paleo",
+    "cond_surf",
+    "rtp",
+    "tmi",
+    "tmi_hg",
+    "lidar-scarp",
+    "det_elev",
+    "iso_grav_anom(+hg)"
+   ],
+   "signature": "rank-consensus lineament coincidence <1km of discharge, Andersonian strike gate (15/140deg), Poisson emission B=2",
+   "why_off_catalogue": "blind conduits feed springs/vents but lack mapped surface rupture; flank dots are masked=zero credit",
+   "differs": "no H19-5 input, no dotted-thinning, no prior raster; discharge-first ranking",
+   "mimic": "Lake Lahontan shorelines / basalt flow margins"
+  },
+  {
+   "id": "H3",
+   "status": "proposed",
+   "title": "Radiometric alteration-halo lineaments",
+   "rank": 2,
+   "layers": [
+    "K",
+    "Th",
+    "U",
+    "TC",
+    "ThK",
+    "UK",
+    "UTh",
+    "depth_to_base_surf"
+   ],
+   "signature": "K-enrichment/U-depletion corridors with structure-tensor coherence, cover-masked",
+   "why_off_catalogue": "alteration halos flank faults in cover where no scarp exists",
+   "differs": "cover-masked alteration-lineament emission (G46 fused scarp+radiometrics instead)",
+   "mimic": "lithologic K variation in felsic alluvium"
+  },
+  {
+   "id": "H5",
+   "status": "implemented-control",
+   "title": "Strain x seismic conjunction",
+   "rank": 3,
+   "layers": [
+    "geod_2ndinv",
+    "geod_dilaterate",
+    "ieq_n100a15",
+    "deq_n100a15"
+   ],
+   "signature": "high strain-rate where seismicity elevated but no catalogue fault <500m",
+   "why_off_catalogue": "off-catalogue by construction",
+   "differs": "pure conjunction emission, untried standalone",
+   "mimic": "caldera/aquifer deformation + volcanic swarms without throughgoing fault"
+  },
+  {
+   "id": "H2",
+   "status": "proposed",
+   "title": "Euler-depth-cluster thread continuity",
+   "rank": 4,
+   "layers": [
+    "rtp",
+    "tmi",
+    "TMI_up150"
+   ],
+   "signature": "Euler depth solutions clustered by depth+location; threads >1km",
+   "why_off_catalogue": "deep-rooted threads mark through-going faults with no surface trace",
+   "differs": "G40 lacked depth-cluster threading + break-even budget",
+   "mimic": "intrabasement susceptibility contrasts"
+  },
+  {
+   "id": "H4",
+   "status": "proposed-pilot-only",
+   "title": "Knickpoint/drainage-deflection lineaments",
+   "rank": 5,
+   "layers": [
+    "det_elev",
+    "det_elev_slope",
+    "USGS-3DEP-1m-TBD"
+   ],
+   "signature": "knickpoint density ridges aligned along strike",
+   "why_off_catalogue": "knickpoints record recent motion the catalogue missed",
+   "differs": "differs from G60 chi-corridors",
+   "mimic": "lithologic knickpoints at basalt/alluvium contacts",
+   "external_data": "USGS 3DEP 1m tiles (free, official, NOT yet obtained) -> full H4 not viable; 100m pilot only"
+  }
+ ]
+}

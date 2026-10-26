@@ -3,5 +3,8 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .ruff_cache/
+
+# Competition data and generated outputs stay local; never commit challenge rasters.
 /data/
+/submissions/
 /artifacts/

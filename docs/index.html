@@ -3,98 +3,64 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Auditable GEMS fault-mapping research status, submission gates, and official sources.">
-  <title>GEMS | Submission readiness</title>
-  <style>
-    :root{--ink:#17252c;--muted:#52656e;--paper:#f5f7f5;--card:#fff;--line:#dbe4df;--green:#176b50;--green-pale:#e8f4ed;--red:#872b24;--red-pale:#fff0ed;--gold:#765009;--gold-pale:#fff6dc;--blue:#175f83;--shadow:0 12px 34px #203a2a0d}
-    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}a{color:#075c75;text-underline-offset:3px}a:hover{color:#0c806c}.wrap{max-width:1100px;margin:auto;padding:30px 22px 70px}.hero{border-radius:22px;padding:36px clamp(22px,5vw,56px);color:#f7fff9;background:linear-gradient(120deg,#0d453e,#176b50 57%,#588259);box-shadow:var(--shadow)}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;font-weight:750;opacity:.85}.hero h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.1;margin:.35em 0}.hero p{max-width:800px;font-size:1.08rem}.status{display:inline-flex;align-items:center;gap:9px;background:#fff0ed;color:#79271e;border:1px solid #ffd0c7;border-radius:999px;padding:8px 14px;font-weight:800}.status:before{content:"";width:10px;height:10px;background:#bd3527;border-radius:50%}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin:22px 0}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow)}.wide{grid-column:span 12}.half{grid-column:span 6}.third{grid-column:span 4}h2{font-size:1.55rem;line-height:1.25;margin:0 0 12px}h3{font-size:1.08rem;margin:0 0 8px}.lead{font-size:1.08rem}.alert{border-left:5px solid #b8372b;background:var(--red-pale);padding:16px 18px;border-radius:10px}.good{border-left:5px solid var(--green);background:var(--green-pale);padding:14px 16px;border-radius:10px}.note{color:var(--muted)}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px}table{width:100%;border-collapse:collapse;background:white;font-size:.93rem}th,td{text-align:left;padding:12px 13px;border-bottom:1px solid var(--line);vertical-align:top}th{background:#eef4ef;font-size:.84rem;letter-spacing:.02em}tr:last-child td{border-bottom:0}.pill{white-space:nowrap;border-radius:999px;padding:3px 9px;font-size:.8rem;font-weight:750;background:var(--gold-pale);color:var(--gold)}.steps{counter-reset:step;list-style:none;padding:0}.steps li{counter-increment:step;position:relative;margin:14px 0;padding:0 0 0 48px}.steps li:before{content:counter(step);position:absolute;left:0;top:0;width:32px;height:32px;display:grid;place-items:center;border-radius:50%;background:var(--green-pale);color:var(--green);font-weight:800}.sources li{margin:8px 0}.footer{margin-top:20px;color:var(--muted);font-size:.9rem}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em;background:#eff3f1;padding:2px 5px;border-radius:4px}@media(max-width:760px){.half,.third{grid-column:span 12}.wrap{padding:16px 12px 48px}.hero{border-radius:15px}.card{padding:17px}}
-  </style>
+  <meta name="description" content="Auditable GEMS fault-discovery research and fail-closed submission readiness status.">
+  <title>GEMS Fault Discovery — Research & Submission Readiness</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body><main class="wrap">
-  <header class="hero">
-    <div class="eyebrow">Geothermal fault discovery · project status</div>
-    <h1>GEMS submission readiness</h1>
-    <p>Research, test and validate candidate unmapped-fault predictions before any competition upload. This dashboard distinguishes measured evidence from historical claims and makes submission readiness explicit.</p>
-    <span class="status">NOT READY — no validated TIFF to download</span>
-  </header>
+<body>
+<header>
+  <div class="eyebrow">GEMS Prize Challenge · Evidence-first research</div>
+  <h1>Fault discovery, with auditable gates.</h1>
+  <p>A research dashboard for spatial validation, scientific hypotheses, reproducibility, and safe GeoTIFF submission. Scores, projections, and organizer receipts are kept distinct.</p>
+</header>
+<nav aria-label="Main navigation">
+  <a href="index.html">Overview</a>
+  <a href="executive-summary.html">Executive summary</a>
+  <a href="submission-guide.html">Submission guide</a>
+  <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/main/README.md">Project charter</a>
+  <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/main/evidence/run-card.json">Current run card (JSON)</a>
+</nav>
+<main>
+  <div class="status" role="alert">
+    <strong>🔴 DO NOT SUBMIT — no approved GeoTIFF exists in this checkout.</strong>
+    <p>No competition data, cached feature stack, shared holdout evaluator, submission writer, or registry rasters are present. No prediction was generated. There is no score estimate, uniqueness result, or validator pass to claim. The safe action is to restore the authorized inputs and shared tools, then run the documented gates—not to submit a placeholder or a prior site's file.</p>
+    <p><a href="executive-summary.html">Open the executive summary and exact submission requirements →</a></p>
+  </div>
 
-  <section class="grid" aria-label="Current decision">
-    <article class="card wide">
-      <h2>Executive decision</h2>
-      <div class="alert"><strong>Do not submit a file from this repository.</strong> There is no TIFF, competition raster data, holdout evaluator, shared feature cache, submission writer, or historical candidate raster in this checkout. A valid-looking placeholder would not be a scientifically tested prediction. No download button is shown because no artifact has passed the gates.</div>
-      <p class="lead">The repository currently supports an auditable plan, not a scoring claim. No HOLDOUT-DTI has been run here; no organizer submission-page receipt or raster artifact was available for checking. Therefore there is no defensible score estimate or uniqueness finding.</p>
-      <p><strong>Score labels:</strong> A future result may be called <span class="mono">HOLDOUT-DTI</span> only with evaluator version, withheld-positive count and a 95% confidence interval. It may be called <span class="mono">ORGANIZER-CONFIRMED</span> only when copied from a DrivenData submission-page receipt. No current number meets either standard. Read the dedicated <a href="submission-guide.html">step-by-step submission guide</a>.</p>
-    </article>
+  <section>
+    <h2>At a glance</h2>
+    <div class="grid">
+      <div class="metric"><b>0</b>competition rasters found in this checkout</div>
+      <div class="metric"><b>0</b>spatial holdout experiments run</div>
+      <div class="metric"><b>0</b>submission slots used</div>
+      <div class="metric"><b>Not available</b>candidate score or uniqueness result</div>
+    </div>
+    <p class="small">These are checkout/readiness facts, not scientific score metrics. Run <code>python scripts/check_readiness.py</code> for the missing-file list. When actual files arrive, <code>python scripts/validate_submission.py candidate.tif data/sample_submission.tif</code> checks raster format/range only; it does not authorize a competition submission.</p>
   </section>
 
-  <section class="grid">
-    <article class="card wide">
-      <h2>Requested site-by-site executive summary</h2>
-      <p class="note">Historical entry names below are transcribed from the user's supplied list only. They are not locally available files, verified submission receipts, validated scores, nor proof of uniqueness. “Estimate” is intentionally withheld: without the required blocked holdout data it would be a projection, not an estimate supported by this project.</p>
-      <div class="table-wrap"><table>
-        <thead><tr><th>Site</th><th>Top listed historical entry</th><th>File to download now</th><th>Score estimate</th><th>Unique vs. listed registry submissions?</th><th>Decision</th></tr></thead>
-        <tbody>
-          <tr><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE24/">GEMSDOE24</a></td><td><span class="mono">h25-1-dotted-h19-5-d1-5…</span></td><td>None in this repository</td><td>Not estimable: holdout/data absent</td><td>Not checked: rasters absent</td><td><span class="pill">Do not submit</span></td></tr>
-          <tr><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE25/">GEMSDOE25</a></td><td><span class="mono">dotted-h19-5-d2-8…</span></td><td>None in this repository</td><td>Not estimable: holdout/data absent</td><td>Not checked: rasters absent</td><td><span class="pill">Do not submit</span></td></tr>
-          <tr><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE27/">GEMSDOE27</a></td><td><span class="mono">topo-gap-closure-t-v2-on-d1-5…</span></td><td>None in this repository</td><td>Not estimable: holdout/data absent</td><td>Not checked: rasters absent</td><td><span class="pill">Do not submit</span></td></tr>
-          <tr><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE28/">GEMSDOE28</a></td><td><span class="mono">h36-1-rung30-blind-r1…</span></td><td>None in this repository</td><td>Not estimable: holdout/data absent</td><td>Not checked: rasters absent</td><td><span class="pill">Do not submit</span></td></tr>
-          <tr><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE30/">GEMSDOE30</a></td><td><span class="mono">d28-poisson300m-offcat-44090…</span></td><td>None in this repository</td><td>Not estimable: holdout/data absent</td><td>Not checked: rasters absent</td><td><span class="pill">Do not submit</span></td></tr>
-          <tr><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE31/docs/">GEMSDOE31</a></td><td><span class="mono">h27-4-solo-d28…</span></td><td>None in this repository</td><td>Not estimable: holdout/data absent</td><td>Not checked: rasters absent</td><td><span class="pill">Do not submit</span></td></tr>
-          <tr><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32</a></td><td><span class="mono">h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</span></td><td>None in this repository</td><td>Not estimable: holdout/data absent</td><td>Not checked: rasters absent</td><td><span class="pill">Do not submit</span></td></tr>
-          <tr><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE33/">GEMSDOE33</a></td><td><span class="mono">h33d-analog-tip-stepover-r30…</span></td><td>None in this repository</td><td>Not estimable: holdout/data absent</td><td>Not checked: rasters absent</td><td><span class="pill">Do not submit</span></td></tr>
-          <tr><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE36/docs/">GEMSDOE36</a></td><td><span class="mono">anderson-geothermal-pinn-38854…</span></td><td>None in this repository</td><td>Not estimable: holdout/data absent</td><td>Not checked: rasters absent</td><td><span class="pill">Do not submit</span></td></tr>
-        </tbody>
-      </table></div>
-      <p class="note">Historical “best” labels reflect only the user-provided list; the referenced pages and their downloadable TIFF contents have not been fetched or independently inspected in this repository. The entry name alone does not establish that its raster is zero-valued, unique, or responsible for its reported result.</p>
-    </article>
+  <section>
+    <h2>Competition snapshot</h2>
+    <p>The official problem description defines the target as geological fault structures, notes that the public fault catalogue is incomplete, and describes a public/private scoring setup followed by expert review for a final expanded-label round. The same page specifies the DTI scoring mechanics and GeoTIFF contract. See the <a href="executive-summary.html#sources">official sources and evidence notes</a>.</p>
+    <div class="callout"><b>ORGANIZER-PUBLIC-LEADERBOARD snapshot, not a submission receipt (2026-10-26):</b> the official page showed a leading public score of <b>0.4437</b>. The prompt's values 0.3195 and 0.4413 do not match that retrieved snapshot; leaderboard values change over time and a public score is not a private/final award result. This is a dated static snapshot, not an automatic live feed. Details and link are in the <a href="executive-summary.html#leaderboard">executive summary</a>.</div>
   </section>
 
-  <section class="grid">
-    <article class="card half"><h2>Why the GEMSDOE32 result cannot yet be explained</h2>
-      <p>The competition's official metric rewards distance-tolerant overlap with expert-labelled faults. Its asymmetric weighting places greater cost on missed positives than on false positives, while the triangular distance kernel gives nearby predictions partial credit. A result can therefore reflect candidate coverage, line placement, confidence, and local geometry—not just a model family.</p>
-      <p>That is general metric interpretation, <strong>not a post-hoc explanation of this particular artifact</strong>. The result supplied in the request cannot be attributed to the “zeros” suffix or any mechanism without the exact raster, code/configuration, evaluation split/version, and an organizer receipt. Local evidence for all four is absent.</p>
-    </article>
-    <article class="card half"><h2>Can we beat it?</h2>
-      <p>Possibly, but this checkout cannot establish that. The hidden/private test set is not available for local evaluation, so no honest local method can guarantee beating an organizer result. The only permissible pre-slot evidence here is the prescribed spatially blocked holdout, and its evaluator plus inputs are missing.</p>
-      <div class="good"><strong>Safe next move:</strong> recover the official competition data through the authenticated data page, then reuse the shared evaluator/cache/writer and compare candidates under identical blocked splits. No weekly slot should be consumed by an unvalidated idea.</div>
-    </article>
+  <section>
+    <h2>What blocks a valid experiment?</h2>
+    <ol>
+      <li>Authorized `training_features.tif`, `labels.tif`, `sample_submission.tif`, and `1m_DEM_links.csv` are absent.</li>
+      <li>The requested shared tools (`evaluate_holdout.py`, `submission_writer.py`) and cached feature stack are absent.</li>
+      <li>The registry submission rasters needed for pre-placement and final novelty checks are absent.</li>
+      <li>There is no reproducible baseline or holdout best in this checkout, so no candidate can be shown to beat it.</li>
+    </ol>
+    <p>Do not substitute site summaries or published TIFs for private competition inputs. The linked DrivenData data page is login-gated for this environment; no authenticated download was attempted or claimed.</p>
   </section>
 
-  <section class="grid">
-    <article class="card wide"><h2>Research shortlist — hypotheses, not results</h2>
-      <p>The detailed ranked shortlist and rationale are in the <a href="../README.md">project brief</a>. Initial candidate: paired, multiscale magnetic-contact and source-depth discontinuities, using official TMI, its derivatives, and magnetic source-depth layers. Possible mimics include lithologic contacts, intrusive bodies, and survey/processing seams. It is only a hypothesis; feature-alone leakage checks and buffered whole-segment holdout are mandatory. No test has run.</p>
-      <p>Before trusting any candidate, use a named process that could mimic it, run the leakage canary on each feature, compare against registry rasters both before placement and after final dot selection, and record any duplication-trigger result. Stay within the stated experiment/time budget.</p>
-    </article>
+  <section>
+    <h2>Research status</h2>
+    <p>Four provisional, official-layer-based hypotheses are ranked in the executive summary. They are not validated, and no experiment was run: the explicitly requested method-lane paragraph is absent from the prompt, the repo has no template/evaluator, and the data are unavailable. These limitations are called out rather than hidden.</p>
+    <p><a href="executive-summary.html#hypotheses">Review hypotheses, likely confounders, implementation costs, and next steps →</a></p>
   </section>
-
-  <section class="grid">
-    <article class="card wide"><h2>How to make a competition submission</h2>
-      <ol class="steps">
-        <li><strong>Obtain the official data.</strong> Download from the signed-in DrivenData data page and preserve the provided sample-submission raster and training features. This project has no authenticated download session or local copies.</li>
-        <li><strong>Run the shared spatial holdout.</strong> Hold out whole fault segments plus a buffer; derive catalogue-based features from visible faults only; mask visible faults exactly. Run pooled distance-weighted Tversky and report the evaluator version, withheld-positive count, and confidence interval. Test each feature alone for leakage first.</li>
-        <li><strong>Check originality and rationale.</strong> Compare surface rank-correlation and point overlap to all registry rasters, both pre-placement and final. A threshold crossing means log duplicate and stop. Keep the hypothesis, plausible non-fault mimic, code, inputs, and hashes.</li>
-        <li><strong>Write and validate one raster.</strong> Use the shared submission writer. Confirm EPSG:32611, matching shape/bounds/transform and 100 m grid, exactly one float32 band, finite probabilities in [0, 1] on footprint, no NaN in footprint, and null/NaN outside. Run the official submission page's file checks too.</li>
-        <li><strong>Only then make a separate selector decision.</strong> Promote only if it beats the current holdout best and complies with the competition's weekly cap. A valid file is not automatically a high-scoring file.</li>
-        <li><strong>Submit manually on DrivenData.</strong> Upload the validated <span class="mono">.tif</span> (or a zip containing that one GeoTIFF), add a unique descriptive name and a note of at most 140 characters, submit, then save the submission-page receipt. This repository does not automate or claim a submission.</li>
-      </ol>
-      <div class="alert"><strong>Download action: unavailable.</strong> The moment a candidate passes all gates, this page should prominently link the exact artifact and show its SHA-256, validator result, holdout evidence and uniqueness outcome. Until then, this page intentionally has no misleading download control.</div>
-    </article>
-  </section>
-
-  <section class="grid">
-    <article class="card wide"><h2>Official sources and what they support</h2>
-      <ul class="sources">
-        <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem description</a> — target definition, provided-data overview, metric and submission format. Official requirements transcribed in this project: EPSG:32611, 100 m resolution, matching bounds, one float32 band, values within [0, 1]; distance-weighted Tversky alpha 0.2, beta 0.8 and triangular kernel support 300 m.</li>
-        <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">DrivenData data page</a> — official files and DEM links; sign-in required. Access is a current blocker here.</li>
-        <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/rules/">DrivenData rules</a> — participation and submission rules; check the live page before submission.</li>
-        <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData public leaderboard</a> — changing public results only; not a private-set result, holdout estimate, or submission receipt.</li>
-        <li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference-solution repository</a> — baseline implementation and instructions that the challenge data must be obtained from DrivenData.</li>
-        <li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN data page</a> — official survey context and source for GeoDAWN data.</li>
-        <li><a href="https://gbcge.org/current-projects/ingenious/">Great Basin Center for Geothermal Energy INGENIOUS project</a> — official project context referenced by the challenge.</li>
-        <li><a href="https://epsg.io/32611">EPSG:32611 reference</a> — coordinate-reference-system identifier reference.</li>
-      </ul>
-      <p class="note">The official specification was reviewed directly. Third-party GEMSDOE pages were supplied as candidate leads; their contents and scores have not been independently validated here. Search snippets, historical site claims and this project's hypotheses are not substitutes for a DrivenData receipt or a measured holdout run.</p>
-    </article>
-  </section>
-  <footer class="footer">Project principle: Maximize P(Win by improving genuine generalization) · Own the outcome by publishing tests, failures, limitations and evidence. This status page does not assert that an experiment or submission occurred.</footer>
-</main></body></html>
+</main>
+<footer>GEMS fault-discovery project · Evidence class and timestamp must accompany every future result.</footer>
+</body>
+</html>

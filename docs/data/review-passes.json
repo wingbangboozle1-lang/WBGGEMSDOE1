@@ -74,7 +74,8 @@
         "scripts/stage_pages.py"
       ],
       "outcome": "Research artifact and report are locally verified. No qualifying high-scoring, literal-unique, upload-ready candidate was obtained.",
-      "final_integration_regression": "89 pytest tests passed in 7.59 seconds, including the inherited suite, archived-byte/source-pin checks and legacy CLI compatibility. Eight third-party Rasterio/Affine pending-deprecation warnings; no test failure. Both inherited frozen TIP1 verify-recorded/release checks also passed without retraining."
+      "final_integration_regression": "89 pytest tests passed in 7.59 seconds, including the inherited suite, archived-byte/source-pin checks and legacy CLI compatibility. Eight third-party Rasterio/Affine pending-deprecation warnings; no test failure. Both inherited frozen TIP1 verify-recorded/release checks also passed without retraining.",
+      "final_publication_layout_regression": "90 pytest tests passed in 7.39 seconds; protected public-only staging and canonical /docs/ browser checks passed. Eight third-party pending-deprecation warnings remain non-failing."
     }
   ],
   "shared_template_files_modified": 0,

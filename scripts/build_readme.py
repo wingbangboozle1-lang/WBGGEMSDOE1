@@ -15,11 +15,11 @@ def main():
 
 ## DOWNLOAD: YES, for research. SUBMIT: **NO**.
 
-**[Open the research desk](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/)** ·
+**[Open the research desk](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/)** ·
 [Executive summary](docs/executive-summary.md) · [Submission guide](docs/how-to-submit.html) ·
 [Exact JSON run card](registry/run_card.json)
 
-**[Download the newly generated research TIFF](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/downloads/{tif})** ·
+**[Download the newly generated research TIFF](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/downloads/{tif})** ·
 [One-TIFF ZIP](docs/downloads/{tif.replace('.tif', '.zip')}) ·
 [TIFF in repository](docs/downloads/{tif}) · [Validation receipt](docs/downloads/{tif.replace('.tif', '.json')})
 
@@ -64,6 +64,24 @@ organizer rule. No historical file should be copied into a new "unique" entry.
 The direct **official public-leaderboard observation on 2026-10-26 was 0.4437**, not the prompt's
 older targets. That is **not** an organizer result for any project TIFF. A higher project score
 was not obtained or credibly projected in this session.
+
+## Parallel work preserved during integration
+
+While this branch was working from the one-line initial checkout, other sessions merged TIP1 and
+MVGZ negative results into `main` (integrated snapshot `b9a2d5301c0c971dcc1219f9ad6b29c68f68ee21`).
+Their frozen scientific modules, receipts and artifacts are retained; they were **not rerun**.
+The current **one-experiment count is WBG-C1 only**, not a sum or reset of the inherited lane budgets.
+Different evaluator/split/representation results must not be pooled or ranked as comparable scores.
+
+- [Original parallel site, with its own frozen assets and data](docs/parallel/main-b9a2d53/index.html)
+- [Original main README](research/inherited-main-README-b9a2d53.md) (historical commands/paths)
+- [Byte-preservation/integration receipt](evidence/parallel_main_integration.json)
+- [Frozen TIP1 card](evidence/tip1_run_card_20261026.json) and [MVGZ card](evidence/run_card.json)
+- Older two-argument `validate_submission.py candidate.tif reference.tif` callers retain their
+  supplied-reference format API; this is compatibility only and never confers slot approval.
+  WBG-C1 still uses the unchanged, pinned `gems57` all-finite validator/writer.
+- The older bridge-specific restore entry point is retained as `scripts/download_bridge_legacy.sh`
+  with `scripts/prepare_bridge_legacy.py`; current WBG-C1 commands below are unchanged.
 
 ## What is implemented
 
@@ -160,6 +178,10 @@ not falsely claim that a browser button trains the model.
    models can create confidence seams; geometric patterns in the thumbnail are not verified faults.
 7. **Scientific target:** competition faults are not direct vent/resource confirmation. Future
    geothermal discovery needs convergent independent evidence, not just a probability map.
+8. **Pages administration scope:** the integration cannot change Pages settings (HTTP 403).
+   The existing main/root publisher is retained; `scripts/stage_pages.py` gives workflow deploys
+   the same root-to-`/docs/` layout. This avoids incompatible download paths without a manual
+   configuration change. Only actual GitHub run/deployment receipts establish publication.
 
 [Official-source claim register](registry/sources.json) · [Irregularities](registry/irregularities.json)
 · [Frozen preregistration](registry/preregistration.json) · [Review passes](evidence/review_passes.json)

@@ -1,0 +1,181 @@
+{
+  "hypothesis": "TSML",
+  "dots": 10774,
+  "on_catalogue": 0,
+  "canary": {
+    "n_pos": 60161,
+    "n_neg_sampled": 80000,
+    "auc": {
+      "tsml_score": 0.1882702467129868
+    },
+    "leaking_auc_gt_0.90": [],
+    "pass": true
+  },
+  "holdout_tsml": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "WBGGEMSDOE1-HIDE-RECOVER-v1.0",
+    "name": "TSML",
+    "pooled_dti": 0.002169264720766359,
+    "ci95": [
+      0.0016117861554598367,
+      0.002738903828847527
+    ],
+    "tp": 123.08503691462695,
+    "fp": 42935.11999213178,
+    "fn": 60037.91496308537,
+    "n_withheld_positives": 60161,
+    "b_visible_px": 2.0,
+    "per_fold": {
+      "NW": {
+        "dti": 0.0016345866559468569,
+        "tp": 16.6157549366619,
+        "fp": 10736.939672826795,
+        "n_truth": 10018,
+        "emitted": 10750,
+        "coverage": 0.0016585900316092935
+      },
+      "NE": {
+        "dti": 0.0,
+        "tp": 0.0,
+        "fp": 10774.0,
+        "n_truth": 12410,
+        "emitted": 10774,
+        "coverage": 0.0
+      },
+      "SW": {
+        "dti": 0.0040309342703756966,
+        "tp": 73.90361404258945,
+        "fp": 10684.673335977215,
+        "n_truth": 20228,
+        "emitted": 10738,
+        "coverage": 0.0036535304549431213
+      },
+      "SE": {
+        "dti": 0.0020153999561283967,
+        "tp": 32.5656679353756,
+        "fp": 10739.506983327768,
+        "n_truth": 17505,
+        "emitted": 10762,
+        "coverage": 0.0018603637780848672
+      }
+    },
+    "ci_method": "cluster bootstrap over 132 of 256 spatial tiles, 1000 reps"
+  },
+  "holdout_champion": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "WBGGEMSDOE1-HIDE-RECOVER-v1.0",
+    "name": "champion_h33_2_b2",
+    "pooled_dti": 0.004755031393950281,
+    "ci95": [
+      0.0042816164234976625,
+      0.005256477960371414
+    ],
+    "tp": 371.85169919571126,
+    "fp": 149992.81721181268,
+    "fn": 59789.148300804285,
+    "n_withheld_positives": 60161,
+    "b_visible_px": 2.0,
+    "per_fold": {
+      "NW": {
+        "dti": 0.004974506626056901,
+        "tp": 77.26701936772514,
+        "fp": 37513.730716924074,
+        "n_truth": 10018,
+        "emitted": 37570,
+        "coverage": 0.007712818862819439
+      },
+      "NE": {
+        "dti": 0.0060106064390218,
+        "tp": 104.90179168680868,
+        "fp": 37518.99807519665,
+        "n_truth": 12410,
+        "emitted": 37598,
+        "coverage": 0.00845300497073398
+      },
+      "SW": {
+        "dti": 0.004459344763421146,
+        "tp": 105.66445082933078,
+        "fp": 37457.64575176925,
+        "n_truth": 20228,
+        "emitted": 37535,
+        "coverage": 0.005223672672994403
+      },
+      "SE": {
+        "dti": 0.003903968054003756,
+        "tp": 84.01843731184668,
+        "fp": 37502.4426679227,
+        "n_truth": 17505,
+        "emitted": 37563,
+        "coverage": 0.004799682222898982
+      }
+    },
+    "ci_method": "cluster bootstrap over 132 of 256 spatial tiles, 1000 reps"
+  },
+  "holdout_random": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "WBGGEMSDOE1-HIDE-RECOVER-v1.0",
+    "name": "random_matched",
+    "pooled_dti": 0.0008910664649970475,
+    "ci95": [
+      0.0007573940631353391,
+      0.0010555597198810968
+    ],
+    "tp": 50.55943648482926,
+    "fp": 43007.2656849262,
+    "fn": 60110.44056351517,
+    "n_withheld_positives": 60161,
+    "b_visible_px": 2.0,
+    "per_fold": {
+      "NW": {
+        "dti": 0.0006415854517922399,
+        "tp": 6.522654110449816,
+        "fp": 10753.7873073224,
+        "n_truth": 10018,
+        "emitted": 10759,
+        "coverage": 0.0006510934428478554
+      },
+      "NE": {
+        "dti": 0.0010207519630799568,
+        "tp": 12.333136546056068,
+        "fp": 10759.68169241781,
+        "n_truth": 12410,
+        "emitted": 10769,
+        "coverage": 0.0009938063292551224
+      },
+      "SW": {
+        "dti": 0.0009249949808368776,
+        "tp": 16.958900687169518,
+        "fp": 10741.27195735578,
+        "n_truth": 20228,
+        "emitted": 10754,
+        "coverage": 0.000838387417795606
+      },
+      "SE": {
+        "dti": 0.0009125661281377347,
+        "tp": 14.74474514115386,
+        "fp": 10752.524727830212,
+        "n_truth": 17505,
+        "emitted": 10764,
+        "coverage": 0.0008423162034363816
+      }
+    },
+    "ci_method": "cluster bootstrap over 132 of 256 spatial tiles, 1000 reps"
+  },
+  "delta_vs_champion": {
+    "evidence_class": "HOLDOUT-DTI",
+    "name": "TSML-minus-champion",
+    "delta_point": -0.002585766673183922,
+    "a_dti": 0.002169264720766359,
+    "b_dti": 0.004755031393950281,
+    "a_ci95": [
+      0.0016117861554598367,
+      0.002738903828847527
+    ],
+    "b_ci95": [
+      0.0042816164234976625,
+      0.005256477960371414
+    ],
+    "note": "point delta of two pooled HOLDOUT-DTI values; not a paired bootstrap CI"
+  },
+  "beats_champion_point": false
+}

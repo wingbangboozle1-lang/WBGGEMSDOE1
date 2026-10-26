@@ -158,3 +158,25 @@ def test_failed_leaderboard_refresh_preserves_exact_observation_date(tmp_path, m
     assert result["leaderboard_status"] == "refresh_unavailable_last_observation_retained"
     assert len(result["errors"]) == 10
     assert result["weekly_allowance"]["remaining"] is None
+
+
+def test_staged_pages_match_legacy_url_layout_and_preserve_artifact_bytes(tmp_path, monkeypatch):
+    import hashlib
+    stage = module("stage_pages")
+    (tmp_path / "docs/downloads").mkdir(parents=True)
+    (tmp_path / "registry").mkdir()
+    raw = b"synthetic staging test bytes, not a competition TIFF"
+    (tmp_path / "docs/downloads/fixture.tif").write_bytes(raw)
+    card = {"artifact": "docs/downloads/fixture.tif", "raster_sha256": hashlib.sha256(raw).hexdigest()}
+    (tmp_path / "registry/run_card.json").write_text(json.dumps(card))
+    (tmp_path / "index.html").write_text('<meta http-equiv="refresh" content="0; url=docs/">')
+    monkeypatch.setattr(stage, "ROOT", tmp_path)
+    target = stage.stage()
+    assert (target / "docs/downloads/fixture.tif").read_bytes() == raw
+    assert (target / "index.html").read_bytes() == (tmp_path / "index.html").read_bytes()
+    assert (target / ".nojekyll").is_file()
+    assert stage.stage() == target  # Marked generated bundles may be rebuilt.
+    (target / ".wbg-pages-stage").unlink()
+    with pytest.raises(ValueError, match="unmarked"):
+        stage.stage()
+    assert (target / "docs/downloads/fixture.tif").exists()

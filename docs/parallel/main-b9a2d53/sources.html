@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sources — WBGGEMSDOE1</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <h1>Official sources (for manual review)</h1>
+  <p>Every raster pin and metric constant below was checked this session.</p>
+</header>
+<nav>
+  <a href="index.html">Home / download</a>
+  <a href="executive-summary.html">Executive summary</a>
+  <a href="how-to-submit.html">How to submit</a>
+  <a href="hypotheses.html">Hypotheses</a>
+  <a href="sources.html">Sources</a>
+  <a href="irregularities.html">Irregularities</a>
+</nav>
+<main>
+  <table>
+    <thead><tr><th>Item</th><th>URL</th><th>What was verified 2026-10-26</th></tr></thead>
+    <tbody>
+      <tr><td>Problem description</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">page 967</a></td><td>DTI α=0.2 β=0.8, R=300 m; CRS EPSG:32611; 100 m; NaN outside bounds (portal still rejected NaN historically)</td></tr>
+      <tr><td>About / GeoDAWN</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/">page 968</a></td><td>USGS/DOE GeoDAWN + 3DEP context</td></tr>
+      <tr><td>Leaderboard</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a></td><td>#1 xiaofanhu 0.4437 (not 0.4413 / 0.3195)</td></tr>
+      <tr><td>Reference solution</td><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">drivendataorg/gems-prize-reference-solution</a></td><td>U-Net MC-CV baseline; data not bundled</td></tr>
+      <tr><td>EPSG:32611</td><td><a href="https://epsg.io/32611">epsg.io/32611</a></td><td>UTM zone 11N</td></tr>
+      <tr><td>Tversky index</td><td><a href="https://en.wikipedia.org/wiki/Tversky_index">Wikipedia</a></td><td>Background only; competition uses the distance-weighted form on page 967</td></tr>
+      <tr><td>GeoDAWN ScienceBase</td><td><a href="https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7">657e1d85d34e23d3533209f7</a></td><td>Official airborne mag/rad survey landing page</td></tr>
+      <tr><td>INGENIOUS / GDR 1391</td><td><a href="https://gdr.openei.org/submissions/1391">gdr.openei.org/submissions/1391</a> · DOI <a href="https://doi.org/10.15121/1881483">10.15121/1881483</a></td><td>CC-BY regional compilation; not fetched (egress)</td></tr>
+      <tr><td>Known-fault masking</td><td><a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">staff #11516</a></td><td>Cited; page fetched via secondary GEMSDOE32 notes this session</td></tr>
+      <tr><td>example_submission.tif</td><td>GitHub bridge <code>buffedlizard55-lab/GEMSDOE</code> <code>data/bridge</code></td><td>SHA-256 <code>2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc</code> · 3730×3292 float32 · 5,167,373 finite</td></tr>
+      <tr><td>existing_faults.tif</td><td>same bridge</td><td>SHA-256 <code>7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093</code> · int8 · 60,988 fault px, 7,111,787 outside (−1)</td></tr>
+      <tr><td>gems-geodawn-numerical-features.tif</td><td>same bridge, 5 parts concatenated</td><td>SHA-256 <code>4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5</code> · 19 bands, 418,912,844 B</td></tr>
+      <tr><td>GEMSDOE32 champion</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32</a></td><td>SHA-256 <code>c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9</code> · 37,654 dots · OWNER-REPORT 0.2778</td></tr>
+    </tbody>
+  </table>
+  <p>Dropbox mirrors listed in the prompt exist but are not reachable from this sandbox (not in the allowlist). DrivenData data tab redirects to login.</p>
+</main>
+<footer>Pins: evidence/data_pins.json</footer>
+</body>
+</html>

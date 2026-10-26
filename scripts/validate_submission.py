@@ -21,8 +21,11 @@ import numpy as np
 import rasterio
 from gems57 import gates
 from gems57.grid import SHAPE
-from gems57.validate import validate
+from gems57.validate import validate as validate_shared
 from wbggems.audit import sha256
+# Preserve the pre-existing supplied-reference API for inherited tests/callers.
+# It is not the authoritative all-finite writer/validator for WBG-C1.
+from gems.legacy_reference_validator import validate as validate
 
 
 def check_tiff(path):
@@ -33,6 +36,12 @@ def check_tiff(path):
             raise ValueError(f"expected one band on the {SHAPE} competition grid")
     footprint = catalogue = None
     sample, labels = ROOT / "data/sample_submission.tif", ROOT / "data/labels.tif"
+    # Concurrent main already retains byte-identical small bridge references.
+    # Prefer current-lane inputs, then verify bridge fallbacks by the same pins.
+    if not sample.exists():
+        sample = ROOT / "data/bridge/sample_submission.tif"
+    if not labels.exists():
+        labels = ROOT / "data/bridge/labels.tif"
     manifest = json.loads((ROOT / "registry/data_manifest.json").read_text())
     pins = {r["dest"]: r["sha256"] for r in manifest["files"]}
     reference = None
@@ -49,7 +58,7 @@ def check_tiff(path):
                 if (ds.shape, ds.crs, ds.transform) != reference:
                     raise ValueError("catalogue/reference grid mismatch")
                 catalogue = ds.read(1) > 0
-    report = validate(path, footprint, catalogue)
+    report = validate_shared(path, footprint, catalogue)
     nodata = report["meta"].get("nodata")
     if nodata is not None and not math.isfinite(nodata):
         # Metadata serialization only, not any repair to prediction pixels.
@@ -80,8 +89,21 @@ def approval_matches(card, report, identity_matches):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("file", type=Path)
+    parser.add_argument("reference", type=Path, nargs="?", help="inherited supplied-reference compatibility mode; format only, never approval")
     parser.add_argument("--require-submit-ready", action="store_true")
     args = parser.parse_args()
+    if args.reference is not None:
+        legacy = validate(args.file, args.reference)
+        metadata = legacy.get("checks", {}).get("candidate", {})
+        if metadata.get("nodata") is not None and not math.isfinite(metadata["nodata"]):
+            metadata["nodata"] = str(metadata["nodata"])
+        report = {"all_checks_passed": legacy["ok"], "ok_to_submit": False,
+            "compatibility_mode": "inherited supplied-reference format/nodata validator; not WBG-C1 approval",
+            "reference_report": legacy}
+        print(json.dumps(report, indent=2, allow_nan=False))
+        if not legacy["ok"]:
+            return 1
+        return 2 if args.require_submit_ready else 0
     source = args.file.resolve()
     if source.suffix.lower() == ".zip":
         cache = ROOT / ".cache/validator"

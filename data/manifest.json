@@ -1,0 +1,36 @@
+{
+  "schema": "gemsdoe1-data-manifest-v1",
+  "files": {
+    "bridge/sample_submission.tif": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597,
+      "tracked": true
+    },
+    "bridge/labels.tif": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830,
+      "tracked": true
+    },
+    "bridge/existing_faults.tif": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830,
+      "tracked": true
+    },
+    "external/lidar_scarp_features.json": {
+      "sha256": "9ef0df6e87598a8b0cd52fe821661e5fdb3a00568c5d9b1c5d61fd6b242dcd41",
+      "bytes": 3531,
+      "tracked": true
+    },
+    "external/lidar_scarp_features_u8.tif": {
+      "sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+      "bytes": 36943606,
+      "tracked": false,
+      "restore_source": {
+        "repository": "https://github.com/buffedlizard55-lab/GEMSDOE24",
+        "commit": "7790c3b3038e3fb34f2fe844e10d187a02fa3ab4",
+        "path": "data/external/lidar_scarp_features_u8.tif",
+        "git_blob_sha1": "da733b53147efad5c141ffdb96e469ec5b4da8b8"
+      }
+    }
+  }
+}

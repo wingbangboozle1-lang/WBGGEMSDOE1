@@ -24,14 +24,23 @@ jobs:
         run: python -m pip install -r requirements-lock.txt
       - name: Regression, metric, provenance, website and artifact tests
         run: python -m pytest -q
+      - name: Static syntax and undefined-name checks
+        run: python -m ruff check scripts src tests --select E9,F --exclude test_template_evaluator.py
       - name: Revalidate the actual TIFF and ZIP
         run: |
           python scripts/validate_submission.py docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif
           python scripts/validate_submission.py docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.zip
+      - name: Recheck inherited frozen TIP1 receipt without retraining
+        env:
+          PYTHONPATH: src
+        run: |
+          python scripts/run_tip1_lane.py --verify-recorded
+          python scripts/validate_release.py
       - name: Rebuild static reports without changing research results
         run: |
           python scripts/build_site.py
           python scripts/build_readme.py
+          python scripts/stage_pages.py
           git diff --exit-code
 
   browser:
@@ -47,10 +56,11 @@ jobs:
         run: npm ci
       - name: Render all five pages, test filtering and verify the actual download
         run: |
-          python3 -m http.server 8000 --bind 0.0.0.0 --directory docs > /tmp/wbg-site.log 2>&1 &
+          python3 scripts/stage_pages.py
+          python3 -m http.server 8000 --bind 0.0.0.0 --directory .cache/pages > /tmp/wbg-site.log 2>&1 &
           server_pid=$!
           trap 'kill "$server_pid"' EXIT
-          BASE_URL=http://127.0.0.1:8000/ npm run test:browser
+          BASE_URL=http://127.0.0.1:8000/docs/ BROWSER_COMPAT_LIBS=1 npm run test:browser
       - name: Retain rendered regression screenshots
         if: always()
         uses: actions/upload-artifact@v4

@@ -18,3 +18,9 @@ evidence/*.log
 *.egg-info/
 .coverage
 htmlcov/
+# Inherited parallel-lane caches remain reproducible, not release artifacts.
+.mypy_cache/
+.DS_Store
+registry/cache/
+/submissions/
+/artifacts/

@@ -1,0 +1,28 @@
+{
+  "pass": true,
+  "checks": {
+    "file_exists": true,
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "single_band": true,
+    "zero_dots_on_catalogue": true,
+    "finite_inside_footprint": true,
+    "values_in_0_1_inside_footprint": true,
+    "no_nan_inside_footprint": true,
+    "all_cells_finite": true,
+    "all_cells_in_0_1": true
+  },
+  "n_checks": 12,
+  "n_pass": 12,
+  "sha256": "0c2516fa5e5727eab1150750b72c189a454968aba4f9afbc5e2aac84dcc8faba",
+  "bytes": 150278,
+  "dots": 23402,
+  "on_catalogue": 0,
+  "min": 0.0,
+  "max": 1.0,
+  "nan_inside": 0,
+  "nan_anywhere": 0,
+  "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif"
+}

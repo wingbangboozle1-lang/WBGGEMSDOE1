@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "reviewed_date_utc": "2026-10-26",
-  "scope": "Implementation and three local review passes of the nine-site audit, one frozen scientific screen, exact research artifact, static website and automation. No claim of exhaustive review of every linked source, all 92 sites, private data or hidden labels.",
+  "scope": "Implementation and three local review passes of the nine-site audit, one frozen scientific screen, exact research artifact, static website and automation. No claim of exhaustive review of every linked source, all 92 sites, private data or hidden labels. Concurrent main integration preserves, but does not newly reproduce or independently confirm, inherited TIP1/MVGZ scientific results.",
   "passes": [
     {
       "pass": 1,
@@ -13,7 +13,14 @@
         "Ran 92 single-feature canaries; retained paired DTI/block-bootstrap terms and a finite, aligned, newly generated float32 research TIFF with exactly-one-TIFF ZIP.",
         "Audited nine immutable source snapshots and 360 unique prior file hashes; preserved the first literal overlap STOP. No final dots, selector promotion or competition upload."
       ],
-      "receipts": ["evidence/experiment.json", "evidence/feature_canaries.json", "evidence/block_terms.json", "evidence/first_registry_stop.json", "registry/preregistration.json", "registry/run_card.json"],
+      "receipts": [
+        "evidence/experiment.json",
+        "evidence/feature_canaries.json",
+        "evidence/block_terms.json",
+        "evidence/first_registry_stop.json",
+        "registry/preregistration.json",
+        "registry/run_card.json"
+      ],
       "outcome": "Negative efficacy and literal uniqueness; one experiment, zero competition slots. This is not a successful high-scoring submission."
     },
     {
@@ -28,7 +35,14 @@
         "Built the five-page evidence desk, executive-summary Markdown, exact artifact links, source register and complete standing-prompt README; tested local links, anchors and feed parser failure cases."
       ],
       "regression_at_end_of_pass": "46 pytest tests passed in 1.25 seconds",
-      "receipts": ["evidence/upstream_template_verification.json", "evidence/snapshot_commit_verification.json", "evidence/nine_site_audit.json", "evidence/template_integrity.json", "registry/sources.json", "registry/irregularities.json"],
+      "receipts": [
+        "evidence/upstream_template_verification.json",
+        "evidence/snapshot_commit_verification.json",
+        "evidence/nine_site_audit.json",
+        "evidence/template_integrity.json",
+        "registry/sources.json",
+        "registry/irregularities.json"
+      ],
       "outcome": "Corrected audit/reporting problems without changing the scientific experiment or TIFF pixels."
     },
     {
@@ -43,11 +57,24 @@
         "Hardened CLI approval against a single flipped flag and bounded raster dimensions before reading; unchanged shared numerical validator remains authoritative.",
         "Rendered all five pages at desktop and mobile sizes, tested filtering and hashed the actual primary download; no page errors or body-width overflow. Inspected the generated desktop/mobile screenshots.",
         "Documented OOF-seam/non-fault geometric artifacts without smoothing, tuning or changing the stopped TIFF; removed unused imports and ran syntax/undefined-name checks.",
-        "Added frozen optional browser dependencies plus CI/browser and scheduled provenance-only Pages workflows; no training, contest uploader or slot selector exists in those workflows."
+        "Added frozen optional browser dependencies plus CI/browser and scheduled provenance-only Pages workflows; no training, contest uploader or slot selector exists in those workflows.",
+        "Integrated concurrent main b9a2d53 without rerunning TIP1/MVGZ; preserved all inherited shared-source hashes, exact frozen artifacts/cards, supplied-reference validator compatibility and a byte-identical full old-site bundle. Kept active WBG-C1 and inherited scientific instruments/ledgers separate.",
+        "Pages administration PUT was denied by integration scope (HTTP 403). Preserved the existing publisher and added a checksum-verified public-only staging bundle with matching root-to-/docs/ layout and canonical URLs. No credential was requested and no setting was secretly bypassed."
       ],
       "regression_before_publication": "64 pytest tests passed in 7.13 seconds; Python compileall and Ruff E9/F checks passed; npm audit reported zero known vulnerabilities.",
-      "receipts": ["evidence/browser_checks.json", "evidence/repository_restore.json", "evidence/registry_surface_audit.json", "registry/focus_inventory.json", "tests/test_cli.py", ".github/workflows/ci.yml", ".github/workflows/pages.yml"],
-      "outcome": "Research artifact and report are locally verified. No qualifying high-scoring, literal-unique, upload-ready candidate was obtained."
+      "receipts": [
+        "evidence/browser_checks.json",
+        "evidence/repository_restore.json",
+        "evidence/registry_surface_audit.json",
+        "registry/focus_inventory.json",
+        "tests/test_cli.py",
+        ".github/workflows/ci.yml",
+        ".github/workflows/pages.yml",
+        "evidence/parallel_main_integration.json",
+        "scripts/stage_pages.py"
+      ],
+      "outcome": "Research artifact and report are locally verified. No qualifying high-scoring, literal-unique, upload-ready candidate was obtained.",
+      "final_integration_regression": "89 pytest tests passed in 7.59 seconds, including the inherited suite, archived-byte/source-pin checks and legacy CLI compatibility. Eight third-party Rasterio/Affine pending-deprecation warnings; no test failure. Both inherited frozen TIP1 verify-recorded/release checks also passed without retraining."
     }
   ],
   "shared_template_files_modified": 0,

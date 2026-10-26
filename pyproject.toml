@@ -11,16 +11,23 @@ dependencies = [
   "numpy>=2.2,<3",
   "scipy>=1.15,<2",
   "rasterio>=1.4,<2",
-  "scikit-learn>=1.6,<2"
+  "scikit-learn>=1.6,<2",
+  "pillow==13.0.0",
+  "pyproj==3.7.2",
+  "shapely==2.1.2",
+  "pyshp==3.1.6",
+  "threadpoolctl==3.7.0",
+  "joblib==1.6.0"
 ]
 
 [project.optional-dependencies]
 test = ["pytest>=8,<10"]
+dev = ["pytest==9.1.1", "ruff==0.16.10"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.pytest.ini_options]
-pythonpath = ["src", "vendor"]
+pythonpath = ["src", "vendor", "."]
 testpaths = ["tests"]
 addopts = "-ra"

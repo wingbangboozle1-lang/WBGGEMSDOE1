@@ -35,10 +35,12 @@ jobs:
         run: python scripts/refresh_feed.py
       - name: Build static evidence desk (no model, no slot selection)
         run: python scripts/build_site.py
+      - name: Preserve existing root-to-docs publishing layout
+        run: python scripts/stage_pages.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: docs
+          path: .cache/pages
       - name: Deploy GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

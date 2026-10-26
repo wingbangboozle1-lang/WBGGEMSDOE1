@@ -1,0 +1,14 @@
+{
+  "generated_utc": "2026-10-26T21:56:56Z",
+  "items": [
+    {"id": "IR-WB1-LANE", "issue": "Prompt lane paragraph absent", "action": "Self-declared TSML/MVGZ magnetic-contact lane"},
+    {"id": "IR-WB1-TARGETS", "issue": "Prompt live highs 0.4413 and 0.3195", "action": "Leaderboard #1 = 0.4437 on 2026-10-26"},
+    {"id": "IR-WB1-RECEIPT", "issue": "0.2778 has no organizer receipt here", "action": "Labeled OWNER-REPORT"},
+    {"id": "IR-WB1-NAN", "issue": "Portal rejected NaN as out of [0,1]", "action": "Ship zeros-mode primary"},
+    {"id": "IR-WB1-ALIAS", "issue": "G25 and G30 44090-dot family, 100% 3px overlap", "action": "Table treats as one family"},
+    {"id": "IR-WB1-HOLDOUT-N", "issue": "n_withheld 60161 vs GEMSDOE32 22232", "action": "Do not cross-compare DTI across evaluator versions"},
+    {"id": "IR-WB1-EGRESS", "issue": "Dropbox/DrivenData/USGS/GDR blocked", "action": "GitHub bridge + SHA-256 pins"},
+    {"id": "IR-WB1-LATTICE", "issue": "Space-filling rasters break literal 3px rule", "action": "Null-calibrated gate; literal still logged"},
+    {"id": "IR-WB1-PAGES", "issue": "Pages not auto-enabled", "action": "docs/ site + workflow; owner must enable Pages"}
+  ]
+}

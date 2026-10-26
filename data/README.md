@@ -13,3 +13,16 @@ All nineteen local band hashes must match the template's expected hashes before 
 
 Never interpret a known catalogue fault as a newly discovered vent. No hidden organizer truth is available.
 Never commit the feature raster, band caches, downloaded repositories, or generated training matrices.
+
+## Inherited parallel-lane inputs
+
+Concurrent main retained small, hash-pinned grid/catalogue files under `data/bridge/` and the
+TIP1 LiDAR provenance JSON under `data/external/`. They are preserved for frozen TIP1/MVGZ
+receipt checks, not used as inherited prediction features in WBG-C1. The current validator can
+use the bridge grid/catalogue only after verifying the same expected SHA-256 pins.
+
+- TIP1's original independent restore is `scripts/restore_inputs.py`; this is data retrieval,
+  not permission to rerun its stopped experiment.
+- The older full bridge assembly commands remain available as `scripts/download_bridge_legacy.sh`
+  and `scripts/prepare_bridge_legacy.py`. They are not the current WBG-C1 cache-preparation entry point.
+- Do not commit restored LiDAR rasters, raw feature parts or `registry/cache/`.

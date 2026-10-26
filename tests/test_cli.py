@@ -92,3 +92,23 @@ def test_stopped_experiment_refuses_to_prepare_data_or_train(monkeypatch):
     monkeypatch.setattr(experiment, "prepare", lambda: pytest.fail("stopped experiment attempted a new preparation"))
     with pytest.raises(SystemExit, match="already started"):
         experiment.main()
+
+
+def test_legacy_supplied_reference_cli_is_preserved_but_never_approves(tmp_path):
+    from rasterio.transform import from_origin
+    reference, candidate = tmp_path / "reference.tif", tmp_path / "candidate.tif"
+    profile = dict(driver="GTiff", height=4, width=5, count=1, dtype="float32",
+        crs="EPSG:32611", transform=from_origin(400000, 4500000, 100, 100), nodata=np.nan)
+    for path, value in ((reference, 0.), (candidate, .25)):
+        a = np.full((4, 5), value, dtype=np.float32)
+        a[0, 0] = np.nan
+        with rasterio.open(path, "w", **profile) as dst:
+            dst.write(a, 1)
+    result = subprocess.run([sys.executable, str(ROOT / "scripts/validate_submission.py"),
+        str(candidate), str(reference), "--require-submit-ready"], cwd=ROOT,
+        text=True, capture_output=True, timeout=30)
+    assert result.returncode == 2, result.stderr
+    report = json.loads(result.stdout)
+    assert report["reference_report"]["ok"] and report["all_checks_passed"]
+    assert report["ok_to_submit"] is False
+    assert "compatibility" in report["compatibility_mode"] or "inherited" in report["compatibility_mode"]

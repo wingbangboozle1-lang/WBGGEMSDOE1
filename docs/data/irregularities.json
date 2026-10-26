@@ -113,6 +113,20 @@
       "title": "OOF seams are not geological structure",
       "finding": "The research TIFF stitches four separately fitted spatial-fold models. Confidence discontinuities can occur at those boundaries without any fault; known-catalogue masking and the irregular input footprint also introduce geometric patterns.",
       "action": "Label the actual thumbnail as uncalibrated OOF confidence, not verified geology. No post-STOP seam smoothing, feature retuning or candidate-pixel changes are allowed. The artifact and measured evidence remain unchanged."
+    },
+    {
+      "id": "IR-017",
+      "severity": "medium",
+      "title": "Parallel main advanced during this session",
+      "finding": "TIP1/MVGZ work merged into main at b9a2d5301c0c971dcc1219f9ad6b29c68f68ee21 after this branch began. Their scientific instruments, experiment counts and registry scope differ from WBG-C1.",
+      "action": "Preserve their exact artifacts, cards, shared source pins and a byte-identical old-site bundle. Do not rerun inherited experiments, combine incompatible scores, reset budgets or claim the frozen nine-snapshot audit covers every newly merged artifact. STOP remains binding."
+    },
+    {
+      "id": "IR-018",
+      "severity": "medium",
+      "title": "Pages administration permission is not available",
+      "finding": "The GitHub integration can read the existing Pages site and Actions runs, but changing build_type via the Pages administration API returned HTTP 403 (Resource not accessible by integration). Existing Pages workflows previously deployed successfully.",
+      "action": "Do not request credentials or bypass permissions. Keep the configured main/root publisher and stage the workflow artifact with the same root-to-/docs/ layout. Use /docs/ canonical page/download URLs and verify actual remote deployment. This is a publishing-scope limitation, not a scientific approval."
     }
   ]
 }

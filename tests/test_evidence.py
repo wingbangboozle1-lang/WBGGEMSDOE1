@@ -161,3 +161,25 @@ def test_all_nine_commit_pins_and_inventoried_git_blobs_are_verified():
     files = load("registry/focus_files.json")["files"]
     assert len(files) == 377
     assert all(row["git_blob_identity_verified"] for row in files)
+
+
+def test_concurrent_main_archive_and_frozen_science_are_byte_preserved():
+    receipt = load("evidence/parallel_main_integration.json")
+    assert receipt["all_archived_site_bytes_identical"]
+    assert receipt["all_inherited_shared_source_hashes_unchanged"]
+    assert not receipt["inherited_experiments_rerun"]
+    assert receipt["no_score_pooling_or_cross_instrument_ranking"]
+    for row in receipt["archived_site_files"]:
+        assert sha256(ROOT / row["archived"]) == row["sha256"]
+    for row in receipt["inherited_shared_sources"] + receipt["frozen_artifacts_and_cards"]:
+        assert sha256(ROOT / row["path"]) == row["sha256"]
+    legacy = receipt["legacy_reference_validator"]
+    assert legacy["byte_identical"]
+    assert sha256(ROOT / legacy["preserved_path"]) == legacy["original_sha256"]
+
+
+def test_inherited_small_bridge_references_match_current_lane_pins():
+    manifest = load("registry/data_manifest.json")
+    pins = {row["dest"]: row["sha256"] for row in manifest["files"]}
+    for name in ("labels.tif", "sample_submission.tif"):
+        assert sha256(ROOT / "data/bridge" / name) == pins[name]

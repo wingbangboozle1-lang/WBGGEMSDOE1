@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Irregularities — WBGGEMSDOE1</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <h1>Irregularities flagged</h1>
+  <p>Nothing here is silently “fixed in prose”. IDs live in <code>evidence/irregularities.json</code>.</p>
+</header>
+<nav>
+  <a href="index.html">Home / download</a>
+  <a href="executive-summary.html">Executive summary</a>
+  <a href="how-to-submit.html">How to submit</a>
+  <a href="hypotheses.html">Hypotheses</a>
+  <a href="sources.html">Sources</a>
+  <a href="irregularities.html">Irregularities</a>
+</nav>
+<main>
+  <table>
+    <thead><tr><th>ID</th><th>Issue</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td>IR-WB1-LANE</td><td>The prompt says “your lane is the single method paragraph below” but no unique method paragraph was present.</td><td>Self-declared TSML / MVGZ (magnetic-contact) lane. Logged.</td></tr>
+      <tr><td>IR-WB1-TARGETS</td><td>Prompt cites live high scores 0.4413 and 0.3195.</td><td>Leaderboard fetched 2026-10-26: #1 = 0.4437 (xiaofanhu).</td></tr>
+      <tr><td>IR-WB1-RECEIPT</td><td>0.2778 is OWNER-REPORT, not an organizer receipt in this repo.</td><td>Every mention is labeled OWNER-REPORT.</td></tr>
+      <tr><td>IR-WB1-NAN</td><td>Official text allows NaN outside bounds; a prior human upload was rejected for range [0,1].</td><td>Primary artifact is zeros-mode, 0 NaNs anywhere.</td></tr>
+      <tr><td>IR-WB1-ALIAS</td><td>GEMSDOE25 D2.8 (44,090) and GEMSDOE30 poisson300m (44,090) have 100% 3 px overlap; SHA differs (NaN vs zeros).</td><td>Table flags them as one family, not two discoveries.</td></tr>
+      <tr><td>IR-WB1-HOLDOUT-N</td><td>This evaluator withholds every catalogue component exactly once (n=60,161). GEMSDOE32 hide-recover reports n=22,232. Numbers are not comparable across evaluators.</td><td>Champion proxy is always scored on the same evaluator. Version string is mandatory.</td></tr>
+      <tr><td>IR-WB1-EGRESS</td><td>Sandbox allows only github.com / PyPI. Dropbox, DrivenData, USGS, GDR are blocked.</td><td>Data restored from the public GEMSDOE GitHub bridge and SHA-256 pinned.</td></tr>
+      <tr><td>IR-WB1-LATTICE</td><td>Literal 3 px overlap vs a space-filling lattice is unsatisfiable.</td><td>Space-filling (≥70% of footprint) rasters are reported but excluded from the 70% gate; literal value still logged.</td></tr>
+      <tr><td>IR-WB1-PAGES</td><td>GitHub Pages must be enabled (Settings → Pages → /docs) for the public site URL to serve.</td><td>Workflow + /docs site committed; enablement is an owner click.</td></tr>
+    </tbody>
+  </table>
+</main>
+<footer>See evidence/irregularities.json</footer>
+</body>
+</html>

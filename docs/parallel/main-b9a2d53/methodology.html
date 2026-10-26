@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Auditable TIP1 method, spatial holdout, novelty registry, exact writer, provenance, and reproduction guide.">
+  <title>Method & sources · GEMS DOE 1</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><nav class="nav" aria-label="Primary navigation">
+  <a class="brand" href="index.html"><span class="brand-mark">G1</span><span>GEMS DOE 1</span></a>
+  <div class="nav-links"><a href="index.html">Decision</a><a href="research.html">Research</a><a aria-current="page" href="methodology.html">Method</a><a href="submission-instructions.html">Submission guide</a><a class="status-dot" href="index.html#verdict">Do not submit</a></div>
+</nav></header>
+<main id="main">
+  <section class="hero"><div class="container">
+    <p class="eyebrow">Auditable method</p>
+    <h1>One lane.<br><span class="accent">Every gate.</span></h1>
+    <p class="hero-copy">The experiment separates physical scoring, spatial validation, registry comparison, file validation and slot governance. Passing one never implies passing the next.</p>
+  </div></section>
+
+  <section class="section white"><div class="container prose">
+    <h2>TIP1 physical operator</h2>
+    <p>The detector uses only the SHA-pinned USGS 3DEP-derived 100 m LiDAR aggregate stack. It reads <code>step_max</code>, positive and negative curvature, <code>coh100</code>, axial <code>strike</code>, opposing face gradients, <code>cross_max</code> and valid support. It never reads the fault catalogue or an older prediction.</p>
+    <p>For each supported cell, coherence is sampled at ±2 and ±4 integer cells along that cell's own axial bearing. The fixed primary is:</p>
+    <blockquote><strong>Arm B</strong> = max(|coh(+2)−coh(−2)|, |coh(+4)−coh(−4)|) × balanced curvature × √step × channel-bank veto.</blockquote>
+    <p>Balanced curvature is <code>2√(lapneg·lappos)/(lapneg+lappos+ε)</code>. The smooth channel veto is <code>max(upface,downface)/(max(upface,downface)+cross)</code>. Both sampled endpoints must have complete support, preventing missing-LiDAR edges from acting as tips.</p>
+
+    <h2>Spatial holdout</h2>
+    <p>The shared <code>SegmentHoldout</code> labels 8-connected catalogue components and partitions the footprint into four spatial quadrants. Any component touching validation or its 1.5 km collar is hidden everywhere. TIP1 is catalogue-independent, so there is no fold-dependent catalogue feature to rebuild. Emission masks each fold's visible catalogue pixel-exactly.</p>
+    <ul>
+      <li>Fixed fold budget: 0.73% of valid cells</li>
+      <li>Poisson minimum spacing: 3 pixels</li>
+      <li>Metric: pooled TPw/FPw/FNw, never mean fold ratios</li>
+      <li>α = 0.2; β = 0.8; triangular credit radius = 300 m</li>
+      <li>95% interval: 1,999-draw percentile bootstrap over 10 km spatial blocks</li>
+      <li>Withheld positives: 60,988</li>
+    </ul>
+
+    <h2>Leakage and novelty</h2>
+    <p>Every one of 29 raw, decoded and transformed descriptors—including each final arm—is tested alone with pooled and per-fold AUC in both polarities. Any extremity above 0.90 stops the lane.</p>
+    <p>The registry starts with 231 immutable sources across all nine focus repositories, verifies Git object identity and every available SHA-256, checks the competition grid and exact float32 footprint content, then deduplicates to 179 unique rasters. Surface Spearman is exact over all 5,167,373 footprint pixels; the kernel sensitivity sample is fixed at 200,000 cells. Final overlap is directional over every candidate dot within an inclusive 3-pixel radius.</p>
+    <p>A documented shared-tool fix stores restore-time-validated compact comparator arrays and evaluates all fixed surfaces in one registry pass. This changes no threshold or statistic; tests prove equivalence to exact Spearman and overlap.</p>
+
+    <h2>Emission and file writing</h2>
+    <p><code>priority_poisson</code> sorts the new physical surface deterministically and adds no zero-score backfill. The caller excludes public catalogue pixels. The shared writer copies the exact template profile, writes one float32 band, and uses finite zero exterior cells to avoid whole-array range rejection. The shared validator checks the official grid, count, dtype, CRS, transform, footprint finiteness/range and the strict whole-array <code>[0,1]</code> variant.</p>
+
+    <h2>Governance</h2>
+    <p>Arm B was fixed before code. Arms A and C are controls and cannot replace it after results. The run limit was three experiments or two hours. Promotion required a point win over S3DEP1 and a strictly positive paired 95% CI from an independent replay. Replay material was unavailable, so that gate failed closed regardless of the point result. Upload is a separate selector action; this project spent zero slots.</p>
+  </div></section>
+
+  <section class="section" id="sources"><div class="container">
+    <div class="section-head"><div><p class="eyebrow">Source audit</p><h2>Claim, byte, status.</h2></div><p>Official provenance and exact experiment bytes are related but not interchangeable.</p></div>
+    <div class="source-list">
+      <div class="source"><strong>USGS 3DEP</strong><p>Official scientific origin asserted for the raw DEM tiles. The exact local derivative is a 12-band owner-mirror TIFF, SHA-256 <code>d580bb8…465568</code>. Raw tiles were not redownloaded here.</p><a href="https://www.usgs.gov/3d-elevation-program">Official source ↗</a></div>
+      <div class="source"><strong>3DEP ScienceBase</strong><p>Manual-review item <code>4f70aa9fe4b058caae3f8de5</code>. Host was outside the sandbox allowlist.</p><a href="https://www.sciencebase.gov/catalog/item/4f70aa9fe4b058caae3f8de5">ScienceBase ↗</a></div>
+      <div class="source"><strong>USGS GeoDAWN</strong><p>DOI <code>10.5066/P93LGLVQ</code>, part of broader portfolio provenance but not a TIP1 input.</p><a href="https://doi.org/10.5066/P93LGLVQ">Official DOI ↗</a></div>
+      <div class="source"><strong>OpenEI INGENIOUS</strong><p>GDR 1391 / DOI <code>10.15121/1881483</code>, recorded for broader provenance but not a TIP1 input.</p><a href="https://gdr.openei.org/submissions/1391">Official source ↗</a></div>
+      <div class="source"><strong>DrivenData</strong><p>Competition context. No authenticated portal session, hidden labels, quota or submission-page receipt was available.</p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Competition ↗</a></div>
+      <div class="source"><strong>Reference solution</strong><p>Organizer-owned public repository for the GeoTIFF workflow; not evidence for a hidden score.</p><a href="https://github.com/drivendataorg/gems-prize-reference-solution">GitHub ↗</a></div>
+    </div>
+    <div class="notice"><strong>Acknowledgement:</strong> Map services and data available from U.S. Geological Survey, National Geospatial Program.</div>
+  </div></section>
+
+  <section class="section white"><div class="container prose">
+    <h2>Reproduce without rerunning science</h2>
+    <pre><code>python -m venv .venv
+.venv/bin/pip install -r requirements-lock.txt
+.venv/bin/python scripts/restore_inputs.py
+.venv/bin/python scripts/restore_registry.py
+PYTHONPATH=src .venv/bin/python scripts/run_tip1_lane.py --verify-recorded
+PYTHONPATH=src .venv/bin/python scripts/validate_release.py
+.venv/bin/pytest -q</code></pre>
+    <p>The runner refuses a new experiment when its receipt exists. Exact source and local hashes are in <a href="data/tip1_run_card.json">the run card</a>. Release checks are in <a href="data/release_validation.json">the validator receipt</a>.</p>
+  </div></section>
+</main>
+<footer class="site-footer"><div class="container footer-grid"><div><strong>Auditable by construction</strong><p>Hashes, folds, intervals, registry rows and the negative selector are public.</p></div><div><a href="submission-instructions.html">Exact-file guide →</a></div></div></footer>
+</body>
+</html>

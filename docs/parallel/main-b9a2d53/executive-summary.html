@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Executive summary — WBGGEMSDOE1</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <h1>Executive summary</h1>
+  <p>What to download, whether it is unique, and whether it is allowed to be submitted</p>
+</header>
+<nav>
+  <a href="index.html">Home / download</a>
+  <a href="executive-summary.html">Executive summary</a>
+  <a href="how-to-submit.html">How to submit</a>
+  <a href="hypotheses.html">Hypotheses</a>
+  <a href="sources.html">Sources</a>
+  <a href="irregularities.html">Irregularities</a>
+</nav>
+<main>
+  <section class="banner">
+    <h2>🔴 NOT OK TO SUBMIT</h2>
+    <p>The generated unique GeoTIFF is format-valid and protocol-unique. It loses hide-and-recover DTI to the GEMSDOE32 champion proxy. Download for audit only.</p>
+  </section>
+
+  <h2>The only file this repo offers</h2>
+  <table>
+    <thead><tr><th>Field</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Download</td><td><a href="downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif"><code>docs/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif</code></a> · <a href="downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.zip">zip</a></td></tr>
+      <tr><td>OK to download</td><td>YES (research / audit)</td></tr>
+      <tr><td>OK to submit to DrivenData</td><td><strong>NO</strong></td></tr>
+      <tr><td>Estimated score</td><td>Not claimed. HOLDOUT-DTI 0.00318 [0.00242, 0.00397] (evaluator WBGGEMSDOE1-HIDE-RECOVER-v1.0, n=60,161). Champion proxy 0.00476 on the same evaluator. Live 0.2778 is OWNER-REPORT for a different raster.</td></tr>
+      <tr><td>Unique vs GEMSDOE24/25/27/28/30/31/32/33/36 bests</td><td>YES — max 26.0% of dots within 3 px of any of those nine (threshold 70%). Max |Spearman| vs 37 registry rasters = 0.017 (threshold 0.90).</td></tr>
+      <tr><td>Portal name</td><td><code>WBGGEMSDOE1-H1-MVGZ-AC61AFDA</code></td></tr>
+      <tr><td>Portal note</td><td><code>MVGZ unique 23402d B2 | HR 0.0032 vs champ 0.0048 | DO NOT SUBMIT</code></td></tr>
+      <tr><td>SHA-256</td><td><code>0c2516fa5e5727eab1150750b72c189a454968aba4f9afbc5e2aac84dcc8faba</code></td></tr>
+      <tr><td>Validator</td><td>12/12 PASS. All 12,279,160 cells finite in [0, 1]. CRS/shape/transform match the sample.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Nine-site scoreboard (same table as the homepage)</h2>
+  <p>See <a href="index.html">home</a> for the full table with download links. Headline:</p>
+  <ul>
+    <li>Highest OWNER-REPORT among the nine: <strong>GEMSDOE32 h33-h33-2-b2 = 0.2778</strong>, already submitted, not unique.</li>
+    <li>All nine historical bests are one H19-5 dotted-ridge family (this session: 97.6–100% 3 px overlap with at least one other listed file).</li>
+    <li>This repo’s unique file is the first protocol-unique raster in this checkout and is <strong>not</strong> a candidate to beat 0.2778 on current evidence.</li>
+  </ul>
+
+  <h2>How a human would submit — if the banner said GO</h2>
+  <p>It does not. The steps are documented on <a href="how-to-submit.html">How to submit</a> so that when a future experiment beats holdout, the upload path is mechanical:</p>
+  <ol>
+    <li>Use the zeros-mode GeoTIFF (never the NaN twin) so the portal cannot raise “Predicted values must be in range [0, 1]”.</li>
+    <li>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">New submission</a>.</li>
+    <li>Attach the <code>.tif</code> or the single-TIFF <code>.zip</code>.</li>
+    <li>Paste the unique name into your records and the ≤140-character note into the Note field.</li>
+    <li>Do this only when the homepage banner is green and the run card <code>verdict</code> is <code>promote</code>.</li>
+  </ol>
+
+  <h2>Scientific answer to the 0.2778 question</h2>
+  <p>0.2778 is not a mysterious model. It is D2.8 (44,090 Poisson-thinned H19-5 ridge dots, live 0.2600) minus every dot within 2 px of the published catalogue, leaving 37,654 dots. That collar is a dead annulus for the test set. Unique files are forced off that network and, under every live-calibrated analysis published by GEMSDOE32 and confirmed by our 3 px overlap numbers, pay false-positive mass where there is little hidden truth. Beating 0.2778 without duplicating H19-5 requires either (a) a detector with ≥7× lift in the off-network strata, which E2/E3 did not provide, or (b) a rule change allowing H19-5 family refinements.</p>
+</main>
+<footer>WBGGEMSDOE1 · verdict negative · 2026-10-26</footer>
+</body>
+</html>

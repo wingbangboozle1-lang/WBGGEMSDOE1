@@ -1,143 +1,67 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="GEMS research executive summary, focus-site score audit, scientific hypotheses, and GeoTIFF submission instructions.">
-  <title>Executive Summary & Submission Guide — GEMS Fault Discovery</title>
+  <title>Executive summary — WBGGEMSDOE1</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header>
-  <div class="eyebrow">Decision brief · evidence separated from estimates</div>
-  <h1>Executive summary & submission guide</h1>
-  <p>One clear answer first: no new TIF is approved, and this checkout cannot yet make or validate one. Historical scores are useful for prioritizing research, not for guaranteeing a new score.</p>
+<header class="top">
+  <h1>Executive summary</h1>
+  <p>What to download, whether it is unique, and whether it is allowed to be submitted</p>
 </header>
-<nav aria-label="Main navigation">
-  <a href="index.html">Overview</a>
+<nav>
+  <a href="index.html">Home / download</a>
   <a href="executive-summary.html">Executive summary</a>
-  <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/main/README.md">Project charter</a>
-  <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/main/evidence/run-card.json">Current run card (JSON)</a>
+  <a href="how-to-submit.html">How to submit</a>
+  <a href="hypotheses.html">Hypotheses</a>
+  <a href="sources.html">Sources</a>
+  <a href="irregularities.html">Irregularities</a>
 </nav>
 <main>
-  <div class="status" role="alert">
-    <strong>🔴 DOWNLOAD: NO · SUBMIT TO DRIVENDATA: NO</strong>
-    <p>No unique submission TIFF was generated. This repository has no inputs, shared holdout evaluator/writer, or comparison registry. Therefore we cannot truthfully provide a file name, score estimate, uniqueness pass, validator result, or TIFF hash. This is an intentional negative verdict—not a hidden or placeholder download. Do not download a previous site's raster and re-submit it.</p>
-  </div>
-
-  <section>
-    <h2>Decision summary</h2>
-    <ul>
-      <li><b>Best reported historic submission among the nine requested sites:</b> GEMSDOE32, <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>, score <b>0.2778</b> (user/owner reported; no organizer receipt was available to verify the score-to-file link).</li>
-      <li><b>Why it may have scored well:</b> the official metric gives distance-weighted credit within 300 m and uses a false-negative weight of 0.8 versus 0.2 for false positives. The score history provided shows strong gains while predictions were thinned from dense related maps. That is consistent with better precision/coverage trade-offs under this metric, but it is not causal proof of geological discovery or of hidden-label recall.</li>
-      <li><b>Can we beat 0.2778?</b> In principle a better model can score higher, but the current checkout provides no experimental evidence that we can. No credible holdout estimate exists here. Do not submit an untested idea.</li>
-      <li><b>Current public leaderboard:</b> <b>ORGANIZER-PUBLIC-LEADERBOARD snapshot (not a submission-page receipt):</b> the official live page retrieved on 2026-10-26 showed 0.4437 at #1. The prompt's 0.3195 and 0.4413 figures are inconsistent with that retrieved public snapshot and should be treated as stale. Leaderboard is not an organizer receipt for our candidate, nor a final/private award score.</li>
-    </ul>
-    <div class="callout"><b>Important nuance:</b> the challenge is explicitly designed for discovery of faults missing from the public USGS catalogue. The official description says test faults were manually identified by experts and that submissions are later reviewed to expand labels. Optimizing only against known catalogue faults can reward catalogue imitation, not new discoveries.</div>
+  <section class="banner">
+    <h2>🔴 NOT OK TO SUBMIT</h2>
+    <p>The generated unique GeoTIFF is format-valid and protocol-unique. It loses hide-and-recover DTI to the GEMSDOE32 champion proxy. Download for audit only.</p>
   </section>
 
-  <section id="focus-sites">
-    <h2>Nine focus sites — reported best file, score, and uniqueness status</h2>
-    <p>The scores and submission names below are transcribed from the user-provided site results. They are <b>owner/user-reported historical scores</b>, not organizer-confirmed results. The “estimated score” is intentionally <b>not available</b>: no shared spatial holdout or calibration run is present in this checkout. A historical public score cannot be converted into a defensible estimate for a new raster.</p>
-    <p>A sibling GEMSDOE32 research page reports that the historical files belong to overlapping/duplicate families. That is a third-party owner audit, not independently re-run here. Since the source rasters are absent from this repository, uniqueness status for each row is <b>unverified</b>; none is approved for re-submission.</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Site</th><th>Highest listed submission file</th><th>Reported score</th><th>Estimate for a new candidate</th><th>Unique vs. other focus sites?</th><th>Download / submit decision</th></tr></thead>
-        <tbody>
-          <tr><td>GEMSDOE32</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html"><code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code></a></td><td><b>0.2778</b><br><span class="small">USER/OWNER-REPORTED</span></td><td>Not estimable; no holdout run</td><td>Unverified here; sibling audit reports duplicate lineage</td><td>Historic file only; do not resubmit</td></tr>
-          <tr><td>GEMSDOE36</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE36/docs/"><code>anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros</code></a></td><td><b>0.2750</b><br><span class="small">USER-REPORTED</span></td><td>Not estimable; no holdout run</td><td>Unverified here; sibling audit reports duplicate lineage</td><td>Historic file only; do not resubmit</td></tr>
-          <tr><td>GEMSDOE28</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE28/"><code>h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan</code></a></td><td><b>0.2710</b><br><span class="small">USER-REPORTED</span></td><td>Not estimable; no holdout run</td><td>Unverified here; sibling audit reports duplicate lineage</td><td>Historic file only; do not resubmit</td></tr>
-          <tr><td>GEMSDOE31</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE31/docs/"><code>h27-4-solo-d28-20261004-8acb75e1-nan</code></a></td><td><b>0.2708</b><br><span class="small">USER-REPORTED</span></td><td>Not estimable; no holdout run</td><td>Unverified here; sibling audit reports duplicate lineage</td><td>Historic file only; do not resubmit</td></tr>
-          <tr><td>GEMSDOE33</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE33/"><code>h33d-analog-tip-stepover-r30-20261004-cb490425926e</code></a></td><td><b>0.2632</b><br><span class="small">USER-REPORTED</span></td><td>Not estimable; no holdout run</td><td>Unverified here; sibling audit reports duplicate lineage</td><td>Historic file only; do not resubmit</td></tr>
-          <tr><td>GEMSDOE25</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE25/"><code>dotted-h19-5-d2-8-20261002-e56ea318af89-nan</code></a></td><td><b>0.2600</b><br><span class="small">USER-REPORTED</span></td><td>Not estimable; no holdout run</td><td>Unverified here; sibling audit reports duplicate lineage</td><td>Historic file only; do not resubmit</td></tr>
-          <tr><td>GEMSDOE30</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE30/"><code>d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca</code></a></td><td><b>0.2600</b><br><span class="small">USER-REPORTED</span></td><td>Not estimable; no holdout run</td><td>Unverified here; sibling audit reports duplicate lineage</td><td>Historic file only; do not resubmit</td></tr>
-          <tr><td>GEMSDOE24</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE24/"><code>h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan</code></a></td><td><b>0.2477</b><br><span class="small">USER-REPORTED</span></td><td>Not estimable; no holdout run</td><td>Unverified here; sibling audit reports duplicate lineage</td><td>Historic file only; do not resubmit</td></tr>
-          <tr><td>GEMSDOE27</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE27/"><code>topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan</code></a></td><td><b>0.2449</b><br><span class="small">USER-REPORTED</span></td><td>Not estimable; no holdout run</td><td>Unverified here; sibling audit reports duplicate lineage</td><td>Historic file only; do not resubmit</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="small">The required uniqueness criterion is raster-level: compare rank correlation and fraction of candidate dots within 3 px against every available registry raster, before placement and after generation. Names and different timestamps do not establish uniqueness. A published site's duplicate report is not a substitute for re-running the test.</p>
-  </section>
+  <h2>The only file this repo offers</h2>
+  <table>
+    <thead><tr><th>Field</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>Download</td><td><a href="downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif"><code>docs/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif</code></a> · <a href="downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.zip">zip</a></td></tr>
+      <tr><td>OK to download</td><td>YES (research / audit)</td></tr>
+      <tr><td>OK to submit to DrivenData</td><td><strong>NO</strong></td></tr>
+      <tr><td>Estimated score</td><td>Not claimed. HOLDOUT-DTI 0.00318 [0.00242, 0.00397] (evaluator WBGGEMSDOE1-HIDE-RECOVER-v1.0, n=60,161). Champion proxy 0.00476 on the same evaluator. Live 0.2778 is OWNER-REPORT for a different raster.</td></tr>
+      <tr><td>Unique vs GEMSDOE24/25/27/28/30/31/32/33/36 bests</td><td>YES — max 26.0% of dots within 3 px of any of those nine (threshold 70%). Max |Spearman| vs 37 registry rasters = 0.017 (threshold 0.90).</td></tr>
+      <tr><td>Portal name</td><td><code>WBGGEMSDOE1-H1-MVGZ-AC61AFDA</code></td></tr>
+      <tr><td>Portal note</td><td><code>MVGZ unique 23402d B2 | HR 0.0032 vs champ 0.0048 | DO NOT SUBMIT</code></td></tr>
+      <tr><td>SHA-256</td><td><code>0c2516fa5e5727eab1150750b72c189a454968aba4f9afbc5e2aac84dcc8faba</code></td></tr>
+      <tr><td>Validator</td><td>12/12 PASS. All 12,279,160 cells finite in [0, 1]. CRS/shape/transform match the sample.</td></tr>
+    </tbody>
+  </table>
 
-  <section id="h33-analysis">
-    <h2>Why the reported 0.2778 may be high — and what it does not prove</h2>
-    <p><b>Metric mechanics (official):</b> predictions are confidence values in [0,1]. Ground-truth and predictions receive distance-weighted matching credit using a triangular 300 m support (three 100 m pixels). The competition uses DTI α=0.2 for false positives and β=0.8 for false negatives. Consequently, nearby predictions can still receive partial credit, while omitted true-fault pixels are relatively costly. The complete official equations are linked below.</p>
-    <p><b>Empirical clue (OWNER-REPORTED; no submission receipt independently checked):</b> the GEMSDOE32 owner-maintained report describes a related H19-5 sequence: 0.1922 (OWNER-REPORTED) for the dense form, 0.2600 (USER-REPORTED) after D2.8 thinning, 0.2708 (USER-REPORTED) for the B=1 form, and 0.2778 (USER/OWNER-REPORTED) for the B=2 form. The progressively smaller supports and rising reported score are consistent with pruning low-value pixels/false-positive burden while retaining candidate locations close to held-out faults. But without the exact scored bytes, an organizer receipt, and access to private labels, this is an association—not a proven causal explanation. It does not establish that the removed pixels were false faults or that the remaining predictions are new geological discoveries.</p>
-    <p><b>Scientific interpretation:</b> the high score is plausibly a favorable operating point on a sparse-prediction/recall trade-off under a distance-tolerant metric, possibly combined with good spatial correspondence to the particular public test faults. It could also reflect candidate selection, leakage, accidental overlap, or unreported variants. The public record alone cannot discriminate these explanations. The appropriate test is a fold-local, segment-buffered hide-and-recover evaluation that exactly emulates the metric, paired against the existing holdout best—not a score inferred from the leaderboard.</p>
-    <p><b>Can it beat 0.2778?</b> Maybe; not demonstrated here. A higher score on one public test set is not proof of better discovery, and this checkout has not run a holdout. The correct answer today is “unknown; no submission authorized.”</p>
-  </section>
+  <h2>Nine-site scoreboard (same table as the homepage)</h2>
+  <p>See <a href="index.html">home</a> for the full table with download links. Headline:</p>
+  <ul>
+    <li>Highest OWNER-REPORT among the nine: <strong>GEMSDOE32 h33-h33-2-b2 = 0.2778</strong>, already submitted, not unique.</li>
+    <li>All nine historical bests are one H19-5 dotted-ridge family (this session: 97.6–100% 3 px overlap with at least one other listed file).</li>
+    <li>This repo’s unique file is the first protocol-unique raster in this checkout and is <strong>not</strong> a candidate to beat 0.2778 on current evidence.</li>
+  </ul>
 
-  <section id="leaderboard">
-    <h2>Leaderboard and date discrepancy</h2>
-    <p>On the official public leaderboard page fetched for this review (2026-10-26), #1 displayed <b>0.4437</b> (<b>ORGANIZER-PUBLIC-LEADERBOARD snapshot; not a submission-page receipt</b>). The prompt also cites 0.4413 and elsewhere says 0.3195 is current; these values conflict with each other and with the retrieved official snapshot. Treat all as dated observations, not constants. The official page labels its column “Best public DW-Tversky”; public performance is distinct from private-test performance and final expanded-label awards. This project currently stores a static dated snapshot, not an automatically refreshed live feed; the official page is the authority for a fresh value.</p>
-    <p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Open the official leaderboard</a></p>
-  </section>
+  <h2>How a human would submit — if the banner said GO</h2>
+  <p>It does not. The steps are documented on <a href="how-to-submit.html">How to submit</a> so that when a future experiment beats holdout, the upload path is mechanical:</p>
+  <ol>
+    <li>Use the zeros-mode GeoTIFF (never the NaN twin) so the portal cannot raise “Predicted values must be in range [0, 1]”.</li>
+    <li>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">New submission</a>.</li>
+    <li>Attach the <code>.tif</code> or the single-TIFF <code>.zip</code>.</li>
+    <li>Paste the unique name into your records and the ≤140-character note into the Note field.</li>
+    <li>Do this only when the homepage banner is green and the run card <code>verdict</code> is <code>promote</code>.</li>
+  </ol>
 
-  <section id="hypotheses">
-    <h2>Candidate science — preregistration shortlist, not results</h2>
-    <p>The official overview lists available layers including conductivity/depth-to-conductive-base, detrended elevation/slope, strain-rate measures, isostatic gravity, magnetic anomaly and derivatives, crustal magnetic-source depth, and earthquake density. These ideas use those layers. The checkout is empty, so “new to this repository” means there is no implementation here to reuse or compare; it does <b>not</b> mean untried across the wider GEMSDOE portfolio. Public site names/results show neighboring efforts with geophysical, scarp, curvature, multi-physics, and lineament concepts. Global novelty is therefore unproven until methods and rasters are audited.</p>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Priority / expected value</th><th>Hypothesis and specific layers</th><th>Targeted physical signature and why it may find uncatalogued faults</th><th>Difference from local repo / known caveat</th><th>Named non-fault mimic</th><th>Implementation cost</th></tr></thead>
-        <tbody>
-          <tr><td><b>1 · highest prior potential</b><br>Expected DTI direction: unquantified</td><td><b>Paired magnetic-contact and source-depth discontinuity.</b> Total/reduced-to-pole magnetic intensity, horizontal/vertical magnetic derivatives, and top-of-crustal magnetic source-depth estimate.</td><td>Test whether persistent, scale-consistent magnetic edge ridges co-locate with a source-depth step. A buried structural boundary may offset or juxtapose magnetic sources where no mapped surface trace exists; require coherent geometry across independent layers rather than a single bright edge.</td><td>No implementation exists in this checkout. Distinguish from a raw catalogue buffer or single-layer edge/dipole detector by preregistering cross-layer co-location, orientation, and scale-persistence. Historical edge-style submissions require a novelty audit; this is not claimed globally novel.</td><td>Lithologic contacts, intrusive bodies, magnetic alteration fronts, and survey/processing seams can create similar anomalies without a fault.</td><td>Medium–high: multiscale filters, source-depth alignment, robust calibration, and fold-local testing.</td></tr>
-          <tr><td><b>2 · medium prior potential</b><br>Expected DTI direction: unquantified</td><td><b>Strain-tensor gradient boundaries.</b> Dilatation rate, shear strain rate, second invariant of strain rate; use earthquake density only as a secondary corroboration feature.</td><td>Compute tensor-field gradients / directional discontinuities and test persistent narrow strain boundaries. A fault zone can localize deformation and seismicity, including along segments not present in the catalogue; deriving this from raster physics avoids copying catalogue traces.</td><td>There is no local implementation. This differs from directly feeding strain values into a generic classifier by explicitly testing gradients and spatial persistence. Catalogue-derived features must remain fold-local; earthquake density is not itself proof of faulting. Whether this is new to any other GEMSDOE site is unknown.</td><td>Regional stress gradients, gridding artifacts, earthquake swarms unrelated to a mapped surface fault, or basin boundaries.</td><td>Low–medium: derivative features and blocked validation, but careful spatial leakage controls required.</td></tr>
-          <tr><td><b>3 · lower prior potential</b><br>Expected DTI direction: unquantified</td><td><b>Detrended-relief curvature persistence.</b> Detrended elevation/slope; optionally official linked 1 m DEM tiles; corroborate with magnetic edge orientation.</td><td>Seek a multi-scale concave/convex break or drainage deflection with magnetic co-alignment. A subtle low-relief fault expression may be missed in the existing catalogue; independent geophysical alignment helps reject purely geomorphic features.</td><td>No local code or DEM is present. This is conditional curvature-plus-geophysics, not a standalone scarp/ridge ranking. Prior site names include DEM/scarp/curvature themes, so novelty risk is high.</td><td>Drainage incision, alluvial fan margins, landslides, roads/terraces, and lithologic benches.</td><td>High: 1 m DEM processing, resampling/registration checks, and scale-aware validation.</td></tr>
-          <tr><td><b>4 · medium-low prior potential</b><br>Expected DTI direction: unquantified</td><td><b>Gravity–magnetic structural discordance.</b> Isostatic gravity anomaly/slope jointly with total/reduced-to-pole magnetic intensity and derivatives.</td><td>Test co-located gradients or a systematic offset between density and magnetization boundaries as a marker of basement structure concealed by surface mapping. This tests an explicit cross-physics relationship rather than either edge alone.</td><td>No implementation exists locally. Distinct from a generic weighted sum only if discordance and orientation are preregistered; multi-physics concepts are present in the wider site history, so global novelty is unproven.</td><td>Lithologic contacts, intrusive bodies, alteration, and processing/survey seams can create discordant gradients.</td><td>Medium–high: alignment, scale selection, confounder controls, and blocked validation.</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p><b>Top candidate to validate first if inputs arrive:</b> #1, because it uses the officially listed geophysical bands and tests a physical relationship that can persist under cover. Its rank is only a prior judgment; there is no score estimate. Before placement, each single feature must pass the AUC≤0.90 leakage canary and the candidate surface must pass the registry correlation gate. Then run exactly one preregistered candidate in the shared segment-buffered holdout; stop if it does not beat the current holdout best with paired 95% CI above zero.</p>
-    <p><b>No external-data blocker for these three initial tests:</b> they can begin with the official competition feature stack. The 1 m DEM is linked through the official competition data package; it is not required for candidates #1 or #2. Any future third-party data proposal must identify a specific free official source, verify access and permitted license before it is considered viable.</p>
-  </section>
-
-  <section id="submission-guide">
-    <h2>Exactly how to submit — only after the project says “OK TO SUBMIT”</h2>
-    <ol>
-      <li>Wait for this project to show <b>green `OK TO SUBMIT`</b> and provide a named candidate TIF. A file marked research-only or negative is not eligible.</li>
-      <li>Download the offered single-band GeoTIFF (or a ZIP containing exactly one GeoTIFF). Verify the displayed SHA-256 against the run card.</li>
-      <li>On DrivenData, open the GEMS competition's New submission form and select the TIF in “File to submit”. The project must already have validated the saved file: one band; float32; CRS EPSG:32611; same dimensions, bounds and transform as `sample_submission.tif`; values finite and in [0,1] inside the footprint; outside footprint null/NaN.</li>
-      <li>Enter the generated short unique name and the run-card comment (maximum 140 characters) in “Note”. Names/comments are identifiers, not a substitute for raster uniqueness.</li>
-      <li>Submit only if a slot is available under the portal's current cap. Save the submission receipt; only that receipt can establish `ORGANIZER-CONFIRMED` score evidence.</li>
-    </ol>
-    <div class="callout"><b>Why the earlier range error happens:</b> the competition requires predictions in [0,1]. A raw model logit, z-score, or standardized feature may be negative or greater than one. Any future inference must apply a documented probability/confidence mapping, clip only as a deliberate post-processing choice (not to conceal errors), and reopen the written GeoTIFF to test range across valid cells before any download is enabled.</div>
-    <p><b>Automated inspection:</b> this repo's intended final workflow is machine-checked; no human visual inspection is an acceptance gate. The implemented validator command (after installing requirements and staging the official sample grid) is <code>python scripts/validate_submission.py candidate.tif data/sample_submission.tif</code>. It checks file structure/range, not scientific quality or uniqueness. DrivenData authentication and choosing/submitting a file are outside this checkout. No portal upload has occurred in this session.</p>
-    <p><b>Current fields:</b> download filename: <em>none</em>; short note: <em>none</em>; estimated score: <em>not estimable</em>; novelty: <em>not assessed</em>; submit verdict: <b>NO</b>.</p>
-  </section>
-
-  <section id="next-steps">
-    <h2>Prioritized next steps and limitations</h2>
-    <ol>
-      <li>Recover authorized `training_features.tif`, labels, sample submission, and DEM links into `data/`; preserve source hashes and provenance. The official competition data tab is login-gated in this environment; local checks confirmed the files were not placed here.</li>
-      <li>Restore or configure the shared template and its cached feature stack, `evaluate_holdout.py`, `submission_writer.py`, and established holdout baseline. Do not create a private fork; shared source is absent from this checkout.</li>
-      <li>Obtain the registry rasters or a complete, versioned registry manifest sufficient for raster rank correlation and dot-overlap checks. Site labels alone cannot establish novelty.</li>
-      <li>Define the actual method lane (the supplied protocol refers to a “single method paragraph below,” but no such lane paragraph was present in the prompt received here). Until that ambiguity is resolved, do not run an experiment or write a TIFF.</li>
-      <li>Execute the three-experiment/two-hour budget: feature-only leakage tests, paired spatial holdout with segment buffering and 95% CIs, pre-placement and final uniqueness, strict saved-byte validator, then a run card. No weekly slot before a separate selector decision.</li>
-      <li>After gates pass, expose the TIF download prominently with unique name, ≤140-character note, SHA-256, score evidence class, and unambiguous submit/DO NOT submit verdict.</li>
-    </ol>
-    <p><b>Tools status:</b> `python scripts/check_readiness.py` provides a machine-readable audit of absent files. This session has not authenticated into DrivenData; cannot download login-gated data or submit through the portal. The public GitHub Pages leaderboard/competition links are reviewed below; scores remain time-sensitive.</p>
-  </section>
-
-  <section id="sources">
-    <h2>Source register — manual review</h2>
-    <p>Official competition and government sources are preferred for task, metric, data, and submission rules. Community site pages are owner-maintained and used only as historical claims, not official evidence.</p>
-    <ol>
-      <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData — GEMS problem description, datasets, metric, and submission format</a>. Accessed 2026-10-26. Includes the 100 m UTM Zone 11N training stack, fault labels, incompleteness statement, DTI coefficients/kernel, and GeoTIFF rules.</li>
-      <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/">DrivenData — About the challenge/data</a>. Accessed 2026-10-26. Describes GeoDAWN acquisition and fault/geothermal motivation.</li>
-      <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">DrivenData — data download page</a>. Login may be required; no authenticated download was performed in this checkout.</li>
-      <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData — public leaderboard</a>. Retrieved 2026-10-26; snapshot shown #1 at 0.4437. This is time-sensitive.</li>
-      <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/rules/">DrivenData — competition rules</a>. Review current rules/licensing before external data use.</li>
-      <li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">DrivenData reference solution</a>. Official starter reference; not checked into this project.</li>
-      <li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS — GeoDAWN airborne magnetic and radiometric surveys</a>.</li>
-      <li><a href="https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7">USGS ScienceBase — GeoDAWN area item</a>.</li>
-      <li><a href="https://gbcge.org/current-projects/ingenious/">Great Basin Center for Geothermal Energy — INGENIOUS project</a>.</li>
-      <li><a href="https://epsg.io/32611">EPSG:32611 — WGS 84 / UTM zone 11N</a>.</li>
-      <li><a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32 owner-maintained result page</a>. Used for contextual comparison only; not an organizer receipt, and its duplicate analysis was not independently rerun here.</li>
-      <li><a href="https://buffedlizard55-lab.github.io/GEMSDOE36/docs/">GEMSDOE36 owner-maintained result page</a>. Historical score/method claims only; not organizer-confirmed.</li>
-    </ol>
-    <p class="small"><b>Evidence classes in this document:</b> “official” = rules/data stated by DrivenData/USGS; “user-reported” = the score table in the request; “owner-reported” = claims on one of the linked project pages; “not assessed” = no local artifact to test. No number in a projected/estimated score column is being presented as an actual score.</p>
-  </section>
+  <h2>Scientific answer to the 0.2778 question</h2>
+  <p>0.2778 is not a mysterious model. It is D2.8 (44,090 Poisson-thinned H19-5 ridge dots, live 0.2600) minus every dot within 2 px of the published catalogue, leaving 37,654 dots. That collar is a dead annulus for the test set. Unique files are forced off that network and, under every live-calibrated analysis published by GEMSDOE32 and confirmed by our 3 px overlap numbers, pay false-positive mass where there is little hidden truth. Beating 0.2778 without duplicating H19-5 requires either (a) a detector with ≥7× lift in the off-network strata, which E2/E3 did not provide, or (b) a rule change allowing H19-5 family refinements.</p>
 </main>
-<footer>Project status is fail-closed. This page is not a competition submission and does not contain a prediction raster.</footer>
+<footer>WBGGEMSDOE1 · verdict negative · 2026-10-26</footer>
 </body>
 </html>

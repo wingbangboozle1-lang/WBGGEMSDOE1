@@ -1,10 +1,19 @@
 .venv/
 __pycache__/
+*.pyc
 *.py[cod]
 .pytest_cache/
+.mypy_cache/
 .ruff_cache/
+*.egg-info/
+.DS_Store
 
-# Competition data and generated outputs stay local; never commit challenge rasters.
-/data/
+# Large competition rasters (restore via scripts/download_competition_data.sh)
+data/bridge/*.tif
+data/bridge/*.part-*
+data/bridge/labels.tif
+data/bridge/sample_submission.tif
+data/bridge/training_features.tif
+data/registry/
 /submissions/
 /artifacts/

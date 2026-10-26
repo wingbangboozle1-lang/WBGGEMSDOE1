@@ -1,66 +1,208 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Auditable GEMS fault-discovery research and fail-closed submission readiness status.">
-  <title>GEMS Fault Discovery — Research & Submission Readiness</title>
+  <title>WBGGEMSDOE1 — unique GeoTIFF for DOE GEMS (DrivenData 306)</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header>
-  <div class="eyebrow">GEMS Prize Challenge · Evidence-first research</div>
-  <h1>Fault discovery, with auditable gates.</h1>
-  <p>A research dashboard for spatial validation, scientific hypotheses, reproducibility, and safe GeoTIFF submission. Scores, projections, and organizer receipts are kept distinct.</p>
+<header class="top">
+  <h1>WBGGEMSDOE1 · DOE GEMS Prize</h1>
+  <p>DrivenData competition 306 · unique-lane GeoTIFF factory · automated gates, no human inspector</p>
 </header>
-<nav aria-label="Main navigation">
-  <a href="index.html">Overview</a>
+<nav>
+  <a href="index.html">Home / download</a>
   <a href="executive-summary.html">Executive summary</a>
-  <a href="submission-guide.html">Submission guide</a>
-  <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/main/README.md">Project charter</a>
-  <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/main/evidence/run-card.json">Current run card (JSON)</a>
+  <a href="how-to-submit.html">How to submit</a>
+  <a href="hypotheses.html">Hypotheses</a>
+  <a href="sources.html">Sources</a>
+  <a href="irregularities.html">Irregularities</a>
+  <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Competition</a>
 </nav>
 <main>
-  <div class="status" role="alert">
-    <strong>🔴 DO NOT SUBMIT — no approved GeoTIFF exists in this checkout.</strong>
-    <p>No competition data, cached feature stack, shared holdout evaluator, submission writer, or registry rasters are present. No prediction was generated. There is no score estimate, uniqueness result, or validator pass to claim. The safe action is to restore the authorized inputs and shared tools, then run the documented gates—not to submit a placeholder or a prior site's file.</p>
-    <p><a href="executive-summary.html">Open the executive summary and exact submission requirements →</a></p>
+  <section class="banner">
+    <h2>🔴 DO NOT SUBMIT this file to DrivenData</h2>
+    <p><strong>OK TO DOWNLOAD FOR RESEARCH / AUDIT: YES</strong> · <strong>OK TO SUBMIT: NO</strong> · automatic verdict, no human inspection.</p>
+    <p class="meta">
+      File: <code>wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif</code><br>
+      Unique name: <code>WBGGEMSDOE1-H1-MVGZ-AC61AFDA</code><br>
+      Note (88/140): <code>MVGZ unique 23402d B2 | HR 0.0032 vs champ 0.0048 | DO NOT SUBMIT</code>
+    </p>
+    <p>
+      <a class="btn" href="downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif">Download GeoTIFF (research)</a>
+      <a class="btn ghost" href="downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.zip">Download .zip (single TIFF)</a>
+      <a class="btn ghost" href="evidence/run_card.json">JSON run card</a>
+    </p>
+    <p class="muted">Why not: HOLDOUT-DTI (WBGGEMSDOE1-HIDE-RECOVER-v1.0, n=60,161 withheld positives)
+      <strong>0.00318</strong> [0.00242, 0.00397] loses to the 0.2778 champion proxy on the same evaluator
+      (<strong>0.00476</strong> [0.00428, 0.00526]). Protocol: do not spend a weekly slot on an idea that has not beaten the holdout best.
+      A projection is never written as a score. This raster is unique (max |Spearman| 0.017; max 3 px overlap 0.459 vs 37 registry rasters; max 0.260 vs the nine focus-site bests).</p>
+  </section>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Portal-safe format (12/12 PASS)</h3>
+      <ul class="tight">
+        <li>Single-band float32 GeoTIFF, EPSG:32611, 3730×3292, 100 m</li>
+        <li>Transform matches sample: origin (243350, 4508550)</li>
+        <li><strong>Every one of 12,279,160 cells is finite and in [0, 1]</strong> — zeros outside the footprint. This is the encoding that avoids DrivenData’s <code>Predicted values must be in range [0, 1]</code> rejection of NaNs.</li>
+        <li>23,402 binary dots at 1.0; 0 dots on the USGS/INGENIOUS catalogue; B = 2 px (200 m)</li>
+        <li>SHA-256 <code>0c2516fa5e5727eab1150750b72c189a454968aba4f9afbc5e2aac84dcc8faba</code></li>
+        <li>150,278 bytes · zip 110,474 bytes</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>What you are looking at</h3>
+      <img class="preview" src="downloads/preview-mvgz.png" alt="Downsampled map: mint = our unique MVGZ dots, copper = published catalogue">
+      <p class="muted">Mint = this file’s dots. Copper = published catalogue (<code>existing_faults.tif</code>, 60,988 px). 10× downsample of the official 100 m grid.</p>
+    </div>
   </div>
 
-  <section>
-    <h2>At a glance</h2>
-    <div class="grid">
-      <div class="metric"><b>0</b>competition rasters found in this checkout</div>
-      <div class="metric"><b>0</b>spatial holdout experiments run</div>
-      <div class="metric"><b>0</b>submission slots used</div>
-      <div class="metric"><b>Not available</b>candidate score or uniqueness result</div>
-    </div>
-    <p class="small">These are checkout/readiness facts, not scientific score metrics. Run <code>python scripts/check_readiness.py</code> for the missing-file list. When actual files arrive, <code>python scripts/validate_submission.py candidate.tif data/sample_submission.tif</code> checks raster format/range only; it does not authorize a competition submission.</p>
-  </section>
+  <h2>Nine focus sites — best file, live score, estimate, uniqueness</h2>
+  <p>Live score = <strong>OWNER-REPORT</strong> (owner-supplied submission log; no organizer receipt in this repository).
+    Estimate for historical files is not recomputed here; GEMSDOE32’s live-ledger inversion projected the champion family at ~0.27–0.29 (a <em>projection</em>, not a score).
+    Unique = not byte/mask-identical to another listed file <em>and</em> ≤70% of dots within 3 px of every other listed GEMSDOE raster.
+    <strong>Best overall among the nine: GEMSDOE32 h33-h33-2-b2 (0.2778 OWNER-REPORT). Already submitted — do not resubmit.</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Site</th>
+        <th>Best file (download)</th>
+        <th>Live score</th>
+        <th>Estimate</th>
+        <th>Unique vs listed?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>GEMSDOE32</td>
+        <td><a href="https://github.com/buffedlizard55-lab/GEMSDOE32/raw/main/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"><code>h33-h33-2-b2-…-e5eb6e7e-zeros</code></a></td>
+        <td><strong>0.2778</strong> OWNER-REPORT</td>
+        <td>LLI projection ~0.285 (GEMSDOE32; not a score)</td>
+        <td>❌ H19-5 family. 100% of its 37,654 dots sit within 3 px of GEMSDOE36. SHA-256 <code>c55bafc470054e82…f7ab6fa9</code></td>
+      </tr>
+      <tr>
+        <td>GEMSDOE36</td>
+        <td><a href="https://github.com/buffedlizard55-lab/GEMSDOE36/raw/main/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif"><code>anderson-geothermal-pinn-38854-…-zeros</code></a></td>
+        <td>0.2750 OWNER-REPORT</td>
+        <td>LLI ~0.283 (not a score)</td>
+        <td>❌ duplicate family (38,854 dots; 97.6% within 3 px of GEMSDOE27)</td>
+      </tr>
+      <tr>
+        <td>GEMSDOE28</td>
+        <td><a href="https://github.com/buffedlizard55-lab/GEMSDOE28/raw/main/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif"><code>h36-1-rung30-blind-r1-…-nan</code></a></td>
+        <td>0.2710 OWNER-REPORT</td>
+        <td>LLI ~0.277 (not a score)</td>
+        <td>❌ duplicate family (37,660 dots; 100% within 3 px of GEMSDOE25)</td>
+      </tr>
+      <tr>
+        <td>GEMSDOE31</td>
+        <td><a href="https://github.com/buffedlizard55-lab/GEMSDOE31/raw/main/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif"><code>h27-4-solo-d28-…-nan</code></a></td>
+        <td>0.2708 OWNER-REPORT</td>
+        <td>LLI ~0.279 (not a score)</td>
+        <td>❌ duplicate family (40,199 dots; 100% within 3 px of GEMSDOE25)</td>
+      </tr>
+      <tr>
+        <td>GEMSDOE33</td>
+        <td><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/raw/main/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif"><code>h33d-analog-tip-stepover-r30-…</code></a></td>
+        <td>0.2632 OWNER-REPORT</td>
+        <td>LLI ~0.278 (not a score)</td>
+        <td>❌ duplicate family (41,865 dots; 99.7% within 3 px of GEMSDOE27)</td>
+      </tr>
+      <tr>
+        <td>GEMSDOE25</td>
+        <td><a href="https://github.com/buffedlizard55-lab/GEMSDOE25/raw/main/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif"><code>dotted-h19-5-d2-8-…-zeros</code></a></td>
+        <td>0.2600 OWNER-REPORT</td>
+        <td>LLI ~0.271 (not a score)</td>
+        <td>❌ duplicate family (44,090 dots; 100% within 3 px of GEMSDOE30)</td>
+      </tr>
+      <tr>
+        <td>GEMSDOE30</td>
+        <td><a href="https://github.com/buffedlizard55-lab/GEMSDOE30/raw/main/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif"><code>d28-poisson300m-offcat-44090-…</code></a></td>
+        <td>0.2600 OWNER-REPORT</td>
+        <td>LLI ~0.271 (not a score)</td>
+        <td>❌ duplicate family (44,090 dots; 100% within 3 px of GEMSDOE25). Same mask family as G25; SHA differs because of NaN vs zeros encoding.</td>
+      </tr>
+      <tr>
+        <td>GEMSDOE24</td>
+        <td><a href="https://github.com/buffedlizard55-lab/GEMSDOE24/raw/main/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif"><code>h25-1-dotted-h19-5-d1-5-…-nan</code></a></td>
+        <td>0.2477 OWNER-REPORT</td>
+        <td>LLI ~0.268 (not a score)</td>
+        <td>❌ duplicate family (60,069 dots; 100% within 3 px of GEMSDOE25)</td>
+      </tr>
+      <tr>
+        <td>GEMSDOE27</td>
+        <td><a href="https://github.com/buffedlizard55-lab/GEMSDOE27/raw/main/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif"><code>topo-gap-closure-t-v2-on-d1-5-…-nan</code></a></td>
+        <td>0.2449 OWNER-REPORT</td>
+        <td>LLI ~0.266 (not a score)</td>
+        <td>❌ duplicate family (61,328 dots; 98.0% within 3 px of GEMSDOE24)</td>
+      </tr>
+      <tr>
+        <td><strong>WBGGEMSDOE1 (this repo)</strong></td>
+        <td><a href="downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif"><code>h1-mvgz-…-ac61afda-zeros</code></a></td>
+        <td>unscored</td>
+        <td>HOLDOUT-DTI <strong>0.00318</strong> [0.00242, 0.00397] vs champion proxy 0.00476. No live projection claimed.</td>
+        <td>✅ unique (max 3 px overlap 0.260 vs the nine; 0.459 vs 37 GEMSDOE32 registry rasters).<br><strong>NOT OK to submit.</strong></td>
+      </tr>
+    </tbody>
+  </table>
 
-  <section>
-    <h2>Competition snapshot</h2>
-    <p>The official problem description defines the target as geological fault structures, notes that the public fault catalogue is incomplete, and describes a public/private scoring setup followed by expert review for a final expanded-label round. The same page specifies the DTI scoring mechanics and GeoTIFF contract. See the <a href="executive-summary.html#sources">official sources and evidence notes</a>.</p>
-    <div class="callout"><b>ORGANIZER-PUBLIC-LEADERBOARD snapshot, not a submission receipt (2026-10-26):</b> the official page showed a leading public score of <b>0.4437</b>. The prompt's values 0.3195 and 0.4413 do not match that retrieved snapshot; leaderboard values change over time and a public score is not a private/final award result. This is a dated static snapshot, not an automatic live feed. Details and link are in the <a href="executive-summary.html#leaderboard">executive summary</a>.</div>
-  </section>
+  <h2>Why GEMSDOE32 <code>h33-h33-2-b2</code> scored 0.2778 — and why we cannot beat it with a unique file today</h2>
+  <p>Byte-verified this session on the restored champion GeoTIFF (SHA-256
+    <code>c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9</code>, 37,654 dots, 0 on catalogue):</p>
+  <ol>
+    <li><strong>The metric pays for sparse, well-placed dots.</strong> Official DTI uses α=0.2, β=0.8 and a 300 m triangular kernel
+      (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description</a>).
+      Known USGS/INGENIOUS pixels are masked
+      (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">staff #11516</a>).
+      Thinning a ridge to ~2.8 px spacing keeps most kernel credit while cutting false-positive mass.</li>
+    <li><strong>A ridge network that sits on the hidden public truth.</strong> 19GEMSDOE H19-5 (121,131 px, live 0.1922 OWNER-REPORT)
+      is a Hessian-NMS centerline of fused power-law tip/relay stress, GDR thermal, DEM openness/LRM scarps, and gravity/magnetic worms.
+      GEMSDOE32’s live-ledger inversion estimated 73–96% of hidden public truth within 300 m of that network. We did not re-fit LLI here.</li>
+    <li><strong>Two pruning steps, each measured on the live ladder</strong> (OWNER-REPORT, nested set inclusion verified across the nine files this session):
+      H19-5 0.1922 → D1.5 0.2477 (G24) → D2.8 0.2600 (G25 = G30, 44,090 dots) → B1 0.2708 (G31, 40,199) → B2 0.2778 (G32, 37,654).
+      Near-catalogue dots are almost pure false positives because the test set contains only <em>new</em> faults.</li>
+  </ol>
+  <p>The uniqueness rule requires ≥30% of dots more than 3 px from that network. Those off-network strata have been repeatedly measured as near the break-even floor.
+    Our unique MVGZ file places only 23–26% of its dots within 3 px of any nine-site best — protocol-unique, and therefore mostly off the only structure the live ledger says is rich in hidden truth.
+    <strong>We are not able to claim a unique file that scores higher than 0.2778 with the signals tested in this 3-experiment budget.</strong>
+    Current public leaderboard #1 is <strong>0.4437</strong> (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">xiaofanhu, fetched 2026-10-26</a>), which is a different game than the GEMSDOE H19-5 family.</p>
 
-  <section>
-    <h2>What blocks a valid experiment?</h2>
-    <ol>
-      <li>Authorized `training_features.tif`, `labels.tif`, `sample_submission.tif`, and `1m_DEM_links.csv` are absent.</li>
-      <li>The requested shared tools (`evaluate_holdout.py`, `submission_writer.py`) and cached feature stack are absent.</li>
-      <li>The registry submission rasters needed for pre-placement and final novelty checks are absent.</li>
-      <li>There is no reproducible baseline or holdout best in this checkout, so no candidate can be shown to beat it.</li>
-    </ol>
-    <p>Do not substitute site summaries or published TIFs for private competition inputs. The linked DrivenData data page is login-gated for this environment; no authenticated download was attempted or claimed.</p>
-  </section>
+  <h2>Lane, experiments, run card</h2>
+  <p>The prompt’s “single method paragraph” was absent (IR-WB1-LANE). Self-declared lane: magnetic-contact / strain-gated discovery — <em>not</em> DEM Hessian ridges.</p>
+  <table>
+    <thead><tr><th>Exp</th><th>What</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><td>E1</td><td>Leakage canary: each of 19 official bands + distance-to-catalogue, AUC on withheld catalogue positives</td><td>PASS. Only <code>neg_dist_full_catalogue</code> AUC = 1.00 (&gt;0.90). All 19 bands AUC 0.45–0.57.</td></tr>
+      <tr><td>E2</td><td>TSML: Hessian ridges of TMI horizontal gradient, gravity-slope and basement-depth corroboration, dilatation&gt;0 and high 2nd-invariant gate, priority Poisson 3.2 px, B=2</td><td>10,774 unique dots. HOLDOUT-DTI 0.0022 [0.0016, 0.0027]. Unique (max ρ 0.018, overlap 0.439). Loses to champion proxy 0.0048.</td></tr>
+      <tr><td>E3</td><td>MVGZ: TMI vertical-gradient zero-crossings × TMI HGM (Blakely contacts), B=2</td><td>23,402 unique dots. HOLDOUT-DTI 0.00318 [0.00242, 0.00397]. Unique. Still loses. Selected as the unique primary artifact. Verdict <strong>negative</strong>.</td></tr>
+    </tbody>
+  </table>
+  <pre class="mono" style="white-space:pre-wrap;background:#ece6da;padding:0.8rem;">{"hypothesis":"Magnetic vertical-gradient zero-crossing contacts (MVGZ)",
+ "mechanism":"Zero crossings of TMI vertical gradient weighted by TMI horizontal gradient (Blakely contact mapping), off-catalogue B=2.",
+ "named_non_fault_process_that_could_mimic_it":"Magnetic lithologic contacts and cultural EM noise along linear infrastructure.",
+ "holdout_dti":"HOLDOUT-DTI WBGGEMSDOE1-HIDE-RECOVER-v1.0 n=60161  0.00318 [0.00242, 0.00397]",
+ "correlation_overlap_vs_registry":"max |rho|=0.0167; max overlap=0.459 (37 rasters); unique=true",
+ "raster_sha256":"0c2516fa5e5727eab1150750b72c189a454968aba4f9afbc5e2aac84dcc8faba",
+ "validator":"12/12 PASS, no NaN, values in [0,1], CRS/shape/transform match",
+ "submission_name":"WBGGEMSDOE1-H1-MVGZ-AC61AFDA",
+ "submission_note":"MVGZ unique 23402d B2 | HR 0.0032 vs champ 0.0048 | DO NOT SUBMIT",
+ "verdict":"negative"}</pre>
 
-  <section>
-    <h2>Research status</h2>
-    <p>Four provisional, official-layer-based hypotheses are ranked in the executive summary. They are not validated, and no experiment was run: the explicitly requested method-lane paragraph is absent from the prompt, the repo has no template/evaluator, and the data are unavailable. These limitations are called out rather than hidden.</p>
-    <p><a href="executive-summary.html#hypotheses">Review hypotheses, likely confounders, implementation costs, and next steps →</a></p>
-  </section>
+  <h2>Limitations / access still needed</h2>
+  <ul>
+    <li>No DrivenData credentials → cannot auto-download from the data tab or read organizer receipts. Competition rasters restored from the public GitHub bridge and SHA-256 pinned.</li>
+    <li>Sandbox egress is GitHub/PyPI only → no USGS 3DEP 1 m DEM, no GDR shapefiles, no Dropbox in this session.</li>
+    <li>Hide-and-recover of <em>mapped</em> faults is a biased proxy for hidden test faults (exposed scarps vs blind structures). Champion live 0.2778 vs holdout 0.0048 on this evaluator illustrates the gap.</li>
+    <li>Promotion to a real weekly slot is a separate selector step. This session does not pick a live submission.</li>
+  </ul>
 </main>
-<footer>GEMS fault-discovery project · Evidence class and timestamp must accompany every future result.</footer>
+<footer>
+  Official problem:
+  <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">page 967</a> ·
+  leaderboard <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">0.4437 #1 as of 2026-10-26</a> ·
+  data pins in <code>evidence/data_pins.json</code>.
+</footer>
 </body>
 </html>

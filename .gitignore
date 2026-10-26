@@ -1,0 +1,17 @@
+# Local environment and caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Restored scientific inputs (recreated by scripts/restore_inputs.py)
+data/external/lidar_scarp_features_u8.tif
+
+# Immutable registry artifacts restored on demand
+registry/cache/
+
+# Experiment scratch products
+artifacts/
+*.tmp
+.DS_Store

@@ -1,0 +1,9 @@
+# Competition data and generated artifacts must be obtained locally and kept out of Git.
+/data/
+/submissions/
+/artifacts/
+
+# Python cache/environment artifacts.
+__pycache__/
+*.py[cod]
+.venv/

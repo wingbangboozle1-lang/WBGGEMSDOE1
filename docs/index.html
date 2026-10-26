@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Auditable GEMS fault-discovery research and fail-closed submission readiness status.">
+  <title>GEMS Fault Discovery — Research & Submission Readiness</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="eyebrow">GEMS Prize Challenge · Evidence-first research</div>
+  <h1>Fault discovery, with auditable gates.</h1>
+  <p>A research dashboard for spatial validation, scientific hypotheses, reproducibility, and safe GeoTIFF submission. Scores, projections, and organizer receipts are kept distinct.</p>
+</header>
+<nav aria-label="Main navigation">
+  <a href="index.html">Overview</a>
+  <a href="executive-summary.html">Executive summary & submission guide</a>
+  <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/main/README.md">Project charter</a>
+  <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/main/evidence/run-card.json">Current run card (JSON)</a>
+</nav>
+<main>
+  <div class="status" role="alert">
+    <strong>🔴 DO NOT SUBMIT — no approved GeoTIFF exists in this checkout.</strong>
+    <p>No competition data, cached feature stack, shared holdout evaluator, submission writer, or registry rasters are present. No prediction was generated. There is no score estimate, uniqueness result, or validator pass to claim. The safe action is to restore the authorized inputs and shared tools, then run the documented gates—not to submit a placeholder or a prior site's file.</p>
+    <p><a href="executive-summary.html">Open the executive summary and exact submission requirements →</a></p>
+  </div>
+
+  <section>
+    <h2>At a glance</h2>
+    <div class="grid">
+      <div class="metric"><b>0</b>competition rasters found in this checkout</div>
+      <div class="metric"><b>0</b>spatial holdout experiments run</div>
+      <div class="metric"><b>0</b>submission slots used</div>
+      <div class="metric"><b>Not available</b>candidate score or uniqueness result</div>
+    </div>
+    <p class="small">These are checkout/readiness facts, not scientific score metrics. Run <code>python scripts/check_readiness.py</code> for the machine-readable missing-file list.</p>
+  </section>
+
+  <section>
+    <h2>Competition snapshot</h2>
+    <p>The official problem description defines the target as geological fault structures, notes that the public fault catalogue is incomplete, and describes a public/private scoring setup followed by expert review for a final expanded-label round. The same page specifies the DTI scoring mechanics and GeoTIFF contract. See the <a href="executive-summary.html#sources">official sources and evidence notes</a>.</p>
+    <div class="callout"><b>ORGANIZER-PUBLIC-LEADERBOARD snapshot, not a submission receipt (2026-10-26):</b> the official page showed a leading public score of <b>0.4437</b>. The prompt's values 0.3195 and 0.4413 do not match that retrieved snapshot; leaderboard values change over time and a public score is not a private/final award result. Details and link are in the <a href="executive-summary.html#leaderboard">executive summary</a>.</div>
+  </section>
+
+  <section>
+    <h2>What blocks a valid experiment?</h2>
+    <ol>
+      <li>Authorized `training_features.tif`, `labels.tif`, `sample_submission.tif`, and `1m_DEM_links.csv` are absent.</li>
+      <li>The requested shared tools (`evaluate_holdout.py`, `submission_writer.py`) and cached feature stack are absent.</li>
+      <li>The registry submission rasters needed for pre-placement and final novelty checks are absent.</li>
+      <li>There is no reproducible baseline or holdout best in this checkout, so no candidate can be shown to beat it.</li>
+    </ol>
+    <p>Do not substitute site summaries or published TIFs for private competition inputs. The linked DrivenData data page is login-gated for this environment; no authenticated download was attempted or claimed.</p>
+  </section>
+
+  <section>
+    <h2>Research status</h2>
+    <p>Three provisional, official-layer-based hypotheses are ranked in the executive summary. They are not validated, and no experiment was run: the explicitly requested method-lane paragraph is absent from the prompt, the repo has no template/evaluator, and the data are unavailable. These limitations are called out rather than hidden.</p>
+    <p><a href="executive-summary.html#hypotheses">Review hypotheses, likely confounders, implementation costs, and next steps →</a></p>
+  </section>
+</main>
+<footer>GEMS fault-discovery project · Evidence class and timestamp must accompany every future result.</footer>
+</body>
+</html>

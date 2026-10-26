@@ -1,6 +1,6 @@
+# Local environments and language caches
 .venv/
 __pycache__/
-*.pyc
 *.py[cod]
 .pytest_cache/
 .mypy_cache/
@@ -8,12 +8,19 @@ __pycache__/
 *.egg-info/
 .DS_Store
 
-# Large competition rasters (restore via scripts/download_competition_data.sh)
-data/bridge/*.tif
-data/bridge/*.part-*
-data/bridge/labels.tif
-data/bridge/sample_submission.tif
+# Restored TIP1 input (scripts/restore_inputs.py)
+data/external/lidar_scarp_features_u8.tif
+
+# Large optional competition inputs and partial downloads
 data/bridge/training_features.tif
+data/bridge/gems-geodawn-numerical-features.tif
+data/bridge/*.part-*
 data/registry/
+
+# Immutable comparison cache (scripts/restore_registry.py)
+registry/cache/
+
+# Experiment scratch products
 /submissions/
 /artifacts/
+*.tmp

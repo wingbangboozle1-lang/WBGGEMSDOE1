@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gemsdoe1"
+version = "0.1.0"
+description = "Auditable spatial fault-detection experiments for DOE GEMS"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy==2.4.6",
+  "scipy==1.17.1",
+  "rasterio==1.4.4",
+  "scikit-learn==1.9.1",
+  "pyproj==3.7.2",
+  "shapely==2.1.2",
+  "pyshp==3.1.6",
+  "threadpoolctl==3.7.0",
+  "joblib==1.6.0"
+]
+
+[project.optional-dependencies]
+dev = ["pytest==9.1.1", "ruff==0.16.10"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+exclude = ["archive", "data", "registry/cache", ".venv", "artifacts"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

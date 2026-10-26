@@ -1,0 +1,94 @@
+{
+  "schema": "gemsdoe1-owner-request-trace-v1",
+  "reviewed_utc": "2026-10-26T22:16:50Z",
+  "items": [
+    {
+      "requirement": "Preserve prompt, Maximize P(Win), Own the Outcome",
+      "status": "pass",
+      "evidence": ["README.md", "research/owner_request.md"]
+    },
+    {
+      "requirement": "Rank 3-5 untried geological hypotheses before implementation",
+      "status": "pass",
+      "evidence": ["research/00_ranked_hypotheses.md", "preregistration commit 99d5d4a38a6a930ceca66f3f75ac64e0a7867e5b"]
+    },
+    {
+      "requirement": "One distinct method lane, maximum three experiments/two hours",
+      "status": "pass",
+      "evidence": ["TIP1 only", "3 arms", "132.365 seconds", "evidence/tip1_run_card_20261026.json"]
+    },
+    {
+      "requirement": "Blocked whole-segment holdout, visible-only catalogue, exact mask, pooled DTI alpha 0.2 beta 0.8 300 m kernel",
+      "status": "pass",
+      "evidence": ["src/gems/holdout.py", "evidence/tip1_run_card_20261026.json"]
+    },
+    {
+      "requirement": "Test each feature alone; AUC > 0.90 fails",
+      "status": "pass",
+      "evidence": ["29 raw/decoded/transformed descriptors checked; all pass", "evidence/tip1_run_card_20261026.json"]
+    },
+    {
+      "requirement": "Surface rho <= 0.90 and final overlap <= 70% against registry",
+      "status": "fail_closed",
+      "evidence": ["surface B max abs rank 0.482280 PASS", "competing-raster final max overlap 0.643948 PASS", "retained spacing-5 lattice overlap 0.999523 FAIL", "no relocation or exception"]
+    },
+    {
+      "requirement": "Beat current best with strictly positive paired CI and replay it",
+      "status": "fail_closed",
+      "evidence": ["Arm B HOLDOUT-DTI 0.082434 [0.072872, 0.091733]", "benchmark HOLDOUT-DTI 0.166060 [0.151858, 0.180339]", "fold prediction masks unavailable; paired replay null"]
+    },
+    {
+      "requirement": "Generate one easy-to-download, unique-name, competition-format TIFF in [0,1] with exact grid",
+      "status": "format_pass_scientific_negative",
+      "evidence": ["docs/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif", "SHA-256 148718d31ea75cfa3b7c643dfa25643cb0353483b2fa0e2696a62af2a107dca8", "evidence/release_validation.json"]
+    },
+    {
+      "requirement": "Artifact must not duplicate prior submissions",
+      "status": "fail_closed_under_literal_rule",
+      "evidence": ["Scientifically independent and <=64.3948% against competing-method rasters", "99.9523% against retained synthetic lattice", "verdict DO NOT SUBMIT"]
+    },
+    {
+      "requirement": "Automated validation and note <=140 characters",
+      "status": "pass",
+      "evidence": ["15/15 release checks pass", "102-character note", "scripts/validate_release.py"]
+    },
+    {
+      "requirement": "Determine each of nine sites' best file with evidence, uniqueness and recommendation",
+      "status": "pass",
+      "evidence": ["research/02_h33_and_nine_site.md", "evidence/nine_site_executive_summary_20261026.json", "docs/index.html"]
+    },
+    {
+      "requirement": "Explain H33-B2 0.2778 and test a distinct approach",
+      "status": "pass_with_receipt_irregularity",
+      "evidence": ["exact 44,090 to 37,654 subset; 6,436 catalogue-near removals; zero additions", "0.2778 remains OWNER-REPORTED / UNVERIFIED because no receipt exists", "evidence/h33_b2_forensics.json", "TIP1 distinct but negative"]
+    },
+    {
+      "requirement": "Clean Pages site, submission subpage, official audit links, research records and feed",
+      "status": "pass",
+      "evidence": ["docs/index.html", "docs/submission-instructions.html", "docs/methodology.html", "docs/research.html", "docs/data/feed.json", ".github/workflows/pages.yml"]
+    },
+    {
+      "requirement": "No manual inspection/input dependency",
+      "status": "pass",
+      "evidence": ["all scientific and release checks automated", "official non-allowlisted links explicitly marked manual-review only"]
+    },
+    {
+      "requirement": "One JSON run card with required scientific, novelty, SHA, validator, note and verdict fields",
+      "status": "pass",
+      "evidence": ["evidence/tip1_run_card_20261026.json"]
+    },
+    {
+      "requirement": "Three implementation/review passes",
+      "status": "pass",
+      "evidence": ["evidence/review_passes.json"]
+    },
+    {
+      "requirement": "Do not spend or select a weekly slot",
+      "status": "pass",
+      "evidence": ["submission_slots_used = 0", "promote = false", "ok_to_submit = false"]
+    }
+  ],
+  "final_verdict": "negative",
+  "ok_to_download": true,
+  "ok_to_submit": false
+}

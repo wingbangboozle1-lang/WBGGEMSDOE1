@@ -1,0 +1,102 @@
+{
+  "source_repository": "https://github.com/buffedlizard55-lab/GEMSDOE24",
+  "source_commit": "7790c3b3038e3fb34f2fe844e10d187a02fa3ab4",
+  "license": "NOASSERTION \u2014 GitHub repository metadata exposed no license on 2026-10-26",
+  "purpose": "Byte-pinned shared holdout, metric, emission, novelty, and submission implementation; defects are fixed here once rather than forked per experiment.",
+  "files": [
+    {
+      "path": "src/gems/__init__.py",
+      "sha256": "1a0b12829abd20797161f12c4d4f900f5bfb2af13df35c68435ce647e6fb264a",
+      "byte_identical_to_source": true,
+      "source_sha256": "1a0b12829abd20797161f12c4d4f900f5bfb2af13df35c68435ce647e6fb264a"
+    },
+    {
+      "path": "src/gems/holdout.py",
+      "sha256": "34fb7f12e849280c8162d5c433aa972f70746ddecf1a289ce3a9c81144b344dc",
+      "byte_identical_to_source": true,
+      "source_sha256": "34fb7f12e849280c8162d5c433aa972f70746ddecf1a289ce3a9c81144b344dc"
+    },
+    {
+      "path": "src/gems/metric.py",
+      "sha256": "c024510de39746c9390e5bbf5c1d1b639a9ee895017a38fab4b609f0f2c33e48",
+      "byte_identical_to_source": true,
+      "source_sha256": "c024510de39746c9390e5bbf5c1d1b639a9ee895017a38fab4b609f0f2c33e48"
+    },
+    {
+      "path": "src/gems/submission.py",
+      "sha256": "fe26ba1d414bc56053cb04423c200f8bf3121e562361fdfac70f136c5bce4b37",
+      "byte_identical_to_source": true,
+      "source_sha256": "fe26ba1d414bc56053cb04423c200f8bf3121e562361fdfac70f136c5bce4b37"
+    },
+    {
+      "path": "src/gems/validator.py",
+      "sha256": "a5176d6e13924382f52bfd170a1f91c8beb1f31d413765295e881b65dc79a5e0",
+      "byte_identical_to_source": true,
+      "source_sha256": "a5176d6e13924382f52bfd170a1f91c8beb1f31d413765295e881b65dc79a5e0"
+    },
+    {
+      "path": "src/gems/footprint.py",
+      "sha256": "2e09d625b754104c72a0cf92e70ed6c387bcfb7a5824b4126f1cc2b6880a361a",
+      "byte_identical_to_source": true,
+      "source_sha256": "2e09d625b754104c72a0cf92e70ed6c387bcfb7a5824b4126f1cc2b6880a361a"
+    },
+    {
+      "path": "src/gems/paths.py",
+      "sha256": "fbb95ad603ea5765091a7403b36235e89f4bc7f06c99deac95083138f560aa96",
+      "byte_identical_to_source": true,
+      "source_sha256": "fbb95ad603ea5765091a7403b36235e89f4bc7f06c99deac95083138f560aa96"
+    },
+    {
+      "path": "src/gems/emission.py",
+      "sha256": "8ef12efc95157108fd37af4e47c4b04dacaedcf0207728ffde310736baf33753",
+      "byte_identical_to_source": true,
+      "source_sha256": "8ef12efc95157108fd37af4e47c4b04dacaedcf0207728ffde310736baf33753"
+    },
+    {
+      "path": "src/gems/novelty.py",
+      "sha256": "0c7b98cdeb4f49c2a8cbac3ecc33499218f1233f20573a91a65c8276766ce597",
+      "byte_identical_to_source": false,
+      "source_sha256": "f055a3521849b2e2d288e3aa6b1755fdf8e0d2a281fc63f8cc8b2ed88f3a69da",
+      "local_shared_fix": "Added verified compact-registry loading and multi-surface one-pass comparison; thresholds/statistics unchanged; covered by tests/test_novelty_compact.py."
+    },
+    {
+      "path": "scripts/evaluate_holdout.py",
+      "sha256": "d942edec6e48b1f80ed746318bba438b29cac131621c6c4159f0623b2cac121f",
+      "byte_identical_to_source": false,
+      "source_sha256": "66fbe1a696c0fe48b1d277619eaf810aa2d91866a92bc2a5d819c49fe4143da1",
+      "local_shared_fix": "Repository-level integration wrapper; exact upstream bytes retained in scripts/template_evaluate_holdout.py."
+    },
+    {
+      "path": "scripts/submission_writer.py",
+      "sha256": "9aa3b296fbdf3aa499602efc3d5a2df7e900eb65a7cf2255d9eff4a59c4fe550",
+      "byte_identical_to_source": false,
+      "source_sha256": "1bca5559952f540b5eb2b4223491e4fd1bdef6a1494857a0d3e6204e466bd45b",
+      "local_shared_fix": "Repository-level integration wrapper; exact upstream bytes retained in scripts/template_submission_writer.py."
+    },
+    {
+      "path": "src/gems/magnetic_trough.py",
+      "sha256": "c310cd47302b10d3cc223ed0bffe563306a5c4f6012b3853e951214311b29a29",
+      "source_sha256": "c310cd47302b10d3cc223ed0bffe563306a5c4f6012b3853e951214311b29a29",
+      "byte_identical_to_source": true
+    },
+    {
+      "path": "scripts/template_evaluate_holdout.py",
+      "upstream_path": "scripts/evaluate_holdout.py",
+      "source_sha256": "66fbe1a696c0fe48b1d277619eaf810aa2d91866a92bc2a5d819c49fe4143da1",
+      "sha256": "66fbe1a696c0fe48b1d277619eaf810aa2d91866a92bc2a5d819c49fe4143da1",
+      "byte_identical_to_source": true
+    },
+    {
+      "path": "scripts/template_submission_writer.py",
+      "upstream_path": "scripts/submission_writer.py",
+      "source_sha256": "1bca5559952f540b5eb2b4223491e4fd1bdef6a1494857a0d3e6204e466bd45b",
+      "sha256": "1bca5559952f540b5eb2b4223491e4fd1bdef6a1494857a0d3e6204e466bd45b",
+      "byte_identical_to_source": true
+    }
+  ],
+  "local_shared_fixes": [
+    "src/gems/novelty.py performance/audit fix: restore-time validated compact comparators prevent repeated decoding of hundreds of full-grid TIFFs, and fixed arms are checked in one pass. No novelty threshold or statistic changed.",
+    "Repository integration wrappers preserve frozen TIP1 verification and inherited MVGZ CLI compatibility; exact upstream CLIs remain byte-identical under scripts/template_*."
+  ],
+  "reuse_basis": "Owner explicitly required reuse of this shared template; provenance and exact source commit are retained. This is not a legal license determination."
+}

@@ -1,0 +1,25 @@
+{
+  "generated_utc": "2026-10-26T22:05:07.459094+00:00",
+  "limitations": [
+    "No DrivenData-authenticated submission receipt, private leaderboard, hidden labels, or weekly quota was accessible.",
+    "The USGS 3DEP-derived feature stack was SHA-restored from an immutable GitHub mirror; raw 1 m USGS tiles were not independently downloaded in this sandbox.",
+    "The S3DEP1 benchmark card is pinned and internally consistent, but its fold prediction masks and 10 km block components are absent, so the required paired replay fails closed.",
+    "The public fault raster is an imperfect proxy: connected components are conservative segment proxies rather than expert trace IDs.",
+    "LiDAR support covers only 3,892,964 grid cells according to source metadata; TIP1 cannot discover faults in missing-LiDAR cells.",
+    "100 m cell maxima cannot resolve subcell scarp geometry, and the local strike bearing convention is inherited from mirror metadata/code rather than independently surveyed.",
+    "Internal HOLDOUT-DTI does not calibrate or project an organizer score."
+  ],
+  "irregularities": [
+    "H33-B2 0.2778 is requested as ORGANIZER-CONFIRMED but no artifact-linked receipt exists; it remains OWNER-REPORTED / UNVERIFIED.",
+    "The prompt contains conflicting unverified leaderboard claims 0.3195 and 0.4413.",
+    "H33-B2 is a strict deletion-only subset of D2.8: 6,436 dots removed, zero added; it is not a scientifically distinct discovery raster.",
+    "The retained spacing-5 lattice makes the literal >70% within-3-pixel gate fail for ordinary full-budget masks; TIP1 overlap is 99.9523%. It was retained rather than bypassed.",
+    "TIP1 Arm A scored slightly above fixed primary Arm B, but preregistration forbids post-hoc arm replacement.",
+    "TIP1 passes competing-method novelty but fails the literal all-entry lattice gate and the efficacy benchmark.",
+    "Historical nine-site maxima have 97.58% to 100% overlap against at least one other site mask and are not unique under the owner's 70% rule."
+  ],
+  "submission_slots_used": 0,
+  "manual_inputs_used": false,
+  "manual_inspection_dependency": false,
+  "verdict": "negative"
+}

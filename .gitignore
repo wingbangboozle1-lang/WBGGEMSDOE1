@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+data/bridge/*.tif
+data/bridge/*.part-*
+data/bridge/labels.tif
+data/bridge/sample_submission.tif
+data/bridge/training_features.tif
+data/registry/
+*.egg-info/
+.DS_Store

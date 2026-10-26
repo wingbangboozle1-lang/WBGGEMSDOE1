@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to submit — WBGGEMSDOE1</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <h1>How to make a DrivenData submission</h1>
+  <p>Mechanical checklist. Today the answer is: do not upload.</p>
+</header>
+<nav>
+  <a href="index.html">Home / download</a>
+  <a href="executive-summary.html">Executive summary</a>
+  <a href="how-to-submit.html">How to submit</a>
+  <a href="hypotheses.html">Hypotheses</a>
+  <a href="sources.html">Sources</a>
+  <a href="irregularities.html">Irregularities</a>
+</nav>
+<main>
+  <section class="banner">
+    <h2>🔴 STOP — current file is not authorized</h2>
+    <p>Follow these steps only if <a href="index.html">the homepage</a> shows a green <strong>OK TO SUBMIT</strong> banner and <code>evidence/run_card.json</code> has <code>"verdict": "promote"</code>.</p>
+  </section>
+
+  <h2>1. File</h2>
+  <p>Upload a <strong>single-band GeoTIFF</strong> or a <strong>.zip containing one GeoTIFF</strong>.</p>
+  <ul>
+    <li>CRS EPSG:32611 (UTM 11N), 100 m, shape 3730×3292, geotransform identical to <code>example_submission.tif</code> / <code>sample_submission.tif</code>.</li>
+    <li>dtype float32, values in <strong>[0, 1]</strong>.</li>
+    <li><strong>Use the <code>-zeros.tif</code> encoding</strong> (0.0 outside the footprint, nodata=None, zero NaNs anywhere). A previous upload of a NaN-outside raster returned <code>Predicted values must be in range [0, 1]</code>. The official text allows NaN outside the bounds; the portal validator in practice rejects non-finite values. This repo always ships the zeros twin as the upload file.</li>
+  </ul>
+  <p>Official format: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#submission-format">page 967, submission format</a>.</p>
+
+  <h2>2. Portal</h2>
+  <ol>
+    <li>Log in at DrivenData.</li>
+    <li>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">New submission</a> for competition 306.</li>
+    <li>Choose the zeros GeoTIFF or its zip.</li>
+    <li>Note field (optional, ≤140 characters). Copy the run-card <code>submission_note</code> exactly.</li>
+    <li>Submit. Record the receipt (score, hash, timestamp) back into <code>evidence/</code> — we do not have organizer receipts today.</li>
+  </ol>
+
+  <h2>3. Name and note for the current (not-to-be-submitted) artifact</h2>
+  <table>
+    <tr><th>Unique name</th><td class="mono">WBGGEMSDOE1-H1-MVGZ-AC61AFDA</td></tr>
+    <tr><th>Note</th><td class="mono">MVGZ unique 23402d B2 | HR 0.0032 vs champ 0.0048 | DO NOT SUBMIT</td></tr>
+  </table>
+
+  <h2>4. Automated gates this repo runs before any “OK TO SUBMIT”</h2>
+  <ol>
+    <li>SHA-256 pins of the three official rasters.</li>
+    <li>Leakage canary: every detector feature AUC ≤ 0.90 on hide-and-recover (distance-to-full-catalogue is the positive control and must exceed 0.90).</li>
+    <li>Hide-and-recover pooled DTI (α=0.2, β=0.8, 300 m kernel, whole-segment withhold, visible-only B-collar) beats the champion proxy with the same evaluator.</li>
+    <li>Surface Spearman ≤ 0.90 and final-dot 3 px overlap ≤ 70% vs every non-space-filling registry raster.</li>
+    <li>Strict validator: CRS/shape/transform, float32, all cells finite in [0, 1], 0 catalogue dots.</li>
+  </ol>
+  <p>All of 1, 2, 4, 5 passed for MVGZ. Gate 3 failed. Verdict negative.</p>
+
+  <h2>5. Reproduce locally</h2>
+  <pre class="mono" style="white-space:pre-wrap;background:#ece6da;padding:0.8rem;">python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+bash scripts/download_competition_data.sh   # or copy data/bridge from GEMSDOE
+.venv/bin/python scripts/prepare_data.py
+.venv/bin/python tests/test_metric.py
+.venv/bin/python scripts/run_experiments.py
+.venv/bin/python scripts/evaluate_holdout.py docs/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif</pre>
+</main>
+<footer>Do not spend a weekly slot on a negative run card.</footer>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Exact TIP1 artifact checks, note, and fail-closed DOE GEMS submission decision.">
+  <title>Submission guide · GEMS DOE 1</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><nav class="nav" aria-label="Primary navigation">
+  <a class="brand" href="index.html"><span class="brand-mark">G1</span><span>GEMS DOE 1</span></a>
+  <div class="nav-links"><a href="index.html">Decision</a><a href="research.html">Research</a><a href="methodology.html">Method</a><a aria-current="page" href="submission-instructions.html">Submission guide</a><a class="status-dot" href="#decision">Do not submit</a></div>
+</nav></header>
+<main id="main">
+  <section class="hero" id="decision"><div class="container">
+    <p class="eyebrow">Exact-file handoff</p>
+    <h1>Downloadable.<br><span class="accent">Not submittable.</span></h1>
+    <p class="hero-copy">The artifact is technically competition-ready but scientifically unauthorized. These instructions exist to prevent a format mistake or accidental slot spend—not to recommend an upload.</p>
+    <div class="alert"><strong>FINAL VERDICT: DO NOT SUBMIT.</strong> TIP1 fails the efficacy gate, lacks the required paired replay, and exceeds the literal 70% lattice-overlap limit. No human override is requested.</div>
+    <div class="action-row"><a class="button danger" download href="downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif">Download audit TIFF</a><a class="button secondary" href="data/tip1_run_card.json">Open run card</a></div>
+  </div></section>
+
+  <section class="section white"><div class="container">
+    <div class="section-head"><div><p class="eyebrow">Identity</p><h2>Verify before opening.</h2></div><p>A filename is not identity. Compare the full digest, then run the automated validator against the exact bytes.</p></div>
+    <div class="card">
+      <span class="filename">gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif</span>
+      <ul class="meta-list">
+        <li><span>SHA-256</span><strong class="mono hash">148718d31ea75cfa3b7c643dfa25643cb0353483b2fa0e2696a62af2a107dca8</strong></li>
+        <li><span>Content ID</span><strong class="mono">9a4b9b4bc8cd</strong></li>
+        <li><span>Byte profile</span><strong>single-band float32 GeoTIFF</strong></li>
+        <li><span>Stored range</span><strong>0.0 to 1.0 · all finite</strong></li>
+        <li><span>CRS / shape</span><strong>EPSG:32611 · 3730 × 3292</strong></li>
+      </ul>
+      <p><a href="downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.validator.json">Complete validator output</a> · <a href="downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.note.txt">Plain-text note</a></p>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="container">
+    <div class="section-head"><div><p class="eyebrow">Automated procedure</p><h2>Five checks. Zero discretion.</h2></div><p>The local release validator verifies format and evidence identity. Portal acceptance can only be verified by the organizer; it does not rescue a negative scientific gate.</p></div>
+    <div class="steps">
+      <article class="step"><h3>Recreate exact inputs</h3><p>Run <code>python scripts/restore_inputs.py</code> and <code>python scripts/restore_registry.py</code>. Both stop on a byte mismatch.</p></article>
+      <article class="step"><h3>Verify the frozen scientific receipt</h3><p>Run <code>PYTHONPATH=src python scripts/run_tip1_lane.py --verify-recorded</code>. The runner refuses a scientific rerun.</p></article>
+      <article class="step"><h3>Validate the release</h3><p>Run <code>PYTHONPATH=src python scripts/validate_release.py</code>. It reopens the file and checks band count, dtype, CRS, shape, transform, finiteness, range, dot count, hashes, evidence labels and slot budget.</p></article>
+      <article class="step"><h3>Use the exact note only if governance later changes</h3><p class="mono">TIP1 directional LiDAR coherence-tip gradient | format-valid research; DO NOT SUBMIT | id 9a4b9b4bc8cd</p></article>
+      <article class="step"><h3>Honor the selector</h3><p>The current selector is negative. Stop. Do not perturb, thin, rename or relocate points to evade novelty. A future upload would require a new preregistered lane and a separate positive selector—not an edit to this file.</p></article>
+    </div>
+  </div></section>
+
+  <section class="section white"><div class="container grid-2">
+    <article class="card"><span class="kicker">Format gate</span><h3>PASS</h3><p>One float32 band, exact grid, no NaN/Inf anywhere, every value in <code>[0,1]</code>. This corrects the reported “Predicted values must be in range [0, 1]” failure mode.</p></article>
+    <article class="card"><span class="kicker">Scientific & governance gates</span><h3>FAIL</h3><p>Arm B HOLDOUT-DTI 0.082434 (95% CI [0.072872, 0.091733]) vs benchmark HOLDOUT-DTI 0.166060 (95% CI [0.151858, 0.180339]); both <code>gems-segment-pooled-v1</code>, 60,988 withheld positives. Paired replay unavailable; 99.9523% lattice overlap; zero authorized slots.</p></article>
+  </div></section>
+</main>
+<footer class="site-footer"><div class="container footer-grid"><div><strong>Decision authority</strong><p>The JSON run card and release validator—not the presence of a download button.</p></div><div><a href="index.html">← Executive dashboard</a></div></div></footer>
+</body>
+</html>

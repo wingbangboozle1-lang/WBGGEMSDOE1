@@ -1,186 +1,145 @@
 #!/usr/bin/env python3
-"""Validate a GEMS prediction GeoTIFF against the official sample grid.
+"""Reopen one TIFF / one-TIFF ZIP with the unchanged shared validator.
 
-Usage:
-    python scripts/validate_submission.py candidate.tif sample_submission.tif
-
-The sample raster is used as the authoritative grid and footprint reference. A
-successful structural validation is not a score estimate, scientific validation,
-or proof of uniqueness. This script never edits the candidate file.
+Exit 0 means local FORMAT pass only. --require-submit-ready additionally
+requires a real approval, which this negative research artifact does not have.
+No command in this project submits anything to DrivenData.
 """
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
-import sys
+import math
 from pathlib import Path
-from typing import Any
+import sys
+import tempfile
+import zipfile
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path[:0] = [str(ROOT / "src"), str(ROOT / "vendor")]
+import numpy as np
+import rasterio
+from gems57 import gates
+from gems57.grid import SHAPE
+from gems57.validate import validate as validate_shared
+from wbggems.audit import sha256
+# Preserve the pre-existing supplied-reference API for inherited tests/callers.
+# It is not the authoritative all-finite writer/validator for WBG-C1.
+from gems.legacy_reference_validator import validate as validate
 
 
-def sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as stream:
-        for block in iter(lambda: stream.read(1024 * 1024), b""):
-            digest.update(block)
-    return digest.hexdigest()
+def check_tiff(path):
+    # Reject an unexpected raster size before the shared validator reads it.
+    # This is a caller resource bound, not a fork of its numerical checks.
+    with rasterio.open(path) as ds:
+        if ds.shape != SHAPE or ds.count != 1:
+            raise ValueError(f"expected one band on the {SHAPE} competition grid")
+    footprint = catalogue = None
+    sample, labels = ROOT / "data/sample_submission.tif", ROOT / "data/labels.tif"
+    # Concurrent main already retains byte-identical small bridge references.
+    # Prefer current-lane inputs, then verify bridge fallbacks by the same pins.
+    if not sample.exists():
+        sample = ROOT / "data/bridge/sample_submission.tif"
+    if not labels.exists():
+        labels = ROOT / "data/bridge/labels.tif"
+    manifest = json.loads((ROOT / "registry/data_manifest.json").read_text())
+    pins = {r["dest"]: r["sha256"] for r in manifest["files"]}
+    reference = None
+    if sample.exists():
+        if sha256(sample) != pins["sample_submission.tif"]:
+            raise ValueError("reference template hash mismatch")
+        with rasterio.open(sample) as ds:
+            footprint = np.isfinite(ds.read(1))
+            reference = (ds.shape, ds.crs, ds.transform)
+        if labels.exists():
+            if sha256(labels) != pins["labels.tif"]:
+                raise ValueError("catalogue reference hash mismatch")
+            with rasterio.open(labels) as ds:
+                if (ds.shape, ds.crs, ds.transform) != reference:
+                    raise ValueError("catalogue/reference grid mismatch")
+                catalogue = ds.read(1) > 0
+    report = validate_shared(path, footprint, catalogue)
+    nodata = report["meta"].get("nodata")
+    if nodata is not None and not math.isfinite(nodata):
+        # Metadata serialization only, not any repair to prediction pixels.
+        report["meta"]["nodata"] = str(nodata)
+    if sample.exists():
+        template = gates.format_report(path, sample, footprint=footprint)
+        report["template_report"] = template
+        report["all_checks_passed"] &= template["ok"]
+    report["mirrored_reference_available"] = sample.exists()
+    report["catalogue_reference_available"] = catalogue is not None
+    report["independent_organizer_origin_authenticated"] = False
+    return report
 
 
-def validate(candidate_path: Path, reference_path: Path) -> dict[str, Any]:
-    try:
-        import numpy as np
-        import rasterio
-    except ImportError as exc:
-        raise RuntimeError(
-            "Missing dependency. Install requirements with: "
-            "python -m pip install -r requirements.txt"
-        ) from exc
-
-    errors: list[str] = []
-    checks: dict[str, Any] = {}
-    if not candidate_path.is_file():
-        return {"ok": False, "errors": [f"Candidate file not found: {candidate_path}"]}
-    if not reference_path.is_file():
-        return {"ok": False, "errors": [f"Reference file not found: {reference_path}"]}
-
-    try:
-        with rasterio.open(reference_path) as ref, rasterio.open(candidate_path) as pred:
-            ref_data = ref.read(1, masked=False)
-            ref_mask = ref.read_masks(1) > 0
-            ref_valid = ref_mask & np.isfinite(ref_data)
-
-            checks["candidate"] = {
-                "path": str(candidate_path),
-                "sha256": sha256_file(candidate_path),
-                "crs": pred.crs.to_string() if pred.crs else None,
-                "shape": [pred.height, pred.width],
-                "transform": list(pred.transform)[:6],
-                "band_count": pred.count,
-                "dtype": pred.dtypes[0] if pred.count else None,
-                "nodata": pred.nodata,
-            }
-            checks["reference"] = {
-                "path": str(reference_path),
-                "crs": ref.crs.to_string() if ref.crs else None,
-                "shape": [ref.height, ref.width],
-                "transform": list(ref.transform)[:6],
-                "band_count": ref.count,
-                "dtype": ref.dtypes[0] if ref.count else None,
-                "footprint_pixels": int(ref_valid.sum()),
-            }
-
-            same_crs = pred.crs == ref.crs and pred.crs is not None
-            same_shape = (pred.height, pred.width) == (ref.height, ref.width)
-            same_transform = pred.transform == ref.transform
-            reference_epsg = ref.crs.to_epsg() if ref.crs else None
-            pixel_size_100m = (
-                abs(abs(ref.transform.a) - 100.0) < 1e-6
-                and abs(abs(ref.transform.e) - 100.0) < 1e-6
-                and abs(ref.transform.b) < 1e-9
-                and abs(ref.transform.d) < 1e-9
-            )
-            reference_single_band = ref.count == 1
-            reference_float32 = ref.dtypes[0] == "float32" if ref.count else False
-            checks["reference_single_band"] = reference_single_band
-            checks["reference_float32"] = reference_float32
-            checks["official_crs_epsg_32611"] = reference_epsg == 32611
-            checks["official_resolution_100m"] = pixel_size_100m
-            checks["reference_footprint_nonempty"] = bool(ref_valid.any())
-            if not reference_single_band or not reference_float32:
-                errors.append("Reference must be the official single-band float32 submission grid/template.")
-            if reference_epsg != 32611:
-                errors.append("Reference grid must use the official EPSG:32611 CRS.")
-            if not pixel_size_100m:
-                errors.append("Reference grid must use an unrotated 100 m pixel grid.")
-            if not ref_valid.any():
-                errors.append("Reference raster has no finite, valid footprint pixels.")
-            checks["crs_match"] = bool(same_crs)
-            checks["shape_match"] = bool(same_shape)
-            checks["transform_match"] = bool(same_transform)
-            if not same_crs:
-                errors.append("CRS must be defined and match the reference raster.")
-            if not same_shape:
-                errors.append("Raster width and height must match the reference raster.")
-            if not same_transform:
-                errors.append("Affine transform must exactly match the reference raster.")
-            if pred.count != 1:
-                errors.append("Candidate must have exactly one raster band.")
-            if pred.count != 1:
-                checks["band_count_match"] = False
-                checks["dtype_is_float32"] = False
-                checks["range_0_1_inside_footprint"] = False
-                checks["no_nan_inside_footprint"] = False
-                checks["mask_valid_inside_footprint"] = False
-                checks["outside_footprint_is_null_or_nan"] = False
-            else:
-                checks["band_count_match"] = True
-                checks["dtype_is_float32"] = pred.dtypes[0] == "float32"
-                if not checks["dtype_is_float32"]:
-                    errors.append("Candidate band dtype must be float32.")
-
-                if same_shape:
-                    pred_data = pred.read(1, masked=False)
-                    pred_mask = pred.read_masks(1) > 0
-                    inside = ref_valid
-                    outside = ~inside
-                    finite_inside = np.isfinite(pred_data[inside])
-                    inside_mask_valid = bool(pred_mask[inside].all())
-                    no_nan_inside = bool(finite_inside.all())
-                    in_range = bool(
-                        finite_inside.all()
-                        and inside_mask_valid
-                        and (pred_data[inside] >= 0).all()
-                        and (pred_data[inside] <= 1).all()
-                    )
-                    # The footprint exterior must be null/nodata or NaN; infinity
-                    # is rejected. A valid-mask exclusion covers declared nodata.
-                    outside_ok = bool(
-                        ((~pred_mask[outside]) | np.isnan(pred_data[outside])).all()
-                        and (~np.isinf(pred_data[outside])).all()
-                    )
-                    checks["no_nan_inside_footprint"] = no_nan_inside
-                    checks["mask_valid_inside_footprint"] = inside_mask_valid
-                    checks["range_0_1_inside_footprint"] = in_range
-                    checks["outside_footprint_is_null_or_nan"] = outside_ok
-                    checks["finite_inside_pixels"] = int(finite_inside.sum())
-                    checks["inside_footprint_pixels"] = int(inside.sum())
-                    if not no_nan_inside:
-                        errors.append("Inside the reference footprint, every prediction must be finite (no NaN/Inf).")
-                    if not inside_mask_valid:
-                        errors.append("Candidate must not mark any inside-footprint pixel as nodata/masked.")
-                    if not in_range:
-                        errors.append("Inside the reference footprint, every prediction must be in [0, 1].")
-                    if not outside_ok:
-                        errors.append("Outside the reference footprint, values must be nodata/null or NaN, not finite predictions or infinity.")
-                else:
-                    checks["no_nan_inside_footprint"] = None
-                    checks["mask_valid_inside_footprint"] = None
-                    checks["range_0_1_inside_footprint"] = None
-                    checks["outside_footprint_is_null_or_nan"] = None
-                    errors.append("Value/footprint checks skipped because candidate and reference shapes differ.")
-    except Exception as exc:
-        return {
-            "ok": False,
-            "errors": [f"Unable to read or inspect GeoTIFF: {type(exc).__name__}: {exc}"],
-            "candidate_path": str(candidate_path),
-            "reference_path": str(reference_path),
-        }
-
-    return {"ok": not errors, "errors": errors, "checks": checks}
+def approval_matches(card, report, identity_matches):
+    """Format or a single accidentally flipped decision flag cannot approve a file."""
+    if not card or not identity_matches or not report.get("all_checks_passed"):
+        return False
+    decision = card.get("decision", {})
+    return bool(card.get("verdict") == "promote"
+        and decision.get("verdict") == "promote"
+        and decision.get("ok_to_submit") is True
+        and decision.get("eligible_for_separate_selector") is True
+        and decision.get("approved_for_weekly_slot") is True
+        and card.get("registry", {}).get("passes_literal_uniqueness") is True)
 
 
-def main() -> int:
+def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("candidate", type=Path, help="Prediction GeoTIFF to validate (not modified)")
-    parser.add_argument("reference", type=Path, help="Official sample submission or equivalent template raster")
+    parser.add_argument("file", type=Path)
+    parser.add_argument("reference", type=Path, nargs="?", help="inherited supplied-reference compatibility mode; format only, never approval")
+    parser.add_argument("--require-submit-ready", action="store_true")
     args = parser.parse_args()
-    try:
-        result = validate(args.candidate, args.reference)
-    except RuntimeError as exc:
-        result = {"ok": False, "errors": [str(exc)]}
-    print(json.dumps(result, indent=2, sort_keys=True))
-    return 0 if result["ok"] else 1
+    if args.reference is not None:
+        legacy = validate(args.file, args.reference)
+        metadata = legacy.get("checks", {}).get("candidate", {})
+        if metadata.get("nodata") is not None and not math.isfinite(metadata["nodata"]):
+            metadata["nodata"] = str(metadata["nodata"])
+        report = {"all_checks_passed": legacy["ok"], "ok_to_submit": False,
+            "compatibility_mode": "inherited supplied-reference format/nodata validator; not WBG-C1 approval",
+            "reference_report": legacy}
+        print(json.dumps(report, indent=2, allow_nan=False))
+        if not legacy["ok"]:
+            return 1
+        return 2 if args.require_submit_ready else 0
+    source = args.file.resolve()
+    if source.suffix.lower() == ".zip":
+        cache = ROOT / ".cache/validator"
+        cache.mkdir(parents=True, exist_ok=True)
+        with zipfile.ZipFile(source) as z:
+            names = z.namelist()
+            if len(names) != 1 or Path(names[0]).suffix.lower() not in (".tif", ".tiff"):
+                raise ValueError("submission ZIP must contain exactly one TIFF and nothing else")
+            if z.getinfo(names[0]).file_size > 512 * 1024**2:
+                raise ValueError("unexpectedly large TIFF in ZIP")
+            with tempfile.TemporaryDirectory(dir=cache) as directory:
+                target = Path(directory) / "contained.tif"
+                target.write_bytes(z.read(names[0]))
+                report = check_tiff(target)
+                report["file"] = source.name + "::" + names[0]
+                report["zip_sha256"] = sha256(source)
+    elif source.suffix.lower() in (".tif", ".tiff"):
+        report = check_tiff(source)
+    else:
+        raise ValueError("expected a .tif/.tiff or a ZIP with exactly one TIFF")
+    card_path = ROOT / "registry/run_card.json"
+    card = json.loads(card_path.read_text()) if card_path.exists() else None
+    identity_matches = bool(card and report["sha256"] == card["raster_sha256"])
+    report["run_card_matches_exact_tiff"] = identity_matches
+    report["promotion_verdict"] = card["verdict"] if identity_matches else "untracked"
+    report["ok_to_submit"] = approval_matches(card, report, identity_matches)
+    report["warning"] = "FORMAT PASS is not uniqueness, scientific efficacy, organizer acceptance or slot approval."
+    print(json.dumps(report, indent=2, allow_nan=False))
+    if not report["all_checks_passed"]:
+        return 1
+    return 2 if args.require_submit_ready and not report["ok_to_submit"] else 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        raise SystemExit(main())
+    except (ValueError, OSError, RuntimeError, zipfile.BadZipFile, rasterio.errors.RasterioError) as error:
+        print(json.dumps({"all_checks_passed": False, "ok_to_submit": False, "error": str(error)}), file=sys.stderr)
+        raise SystemExit(1)

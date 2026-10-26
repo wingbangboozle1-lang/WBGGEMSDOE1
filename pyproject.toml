@@ -3,15 +3,16 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "gemsdoe1"
+name = "wbggems"
 version = "0.1.0"
-description = "Auditable spatial fault-detection experiments for DOE GEMS"
+description = "Auditable, fail-closed GEMS fault-mapping research and submission preflight"
 requires-python = ">=3.11"
 dependencies = [
-  "numpy==2.4.6",
-  "scipy==1.17.1",
-  "rasterio==1.4.4",
-  "scikit-learn==1.9.1",
+  "numpy>=2.2,<3",
+  "scipy>=1.15,<2",
+  "rasterio>=1.4,<2",
+  "scikit-learn>=1.6,<2",
+  "pillow==13.0.0",
   "pyproj==3.7.2",
   "shapely==2.1.2",
   "pyshp==3.1.6",
@@ -20,20 +21,13 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+test = ["pytest>=8,<10"]
 dev = ["pytest==9.1.1", "ruff==0.16.10"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.pytest.ini_options]
+pythonpath = ["src", "vendor", "."]
 testpaths = ["tests"]
-pythonpath = ["src", "."]
 addopts = "-ra"
-
-[tool.ruff]
-target-version = "py311"
-line-length = 100
-exclude = ["archive", "data", "registry/cache", ".venv", "artifacts"]
-
-[tool.ruff.lint]
-select = ["E4", "E7", "E9", "F", "I"]

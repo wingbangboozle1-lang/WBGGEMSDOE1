@@ -1,63 +1,76 @@
 #!/usr/bin/env python3
-"""Assemble the official competition rasters from the GitHub data bridge and pin SHA-256."""
+"""Reuse and verify the unchanged shared template cache (never train on sample values)."""
 from __future__ import annotations
 
 import hashlib
-import sys
+import importlib.util
+import json
+import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-BRIDGE = ROOT / "data" / "bridge"
-
-PINS = {
-    "example_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-    "existing_faults.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
-    "gems-geodawn-numerical-features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
-}
+CACHE_ROOT = ROOT / "data/template57"
 
 
-def sha256(path: Path) -> str:
-    h = hashlib.sha256()
-    with path.open("rb") as fh:
-        for chunk in iter(lambda: fh.read(1 << 20), b""):
-            h.update(chunk)
-    return h.hexdigest()
+def sha256(path):
+    digest = hashlib.sha256()
+    with Path(path).open("rb") as stream:
+        for block in iter(lambda: stream.read(1 << 20), b""):
+            digest.update(block)
+    return digest.hexdigest()
 
 
-def main() -> int:
-    BRIDGE.mkdir(parents=True, exist_ok=True)
-    feat = BRIDGE / "gems-geodawn-numerical-features.tif"
-    parts = sorted(BRIDGE.glob("gems-geodawn-numerical-features.tif.part-*"))
-    if not feat.exists():
-        if len(parts) < 5:
-            print("Missing feature parts. Run scripts/download_competition_data.sh", file=sys.stderr)
-            return 2
-        print(f"Assembling {len(parts)} parts -> {feat}")
-        with feat.open("wb") as out:
-            for p in parts:
-                out.write(p.read_bytes())
-    ok = True
-    for name, pin in PINS.items():
-        path = BRIDGE / name
-        if not path.exists():
-            print(f"MISSING {name}", file=sys.stderr)
-            ok = False
+def verify_template():
+    pin = json.loads((ROOT / "registry/shared_template.json").read_text())
+    for row in pin["files"]:
+        path = ROOT / row["path"]
+        if not path.exists() or sha256(path) != row["sha256"]:
+            raise ValueError(f"shared template missing or modified: {row['path']}")
+    return pin
+
+
+def prepare():
+    pin = verify_template()
+    manifest = json.loads((ROOT / "registry/data_manifest.json").read_text())
+    selected = {"training_features.tif", "labels.tif", "sample_submission.tif"}
+    for row in manifest["files"]:
+        if row["dest"] not in selected:
             continue
-        got = sha256(path)
-        match = got == pin
-        print(f"{'OK' if match else 'FAIL'} {name} {got}")
-        ok = ok and match
-    # convenience aliases
-    for src, dst in [
-        ("example_submission.tif", "sample_submission.tif"),
-        ("existing_faults.tif", "labels.tif"),
-        ("gems-geodawn-numerical-features.tif", "training_features.tif"),
-    ]:
-        a, b = BRIDGE / src, BRIDGE / dst
-        if a.exists() and not b.exists():
-            b.symlink_to(a.name)
-    return 0 if ok else 3
+        source = ROOT / "data" / row["dest"]
+        if not source.exists() or sha256(source) != row["sha256"]:
+            raise ValueError(f"raw owner-mirror missing or hash mismatch: {source}")
+        destination = CACHE_ROOT / "data/official" / row["dest"]
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        if not destination.exists():
+            destination.symlink_to(os.path.relpath(source, destination.parent))
+    evidence = CACHE_ROOT / "evidence/feature_cache.json"
+    expected_bands = json.loads((ROOT / "registry/template_pins.json").read_text())[
+        "cached_feature_stack_reference"]["expected_band_sha256"]
+    reusable = False
+    if evidence.exists():
+        receipt = json.loads(evidence.read_text())
+        reusable = (receipt["source_sha256"] == sha256(ROOT / "data/training_features.tif")
+                    and len(receipt["bands"]) == len(expected_bands)
+                    and all(sha256(CACHE_ROOT / row["cache_file"]) == expected
+                            for row, expected in zip(receipt["bands"], expected_bands)))
+    if not reusable:
+        spec = importlib.util.spec_from_file_location("pinned_template57_prepare", ROOT / "vendor/template57/prepare_data.py")
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        receipt = module.cache_bands(CACHE_ROOT)
+    actual = [row["sha256"] for row in receipt["bands"]]
+    if actual != expected_bands:
+        raise ValueError("band hashes do not match the shared template cache; do not train")
+    receipt = {**receipt, "shared_template_repository": pin["repository"],
+               "shared_template_ref": pin["ref"], "all_19_template_band_hashes_match": True,
+               "cache_reused": reusable,
+               "organizer_origin_authenticated": False,
+               "provenance": "Hash-pinned public owner mirror; not independently authenticated organizer data."}
+    (ROOT / "evidence").mkdir(exist_ok=True)
+    (ROOT / "evidence/shared_feature_cache.json").write_text(json.dumps(receipt, indent=2, allow_nan=False) + "\n")
+    print(f"{'Reused' if reusable else 'Prepared'} 19 template bands; all 19 hashes match", flush=True)
+    return receipt
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    prepare()

@@ -1,8 +1,10 @@
-name: Deploy GitHub Pages
+name: Publish evidence desk
 
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: '17 */6 * * *'
   workflow_dispatch:
 
 permissions:
@@ -11,21 +13,34 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: true
+  group: github-pages
+  cancel-in-progress: false
 
 jobs:
-  deploy:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Refresh public provenance only
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/refresh_feed.py
+      - name: Build static evidence desk (no model, no slot selection)
+        run: python scripts/build_site.py
+      - name: Preserve existing root-to-docs publishing layout
+        run: python scripts/stage_pages.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: docs
-      - name: Deploy
+          path: .cache/pages
+      - name: Deploy GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

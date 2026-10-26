@@ -1,26 +1,26 @@
-# Local environments and language caches
+# Large, reproducible inputs and caches are not submission deliverables.
 .venv/
+.cache/
 __pycache__/
-*.py[cod]
 .pytest_cache/
-.mypy_cache/
 .ruff_cache/
+node_modules/
+coverage/
+*.pyc
+data/*
+!data/README.md
+evidence/*.log
+*.partial
+*.tmp
+# Only explicitly generated, reviewed research TIFFs belong in docs/downloads/.
+
+# Editable-install / optional coverage metadata.
 *.egg-info/
+.coverage
+htmlcov/
+# Inherited parallel-lane caches remain reproducible, not release artifacts.
+.mypy_cache/
 .DS_Store
-
-# Restored TIP1 input (scripts/restore_inputs.py)
-data/external/lidar_scarp_features_u8.tif
-
-# Large optional competition inputs and partial downloads
-data/bridge/training_features.tif
-data/bridge/gems-geodawn-numerical-features.tif
-data/bridge/*.part-*
-data/registry/
-
-# Immutable comparison cache (scripts/restore_registry.py)
 registry/cache/
-
-# Experiment scratch products
 /submissions/
 /artifacts/
-*.tmp

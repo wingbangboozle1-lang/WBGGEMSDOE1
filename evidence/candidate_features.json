@@ -1,0 +1,62 @@
+{
+  "channels": [
+    "commutator_300m",
+    "commutator_800m",
+    "commutator_scale_persistence",
+    "commutator_dilatation_support"
+  ],
+  "scales_px": [
+    3.0,
+    8.0
+  ],
+  "conductance_scaling": {
+    "p05": 1.8359887599945068,
+    "median": 2.885897636413574,
+    "p95": 3.9114627838134766
+  },
+  "depth_scaling": {
+    "p05": 6.208613443374634,
+    "median": 316.3645324707031,
+    "p95": 1881.2606262207032
+  },
+  "curvature_scaling": [
+    {
+      "sigma_px": 3.0,
+      "conductance_norm_p90": 0.021907325834035873,
+      "depth_norm_p90": 0.014866597950458527
+    },
+    {
+      "sigma_px": 8.0,
+      "conductance_norm_p90": 0.0559363067150116,
+      "depth_norm_p90": 0.05551941320300102
+    }
+  ],
+  "dilatation_positive_p90": 14.0,
+  "safe_feature_pixels": 4851231,
+  "footprint_pixels": 5167373,
+  "catalogue_features_used": false,
+  "prior_prediction_pixels_used": false,
+  "warning": "Curvature disagreement can be a non-fault basin-fill/lithologic boundary or an inversion artifact.",
+  "planes": [
+    {
+      "name": "commutator_300m",
+      "sha256": "211b47dd119b42f9f3ebd150b6bea1778e3ae98f2f0cffa61fd905cbb5fdb52b",
+      "path": ".cache/wbg-c1/commutator_300m.npy"
+    },
+    {
+      "name": "commutator_800m",
+      "sha256": "81354a8057e3fbbe8b41d1fc614b43148560e43ee98d0e240abd29b31a4a8fb4",
+      "path": ".cache/wbg-c1/commutator_800m.npy"
+    },
+    {
+      "name": "commutator_scale_persistence",
+      "sha256": "1c642699f2816d0be74c7bc2349026a4b7becebbf1daa6c3252cf536ce7fadcf",
+      "path": ".cache/wbg-c1/commutator_scale_persistence.npy"
+    },
+    {
+      "name": "commutator_dilatation_support",
+      "sha256": "d449f8333ca700332d0f366afc80c199832149b62d76554e8832b0a21a637f0f",
+      "path": ".cache/wbg-c1/commutator_dilatation_support.npy"
+    }
+  ]
+}

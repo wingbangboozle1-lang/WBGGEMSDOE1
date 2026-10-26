@@ -1,0 +1,46 @@
+{
+  "generated_utc": "2026-10-26T22:40:58.496Z",
+  "browser": "153.0.8010.0",
+  "checked": [
+    {
+      "file": "index.html",
+      "desktop": "passed",
+      "mobile": "passed"
+    },
+    {
+      "file": "executive-summary.html",
+      "desktop": "passed",
+      "mobile": "passed"
+    },
+    {
+      "file": "research.html",
+      "desktop": "passed",
+      "mobile": "passed"
+    },
+    {
+      "file": "evidence.html",
+      "desktop": "passed",
+      "mobile": "passed"
+    },
+    {
+      "file": "how-to-submit.html",
+      "desktop": "passed",
+      "mobile": "passed"
+    }
+  ],
+  "desktop_viewport": [
+    1440,
+    1100
+  ],
+  "mobile_viewport": [
+    390,
+    844
+  ],
+  "javascript_page_errors": [],
+  "site_filter": "passed",
+  "primary_download_sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+  "primary_download_identity": "passed",
+  "body_overflow": false,
+  "all_passed": true,
+  "no_model_training_or_slot_use": true
+}

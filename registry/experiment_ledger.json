@@ -1,0 +1,15 @@
+{
+  "started_utc": "2026-10-26T21:55:59+00:00",
+  "hypothesis_id": "WBG-C1",
+  "experiments_started": 1,
+  "maximum_experiments": 3,
+  "maximum_wall_hours": 2,
+  "preregistration_sha256": "dfcb8a9006774a28d1ea4c43c4a84ef73d539f3aef45f4a8b99d3bfc7d408d5f",
+  "status": "negative_stopped",
+  "submission_slots_used": 0,
+  "finished_utc": "2026-10-26T21:57:49+00:00",
+  "elapsed_seconds": 110.24896385700004,
+  "experiments_completed": 1,
+  "stop_utc": "2026-10-26T22:39:01+00:00",
+  "stop_reason": "negative paired efficacy and literal surface registry duplicate; no final dot placement"
+}

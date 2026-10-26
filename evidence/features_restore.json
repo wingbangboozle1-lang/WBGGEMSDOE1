@@ -1,0 +1,31 @@
+{
+  "source_repo": "buffedlizard55-lab/6GEMSDOE",
+  "source_commit": "e2fe3f41c6f5dd2dcb2fc91958ee67698f114ada",
+  "parts": [
+    {
+      "part": "gems-geodawn-numerical-features.tif.part-000",
+      "bytes": 94371840,
+      "sha256": "0a330f8951af6c921029e25c84a579319d2db554d62d30d894d6ddc97f98cff7"
+    },
+    {
+      "part": "gems-geodawn-numerical-features.tif.part-001",
+      "bytes": 94371840,
+      "sha256": "3c98037b2c997e3bbfcdfc2d9a982e8b820a77410dd7404b05cdb80594922c50"
+    },
+    {
+      "part": "gems-geodawn-numerical-features.tif.part-002",
+      "bytes": 94371840,
+      "sha256": "c375c4dbc40c59bbaece572b5e348700b75935f9a30c879c82b6417e0836f31c"
+    },
+    {
+      "part": "gems-geodawn-numerical-features.tif.part-003",
+      "bytes": 94371840,
+      "sha256": "b164159e6d0cb2595bc9f63a948af2646b124114a9c5921880c7516092137320"
+    },
+    {
+      "part": "gems-geodawn-numerical-features.tif.part-004",
+      "bytes": 41425484,
+      "sha256": "fa0a6f9c936fac1d6f20ca37f5929b2d60bf7a80f3d477dcab886f941aee2696"
+    }
+  ]
+}

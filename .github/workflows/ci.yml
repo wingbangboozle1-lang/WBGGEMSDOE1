@@ -1,0 +1,60 @@
+name: Verify research evidence
+
+on:
+  pull_request:
+  push:
+    branches: [main, arena/71614a0a-wbggemsdoe1]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: requirements-lock.txt
+      - name: Install exact research dependencies
+        run: python -m pip install -r requirements-lock.txt
+      - name: Regression, metric, provenance, website and artifact tests
+        run: python -m pytest -q
+      - name: Revalidate the actual TIFF and ZIP
+        run: |
+          python scripts/validate_submission.py docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif
+          python scripts/validate_submission.py docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.zip
+      - name: Rebuild static reports without changing research results
+        run: |
+          python scripts/build_site.py
+          python scripts/build_readme.py
+          git diff --exit-code
+
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install exact optional browser-check dependencies
+        run: npm ci
+      - name: Render all five pages, test filtering and verify the actual download
+        run: |
+          python3 -m http.server 8000 --bind 0.0.0.0 --directory docs > /tmp/wbg-site.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          BASE_URL=http://127.0.0.1:8000/ npm run test:browser
+      - name: Retain rendered regression screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-review
+          path: .cache/browser-review/
+          retention-days: 7

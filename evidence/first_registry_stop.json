@@ -1,0 +1,22 @@
+{
+  "recorded_utc": "2026-10-26T22:00:39+00:00",
+  "phase": "surface-before-placement",
+  "row": {
+    "repo": "GEMSDOE24",
+    "submission": "GEMSDOE24:inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "file": "/home/user/WBGGEMSDOE1/.cache/research/GEMSDOE24/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "decoded_sha256": "3140ac4bcfca3d20dc2684c1efb7d8b770d9f861ac3f1869e360b0451970cfec",
+    "their_dots": 206895,
+    "my_dots_within_3px_of_theirs": 0.9987243421716145,
+    "spearman_full_footprint": 8.194500737047869e-05,
+    "jaccard_dot_sets": 0.04002994063548686,
+    "identical_bytes": false,
+    "identical_decoded_predictions": false,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": true,
+    "duplicate_by_jaccard": false
+  },
+  "action": "STOP: no further geological experiments, no final dot placement, no retuning or upload. Inventory diagnostics only may finish.",
+  "reverse_overlap_evaluated": false
+}

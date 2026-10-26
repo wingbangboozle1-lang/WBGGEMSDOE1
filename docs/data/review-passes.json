@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "reviewed_date_utc": "2026-10-26",
+  "scope": "Implementation and three local review passes of the nine-site audit, one frozen scientific screen, exact research artifact, static website and automation. No claim of exhaustive review of every linked source, all 92 sites, private data or hidden labels.",
+  "passes": [
+    {
+      "pass": 1,
+      "status": "complete",
+      "focus": "Implement and measure the bounded research task",
+      "actions": [
+        "Restored hash-pinned core owner mirrors and all nineteen byte-matching shared cache bands.",
+        "Ranked four hypotheses before modeling; froze WBG-C1 and executed one component-buffered spatial OOF screen using the unchanged shared evaluator and writer.",
+        "Ran 92 single-feature canaries; retained paired DTI/block-bootstrap terms and a finite, aligned, newly generated float32 research TIFF with exactly-one-TIFF ZIP.",
+        "Audited nine immutable source snapshots and 360 unique prior file hashes; preserved the first literal overlap STOP. No final dots, selector promotion or competition upload."
+      ],
+      "receipts": ["evidence/experiment.json", "evidence/feature_canaries.json", "evidence/block_terms.json", "evidence/first_registry_stop.json", "registry/preregistration.json", "registry/run_card.json"],
+      "outcome": "Negative efficacy and literal uniqueness; one experiment, zero competition slots. This is not a successful high-scoring submission."
+    },
+    {
+      "pass": 2,
+      "status": "complete",
+      "focus": "Provenance, numerical reporting, assumptions and missing requirements",
+      "fixes": [
+        "Enabled measured reverse overlap diagnostics instead of exposing the shared helper's unmeasured zero placeholder; retained the original forward-STOP time and decision.",
+        "Distinguished Git commit IDs from tree IDs, directly verified all nine commits, rejected truncated trees and checked all 377 inventoried paths against pinned Git blob identities.",
+        "Directly matched all 24 vendored template files to the immutable upstream source; no private evaluator/writer fork or numerical tool edit.",
+        "Kept every historical value USER-REPORTED rather than ORGANIZER-CONFIRMED; exposed null leaderboard estimates, data-origin/metadata uncertainty, registry-scope limits and login-walled allowance.",
+        "Built the five-page evidence desk, executive-summary Markdown, exact artifact links, source register and complete standing-prompt README; tested local links, anchors and feed parser failure cases."
+      ],
+      "regression_at_end_of_pass": "46 pytest tests passed in 1.25 seconds",
+      "receipts": ["evidence/upstream_template_verification.json", "evidence/snapshot_commit_verification.json", "evidence/nine_site_audit.json", "evidence/template_integrity.json", "registry/sources.json", "registry/irregularities.json"],
+      "outcome": "Corrected audit/reporting problems without changing the scientific experiment or TIFF pixels."
+    },
+    {
+      "pass": 3,
+      "status": "complete",
+      "focus": "Recheck original request, edge cases, reproducibility and rendered deliverable",
+      "fixes": [
+        "Made stored registry cache paths clone-portable and normalized them in the caller, then successfully re-ran the full 360-surface audit with identical results and preserved first STOP.",
+        "Completed --github-only provenance refresh: all nine head checks executed; official dated observation retained rather than claiming a new official-page fetch. Added failure/date-retention and mode tests.",
+        "Executed the peer-restore wrapper on all nine existing pinned caches without running peer research code.",
+        "Revalidated real TIFF and ZIP CLI paths, including --require-submit-ready exit 2; tested malformed TIFF/ZIP inputs, multiple archive entries, NaN/inf/out-of-range pixels and stopped-run refusal.",
+        "Hardened CLI approval against a single flipped flag and bounded raster dimensions before reading; unchanged shared numerical validator remains authoritative.",
+        "Rendered all five pages at desktop and mobile sizes, tested filtering and hashed the actual primary download; no page errors or body-width overflow. Inspected the generated desktop/mobile screenshots.",
+        "Documented OOF-seam/non-fault geometric artifacts without smoothing, tuning or changing the stopped TIFF; removed unused imports and ran syntax/undefined-name checks.",
+        "Added frozen optional browser dependencies plus CI/browser and scheduled provenance-only Pages workflows; no training, contest uploader or slot selector exists in those workflows."
+      ],
+      "regression_before_publication": "64 pytest tests passed in 7.13 seconds; Python compileall and Ruff E9/F checks passed; npm audit reported zero known vulnerabilities.",
+      "receipts": ["evidence/browser_checks.json", "evidence/repository_restore.json", "evidence/registry_surface_audit.json", "registry/focus_inventory.json", "tests/test_cli.py", ".github/workflows/ci.yml", ".github/workflows/pages.yml"],
+      "outcome": "Research artifact and report are locally verified. No qualifying high-scoring, literal-unique, upload-ready candidate was obtained."
+    }
+  ],
+  "shared_template_files_modified": 0,
+  "experiments_completed": 1,
+  "final_dots_generated": false,
+  "submission_slots_used": 0,
+  "original_request_fully_satisfied": false,
+  "unmet_scientific_goal": "No demonstrated improvement over the current best or promoted leaderboard submission. Negative results are explicitly allowed by the protocol; STOP prohibits further tuning, placement or upload in this lane.",
+  "remaining_blocks": [
+    "No assigned method paragraph was supplied.",
+    "Literal registry overlap fails even though the TIFF bytes and decoded pixels are distinct.",
+    "Paired efficacy interval includes zero; clean comparable cross-repository best and untouched confirmation are absent.",
+    "Independent organizer-origin raster authentication and original band meanings remain unresolved.",
+    "Authenticated account allowance and exact-artifact organizer score receipts are unavailable.",
+    "Nine frozen snapshots do not establish global/all-92-site uniqueness."
+  ],
+  "publication_status_at_record_creation": "Local work reviewed. Pull request, GitHub CI, merge and Pages deployment still require actual remote verification; consult their GitHub receipts rather than treating this file as a deployment claim."
+}

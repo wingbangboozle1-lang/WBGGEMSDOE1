@@ -1,4 +1,4 @@
-name: Validate and publish project pages
+name: Test GEMS project
 
 on:
   push:
@@ -9,12 +9,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: github-pages
-  cancel-in-progress: true
 
 jobs:
   test:
@@ -26,19 +20,3 @@ jobs:
           python-version: "3.11"
       - run: python -m pip install -r requirements.txt
       - run: python -m unittest discover -s tests -v
-
-  deploy:
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
-    needs: test
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs
-      - id: deployment
-        uses: actions/deploy-pages@v4

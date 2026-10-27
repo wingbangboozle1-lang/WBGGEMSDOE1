@@ -2,7 +2,9 @@
 
 ## DOWNLOAD: YES (research only). SUBMIT: NO.
 
-[Download the newly generated research TIFF](downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif) · [one-TIFF ZIP](downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.zip) · [machine-readable run card](data/run-card.json)
+[27 October follow-up: all four releases and trust corrections](portfolio-review.html). No new experiment; the stopped lane remains stopped.
+
+[Download the frozen research TIFF](downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif) · [one-TIFF ZIP](downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.zip) · [machine-readable run card](data/run-card.json)
 
 No final dotted or high-scoring promoted competition submission was produced. The literal surface overlap STOP and negative efficacy screen prohibit promotion. No weekly slot was used.
 

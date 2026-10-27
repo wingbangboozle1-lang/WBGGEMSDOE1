@@ -2,6 +2,11 @@
 
 ## DOWNLOAD: YES, for research. SUBMIT: **NO**.
 
+**[All four frozen TIFFs: exact-byte review and trust corrections](docs/portfolio-review.html)** ·
+[Machine-readable four-artifact review](docs/data/portfolio-review.json) ·
+[Independent exact-reference review](docs/release-review.html). Neither review generated a new
+TIFF or authorized a competition slot; their historical holdouts are not a common leaderboard ranking.
+
 **[Open the research desk](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/)** ·
 [Executive summary](docs/executive-summary.md) · [Submission guide](docs/how-to-submit.html) ·
 [Exact historical scientific run card](registry/run_card.json) ·
@@ -86,6 +91,9 @@ Different evaluator/split/representation results must not be pooled or ranked as
 - Older two-argument `validate_submission.py candidate.tif reference.tif` callers retain their
   supplied-reference format API; this is compatibility only and never confers slot approval.
   WBG-C1 still uses the unchanged, pinned `gems57` all-finite validator/writer.
+  The separate integration CLI now rejects mismatched source grids, input overwrite aliases and
+  portal-unsafe NaN twins; [explicit source amendment](evidence/integration_amendments_20261027.json)
+  preserves its prior hash/archive. No metric, evaluator or pinned-template fork was introduced.
 - The older bridge-specific restore entry point is retained as `scripts/download_bridge_legacy.sh`
   with `scripts/prepare_bridge_legacy.py`; current WBG-C1 commands below are unchanged.
 
@@ -134,7 +142,9 @@ bash scripts/download_competition_data.sh
 .venv/bin/python scripts/validate_submission.py --require-submit-ready docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif
 # Reopen and compare all four exact negative downloads with committed evidence:
 .venv/bin/python scripts/review_releases.py --check
-# Three-way input/cache/artifact report; INPUTS_READY_LANE_STOPPED is not slot approval:
+# Independently rebuild the additional four-artifact/ZIP portfolio report:
+.venv/bin/python scripts/build_portfolio_review.py
+# Three-way input/cache/artifact report; INPUTS_READY_LANE_STOPPED exits 2, not slot approval:
 .venv/bin/python scripts/check_readiness.py
 
 # Restore frozen peer corpus only for audit, never model inputs:
@@ -160,8 +170,8 @@ BASE_URL=http://127.0.0.1:8000/ npm run test:browser
 # Minimal containers without NSS/NSPR may also need BROWSER_COMPAT_LIBS=1.
 ```
 
-The browser check visits the five main, all-download decision and two corrected WBG-H1 pages at desktop/mobile sizes, rejects body overflow and
-JavaScript page errors, tests the site filter, and hashes the actual downloaded TIFF.
+The browser check visits all nine main and corrected decision pages at desktop/mobile sizes, rejects body overflow and
+JavaScript page errors, tests the site filter, and hashes all four actual downloaded TIFFs.
 Screenshots stay in ignored `.cache/browser-review/`; the JSON receipt is inspectable in
 [evidence/browser_checks.json](evidence/browser_checks.json). These are site checks, not evidence
 of scientific efficacy or organizer upload acceptance.

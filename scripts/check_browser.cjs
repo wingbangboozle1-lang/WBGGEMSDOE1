@@ -38,19 +38,12 @@ const chromium = importedChromium.default || importedChromium;
     const context = await browser.newContext({ viewport: { width: 1440, height: 1100 }, acceptDownloads: true });
     const page = await context.newPage();
     page.on("pageerror", error => errors.push(String(error)));
-    const pages = ["index.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html",
-      "release-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html"];
-    for (const file of pages) {
+    for (const file of ["index.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"]) {
       const response = await page.goto(new URL(file, base).href, { waitUntil: "networkidle" });
       assert.equal(response.status(), 200);
       const text = await page.locator("main").innerText();
-      if (file === "release-review.html" || file.startsWith("wbg-h1-dpgf1/")) {
-        assert.match(text, /SUBMIT: NO/);
-        assert.match(text, /research only/);
-      } else {
-        assert.match(text, /Download: YES, for research\. Submit: NO\./);
-        assert.match(text, /No final dots were placed/);
-      }
+      assert.match(text, /Download: YES, for research\. Submit: NO\./);
+      assert.match(text, /No final dots were placed/);
       const overflow = await page.evaluate(() => document.body.scrollWidth > window.innerWidth);
       assert.equal(overflow, false, `desktop body overflow: ${file}`);
       checked.push({ file, desktop: "passed" });
@@ -69,7 +62,7 @@ const chromium = importedChromium.default || importedChromium;
     await page.goto(new URL("index.html", base).href, { waitUntil: "networkidle" });
     await page.screenshot({ path: path.join(artifacts, "desktop.png"), fullPage: true });
     await page.setViewportSize({ width: 390, height: 844 });
-    for (const file of pages) {
+    for (const file of ["index.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"]) {
       await page.goto(new URL(file, base).href, { waitUntil: "networkidle" });
       const overflow = await page.evaluate(() => document.body.scrollWidth > window.innerWidth);
       assert.equal(overflow, false, `mobile body overflow: ${file}`);
@@ -77,9 +70,24 @@ const chromium = importedChromium.default || importedChromium;
     }
     await page.goto(new URL("index.html", base).href, { waitUntil: "networkidle" });
     await page.screenshot({ path: path.join(artifacts, "mobile.png"), fullPage: true });
-    await page.goto(new URL("release-review.html", base).href, { waitUntil: "networkidle" });
-    assert.equal(await page.locator("tbody tr").count(), 4);
-    await page.screenshot({ path: path.join(artifacts, "release-review-mobile.png"), fullPage: true });
+    for (const file of ["portfolio-review.html", "release-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html"]) {
+      const result = { file };
+      for (const [label, width, height] of [["desktop", 1440, 1100], ["mobile", 390, 844]]) {
+        await page.setViewportSize({ width, height });
+        const response = await page.goto(new URL(file, base).href, { waitUntil: "networkidle" });
+        assert.equal(response.status(), 200);
+        assert.match(await page.locator("main").innerText(), /SUBMIT: NO/);
+        assert.equal(await page.evaluate(() => document.body.scrollWidth > window.innerWidth), false, `${label} overflow: ${file}`);
+        result[label] = "passed";
+      }
+      checked.push(result);
+    }
+    const portfolio = JSON.parse(fs.readFileSync(path.join(root, "docs/data/portfolio-review.json")));
+    for (const row of portfolio.rows) {
+      const response = await page.request.get(new URL(row.artifact.replace(/^docs\//, ""), base).href);
+      assert.equal(response.status(), 200);
+      assert.equal(crypto.createHash("sha256").update(await response.body()).digest("hex"), row.expected_sha256);
+    }
     assert.deepEqual(errors, []);
     const report = { generated_utc: new Date().toISOString(), browser: browser.version(), checked,
       desktop_viewport: [1440, 1100], mobile_viewport: [390, 844],

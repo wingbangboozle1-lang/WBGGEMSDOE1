@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-27T17:46:47.921Z",
+  "generated_utc": "2026-10-27T17:55:14.444Z",
   "browser": "153.0.8010.0",
   "checked": [
     {
@@ -24,6 +24,11 @@
     },
     {
       "file": "how-to-submit.html",
+      "desktop": "passed",
+      "mobile": "passed"
+    },
+    {
+      "file": "portfolio-review.html",
       "desktop": "passed",
       "mobile": "passed"
     },

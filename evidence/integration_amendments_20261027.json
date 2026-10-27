@@ -1,0 +1,14 @@
+{
+  "schema": "wbg-reviewed-wrapper-amendment-v1",
+  "review_date_utc": "2026-10-27",
+  "upstream_template_modified": false,
+  "amendments": [
+    {
+      "path": "scripts/submission_writer.py",
+      "original_sha256": "9aa3b296fbdf3aa499602efc3d5a2df7e900eb65a7cf2255d9eff4a59c4fe550",
+      "original_archive": "research/history/submission_writer_20261026.py",
+      "replacement_sha256": "6745240617ff6724d62c2e08313cc190f18ad6584a5f2eb1924def32fbdc0f4b",
+      "reason": "Integration CLI discarded input GeoTIFF georeferencing, allowed clobbering inputs, and returned success for NaN compatibility twins. Reject these cases in the shared integration wrapper; underlying numerical writer and pinned template unchanged."
+    }
+  ]
+}

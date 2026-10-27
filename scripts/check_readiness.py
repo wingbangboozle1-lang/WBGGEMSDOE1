@@ -18,6 +18,11 @@ CORE = ("training_features.tif", "labels.tif", "sample_submission.tif")
 TOOLS = ("scripts/evaluate_holdout.py", "scripts/submission_writer.py")
 
 
+def load(relative: str) -> dict:
+    """Read a registry JSON relative to this checkout (legacy review API)."""
+    return json.loads((ROOT / relative).read_text())
+
+
 def sha256(path: Path) -> str:
     with path.open("rb") as file:
         return hashlib.file_digest(file, "sha256").hexdigest()
@@ -64,7 +69,7 @@ def inspect_cache(root: Path, core: dict) -> dict:
         if len(bands) != len(expected) or receipt["source_sha256"] != core["training_features.tif"]["sha256"]:
             raise ValueError("cache source hash or band count differs from pinned core input")
         cache_root = (root / "data/template57").resolve()
-        for index, (row, digest) in enumerate(zip(bands, expected), start=1):
+        for index, (row, digest) in enumerate(zip(bands, expected, strict=True), start=1):
             if row["band"] != index or row["cache_file"] != f".cache/features/band-{index:02d}.npy":
                 raise ValueError(f"cache band {index} index or path differs from pinned stack order")
             path = (cache_root / row["cache_file"]).resolve()
@@ -155,16 +160,38 @@ def inspect(root: Path = ROOT) -> dict:
     }
 
 
+def build_report() -> dict:
+    """Compatibility view for the separate frozen-release review, never an approval.
+
+    Keep the richer three-way inspect report intact. A research input ready flag
+    does NOT mean the stopped scientific pipeline is ready to resume.
+    """
+    report = inspect(ROOT)
+    ledger = json.loads((ROOT / "registry/experiment_ledger.json").read_text())
+    card = json.loads((ROOT / "registry/run_card.json").read_text())
+    stopped = report["current_lane_stopped"] and ledger.get("status") == "negative_stopped"
+    return {**report,
+        "schema": "wbg-readiness-v3",
+        "inspection_status": report["status"],
+        "status": "BLOCKED_SCIENTIFIC" if report["cached_19_band_pipeline_inputs_ready"] else "BLOCKED_INPUTS",
+        "inputs_integrity_verified": report["cached_19_band_pipeline_inputs_ready"],
+        "organizer_origin_authenticated": False,
+        "lane_stopped": stopped, "experiment_ledger_status": ledger.get("status"),
+        "pipeline_ready": False, "artifact": report["research_artifact"],
+        "artifact_role": card["artifact_role"],
+    }
+
+
 def main() -> int:
     report = inspect()
     print(json.dumps(report, indent=2, allow_nan=False))
-    # Exit 2 means some prerequisites are unavailable in *this checkout*, not
-    # that the existing downloadable research artifact or recorded screen is absent.
+    # Exit 2 means this stopped lane is NOT approved to resume/submit even when
+    # its research inputs and downloadable format-validated TIFF are present.
     if not report["shared_template_pins"]["verified"] or report["feature_cache"]["status"] == "CACHE_INTEGRITY_FAILURE" or any(
         row["present"] and not row["verified_to_owner_mirror_pin"] for row in report["core_inputs"].values()
     ) or report["research_artifact"].get("error"):
         return 1
-    return 0 if report["cached_19_band_pipeline_inputs_ready"] else 2
+    return 2  # No state of data placement can resume a stopped scientific lane.
 
 
 if __name__ == "__main__":

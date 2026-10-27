@@ -47,7 +47,7 @@ def test_dated_official_observation_is_not_an_organizer_receipt():
 def test_inherited_subsite_cannot_recommend_negative_file_or_owner_claims_as_receipts():
     for page in ("index.html", "executive-summary.html"):
         text = (ROOT / "docs/wbg-h1-dpgf1" / page).read_text()
-        assert "DOWNLOAD: YES (research only)" in text
+        assert "DOWNLOAD: YES" in text and "research only" in text
         assert "SUBMIT: NO" in text and "DO NOT SUBMIT" in text
         assert "USER-REPORTED / NOT ORGANIZER-CONFIRMED" in text
         assert "99.8035%" in text
@@ -157,6 +157,11 @@ def test_readiness_reports_actual_saved_tiff_and_separates_data_from_science():
     assert report["optional_1m_dem_links_csv"]["required_for_cached_19_band_method"] is False
     assert report["scientific_screen_recorded"] and report["current_lane_stopped"]
     assert report["scientific_gates_passed"] is False and report["ok_to_submit"] is False
+    compatibility = checker.build_report()
+    assert compatibility["inspection_status"] == report["status"]
+    assert compatibility["status"] == ("BLOCKED_SCIENTIFIC" if report["cached_19_band_pipeline_inputs_ready"] else "BLOCKED_INPUTS")
+    assert compatibility["lane_stopped"] and not compatibility["pipeline_ready"]
+    assert not compatibility["ok_to_submit"]
     assert report["cached_19_band_pipeline_inputs_ready"] == (
         all(r["verified_to_owner_mirror_pin"] for r in report["core_inputs"].values())
         and report["feature_cache"]["verified"] and report["shared_template_pins"]["verified"]

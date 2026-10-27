@@ -82,19 +82,19 @@ def page(name, title, body):
 <header class="masthead"><div class="wrap"><nav class="nav" aria-label="Main navigation">
 <a class="brand" href="index.html"><svg viewBox="0 0 36 38" fill="none" aria-hidden="true"><path d="M3 29C12 27 4 16 13 15S21 5 31 6M4 35C15 34 11 22 20 22S25 11 34 12M2 21C8 21 4 9 13 9S18 1 25 2" stroke="#23665f" stroke-width="2" stroke-linecap="round"/></svg><span>WBG / GEMS<small>FAULT MAPPING · RESEARCH DESK</small></span></a>
 <div class="navlinks">{links}{link(REPO, 'Repository ↗', 'repo')}</div></nav></div></header>
-<main id="main" class="wrap"><div class="breadcrumb">GEMS prize challenge <span>/</span> {escape(title)} <span>/</span> 26 OCT frozen audit · 27 OCT 2026 review</div>{body}</main>
+<main id="main" class="wrap"><div class="breadcrumb">GEMS prize challenge <span>/</span> {escape(title)} <span>/</span> 26 OCT frozen audit · 27 OCT 2026 reviews</div><p class="micro"><a href="portfolio-review.html">All four releases: exact-byte review and submission decisions →</a></p>{body}</main>
 <footer class="footer"><div class="wrap footer-inner"><p><strong>WBG / GEMS</strong> &nbsp; Evidence before a weekly slot.<br>Fault predictions are not verified geothermal vents. Local validation is not organizer acceptance.</p><div>{link('data/run-card.json', 'Frozen scientific card')}{link('data/review-run-card-20261027.json', 'Dated review decision')}{link('standing-prompt.md', 'Standing brief')}{link('parallel/main-b9a2d53/index.html', 'Frozen archive · not upload advice')}{link(REPO, 'Source code ↗')}</div></div></footer>
 <div id="toast" role="status" aria-live="polite"></div></body></html>'''
 
 
 def alert():
-    return '''<div class="alert" role="note"><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M11 3 21 20H1L11 3Z" stroke="currentColor" stroke-width="1.4"/><path d="M11 8v5m0 3h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p><strong>Download: YES, for research. Submit: NO.</strong> <strong>DO NOT SUBMIT this research surface.</strong> The new file passes local GeoTIFF checks but fails the efficacy and literal uniqueness gates. The lane is stopped. No final dots were placed and no competition slot was used. <a href="release-review.html">2026-10-27 review: all four downloads remain SUBMIT: NO</a>.</p></div>'''
+    return '''<div class="alert" role="note"><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M11 3 21 20H1L11 3Z" stroke="currentColor" stroke-width="1.4"/><path d="M11 8v5m0 3h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p><strong>Download: YES, for research. Submit: NO.</strong> <strong>DO NOT SUBMIT this research surface.</strong> The new file passes local GeoTIFF checks but fails the efficacy and literal uniqueness gates. The lane is stopped. No final dots were placed and no competition slot was used. <a href="portfolio-review.html">All four frozen downloads: SUBMIT NO</a> · <a href="release-review.html">Independent exact-reference review</a>.</p></div>'''
 
 
 def download_card(card, receipt):
     tif = Path(card["artifact"]).name
     size = (ROOT / card["artifact"]).stat().st_size / (1024 ** 2)
-    return f'''<aside class="download-card" aria-label="Current research file and submission decision"><div class="card-top"><div class="file-icon" aria-hidden="true">.TIF</div><div class="file-label">WBG-C1 · Curvature commutator<small>Freshly generated · continuous research surface</small></div>{pill('No-go', 'no')}</div><div class="card-body">
+    return f'''<aside class="download-card" aria-label="Current research file and submission decision"><div class="card-top"><div class="file-icon" aria-hidden="true">.TIF</div><div class="file-label">WBG-C1 · Curvature commutator<small>Frozen 26 Oct result · continuous research surface</small></div>{pill('No-go', 'no')}</div><div class="card-body">
 <div class="status-line"><span>Local file format</span><b style="color:var(--teal)">PASS · {len(receipt['validator']['checks'])} checks</b></div>
 <div class="status-line"><span>Exact-copy check</span><b>Distinct in checked inventory</b></div>
 <div class="status-line"><span>Eligible to submit</span><b style="color:var(--red)">NO · stopped</b></div>
@@ -269,8 +269,8 @@ def markdown_summary(card, audit, feed):
     tif = Path(card["artifact"]).name
     observation = feed["leaderboard"]
     changed = sum(bool(head.get("changed_since_audit")) for head in feed.get("repository_heads", []))
-    lines = ["# Executive summary — frozen 26 October 2026 experiment; public feed dated separately",  "", "## DOWNLOAD: YES (research only). SUBMIT: NO.", "",
-        f"[Download the newly generated research TIFF](downloads/{tif}) · [one-TIFF ZIP](downloads/{tif.replace('.tif', '.zip')}) · [machine-readable run card](data/run-card.json)", "",
+    lines = ["# Executive summary — frozen 26 October 2026 experiment; public feed dated separately",  "", "## DOWNLOAD: YES (research only). SUBMIT: NO.", "", "[27 October follow-up: all four releases and trust corrections](portfolio-review.html). No new experiment; the stopped lane remains stopped.", "",
+        f"[Download the frozen research TIFF](downloads/{tif}) · [one-TIFF ZIP](downloads/{tif.replace('.tif', '.zip')}) · [machine-readable run card](data/run-card.json)", "",
         "No final dotted or high-scoring promoted competition submission was produced. The literal surface overlap STOP and negative efficacy screen prohibit promotion. No weekly slot was used.", "",
         f"**HOLDOUT-DTI {h['dti']:.6f}**, 95% CI [{h['ci95'][0]:.6f}, {h['ci95'][1]:.6f}], evaluator `{card['holdout_instrument']['evaluator_version']}`, {h['withheld_positive_pixels']:,} withheld positives. Continuous confidence surface, not a matched-budget dotted submission or leaderboard estimate.", "",
         f"Paired delta versus refitted 19-band control: **{d['delta']:+.6f}** (HOLDOUT-DTI), 95% CI [{d['ci95'][0]:+.6f}, {d['ci95'][1]:+.6f}]; same evaluator and positives. No improvement established.", "",
@@ -309,7 +309,9 @@ def main():
         "browser-checks.json": "evidence/browser_checks.json",
         "parallel-main-integration.json": "evidence/parallel_main_integration.json",
         "official-leaderboard-observation-20261027.json": "evidence/official_leaderboard_observation_20261027.json",
-        "review-run-card-20261027.json": "evidence/review_run_card_20261027_followup.json"}
+        "review-run-card-20261027.json": "evidence/review_run_card_20261027_followup.json",
+        "followup-run-card.json": "evidence/followup_run_card_20261027.json",
+        "source-review-20261027.json": "evidence/source_review_20261027.json"}
     for dest, source in copies.items():
         shutil.copyfile(ROOT / source, DOCS / "data" / dest)
     dump_json(DOCS / "data/run-card.json", card)
@@ -337,6 +339,11 @@ def main():
     dump_json(DOCS / "downloads/manifest.json", manifest)
     import importlib.util
 
+    review_spec = importlib.util.spec_from_file_location("build_portfolio_review", ROOT / "scripts/build_portfolio_review.py")
+    review_module = importlib.util.module_from_spec(review_spec)
+    review_spec.loader.exec_module(review_module)
+    if review_module.main() != 0:
+        raise RuntimeError("Portfolio artifact validation failed closed")
     spec = importlib.util.spec_from_file_location("wbg_h1_build_pages", ROOT / "scripts" / "wbg_h1_build_pages.py")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)

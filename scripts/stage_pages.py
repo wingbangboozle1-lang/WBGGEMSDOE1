@@ -34,6 +34,12 @@ def stage():
         digest = hashlib.file_digest(stream, "sha256").hexdigest()
     if digest != card["raster_sha256"]:
         raise ValueError("staged research TIFF checksum differs from the frozen run card")
+    wbg2 = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
+    with (target / wbg2["artifact"]).open("rb") as stream:
+        wbg2_digest = hashlib.file_digest(stream, "sha256").hexdigest()
+    if (wbg2_digest != wbg2["raster_sha256"] or wbg2["verdict"] != "negative"
+            or wbg2["ok_to_submit"] is not False or wbg2["leaderboard_estimate"] is not None):
+        raise ValueError("staged WBG-2 bytes or negative decision differ from the run card")
     print(json.dumps({"staged_site": str(target.relative_to(ROOT)),
         "canonical_path": "/WBGGEMSDOE1/docs/", "root_redirect": "docs/",
         "artifact_sha256": digest, "ok_to_submit": False}))

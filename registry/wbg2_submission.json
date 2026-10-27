@@ -1,0 +1,106 @@
+{
+  "schema": "wbg2-registry-entry-v2",
+  "artifact": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+  "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "value": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positive_pixels": null,
+    "status": "No valid visible-only, buffered same-instrument result found for this artifact. Full-catalogue proxy DTI is not a holdout."
+  },
+  "leaderboard_estimate": null,
+  "registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "phase": "final dots, forensic recheck",
+    "surface_before_placement": "No qualifying pre-placement registry audit was found.",
+    "witnesses_checked": 2,
+    "scope": "Two SHA-verified witnesses; a failure is decisive, not a complete registry scan.",
+    "rho_limit_signed": 0.9,
+    "forward_overlap_limit": 0.7,
+    "rows": [
+      {
+        "submission": "GEMSDOE24 registered spacing-5 lattice",
+        "repo": "GEMSDOE24",
+        "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+        "their_positive_pixels": 206895,
+        "forward_overlap_within_3px": 0.9989722222222223,
+        "spearman_full_footprint": -0.0004912488123791969,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_overlap": true,
+        "duplicate_by_rho": false
+      },
+      {
+        "submission": "WBG-C1 registered continuous research surface",
+        "repo": "WBGGEMSDOE1",
+        "sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+        "their_positive_pixels": 5106385,
+        "forward_overlap_within_3px": 1.0,
+        "spearman_full_footprint": 0.013617241283546971,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_overlap": true,
+        "duplicate_by_rho": false
+      }
+    ],
+    "lattice_immutable_source": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "passes_literal_uniqueness": false,
+    "decision": "DUPLICATE - STOP under the stated literal >70% forward-overlap rule; no density or chance exemption."
+  },
+  "validator_output": {
+    "evidence_class": "LOCAL-FORMAT-VALIDATION",
+    "all_checks_passed": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "positive_pixels": 36000,
+    "reference_origin_authenticated": false,
+    "zip_exact_single_identical_tiff": true,
+    "zip_sha256": "b4074f093c43ebb41a2b550b5558cf4c5a38c5f1b0c7b69393575ae12e8005b4",
+    "limitation": "A local pass is not organizer acceptance. The official text requests null/NaN beyond bounds; this all-finite exterior is a conservative local response to a reported range rejection."
+  },
+  "name": "wbg2-offcatalogue-density-36k-20261027",
+  "note": "WBG-2 density-prior research; literal registry overlap failed. DO NOT SUBMIT.",
+  "submission_slots_used": 0
+}

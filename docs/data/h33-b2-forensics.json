@@ -1,0 +1,45 @@
+{
+  "schema": "gemsdoe1-h33-b2-forensics-v1",
+  "inputs": {
+    "parent": {
+      "file": "docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-allfinite.tif",
+      "sha256": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+      "positive_pixels": 44090
+    },
+    "h33_b2": {
+      "file": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "positive_pixels": 37654
+    },
+    "catalogue_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "registry_sha256": "5e592cdc43902b76d711e59f5c923a6b5869db0eb8f30549c2a546bf2d751919"
+  },
+  "exact_ancestry": {
+    "b2_is_exact_subset_of_parent": true,
+    "removed_parent_dots": 6436,
+    "added_dots": 0,
+    "unchanged_kept_dots": 37654,
+    "all_removed_within_200m_of_public_catalogue": true,
+    "removed_distance_to_catalogue_px": {
+      "minimum": 1.0,
+      "maximum": 2.0,
+      "mean": 1.2861203369189074,
+      "within_1px": 3891,
+      "within_2px": 6436
+    }
+  },
+  "score_evidence": {
+    "h33_b2_value": 0.2778,
+    "parent_d2_8_value": 0.26,
+    "difference": 0.0178,
+    "label": "OWNER-REPORTED / UNVERIFIED",
+    "organizer_receipt_present": false,
+    "limitation": "No artifact-linked DrivenData submission receipt or hidden labels are present; the values cannot be upgraded to ORGANIZER-CONFIRMED."
+  },
+  "mechanism_interpretation": {
+    "metric_identity": "DTI = TPw / (TPw + 0.2*FPw + 0.8*FNw)",
+    "evidence_supported_statement": "B2 added no geological detections. It removed exactly 6,436 parent dots, all within 200 m of the public catalogue. If those dots had zero hidden-truth credit, deleting them reduces the weighted false-positive denominator and raises DTI; this is a plausible precision-cleanup mechanism.",
+    "not_proven": "Hidden TPw/FPw/FNw contributions and the uploaded file are unavailable, so the deletion cannot be asserted to have caused the owner-reported value.",
+    "scientific_uniqueness": "Not scientifically distinct from D2.8: it is a strict deletion-only subset."
+  }
+}

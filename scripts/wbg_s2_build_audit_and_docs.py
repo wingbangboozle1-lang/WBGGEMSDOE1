@@ -46,7 +46,7 @@ def _build_nine_site_audit(
         {
             "site": "WBGGEMSDOE1 (This Repo · WBG-S2 EXP-3)",
             "repo_url": "https://github.com/wingbangboozle1-lang/WBGGEMSDOE1",
-            "pinned_head_20261027": "arena/7dce52ff-wbggemsdoe1 (base 998878029d02b749fbb7e5c71003d89c1a177320)",
+            "pinned_head_20261027": "arena/7dce52ff-wbggemsdoe1 (merged with main d5949b5)",
             "file_to_download": rc["artifact"]["tif_path"],
             "zip_to_download": rc["artifact"]["zip_path"],
             "tif_sha256": rc["artifact"]["tif_sha256"],
@@ -57,12 +57,12 @@ def _build_nine_site_audit(
             ),
             "live_score_labeled": "NONE (0 competition slots spent; never inferred or projected from holdout)",
             "uniqueness_across_sites": (
-                "PASS competing sparse gate (364/364 rasters: max fwd 3px = 66.20% <= 70%, max worst-dir = 68.75% <= 70%, "
-                "max |rho| = 0.0473 <= 0.90; pre-placement surface max |rho| = 0.5819 <= 0.90). "
-                "Literal unseparated r13-lattice-s5/slab forward overlap = 99.55% (>70% mathematical bound, no private waiver)."
+                "Literal unseparated r13-lattice-s5/slab forward overlap = 99.5459% (>70% — FAIL literal gate; no private waiver). "
+                "Competing sparse diagnostic PASS (364/364 rasters + WBG-2 33.85%: max fwd 3px = 66.20% <= 70%, max worst-dir = 68.75% <= 70%, "
+                "max |rho| = 0.0473 <= 0.90; pre-placement surface max |rho| = 0.5819 <= 0.90)."
             ),
             "portal_format_status": "PASS (15/15 checks: float32 [0.0, 1.0], 0 NaN, 0 Inf, 0 dead-collar <=200m dots)",
-            "go_no_go_status": "CANDIDATE FOR SEPARATE HUMAN SELECTOR REVIEW (SUBMIT: NO AUTOMATICALLY; 0 SLOTS SPENT)",
+            "go_no_go_status": "DOWNLOAD: YES · SUBMIT: NO (Literal lattice STOP; candidate for separate human selector review only; 0 slots spent)",
             "notes": "#1 highest measured HOLDOUT-DTI across all 10 repositories on BOTH SegmentHoldout and gems57-v2.",
         },
         {
@@ -179,8 +179,9 @@ def _build_nine_site_audit(
             "emitted_dots": 37654,
             "holdout_score_labeled": "H47-1-LDGI: HOLDOUT-DTI 0.119765 (95% CI [0.100357, 0.140466], gems57-pooled-hide-v2, n=11,330)",
             "live_score_labeled": (
-                "Historical H33-2-B2 (`e5eb6e7e`): ORGANIZER-CONFIRMED 0.2778 in GEMSDOE32 receipt `sub-20261004T234342Z-h33-b2.json` "
-                "(USER-REPORTED in WBGGEMSDOE1 root prompt). Oct 26 H38-G1: USER-REPORTED / NOT ORGANIZER-CONFIRMED 0.1456."
+                "Historical H33-2-B2 (`e5eb6e7e`): USER-REPORTED / PEER-REPO-CLAIMED 0.2778 (NOT ORGANIZER-CONFIRMED by this repo; "
+                "recorded in peer file `GEMSDOE32/registry/submissions/sub-20261004T234342Z-h33-b2.json`). "
+                "Oct 26 H38-G1: USER-REPORTED / NOT ORGANIZER-CONFIRMED 0.1456."
             ),
             "uniqueness_vs_wbg_s2": _ov("GEMSDOE32_H47_LDGI"),
             "uniqueness_vs_wbg_s2_historical_b2": _ov("GEMSDOE32_H33_B2_HIST"),
@@ -571,17 +572,15 @@ def _write_markdown_report(audit: dict[str, Any], rc: dict[str, Any], exp: dict[
 Under the official DrivenData GEMS Distance-Tolerant IoU (`DTI`) metric (`alpha = 0.2` precision penalty, `beta = 0.8` missed-fault penalty, `R = 300 m = 3 px` linear distance-decay kernel $k(d) = \\max(0, 1 - d/3)$, with pixel-exact masking of `existing_faults.tif`):
 $$\\text{DTI}(P, G) = \\frac{\\text{TP}_w}{\\text{TP}_w + 0.2\\,\\text{FP}_w + 0.8\\,\\text{FN}_w}, \\qquad \\text{TP}_w = \\sum_{g \\in G} \\max_{p:\\, d(p,g)<3} P(p)\\Big(1 - \\frac{d(p,g)}{3}\\Big).$$
 
-`GEMSDOE32`'s `0.2778` (`ORGANIZER-CONFIRMED` inside `GEMSDOE32/registry/submissions/sub-20261004T234342Z-h33-b2.json`) was produced by three exact operations — **not** by a black-box deep network:
-1. **Multi-Line Corroborated Ridge Field (`19GEMSDOE H19-5`, `0.1922`):** Combined four independent physical lines across the 19 competition bands: (i) multi-azimuth topographic openness/slope breaks (`det_elev`, `det_elev_slope`), (ii) horizontal gravity/magnetic gradient worms (`iso_grav_anom_hg`, `tmi_hg`, `rtp`), (iii) geodetic shear/dilatation + earthquake density (`geod_shearrate`, `deq_n100a15`), and (iv) electrical conductivity + shallow basement boundaries (`cond_surf`, `depth_to_base_surf`), gated by a **second-best corroboration floor (`2nd-best >= 0.18`)** that rejected single-modality volcanic plugs and road embankments.
-2. **Discrete `min_sep = 2.8 px` Ridge Point-Process Discretization (`D2.8`, `0.2600`):** Replaced continuous `[0, 1]` aprons (which accumulate catastrophic `0.2 * FP_w` mass across millions of background pixels!) with `44,090` binary `{0.0, 1.0}` ridge-crest dots spaced by $d_{\\min} = 2.8\\text{ px}$ (`280 m`), matching the `300 m` triangular kernel radius so adjacent dots along strike maintain continuous `>= 0.53` kernel overlap without double-paying `FP_w`.
-3. **200 m Catalogue Dead-Collar Pruning (`H33-2-B2`, `0.2600 -> 0.2778`, `+0.0178` pure precision lift):** Because the organizer scorer masks `existing_faults.tif` **pixel-exactly** (`1 px` wide) and hidden evaluation faults (`G_private`) are unmapped strands rather than `100–200 m` parallel duplicates of mapped traces, the `6,436` `D2.8` dots sitting at $0 < d_{\\text{cat}} \\le 2.0\\text{ px}$ contributed `~0` to $\\text{TP}_w$ while adding `~6,436` pure false positives (`0.2 * 6,436 = 1,287.2` denominator penalty!). Stripping `d_cat <= 2.0 px` (`44,090 - 6,436 = 37,654` dots, `0`-XOR verified) shrank the DTI denominator by `~1,287` units with near-zero $\\text{TP}_w$ loss, jumping `0.2600 -> 0.2778`!
+`GEMSDOE32`'s `0.2778` (`USER-REPORTED / PEER-REPO-CLAIMED`, recorded in peer file `GEMSDOE32/registry/submissions/sub-20261004T234342Z-h33-b2.json` — quarantined as unconfirmed here because `WBGGEMSDOE1` holds no direct organizer portal receipt) corresponds on the inspected byte grid to three exact operations — **not** a black-box deep network:
+1. **Multi-Line Corroborated Ridge Field (`19GEMSDOE H19-5`, `USER-REPORTED 0.1922`):** Combined four independent physical lines across the 19 competition bands: (i) multi-azimuth topographic openness/slope breaks (`det_elev`, `det_elev_slope`), (ii) horizontal gravity/magnetic gradient worms (`iso_grav_anom_hg`, `tmi_hg`, `rtp`), (iii) geodetic shear/dilatation + earthquake density (`geod_shearrate`, `deq_n100a15`), and (iv) electrical conductivity + shallow basement boundaries (`cond_surf`, `depth_to_base_surf`), gated by a **second-best corroboration floor (`2nd-best >= 0.18`)** that rejected single-modality volcanic plugs and road embankments.
+2. **Discrete `min_sep = 2.8 px` Ridge Point-Process Discretization (`D2.8`, `USER-REPORTED 0.2600`):** Replaced continuous `[0, 1]` aprons (which accumulate catastrophic `0.2 * FP_w` mass across millions of background pixels!) with `44,090` binary `{0.0, 1.0}` ridge-crest dots spaced by $d_{\\min} = 2.8\\text{ px}$ (`280 m`), matching the `300 m` triangular kernel radius so adjacent dots along strike maintain continuous `>= 0.53` kernel overlap without double-paying `FP_w`.
+3. **200 m Catalogue Dead-Collar Pruning (`H33-2-B2`, `0.2600 -> 0.2778` peer-reported, `+0.0178` precision lift):** Because the organizer scorer masks `existing_faults.tif` **pixel-exactly** (`1 px` wide) and hidden evaluation faults (`G_private`) are distinct strands rather than `100–200 m` parallel duplicates of mapped traces, the `6,436` `D2.8` dots sitting at $0 < d_{\\text{cat}} \\le 2.0\\text{ px}$ contribute near-zero $\\text{TP}_w$ while adding up to `0.2 * 6,436 = 1,287.2` false-positive penalty to the DTI denominator. Stripping `d_cat <= 2.0 px` (`44,090 - 6,436 = 37,654` dots, `0`-XOR byte identity verified) removes that dead-collar penalty without new features!
 
-### 3.2 Inverse Solution for Private Test Set Size $|G_{\\text{private}}|$ & Required Recall/Precision to Beat `0.2778`, `0.3195`, and `0.4437`
-Combining the uniform `13GEMSDOE` spacing-5 calibration lattice (`N = 206,895` dots, analytical random-trace expected kernel coverage $\\mathbb{E}[c] \\approx 0.3712$, live score `0.0904`) with the `D2.8 -> B2` denominator shift (`44,090 -> 37,654` dots, `0.2600 -> 0.2778`) yields:
-$$|G_{\\text{private}}| \\approx 12,366\\text{ pixels} \\quad (\\text{plausible band } 11,800\\text{--}13,200\\text{ px}), \\qquad \\overline{c}_{\\text{B2}} \\approx 0.3679 \\;(\\text{TP}_w \\approx 4,550).$$
-At fixed `37,654` zero-collar binary dots (`0.2 * FP_w` $\\approx 6,620$):
-- **Beating `0.2778`** requires raising weighted hidden-fault kernel coverage $\\overline{c}$ above **`36.8%`** (`+1` additional true-positive 300 m fault hit per ~60 emitted dots) — specifically by recovering scarps inside the **24.63% 1 m LiDAR gap** (`1,272,604` pixels where 1 m LiDAR is blind!), transgressive **piedmont-bajada monoclinal flexures** (`pjmf_bajada_break_10m`, standalone `AUC = 0.7385`), and **en-echelon relay ramps / crack-tip splays** (`fold_vis_tip_lobe`, standalone `AUC = 0.7925`).
-- **Reaching `0.3195`–`0.4437`** requires simultaneously raising $\\overline{c}$ into **`43%–55%`** AND cutting false-positive dot count from `37,654` down toward `18,000–26,000` high-purity multi-sensor crests (because even at $\\overline{c} = 0.45$, `37,654` dots caps DTI near `~0.338`, whereas `22,000` dots at $\\overline{c} = 0.50$ reaches `~0.441`!).
+### 3.2 Exact Non-Identifiability Theorem (`TP_w != M_w`) & Order-of-Magnitude Sensitivity Model for Beating `0.2778`, `0.3195`, and `0.4437`
+In the official asymmetric max-cover DTI (`vendor/gems57/metric.py`), **truth-side credit** $\\text{TP}_w = \\sum_{g \\in G} \\max_{p \\in P} k(p,g)$ and **prediction-side matched credit** $M_w = N - \\text{FP}_w = \\sum_{p \\in P} \\max_{g \\in G} k(p,g)$ are **distinct quantities** ($\\text{TP}_w \\neq M_w$ whenever one predicted dot covers multiple connected 100 m fault pixels, e.g. a single dot adjacent to two truth cells gives $\\text{TP}_w = 1 + 2/3 > M_w = 1$). Consequently, **exact inversion of $|G_{\\text{private}}|$ from scalar leaderboard numbers is mathematically non-identifiable (`not verified evidence`)**. Under an illustrative homogeneous isolated-strand sensitivity model (`r13-lattice-s5` `USER-REPORTED 0.0904` at `206,895` dots and `D2.8 -> B2` `44,090 -> 37,654`), $|G_{\\text{private}}|$ scales at the order of `~10^4` pixels (`~11k–14k` illustrative toy range, NOT verified ground truth):
+- **Beating `0.2778` in expectation** requires genuinely higher off-catalogue fault crest recall per emitted dot — specifically recovering scarps inside the **24.63% 1 m LiDAR gap** (`1,272,604` pixels where 1 m LiDAR is blind!), transgressive **piedmont-bajada monoclinal flexures** (`pjmf_bajada_break_10m`, standalone `AUC = 0.7385`), and **en-echelon relay ramps / crack-tip splays** (`fold_vis_tip_lobe`, standalone `AUC = 0.7925`).
+- **Reaching the observed public high (`0.4437` on 2026-10-26)** requires both higher multi-sensor crest recall AND adaptive precision-budget stopping (`~18k–26k` ultra-pure crests rather than fixed `37,654` dots) so `0.2 * FP_w` no longer caps the DTI denominator.
 
 ### 3.3 Why Oct 26 ML Attempts Regressed (`0.0206–0.1647`) & How `WBG-S2` Fixed Every Root Cause
 1. **Near-Flank Negative Purge Trap (`WBG-H1` `0.1233`):** Purging `0 < d_vis < 9 px` starved trees of near-scarp alluvial negatives, smearing probability 300–800 m off the fault crest. `WBG-S2` purges only `0 < d_vis < 3.2 px` AND trains a dedicated `HistGradientBoostingRegressor` directly on continuous `max(0, 1 - d_vis/3)` expected DTI credit (`+0.0603` SegmentHoldout gain!).
@@ -700,6 +699,7 @@ code { font-family: var(--mono); font-size: 0.84em; background: #edf2f4; padding
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+<a href="#main" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">Skip to main content</a>
 <header class="top">
   <div class="wrap nav">
     <a class="brand" href="index.html">WBGGEMSDOE1 · Lane WBG-S2 (MKSF-1 / EXP-3)<small>2026-10-27 · Seamless 10m/1m + Cross-Gradient + Vierbein-Coulomb · 37,654 Binary Dots</small></a>
@@ -709,12 +709,12 @@ code { font-family: var(--mono); font-size: 0.84em; background: #edf2f4; padding
     </nav>
   </div>
 </header>
-<main class="wrap">
+<main id="main" class="wrap">
 {body}
 </main>
 <footer>
   <div class="wrap">
-    <strong>WBGGEMSDOE1 · WBG-S2 (MKSF-1)</strong> · Every number strictly labeled (`HOLDOUT-DTI`, `ORGANIZER-CONFIRMED`, or `USER-REPORTED / NOT ORGANIZER-CONFIRMED`). Zero live leaderboard projections. Zero competition slots spent automatically.<br>
+    <strong>WBGGEMSDOE1 · WBG-S2 (MKSF-1)</strong> · DOWNLOAD: YES (research / selector review). SUBMIT: NO automatically (no competition slot spent). Every number strictly labeled (`HOLDOUT-DTI`, `ORGANIZER-CONFIRMED`, or `USER-REPORTED / NOT ORGANIZER-CONFIRMED`). Zero live leaderboard projections.<br>
     Artifacts: <a href="data/run_card.json">Run Card JSON</a> · <a href="data/nine_site_executive_summary_20261027.json">9-Site Audit JSON</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData Competition #306 ↗</a> · <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">GitHub Repository ↗</a>
   </div>
 </footer>
@@ -725,11 +725,11 @@ code { font-family: var(--mono); font-size: 0.84em; background: #edf2f4; padding
     top_dl_banner = f"""
 <div class="hero-dl" role="region" aria-label="Primary GeoTIFF Download and Automated Gate Verdict">
   <div class="badge-row">
+    <span class="badge gov">DOWNLOAD: YES · SUBMIT: NO (Literal uniqueness: FAIL 99.55% vs r13-lattice-s5 · No competition slot spent)</span>
     <span class="badge pass">✓ PORTAL FORMAT [0,1]: PASS (15/15 CHECKS · 0 NaN · 0 Inf)</span>
     <span class="badge pass">✓ LEAKAGE CANARIES: PASS (332/332 · max AUC 0.7925 ≤ 0.90)</span>
-    <span class="badge pass">✓ COMPETING SPARSE UNIQUENESS: PASS (364/364 · max fwd 66.20% ≤ 70%, |ρ|=0.0473)</span>
+    <span class="badge pass">✓ COMPETING SPARSE DIAGNOSTIC: PASS (364/364 + WBG-2 · max fwd 66.20% ≤ 70%, |ρ|=0.0473)</span>
     <span class="badge pass">★ #1 FLEET HOLDOUT-DTI ON BOTH EVALUATORS (0.1836 &amp; 0.1478)</span>
-    <span class="badge gov">⚠ STRICT REPO GOVERNANCE: HUMAN SELECTOR REVIEW REQUIRED (0 LIVE SLOTS SPENT)</span>
   </div>
   <div class="dl-grid">
     <div>
@@ -920,18 +920,18 @@ code { font-family: var(--mono); font-size: 0.84em; background: #edf2f4; padding
 
 <section class="two-col">
   <div class="card">
-    <h2>Inverse Solution for Private Test Set <code>|G_private|</code></h2>
-    <p>Combining the known uniform spacing-5 lattice score (<code>13GEMSDOE r13-lattice-s5 = 0.0904</code> at <code>206,895</code> dots, analytical random-azimuth expected kernel coverage <code>E[c] ≈ 0.3712</code>) with the <code>44,090 → 37,654</code> denominator reduction (<code>0.2600 → 0.2778</code>) uniquely brackets:</p>
+    <h2>Non-Identifiability Theorem (<code>TP_w != M_w</code>) vs Illustrative Sensitivity</h2>
+    <p>In the official max-cover DTI metric (<code>vendor/gems57/metric.py</code>), truth-side credit <code>TP_w = Σ_{g∈G} max_{p∈P} k(p,g)</code> and prediction-side matched credit <code>M_w = N − FP_w = Σ_{p∈P} max_{g∈G} k(p,g)</code> cannot be collapsed (<code>TP_w ≠ M_w</code> whenever one dot covers multiple adjacent 100 m fault pixels). Therefore:</p>
     <ul>
-      <li><strong><code>|G_private| ≈ 12,366 pixels</code></strong> (plausible range <code>11,800–13,200 px</code> across the 5.17M-pixel footprint, ~15% of mapped catalogue length).</li>
-      <li><strong><code>B2</code> Hidden-Fault Weighted Kernel Coverage:</strong> <code>c̄ ≈ 0.3679</code> (<code>TP_w ≈ 4,550</code>, <code>0.2·FP_w ≈ 6,621</code>, <code>0.8·FN_w ≈ 6,253</code>).</li>
+      <li><strong>Exact scalar inversion of <code>|G_private|</code> is non-identifiable (not verified evidence):</strong> Truth geometry changes kernel-conditioned ratios even at fixed <code>N</code> and <code>|G|</code>.</li>
+      <li><strong>Order-of-magnitude sensitivity model only:</strong> Under an idealized homogeneous strand density model (<code>r13-lattice-s5</code> user-reported <code>0.0904</code> at <code>206,895</code> dots; <code>D2.8 → B2</code> <code>0.2600 → 0.2778</code>), hidden fault support scales at <code>~10^4</code> pixels, showing why dead-collar <code>FP_w</code> removal moves DTI by <code>~+0.018</code> without changing recall.</li>
     </ul>
   </div>
   <div class="card">
     <h2>Mathematical Requirements to Beat <code>0.2778</code>, <code>0.3195</code> &amp; <code>0.4437</code></h2>
     <ul>
-      <li><strong>To surpass <code>0.2778</code> at <code>37,654</code> zero-collar dots:</strong> Raise weighted hidden-fault kernel coverage above <code>36.8%</code> by recovering blind faults in the <strong>24.63% 1 m LiDAR gap</strong> (<code>1.27M px</code> where 1 m LiDAR is absent), transgressive piedmont-bajada flexures (<code>pjmf_bajada_break_10m</code>, <code>AUC = 0.7385</code>), and en-echelon relay ramps (<code>fold_vis_tip_lobe</code>, <code>AUC = 0.7925</code>).</li>
-      <li><strong>To reach <code>0.3195–0.4437</code>:</strong> At fixed <code>37,654</code> dots, even <code>c̄ = 0.45</code> caps DTI near <code>0.338</code> due to <code>0.2 · FP_w</code>. Reaching <code>0.44+</code> requires <em>both</em> <code>c̄ ≈ 0.48–0.54</code> AND adaptive marginal-gain stopping at <code>~20,000–25,000</code> ultra-pure multi-sensor dots.</li>
+      <li><strong>To surpass <code>0.2778</code> at <code>37,654</code> zero-collar dots:</strong> Increase off-catalogue fault crest recall per emitted dot by recovering blind faults in the <strong>24.63% 1 m LiDAR gap</strong> (<code>1.27M px</code> where 1 m LiDAR is absent), transgressive piedmont-bajada flexures (<code>pjmf_bajada_break_10m</code>, <code>AUC = 0.7385</code>), and en-echelon relay ramps (<code>fold_vis_tip_lobe</code>, <code>AUC = 0.7925</code>).</li>
+      <li><strong>To reach the observed public high (<code>0.4437</code> on 2026-10-26):</strong> At fixed <code>37,654</code> dots, <code>0.2 · FP_w</code> bounds DTI unless recall is extreme. Reaching <code>0.44+</code> requires <em>both</em> higher multi-sensor crest recall AND adaptive marginal-gain stopping around <code>~20,000–25,000</code> ultra-pure crests.</li>
     </ul>
   </div>
 </section>
@@ -1073,8 +1073,8 @@ code { font-family: var(--mono); font-size: 0.84em; background: #edf2f4; padding
         top_dl_banner
         + f"""
 <section class="card">
-  <h2>Exact Step-by-Step DrivenData Submission Guide (If Authorized by Human Selector)</h2>
-  <p><strong>Governance Check Before Uploading:</strong> DrivenData enforces a rolling limit of <strong>3 submissions per 7 days</strong> across the account. Confirm your remaining weekly allowance at <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData Submissions ↗</a> and confirm selector approval before spending a live slot.</p>
+  <h2>Exact Step-by-Step DrivenData Submission Workflow (Only If Authorized by Separate Selector)</h2>
+  <p><strong>DO NOT SUBMIT WITHOUT SEPARATE SELECTOR SIGN-OFF:</strong> Under <code>AGENTS.md</code>, literal one-way overlap against <code>GEMSDOE24</code>'s spacing-5 calibration lattice is <strong>99.5459% (&gt;70% — STOP)</strong>, so <code>verdict = "negative"</code> and <strong>no competition slot was spent</strong>. Do not upload negative research artifacts casually; DrivenData enforces a rolling limit of <strong>3 submissions per 7 days</strong> across the account. If a human selector explicitly authorizes promoting a future cleared or lattice-policy-resolved artifact after checking remaining slots at <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData Submissions ↗</a>, use the exact procedure below:</p>
   <ol>
     <li><strong>Download the Validated GeoTIFF (or One-TIFF ZIP):</strong><br>
       Click <a href="{tif_rel}" download><code>{Path(rc['artifact']['tif_path']).name}</code></a> (<code>144,419</code> bytes, deflate-compressed single-band <code>float32</code>) or <a href="{zip_rel}" download><code>{Path(rc['artifact']['zip_path']).name}</code></a>.</li>

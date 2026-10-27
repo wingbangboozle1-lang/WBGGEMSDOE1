@@ -2,7 +2,9 @@
 
 ## DOWNLOAD: YES (research only). SUBMIT: NO.
 
-[Download the newly generated research TIFF](downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif) · [one-TIFF ZIP](downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.zip) · [machine-readable run card](data/run-card.json)
+[27 October follow-up: all four releases and trust corrections](portfolio-review.html). No new experiment; the existing lane remains stopped. All leaderboard estimates remain unavailable.
+
+[Download the frozen research TIFF](downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif) · [one-TIFF ZIP](downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.zip) · [machine-readable run card](data/run-card.json)
 
 No final dotted or high-scoring promoted competition submission was produced. The literal surface overlap STOP and negative efficacy screen prohibit promotion. No weekly slot was used.
 
@@ -22,6 +24,10 @@ Paired delta versus refitted 19-band control: **-0.000101** (HOLDOUT-DTI), 95% C
 | GEMSDOE30: [gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif](https://github.com/buffedlizard55-lab/GEMSDOE30/blob/9c0d637c0171407196b61b780444bc772ce75438/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif?raw=1) | USER-REPORTED historical 0.2600; **NOT ORGANIZER-CONFIRMED** | Unavailable for a new file | Historical learning reference; family overlap fails. Do not copy as a unique submission. |
 | GEMSDOE24: [gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif?raw=1) | USER-REPORTED historical 0.2477; **NOT ORGANIZER-CONFIRMED** | Unavailable for a new file | Historical learning reference; family overlap fails. Do not copy as a unique submission. |
 | GEMSDOE27: [gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE27/blob/bef7ae8e8f63b69d299c9214c75988c8f5055f9c/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif?raw=1) | USER-REPORTED historical 0.2449; **NOT ORGANIZER-CONFIRMED** | Unavailable for a new file | Historical learning reference; family overlap fails. Do not copy as a unique submission. |
+
+## 2026-10-27 follow-up
+
+[All four local download decisions](release-review.html): exact files revalidated, all research-only. WBG-H1 literal lattice overlap exceeds 70%; filtered diagnostics do not clear uniqueness. No new experiment or slot use. [Review and access limits](review-20261027.md).
 
 ## Why GEMSDOE32 leads the supplied historical records
 

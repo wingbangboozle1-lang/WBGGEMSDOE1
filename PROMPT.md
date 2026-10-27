@@ -21,6 +21,15 @@ Reference: https://github.com/drivendataorg/gems-prize-reference-solution
 5. **RUN CARD.** JSON: hypothesis; mechanism; named non-fault mimic; holdout DTI + CI; correlation/overlap vs registry; raster sha256; validator; submission name + ≤140 char note; verdict promote / negative.
 6. **BUDGET.** Stop after 3 experiments or 2 hours. Do not pick live slots.
 
+## Current artifact (2026-10-27)
+
+**DOWNLOAD: research only. SUBMIT: NO.** WBG-2 is locally format-valid, but
+fails the literal 3-pixel registry gate against the GEMSDOE24 lattice and lacks
+an eligible holdout. There is no approved current TIFF. Its former model
+projection and claimed interval are withdrawn. See `evidence/wbg2/run_card.json`
+and run `python scripts/review_wbg2.py --check`. No new experiment or slot was
+used in this review.
+
 ## Submission contract
 
 - Single-band float32 GeoTIFF, EPSG:32611, 3730×3292, 100 m, sample geotransform.

@@ -74,16 +74,16 @@
     {
       "site": "WBGGEMSDOE1 (This Repo \u00b7 WBG-S2 EXP-3)",
       "repo_url": "https://github.com/wingbangboozle1-lang/WBGGEMSDOE1",
-      "pinned_head_20261027": "arena/7dce52ff-wbggemsdoe1 (base 998878029d02b749fbb7e5c71003d89c1a177320)",
+      "pinned_head_20261027": "arena/7dce52ff-wbggemsdoe1 (merged with main d5949b5)",
       "file_to_download": "docs/downloads/wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.tif",
       "zip_to_download": "docs/downloads/wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.zip",
       "tif_sha256": "6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880",
       "emitted_dots": 37654,
       "holdout_score_labeled": "HOLDOUT-DTI 0.183594 (95% CI [0.170313, 0.196956], gems-segment-pooled-v1, n=60,988) | HOLDOUT-DTI 0.147773 (95% CI [0.128077, 0.167791], gems57-pooled-hide-v2, n=11,330)",
       "live_score_labeled": "NONE (0 competition slots spent; never inferred or projected from holdout)",
-      "uniqueness_across_sites": "PASS competing sparse gate (364/364 rasters: max fwd 3px = 66.20% <= 70%, max worst-dir = 68.75% <= 70%, max |rho| = 0.0473 <= 0.90; pre-placement surface max |rho| = 0.5819 <= 0.90). Literal unseparated r13-lattice-s5/slab forward overlap = 99.55% (>70% mathematical bound, no private waiver).",
+      "uniqueness_across_sites": "Literal unseparated r13-lattice-s5/slab forward overlap = 99.5459% (>70% \u2014 FAIL literal gate; no private waiver). Competing sparse diagnostic PASS (364/364 rasters + WBG-2 33.85%: max fwd 3px = 66.20% <= 70%, max worst-dir = 68.75% <= 70%, max |rho| = 0.0473 <= 0.90; pre-placement surface max |rho| = 0.5819 <= 0.90).",
       "portal_format_status": "PASS (15/15 checks: float32 [0.0, 1.0], 0 NaN, 0 Inf, 0 dead-collar <=200m dots)",
-      "go_no_go_status": "CANDIDATE FOR SEPARATE HUMAN SELECTOR REVIEW (SUBMIT: NO AUTOMATICALLY; 0 SLOTS SPENT)",
+      "go_no_go_status": "DOWNLOAD: YES \u00b7 SUBMIT: NO (Literal lattice STOP; candidate for separate human selector review only; 0 slots spent)",
       "notes": "#1 highest measured HOLDOUT-DTI across all 10 repositories on BOTH SegmentHoldout and gems57-v2."
     },
     {
@@ -232,7 +232,7 @@
       "tif_sha256": "d82d63ab9c935b4eb6d8886129a7820da4642d20c3304c57364c55380438f27a",
       "emitted_dots": 37654,
       "holdout_score_labeled": "H47-1-LDGI: HOLDOUT-DTI 0.119765 (95% CI [0.100357, 0.140466], gems57-pooled-hide-v2, n=11,330)",
-      "live_score_labeled": "Historical H33-2-B2 (`e5eb6e7e`): ORGANIZER-CONFIRMED 0.2778 in GEMSDOE32 receipt `sub-20261004T234342Z-h33-b2.json` (USER-REPORTED in WBGGEMSDOE1 root prompt). Oct 26 H38-G1: USER-REPORTED / NOT ORGANIZER-CONFIRMED 0.1456.",
+      "live_score_labeled": "Historical H33-2-B2 (`e5eb6e7e`): USER-REPORTED / PEER-REPO-CLAIMED 0.2778 (NOT ORGANIZER-CONFIRMED by this repo; recorded in peer file `GEMSDOE32/registry/submissions/sub-20261004T234342Z-h33-b2.json`). Oct 26 H38-G1: USER-REPORTED / NOT ORGANIZER-CONFIRMED 0.1456.",
       "uniqueness_vs_wbg_s2": {
         "peer_sha256": "d82d63ab9c935b4eb6d8886129a7820da4642d20c3304c57364c55380438f27a",
         "peer_positive_pixels": 37654,

@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+<a href="#main" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">Skip to main content</a>
 <header class="top">
   <div class="wrap nav">
     <a class="brand" href="index.html">WBGGEMSDOE1 · Lane WBG-S2 (MKSF-1 / EXP-3)<small>2026-10-27 · Seamless 10m/1m + Cross-Gradient + Vierbein-Coulomb · 37,654 Binary Dots</small></a>
@@ -16,15 +17,15 @@
     </nav>
   </div>
 </header>
-<main class="wrap">
+<main id="main" class="wrap">
 
 <div class="hero-dl" role="region" aria-label="Primary GeoTIFF Download and Automated Gate Verdict">
   <div class="badge-row">
+    <span class="badge gov">DOWNLOAD: YES · SUBMIT: NO (Literal uniqueness: FAIL 99.55% vs r13-lattice-s5 · No competition slot spent)</span>
     <span class="badge pass">✓ PORTAL FORMAT [0,1]: PASS (15/15 CHECKS · 0 NaN · 0 Inf)</span>
     <span class="badge pass">✓ LEAKAGE CANARIES: PASS (332/332 · max AUC 0.7925 ≤ 0.90)</span>
-    <span class="badge pass">✓ COMPETING SPARSE UNIQUENESS: PASS (364/364 · max fwd 66.20% ≤ 70%, |ρ|=0.0473)</span>
+    <span class="badge pass">✓ COMPETING SPARSE DIAGNOSTIC: PASS (364/364 + WBG-2 · max fwd 66.20% ≤ 70%, |ρ|=0.0473)</span>
     <span class="badge pass">★ #1 FLEET HOLDOUT-DTI ON BOTH EVALUATORS (0.1836 &amp; 0.1478)</span>
-    <span class="badge gov">⚠ STRICT REPO GOVERNANCE: HUMAN SELECTOR REVIEW REQUIRED (0 LIVE SLOTS SPENT)</span>
   </div>
   <div class="dl-grid">
     <div>
@@ -66,18 +67,18 @@
 
 <section class="two-col">
   <div class="card">
-    <h2>Inverse Solution for Private Test Set <code>|G_private|</code></h2>
-    <p>Combining the known uniform spacing-5 lattice score (<code>13GEMSDOE r13-lattice-s5 = 0.0904</code> at <code>206,895</code> dots, analytical random-azimuth expected kernel coverage <code>E[c] ≈ 0.3712</code>) with the <code>44,090 → 37,654</code> denominator reduction (<code>0.2600 → 0.2778</code>) uniquely brackets:</p>
+    <h2>Non-Identifiability Theorem (<code>TP_w != M_w</code>) vs Illustrative Sensitivity</h2>
+    <p>In the official max-cover DTI metric (<code>vendor/gems57/metric.py</code>), truth-side credit <code>TP_w = Σ_{g∈G} max_{p∈P} k(p,g)</code> and prediction-side matched credit <code>M_w = N − FP_w = Σ_{p∈P} max_{g∈G} k(p,g)</code> cannot be collapsed (<code>TP_w ≠ M_w</code> whenever one dot covers multiple adjacent 100 m fault pixels). Therefore:</p>
     <ul>
-      <li><strong><code>|G_private| ≈ 12,366 pixels</code></strong> (plausible range <code>11,800–13,200 px</code> across the 5.17M-pixel footprint, ~15% of mapped catalogue length).</li>
-      <li><strong><code>B2</code> Hidden-Fault Weighted Kernel Coverage:</strong> <code>c̄ ≈ 0.3679</code> (<code>TP_w ≈ 4,550</code>, <code>0.2·FP_w ≈ 6,621</code>, <code>0.8·FN_w ≈ 6,253</code>).</li>
+      <li><strong>Exact scalar inversion of <code>|G_private|</code> is non-identifiable (not verified evidence):</strong> Truth geometry changes kernel-conditioned ratios even at fixed <code>N</code> and <code>|G|</code>.</li>
+      <li><strong>Order-of-magnitude sensitivity model only:</strong> Under an idealized homogeneous strand density model (<code>r13-lattice-s5</code> user-reported <code>0.0904</code> at <code>206,895</code> dots; <code>D2.8 → B2</code> <code>0.2600 → 0.2778</code>), hidden fault support scales at <code>~10^4</code> pixels, showing why dead-collar <code>FP_w</code> removal moves DTI by <code>~+0.018</code> without changing recall.</li>
     </ul>
   </div>
   <div class="card">
     <h2>Mathematical Requirements to Beat <code>0.2778</code>, <code>0.3195</code> &amp; <code>0.4437</code></h2>
     <ul>
-      <li><strong>To surpass <code>0.2778</code> at <code>37,654</code> zero-collar dots:</strong> Raise weighted hidden-fault kernel coverage above <code>36.8%</code> by recovering blind faults in the <strong>24.63% 1 m LiDAR gap</strong> (<code>1.27M px</code> where 1 m LiDAR is absent), transgressive piedmont-bajada flexures (<code>pjmf_bajada_break_10m</code>, <code>AUC = 0.7385</code>), and en-echelon relay ramps (<code>fold_vis_tip_lobe</code>, <code>AUC = 0.7925</code>).</li>
-      <li><strong>To reach <code>0.3195–0.4437</code>:</strong> At fixed <code>37,654</code> dots, even <code>c̄ = 0.45</code> caps DTI near <code>0.338</code> due to <code>0.2 · FP_w</code>. Reaching <code>0.44+</code> requires <em>both</em> <code>c̄ ≈ 0.48–0.54</code> AND adaptive marginal-gain stopping at <code>~20,000–25,000</code> ultra-pure multi-sensor dots.</li>
+      <li><strong>To surpass <code>0.2778</code> at <code>37,654</code> zero-collar dots:</strong> Increase off-catalogue fault crest recall per emitted dot by recovering blind faults in the <strong>24.63% 1 m LiDAR gap</strong> (<code>1.27M px</code> where 1 m LiDAR is absent), transgressive piedmont-bajada flexures (<code>pjmf_bajada_break_10m</code>, <code>AUC = 0.7385</code>), and en-echelon relay ramps (<code>fold_vis_tip_lobe</code>, <code>AUC = 0.7925</code>).</li>
+      <li><strong>To reach the observed public high (<code>0.4437</code> on 2026-10-26):</strong> At fixed <code>37,654</code> dots, <code>0.2 · FP_w</code> bounds DTI unless recall is extreme. Reaching <code>0.44+</code> requires <em>both</em> higher multi-sensor crest recall AND adaptive marginal-gain stopping around <code>~20,000–25,000</code> ultra-pure crests.</li>
     </ul>
   </div>
 </section>
@@ -85,7 +86,7 @@
 </main>
 <footer>
   <div class="wrap">
-    <strong>WBGGEMSDOE1 · WBG-S2 (MKSF-1)</strong> · Every number strictly labeled (`HOLDOUT-DTI`, `ORGANIZER-CONFIRMED`, or `USER-REPORTED / NOT ORGANIZER-CONFIRMED`). Zero live leaderboard projections. Zero competition slots spent automatically.<br>
+    <strong>WBGGEMSDOE1 · WBG-S2 (MKSF-1)</strong> · DOWNLOAD: YES (research / selector review). SUBMIT: NO automatically (no competition slot spent). Every number strictly labeled (`HOLDOUT-DTI`, `ORGANIZER-CONFIRMED`, or `USER-REPORTED / NOT ORGANIZER-CONFIRMED`). Zero live leaderboard projections.<br>
     Artifacts: <a href="data/run_card.json">Run Card JSON</a> · <a href="data/nine_site_executive_summary_20261027.json">9-Site Audit JSON</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData Competition #306 ↗</a> · <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">GitHub Repository ↗</a>
   </div>
 </footer>

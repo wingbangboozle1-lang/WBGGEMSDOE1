@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_date_utc": "2026-10-26",
+  "reviewed_date_utc": "2026-10-27",
   "items": [
     {
       "id": "IR-001",
@@ -55,7 +55,7 @@
       "id": "IR-008",
       "severity": "medium",
       "title": "Prompt leaderboard targets are stale and inconsistent",
-      "finding": "The prompt contains both 0.4413 and 0.3195 as current targets. Direct official public-page retrieval during this session shows xiaofanhu at 0.4437. This observation is not a score for any project artifact.",
+      "finding": "The prompt contains 0.4413 and 0.3195 as competing target statements. The public rank-one observation was 0.4437 on 2026-10-26 and 0.4544 on 2026-10-27. Neither is a score for any project artifact.",
       "action": "Show source/date and a refresh feed; do not transform public ranking into a project score or private-score prediction."
     },
     {
@@ -134,6 +134,83 @@
       "title": "First STOP versus later verification timestamps",
       "finding": "The first-STOP receipt retained 22:00:39Z, but a caller stamped the ledger stop_utc again during later diagnostic rechecks. This could misleadingly make the original stop appear later. No model, placement or upload ran after the original STOP.",
       "action": "Set ledger stop_utc from the immutable first-STOP receipt and store last_registry_verification_utc separately. Add a regression test that subsequent diagnostics cannot move the STOP time. This is a metadata-only correction; no TIFF pixels or measured statistics change."
+    },
+    {
+      "id": "IR-020",
+      "severity": "high",
+      "title": "Public leaderboard has moved again",
+      "finding": "Direct retrieval of https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ on 2026-10-27 shows rank 1 at 0.4544 (xiaofanhu). Earlier briefs quoted 0.4437 and 0.4413. This observation is not a score for any artifact in this repository.",
+      "action": "Record the dated observation; never convert a public ranking into a project score."
+    },
+    {
+      "id": "IR-021",
+      "severity": "high",
+      "title": "All nine focus-site top artifacts are binary dot fields",
+      "finding": "Measured on the original .tif files: each contains exactly two distinct values, 0.0 and 1.0, with 37,654-61,328 positive pixels out of 5,167,373 scored cells. None is a probability surface. Zero positive pixels sit on catalogue pixels in any of the nine.",
+      "action": "Treat the reported 0.2449-0.2778 band as a dot-field regime, not evidence about probability-surface submissions. Do not assume the leaderboard band is reachable by rendering choices."
+    },
+    {
+      "id": "IR-022",
+      "severity": "medium",
+      "title": "GEMSDOE25 and GEMSDOE30 publish the same prediction set",
+      "finding": "Their files differ in bytes and encoding but their 44,090 positive pixels are the identical set, and both are reported at 0.2600. The 'nine sites' therefore contain at most eight pixel-distinct fields; the remaining fields can still be related.",
+      "action": "Do not count pixel-distinct fields as statistically independent. The unvalidated calibration is withdrawn."
+    },
+    {
+      "id": "IR-023",
+      "severity": "medium",
+      "title": "Score is rank-ordered by catalogue distance, and this is confounded with budget",
+      "finding": "Across the nine artifacts the reported score is perfectly rank-ordered by the fraction of positive pixels within 300 m of the mapped catalogue (0.190->0.2477 ... 0.049->0.2778). The same sites also vary in budget, and the two regressors are collinear at r=0.751, so the two effects cannot be separated from nine points.",
+      "action": "Keep the observed association as exploratory only. The regression is unvalidated and withdrawn; do not use it for ranking, causal claims, predictions or intervals."
+    },
+    {
+      "id": "IR-024",
+      "severity": "high",
+      "title": "Organizer origin of restored stack is not authenticated; prior detector evidence is not a qualifying holdout",
+      "finding": "The 19-band owner mirror has been restored and all cache hashes match, but the organizer download is login-gated and provenance is not independently authenticated. A previous peer-derived detector had weak exploratory results against the mapped catalogue; these do not establish a valid buffered visible-only HOLDOUT-DTI.",
+      "action": "Verify primary provenance, coverage and band semantics before authorized future feature modelling. No particular leaderboard band is guaranteed or requires a single presumed dataset."
+    },
+    {
+      "id": "IR-025",
+      "severity": "medium",
+      "title": "External geophysical layers are peer re-distributions",
+      "finding": "The GeoDAWN radiometric and 3DEP terrain rasters used in the rejected experiment were read from a peer repository, not re-downloaded from USGS. Their sidecars cite DOI 10.5066/P93LGLVQ and ScienceBase 657e1d85d34e23d3533209f7 but the bytes were not independently authenticated.",
+      "action": "WBG-2 does not use them. Any future use requires a primary download and hash pin."
+    },
+    {
+      "id": "IR-026",
+      "severity": "blocking",
+      "title": "WBG-2 projection withdrawn; literal overlap STOP",
+      "finding": "The WBG-2 0.2824 in-sample projection and purported prediction interval are unvalidated, and no qualifying holdout is recorded. Shared-template remeasurement finds 99.8972% directed overlap with a GEMSDOE24 registered lattice, exceeding the 70% literal gate.",
+      "action": "Do not upload or claim uniqueness. The failed gate is not proof of copying; publish the negative exact-byte run card and preserve the superseded report as history."
+    },
+    {
+      "id": "IR-027",
+      "severity": "fixed",
+      "title": "Private WBG-2 gate and validator were unsafe",
+      "finding": "The former uniqueness scan skipped registry entries, used a Manhattan neighborhood, and exempted dense references. The private TIFF validator omitted exact affine checking and permitted exterior NaNs.",
+      "action": "Quarantine the private entry points. Reopen exact bytes through the shared validator and the unexempted literal shared registry comparison; preserve the historical code as text."
+    },
+    {
+      "id": "IR-028",
+      "severity": "high",
+      "title": "Four-connected catalogue buffer is not a 400 m Euclidean disk",
+      "finding": "WBG-2 used a Manhattan-radius-four dilation. Exact TIFF remeasurement shows 813 positive pixels closer than 400 m Euclidean distance to the mirrored catalogue, despite zero exact mapped-fault pixels.",
+      "action": "Report the buffer geometry accurately; do not change stopped raster pixels or claim a Euclidean exclusion."
+    },
+    {
+      "id": "IR-029",
+      "severity": "high",
+      "title": "MT source and depth descriptions corrected",
+      "finding": "The proposed ScienceBase item 5fb70a0ad34eb413d5e14873 and USGS publication 70247315 were not found. The verified Great Basin MT conductance release contains 2–12, 12–20, 20–50, 50–90 and 90–200 km depth-integrated layers, not the earlier proposed shallow slices.",
+      "action": "Use DOI 10.5066/P9TWT2LU as metadata, and verify download, grid, coverage and label independence before any prospective method."
+    },
+    {
+      "id": "IR-030",
+      "severity": "blocking",
+      "title": "Nine-champion diagnostic is not registry-wide clearance",
+      "finding": "The historical nine-site diagnostic compared one artifact per requested site, using a different neighborhood and sampled correlation; it is not a complete registry audit. A second GEMSDOE24 artifact is a decisive 99.8972% forward-overlap STOP.",
+      "action": "Retain the unexempted STOP; never use a partial champion pass as full registry clearance. No upload authorized."
     }
   ]
 }

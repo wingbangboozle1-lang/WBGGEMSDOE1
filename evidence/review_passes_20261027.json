@@ -1,0 +1,36 @@
+{
+  "review_date_utc": "2026-10-27",
+  "passes": [
+    {
+      "pass": 1,
+      "work": "Read standing request, active lane stop, prior cards, nine-site comparison, hypotheses, tools and existing tests. Restored three pinned core mirror files and all nineteen feature bands. Implemented all-release exact-byte review and corrected evidence labels.",
+      "verification": "Starting suite: 97 passed. All four exact TIFFs and their existing ZIPs pass local integrity/format checks. No new geological experiment or slot."
+    },
+    {
+      "pass": 2,
+      "work": "Reviewed export edge cases, stale readiness and inherited proof claims. Added input grid, clobber and NaN-exit regressions; corrected sparse-only uniqueness and private-count inference. Original wrapper archive plus explicit hash amendment preserves provenance.",
+      "verification": "110 tests passed; Ruff E9/F passed. Eight pages rendered desktop/mobile without body overflow or JS errors. Four HTTP TIFF downloads match recorded SHA-256."
+    },
+    {
+      "pass": 3,
+      "work": "Integrated concurrently advanced main on the fixed session branch. Resolved only generated-page conflicts by rebuilding from audited evidence, retaining scientific artifacts/cards and the literal STOP. Rechecked request against actual limitations.",
+      "verification": "110 tests passed again after integration; Ruff and git diff --check passed. Shared-source pins remain intact. Frozen TIP1/DPGF record checks and exact release validator pass. Strict require-submit-ready exits 2 as intended. No high-scoring unique promoted submission or valid leaderboard estimate is claimed."
+    }
+  ],
+  "experiments_started": 0,
+  "submission_slots_used": 0,
+  "verdict": "negative",
+  "unsatisfied_goal": "No new unique high-scoring submission; stopped lane/missing assignment, incomplete authorized registry clearance, same-instrument current-best confirmation and organizer-origin provenance remain unresolved.",
+  "ci_followup": {
+    "initial_remote_verification": "All tests, lint and validators passed; static rebuild check failed because new validator receipts persisted absolute checkout paths.",
+    "fix": "Normalize only the validator file metadata to the repository-relative artifact identity. Numerical results and exact TIFF bytes unchanged. Regression assertion added.",
+    "remote_browser": "Passed all eight pages and four downloaded TIFF hashes."
+  },
+  "parallel_integration": {
+    "upstream_main": "59aa07a",
+    "retained": "Parallel exact-reference audit, review notes, source receipts, negative card, 13 additional tests and formula-identifiability regression. Separate review-pass record retained at evidence/review_passes_parallel_20261027.json.",
+    "verification": "123 tests passed, Ruff passed, both artifact-review builders passed, fresh checkout regeneration previously clean; nine pages and all four HTTP TIFF hashes pass browser checks.",
+    "science_rerun": false,
+    "submission_slots_used": 0
+  }
+}

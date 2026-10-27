@@ -1,0 +1,170 @@
+{
+  "schema": "wbg2-calibration-v1",
+  "generated_utc": "2026-10-27",
+  "purpose": "Preserved historical exploratory regression for audit only; withdrawn from score estimation and slot selection.",
+  "evidence_class": "WITHDRAWN-EXPLORATORY-REGRESSION; NOT A SCORE",
+  "model": "score = intercept + a*(fraction of our positive pixels within 3 px of the mapped catalogue) + b*ln(number of positive pixels)",
+  "coefficients": {
+    "intercept": 0.7031664016158927,
+    "near3cat": -0.07980336590180548,
+    "log_budget": -0.040103571144850546
+  },
+  "r2": 0.9878460510789473,
+  "residual_sd": 0.00146970449835585,
+  "n_observations": 9,
+  "dof": 6,
+  "fitted_on": "OWNER-REPORTED values supplied in the session brief; no artifact-linked submission receipts.",
+  "observations": [
+    {
+      "site": "GEMSDOE32",
+      "artifact": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "positive_pixels": 37654,
+      "fraction_positive_within_3px_of_catalogue": 0.04860041429861369,
+      "fraction_positive_on_catalogue": 0.0,
+      "binary": true,
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "owner_reported_score": 0.2778
+    },
+    {
+      "site": "GEMSDOE36",
+      "artifact": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "positive_pixels": 38854,
+      "fraction_positive_within_3px_of_catalogue": 0.049595923199670565,
+      "fraction_positive_on_catalogue": 0.0,
+      "binary": true,
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+      "owner_reported_score": 0.275
+    },
+    {
+      "site": "GEMSDOE28",
+      "artifact": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
+      "positive_pixels": 37660,
+      "fraction_positive_within_3px_of_catalogue": 0.10754115772703134,
+      "fraction_positive_on_catalogue": 0.0,
+      "binary": true,
+      "sha256": "7c74270ad48fa0b865163853046a6d3815967c5bf37bbda5b74ca7fa22583a32",
+      "owner_reported_score": 0.271
+    },
+    {
+      "site": "GEMSDOE31",
+      "artifact": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif",
+      "positive_pixels": 40199,
+      "fraction_positive_within_3px_of_catalogue": 0.10883355307345954,
+      "fraction_positive_on_catalogue": 0.0,
+      "binary": true,
+      "sha256": "acd853936e5a7170b207f23411b1844caa0e7cfdfc303c600e520ccfe75159e6",
+      "owner_reported_score": 0.2708
+    },
+    {
+      "site": "GEMSDOE33",
+      "artifact": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
+      "positive_pixels": 41865,
+      "fraction_positive_within_3px_of_catalogue": 0.13553087304430908,
+      "fraction_positive_on_catalogue": 0.0,
+      "binary": true,
+      "sha256": "bc3af2a5fcb4b49bc5845a2d7dc3da23daf41ce75e4c64da3337c0c8c93cc12c",
+      "owner_reported_score": 0.2632
+    },
+    {
+      "site": "GEMSDOE25",
+      "artifact": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "positive_pixels": 44090,
+      "fraction_positive_within_3px_of_catalogue": 0.18748015422998413,
+      "fraction_positive_on_catalogue": 0.0,
+      "binary": true,
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "owner_reported_score": 0.26
+    },
+    {
+      "site": "GEMSDOE30",
+      "artifact": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside.tif",
+      "positive_pixels": 44090,
+      "fraction_positive_within_3px_of_catalogue": 0.18748015422998413,
+      "fraction_positive_on_catalogue": 0.0,
+      "binary": true,
+      "sha256": "5f963b8bca5ec226ddc7caaadec239c6be6d28aa567f890033be04d04bfd5e32",
+      "owner_reported_score": 0.26
+    },
+    {
+      "site": "GEMSDOE24",
+      "artifact": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
+      "positive_pixels": 60069,
+      "fraction_positive_within_3px_of_catalogue": 0.1900314638166109,
+      "fraction_positive_on_catalogue": 0.0,
+      "binary": true,
+      "sha256": "3e0730e8d4f7db095dd80246a98cba3bc0fc9a28f436b91db27ca34df4d0d1ce",
+      "owner_reported_score": 0.2477
+    },
+    {
+      "site": "GEMSDOE27",
+      "artifact": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+      "positive_pixels": 61328,
+      "fraction_positive_within_3px_of_catalogue": 0.18984803026350117,
+      "fraction_positive_on_catalogue": 0.0,
+      "binary": true,
+      "sha256": "a9bf76b57453a5b3af74c8eef837df53c29a0931162aa540b8763220b36ba3bb",
+      "owner_reported_score": 0.2449
+    }
+  ],
+  "fitted_values": [
+    {
+      "site": "GEMSDOE32",
+      "reported": 0.2778,
+      "fitted": 0.276748900475703
+    },
+    {
+      "site": "GEMSDOE36",
+      "reported": 0.275,
+      "fitted": 0.27541133264452977
+    },
+    {
+      "site": "GEMSDOE28",
+      "reported": 0.271,
+      "fitted": 0.2720388409420075
+    },
+    {
+      "site": "GEMSDOE31",
+      "reported": 0.2708,
+      "fitted": 0.2693192022307197
+    },
+    {
+      "site": "GEMSDOE33",
+      "reported": 0.2632,
+      "fitted": 0.26556013897720515
+    },
+    {
+      "site": "GEMSDOE25",
+      "reported": 0.26,
+      "fitted": 0.25933773452546377
+    },
+    {
+      "site": "GEMSDOE30",
+      "reported": 0.26,
+      "fitted": 0.25933773452546377
+    },
+    {
+      "site": "GEMSDOE24",
+      "reported": 0.2477,
+      "fitted": 0.2467316648429535
+    },
+    {
+      "site": "GEMSDOE27",
+      "reported": 0.2449,
+      "fitted": 0.24591445083595717
+    }
+  ],
+  "collinearity": {
+    "corr_near3cat_logbudget": 0.751131187480828,
+    "warning": "The two regressors are collinear (r=0.75), because every site obtained its low near-catalogue fraction by deleting dots, which also lowered the budget. The two effects cannot be separated from these nine points alone."
+  },
+  "caveats": [
+    "Calibrated on nine third-party reported values, not organizer receipts.",
+    "Positive-pixel budget range in the fit is 37,654 to 61,328; predicting outside that range is extrapolation.",
+    "The fit cannot separate budget reduction from catalogue-proximity reduction (r=0.75).",
+    "Two of the nine values are the same artifact reported on two sites (GEMSDOE25 and GEMSDOE30 share an identical positive-pixel set), so the effective sample is eight independent artifacts.",
+    "Withdrawn: not a leaderboard forecast, not HOLDOUT-DTI, and not valid for comparing candidate files or selecting a submission slot."
+  ],
+  "status": "SUPERSEDED \u2014 NOT A LEADERBOARD FORECAST OR VALID PREDICTION INTERVAL",
+  "valid_for_submission_decision": false,
+  "additional_caveat": "No independent receipt-linked calibration or validation; repeated artifacts, confounded features and extrapolation. 1.96 times training residual SD is not a defensible prediction interval."
+}

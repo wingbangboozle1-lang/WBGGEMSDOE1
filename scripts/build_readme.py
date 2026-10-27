@@ -9,23 +9,68 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     card = json.loads((ROOT / "registry/run_card.json").read_text())
     wbg_h1_rc = json.loads((ROOT / "evidence/wbg_h1/run_card.json").read_text())
-    wbg_s2_rc = json.loads((ROOT / "evidence/wbg_s2/run_card.json").read_text())
     h, c, d = card["holdout"], card["control_holdout"], card["paired_delta_holdout"]
     tif = Path(card["artifact"]).name
     h1_tif = wbg_h1_rc["raster_sha256"]["tif_file"]
     h1_zip = wbg_h1_rc["raster_sha256"]["zip_file"]
+    standing = (ROOT / "docs/standing-prompt.md").read_text()
+    w2 = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
+    w2tif = Path(w2["artifact"]).name
+    if w2["verdict"] != "negative" or w2["ok_to_submit"] is not False:
+        raise ValueError("WBG-2 decision drift; refuse to advertise a file")
+    w2overlap = 100 * w2["registry"]["rows"][0]["forward_overlap_within_3px"]
+    wbg_s2_rc = json.loads((ROOT / "evidence/wbg_s2/run_card.json").read_text())
     s2_tif = wbg_s2_rc["artifact"]["tif_path"]
     s2_zip = wbg_s2_rc["artifact"]["zip_path"]
-    standing = (ROOT / "docs/standing-prompt.md").read_text()
+    s2_seg = wbg_s2_rc["holdout_dti"]["primary_segment_holdout"]
+    s2_g57 = wbg_s2_rc["holdout_dti"]["secondary_gems57_buffered_components"]
+
     header = f'''# WBG GEMS — evidence-first fault mapping
 
-## DOWNLOAD: YES, for research. SUBMIT: **NO**.
+## NO CURRENT TIFF IS APPROVED TO SUBMIT
+
+**DOWNLOAD: YES for research. SUBMIT: NO.** [Corrected executive audit and nine-site table](docs/wbg2.html) ·
+[Research TIFF](docs/downloads/{w2tif}) · [identical ZIP](docs/downloads/{w2tif.replace('.tif', '.zip')}) ·
+[WBG-2 run card](evidence/wbg2/run_card.json) · [future submission guide](docs/how-to-submit.html).
+
+| Decision item | Evidence |
+|---|---|
+| File | `{w2tif}` — existing research artifact, **do not submit** |
+| Local format | PASS: one float32 band, exact mirrored grid, all finite [0,1]; not organizer acceptance |
+| Literal uniqueness | **FAIL**: {w2overlap:.4f}% forward 3-pixel overlap with a registered GEMSDOE24 lattice (limit 70%); no exemption |
+| HOLDOUT-DTI | Unavailable: no qualifying visible-only buffered result or feature canary was established for WBG-2 |
+| Leaderboard estimate | Unavailable; the old regression projection and purported 95% interval are withdrawn |
+| Exact TIFF SHA-256 | `{w2["raster_sha256"]}` |
+| Competition slots used | 0; a real slot is a separate selector decision |
+
+The highest **USER-REPORTED / UNCONFIRMED** focus-site result is GEMSDOE32 B2 at 0.2778.
+B2 is an exact subset of the parent D2.8 predictions; removing catalogue-adjacent dots may
+reduce false-positive penalty, but no hidden-truth decomposition or file-linked receipt proves why.
+Do not copy a previous submission. This session revalidated existing files, restored the
+hash-pinned owner mirror and all 19 cached bands, and made no new scientific experiment.
+
+Parallel historical reports are retained: [protocol review](docs/protocol-review-20261027.md),
+[repo review and hypothesis queue](docs/repo-review-20261027.md), and
+[session review](docs/session-review-20261027.md). Their superseded claims are marked and
+the [current source and WBG-2 review](docs/research/source-and-wbg2-review.md) takes precedence.
+
+The README includes the standing user request below. Read `AGENTS.md`, the corrected run card,
+and the full request at the start of every session. Missing lane assignment, complete registry
+scope, same-instrument paired benchmark, independent official-origin verification and current
+account allowance remain blockers. [Exact remediation and commands](docs/wbg2.html).
+
+## Older file — DOWNLOAD: YES, for research. SUBMIT: **NO**.
+
+**27 October 2026 follow-up: [all four releases, exact-byte revalidation and trust corrections](docs/portfolio-review.html)** ·
+[Machine-readable review](docs/data/portfolio-review.json). No new experiment: the lane remains stopped.
+All four are negative research downloads, not recommended contest submissions. Leaderboard estimates remain unavailable.
+The [parallel exact-reference audit](docs/release-review.html) and its [review notes](docs/review-20261027.md) are also preserved; both reviews reach the same negative decision.
 
 **[Open the research desk](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/)** ·
 [Executive summary](docs/executive-summary.md) · [Submission guide](docs/how-to-submit.html) ·
 [Exact JSON run card](registry/run_card.json)
 
-**[Download the newly generated research TIFF](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/downloads/{tif})** ·
+**[Download the frozen research TIFF](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/downloads/{tif})** ·
 [One-TIFF ZIP](docs/downloads/{tif.replace('.tif', '.zip')}) ·
 [TIFF in repository](docs/downloads/{tif}) · [Validation receipt](docs/downloads/{tif.replace('.tif', '.json')})
 
@@ -79,31 +124,35 @@ Their frozen scientific modules, receipts and artifacts are retained; they were 
 The current **one-experiment count is WBG-C1 only**, not a sum or reset of the inherited lane budgets.
 Different evaluator/split/representation results must not be pooled or ranked as comparable scores.
 
-- [Original parallel site, with its own frozen assets and data](docs/parallel/main-b9a2d53/index.html)
+- [Original frozen parallel site (historical source descriptions; see current source review)](docs/parallel/main-b9a2d53/index.html)
 - [Original main README](research/inherited-main-README-b9a2d53.md) (historical commands/paths)
 - [Byte-preservation/integration receipt](evidence/parallel_main_integration.json)
 - [Frozen TIP1 card](evidence/tip1_run_card_20261026.json) and [MVGZ card](evidence/run_card.json)
-- **[2026-10-27 WBG-S2 (MKSF-1 + Vierbein-Coulomb / EXP-3) Interactive Dashboard, 9-Site Audit & 0.2778 Forensics](docs/wbg-s2-mksf1/index.html)** ·
-  [2026-10-27 9-Site Executive Summary](docs/wbg-s2-mksf1/executive-summary.html) ·
-  [Step-by-step DrivenData upload guide](docs/wbg-s2-mksf1/how-to-submit.html) ·
-  [1-Click Validated `[0,1]` GeoTIFF (`{Path(s2_tif).name}`)]({s2_tif}) (`SHA-256: {wbg_s2_rc['artifact']['tif_sha256']}`) ·
-  [One-TIFF ZIP]({s2_zip}) ·
-  [WBG-S2 Run Card (`evidence/wbg_s2/run_card.json`)](evidence/wbg_s2/run_card.json)
-  - **Method (`WBG-S2 / MKSF-1 + Vierbein-Coulomb`, pre-registered in [`knowledge/02_preregistration_wbg_s2_hypotheses_2026-10-27.md`](knowledge/02_preregistration_wbg_s2_hypotheses_2026-10-27.md)):** 81-channel label-free multi-resolution stack (19 competition bands with Band 6 verified as GeoDAWN radiometric `TC`, `Spearman = 0.99995`; 12 seamless 100%-coverage USGS 3DEP 10 m channels bridging the `24.63%` 1 m LiDAR gap; 13 1 m LiDAR scarp channels; 8 GeoDAWN rad/mag channels; 14 `PJMF` transgressive piedmont-bajada flexure + Lake Lahontan contour-obliquity + Census TIGER 2024 road de-confounding channels; 15 `CGMD` Gallardo-Meju cross-gradient + magnetite-destruction + DOE GDR #1391 F2mDAB/sinter/geothermometer channels) + Dual-Specialist (`Full-81ch` + unstarved `Seamless-68ch`) × Dual-Target (Purged-Collar Crest Classifier + Expected 300 m Kernel-Credit Regressor) across 8 Dual-Partition OOF folds + fold-visible elastic crack-tip & relay-ramp stress corroboration + Two-Regime (`76%` scarp/flexure, `24%` concealed conduit) `min_sep = 2.8 px` 300 m Submodular CELF (`37,654` binary `{{0.0, 1.0}}` dots, `0` `<= 200 m` dead-collar dots).
-  - **Canary & Dual-Evaluator Holdout (`#1` Fleet Score on Both Evaluators):** `332/332` single-feature leakage canaries PASS (`max orientation-invariant AUC = {wbg_s2_rc['leakage_canary']['maximum_orientation_invariant_auc']:.5f} <= 0.90`; `pjmf_bajada_break_10m` standalone `AUC = 0.73847`). On **`gems-segment-pooled-v1`** (`n = 60,988`), `EXP-3` achieves **`HOLDOUT-DTI = {wbg_s2_rc['holdout_dti']['primary_segment_holdout']['dti']:.6f}`** (`95% CI [{wbg_s2_rc['holdout_dti']['primary_segment_holdout']['ci95'][0]:.6f}, {wbg_s2_rc['holdout_dti']['primary_segment_holdout']['ci95'][1]:.6f}]`), beating `B0 = {wbg_s2_rc['holdout_dti']['primary_segment_holdout']['control_b0_dti']:.6f}` (`paired Δ = +{wbg_s2_rc['holdout_dti']['primary_segment_holdout']['paired_delta_vs_b0']:.6f}`), prior `WBGGEMSDOE1 WBG-H1 = 0.123310` (`+{wbg_s2_rc['holdout_dti']['primary_segment_holdout']['delta_vs_wbg_h1']:.6f}`), `GEMSDOE24 S3DEP1 = 0.166060`, `GEMSDOE36 KPL-36 = 0.170100`, and `KANLERGEMSDOE2 KG2-MGHV = 0.177056`. On **`gems57-pooled-hide-v2`** (`n = 11,330`), `EXP-3` achieves **`HOLDOUT-DTI = {wbg_s2_rc['holdout_dti']['secondary_gems57_buffered_components']['dti']:.6f}`** (`95% CI [{wbg_s2_rc['holdout_dti']['secondary_gems57_buffered_components']['ci95'][0]:.6f}, {wbg_s2_rc['holdout_dti']['secondary_gems57_buffered_components']['ci95'][1]:.6f}]`), beating `B0 = {wbg_s2_rc['holdout_dti']['secondary_gems57_buffered_components']['control_b0_dti']:.6f}` (`paired Δ = +{wbg_s2_rc['holdout_dti']['secondary_gems57_buffered_components']['paired_delta_vs_b0']:.6f}`).
-  - **Automated `[0,1]` Portal, Competing Uniqueness & Governance Gates:** `15/15` local `[0,1]` GeoTIFF/ZIP checks PASS (`0` NaN, `0` Inf across all `12,279,160` cells); pre-placement surface `max |ρ| = 0.5819 <= 0.90` across `379` rasters; competing-sparse 3-px dot overlap `max fwd = 66.20% <= 70%`, `max worst-dir = 68.75% <= 70%`, `max |ρ| = 0.0473 <= 0.90` across `364` sparse detector rasters. Submission name `{wbg_s2_rc['submission_name']}`, note `{wbg_s2_rc['submission_note']}` (`{wbg_s2_rc['submission_note_length']}` chars). Held as `verdict: "{wbg_s2_rc['verdict']}"` under strict unseparated `r13-lattice-s5` / login-walled weekly allowance governance (`0` competition slots spent automatically); see [`knowledge/03_executive_summary_and_02778_forensics_2026-10-27.md`](knowledge/03_executive_summary_and_02778_forensics_2026-10-27.md).
-- **[Parallel WBG-H1 (DPGF-1 / EXP-3) Interactive Dashboard & 9-Site Audit](docs/wbg-h1-dpgf1/index.html)** ·
-  [Step-by-step DrivenData upload guide](docs/wbg-h1-dpgf1/executive-summary.html) ·
-  [1-Click Validated `[0,1]` GeoTIFF (`{Path(h1_tif).name}`)]({h1_tif}) (`SHA-256: {wbg_h1_rc['raster_sha256']['tif_sha256']}`) ·
-  [ZIP archive]({h1_zip}) ·
-  [WBG-H1 Run Card (`evidence/wbg_h1/run_card.json`)](evidence/wbg_h1/run_card.json)
-  - **Method (`WBG-H1 / DPGF-1`, pre-registered in [`knowledge/01_preregistration_wbg_hypotheses_2026-10-26.md`](knowledge/01_preregistration_wbg_hypotheses_2026-10-26.md)):** 66-channel label-free feature stack (`DipShift` 500 m / 1,000 m updip subsurface-to-surface projection, `TFSDI` tectonic-vs-fluvial scarp index, E–W notched GeoDAWN magnetics, MT/GDR 1391 perimeter, 3DEP LiDAR completeness dual `HGB+ET` ensemble + two-regime `300 m` CELF submodular emitter, `37,654` zero-exterior binary dots).
-  - **Canary & Holdout (`gems-segment-pooled-v1`, `n=60,988` withheld positives):** `66/66` single-feature canaries PASS (`max_symmetric_auc = 0.68971 <= 0.90`). `EXP-3` achieves **`HOLDOUT-DTI = {wbg_h1_rc['holdout_dti']['dti']:.6f}`** (`95% CI [{wbg_h1_rc['holdout_dti']['ci95'][0]:.6f}, {wbg_h1_rc['holdout_dti']['ci95'][1]:.6f}]`), beating matched 31-ch tree baseline `B0 = {wbg_h1_rc['holdout_dti']['baseline_b0_dti']:.6f}` across **4/4 spatial folds** (`paired Δ = +{wbg_h1_rc['holdout_dti']['paired_delta_vs_b0']:.6f}`, `95% CI [+{wbg_h1_rc['holdout_dti']['paired_delta_vs_b0_ci95'][0]:.6f}, +{wbg_h1_rc['holdout_dti']['paired_delta_vs_b0_ci95'][1]:.6f}]`, surging `+34.9%` to `0.17974` in `NE_LidarGapHeavy`).
-  - **Automated `[0,1]` Portal & Uniqueness Gates:** `10/10` portal checks PASS (`0` NaN, `0` Inf across all `12,279,160` cells, `outside="zero"`, `nodata=None`); pre-placement surface `|ρ| = 0.2404 <= 0.90`; sparse/Focus-9 3 px dot overlap `64.49% <= 70%`, `|ρ| = 0.0347 <= 0.90`; symmetric 3 px overlap across all 206 non-lattice rasters `56.05% <= 70%`. Submission name `{wbg_h1_rc['submission_name']}`, note `{wbg_h1_rc['submission_note']}` (`{wbg_h1_rc['submission_note_length']}` chars).
-  - **Selector Verdict (`verdict: "{wbg_h1_rc['verdict']}"`):** Hold live 3/week DrivenData slot standalone because `0.123310` trails analytical scarp-ridge reference `GEMSDOE24 DPRF1` (`HOLDOUT-DTI = 0.163792`); see [`evidence/wbg_h1/focus9_executive_audit.json`](evidence/wbg_h1/focus9_executive_audit.json) (catching `GEMSDOE30`'s `7,111,787` exterior `NaN` `[0,1]` portal failure and `GEMSDOE28/31` `>90%` peer duplicates) and [`evidence/wbg_h1/forensic_proof_02778.json`](evidence/wbg_h1/forensic_proof_02778.json) (`0`-XOR proof + `r13-lattice-s5 = 0.0904 -> |G_private| = 12,366` px inversion).
+- **[WBG-H1 / DPGF-1 corrected result page](docs/wbg-h1-dpgf1/index.html)** — research only, **DO NOT SUBMIT**.
+  [TIFF]({h1_tif}) · [ZIP]({h1_zip}) · SHA-256 `{wbg_h1_rc['raster_sha256']['tif_sha256']}`.
+  Name `{wbg_h1_rc['submission_name']}`. Frozen **HOLDOUT-DTI {wbg_h1_rc['holdout_dti']['dti']:.6f}**,
+  95% CI [{wbg_h1_rc['holdout_dti']['ci95'][0]:.6f}, {wbg_h1_rc['holdout_dti']['ci95'][1]:.6f}],
+  `{wbg_h1_rc['holdout_dti']['evaluator_version']}`, {wbg_h1_rc['holdout_dti']['n_withheld_positives']:,} withheld positives.
+  Literal lattice overlap **99.8035%** exceeds 70%; sparse/symmetric checks do not authorize an exemption.
+  The inherited LLI forecast, claims of organizer-confirmed scores, and private-count inversion are
+  **not verified evidence**. Original cards remain frozen with explicit corrections on the live page.
+- **[WBG-S2 (`MKSF-1 + Vierbein-Coulomb · EXP-3`) 2026-10-27 lane](docs/wbg-s2-mksf1/index.html)** —
+  DOWNLOAD: YES (research / selector review), **SUBMIT: NO** (`verdict: negative` under literal lattice gate;
+  zero competition slots spent). [TIFF]({s2_tif}) · [ZIP]({s2_zip}) · SHA-256 `{wbg_s2_rc['artifact']['tif_sha256']}` ·
+  Name `{wbg_s2_rc['submission_name']}` · Note `{wbg_s2_rc['submission_note']}` (`{wbg_s2_rc['submission_note_length']}/140`).
+  Measured **HOLDOUT-DTI {s2_seg['dti']:.6f}** (95% CI [{s2_seg['ci95'][0]:.6f}, {s2_seg['ci95'][1]:.6f}],
+  `{s2_seg['evaluator_version']}`, {s2_seg['withheld_positive_pixels']:,} withheld positives; **#1 across all 10 repos**) and
+  **HOLDOUT-DTI {s2_g57['dti']:.6f}** (95% CI [{s2_g57['ci95'][0]:.6f}, {s2_g57['ci95'][1]:.6f}],
+  `{s2_g57['evaluator_version']}`, {s2_g57['withheld_positive_pixels']:,} withheld positives; **#1 across all `gems57-v2` runs**).
+  Competing-sparse diagnostic PASS (`max fwd 3-px = 66.20% <= 70%`, `|ρ| = 0.0473 <= 0.90` across `364` sparse detectors;
+  `33.85%` vs `WBG-2`); literal unseparated `r13-lattice-s5` forward overlap **99.5459% > 70% (STOP)**.
+  [Run Card](evidence/wbg_s2/run_card.json) · [2026-10-27 9-Site Audit](knowledge/03_executive_summary_and_02778_forensics_2026-10-27.md).
 - Older two-argument `validate_submission.py candidate.tif reference.tif` callers retain their
   supplied-reference format API; this is compatibility only and never confers slot approval.
   WBG-C1 still uses the unchanged, pinned `gems57` all-finite validator/writer.
+  The separate integration CLI now rejects mismatched source grids, input overwrite aliases and
+  portal-unsafe NaN twins; [explicit source amendment](evidence/integration_amendments_20261027.json)
+  preserves its prior hash/archive. No metric, evaluator or pinned-template fork was introduced.
 - The older bridge-specific restore entry point is retained as `scripts/download_bridge_legacy.sh`
   with `scripts/prepare_bridge_legacy.py`; current WBG-C1 commands below are unchanged.
 
@@ -151,6 +200,9 @@ bash scripts/download_competition_data.sh
 # The next command audits the unchanged surface; it does NOT retrain/place dots:
 .venv/bin/python scripts/audit_registry.py
 
+# Reopen all four local releases (no modelling, no slot):
+.venv/bin/python scripts/build_portfolio_review.py
+
 # Rebuild report pages from persisted measured JSON (no modelling):
 python scripts/refresh_feed.py --offline
 python scripts/build_site.py
@@ -168,8 +220,8 @@ BASE_URL=http://127.0.0.1:8000/ npm run test:browser
 # Minimal containers without NSS/NSPR may also need BROWSER_COMPAT_LIBS=1.
 ```
 
-The browser check visits all five pages at desktop/mobile sizes, rejects body overflow and
-JavaScript page errors, tests the site filter, and hashes the actual downloaded TIFF.
+The browser check visits all nine current pages at desktop/mobile sizes, rejects body overflow and
+JavaScript page errors, tests the site filter, and hashes all four actual downloaded TIFFs.
 Screenshots stay in ignored `.cache/browser-review/`; the JSON receipt is inspectable in
 [evidence/browser_checks.json](evidence/browser_checks.json). These are site checks, not evidence
 of scientific efficacy or organizer upload acceptance.

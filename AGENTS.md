@@ -1,8 +1,20 @@
 # Starting point for every session
 
-1. Read `README.md` **including the archived standing prompt**, then `registry/run_card.json`,
-   `registry/irregularities.json`, `registry/experiment_ledger.json`, and `registry/preregistration.json`.
-   The prompt is intent, not evidence. The current measured status is **NEGATIVE / DO NOT SUBMIT**.
+0. **NO CURRENT SUBMIT-READY TIFF (2026-10-27).** WBG-2 is a stopped research
+   artifact, not an approved submission. Its own old gate applied an unauthorized
+   enrichment exemption. Shared-template remeasurement found 99.8972% forward
+   3-pixel overlap with the GEMSDOE24 lattice, and 100% with WBG-C1. No qualifying
+   visible-only holdout or pre-placement audit exists. DOWNLOAD for research only;
+   SUBMIT: NO. See `evidence/wbg2/run_card.json`, `scripts/review_wbg2.py`, and the preserved parallel `docs/protocol-review-20261027.md`.
+   The old regression projection and purported interval are withdrawn.
+
+1. Read `README.md` **including the archived standing prompt**, then the 2026-10-27 follow-up at
+   `research/03_followup_review_20261027.md`, `evidence/portfolio_review_20261027.json`,
+   `docs/review-20261027.md`, `evidence/release_review_20261027.json`, `registry/run_card.json`,
+   `registry/irregularities.json`, `registry/experiment_ledger.json` and `registry/preregistration.json`.
+   The prompt is intent, not evidence. **No current local file is cleared to upload.**
+   WBG-C1, TIP1, MVGZ and WBG-H1 remain **NEGATIVE / DO NOT SUBMIT**. The 2026-10-27 follow-up added
+   zero experiments.
 2. The original checkout contained only a title. Do not invent prior local training, pending tasks,
    organizer receipts, lane assignments, scores, GPU requirements or authenticated data access.
 3. No assigned single-method paragraph was supplied. WBG-C1 is provisional research only. Its
@@ -53,3 +65,16 @@
   last verified observation and explicitly show the failure.
 - Resolve all unknowns honestly. Do not claim every line of all linked sources, every PDF page,
   all 92 sites, hidden labels or private data were verified. A fault map is not a vent discovery.
+
+## 2026-10-27 follow-up corrections
+
+- DPGF-1 also fails the literal one-way gate (99.8035% lattice overlap); sparse/symmetric
+  diagnostics are not authorized substitutes. No optional negative-result upload recommendation.
+- Inherited LLI forecasts, private-fault-count inversion and ORGANIZER-CONFIRMED labels are not
+  verified evidence. Preserve cards as historical records but publish their corrections.
+- `scripts/check_readiness.py` hashes current inputs/cache independently of the stopped scientific
+  lane. Exit 2 is expected even after successful data restoration.
+- The integration writer's input-grid/clobber/NaN-exit fixes are explicitly recorded in
+  `evidence/integration_amendments_20261027.json`; the old wrapper is historical only. Neither
+  the pinned template nor numerical evaluator/writer is changed. Do not use archived code as a fork.
+- `python scripts/build_site.py` now reopens all four artifacts and builds the all-release review.

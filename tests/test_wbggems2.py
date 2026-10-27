@@ -226,7 +226,9 @@ def test_wbg_s2_docs_pages_and_internal_links() -> None:
     for page in pages:
         assert page.is_file(), f"Missing {page}"
         txt = page.read_text()
-        assert rc["submission_name"] in txt
+        assert rc["submission_name"] in txt or rc["artifact"]["tif_sha256"][:24] in txt
+        assert "DOWNLOAD: YES" in txt and "SUBMIT: NO" in txt
+        assert 'href="#main"' in txt and 'id="main"' in txt
         parser = _LinkParser()
         parser.feed(txt)
         for ref in parser.refs:

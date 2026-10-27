@@ -205,6 +205,9 @@ def test_calibration_is_documented_and_honest():
     assert 0.9 < cal["r2"] <= 1.0
     assert any("receipt" in c for c in cal["caveats"])
     assert cal["collinearity"]["corr_near3cat_logbudget"] > 0.5
+    assert cal["status"].startswith("WITHDRAWN")
+    assert cal["valid_for_submission_decision"] is False
+    assert all("owner_reported_score" in row for row in cal["observations"])
 
 
 def test_literal_overlap_cannot_be_waived(tmp_path):

@@ -11,7 +11,7 @@
 The WBG-2 approval was revoked on 2026-10-27. Its density-adjusted exemption violated
 this project's literal registry rule. Format-valid does not mean eligible or high scoring.
 No qualifying WBG-2 HOLDOUT-DTI, CI, withheld-positive count or evaluator version exists.
-No weekly competition slot was used. [Correction and next steps](docs/protocol-review-20261027.md).
+No weekly competition slot was used. [Correction and next steps](docs/protocol-review-20261027.md) · [site-by-site session review](docs/session-review-20261027.md).
 
 ## Older file — DOWNLOAD: YES, for research. SUBMIT: **NO**.
 
@@ -66,9 +66,10 @@ credit and avoiding low-marginal-credit predictions are plausible reasons for th
 ordering, not a causal proof from unavailable hidden labels. A 200 m exclusion is **not** an
 organizer rule. No historical file should be copied into a new "unique" entry.
 
-The direct **official public-leaderboard observation on 2026-10-26 was 0.4437**, not the prompt's
-older targets. That is **not** an organizer result for any project TIFF. A higher project score
-was not obtained or credibly projected in this session.
+**Leaderboard status is unresolved.** The repository retains public-page observations of 0.4437
+(2026-10-26) and 0.4544 (2026-10-27); the latest user brief reports 0.3195, and an earlier
+brief reports 0.4413. These were not freshly reconciled because the DrivenData host was not
+available to this review. None is an organizer result for a project TIFF.
 
 ## Parallel work preserved during integration
 

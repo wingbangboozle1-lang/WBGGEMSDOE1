@@ -12,7 +12,6 @@
  "rows": [
   {
    "site": "GEMSDOE24",
-   "organizer_reported_score": 0.2477,
    "expected_artifact": "h25-1-dotted-h19-5-d1-5",
    "audited": true,
    "artifact": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
@@ -23,11 +22,11 @@
    "chance_overlap": 0.16884865868982168,
    "enrichment_vs_chance": 1.0412019670142232,
    "spearman_rho": 0.006045798799203566,
-   "status": "audited"
+   "status": "audited",
+   "owner_reported_score": 0.2477
   },
   {
    "site": "GEMSDOE25",
-   "organizer_reported_score": 0.26,
    "expected_artifact": "dotted-h19-5-d2-8",
    "audited": true,
    "artifact": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
@@ -38,11 +37,11 @@
    "chance_overlap": 0.15604428014002472,
    "enrichment_vs_chance": 1.039590955058742,
    "spearman_rho": 0.008099765968284645,
-   "status": "audited"
+   "status": "audited",
+   "owner_reported_score": 0.26
   },
   {
    "site": "GEMSDOE27",
-   "organizer_reported_score": 0.2449,
    "expected_artifact": "topo-gap-closure-t-v2-on-d1-5",
    "audited": true,
    "artifact": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
@@ -53,11 +52,11 @@
    "chance_overlap": 0.17293448721429633,
    "enrichment_vs_chance": 1.0761943098167956,
    "spearman_rho": 0.0065535282920180325,
-   "status": "audited"
+   "status": "audited",
+   "owner_reported_score": 0.2449
   },
   {
    "site": "GEMSDOE28",
-   "organizer_reported_score": 0.271,
    "expected_artifact": "h36-1-rung30-blind-r1",
    "audited": true,
    "artifact": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
@@ -68,11 +67,11 @@
    "chance_overlap": 0.14289581959730796,
    "enrichment_vs_chance": 1.1243622599977972,
    "spearman_rho": 0.008707038165629174,
-   "status": "audited"
+   "status": "audited",
+   "owner_reported_score": 0.271
   },
   {
    "site": "GEMSDOE30",
-   "organizer_reported_score": 0.26,
    "expected_artifact": "d28-poisson300m-offcat-44090",
    "audited": true,
    "artifact": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside.tif",
@@ -83,11 +82,11 @@
    "chance_overlap": 0.15604428014002472,
    "enrichment_vs_chance": 1.039590955058742,
    "spearman_rho": 0.008099765968284645,
-   "status": "audited"
+   "status": "audited",
+   "owner_reported_score": 0.26
   },
   {
    "site": "GEMSDOE31",
-   "organizer_reported_score": 0.2708,
    "expected_artifact": "h27-4-solo-d28",
    "audited": true,
    "artifact": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif",
@@ -98,11 +97,11 @@
    "chance_overlap": 0.14478381955395905,
    "enrichment_vs_chance": 1.120444416523796,
    "spearman_rho": 0.00881371659423551,
-   "status": "audited"
+   "status": "audited",
+   "owner_reported_score": 0.2708
   },
   {
    "site": "GEMSDOE32",
-   "organizer_reported_score": 0.2778,
    "expected_artifact": "h33-h33-2-b2",
    "audited": true,
    "artifact": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
@@ -113,11 +112,11 @@
    "chance_overlap": 0.13630543024472977,
    "enrichment_vs_chance": 1.1760760761162248,
    "spearman_rho": 0.00947404544224616,
-   "status": "audited"
+   "status": "audited",
+   "owner_reported_score": 0.2778
   },
   {
    "site": "GEMSDOE33",
-   "organizer_reported_score": 0.2632,
    "expected_artifact": "h33d-analog-tip-stepover-r30",
    "audited": true,
    "artifact": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
@@ -128,11 +127,11 @@
    "chance_overlap": 0.15074255332448422,
    "enrichment_vs_chance": 1.089421789670247,
    "spearman_rho": 0.0078015367481063065,
-   "status": "audited"
+   "status": "audited",
+   "owner_reported_score": 0.2632
   },
   {
    "site": "GEMSDOE36",
-   "organizer_reported_score": 0.275,
    "expected_artifact": "anderson-geothermal-pinn-38854",
    "audited": true,
    "artifact": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
@@ -143,7 +142,8 @@
    "chance_overlap": 0.13985442893323163,
    "enrichment_vs_chance": 1.178209221078332,
    "spearman_rho": 0.00926381165965857,
-   "status": "audited"
+   "status": "audited",
+   "owner_reported_score": 0.275
   }
  ]
 }

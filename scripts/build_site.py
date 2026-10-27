@@ -243,7 +243,9 @@ def main():
         "upstream-template-verification.json": "evidence/upstream_template_verification.json",
         "snapshot-commit-verification.json": "evidence/snapshot_commit_verification.json",
         "review-passes.json": "evidence/review_passes.json", "browser-checks.json": "evidence/browser_checks.json",
-        "parallel-main-integration.json": "evidence/parallel_main_integration.json"}
+        "parallel-main-integration.json": "evidence/parallel_main_integration.json",
+        "followup-run-card.json": "evidence/followup_run_card_20261027.json",
+        "source-review-20261027.json": "evidence/source_review_20261027.json"}
     for dest, source in copies.items():
         shutil.copyfile(ROOT / source, DOCS / "data" / dest)
     dump_json(DOCS / "data/run-card.json", card)

@@ -145,7 +145,7 @@ def render(review):
 <h2>Trust corrections</h2><ul>{issues}</ul><p>The original cards remain unchanged as historical records. This review overrides unsupported interpretations, not their frozen measurements. No training, tuning, final-dot placement, new raster, or submission slot was used.</p>
 <p>The highest supplied historical nine-site claim remains GEMSDOE32 B2 at USER-REPORTED 0.2778, not an organizer receipt. Pruning catalogue-near redundant dots is a plausible metric explanation, not proof of hidden-label locations.</p>
 <h2>Next steps in order</h2><ol><li>Resolve the missing lane assignment and literal registry saturation conflict centrally. Do not exempt dense priors privately or move dots around registry holes.</li><li>Restore the pinned feature cache, verify band semantics/provenance, and lock an untouched same-instrument current-best comparator.</li><li>Preregister an authorized method, run each feature canary and buffered segment holdout, then both literal novelty gates and exact saved-file validation.</li><li>Only a separate selector may approve a weekly slot after all gates pass; current account allowance and receipts remain unavailable.</li></ol>
-<p><a href="data/portfolio-review.json">Full machine-readable review, hashes, validators and registry measurements</a> · <a href="standing-prompt.md">Standing brief</a></p></main></body></html>'''
+<p><a href="data/portfolio-review.json">Full machine-readable review, hashes, validators and registry measurements</a> · <a href="data/followup-run-card.json">Follow-up run card</a> · <a href="standing-prompt.md">Standing brief</a></p></main></body></html>'''
 
 
 def main():

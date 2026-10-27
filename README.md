@@ -149,8 +149,8 @@ BASE_URL=http://127.0.0.1:8000/ npm run test:browser
 # Minimal containers without NSS/NSPR may also need BROWSER_COMPAT_LIBS=1.
 ```
 
-The browser check visits all five pages at desktop/mobile sizes, rejects body overflow and
-JavaScript page errors, tests the site filter, and hashes the actual downloaded TIFF.
+The browser check visits all eight current pages at desktop/mobile sizes, rejects body overflow and
+JavaScript page errors, tests the site filter, and hashes all four actual downloaded TIFFs.
 Screenshots stay in ignored `.cache/browser-review/`; the JSON receipt is inspectable in
 [evidence/browser_checks.json](evidence/browser_checks.json). These are site checks, not evidence
 of scientific efficacy or organizer upload acceptance.

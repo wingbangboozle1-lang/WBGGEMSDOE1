@@ -1,6 +1,7 @@
 # Starting point for every session
 
-1. Read `README.md` **including the archived standing prompt**, then `registry/run_card.json`,
+1. Read `README.md` **including the archived standing prompt**, the 2026-10-27 follow-up at
+   `research/03_followup_review_20261027.md` and `evidence/portfolio_review_20261027.json`, then `registry/run_card.json`,
    `registry/irregularities.json`, `registry/experiment_ledger.json`, and `registry/preregistration.json`.
    The prompt is intent, not evidence. The current measured status is **NEGATIVE / DO NOT SUBMIT**.
 2. The original checkout contained only a title. Do not invent prior local training, pending tasks,
@@ -53,3 +54,16 @@
   last verified observation and explicitly show the failure.
 - Resolve all unknowns honestly. Do not claim every line of all linked sources, every PDF page,
   all 92 sites, hidden labels or private data were verified. A fault map is not a vent discovery.
+
+## 2026-10-27 follow-up corrections
+
+- DPGF-1 also fails the literal one-way gate (99.8035% lattice overlap); sparse/symmetric
+  diagnostics are not authorized substitutes. No optional negative-result upload recommendation.
+- Inherited LLI forecasts, private-fault-count inversion and ORGANIZER-CONFIRMED labels are not
+  verified evidence. Preserve cards as historical records but publish their corrections.
+- `scripts/check_readiness.py` hashes current inputs/cache independently of the stopped scientific
+  lane. Exit 2 is expected even after successful data restoration.
+- The integration writer's input-grid/clobber/NaN-exit fixes are explicitly recorded in
+  `evidence/integration_amendments_20261027.json`; the old wrapper is historical only. Neither
+  the pinned template nor numerical evaluator/writer is changed. Do not use archived code as a fork.
+- `python scripts/build_site.py` now reopens all four artifacts and builds the all-release review.

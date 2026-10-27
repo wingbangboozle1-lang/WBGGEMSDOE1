@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "registered_utc": "2026-10-27T18:05:00Z",
+  "hypothesis_id": "TASC",
+  "document": "research/03_ranked_hypotheses_2026-10-27.md",
+  "lane": {
+    "status": "PROVISIONAL_RESEARCH_ONLY",
+    "reason": "Standing prompt refers to a single method paragraph below but supplies none. No weekly-slot authorization is inferred."
+  },
+  "hypothesis": "Visible-fault-tip-aligned strain-transfer corridors identify concealed continuations or soft links that are absent from the public catalogue.",
+  "mechanism": "Fold-local skeleton of visible faults; outward endpoint tangent; 0-3 km forward, +/-1 km across anisotropic corridor; multiply by a 300 m Gaussian gradient response of geodetic shear/dilatation, gravity, magnetic and basement-depth fields. No hidden component, previous prediction pixel or registry raster is an input.",
+  "named_non_fault_mimic": "Alluvial-fan channel avulsion lobe, road/rail cut-and-fill, pluvial shoreline bench, intrusive/lithologic contact.",
+  "inputs": {
+    "feature_cache": "data/template57/.cache/features/band-01..19.npy (19 owner-mirrored bands, all hashes verified by scripts/prepare_data.py)",
+    "catalogue": "data/bridge/labels.tif sha256 7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "template": "data/bridge/sample_submission.tif sha256 2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "registry": "registry/registry.json (179 unique comparison rasters; comparison only)"
+  },
+  "fixed_constants": {
+    "band_indices_1_based": {
+      "geod_shearrate": 7,
+      "geod_dilaterate": 8,
+      "iso_grav_anom": 13,
+      "tmi": 14,
+      "depth_to_base_surf": 15,
+      "det_elev": 12,
+      "det_elev_slope": 19
+    },
+    "response_gaussian_sigma_px": 3,
+    "corridor_s_range_px": [1, 30],
+    "corridor_t_abs_max_px": 10,
+    "corridor_s_peak_px": 8,
+    "corridor_s_sigma_px": 10,
+    "corridor_t_sigma_px": 5,
+    "annulus_px": [3, 28],
+    "dot_budget_fraction": 0.0073,
+    "min_dot_spacing_px": 3,
+    "seed": 20261027,
+    "holdout_buffer_px": 15,
+    "bootstrap_draws": 1999
+  },
+  "arms": {
+    "A": "label-free geophysical response R only",
+    "B": "primary TASC: C * (0.5 + R)",
+    "C": "orientation ablation: D * (0.5 + R)"
+  },
+  "gates": {
+    "canary_max_orientation_invariant_auc": 0.9,
+    "surface_max_abs_spearman": 0.9,
+    "final_dot_max_3px_overlap": 0.7,
+    "baseline_holdout_dti_point": 0.16606013635163805,
+    "baseline_evaluator": "gems-segment-pooled-v1",
+    "baseline_withheld_positives": 60988,
+    "promotion_requires_ci_lower_bound_above_baseline": true,
+    "promotion_requires_positive_paired_ci_vs_arm_A": true,
+    "separate_calibration_controls_diagnostic_only": true,
+    "literal_unseparated_gate_binding": true,
+    "weekly_slots_authorized": 0
+  },
+  "budget": {
+    "maximum_experiments": 3,
+    "maximum_wall_hours": 2,
+    "planned_experiments": 3
+  },
+  "score_policy": "All new measured metrics are HOLDOUT-DTI with evaluator version, representation, withheld-positive count and 95% CI. Historical values remain USER-REPORTED / NOT ORGANIZER-CONFIRMED. An LLI projection is labeled as a projection, never as a score."
+}

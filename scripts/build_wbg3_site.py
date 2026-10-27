@@ -53,7 +53,7 @@ def _shell(active: str, title: str, body: str, *, prefix: str) -> str:
         (f"{prefix}index.html", "Main desk"),
         (f"{sub_prefix}index.html", "WBG-3 summary"),
         (f"{sub_prefix}how-to-submit.html", "How to submit"),
-        (f"{sub_prefix}forensics-and-hypotheses.html", "0.2778 forensics & hypotheses"),
+        (f"{sub_prefix}forensics-and-hypotheses.html", "0.2778 evidence review & hypotheses"),
         (f"{prefix}executive-summary.html", "9-site table"),
         (f"{prefix}evidence.html", "Evidence"),
     ]
@@ -200,27 +200,29 @@ def _forensics_and_hypotheses_blocks(w3: dict) -> str:
     seg = w3["holdout_dti"]["primary_segment_holdout"]
     intra = w3["holdout_dti"]["secondary_intrabasin_holdout"]
     sgmc = w3["holdout_dti"]["external_sgmc_offcatalogue_diagnostic"]
-    return f'''<section class="content-section" id="phd-forensic-02778"><div class="section-heading"><div><span class="section-num">PHD FORENSIC ANALYSIS / WHY 0.2778 WON &amp; HOW TO BEAT IT</span><h2>Why <code>GEMSDOE32</code> <code>B2</code> achieved <code>0.2778</code> — and what separates <code>0.2778</code>, <code>0.3195</code>, and <code>0.44+</code></h2><p>Exact mathematical, structural-geology, and metric-kernel derivation verified byte-for-byte on the nine focus-site GeoTIFFs.</p></div></div>
-<div class="two-col"><article class="panel"><div class="panel-head">1. Exact Metric Anatomy of <code>H19-5 → D2.8 → B1 → B2 (0.2778)</code><span>α = 0.2 · β = 0.8 · R = 300 m</span></div><div class="panel-pad prose">
-<p>The DrivenData DOE GEMS organizer metric evaluates predictions <code>P ∈ [0, 1]</code> strictly on <strong>unmapped test faults</strong> <code>Ω ∖ C<sub>train</sub></code> (5,106,385 off-catalogue footprint cells at 100 m resolution) via the Distance-Weighted Tversky Index:</p>
-<pre><code>DTI = TP_w / (TP_w + 0.2 * FP_w + 0.8 * FN_w)
-k(d) = max(1 - d / 300 m, 0),   s_G(x) = max_{{y in G}} k(||x - y||) * P(y)
-TP_w = sum_{{x in T}} min(P_eff(x), 1),   FP_w = sum_{{y in Omega\\C}} P(y) * (1 - s_T(y))</code></pre>
-<ol>
-<li><strong>Base multi-physics detector <code>H19-5</code> (<code>0.1922</code> USER-REPORTED):</strong> All nine focus-site champions descend from a single continuous multi-evidence detector developed in <code>19GEMSDOE</code> requiring ≥2-of-4 corroborating physical layers: <code>L1</code> power-law fault-length scaling deficit + crack-tip/relay Coulomb stress, <code>L2</code> OpenEI GDR 1391 orphan thermal wells/springs/vents (&gt;500 m from mapped faults), <code>L3</code> USGS 3DEP anti-piedmont topographic openness/LRM scarps, and <code>L4</code> potential-field horizontal-gradient worms.</li>
-<li><strong>280 m ridge dotting <code>D2.8</code> (<code>GEMSDOE25</code> = <code>GEMSDOE30</code>, 44,090 dots, <code>0.2600</code> USER-REPORTED):</strong> Because <code>TP<sub>w</sub></code> uses a <strong>max-cover</strong> operator over R = 300 m (3 px) while <code>FP<sub>w</sub></code> sums linearly over every emitted pixel, thinning continuous 1-px ridges (~121k px) to binary <code>{{0, 1}}</code> dots spaced ≥280 m cuts <code>0.2 · FP<sub>w</sub></code> by 63.6% while retaining &gt;95% of <code>TP<sub>w</sub></code> along true fault strikes (+0.0678 DTI jump).</li>
-<li><strong>Exact nested collar deletions <code>B1 → B2</code> (<code>0.2708 → 0.2778</code> USER-REPORTED):</strong> Byte-exact raster subtraction proves <code>GEMSDOE31 SOLO/B1</code> (40,199 dots) is literally <code>D2.8</code> minus 3,891 dots at <code>d(C<sub>train</sub>) ≤ 100 m</code>, and <code>GEMSDOE32 B2</code> (37,654 dots) is literally <code>B1</code> minus 2,545 dots at <code>100 m &lt; d(C<sub>train</sub>) ≤ 200 m</code> (6,436 total deletions). Because organizers mask <code>C<sub>train</sub></code> pixel-exactly and USGS/INGENIOUS Quaternary traces carry a 100–200 m digitization/splay halo rather than independent parallel faults 150 m away, those 6,436 near-catalogue dots contributed almost pure <code>0.2 · FP<sub>w</sub></code> (<code>Δ(0.2 · FP<sub>w</sub>) ≈ −1,287</code>, accounting analytically for the +0.0178 rise from 0.2600 to 0.2778). Conversely, <code>GEMSDOE27</code> (61,328, 0.2449), <code>GEMSDOE33</code> (41,865, 0.2632), and <code>GEMSDOE36</code> (38,854 = B2 ∪ 1,200 extra dots, 0.2750) all scored lower because uncorroborated additions increased <code>FP<sub>w</sub></code> faster than <code>TP<sub>w</sub></code>.</li>
-</ol>
-</div></article>
-<article class="panel"><div class="panel-head">2. Addressing <code>0.2778</code>, <code>0.3195</code>, <code>0.4413</code> &amp; Live <code>0.4544</code><span>How a unique model scores higher</span></div><div class="panel-pad prose">
+    return f'''<section class="content-section" id="phd-forensic-02778"><div class="section-heading"><div><span class="section-num">NINE-SITE FORENSIC REVIEW / EVIDENCE LIMITS</span><h2>What the GEMSDOE32 B2 record does — and does not — tell us</h2><p>Raster lineage is checked against decoded pixels in pinned repository snapshots. Historical scores remain owner-reported unless a submission-page receipt binds a result to exact file bytes.</p></div></div>
+<div class="two-col"><article class="panel"><div class="panel-head">1. Verified file relationships<span>Historical score attribution remains unverified</span></div><div class="panel-pad prose">
+<p>The official metric documentation describes distance-weighted precision/recall credit with <code>α = 0.2</code>, <code>β = 0.8</code>, and a 300 m kernel. The repository's exact-file audit establishes the following pixel-set relationships, but it does not expose hidden test truth or authenticate any historical score:</p>
 <ul>
-<li><strong>Why collar pruning alone asymptotes near ~0.28:</strong> At 37,654 dots and 0.2778, solving the Tversky equation shows <code>0.8 · FN<sub>w</sub></code> accounts for &gt;82% of the denominator error. Deleting more dots without discovering hidden faults plateaus near ~0.28. Meanwhile, arrangement-matched random off-catalogue scatter without a geophysical fault detector scored only <strong><code>0.0764–0.0778</code></strong> on live receipts in <code>19GEMSDOE</code> (<code>P1/P2</code>), matching our measured fold-safe replay of <code>WBG-2</code> (<code>HOLDOUT-DTI = 0.000341</code> on <code>gems-segment-pooled-v1</code>).</li>
-<li><strong>What separates <code>0.2778</code> from <code>0.3195</code> and <code>0.4413</code> / <code>0.4544</code>:</strong> Prompt reference values <code>0.2778</code> (9-site H19-5/B2 ceiling), <code>0.3195</code> (intermediate supervised multi-scale segmentation regime), and <code>0.4413</code> (superseded by dated public leaderboard rank-1 observations <code>0.4437</code> on 2026-10-26 and <code>0.4544</code> on 2026-10-27; not receipts for any repo file) require increasing true blind-fault recall <code>TP<sub>w</sub></code> by +22% (for 0.3195) to +110% (for 0.44+) at ~32k–38k off-catalogue binary dots.</li>
-<li><strong>Route to a genuinely unique submission above <code>0.2778</code>:</strong> Combine (a) multi-scale spatial U-Net/CNN + GBDT ensembles on the official 19-band geophysical stack plus amplitude-invariant crustal potential-field &amp; monogenic phase physics (<code>WBG-3</code>) and primary-authenticated sub-100m 3DEP/LiDAR + NASA ASF OPERA Sentinel-1 DInSAR velocity-gradient discontinuities across playas, (b) fold-safe crack-tip wing-crack stress transfer, and (c) 300 m triangular-kernel submodular CELF emission outside a ≥200 m catalogue collar — once an updated registry policy excludes non-competing synthetic calibration lattices.</li>
+<li><strong>D2.8 / GEMSDOE25 and GEMSDOE30:</strong> the audited files have 44,090 positive pixels and identical decoded predictions despite distinct file encodings. The 0.2600 values are USER-REPORTED, not organizer-confirmed.</li>
+<li><strong>B1 / GEMSDOE31:</strong> the audited 40,199-pixel field is a strict subset of D2.8; 3,891 pixels are absent. B1 has a supplied USER-REPORTED value of 0.2708.</li>
+<li><strong>B2 / GEMSDOE32:</strong> the audited 37,654-pixel field is a strict subset of B1; a further 2,545 pixels are absent. The supplied value is 0.2778, USER-REPORTED / NOT ORGANIZER-CONFIRMED.</li>
+<li><strong>Interpretation:</strong> pruning predictions can plausibly improve a precision-sensitive metric when removed pixels earn little marginal true-positive credit. The observed ordering is consistent with that mechanism, but cannot establish which deleted pixels were false positives or explain the score change without hidden truth and exact organizer receipts. Do not infer a 100–200 m buffer policy from this lineage.</li>
 </ul>
+<p><strong>Answer to “why did B2 score highest?”</strong> We can verify that it is a more aggressively pruned descendant of D2.8 within the supplied focus-site history. We cannot prove that pruning caused the reported score increase, nor establish that 0.2778 was a confirmed contest result, from the files available here.</p>
+</div></article>
+<article class="panel"><div class="panel-head">2. Can a unique method beat 0.2778?<span>Not established by this checkout</span></div><div class="panel-pad prose">
+<ul>
+<li>The user-supplied 0.2778, 0.3195 and 0.4413 figures are not identified here by organizer receipts tied to exact files. A public leaderboard observation, if available, is a dated competition-level observation and not a score for a repository artifact.</li>
+<li>There is no defensible conversion from the supplied historical values or this project's spatial holdouts to a new leaderboard estimate. Holdout results are labeled HOLDOUT-DTI and must not be presented as contest scores.</li>
+<li>WBG-3's frozen experiments beat their 19-band control on the recorded spatial splits, but they do not establish a win over the reported 0.2778, and the submitted candidate fails the literal all-registry overlap gate. Its decision remains negative / DO NOT SUBMIT.</li>
+<li>Current conclusion: exceeding 0.2778 is a testable research objective, not an established result. No new experiment is authorized from this prompt because the referenced single-method lane paragraph is absent, the WBG-C1 lane is stopped, and other lane budgets are already frozen. Do not resume or tune a stopped lane.</li>
+</ul>
+<p>Before a future, explicitly assigned lane is tested: preregister one distinct hypothesis, test each feature alone for leakage, use the shared hide-and-recover evaluator and cache, and require the complete pre-placement registry check. A candidate must beat a same-evaluator control; even then it is not upload-cleared until the separate selector and all literal gates pass.</p>
+<p><strong>Sources for manual review:</strong> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">official competition rules and metric</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem description</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution">organizer reference solution</a> · <a href="../../evidence/nine_site_audit.json">local exact-file audit JSON</a> · <a href="../../evidence/nine_site_executive_summary_20261026.json">local nine-site evidence summary</a>.</p>
 </div></article></div></section>
 
-<section class="content-section" id="candidate-hypotheses"><div class="section-heading"><div><span class="section-num">PREREGISTERED GEOLOGICAL QUEUE / 4 UNTRIED HYPOTHESES</span><h2>Four untried Basin-and-Range fault hypotheses (locked prior to execution)</h2><p>Preregistered in <code>registry/wbg3_preregistration.json</code> (SHA-256 <code>{w3['preregistration_sha256'][:16]}…</code>).</p></div></div>
+<section class="content-section" id="candidate-hypotheses"><div class="section-heading"><div><span class="section-num">PREREGISTERED GEOLOGICAL QUEUE / EXECUTION STATUS</span><h2>Four preregistered Basin-and-Range hypotheses; status varies</h2><p>Preregistered in <code>registry/wbg3_preregistration.json</code> (SHA-256 <code>{w3['preregistration_sha256'][:16]}…</code>).</p></div></div>
 <div class="details-list">
 <details open><summary>Rank #1 (Executed · Top Candidate) · <code>SPI-PMR-WCS-1</code>: Crustal Source-Parameter Local Wavenumber × Monogenic Phase Congruency × Visible Crack-Tip Wing-Crack Synthesis {_pill('Executed · +30.2% vs 19b ctrl', 'ok')}</summary><div class="detail-body">
 <p><strong>Exact layers &amp; transform:</strong> Official bands <code>rtp</code> (14), <code>tmi</code> (16), <code>iso_grav_anom</code> (13), <code>det_elev</code> (12), <code>elev</code> (11), <code>geod_shearstr</code> (7), <code>geod_dilaterate</code> (8) + label-free OpenEI GDR 1391 thermal conduits (<code>DOI: 10.15121/1881483</code>, stripping fault-distance columns) + fold-visible fault mask. Computes Thurston &amp; Smith (1997) local wavenumber <code>k<sub>SPI</sub> = ‖∇ atan2(∂<sub>z</sub>F, ‖∇<sub>h</sub>F‖)‖</code> over shallow upward-continued RTP/gravity contacts, Felsberg-Sommer 2D FFT Riesz monogenic odd-symmetric phase congruency across degraded piedmont scarps, and Pollard-Segall tensile wing-crack lobes at ±32° strictly from <code>fold["visible"]</code> tips.</p>
@@ -264,7 +266,7 @@ def _index_body(w3, s2, h1, w2, c1, audit, *, prefix: str) -> str:
         f"<tr><td class='mono' style='font-size:11px'>{escape(_short_id(r['id']))}</td><td>{r['positive_pixels']:,}</td><td><span class='score'>{r['forward_3px_overlap']*100:.2f}%</span></td><td>{r['reverse_3px_overlap']*100:.2f}%</td><td>{r['dots_spearman']:+.4f}</td><td>{_pill('PASS ≤70%', 'ok')}</td></tr>"
         for r in comp["top_10_competing_overlaps"][:5]
     )
-    return f'''<section class="hero"><div><p class="eyebrow">Executive Summary · WBG-3 (SPI-PMR-WCS-1)</p><h1>1m-LiDAR-free geophysics.<br><em>Verified, unique vs peers, stopped fairly.</em></h1><p class="lead"><strong>Download: YES. Submit: NO (no competition slot used).</strong> WBG-3 combines crustal Source-Parameter Local Wavenumber, FFT Poisson Magnetite-Destruction Residuals, 2D Riesz Monogenic Phase Congruency, and Fold-Safe Crack-Tip Wing-Crack Synthesis into 36,800 off-catalogue binary dots in portal-safe zeros mode.</p><div class="actions">{_link(f'{sub_prefix}how-to-submit.html', 'Open How-to-Submit subpage →', 'button secondary')}{_link(f'{sub_prefix}forensics-and-hypotheses.html', '0.2778 PhD forensics & 4 hypotheses →', 'text-link')}</div></div>{_download_card(w3, prefix=prefix)}</section>
+    return f'''<section class="hero"><div><p class="eyebrow">Executive Summary · WBG-3 (SPI-PMR-WCS-1)</p><h1>1m-LiDAR-free geophysics.<br><em>Verified, unique vs peers, stopped fairly.</em></h1><p class="lead"><strong>Download: YES. Submit: NO (no competition slot used).</strong> WBG-3 combines crustal Source-Parameter Local Wavenumber, FFT Poisson Magnetite-Destruction Residuals, 2D Riesz Monogenic Phase Congruency, and Fold-Safe Crack-Tip Wing-Crack Synthesis into 36,800 off-catalogue binary dots in portal-safe zeros mode.</p><div class="actions">{_link(f'{sub_prefix}how-to-submit.html', 'Open How-to-Submit subpage →', 'button secondary')}{_link(f'{sub_prefix}forensics-and-hypotheses.html', '0.2778 evidence review & 4 hypotheses →', 'text-link')}</div></div>{_download_card(w3, prefix=prefix)}</section>
 {_stop_banner(w3)}{_stats(w3)}
 <section class="section"><div class="section-heading"><div><span class="section-num">01 / EXECUTIVE SUBMISSION &amp; NINE-SITE DECISION TABLE</span><h2>File to download, estimated/measured score, uniqueness &amp; submit verdict</h2><p>Every score carries its mandatory protocol label; projections are never presented as leaderboard scores.</p></div>{_link(f'{sub_prefix}how-to-submit.html', 'Submission instructions →', 'text-link')}</div>{_master_table(w3, s2, h1, w2, c1, audit, prefix=prefix)}</section>
 <section class="section"><div class="section-heading"><div><span class="section-num">02 / 3-ARM PREREGISTERED ABLATION &amp; SPATIAL PREVIEW</span><h2>4/4 spatial-fold victory over 19-band control and WBG-2</h2><p>Evaluated via unchanged shared <code>SegmentHoldout</code> and <code>gems57.holdout</code>.</p></div>{_link(f'{prefix}data/wbg3-run-card.json', 'WBG-3 JSON Run Card ↗', 'text-link')}</div>
@@ -296,10 +298,10 @@ def _howto_body(w3, s2, h1, w2, c1, audit, *, prefix: str) -> str:
 {_stop_banner(w3)}
 <section class="content-section"><h2>1. Submission Decision Table — File to Download, Score, Uniqueness &amp; Submit Verdict</h2>
 {_master_table(w3, s2, h1, w2, c1, audit, prefix=prefix)}</section>
-<section class="content-section"><h2>2. Portal-Safe Zeros-Mode Validation (Eliminates DrivenData <code>[0, 1]</code> NaN Error)</h2>
-<div class="two-col">{_download_card(w3, prefix=prefix)}<article class="panel"><div class="panel-pad prose"><h3>Why zeros-mode is mandatory in our automated preflight</h3>
+<section class="content-section"><h2>2. Local Range / Format Preflight (Reported <code>[0, 1]</code> Error; Cause Unverified)</h2>
+<div class="two-col">{_download_card(w3, prefix=prefix)}<article class="panel"><div class="panel-pad prose"><h3>What the automated preflight establishes</h3>
 <ul>
-<li><strong>Portal error prevented:</strong> Uploading GeoTIFFs with <code>NaN</code> outside the study footprint has triggered DrivenData's whole-array check <code>"Predicted values must be in range [0, 1]"</code> because <code>NaN &gt;= 0</code> evaluates to <code>False</code>.</li>
+<li><strong>Reported portal error:</strong> “Predicted values must be in range [0, 1]”. Its precise cause was not established from an organizer receipt or reproducible portal response. This local preflight rejects NaN and infinity, but we do not claim they caused the reported error.</li>
 <li><strong>Shared writer guarantee:</strong> <code>WBG-3</code> was written via unchanged <code>scripts/submission_writer.py --outside zeros</code>, writing <code>0.0</code> float32 across all 7,111,787 exterior cells and <code>{{0.0, 1.0}}</code> across all 5,167,373 in-footprint cells (<code>nodata=None</code>, 0 NaN, 0 Inf across all 12,279,160 cells).</li>
 <li><strong>15/15 automatic checks in CI:</strong> Single-band <code>float32</code>, <code>EPSG:32611</code>, <code>(3730, 3292)</code>, exact 100 m geotransform <code>(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)</code>, 0 dots on mapped catalogue faults, and byte-identical single-member <code>.zip</code>. No human inspector is required.</li>
 </ul></div></article></div></section>
@@ -309,7 +311,12 @@ def _howto_body(w3, s2, h1, w2, c1, audit, *, prefix: str) -> str:
 <h3><span class="step-number">2</span> Run automated local validator on exact bytes</h3>
 <pre><code>.venv/bin/python scripts/validate_submission.py \\
   docs/downloads/{escape(w3_tif)}
-# Returns format_valid: true, portal_safe_local_policy: true, submission_authorized: false.</code></pre>
+# JSON: all_checks_passed=true, run_card_matches_exact_tiff=true,
+# promotion_verdict=negative, ok_to_submit=false. Format pass is not approval.
+
+# Strict fail-closed check: expected exit code 2 while this card is negative:
+.venv/bin/python scripts/validate_submission.py --require-submit-ready \\
+  docs/downloads/{escape(w3_tif)}</code></pre>
 <h3><span class="step-number">3</span> Check remaining weekly allowance on DrivenData</h3>
 <p>Official Rules PDF §3.4 allows up to 3 submissions per week. Log into <a href="{SUBMIT}">DrivenData Competition 306 → Submissions ↗</a> in your own browser to confirm remaining quota (never place credentials in chat or Git).</p>
 <h3><span class="step-number">4</span> Upload the exact <code>-zeros.tif</code> (or single-TIFF <code>.zip</code>) &amp; paste ≤140-char note</h3>
@@ -324,7 +331,7 @@ def _howto_body(w3, s2, h1, w2, c1, audit, *, prefix: str) -> str:
 
 def _forensics_body(w3: dict, *, prefix: str) -> str:
     sub_prefix = "wbg3/" if prefix == "" else ""
-    return f'''<section class="subhero"><div><p class="eyebrow">PhD Structural Forensics &amp; Hypothesis Queue</p><h1>Why <code>0.2778</code> won.<br><em>Why amplitude-invariant physics matters.</em></h1><p class="lead"><strong>Download: YES. Submit: NO — DO NOT SUBMIT · NO SELECTOR ELIGIBILITY.</strong> Complete mathematical proof of the nine-site <code>H19-5 → D2.8 → B1 → B2</code> lineage, analysis of <code>0.2778 / 0.3195 / 0.4413 / 0.4544</code>, and our four preregistered Basin-and-Range fault hypotheses (99.9946% literal r13 lattice witness; 100% WBG-C1 witness; no competition slot used).</p></div>{_pill('Research forensics · 0 slots', 'no')}</section>
+    return f'''<section class="subhero"><div><p class="eyebrow">Nine-Site Forensic Review &amp; Hypothesis Record</p><h1>What the <code>0.2778</code> record shows.<br><em>And what remains unknown.</em></h1><p class="lead"><strong>Download: YES. Submit: NO — DO NOT SUBMIT · NO SELECTOR ELIGIBILITY.</strong> Pixel-level lineage and score-provenance limits for the supplied GEMSDOE24/25/27/28/30/31/32/33/36 records, followed by previously preregistered research hypotheses. Historical score claims are not organizer receipts. No competition slot was used.</p></div>{_pill('Evidence review · 0 slots', 'no')}</section>
 {_stop_banner(w3)}
 {_forensics_and_hypotheses_blocks(w3)}
 <div class="actions">{_link(f'{sub_prefix}index.html', 'Back to WBG-3 executive summary →', 'button')}{_link(f'{sub_prefix}how-to-submit.html', 'How to submit subpage →', 'button secondary')}{_link(f'{prefix}data/wbg3-preregistration.json', 'Locked preregistration JSON ↗', 'text-link')}</div>'''
@@ -358,7 +365,7 @@ def build() -> None:
         encoding="utf-8",
     )
     (SUBDIR / "forensics-and-hypotheses.html").write_text(
-        _shell("forensics-and-hypotheses.html", "0.2778 forensics & hypotheses", _forensics_body(w3, prefix="../"), prefix="../"),
+        _shell("forensics-and-hypotheses.html", "0.2778 evidence review & hypotheses", _forensics_body(w3, prefix="../"), prefix="../"),
         encoding="utf-8",
     )
 

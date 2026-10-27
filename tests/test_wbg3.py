@@ -50,3 +50,45 @@ def test_wbg3_holdout_beats_prior_reproducible_detectors():
     card = json.loads((ROOT / "evidence/wbg3/run_card.json").read_text())
     assert card["holdout"]["dti"] > 0.13196  # Exp2, same evaluator
     assert card["holdout"]["dti"] < card["holdout"]["benchmark_s3dep1_dti"]  # gate not cleared
+
+
+def test_forensic_page_separates_pixel_lineage_from_score_causality():
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location("build_wbg3_site", ROOT / "scripts/build_wbg3_site.py")
+    builder = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(builder)
+    card = json.loads((ROOT / "evidence/wbg3_spipmr/run_card.json").read_text())
+    page = builder._forensics_body(card, prefix="../")
+    assert "pixel-level lineage" in page.lower()
+    assert "cannot establish which deleted pixels were false positives" in page
+    assert "USER-REPORTED / NOT ORGANIZER-CONFIRMED" in page
+    assert "no defensible conversion" in page.lower()
+    assert "accounting analytically" not in page
+    assert "82% of the denominator" not in page
+    assert "+22%" not in page and "+110%" not in page
+    assert "not identified here by organizer receipts tied to exact files" in page
+
+
+def test_upload_guide_does_not_claim_cause_of_reported_range_error():
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location("build_wbg3_site", ROOT / "scripts/build_wbg3_site.py")
+    builder = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(builder)
+    load = lambda name: json.loads((ROOT / name).read_text())
+    page = builder._howto_body(
+        load("evidence/wbg3_spipmr/run_card.json"),
+        load("evidence/wbg_s2/run_card.json"),
+        load("evidence/wbg_h1/run_card.json"),
+        load("evidence/wbg2/run_card.json"),
+        load("registry/run_card.json"),
+        load("evidence/nine_site_audit.json"),
+        prefix="../",
+    )
+    assert "Cause Unverified" in page
+    assert "we do not claim they caused the reported error" in page
+    assert "NaN &gt;= 0" not in page
+    assert "all_checks_passed=true" in page
+    assert "run_card_matches_exact_tiff=true" in page
+    assert "submission_authorized" not in page

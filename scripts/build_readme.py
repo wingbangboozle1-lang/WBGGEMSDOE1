@@ -33,7 +33,7 @@ def main():
 
 **[WBG-3 Executive Summary & Master Decision Table](docs/wbg3/index.html)** ·
 **[How to Submit Subpage](docs/wbg3/how-to-submit.html)** ·
-**[0.2778 PhD Forensics & 4 Hypotheses](docs/wbg3/forensics-and-hypotheses.html)** ·
+**[0.2778 Evidence Review & 4 Hypotheses](docs/wbg3/forensics-and-hypotheses.html)** ·
 [Download WBG-3 TIFF (research only)](docs/downloads/{w3_tif}) ·
 [WBG-3 ZIP](docs/downloads/{w3_zip}) ·
 [WBG-3 Run Card JSON](evidence/wbg3_spipmr/run_card.json) ·
@@ -124,7 +124,7 @@ was not obtained or credibly projected in this session.
 ## Parallel work preserved during integration
 
 - **[WBG-3 / SPI-PMR-WCS-1 (100% 1m-LiDAR-free & 10m-DEM-free)](docs/wbg3/index.html): DO NOT SUBMIT; no selector eligibility.**
-  [How-to-submit subpage](docs/wbg3/how-to-submit.html) · [0.2778 PhD forensics & 4 hypotheses](docs/wbg3/forensics-and-hypotheses.html) ·
+  [How-to-submit subpage](docs/wbg3/how-to-submit.html) · [0.2778 evidence review & 4 hypotheses](docs/wbg3/forensics-and-hypotheses.html) ·
   [Research TIFF](docs/downloads/{w3_tif}) · [ZIP](docs/downloads/{w3_zip}) ·
   [run card](evidence/wbg3_spipmr/run_card.json) · [209-raster uniqueness audit](evidence/wbg3_spipmr/uniqueness_audit.json) ·
   [40-feature leakage canary](evidence/wbg3_spipmr/leakage_canary.json) · [preregistration](registry/wbg3_preregistration.json).

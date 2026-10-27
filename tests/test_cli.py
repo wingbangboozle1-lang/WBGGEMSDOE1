@@ -56,6 +56,19 @@ def test_wbg2_exact_bytes_are_recognized_as_locked_negative(suffix, flags, code)
     assert report["known_negative_registry_overlap"] == pytest.approx(.9989722222222223)
 
 
+@pytest.mark.parametrize("suffix,flags,code", [(".tif", (), 0), (".zip", (), 0),
+    (".tif", ("--require-submit-ready",), 2), (".zip", ("--require-submit-ready",), 2)])
+def test_wbg3_spipmr_exact_bytes_are_recognized_as_locked_negative(suffix, flags, code):
+    card = json.loads((ROOT / "evidence/wbg3_spipmr/run_card.json").read_text())
+    result = cli((ROOT / card["artifact"]).with_suffix(suffix), *flags)
+    assert result.returncode == code, result.stderr
+    report = json.loads(result.stdout)
+    assert report["all_checks_passed"] and report["run_card_matches_exact_tiff"]
+    assert report["run_card_path"] == "evidence/wbg3_spipmr/run_card.json"
+    assert report["promotion_verdict"] == "negative" and not report["ok_to_submit"]
+    assert report["sha256"] == card["raster_sha256"]
+
+
 @pytest.mark.parametrize("kind", ["garbage_tiff", "bad_zip", "two_tiffs", "non_tiff", "wrong_extension"])
 def test_cli_malformed_inputs_fail_closed_with_machine_readable_error(tmp_path, kind):
     path = tmp_path / ("bad.zip" if kind in ("bad_zip", "two_tiffs", "non_tiff") else "bad.txt" if kind == "wrong_extension" else "bad.tif")

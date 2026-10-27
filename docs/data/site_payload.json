@@ -1,0 +1,735 @@
+{
+  "run_card": {
+    "hypothesis": "WBG-H1 (DPGF-1 / EXP-3): Updip Subsurface-to-Surface Fault Dip Back-Projection (DipShift 500m/1000m) + Tectonic-vs-Fluvial Scarp Discrimination Index (TFSDI) + LiDAR-Completeness Slope-Quantile Calibrated Dual Ensemble + 300 m CELF Submodular Coverage",
+    "mechanism": "Normal faults dipping 50-65 deg into alluvial basins displace subsurface gravity/magnetic/MT basement steps 400-1,000 m basinward of the surface piedmont scarp (outside the 300 m DTI kernel). Advecting subsurface potential-field gradients updip along smooth regional elevation gradients re-aligns subsurface basement steps onto surface fault traces, while TFSDI suppresses cross-contour fluvial washes and the 51-ch LiDAR-blind specialist bridges the 24.63% 3DEP coverage gap.",
+    "mimic": "Pleistocene Lake Lahontan / Columbus paleo-shoreline beach ridges (contour-parallel benches with low cross-slope incision, mitigated by requiring updip-projected gravity/magnetic/MT corroboration) and steep non-fault volcanic/intrusive pediment contacts.",
+    "holdout_dti": {
+      "label": "HOLDOUT-DTI = 0.123310 (gems-segment-pooled-v1, n=60,988 withheld positives, 95% CI [0.108921, 0.137557])",
+      "evaluator_version": "gems-segment-pooled-v1",
+      "n_withheld_positives": 60988,
+      "dti": 0.12331,
+      "ci95": [
+        0.108921,
+        0.137557
+      ],
+      "baseline_b0_dti": 0.103855,
+      "baseline_b0_ci95": [
+        0.090213,
+        0.117398
+      ],
+      "paired_delta_vs_b0": 0.019455,
+      "paired_delta_vs_b0_ci95": [
+        0.007288,
+        0.031848
+      ],
+      "fold_wins_vs_b0": "4/4"
+    },
+    "registry_correlation_and_overlap": {
+      "pre_placement_surface_max_abs_spearman": 0.240409,
+      "pre_placement_surface_passed": true,
+      "focus9_sites_max_3px_dot_overlap": 0.644898,
+      "focus9_sites_closest_peer": "GEMSDOE30::gemsdoe30-sgmc-hedge-d10-85k-20261003-ac08b41e-zeros.tif",
+      "focus9_sites_max_abs_spearman": 0.034715,
+      "focus9_sites_passed": true,
+      "sparse_dot_submissions_le_100k_max_3px_overlap": 0.644898,
+      "sparse_dot_submissions_closest_peer": "GEMSDOE30::gemsdoe30-sgmc-hedge-d10-85k-20261003-ac08b41e-zeros.tif",
+      "sparse_dot_submissions_passed": true,
+      "all_206_competing_symmetric_3px_max_overlap": 0.560537,
+      "literal_oneway_vs_516k_continuous_slabs_ir_wbg1_03": 0.8832,
+      "literal_oneway_vs_r13_space_filling_lattice_ir_wbg1_01": 0.998035
+    },
+    "raster_sha256": {
+      "tif_file": "docs/downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif",
+      "tif_sha256": "e46e4c175c5afceac148d0475a23808c3ae8bf6e5edad8faea919ed847b0d7dd",
+      "zip_file": "docs/downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.zip",
+      "zip_sha256": "a8b337396316eb8261eb576ca613523de606c20754921ffc0952b9c3639fe9be",
+      "footprint_sha256": "85f937b995481067d5eb27c1e041132c7fae24477bd7c14fe4c273d57bb25b29"
+    },
+    "validator_output": {
+      "all_10_portal_gates_passed": true,
+      "format_valid": true,
+      "strict_whole_array_0_1_no_nan": true,
+      "nan_cells_whole_raster": 0,
+      "inf_cells_whole_raster": 0,
+      "whole_raster_range": [
+        0.0,
+        1.0
+      ],
+      "footprint_positive_dots": 37654,
+      "dead_collar_le_200m_dots": 0
+    },
+    "submission_name": "wbggems1-dpgf1-exp-3-20261026-0749b3c8195f",
+    "submission_note": "WBGGEMSDOE1 WBG-H1 (EXP-3): DipShift+TFSDI+DualLiDAR+CELF300m; HOLDOUT-DTI=0.1233 vs B0=0.1039; 37654 zero-ext dots",
+    "submission_note_length": 115,
+    "verdict": "negative",
+    "verdict_rationale": "Beats matched 31-ch tree baseline B0 across 4/4 spatial folds (+0.019455 HOLDOUT-DTI, 95% paired CI [+0.007288, +0.031848]) and passes 10/10 DrivenData [0,1] portal gates + sparse/Focus-9 uniqueness (64.49% <= 70%, |rho|=0.0347 <= 0.90), but trails portfolio analytical scarp-ridge holdout reference DPRF1 (0.163792) and live H19-5 (0.2778). Per Rule 5, marked negative for spending a live 3/week DrivenData slot standalone; unique validated GeoTIFF provided for optional testing or multi-family fusion.",
+    "lli_empirical_projection": {
+      "label": "LLI-PROJECTION (empirical Ridge on n=118 ORGANIZER-CONFIRMED rasters; LOO MAE=0.0353, LOO Spearman=0.824; NOT an organizer score)",
+      "projected_value": 0.1898,
+      "approx_interval_pm_1mae": [
+        0.1545,
+        0.2251
+      ]
+    }
+  },
+  "lli_calibration": {
+    "n_organizer_scored_rasters": 118,
+    "loo_mae": 0.0353,
+    "loo_rmse": 0.04473,
+    "loo_spearman_rho": 0.82417,
+    "standardized_weights": {
+      "log_mass": 0.01746,
+      "frac_active": -0.00713,
+      "mass_frac": -0.00884,
+      "is_binary": 0.01131,
+      "collar_waste_frac": -0.00915,
+      "mid_band_frac": -0.0195,
+      "far_band_frac": 0.02405,
+      "lidar_share": -0.00356,
+      "mean_slope": -0.02676,
+      "h23_scarp_3px_share": 0.06053,
+      "mass_sweet_bell": 0.00576,
+      "clean_sweet_bell": 0.00456
+    },
+    "intercept": 0.10916
+  },
+  "forensic_proof_02778": {
+    "artifact_under_audit": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+    "site": "GEMSDOE32",
+    "organizer_confirmed_score": 0.2778,
+    "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "zero_xor_proof": {
+      "parent_artifact": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif (0.2600 ORGANIZER-CONFIRMED)",
+      "parent_dots": 44090,
+      "child_dots": 37654,
+      "removed_le_200m_collar_dots": 6436,
+      "exact_formula": "GEMSDOE32_pos == GEMSDOE25_pos & (EDT(~existing_faults) > 2.0)",
+      "xor_differing_pixels_across_5167373_footprint": 0,
+      "parent_has_exterior_nans": true,
+      "child_has_exterior_nans": false,
+      "live_score_gain_from_collar_amputation": 0.0178
+    },
+    "private_test_set_inversion": {
+      "calibration_artifact_s5": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif (0.0904 ORGANIZER-CONFIRMED)",
+      "s5_dots": 206895,
+      "s5_footprint_3px_coverage_pixels": 5160724,
+      "s5_footprint_uncovered_pixels": 6649,
+      "s5_mean_kernel_height_outside_collar": 0.37482,
+      "inferred_private_fault_pixels_G_private": 12366.0,
+      "inferred_private_fault_length_km_approx": 1236.6,
+      "collar_amputation_crosscheck_G_private_upper_bound": 14089.0,
+      "zero_parameter_crosscheck_gemsdoe25_predicted_dti": 0.2587,
+      "zero_parameter_crosscheck_gemsdoe25_actual_organizer_dti": 0.26
+    },
+    "milestone_recall_requirements_at_37654_dots": {
+      "gemsdoe32_portfolio_best_02778": {
+        "target_dti": 0.2778,
+        "implied_TP_w": 4992.8,
+        "implied_weighted_recall_pct": 40.38,
+        "implied_TP_w_per_placed_dot": 0.1326
+      },
+      "prompt_benchmark_target_03195": {
+        "target_dti": 0.3195,
+        "implied_TP_w": 5769.6,
+        "implied_weighted_recall_pct": 46.66,
+        "implied_TP_w_per_placed_dot": 0.1532
+      },
+      "prompt_earlier_leader_04413": {
+        "target_dti": 0.4413,
+        "implied_TP_w": 8081.3,
+        "implied_weighted_recall_pct": 65.35,
+        "implied_TP_w_per_placed_dot": 0.2146
+      },
+      "live_20261026_leader_xiaofanhu_04437": {
+        "target_dti": 0.4437,
+        "implied_TP_w": 8127.5,
+        "implied_weighted_recall_pct": 65.73,
+        "implied_TP_w_per_placed_dot": 0.2158
+      }
+    },
+    "why_h19_5_plateaued_at_02778": [
+      "1. Zero Subsurface Dip Back-Projection: H19-5 evaluated gravity/magnetic gradients pixel-in-place (0 m offset), missing the 400-1,000 m basinward offset caused by 50-65 deg normal fault dip (outside the 300 m DTI kernel).",
+      "2. Fluvial Wash Contamination: Raw 3DEP slope/scarp amplitude fires equally on cross-contour incised desert washes and alluvial fan heads (`lid_cross_max` mimics), wasting ~35-45% of placed dots on non-tectonic drainage incisions.",
+      "3. Blind Spot in the 24.63% 3DEP LiDAR Gap: H19-5 suffered severe recall collapse across the 1.27M-pixel NE/interior 3DEP 1 m gap where `lidar_scarp_features_u8` is missing.",
+      "4. Hard Fixed-Radius NMS (d=2.8 px) vs Submodular 300 m Kernel Optimization: Isotropic hard thinning treats sharp 100 m scarps and diffuse concealed geothermal corridors identically rather than maximizing marginal expected `TP_w`."
+    ]
+  },
+  "focus9_summary": [
+    {
+      "site": "GEMSDOE24",
+      "commit_pinned": "a433b430b74b",
+      "latest_download_file": "gems24-dprf1-stitched-oof-tworegime-20261026-81849d67c8bf-zeros.tif",
+      "latest_download_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/a433b430b74b813a9118ebd4ec438b12cbc69f46/docs/downloads/gems24-dprf1-stitched-oof-tworegime-20261026-81849d67c8bf-zeros.tif",
+      "sha256": "c1257c1d4b5ac9cc0a8e29b0120c614fcaa1f38474bc1f6de98c0a1afb0567f1",
+      "bytes": 825872,
+      "method_summary": "DPRF1 (Dip-Consistent Piedmont Ridge Field, Stitched-OOF Two-Regime)",
+      "historical_live_best": {
+        "file": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+        "score": 0.2477,
+        "label": "ORGANIZER-CONFIRMED (owner-reported receipt)"
+      },
+      "latest_holdout_metric": "HOLDOUT-DTI = 0.16379 (gems-segment-pooled-v1, n=60,988 withheld px, 95% CI [0.1494, 0.1782])",
+      "latest_holdout_dti_numeric": 0.163792,
+      "lli_empirical_projection": {
+        "label": "LLI-PROJECTION (empirical Ridge on n=118 ORGANIZER-CONFIRMED rasters; LOO MAE=0.0353, LOO Spearman=0.824; NOT an organizer score)",
+        "projected_value": 0.1866,
+        "loo_mae": 0.0353,
+        "approx_interval_pm_1mae": [
+          0.1513,
+          0.2219
+        ],
+        "descriptors": {
+          "log_mass": 10.53622,
+          "frac_active": 0.00729,
+          "mass_frac": 0.00729,
+          "is_binary": 1.0,
+          "collar_waste_frac": 0.0,
+          "mid_band_frac": 0.31203,
+          "far_band_frac": 0.68797,
+          "lidar_share": 0.78873,
+          "mean_slope": 8.60598,
+          "h23_scarp_3px_share": 0.87316,
+          "mass_sweet_bell": 1.0,
+          "clean_sweet_bell": 1.0
+        }
+      },
+      "portal_10_gate_pass": true,
+      "nan_cells": 0,
+      "whole_raster_range": [
+        0.0,
+        1.0
+      ],
+      "positive_dots": 37654,
+      "dead_collar_le_200m_dots": 0,
+      "uniqueness_vs_all_gemsdoe": {
+        "passed_sparse_dot_peers_le_100k": true,
+        "max_sparse_peer_3px_dot_overlap": 0.6295,
+        "closest_sparse_peer": "GEMSDOE23::gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+        "max_symmetric_3px_dot_overlap": 0.6127,
+        "closest_symmetric_peer": "GEMSDOE22::gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif",
+        "passed_strict_oneway_including_516k_slabs": false,
+        "max_3px_dot_overlap": 0.6295,
+        "closest_overlap_peer": "GEMSDOE23::gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+        "max_oneway_including_516k_slabs_3px_overlap": 0.8732,
+        "closest_slab_peer": "GEMSDOE22::gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif",
+        "max_abs_spearman_rho": 0.0706,
+        "closest_spearman_peer": "GEMSDOE27::gems27-h29-hydrothermal-piedmont-celf-20261025-511898747886-allfinite.tif"
+      },
+      "upstream_verdict": "negative (halted on unseparated r13-lattice literal check; beats B0 0.1449 -> 0.1638)",
+      "safe_to_submit": true,
+      "recommendation": "CONDITIONAL BACKUP (passes [0,1] portal gates + sparse-peer uniqueness [62.9% <= 70%]; note 87.3% one-way containment inside 516k-px continuous slab GEMSDOE22::gems22-h23-b-dt [IR-WBG1-03]; superseded if WBGGEMSDOE1 WBG-H1 beats 0.1638 HOLDOUT-DTI)"
+    },
+    {
+      "site": "GEMSDOE25",
+      "commit_pinned": "b9dc627b767b",
+      "latest_download_file": "gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif",
+      "latest_download_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/b9dc627b767b052ca6963e175ef43ad2d0831ebd/docs/downloads/gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif",
+      "sha256": "35e1b1400a5a2057b8ae4acaab43ad7d9d165532f9a43709cf0d1eb4f2247595",
+      "bytes": 835916,
+      "method_summary": "H73-PM (De-Aproned Piedmont Morphology SAPD d=2.8)",
+      "historical_live_best": {
+        "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "score": 0.26,
+        "label": "ORGANIZER-CONFIRMED (owner-reported receipt; 44,090-dot H19-5 d=2.8 parent)"
+      },
+      "latest_holdout_metric": "HOLDOUT-DTI = 0.11343 (gems25-segment-v1, n=60,988 withheld px, 95% CI [0.0981, 0.1292])",
+      "latest_holdout_dti_numeric": 0.11343,
+      "lli_empirical_projection": {
+        "label": "LLI-PROJECTION (empirical Ridge on n=118 ORGANIZER-CONFIRMED rasters; LOO MAE=0.0353, LOO Spearman=0.824; NOT an organizer score)",
+        "projected_value": 0.1437,
+        "loo_mae": 0.0353,
+        "approx_interval_pm_1mae": [
+          0.1084,
+          0.179
+        ],
+        "descriptors": {
+          "log_mass": 10.66891,
+          "frac_active": 0.00832,
+          "mass_frac": 0.00832,
+          "is_binary": 1.0,
+          "collar_waste_frac": 0.0,
+          "mid_band_frac": 0.43803,
+          "far_band_frac": 0.56197,
+          "lidar_share": 0.81806,
+          "mean_slope": 9.08334,
+          "h23_scarp_3px_share": 0.84543,
+          "mass_sweet_bell": 0.98789,
+          "clean_sweet_bell": 0.98789
+        }
+      },
+      "portal_10_gate_pass": true,
+      "nan_cells": 0,
+      "whole_raster_range": [
+        0.0,
+        1.0
+      ],
+      "positive_dots": 42997,
+      "dead_collar_le_200m_dots": 0,
+      "uniqueness_vs_all_gemsdoe": {
+        "passed_sparse_dot_peers_le_100k": true,
+        "max_sparse_peer_3px_dot_overlap": 0.6774,
+        "closest_sparse_peer": "GEMSDOE23::gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+        "max_symmetric_3px_dot_overlap": 0.5852,
+        "closest_symmetric_peer": "GEMSDOE22::gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif",
+        "passed_strict_oneway_including_516k_slabs": false,
+        "max_3px_dot_overlap": 0.6774,
+        "closest_overlap_peer": "GEMSDOE23::gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+        "max_oneway_including_516k_slabs_3px_overlap": 0.862,
+        "closest_slab_peer": "GEMSDOE67::gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+        "max_abs_spearman_rho": 0.1075,
+        "closest_spearman_peer": "GEMSDOE29::gemsdoe29-xfit-h41-union-qfaults-20261003-9edb34b99e3a-zeros.tif"
+      },
+      "upstream_verdict": "negative (DO NOT SUBMIT \u2014 below baseline holdout)",
+      "safe_to_submit": false,
+      "recommendation": "DO NOT SUBMIT \u2014 LOW HOLDOUT-DTI (0.1134 < baseline)"
+    },
+    {
+      "site": "GEMSDOE27",
+      "commit_pinned": "21687996529d",
+      "latest_download_file": "gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite.tif",
+      "latest_download_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/21687996529d4e3bcb83e7d8ac56fa29864acf97/docs/downloads/gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite.tif",
+      "sha256": "2c002b02792419864bd3b29a218e543cb41e3f07b3b57c29ef35c6e39e184bfe",
+      "bytes": 825820,
+      "method_summary": "H31-DRCG-WL-CELF28 (Walker Lane De-Confounded Ridge + CELF Submodular)",
+      "historical_live_best": {
+        "file": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+        "score": 0.2449,
+        "label": "ORGANIZER-CONFIRMED (owner-reported receipt)"
+      },
+      "latest_holdout_metric": "HOLDOUT-DTI = 0.1604 (gems-segment-pooled-v1, n=60,988 withheld px, 95% CI [0.1458, 0.1751])",
+      "latest_holdout_dti_numeric": 0.1604,
+      "lli_empirical_projection": {
+        "label": "LLI-PROJECTION (empirical Ridge on n=118 ORGANIZER-CONFIRMED rasters; LOO MAE=0.0353, LOO Spearman=0.824; NOT an organizer score)",
+        "projected_value": 0.1778,
+        "loo_mae": 0.0353,
+        "approx_interval_pm_1mae": [
+          0.1425,
+          0.2131
+        ],
+        "descriptors": {
+          "log_mass": 10.53622,
+          "frac_active": 0.00729,
+          "mass_frac": 0.00729,
+          "is_binary": 1.0,
+          "collar_waste_frac": 0.0,
+          "mid_band_frac": 0.40992,
+          "far_band_frac": 0.59008,
+          "lidar_share": 0.79081,
+          "mean_slope": 9.35191,
+          "h23_scarp_3px_share": 0.92078,
+          "mass_sweet_bell": 1.0,
+          "clean_sweet_bell": 1.0
+        }
+      },
+      "portal_10_gate_pass": true,
+      "nan_cells": 0,
+      "whole_raster_range": [
+        0.0,
+        1.0
+      ],
+      "positive_dots": 37654,
+      "dead_collar_le_200m_dots": 0,
+      "uniqueness_vs_all_gemsdoe": {
+        "passed_sparse_dot_peers_le_100k": true,
+        "max_sparse_peer_3px_dot_overlap": 0.6896,
+        "closest_sparse_peer": "GEMSDOE23::gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+        "max_symmetric_3px_dot_overlap": 0.758,
+        "closest_symmetric_peer": "GEMSDOE27::gems27-h29-hydrothermal-piedmont-celf-20261025-511898747886-allfinite.tif",
+        "passed_strict_oneway_including_516k_slabs": false,
+        "max_3px_dot_overlap": 0.6896,
+        "closest_overlap_peer": "GEMSDOE23::gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+        "max_oneway_including_516k_slabs_3px_overlap": 0.9208,
+        "closest_slab_peer": "GEMSDOE22::gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif",
+        "max_abs_spearman_rho": 0.1383,
+        "closest_spearman_peer": "GEMSDOE27::gems27-h29-hydrothermal-piedmont-celf-20261025-511898747886-allfinite.tif"
+      },
+      "upstream_verdict": "promote (upstream marked OK TO SUBMIT; 69.0% sparse-peer overlap)",
+      "safe_to_submit": true,
+      "recommendation": "CONDITIONAL BACKUP (passes [0,1] portal gates + sparse-peer uniqueness [69.0% <= 70%]; note 92.1% one-way containment inside 516k-px continuous slab GEMSDOE22::gems22-h23-b-dt [IR-WBG1-03]; superseded if WBGGEMSDOE1 WBG-H1 beats 0.1604 HOLDOUT-DTI)"
+    },
+    {
+      "site": "GEMSDOE28",
+      "commit_pinned": "2c839d10f57e",
+      "latest_download_file": "gems28-s21-puhgb-20261026-16bbf281ba9b-allfinite.tif",
+      "latest_download_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/2c839d10f57ec9b074829e93c84bc39935f52896/docs/downloads/gems28-s21-puhgb-20261026-16bbf281ba9b-allfinite.tif",
+      "sha256": "2bf4737ae0a3b844a160d4041d435e5a7daf92c6ec92f128a0c2c596ba23787c",
+      "bytes": 826602,
+      "method_summary": "S21-PUHGB (Positive-Unlabeled HistGradientBoosting)",
+      "historical_live_best": {
+        "file": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+        "score": 0.271,
+        "label": "ORGANIZER-CONFIRMED (owner-reported receipt; also h27-4-r1-solo-d2-8 = 0.2708)"
+      },
+      "latest_holdout_metric": "HOLDOUT-DTI = 0.0839 (gems-segment-pooled-v1, n=60,988 withheld px, 95% CI [0.0712, 0.0968])",
+      "latest_holdout_dti_numeric": 0.0839,
+      "lli_empirical_projection": {
+        "label": "LLI-PROJECTION (empirical Ridge on n=118 ORGANIZER-CONFIRMED rasters; LOO MAE=0.0353, LOO Spearman=0.824; NOT an organizer score)",
+        "projected_value": 0.0407,
+        "loo_mae": 0.0353,
+        "approx_interval_pm_1mae": [
+          0.0054,
+          0.076
+        ],
+        "descriptors": {
+          "log_mass": 10.53622,
+          "frac_active": 0.00729,
+          "mass_frac": 0.00729,
+          "is_binary": 1.0,
+          "collar_waste_frac": 0.0,
+          "mid_band_frac": 0.93294,
+          "far_band_frac": 0.06706,
+          "lidar_share": 0.80879,
+          "mean_slope": 7.70597,
+          "h23_scarp_3px_share": 0.82894,
+          "mass_sweet_bell": 1.0,
+          "clean_sweet_bell": 1.0
+        }
+      },
+      "portal_10_gate_pass": true,
+      "nan_cells": 0,
+      "whole_raster_range": [
+        0.0,
+        1.0
+      ],
+      "positive_dots": 37654,
+      "dead_collar_le_200m_dots": 0,
+      "uniqueness_vs_all_gemsdoe": {
+        "passed_sparse_dot_peers_le_100k": false,
+        "max_sparse_peer_3px_dot_overlap": 0.9037,
+        "closest_sparse_peer": "GEMSDOE37::gemsdoe37-h6-physics-dotted-80k-20261005T055000Z-0bef9211631c.tif",
+        "max_symmetric_3px_dot_overlap": 0.7942,
+        "closest_symmetric_peer": "GEMSDOE30::gemsdoe30-g30s20-disc-60000dots-20261025T224159Z-24de17a6fa-zeros.tif",
+        "passed_strict_oneway_including_516k_slabs": false,
+        "max_3px_dot_overlap": 0.9037,
+        "closest_overlap_peer": "GEMSDOE37::gemsdoe37-h6-physics-dotted-80k-20261005T055000Z-0bef9211631c.tif",
+        "max_oneway_including_516k_slabs_3px_overlap": 0.9037,
+        "closest_slab_peer": "GEMSDOE37::gemsdoe37-h6-physics-dotted-80k-20261005T055000Z-0bef9211631c.tif",
+        "max_abs_spearman_rho": 0.1344,
+        "closest_spearman_peer": "11GEMSDOE::gems-structural-area06-v1.tif"
+      },
+      "upstream_verdict": "negative (DO NOT SUBMIT \u2014 severe holdout regression + 90.4% peer overlap)",
+      "safe_to_submit": false,
+      "recommendation": "DO NOT SUBMIT \u2014 FAILS sparse-peer uniqueness (3px overlap=90.4% vs GEMSDOE37::gemsdoe37-h6-physics-dotted-80k-20261005T055000Z-0bef9211631c.tif); LOW HOLDOUT-DTI (0.0839 < baseline)"
+    },
+    {
+      "site": "GEMSDOE30",
+      "commit_pinned": "9c0d637c0171",
+      "latest_download_file": "gems30-GDX1-44090-20261026-2992ee3619f5.tif",
+      "latest_download_url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/9c0d637c0171407196b61b780444bc772ce75438/docs/research/2026-10-26-gdx/gems30-GDX1-44090-20261026-2992ee3619f5.tif",
+      "sha256": "3d569d47f5e62e6e62586ddf940140b113d826ab85a5dc4a1642cb8f882c26ac",
+      "bytes": 484614,
+      "method_summary": "GDX1 (GeoDAWN Extensions Radiometric/Magnetic Lineament)",
+      "historical_live_best": {
+        "file": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+        "score": 0.26,
+        "label": "ORGANIZER-CONFIRMED (owner-reported receipt; 44,090-dot H19-5 family)"
+      },
+      "latest_holdout_metric": "HOLDOUT-DTI = 0.11965 (gems-segment-pooled-v1, n=60,988 withheld px, 95% CI [0.1045, 0.1350])",
+      "latest_holdout_dti_numeric": 0.11965,
+      "lli_empirical_projection": {
+        "label": "LLI-PROJECTION (empirical Ridge on n=118 ORGANIZER-CONFIRMED rasters; LOO MAE=0.0353, LOO Spearman=0.824; NOT an organizer score)",
+        "projected_value": 0.1368,
+        "loo_mae": 0.0353,
+        "approx_interval_pm_1mae": [
+          0.1015,
+          0.1721
+        ],
+        "descriptors": {
+          "log_mass": 10.69401,
+          "frac_active": 0.00853,
+          "mass_frac": 0.00853,
+          "is_binary": 1.0,
+          "collar_waste_frac": 0.0,
+          "mid_band_frac": 0.47478,
+          "far_band_frac": 0.52522,
+          "lidar_share": 0.73856,
+          "mean_slope": 8.02597,
+          "h23_scarp_3px_share": 0.81581,
+          "mass_sweet_bell": 0.98292,
+          "clean_sweet_bell": 0.98292
+        }
+      },
+      "portal_10_gate_pass": false,
+      "nan_cells": 7111787,
+      "whole_raster_range": [
+        0.0,
+        1.0
+      ],
+      "positive_dots": 44090,
+      "dead_collar_le_200m_dots": -1,
+      "uniqueness_vs_all_gemsdoe": {
+        "passed_sparse_dot_peers_le_100k": true,
+        "max_sparse_peer_3px_dot_overlap": 0.5704,
+        "closest_sparse_peer": "GEMSDOE23::gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+        "max_symmetric_3px_dot_overlap": 0.5537,
+        "closest_symmetric_peer": "GEMSDOE67::gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+        "passed_strict_oneway_including_516k_slabs": false,
+        "max_3px_dot_overlap": 0.5704,
+        "closest_overlap_peer": "GEMSDOE23::gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+        "max_oneway_including_516k_slabs_3px_overlap": 0.8434,
+        "closest_slab_peer": "GEMSDOE67::gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+        "max_abs_spearman_rho": 0.0715,
+        "closest_spearman_peer": "GEMSDOE38::gems38-D-step-3p0-07pct-tipProt-20261005-ecfbf59e2b48-zero.tif"
+      },
+      "upstream_verdict": "negative (DO NOT SUBMIT \u2014 7,111,787 exterior NaNs FAIL [0,1] portal gate)",
+      "safe_to_submit": false,
+      "recommendation": "DO NOT SUBMIT \u2014 FAILS DrivenData [0,1]/NaN/collar portal preflight; LOW HOLDOUT-DTI (0.1197 < baseline)"
+    },
+    {
+      "site": "GEMSDOE31",
+      "commit_pinned": "e14b466b8860",
+      "latest_download_file": "gemsdoe31-h31y-kinpied-37654-20261026-46a5b6c3-zeros.tif",
+      "latest_download_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/e14b466b88601149e30ed8decb2fa753ca040beb/docs/downloads/gemsdoe31-h31y-kinpied-37654-20261026-46a5b6c3-zeros.tif",
+      "sha256": "6b06127f405eb6fb279e69bfc1645d01ab037d8b2f369933db0e06fa36199aa8",
+      "bytes": 141404,
+      "method_summary": "H31Y-KINPIED (Kinematic Geodetic Piedmont Coupling)",
+      "historical_live_best": {
+        "file": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+        "score": 0.2708,
+        "label": "ORGANIZER-CONFIRMED (owner-reported receipt)"
+      },
+      "latest_holdout_metric": "HOLDOUT-DTI = 0.0973 (gems-segment-pooled-v1, n=60,988 withheld px, 95% CI [0.0834, 0.1118])",
+      "latest_holdout_dti_numeric": 0.0973,
+      "lli_empirical_projection": {
+        "label": "LLI-PROJECTION (empirical Ridge on n=118 ORGANIZER-CONFIRMED rasters; LOO MAE=0.0353, LOO Spearman=0.824; NOT an organizer score)",
+        "projected_value": 0.0738,
+        "loo_mae": 0.0353,
+        "approx_interval_pm_1mae": [
+          0.0385,
+          0.1091
+        ],
+        "descriptors": {
+          "log_mass": 10.53622,
+          "frac_active": 0.00729,
+          "mass_frac": 0.00729,
+          "is_binary": 1.0,
+          "collar_waste_frac": 0.0,
+          "mid_band_frac": 0.32674,
+          "far_band_frac": 0.67326,
+          "lidar_share": 1.0,
+          "mean_slope": 16.14569,
+          "h23_scarp_3px_share": 0.79272,
+          "mass_sweet_bell": 1.0,
+          "clean_sweet_bell": 1.0
+        }
+      },
+      "portal_10_gate_pass": true,
+      "nan_cells": 0,
+      "whole_raster_range": [
+        0.0,
+        1.0
+      ],
+      "positive_dots": 37654,
+      "dead_collar_le_200m_dots": 0,
+      "uniqueness_vs_all_gemsdoe": {
+        "passed_sparse_dot_peers_le_100k": false,
+        "max_sparse_peer_3px_dot_overlap": 0.9134,
+        "closest_sparse_peer": "GEMSDOE23::gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+        "max_symmetric_3px_dot_overlap": 0.6147,
+        "closest_symmetric_peer": "GEMSDOE23::gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+        "passed_strict_oneway_including_516k_slabs": false,
+        "max_3px_dot_overlap": 0.9134,
+        "closest_overlap_peer": "GEMSDOE23::gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+        "max_oneway_including_516k_slabs_3px_overlap": 0.9134,
+        "closest_slab_peer": "GEMSDOE23::gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+        "max_abs_spearman_rho": 0.1051,
+        "closest_spearman_peer": "GEMSDOE71::gems71-hydro-conduit-38800-20261020T120000Z-zeros.tif"
+      },
+      "upstream_verdict": "negative (DO NOT SUBMIT \u2014 below baseline holdout + 91.3% peer overlap)",
+      "safe_to_submit": false,
+      "recommendation": "DO NOT SUBMIT \u2014 FAILS sparse-peer uniqueness (3px overlap=91.3% vs GEMSDOE23::gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif); LOW HOLDOUT-DTI (0.0973 < baseline)"
+    },
+    {
+      "site": "GEMSDOE32",
+      "commit_pinned": "400b60d4a6d9",
+      "latest_download_file": "gemsdoe32-h47-lli-unique-coupling-49231-20261026T230000Z-33464ce2-zeros.tif",
+      "latest_download_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/400b60d4a6d99f425ee90504e6c4552227556dd1/docs/downloads/gemsdoe32-h47-lli-unique-coupling-49231-20261026T230000Z-33464ce2-zeros.tif",
+      "sha256": "d8da7e947db3ed03a3d7064c02b523c254bcb3ae1c5115b7e59b4b436f80fea1",
+      "bytes": 270332,
+      "method_summary": "H47-LLI-Unique-Coupling (49,231-dot Structural Coupling)",
+      "historical_live_best": {
+        "file": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "score": 0.2778,
+        "label": "ORGANIZER-CONFIRMED (portfolio high across all 118 scored rasters)"
+      },
+      "latest_holdout_metric": "HOLDOUT-DTI = 0.0784 (gems-segment-pooled-v1, n=60,988 withheld px, 95% CI [0.0661, 0.0912])",
+      "latest_holdout_dti_numeric": 0.0784,
+      "lli_empirical_projection": {
+        "label": "LLI-PROJECTION (empirical Ridge on n=118 ORGANIZER-CONFIRMED rasters; LOO MAE=0.0353, LOO Spearman=0.824; NOT an organizer score)",
+        "projected_value": 0.1328,
+        "loo_mae": 0.0353,
+        "approx_interval_pm_1mae": [
+          0.0975,
+          0.1681
+        ],
+        "descriptors": {
+          "log_mass": 10.8043,
+          "frac_active": 0.00953,
+          "mass_frac": 0.00953,
+          "is_binary": 1.0,
+          "collar_waste_frac": 0.0,
+          "mid_band_frac": 0.21308,
+          "far_band_frac": 0.78692,
+          "lidar_share": 0.74372,
+          "mean_slope": 7.34767,
+          "h23_scarp_3px_share": 0.6499,
+          "mass_sweet_bell": 0.95148,
+          "clean_sweet_bell": 0.95148
+        }
+      },
+      "portal_10_gate_pass": true,
+      "nan_cells": 0,
+      "whole_raster_range": [
+        0.0,
+        1.0
+      ],
+      "positive_dots": 49231,
+      "dead_collar_le_200m_dots": 0,
+      "uniqueness_vs_all_gemsdoe": {
+        "passed_sparse_dot_peers_le_100k": true,
+        "max_sparse_peer_3px_dot_overlap": 0.65,
+        "closest_sparse_peer": "GEMSDOE28::gems28-h32-1-prethin-tip-euler-d2-8-20261003-31e35eee884e-nan.tif",
+        "max_symmetric_3px_dot_overlap": 0.8017,
+        "closest_symmetric_peer": "GEMSDOE32::gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "passed_strict_oneway_including_516k_slabs": false,
+        "max_3px_dot_overlap": 0.65,
+        "closest_overlap_peer": "GEMSDOE28::gems28-h32-1-prethin-tip-euler-d2-8-20261003-31e35eee884e-nan.tif",
+        "max_oneway_including_516k_slabs_3px_overlap": 0.8045,
+        "closest_slab_peer": "GEMSDOE3::pindrop-v4-nodes-20260925T152420Z-f347b70daa.tif",
+        "max_abs_spearman_rho": 0.423,
+        "closest_spearman_peer": "19GEMSDOE::gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif"
+      },
+      "upstream_verdict": "negative (DO NOT SUBMIT \u2014 optimized novelty at expense of holdout recall)",
+      "safe_to_submit": false,
+      "recommendation": "DO NOT SUBMIT \u2014 LOW HOLDOUT-DTI (0.0784 < baseline)"
+    },
+    {
+      "site": "GEMSDOE33",
+      "commit_pinned": "efa438d31048",
+      "latest_download_file": "gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif",
+      "latest_download_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/efa438d3104893c3e8aedf3817ac22167b1c681a/docs/downloads/gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif",
+      "sha256": "5eb9572946fa62356ebc0cbfef22bb54aa2ef094cb8b4a84b52e6b80e120db96",
+      "bytes": 825868,
+      "method_summary": "S33-SEISDIL (Seismicity + Geodetic Dilation Strain)",
+      "historical_live_best": {
+        "file": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+        "score": 0.2632,
+        "label": "ORGANIZER-CONFIRMED (owner-reported receipt)"
+      },
+      "latest_holdout_metric": "HOLDOUT-DTI = 0.11415 (gems-segment-pooled-v1, n=60,988 withheld px, 95% CI [0.0998, 0.1290])",
+      "latest_holdout_dti_numeric": 0.11415,
+      "lli_empirical_projection": {
+        "label": "LLI-PROJECTION (empirical Ridge on n=118 ORGANIZER-CONFIRMED rasters; LOO MAE=0.0353, LOO Spearman=0.824; NOT an organizer score)",
+        "projected_value": 0.1582,
+        "loo_mae": 0.0353,
+        "approx_interval_pm_1mae": [
+          0.1229,
+          0.1935
+        ],
+        "descriptors": {
+          "log_mass": 10.53622,
+          "frac_active": 0.00729,
+          "mass_frac": 0.00729,
+          "is_binary": 1.0,
+          "collar_waste_frac": 0.0,
+          "mid_band_frac": 0.39797,
+          "far_band_frac": 0.60203,
+          "lidar_share": 0.84889,
+          "mean_slope": 8.24023,
+          "h23_scarp_3px_share": 0.84777,
+          "mass_sweet_bell": 1.0,
+          "clean_sweet_bell": 1.0
+        }
+      },
+      "portal_10_gate_pass": true,
+      "nan_cells": 0,
+      "whole_raster_range": [
+        0.0,
+        1.0
+      ],
+      "positive_dots": 37654,
+      "dead_collar_le_200m_dots": 0,
+      "uniqueness_vs_all_gemsdoe": {
+        "passed_sparse_dot_peers_le_100k": true,
+        "max_sparse_peer_3px_dot_overlap": 0.6915,
+        "closest_sparse_peer": "GEMSDOE23::gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+        "max_symmetric_3px_dot_overlap": 0.5861,
+        "closest_symmetric_peer": "GEMSDOE67::gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+        "passed_strict_oneway_including_516k_slabs": false,
+        "max_3px_dot_overlap": 0.6915,
+        "closest_overlap_peer": "GEMSDOE23::gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+        "max_oneway_including_516k_slabs_3px_overlap": 0.921,
+        "closest_slab_peer": "GEMSDOE67::gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+        "max_abs_spearman_rho": 0.0393,
+        "closest_spearman_peer": "GEMSDOE30::gems30-GDX1-44090-20261026-2992ee3619f5.tif"
+      },
+      "upstream_verdict": "negative (DO NOT SUBMIT \u2014 regional strain lacks 100 m fault localization)",
+      "safe_to_submit": false,
+      "recommendation": "DO NOT SUBMIT \u2014 LOW HOLDOUT-DTI (0.1142 < baseline)"
+    },
+    {
+      "site": "GEMSDOE36",
+      "commit_pinned": "79ddf4aa6fd5",
+      "latest_download_file": "gemsdoe36-gvsc36-exp3-20261026-5fb822bdfb60-zeros.tif",
+      "latest_download_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/79ddf4aa6fd5fa93887345f4bffeb6edd9d76401/docs/downloads/gemsdoe36-gvsc36-exp3-20261026-5fb822bdfb60-zeros.tif",
+      "sha256": "ad809c2b0919d4b71afee80f0b4827aa9ad4ecd8c66507109a3d3f7292cac1a1",
+      "bytes": 825574,
+      "method_summary": "GVSC-36 EXP-3 (Geothermal Upslope Advection + Scarp Ridge)",
+      "historical_live_best": {
+        "file": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+        "score": 0.275,
+        "label": "ORGANIZER-CONFIRMED (owner-reported receipt; 38,854-dot off-collar variant)"
+      },
+      "latest_holdout_metric": "HOLDOUT-DTI = 0.15886 (gems36-segment-v1, n=60,988 withheld px, 95% CI [0.1439, 0.1741])",
+      "latest_holdout_dti_numeric": 0.15886,
+      "lli_empirical_projection": {
+        "label": "LLI-PROJECTION (empirical Ridge on n=118 ORGANIZER-CONFIRMED rasters; LOO MAE=0.0353, LOO Spearman=0.824; NOT an organizer score)",
+        "projected_value": 0.1905,
+        "loo_mae": 0.0353,
+        "approx_interval_pm_1mae": [
+          0.1552,
+          0.2258
+        ],
+        "descriptors": {
+          "log_mass": 10.53622,
+          "frac_active": 0.00729,
+          "mass_frac": 0.00729,
+          "is_binary": 1.0,
+          "collar_waste_frac": 0.0,
+          "mid_band_frac": 0.42269,
+          "far_band_frac": 0.57731,
+          "lidar_share": 0.78241,
+          "mean_slope": 8.8061,
+          "h23_scarp_3px_share": 0.94603,
+          "mass_sweet_bell": 1.0,
+          "clean_sweet_bell": 1.0
+        }
+      },
+      "portal_10_gate_pass": true,
+      "nan_cells": 0,
+      "whole_raster_range": [
+        0.0,
+        1.0
+      ],
+      "positive_dots": 37654,
+      "dead_collar_le_200m_dots": 0,
+      "uniqueness_vs_all_gemsdoe": {
+        "passed_sparse_dot_peers_le_100k": true,
+        "max_sparse_peer_3px_dot_overlap": 0.6932,
+        "closest_sparse_peer": "GEMSDOE37::gemsdoe37-h6-physics-dotted-80k-20261005T055000Z-0bef9211631c.tif",
+        "max_symmetric_3px_dot_overlap": 0.5659,
+        "closest_symmetric_peer": "GEMSDOE22::gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif",
+        "passed_strict_oneway_including_516k_slabs": false,
+        "max_3px_dot_overlap": 0.6932,
+        "closest_overlap_peer": "GEMSDOE37::gemsdoe37-h6-physics-dotted-80k-20261005T055000Z-0bef9211631c.tif",
+        "max_oneway_including_516k_slabs_3px_overlap": 0.946,
+        "closest_slab_peer": "GEMSDOE22::gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif",
+        "max_abs_spearman_rho": 0.0616,
+        "closest_spearman_peer": "GEMSDOE31::gemsdoe31-union-b-p060-20261004-8acb75e1-allfinite.tif"
+      },
+      "upstream_verdict": "negative (DO NOT SUBMIT \u2014 upstream halted on 94.60% one-way containment vs H23-B-10pct)",
+      "safe_to_submit": true,
+      "recommendation": "CONDITIONAL BACKUP (passes [0,1] portal gates + sparse-peer uniqueness [69.3% <= 70%]; note 94.6% one-way containment inside 516k-px continuous slab GEMSDOE22::gems22-h23-b-dt [IR-WBG1-03]; superseded if WBGGEMSDOE1 WBG-H1 beats 0.1589 HOLDOUT-DTI)"
+    }
+  ]
+}

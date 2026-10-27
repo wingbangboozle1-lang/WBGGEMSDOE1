@@ -1,0 +1,22 @@
+# Python & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.cache/
+dist/
+build/
+
+# Bulk competition, external & registry rasters (restored via scripts/restore_data.py)
+data/raw/
+data/prepared/
+data/registry/
+data/work/
+*.part-*
+*.partial
+*.assembling
+/tmp_*

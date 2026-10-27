@@ -61,7 +61,7 @@ def run_all_feature_canaries(batch_size: int = 6) -> dict[str, Any]:
         "max_symmetric_auc_feature": max_feat,
         "features": all_features,
     }
-    dest = repo_root() / "evidence" / "leakage_canary_66ch.json"
+    dest = repo_root() / "evidence" / "wbg_h1" / "leakage_canary_66ch.json"
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(json.dumps(out, indent=2) + "\n")
     return out

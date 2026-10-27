@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "reviewed_date_utc": "2026-10-26",
+  "method": "Official pages retrieved with fetch_page during this session; short excerpts below (formatting normalized). Repository mirrors are separately pinned and are not official organizer downloads.",
+  "sources": [
+    {
+      "id": "OFFICIAL-PROBLEM",
+      "title": "DrivenData GEMS problem description and submission format",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "access": "retrieved, both chunks",
+      "authority": "competition organizer",
+      "verified_claims": [
+        "The task is fault prediction for structures indicative of geothermal resources, not a direct geothermal-vent classification task.",
+        "New expert-mapped faults absent from the existing public USGS database form the initial test labels.",
+        "The metric uses max confidence times a 300 m triangular kernel; alpha=0.2 and beta=0.8.",
+        "Submission: one float32 GeoTIFF layer, values between 0 and 1, matching the projected EPSG:32611 100 m grid and bounds.",
+        "External data are allowed only with an appropriate license permitting use and sharing with the sponsor."
+      ],
+      "excerpts_normalized_for_formatting": [
+        "For this challenge, your task is to develop models and algorithms that provide accurate information about the presence of structures that are indicative of geothermal resources\u2014namely, geological faults.",
+        "For this competition, we set \u03b1=0.2 and \u03b2=0.8, which reduces the penalty for false positive predictions and increases the penalty for false negative predictions.",
+        "Your submission contains a single layer with datatype of 32-bit float (`float32`) with values between 0 and 1 indicating the confidence or probability of fault presence, with higher values indicating higher probability."
+      ]
+    },
+    {
+      "id": "OFFICIAL-ABOUT",
+      "title": "DrivenData GEMS background and data provenance",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/",
+      "access": "retrieved full background page on 2026-10-26",
+      "authority": "competition organizer",
+      "verified_claims": [
+        "The background page describes GeoDAWN aeromagnetic and radiometric surveys and 3DEP lidar-derived mapping inputs.",
+        "This contextual provenance does not independently authenticate the units, band meanings or original bytes of the owner-mirrored rasters."
+      ]
+    },
+    {
+      "id": "OFFICIAL-LEADERBOARD",
+      "title": "DrivenData public leaderboard",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "access": "retrieved, first chunk",
+      "authority": "competition organizer public leaderboard; not a receipt for any project TIFF",
+      "observation": {
+        "date_utc": "2026-10-26",
+        "rank": 1,
+        "participant": "xiaofanhu",
+        "public_dw_tversky": 0.4437
+      },
+      "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-OBSERVATION",
+      "limitations": "Not a project submission-page receipt; cannot verify the user-reported historical artifact scores or private/final standings."
+    },
+    {
+      "id": "OFFICIAL-SUBMISSIONS-ACCESS",
+      "title": "DrivenData submissions access check",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/",
+      "access": "redirected to login",
+      "resolved_url": "https://www.drivendata.org/accounts/login/?next=/competitions/306/competition-doe-gems/submissions/",
+      "verified_claims": [
+        "No authenticated remaining weekly allowance or submission receipt is available in this session."
+      ],
+      "credentials_requested_or_stored": false
+    },
+    {
+      "id": "OFFICIAL-DATA-ACCESS",
+      "title": "DrivenData official data access check",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+      "access": "redirected to login on 2026-10-26",
+      "resolved_url": "https://www.drivendata.org/accounts/login/?next=/competitions/306/competition-doe-gems/data/",
+      "verified_claims": [
+        "The official data access check did not authenticate or download original organizer raster bytes; this project restores hash-pinned public owner mirrors instead."
+      ],
+      "credentials_requested_or_stored": false
+    },
+    {
+      "id": "OFFICIAL-RULES-PDF",
+      "title": "Geologic Enhanced Mapping System (GEMS) Prize Official Rules, September 2026",
+      "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+      "access": "retrieved chunks 0 and 3; relevant submission sections 3.3\u20133.6 read, not the entire PDF",
+      "authority": "DOE prize official rules publication",
+      "verified_claims": [
+        "Section 3.4 states up to three prediction submissions per week as specified on the competition website.",
+        "Each participating entity must select a single final submission, without knowledge of private-test performance.",
+        "The GeoTIFF predictions are automatically evaluated, while later expert review expands fault labels; software preflight is not organizer or geological confirmation."
+      ],
+      "excerpts_normalized_for_formatting": [
+        "To gain feedback about the performance of their models, each participating entity may submit more than one set of predictions for automated scoring on the competition platform up to three per week, as specified on the competition website.",
+        "You must choose only one submission to use for scoring across both prize rounds, and you must make your decision without knowledge of your scores on the private test set."
+      ]
+    },
+    {
+      "id": "OFFICIAL-RULES-LANDING",
+      "title": "DrivenData rules landing page",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/rules/",
+      "access": "retrieved",
+      "verified_claims": [
+        "The organizer links the official GEMS Prize rules via HeroX."
+      ],
+      "linked_rules": "https://www.herox.com/GEMSPrize/resource/2274"
+    },
+    {
+      "id": "USGS-GEODAWN",
+      "title": "GeoDAWN airborne magnetic and radiometric surveys",
+      "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "doi": "10.5066/P93LGLVQ",
+      "access": "retrieved, main data description and citation",
+      "authority": "USGS data release",
+      "license": "CC0 1.0 per the USGS page",
+      "verified_claims": [
+        "Magnetic/radiometric surveys support structural and geological mapping; coordinated lidar supplies surface terrain.",
+        "Area 1 and Area 2 have different flight spacing and terrain clearance, which can confound fine-scale transforms.",
+        "The release lists GeoTIFF grids and flight-line products. Independent original raster bytes were not downloaded here."
+      ],
+      "excerpts_normalized_for_formatting": [
+        "Actual flight heights were subject to aircraft climb and descent limitations.",
+        "In areas of steep terrain, the aircraft may have required deviating from the planned drape surface, and therefore variable terrain clearance should be considered when modeling and interpreting these data."
+      ]
+    },
+    {
+      "id": "GDR-INGENIOUS",
+      "title": "INGENIOUS \u2014 Great Basin Regional Dataset Compilation",
+      "url": "https://gdr.openei.org/submissions/1391",
+      "doi": "10.15121/1881483",
+      "access": "retrieved main catalogue and resource links",
+      "authority": "DOE Geothermal Data Repository",
+      "license": "CC BY 4.0, attribution required",
+      "verified_claims": [
+        "Public resources include geodetics, electrical conductance maps, magnetics/gravity, paleogeothermal features, and well/spring temperature/chemistry.",
+        "The resource description states data are supplied as-is; these are favorability inputs, not automatic validation of a newly predicted fault or vent.",
+        "Quaternary faults v2 supersedes v1; catalogue-derived columns must not leak withheld truth into features."
+      ],
+      "excerpts_normalized_for_formatting": [
+        "These datasets may be redistributed with attribution (see citation information below)."
+      ]
+    },
+    {
+      "id": "USGS-STRUCTURAL-MECHANISM",
+      "title": "Siler (2023), Structural discontinuities and their control on hydrothermal systems in the Great Basin, USA",
+      "url": "https://www.usgs.gov/publications/structural-discontinuities-and-their-control-hydrothermal-systems-great-basin-usa",
+      "doi": "10.1144/geoenergy2023-009",
+      "access": "retrieved full USGS abstract/citation",
+      "authority": "USGS publication record",
+      "verified_claims": [
+        "Fault interaction settings can localize stress/strain and hydrothermal systems; this motivates structural complexity, not the specific unproven Hessian-commutator detector."
+      ],
+      "excerpts_normalized_for_formatting": [
+        "Results demonstrate that the largest magnitude and most localized stress and strain effects occur in the structural settings that host the largest number of hydrothermal systems; fault stepovers and fault terminations."
+      ]
+    },
+    {
+      "id": "USGS-BLIND-PLAY-FAIRWAY",
+      "title": "Faulds et al. (2019), Discovering blind geothermal systems in the Great Basin Region",
+      "url": "https://www.usgs.gov/publications/discovering-blind-geothermal-systems-great-basin-region-integrated-geologic-and",
+      "doi": "10.2172/1724080",
+      "access": "retrieved full USGS abstract/citation",
+      "authority": "USGS publication record",
+      "verified_claims": [
+        "Independent structural, geophysical, temperature and geochemical evidence can locate blind systems; a favorable pixel or fault prediction is not a validated geothermal resource."
+      ],
+      "excerpts_normalized_for_formatting": [
+        "This system is blind, with no surface hot springs, fumaroles, or paleo-geothermal deposits."
+      ]
+    },
+    {
+      "id": "ORGANIZER-REFERENCE-CODE",
+      "title": "DrivenData GEMS reference solution",
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
+      "access": "GitHub archive and README retrieved; notebook inspected separately where cited",
+      "authority": "organizer-maintained baseline repository",
+      "verified_claims": [
+        "The baseline asks users to place competition data in data/ and supports CPU-only and GPU environments. A GPU is not a universal prerequisite for all valid modeling approaches."
+      ]
+    }
+  ],
+  "source_policy": "Short excerpts and structured claim checks are retained; no assertion of full line-by-line verification of every linked web page, every PDF page, all literature, all 92 sites, or unknown hidden labels is made. Unknowns remain explicit."
+}

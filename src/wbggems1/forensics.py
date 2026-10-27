@@ -255,7 +255,7 @@ def audit_all_9_focus_sites(cal: LLICalibrator) -> list[dict[str, Any]]:
         h23_pos = (np.nan_to_num(ds.read(1), nan=0.0) > 0.0) & fp_mask
     ref_3px_near = disk_3px_mask(h23_pos)
 
-    f9_entries = json.loads((root / "registry" / "focus9_latest_20261026.json").read_text())["entries"]
+    f9_entries = json.loads((root / "registry" / "wbg_h1" / "focus9_latest_20261026.json").read_text())["entries"]
     all_comp = [e for e in load_all_comparison_entries() if not e["is_lattice_control"]]
 
     # Preload sparse flat indices + pre-computed subsampled ranks (< 60 MB RAM!)

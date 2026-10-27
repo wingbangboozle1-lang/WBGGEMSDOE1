@@ -1,0 +1,68 @@
+{
+  "run_id": "2026-10-26-review-no-experiment",
+  "status": "negative",
+  "verdict": "negative",
+  "hypothesis": "Candidate H1: paired, persistent magnetic-contact and source-depth discontinuities may reveal buried fault contacts absent from the catalogue.",
+  "mechanism": "Fault-related displacement can juxtapose rocks with distinct magnetic properties and shift magnetic source depths. Co-located, directionally coherent magnetic edges and source-depth steps across scales could identify a subsurface structural boundary without deriving predictions from the fault catalogue.",
+  "named_non_fault_mimic": "Lithologic contacts or intrusive bodies can produce coincident magnetic and gravity edges without being faults; survey seams can mimic discontinuities.",
+  "lane": {
+    "status": "unresolved",
+    "reason": "The prompt protocol refers to a single method paragraph defining the assigned lane, but no lane paragraph was included in the received request. No experiment was started."
+  },
+  "experiment_count": 0,
+  "budget_limit_experiments": 3,
+  "budget_limit_hours": 2,
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "pooled_dti": null,
+    "confidence_interval_95": null,
+    "status": "NOT RUN",
+    "reason": "No evaluator, data, feature stack, or baseline is present in this checkout."
+  },
+  "leakage_canary": {
+    "status": "NOT RUN",
+    "features_tested": 0,
+    "threshold_auc": 0.9
+  },
+  "registry_novelty": {
+    "status": "NOT RUN",
+    "registry_version": null,
+    "surface_rank_correlation_max_abs": null,
+    "final_dot_overlap_max_fraction_within_3px": null,
+    "thresholds": {
+      "max_abs_rank_correlation": 0.9,
+      "max_dot_overlap_fraction_within_3px": 0.7
+    }
+  },
+  "raster": {
+    "generated": false,
+    "filename": null,
+    "sha256": null
+  },
+  "validator": {
+    "status": "NOT RUN — no GeoTIFF exists",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1_inside_footprint": null,
+    "crs_matches_sample": null,
+    "shape_matches_sample": null,
+    "transform_matches_sample": null
+  },
+  "submission": {
+    "name": null,
+    "note": null,
+    "note_max_characters": 140,
+    "downloadable": false,
+    "portal_upload_performed": false
+  },
+  "score_estimate": null,
+  "score_estimate_status": "Not estimable; no HOLDOUT-DTI result and no calibration model. A projection must not be represented as a score.",
+  "reason_for_negative_verdict": "Missing authorized data, cached template feature stack, shared holdout evaluator, shared submission writer, registry rasters, and resolved method lane. Writing a placeholder or copying a previous site raster would violate the requirements.",
+  "reviewed_on": "2026-10-26",
+  "sources": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "https://github.com/drivendataorg/gems-prize-reference-solution"
+  ]
+}

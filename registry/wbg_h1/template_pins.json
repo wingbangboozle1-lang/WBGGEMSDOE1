@@ -1,0 +1,115 @@
+{
+  "description": "Shared GEMSDOE24 gems template vendored BYTE-FOR-BYTE (Rule 2: REUSE, DON'T REBUILD; no private fork).",
+  "upstream_repo": "buffedlizard55-lab/GEMSDOE24",
+  "upstream_commit": "a433b430b74b813a9118ebd4ec438b12cbc69f46",
+  "files": [
+    {
+      "local": "src/gems/__init__.py",
+      "upstream_repo": "buffedlizard55-lab/GEMSDOE24",
+      "upstream_commit": "a433b430b74b813a9118ebd4ec438b12cbc69f46",
+      "upstream_path": "src/gems/__init__.py",
+      "sha256": "1a0b12829abd20797161f12c4d4f900f5bfb2af13df35c68435ce647e6fb264a",
+      "bytes": 410,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/a433b430b74b813a9118ebd4ec438b12cbc69f46/src/gems/__init__.py"
+    },
+    {
+      "local": "src/gems/footprint.py",
+      "upstream_repo": "buffedlizard55-lab/GEMSDOE24",
+      "upstream_commit": "a433b430b74b813a9118ebd4ec438b12cbc69f46",
+      "upstream_path": "src/gems/footprint.py",
+      "sha256": "2e09d625b754104c72a0cf92e70ed6c387bcfb7a5824b4126f1cc2b6880a361a",
+      "bytes": 2399,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/a433b430b74b813a9118ebd4ec438b12cbc69f46/src/gems/footprint.py"
+    },
+    {
+      "local": "src/gems/paths.py",
+      "upstream_repo": "buffedlizard55-lab/GEMSDOE24",
+      "upstream_commit": "a433b430b74b813a9118ebd4ec438b12cbc69f46",
+      "upstream_path": "src/gems/paths.py",
+      "sha256": "fbb95ad603ea5765091a7403b36235e89f4bc7f06c99deac95083138f560aa96",
+      "bytes": 1208,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/a433b430b74b813a9118ebd4ec438b12cbc69f46/src/gems/paths.py"
+    },
+    {
+      "local": "src/gems/validator.py",
+      "upstream_repo": "buffedlizard55-lab/GEMSDOE24",
+      "upstream_commit": "a433b430b74b813a9118ebd4ec438b12cbc69f46",
+      "upstream_path": "src/gems/validator.py",
+      "sha256": "a5176d6e13924382f52bfd170a1f91c8beb1f31d413765295e881b65dc79a5e0",
+      "bytes": 396,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/a433b430b74b813a9118ebd4ec438b12cbc69f46/src/gems/validator.py"
+    },
+    {
+      "local": "src/gems/metric.py",
+      "upstream_repo": "buffedlizard55-lab/GEMSDOE24",
+      "upstream_commit": "a433b430b74b813a9118ebd4ec438b12cbc69f46",
+      "upstream_path": "src/gems/metric.py",
+      "sha256": "c024510de39746c9390e5bbf5c1d1b639a9ee895017a38fab4b609f0f2c33e48",
+      "bytes": 9544,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/a433b430b74b813a9118ebd4ec438b12cbc69f46/src/gems/metric.py"
+    },
+    {
+      "local": "src/gems/holdout.py",
+      "upstream_repo": "buffedlizard55-lab/GEMSDOE24",
+      "upstream_commit": "a433b430b74b813a9118ebd4ec438b12cbc69f46",
+      "upstream_path": "src/gems/holdout.py",
+      "sha256": "34fb7f12e849280c8162d5c433aa972f70746ddecf1a289ce3a9c81144b344dc",
+      "bytes": 26813,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/a433b430b74b813a9118ebd4ec438b12cbc69f46/src/gems/holdout.py"
+    },
+    {
+      "local": "src/gems/submission.py",
+      "upstream_repo": "buffedlizard55-lab/GEMSDOE24",
+      "upstream_commit": "a433b430b74b813a9118ebd4ec438b12cbc69f46",
+      "upstream_path": "src/gems/submission.py",
+      "sha256": "fe26ba1d414bc56053cb04423c200f8bf3121e562361fdfac70f136c5bce4b37",
+      "bytes": 10863,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/a433b430b74b813a9118ebd4ec438b12cbc69f46/src/gems/submission.py"
+    },
+    {
+      "local": "src/gems/novelty.py",
+      "upstream_repo": "buffedlizard55-lab/GEMSDOE24",
+      "upstream_commit": "a433b430b74b813a9118ebd4ec438b12cbc69f46",
+      "upstream_path": "src/gems/novelty.py",
+      "sha256": "f055a3521849b2e2d288e3aa6b1755fdf8e0d2a281fc63f8cc8b2ed88f3a69da",
+      "bytes": 16191,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/a433b430b74b813a9118ebd4ec438b12cbc69f46/src/gems/novelty.py"
+    },
+    {
+      "local": "src/gems/emission.py",
+      "upstream_repo": "buffedlizard55-lab/GEMSDOE24",
+      "upstream_commit": "a433b430b74b813a9118ebd4ec438b12cbc69f46",
+      "upstream_path": "src/gems/emission.py",
+      "sha256": "8ef12efc95157108fd37af4e47c4b04dacaedcf0207728ffde310736baf33753",
+      "bytes": 9996,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/a433b430b74b813a9118ebd4ec438b12cbc69f46/src/gems/emission.py"
+    },
+    {
+      "local": "src/gems/geofeatures.py",
+      "upstream_repo": "buffedlizard55-lab/GEMSDOE24",
+      "upstream_commit": "a433b430b74b813a9118ebd4ec438b12cbc69f46",
+      "upstream_path": "src/gems/geofeatures.py",
+      "sha256": "a7f71f0434b4edb63d81d32b34287a64fbc5ebd2bf771291cad362ceb5cf53c7",
+      "bytes": 8917,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/a433b430b74b813a9118ebd4ec438b12cbc69f46/src/gems/geofeatures.py"
+    },
+    {
+      "local": "src/gems/arcs.py",
+      "upstream_repo": "buffedlizard55-lab/GEMSDOE24",
+      "upstream_commit": "a433b430b74b813a9118ebd4ec438b12cbc69f46",
+      "upstream_path": "src/gems/arcs.py",
+      "sha256": "6fa7289e4e926ae21f346b873a6b043a1bf7f276a71aaed8b1f1853bbf127ca6",
+      "bytes": 3565,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/a433b430b74b813a9118ebd4ec438b12cbc69f46/src/gems/arcs.py"
+    },
+    {
+      "local": "scripts/submission_writer.py",
+      "upstream_repo": "buffedlizard55-lab/GEMSDOE24",
+      "upstream_commit": "a433b430b74b813a9118ebd4ec438b12cbc69f46",
+      "upstream_path": "scripts/submission_writer.py",
+      "sha256": "1bca5559952f540b5eb2b4223491e4fd1bdef6a1494857a0d3e6204e466bd45b",
+      "bytes": 1632,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/a433b430b74b813a9118ebd4ec438b12cbc69f46/scripts/submission_writer.py"
+    }
+  ]
+}

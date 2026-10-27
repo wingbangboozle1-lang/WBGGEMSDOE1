@@ -1,0 +1,297 @@
+{
+  "schema": "gemsdoe1-nine-site-executive-v1",
+  "generated_utc": "2026-10-26T22:05:07.459094+00:00",
+  "score_governance": "No artifact-linked DrivenData receipt was found. All nine historical values, including H33-B2 0.2778 and conflicting leaderboard claims 0.3195/0.4413, remain OWNER-REPORTED / UNVERIFIED. Local numbers are labeled HOLDOUT-DTI.",
+  "historical_source": {
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/32c2660001d98f6fa9084a0971b3a9d5062d49b9/README.md",
+    "scope": "Pinned historical file table and literal pairwise uniqueness audit"
+  },
+  "sites": [
+    {
+      "site": "GEMSDOE24",
+      "historical_best_file": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "artifact_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/fc2bc6f350bf5c6ce8da5d7a2ab03578ea1259d1/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "sha256_prefix": "68d0e2e4fcc5",
+      "reported_value": 0.2477,
+      "score_evidence_label": "OWNER-REPORTED / UNVERIFIED",
+      "organizer_receipt_present": false,
+      "maximum_3px_overlap_vs_other_eight_historical_masks": 1.0,
+      "unique_under_70_percent_rule": false,
+      "recommendation": "DO NOT SUBMIT",
+      "reason": "Historical/already-used reference and fails the cross-site 70% uniqueness rule.",
+      "current_readme_ref": "7790c3b3038e3fb34f2fe844e10d187a02fa3ab4",
+      "current_readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7790c3b3038e3fb34f2fe844e10d187a02fa3ab4/README.md"
+    },
+    {
+      "site": "GEMSDOE25",
+      "historical_best_file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "artifact_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/e40b9b5e3871cb34d138f586bde97f5099658d01/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "sha256_prefix": "91eae1ca42ec",
+      "reported_value": 0.26,
+      "score_evidence_label": "OWNER-REPORTED / UNVERIFIED",
+      "organizer_receipt_present": false,
+      "maximum_3px_overlap_vs_other_eight_historical_masks": 1.0,
+      "unique_under_70_percent_rule": false,
+      "recommendation": "DO NOT SUBMIT",
+      "reason": "Historical/already-used reference and fails the cross-site 70% uniqueness rule.",
+      "current_readme_ref": "af2b6f2543e5422a7e917638b70e038e6fd91cad",
+      "current_readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/af2b6f2543e5422a7e917638b70e038e6fd91cad/README.md"
+    },
+    {
+      "site": "GEMSDOE27",
+      "historical_best_file": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "artifact_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/927322eadbde56be42ae129ccdfb9b37540d8e60/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "sha256_prefix": "33003374335d",
+      "reported_value": 0.2449,
+      "score_evidence_label": "OWNER-REPORTED / UNVERIFIED",
+      "organizer_receipt_present": false,
+      "maximum_3px_overlap_vs_other_eight_historical_masks": 0.9802,
+      "unique_under_70_percent_rule": false,
+      "recommendation": "DO NOT SUBMIT",
+      "reason": "Historical/already-used reference and fails the cross-site 70% uniqueness rule.",
+      "current_readme_ref": "bef7ae8e8f63b69d299c9214c75988c8f5055f9c",
+      "current_readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/bef7ae8e8f63b69d299c9214c75988c8f5055f9c/README.md"
+    },
+    {
+      "site": "GEMSDOE28",
+      "historical_best_file": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "artifact_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/e6321461066f89080e3b1bb670d3951ab20d3638/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "sha256_prefix": "5556aa1438fd",
+      "reported_value": 0.271,
+      "score_evidence_label": "OWNER-REPORTED / UNVERIFIED",
+      "organizer_receipt_present": false,
+      "maximum_3px_overlap_vs_other_eight_historical_masks": 1.0,
+      "unique_under_70_percent_rule": false,
+      "recommendation": "DO NOT SUBMIT",
+      "reason": "Historical/already-used reference and fails the cross-site 70% uniqueness rule.",
+      "current_readme_ref": "2c839d10f57ec9b074829e93c84bc39935f52896",
+      "current_readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/2c839d10f57ec9b074829e93c84bc39935f52896/README.md"
+    },
+    {
+      "site": "GEMSDOE30",
+      "historical_best_file": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "artifact_url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/760af3005dd40b9f36d8fef97d6dc384fd9f2a2f/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "sha256_prefix": "8cf893ead566",
+      "reported_value": 0.26,
+      "score_evidence_label": "OWNER-REPORTED / UNVERIFIED",
+      "organizer_receipt_present": false,
+      "maximum_3px_overlap_vs_other_eight_historical_masks": 1.0,
+      "unique_under_70_percent_rule": false,
+      "recommendation": "DO NOT SUBMIT",
+      "reason": "Historical/already-used reference and fails the cross-site 70% uniqueness rule.",
+      "current_readme_ref": "9c0d637c0171407196b61b780444bc772ce75438",
+      "current_readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/9c0d637c0171407196b61b780444bc772ce75438/README.md"
+    },
+    {
+      "site": "GEMSDOE31",
+      "historical_best_file": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "artifact_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/597b04cd1afb65d1ebbe3e9417fd952be48e3d74/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "sha256_prefix": "07b6db440535",
+      "reported_value": 0.2708,
+      "score_evidence_label": "OWNER-REPORTED / UNVERIFIED",
+      "organizer_receipt_present": false,
+      "maximum_3px_overlap_vs_other_eight_historical_masks": 1.0,
+      "unique_under_70_percent_rule": false,
+      "recommendation": "DO NOT SUBMIT",
+      "reason": "Historical/already-used reference and fails the cross-site 70% uniqueness rule.",
+      "current_readme_ref": "eeb7da54ca4a8ae056f45e5b23eeef586ad79bf2",
+      "current_readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/eeb7da54ca4a8ae056f45e5b23eeef586ad79bf2/README.md"
+    },
+    {
+      "site": "GEMSDOE32",
+      "historical_best_file": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "artifact_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/5fc7792c5887735ecd3aa9a612787da588a7bf2c/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "sha256_prefix": "c55bafc47005",
+      "reported_value": 0.2778,
+      "score_evidence_label": "OWNER-REPORTED / UNVERIFIED",
+      "organizer_receipt_present": false,
+      "maximum_3px_overlap_vs_other_eight_historical_masks": 1.0,
+      "unique_under_70_percent_rule": false,
+      "recommendation": "DO NOT SUBMIT",
+      "reason": "Historical/already-used reference and fails the cross-site 70% uniqueness rule.",
+      "current_readme_ref": "07806249f4ed3efe70b4fbf866183c32392b7853",
+      "current_readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/README.md"
+    },
+    {
+      "site": "GEMSDOE33",
+      "historical_best_file": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "artifact_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/f618cc54773bd9b4d6c2b3ebf78103a05cc10cb6/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "sha256_prefix": "87f857d505e2",
+      "reported_value": 0.2632,
+      "score_evidence_label": "OWNER-REPORTED / UNVERIFIED",
+      "organizer_receipt_present": false,
+      "maximum_3px_overlap_vs_other_eight_historical_masks": 0.9971,
+      "unique_under_70_percent_rule": false,
+      "recommendation": "DO NOT SUBMIT",
+      "reason": "Historical/already-used reference and fails the cross-site 70% uniqueness rule.",
+      "current_readme_ref": "08380a2e6f2a76d733ee6144d6de33e2907c13b8",
+      "current_readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/08380a2e6f2a76d733ee6144d6de33e2907c13b8/README.md"
+    },
+    {
+      "site": "GEMSDOE36",
+      "historical_best_file": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "artifact_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/c5a8ae7da3bd2fcff5aa5855afd44c7a3346c16/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "sha256_prefix": "e15891020b9c",
+      "reported_value": 0.275,
+      "score_evidence_label": "OWNER-REPORTED / UNVERIFIED",
+      "organizer_receipt_present": false,
+      "maximum_3px_overlap_vs_other_eight_historical_masks": 0.9758,
+      "unique_under_70_percent_rule": false,
+      "recommendation": "DO NOT SUBMIT",
+      "reason": "Historical/already-used reference and fails the cross-site 70% uniqueness rule.",
+      "current_readme_ref": "32c2660001d98f6fa9084a0971b3a9d5062d49b9",
+      "current_readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/32c2660001d98f6fa9084a0971b3a9d5062d49b9/README.md"
+    }
+  ],
+  "h33_b2_explanation": {
+    "schema": "gemsdoe1-h33-b2-forensics-v1",
+    "inputs": {
+      "parent": {
+        "file": "docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-allfinite.tif",
+        "sha256": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+        "positive_pixels": 44090
+      },
+      "h33_b2": {
+        "file": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "positive_pixels": 37654
+      },
+      "catalogue_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "registry_sha256": "5e592cdc43902b76d711e59f5c923a6b5869db0eb8f30549c2a546bf2d751919"
+    },
+    "exact_ancestry": {
+      "b2_is_exact_subset_of_parent": true,
+      "removed_parent_dots": 6436,
+      "added_dots": 0,
+      "unchanged_kept_dots": 37654,
+      "all_removed_within_200m_of_public_catalogue": true,
+      "removed_distance_to_catalogue_px": {
+        "minimum": 1.0,
+        "maximum": 2.0,
+        "mean": 1.2861203369189074,
+        "within_1px": 3891,
+        "within_2px": 6436
+      }
+    },
+    "score_evidence": {
+      "h33_b2_value": 0.2778,
+      "parent_d2_8_value": 0.26,
+      "difference": 0.0178,
+      "label": "OWNER-REPORTED / UNVERIFIED",
+      "organizer_receipt_present": false,
+      "limitation": "No artifact-linked DrivenData submission receipt or hidden labels are present; the values cannot be upgraded to ORGANIZER-CONFIRMED."
+    },
+    "mechanism_interpretation": {
+      "metric_identity": "DTI = TPw / (TPw + 0.2*FPw + 0.8*FNw)",
+      "evidence_supported_statement": "B2 added no geological detections. It removed exactly 6,436 parent dots, all within 200 m of the public catalogue. If those dots had zero hidden-truth credit, deleting them reduces the weighted false-positive denominator and raises DTI; this is a plausible precision-cleanup mechanism.",
+      "not_proven": "Hidden TPw/FPw/FNw contributions and the uploaded file are unavailable, so the deletion cannot be asserted to have caused the owner-reported value.",
+      "scientific_uniqueness": "Not scientifically distinct from D2.8: it is a strict deletion-only subset."
+    }
+  },
+  "new_scientifically_distinct_candidate": {
+    "method": "TIP1 orientation-following fault-tip coherence gradient",
+    "file": "gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif",
+    "sha256": "148718d31ea75cfa3b7c643dfa25643cb0353483b2fa0e2696a62af2a107dca8",
+    "scientifically_distinct": true,
+    "difference_from_h33_b2": "TIP1 derives a directional LiDAR coherence derivative without catalogue tips or prior predictions; B2 is a deletion-only subset of D2.8.",
+    "holdout": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "gems-segment-pooled-v1",
+      "TP_w": 4691.2280687105085,
+      "FP_w": 35900.900166040476,
+      "FN_w": 56296.77193128949,
+      "n_truth": 60988.0,
+      "n_emitted": 37722.0,
+      "dti": 0.08243410429527415,
+      "n_withheld_positive_pixels": 60988,
+      "n_unique_withheld_components": 3199,
+      "ci95": {
+        "level": 0.95,
+        "interval": [
+          0.07287200123415499,
+          0.09173273826900923
+        ],
+        "method": "percentile spatial-block bootstrap of pooled TPw/FPw/FNw",
+        "block_pixels": 100,
+        "block_size_m": 10000,
+        "n_blocks": 583,
+        "resamples": 1999,
+        "seed": 20261025,
+        "limitation": "Internal-validation uncertainty; geologic structures may cross blocks. Not a hidden-score interval."
+      },
+      "folds": [
+        {
+          "fold": "NW",
+          "TP_w": 912.5033320963678,
+          "FP_w": 8059.808150460023,
+          "FN_w": 9252.496667903632,
+          "n_truth": 10165,
+          "n_emitted": 8430,
+          "dti": 0.09192633839025212,
+          "coverage": 0.08976914236068546
+        },
+        {
+          "fold": "NE_LidarGapHeavy",
+          "TP_w": 815.7608915494452,
+          "FP_w": 10092.72361645936,
+          "FN_w": 11695.239108450554,
+          "n_truth": 12511,
+          "n_emitted": 10422,
+          "dti": 0.06691777194378083,
+          "coverage": 0.06520349225077493
+        },
+        {
+          "fold": "SW",
+          "TP_w": 1717.12263626669,
+          "FP_w": 9759.799142282052,
+          "FN_w": 18816.87736373331,
+          "n_truth": 20534,
+          "n_emitted": 10429,
+          "dti": 0.091713975145416,
+          "coverage": 0.08362338737054105
+        },
+        {
+          "fold": "SE",
+          "TP_w": 1245.8412087980055,
+          "FP_w": 7988.569256839037,
+          "FN_w": 16532.158791201993,
+          "n_truth": 17778,
+          "n_emitted": 8441,
+          "dti": 0.07752936326403033,
+          "coverage": 0.07007769202373751
+        }
+      ],
+      "protocol": {
+        "aggregation": "pooled TPw/FPw/FNw, not mean fold DTI",
+        "buffer_m": 1500,
+        "whole_components_hidden_everywhere": true,
+        "visible_fault_mask": "pixel-exact, applied before credit and FP calculation",
+        "catalogue_features": "must be constructed from fold.visible only",
+        "alpha": 0.2,
+        "beta": 0.8,
+        "triangular_kernel_radius_m": 300
+      }
+    },
+    "surface_max_abs_registry_rank_correlation": 0.4822798246346134,
+    "maximum_competing_method_3px_overlap": 0.6439478288531891,
+    "maximum_competing_method_file": "docs/downloads/gemsdoe31-h3-lidar-scarp-unique-50k-20261025-allfinite.tif",
+    "retained_lattice_3px_overlap": 0.9995228248767297,
+    "strict_format_valid": true,
+    "verdict": "negative",
+    "recommendation": "DOWNLOAD FOR AUDIT: YES / SUBMIT: NO",
+    "can_exceed_owner_reported_0_2778": "UNPROVEN. TIP1 scored HOLDOUT-DTI 0.082434 on the named local evaluator, far below the 0.166060 local promotion benchmark; local holdout and the unverified organizer claim are not directly comparable. No score projection is made."
+  },
+  "leaderboard_claim_irregularity": {
+    "claims_seen": [
+      0.3195,
+      0.4413
+    ],
+    "status": "UNVERIFIED-OWNER-REPORT",
+    "receipt_present": false
+  },
+  "recommendation": "Do not resubmit any historical best and do not spend a slot on TIP1. TIP1 is format-valid and uniquely named, but misses the efficacy gate and fails the retained literal lattice overlap gate.",
+  "inputs": {
+    "evidence/tip1_run_card_20261026.json": "742c2d4d2c21253e28c17a1817d2e2ec8dd9a6693b3844acf2431015ca212a51",
+    "evidence/h33_b2_forensics.json": "7532e453888d029fa942793f10a9cfab3b629dd30b34fa9bcf5ace94172f5265"
+  }
+}

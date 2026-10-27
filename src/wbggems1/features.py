@@ -35,8 +35,29 @@ import rasterio
 from pyproj import Transformer
 from scipy.ndimage import distance_transform_edt, gaussian_filter, map_coordinates
 
-from gems.geofeatures import BAND_ORDER
 from wbggems1.paths import raw_data_dir, repo_root, work_dir
+
+BAND_ORDER = [
+    "mag_anom",
+    "rtp",
+    "tmi_hg",
+    "geod_2ndinv",
+    "iso_grav_anom_slope",
+    "tc",
+    "geod_shearrate",
+    "geod_dilaterate",
+    "tmi_vg",
+    "deq_n100a15",
+    "iso_grav_anom_vg",
+    "det_elev",
+    "iso_grav_anom",
+    "tmi",
+    "depth_to_base_surf",
+    "ieq_n100a15",
+    "cond_surf",
+    "iso_grav_anom_hg",
+    "det_elev_slope",
+]
 
 SENTINEL_CUT = -1e30
 N_AZIMUTHS = 8
@@ -480,7 +501,7 @@ def prepare_feature_memmap(*, force: bool = False) -> dict[str, Any]:
     wdir.mkdir(parents=True, exist_ok=True)
     feat_mmap_path = wdir / "dpgf_features.npy"
     lidar_mask_path = wdir / "has_lidar_fp.npy"
-    meta_path = repo_root() / "evidence" / "prepared_features_manifest.json"
+    meta_path = repo_root() / "evidence" / "wbg_h1" / "prepared_features_manifest.json"
 
     tmpl_path = rdir / "sample_submission.tif"
     src_path = rdir / "training_features.tif"

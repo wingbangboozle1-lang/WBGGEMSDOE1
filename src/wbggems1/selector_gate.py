@@ -120,8 +120,8 @@ def load_all_comparison_entries() -> list[dict[str, Any]]:
     rcache = registry_cache_dir()
     rdir = raw_data_dir()
 
-    ureg = json.loads((root / "registry" / "uniqueness_registry.json").read_text())["entries"]
-    f9 = json.loads((root / "registry" / "focus9_latest_20261026.json").read_text())["entries"]
+    ureg = json.loads((root / "registry" / "wbg_h1" / "uniqueness_registry.json").read_text())["entries"]
+    f9 = json.loads((root / "registry" / "wbg_h1" / "focus9_latest_20261026.json").read_text())["entries"]
 
     items: list[dict[str, Any]] = []
     seen_sha: set[str] = set()
@@ -330,7 +330,7 @@ def check_post_placement_uniqueness(
 
     ureg_fp_hashes = {
         e["footprint_sha256"]
-        for e in json.loads((repo_root() / "registry" / "uniqueness_registry.json").read_text())["entries"]
+        for e in json.loads((repo_root() / "registry" / "wbg_h1" / "uniqueness_registry.json").read_text())["entries"]
     }
     exact_hash_collision = fp_sha256 in ureg_fp_hashes
 

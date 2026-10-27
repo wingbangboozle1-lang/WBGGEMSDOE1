@@ -1,0 +1,15 @@
+{
+  "evidence_class": "REGISTRY-MEASUREMENT",
+  "witness_file": "/home/user/WBGGEMSDOE1/.cache/research/GEMSDOE24/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+  "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+  "positive_pixels": 206895,
+  "allowed_pixels": 5167373,
+  "uncovered_allowed_pixels": 6649,
+  "covered_allowed_fraction": 0.9987132726822701,
+  "universal_overlap_blocker": false,
+  "overlap_limit": 0.7,
+  "support_definition": "finite prediction > 0 (inherited literal support rule)",
+  "implication": "No universal blockage established.",
+  "generated_utc": "2026-10-26T22:39:01+00:00",
+  "interpretation_warning": "Near saturation is a protocol obstruction, not proof of common geological reasoning. No density/lattice exemption was authorized."
+}

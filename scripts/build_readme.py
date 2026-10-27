@@ -1,182 +1,222 @@
 #!/usr/bin/env python3
-"""Deterministic README.md generator embedding verified evidence/*.json + verbatim owner brief."""
-from __future__ import annotations
-
-import json
+"""Keep the README decision current and embed the complete supplied standing brief."""
 from pathlib import Path
+import json
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def _load(rel: str):
-    return json.loads((ROOT / rel).read_text())
+def main():
+    card = json.loads((ROOT / "registry/run_card.json").read_text())
+    wbg_h1_rc = json.loads((ROOT / "evidence/wbg_h1/run_card.json").read_text())
+    h, c, d = card["holdout"], card["control_holdout"], card["paired_delta_holdout"]
+    tif = Path(card["artifact"]).name
+    h1_tif = wbg_h1_rc["raster_sha256"]["tif_file"]
+    h1_zip = wbg_h1_rc["raster_sha256"]["zip_file"]
+    standing = (ROOT / "docs/standing-prompt.md").read_text()
+    header = f'''# WBG GEMS — evidence-first fault mapping
 
+## DOWNLOAD: YES, for research. SUBMIT: **NO**.
 
-def main() -> None:
-    rc = _load("evidence/run_card.json")
-    exp = _load("evidence/wbg_h1_experiments.json")
-    f9 = _load("evidence/focus9_executive_audit.json")
+**[Open the research desk](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/)** ·
+[Executive summary](docs/executive-summary.md) · [Submission guide](docs/how-to-submit.html) ·
+[Exact JSON run card](registry/run_card.json)
 
-    prompt_file = Path("/tmp/gems_work/verbatim_prompt.txt")
-    verbatim_details = prompt_file.read_text().strip() if prompt_file.exists() else ""
+**[Download the newly generated research TIFF](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/downloads/{tif})** ·
+[One-TIFF ZIP](docs/downloads/{tif.replace('.tif', '.zip')}) ·
+[TIFF in repository](docs/downloads/{tif}) · [Validation receipt](docs/downloads/{tif.replace('.tif', '.json')})
 
-    tif_rel = rc["raster_sha256"]["tif_file"]
-    zip_rel = rc["raster_sha256"]["zip_file"]
-    reg_cov = rc["registry_correlation_and_overlap"]
+> **NEGATIVE RESULT.** This is a genuinely generated, format-valid **continuous research surface**,
+> not a final dotted or promoted competition submission. It fails paired efficacy and the literal
+> registry-overlap gate. The method lane was not assigned in the prompt. **Do not upload it.**
+> No final dots were placed, no real submission was selected, and **zero competition slots were used**.
+> “Different bytes” is not “lane unique”; “local format pass” is not organizer acceptance.
 
-    f9_md_rows = []
-    # WBGGEMSDOE1 row first
-    f9_md_rows.append(
-        f"| **WBGGEMSDOE1** *(this repo)* | `{Path(tif_rel).name}` (`{rc['raster_sha256']['tif_sha256'][:12]}…`) | "
-        f"`HOLDOUT-DTI = {rc['holdout_dti']['dti']:.5f}` (`CI [{rc['holdout_dti']['ci95'][0]:.4f}, {rc['holdout_dti']['ci95'][1]:.4f}]`, **+18.7% vs B0**); `LLI-PROJECTION = {rc['lli_empirical_projection']['projected_value']:.4f}` | "
-        f"`{100.0 * reg_cov['sparse_dot_submissions_le_100k_max_3px_overlap']:.1f}%` sparse 3-px (`<=70%`), `|ρ|={reg_cov['focus9_sites_max_abs_spearman']:.4f}` (`<=0.90`) | "
-        f"**PASS (`[0,1]`, 0 NaN)** · `verdict: negative` (hold live 3/wk slot; beats `B0` 4/4 folds, trails `DPRF1` `0.1638`) |"
-    )
-    for r in f9:
-        unq = r["uniqueness_vs_all_gemsdoe"]
-        hlb = r["historical_live_best"]
-        pg_txt = "PASS (`0` NaN)" if r["portal_10_gate_pass"] else f"**FAIL ({r['nan_cells']:,} NaNs)**"
-        f9_md_rows.append(
-            f"| **{r['site']}** | `{r['latest_download_file']}` (`{r['sha256'][:12]}…`) | "
-            f"`{r['latest_holdout_metric']}`; Hist live: `{hlb['score']:.4f}` (`ORGANIZER-CONFIRMED`, `{hlb['file']}`); `LLI-PROJ = {r['lli_empirical_projection']['projected_value']:.4f}` | "
-            f"`{100.0 * unq['max_sparse_peer_3px_dot_overlap']:.1f}%` sparse 3-px (`{unq['closest_sparse_peer'][:28]}…`), `|ρ|={unq['max_abs_spearman_rho']:.3f}` | "
-            f"{pg_txt} · **{r['recommendation'].split('(')[0].strip()}** |"
-        )
-    f9_table = "\n".join(f9_md_rows)
+| Artifact / decision | Measured evidence | Estimated leaderboard result | Exact-copy / literal uniqueness |
+|---|---|---|---|
+| [{tif}](docs/downloads/{tif}) — **research download only** | **HOLDOUT-DTI {h['dti']:.6f}**, 95% CI [{h['ci95'][0]:.6f}, {h['ci95'][1]:.6f}], `{card['holdout_instrument']['evaluator_version']}`, {h['withheld_positive_pixels']:,} withheld positives | **Unavailable**. Not inferred from holdout. Organizer-confirmed artifact result: **none**. | Byte- and normalized-pixel distinct from all {card['registry']['checked_unique_file_hashes']} checked hashes; **FAIL** literal forward overlap {card['registry']['max_forward_3px_overlap']*100:.2f}% >70%. |
 
-    readme = f"""# WBGGEMSDOE1 — Dip-Projected Basement-to-Surface Coupling (`WBG-H1 / DPGF-1`)
+- Same-instrument 19-band control: **HOLDOUT-DTI {c['dti']:.6f}**, 95% CI [{c['ci95'][0]:.6f}, {c['ci95'][1]:.6f}], same evaluator, {h['withheld_positive_pixels']:,} positives.
+- Paired difference: **HOLDOUT-DTI {d['delta']:+.6f}**, 95% CI [{d['ci95'][0]:+.6f}, {d['ci95'][1]:+.6f}], same evaluator/positives. No improvement established.
+- Scientific representation: **unplaced continuous OOF confidence**, not matched-budget sparse dots, calibrated probabilities or a hidden-test leaderboard forecast.
+- Leakage canaries: all 23 individual inputs tested in four folds; max orientation/missingness AUC **{card['leakage_canary']['maximum_orientation_invariant_auc']:.6f}**, below 0.90. AUC is not DTI and passing this screen is not proof of no possible leakage.
+- Local GeoTIFF: one float32 band, EPSG:32611, 3,730 × 3,292, 100 m, exact reference transform; all finite, min **{card['validator']['range_min']:.6f}**, max **{card['validator']['range_max']:.6f}**, zero outside the footprint and on the known catalogue.
+- SHA-256: `{card['raster_sha256']}`.
+- Name: `{card['submission_name']}`.
+- Note (≤140 characters): `{card['submission_note']}`.
 
-**Autonomous Research, Multi-Site Portfolio Forensics (`GEMSDOE24–36`), Automated `[0, 1]` Portal Gate, and Unique Validated GeoTIFF Submission for the U.S. DOE GEMS Prize ($300,000)**
+## Review outcome and historical learning
 
-- **GitHub Pages UI:** `docs/index.html` (plus step-by-step DrivenData upload walkthrough at `docs/executive-summary.html`)
-- **1-Click Validated GeoTIFF Submission:** [`{tif_rel}`]({tif_rel}) (`{exp['full_submission_synthesis']['tif_bytes']:,}` bytes · SHA-256 `{rc['raster_sha256']['tif_sha256']}`)
-- **Optional `.zip` Archive:** [`{zip_rel}`]({zip_rel}) (`{exp['full_submission_synthesis']['zip_bytes']:,}` bytes · SHA-256 `{rc['raster_sha256']['zip_sha256']}`)
-- **Unique DrivenData Submission Name:** `{rc['submission_name']}`
-- **DrivenData Note (`{rc['submission_note_length']} <= 140` chars):** `{rc['submission_note']}`
-- **Automated `[0, 1]` Portal Gate:** **10 / 10 PASS** (`0` NaN, `0` Inf across all `12,279,160` cells; `outside="zero"`, `nodata=None`, `EPSG:32611`, `(3730, 3292)`, `37,654` crisp `{{0.0, 1.0}}` dots, `0` waste inside `<=200 m` known-fault collar)
-- **Uniqueness vs Registry (`206` non-lattice rasters):** **UNIQUE PASS** — pre-placement surface `|ρ| = {reg_cov['pre_placement_surface_max_abs_spearman']:.4f} <= 0.90`; sparse/Focus-9 3-px dot overlap `{100.0 * reg_cov['sparse_dot_submissions_le_100k_max_3px_overlap']:.2f}% <= 70%`, `|ρ| = {reg_cov['focus9_sites_max_abs_spearman']:.4f} <= 0.90`; symmetric 3-px overlap across all 206 rasters `{100.0 * reg_cov['all_206_competing_symmetric_3px_max_overlap']:.2f}% <= 70%`
-- **Protocol Rule 5 Selector Verdict:** **`verdict: "negative"` (Hold 3/week live DrivenData slot)** — `EXP-3` beats matched 31-channel tree baseline `B0` across **4/4 spatial folds** (`HOLDOUT-DTI = 0.123310` vs `0.103855`, paired Δ = `+0.019455`, 95% CI `[+0.007288, +0.031848]`, surging **+34.9%** to `0.1797` in `NE_LidarGapHeavy`), and beats 6 of the 9 focus sites, while trailing analytical ridge `GEMSDOE24 DPRF1` (`HOLDOUT-DTI = 0.163792`) and live `GEMSDOE32` (`0.2778` `ORGANIZER-CONFIRMED`).
+The starting checkout at `5d2236b` contained only `README.md` with a one-line title: no existing
+training pipeline, data cache, previous-session tasks or site were present locally. This work built
+an auditable project, restored the public mirrors and shared cache, and ran one preregistered screen.
 
----
+The [nine-site executive summary](docs/executive-summary.md) covers **GEMSDOE24, 25, 27, 28, 30, 31,
+32, 33 and 36**, linking exact original files and immutable source snapshots. Historical values
+provided in the prompt are quarantined as **USER-REPORTED / NOT ORGANIZER-CONFIRMED** because no
+submission-page receipt binds those bytes to a result. They are not relabelled HOLDOUT-DTI.
 
-## Arena Core Values Guiding This Repository
+The largest supplied historical claim is **GEMSDOE32 B2, USER-REPORTED 0.2778**. The exact raster
+identity is D2.8 44,090 dots → B1 40,199 → B2 37,654 by progressively removing catalogue-near dots.
+GEMSDOE25 and GEMSDOE30 have identical decoded predictions. GEMSDOE36 is B2 plus 1,200 additions.
+These are closely related fields, not nine independent geological discoveries. Sparse max-cover
+credit and avoiding low-marginal-credit predictions are plausible reasons for the historical
+ordering, not a causal proof from unavailable hidden labels. A 200 m exclusion is **not** an
+organizer rule. No historical file should be copied into a new "unique" entry.
 
-### Maximize P(Win)
-> *"Maximize the Probability of Winning": our decision making framework. In every decision, we weigh tradeoffs, assess risk, and choose the path that maximizes the probability that Arena succeeds. We set aside our emotions and make tough decisions in order to maximize P(Win). "Maximize P(Win)" frees us from constraints and clarifies that we must put Arena first.*
+The direct **official public-leaderboard observation on 2026-10-26 was 0.4437**, not the prompt's
+older targets. That is **not** an organizer result for any project TIFF. A higher project score
+was not obtained or credibly projected in this session.
 
-**How `WBGGEMSDOE1` applies `Maximize P(Win)`:** With DrivenData enforcing a strict **3 submissions/week** cap ([NLR Official Rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf)) and live `#1` (`xiaofanhu`) at **`0.4437`** (`ORGANIZER-CONFIRMED` leaderboard fetch `2026-10-26`), spending a live slot on an unvalidated or duplicate raster lowers `P(Win)`. We audit all 9 focus sites (`GEMSDOE24–36`), catch a live `[0, 1]` portal blocker (`7,111,787` exterior `NaN`s in `GEMSDOE30`) and two `>90%` duplicate traps (`GEMSDOE28`, `GEMSDOE31`), build a genuinely novel 66-channel dip-projected geophysical pipeline (`WBG-H1`) that wins 4/4 spatial folds over `B0`, and honestly report `verdict: "negative"` for standalone live slot expenditure until fused with a 2D spatial U-Net/steerable ridge backbone (`>0.18` `HOLDOUT-DTI`).
+## Parallel work preserved during integration
 
-### Own the Outcome
-> *We own results end to end — not just our individual slice of the work. When problems arise and we have the means to act, we do so without waiting for permission or assignment. We treat failure and success as signals and use them to improve. At Arena, we stay accountable to the final outcome.*
+While this branch was working from the one-line initial checkout, other sessions merged TIP1 and
+MVGZ negative results into `main` (integrated snapshot `b9a2d5301c0c971dcc1219f9ad6b29c68f68ee21`).
+Their frozen scientific modules, receipts and artifacts are retained; they were **not rerun**.
+The current **one-experiment count is WBG-C1 only**, not a sum or reset of the inherited lane budgets.
+Different evaluator/split/representation results must not be pooled or ranked as comparable scores.
 
-**How `WBGGEMSDOE1` applies `Own the Outcome`:** We resolved data restoration autonomously (`25` manifest rasters + `207` comparison GeoTIFFs), discovered and repaired a corrupted UTF-8 `docs/data/footprint.bin` (`IR-WBG1-02`) in the upstream template, caught a band-index bug in `lidar_scarp_features_u8.tif` (`ds.read(12) == 0` true `24.63%` 3DEP coverage mask), eliminated the user's `"Predicted values must be in range [0, 1]"` portal error permanently (`outside="zero"`, `nodata=None`), and documented a clear step-by-step upload guide in `docs/executive-summary.html`.
+- [Original parallel site, with its own frozen assets and data](docs/parallel/main-b9a2d53/index.html)
+- [Original main README](research/inherited-main-README-b9a2d53.md) (historical commands/paths)
+- [Byte-preservation/integration receipt](evidence/parallel_main_integration.json)
+- [Frozen TIP1 card](evidence/tip1_run_card_20261026.json) and [MVGZ card](evidence/run_card.json)
+- **[Parallel WBG-H1 (DPGF-1 / EXP-3) Interactive Dashboard & 9-Site Audit](docs/wbg-h1-dpgf1/index.html)** ·
+  [Step-by-step DrivenData upload guide](docs/wbg-h1-dpgf1/executive-summary.html) ·
+  [1-Click Validated `[0,1]` GeoTIFF (`{Path(h1_tif).name}`)]({h1_tif}) (`SHA-256: {wbg_h1_rc['raster_sha256']['tif_sha256']}`) ·
+  [ZIP archive]({h1_zip}) ·
+  [WBG-H1 Run Card (`evidence/wbg_h1/run_card.json`)](evidence/wbg_h1/run_card.json)
+  - **Method (`WBG-H1 / DPGF-1`, pre-registered in [`knowledge/01_preregistration_wbg_hypotheses_2026-10-26.md`](knowledge/01_preregistration_wbg_hypotheses_2026-10-26.md)):** 66-channel label-free feature stack (`DipShift` 500 m / 1,000 m updip subsurface-to-surface projection, `TFSDI` tectonic-vs-fluvial scarp index, E–W notched GeoDAWN magnetics, MT/GDR 1391 perimeter, 3DEP LiDAR completeness dual `HGB+ET` ensemble + two-regime `300 m` CELF submodular emitter, `37,654` zero-exterior binary dots).
+  - **Canary & Holdout (`gems-segment-pooled-v1`, `n=60,988` withheld positives):** `66/66` single-feature canaries PASS (`max_symmetric_auc = 0.68971 <= 0.90`). `EXP-3` achieves **`HOLDOUT-DTI = {wbg_h1_rc['holdout_dti']['dti']:.6f}`** (`95% CI [{wbg_h1_rc['holdout_dti']['ci95'][0]:.6f}, {wbg_h1_rc['holdout_dti']['ci95'][1]:.6f}]`), beating matched 31-ch tree baseline `B0 = {wbg_h1_rc['holdout_dti']['baseline_b0_dti']:.6f}` across **4/4 spatial folds** (`paired Δ = +{wbg_h1_rc['holdout_dti']['paired_delta_vs_b0']:.6f}`, `95% CI [+{wbg_h1_rc['holdout_dti']['paired_delta_vs_b0_ci95'][0]:.6f}, +{wbg_h1_rc['holdout_dti']['paired_delta_vs_b0_ci95'][1]:.6f}]`, surging `+34.9%` to `0.17974` in `NE_LidarGapHeavy`).
+  - **Automated `[0,1]` Portal & Uniqueness Gates:** `10/10` portal checks PASS (`0` NaN, `0` Inf across all `12,279,160` cells, `outside="zero"`, `nodata=None`); pre-placement surface `|ρ| = 0.2404 <= 0.90`; sparse/Focus-9 3 px dot overlap `64.49% <= 70%`, `|ρ| = 0.0347 <= 0.90`; symmetric 3 px overlap across all 206 non-lattice rasters `56.05% <= 70%`. Submission name `{wbg_h1_rc['submission_name']}`, note `{wbg_h1_rc['submission_note']}` (`{wbg_h1_rc['submission_note_length']}` chars).
+  - **Selector Verdict (`verdict: "{wbg_h1_rc['verdict']}"`):** Hold live 3/week DrivenData slot standalone because `0.123310` trails analytical scarp-ridge reference `GEMSDOE24 DPRF1` (`HOLDOUT-DTI = 0.163792`); see [`evidence/wbg_h1/focus9_executive_audit.json`](evidence/wbg_h1/focus9_executive_audit.json) (catching `GEMSDOE30`'s `7,111,787` exterior `NaN` `[0,1]` portal failure and `GEMSDOE28/31` `>90%` peer duplicates) and [`evidence/wbg_h1/forensic_proof_02778.json`](evidence/wbg_h1/forensic_proof_02778.json) (`0`-XOR proof + `r13-lattice-s5 = 0.0904 -> |G_private| = 12,366` px inversion).
+- Older two-argument `validate_submission.py candidate.tif reference.tif` callers retain their
+  supplied-reference format API; this is compatibility only and never confers slot approval.
+  WBG-C1 still uses the unchanged, pinned `gems57` all-finite validator/writer.
+- The older bridge-specific restore entry point is retained as `scripts/download_bridge_legacy.sh`
+  with `scripts/prepare_bridge_legacy.py`; current WBG-C1 commands below are unchanged.
 
----
+## What is implemented
 
-## 1. Executive Summary Across All 9 Requested GEMSDOE Sites + WBGGEMSDOE1
+- [Four ranked pre-implementation hypotheses](docs/hypotheses.md), with layers, transforms,
+  missing-catalogue rationale, mimics, novelty limits and data readiness. Only WBG-C1 was tested.
+- A catalogue-blind conductivity/depth Hessian-commutator transform and scale/strain support.
+- **Unchanged shared template** at `buffedlizard55-lab/57GEMSDOE@822a0ce5546c7b6749cdd82eb145b6b3e616603d`:
+  cache builder, buffered whole-component holdout, `evaluate_holdout.py`, metric, registry gates
+  and fail-closed `submission_writer.py`. [All 24 source hashes](evidence/template_integrity.json).
+- All **19 original cache hashes** reproduced. Inputs are **owner mirrors**, not independently
+  authenticated organizer downloads. Large inputs/cache/research clones are ignored by Git.
+- Frozen spatial LOQO screen: whole components withheld globally, feature buffer, 8 km training
+  collar, visible faults masked pixel-exactly, pooled alpha=0.2/beta=0.8/300 m DTI, paired 20 km
+  physical-cluster bootstrap. [Full output](evidence/experiment.json).
+- Single-feature leakage canaries, exact-file format/ZIP validation, **360-hash / 377-source-path**
+  nine-snapshot registry audit with no lattice/density exemption, fail-closed promotion decision.
+- Clean static GitHub Pages desk, executive-summary and submission-guide subpages, direct TIFF/ZIP
+  downloads, immutable source links, JSON evidence, explicit stale/unknown feed behavior.
+- Scheduled public-provenance refresh. It checks the official public leaderboard and upstream heads,
+  but **never retrains, changes an approval, spends a slot, commits, or uploads a competition file**.
 
-| Site | Exact Latest File to Download (`SHA-256`) | Properly Labeled Holdout, Historical Live Receipt & `LLI-PROJECTION` | Uniqueness vs All GEMSDOE Sites (`<=100k` Sparse Peers) | `[0,1]` Portal Gate & Submit Recommendation |
-|---|---|---|---|---|
-{f9_table}
+## Setup, data placement and verification
 
----
-
-## 2. PhD Forensic Analysis: Why `GEMSDOE32` Scored `0.2778` (`ORGANIZER-CONFIRMED`) & How to Beat It
-
-1. **Exact 0-Pixel XOR Proof on Raw Rasters (`evidence/forensic_proof_02778.json`):**
-   - `GEMSDOE32`'s `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif` (`0.2778`, `37,654` dots, `0` NaN) satisfies:
-     `GEMSDOE32_pos == GEMSDOE25_pos (44,090 dots, 0.2600) & (EDT(~existing_faults) > 2.0)` with **`0` XOR differing pixels** across all `5,167,373` footprint cells!
-   - Stripping `6,436` dead collar dots within `<= 200 m` of known `existing_faults.tif` cut denominator `0.2 * FP_w` by `~1,100` units while losing virtually zero `TP_w`, lifting live DTI from `0.2600` (`GEMSDOE25`/`30`) to **`0.2778`** (`+0.0178`). Wider collars (`b=3` -> `0.2750` on `GEMSDOE36`; `b=5` -> `0.2708` on `GEMSDOE28`/`31`) cut genuine fault branch tips.
-2. **Exact Inversion of Private Hidden Fault Inventory `|G_private|`:**
-   - Using `13GEMSDOE` `20261001_r13-lattice-s5_v2_nan-outside` (`206,895` blind spacing-5 dots -> `0.0904` `ORGANIZER-CONFIRMED` in `registry/scored_registry.json`, exact analytical mean kernel height `E[k] = 0.37482` outside the 200 m collar):
-     `|G_private| = (0.2 * 206,895 * 0.0904) / (0.37482 - 0.8 * 0.0904) = 12,366` hidden fault pixels (`~1,236.6 km` of unmapped trace, `0.239%` of footprint).
-   - **Zero-Parameter Cross-Check:** Plugging `|G_private| = 12,366` into the `GEMSDOE32 (37,654 dots, 0.2778) -> GEMSDOE25 (44,090 dots)` collar ratio predicts **`0.2587`** vs **`0.2600` actual `ORGANIZER-CONFIRMED`** (`0.0013` error!).
-   - **Milestones at `N = 37,654` dots:** `0.2778` = `40.4%` weighted recall (`4,993 TP_w`); `0.3195` = `46.7%` weighted recall (`5,770 TP_w`, `+777` extra `TP_w`); `0.4437` (`xiaofanhu` live `#1` on `2026-10-26`) = `65.7%` weighted recall (`8,128 TP_w`).
-3. **How to Surpass `0.2778` and `0.3195`:**
-   - Recover hidden faults inside the **`24.63%` 3DEP LiDAR gap** (`1,272,949` footprint cells where `H19-5` is blind — solved here in `WBG-H1` via `NE_LidarGapHeavy` `+34.9%` lift!).
-   - Couple 60° normal-fault **down-dip basement edges (`500 m` / `1,000 m`)** to surface breakout traces (`DipShift` coupling) and reject symmetric alluvial wash channels (`TFSDI`).
-   - Replace axis-aligned pixel trees with a **2D multi-scale U-Net / ConvNeXt trained directly on differentiable 300 m Soft-DTI loss** with `100–300 m` label-jitter tolerance (`WBGGEMSDOE2` / `WBGGEMSDOE3`).
-
----
-
-## 3. Pre-Registered Hypotheses (`WBG-H1..H5`), Canary & `SegmentHoldout` Results
-
-Locked prior to training in `knowledge/01_preregistration_wbg_hypotheses_2026-10-26.md` (`SHA-256: 7d53a790122433e86f926c9371162433a9a883289e40602764d0496b888686ce`):
-1. **`WBG-H1` (*Selected & Implemented*):** Dip-Projected Basement-to-Surface Coupling + Hydrothermal Perimeter + LiDAR-Dual Submodular 300 m CELF (`66` label-free channels, `66/66` single-feature leakage canary PASS, `max_symmetric_auc = 0.68971 <= 0.90`).
-2. **`WBG-H2`:** Anisotropic E–W Flight-Line-De-Striped GeoDAWN Magnetic Tilt-Worm Continuity.
-3. **`WBG-H3`:** Fluvial-Vetoed Multi-Azimuth Scarp Convexity + Slip/Dilation Stress-Gate.
-4. **`WBG-H4`:** Paleo-Geothermal Sinter/Tufa + Shallow 2m Probe Advective Plume Back-Projection ([GDR 1391](https://gdr.openei.org/submissions/1391)).
-5. **`WBG-H5`:** NASA/JPL OPERA Sentinel-1 `DISP-S1` + NGL GPS Strain-Gradient Localization (documented external source; requires outbound ASF Earthdata access).
-
-| Arm | Pooled `HOLDOUT-DTI` (`gems-segment-pooled-v1`, `n=60,988`) | 95% Block-Bootstrap CI | Paired Δ vs `B0` (95% CI) | `NW` | `NE` (LiDAR Gap) | `SW` | `SE` | Active Dots |
-|---|---|---|---|---|---|---|---|---|
-| `B0` (31-ch HGB + `d=2.8` NMS) | `0.103855` | `[0.090213, 0.117398]` | baseline | `0.10064` | `0.13326` | `0.07411` | `0.11789` | `37,654` |
-| `EXP-1` (66-ch `DPGF-1` + Dual + CELF) | `0.118290` | `[0.105444, 0.131823]` | `+0.014435` (`[+0.0034, +0.0262]`) | `0.11524` | **`0.17974` (+34.9%)** | `0.07780` | `0.12095` | `37,654` |
-| `EXP-2` (+ Deconf + HardNeg, 1-Reg) | `0.112941` | `[0.099224, 0.127569]` | `+0.009086` (`[-0.0032, +0.0211]`) | `0.11819` | `0.16364` | `0.07625` | `0.11717` | `33,280` |
-| **`EXP-3` (+ Two-Regime 72/28 CELF)** | **`0.123310`** | **`[0.108921, 0.137557]`** | **`+0.019455` (`[+0.0073, +0.0318]`)** | **`0.13108`** | **`0.17195`** | **`0.07664`** | **`0.13535`** | **`37,654`** |
-
----
-
-## 4. Irregularities Flagged (`IR-WBG1-00..04`) & Limitations
-
-- **`IR-WBG1-00` (Lane Paragraph Omission):** Standing Rule 1 references *"the single method paragraph below"*, which was omitted from the pasted prompt. Resolved via locked `WBG-H1` pre-registration after auditing `WBGGEMSDOE2/3` and 90+ `GEMSDOE*` repos.
-- **`IR-WBG1-01` (`r13-lattice-s5` Pigeonhole Trap):** `13GEMSDOE`'s 206,895-dot spacing-5 lattice covers `99.87%` (`5,160,724 / 5,167,373`) of the footprint within 3 px, forcing `>=82.34%` overlap on *every* raster. Excluded alongside `GEMSDOE24` (`IR-G24-04`) and `GEMSDOE36` (`IR-36-02`).
-- **`IR-WBG1-02` (Upstream UTF-8 Corrupted `docs/data/footprint.bin`):** `GEMSDOE24@HEAD` committed `21,715` UTF-8-mangled bytes instead of `15,681` raw binary bytes, raising `IndexError` in `decode_runs()`. Rebuilt deterministically from `sample_submission.tif` (`SHA-256: 9ec93feb...`).
-- **`IR-WBG1-03` (Asymmetric One-Way Containment vs 516k-Pixel Slabs):** `GEMSDOE22`'s `h23-b-10pct` (`0.0748`, `516,749` active cells = `13.7x` sparse budget) inflates one-way `P(A in B_3px)` even when symmetric 3-px overlap is `15.5%` and `|ρ| = 0.207`. Reported across both sparse (`<=100k`) and symmetric (`all-206`) scopes.
-- **`IR-WBG1-04` (DrivenData Whole-Array `[0, 1]` NaN Rejection):** Live portal rejects exterior `NaN`s (`GEMSDOE30` latest `.tif` has `7,111,787` exterior `NaN`s). Enforced `outside="zero"` (`nodata=None`) across all `12,279,160` cells.
-- **Sandbox Network & Compute Constraints:** CPU-only (`2` vCPUs, `3.6 GiB` RAM) and outbound allowlist limited to `github.com` / `api.github.com` / `codeload.github.com` / `pypi.org` / `registry.npmjs.org` (`prd-tnm.s3.amazonaws.com` 1 m 3DEP tiles and `asf.alaska.edu` OPERA InSAR blocked in bash). Resolved autonomously via cached GEMS manifest rasters (`scripts/restore_data.py`).
-
----
-
-## 5. Verified Official Sources & Links
-
-- **Competition Overview, Problem & Metric:** <https://www.drivendata.org/competitions/306/competition-doe-gems/> · [Page 967](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) · [Page 968](https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/) · [Live Leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
-- **Official Rules ($300K, 3/week cap, AI disclosure):** <https://docs.nlr.gov/docs/fy26osti/96647.pdf>
-- **Reference Solution:** <https://github.com/drivendataorg/gems-prize-reference-solution>
-- **INGENIOUS Great Basin Dataset (GDR 1391, CC-BY-4.0):** <https://gdr.openei.org/submissions/1391> (`DOI: 10.15121/1881483`) · <https://gbcge.org/current-projects/ingenious/>
-- **USGS GeoDAWN Airborne Magnetics/Radiometrics + 3DEP:** <https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and> (`DOI: 10.5066/P93LGLVQ`)
-- **CRS & Metric Literature:** <https://epsg.io/32611> · <https://en.wikipedia.org/wiki/Tversky_index> · Mattéo et al. (2021, `10.1029/2020JB021269`)
-
----
-
-## 6. Autonomous End-to-End Reproduction
+CPU research is supported; a GPU is **not** a universal prerequisite for this project.
+GitHub access is needed for the hash-pinned public bridges; no DrivenData credentials are stored.
 
 ```bash
-# 1. Restore verified 25 manifest rasters + 207 registry GeoTIFFs into /tmp/gems_raw
-.venv/bin/python scripts/restore_data.py
-
-# 2. Build 66-channel label-free DPGF-1 feature stack + run 66-ch leakage canary
+python -m venv .venv
+.venv/bin/pip install -e '.[test]'
+# For exact research dependency versions, use requirements-lock.txt.
+bash scripts/download_competition_data.sh
 .venv/bin/python scripts/prepare_data.py
+.venv/bin/pytest -q
 
-# 3. Run 9-site audit, 0.2778 0-XOR forensic proof, and 118-raster LLI calibrator
-.venv/bin/python scripts/run_9site_forensics_and_lli.py
+# Reopen the actual downloadable bytes. Exit 0 means FORMAT pass only.
+.venv/bin/python scripts/validate_submission.py docs/downloads/{tif}
+# Deliberately exits 2 for this locally valid but unapproved artifact:
+.venv/bin/python scripts/validate_submission.py --require-submit-ready docs/downloads/{tif}
 
-# 4. Run 4-fold SegmentHoldout (B0 + EXP-1..3) and synthesize validated GeoTIFF
-.venv/bin/python scripts/run_wbg_h1_experiment.py
+# Restore frozen peer corpus only for audit, never model inputs:
+.venv/bin/python scripts/fetch_repositories.py
+.venv/bin/python scripts/audit_repositories.py
+# The next command audits the unchanged surface; it does NOT retrain/place dots:
+.venv/bin/python scripts/audit_registry.py
 
-# 5. Run 10-point DrivenData [0,1] portal & multi-scope uniqueness gate + rebuild Pages
-.venv/bin/python scripts/validate_submission.py {tif_rel} --check-uniqueness
-.venv/bin/python scripts/evaluate_holdout.py --verify-recorded
-.venv/bin/python scripts/build_site.py
-.venv/bin/pytest -q && .venv/bin/ruff check src scripts tests
+# Rebuild report pages from persisted measured JSON (no modelling):
+python scripts/refresh_feed.py --offline
+python scripts/build_site.py
+python scripts/build_readme.py
+# Preview, not for production deployment:
+python -m http.server 8000 --bind 0.0.0.0 --directory docs
 ```
 
----
+Optional rendered-site checks on Linux (not needed to build or deploy the site):
 
-## 7. Protocol Rule 5 JSON Run Card (`evidence/run_card.json`)
-
-```json
-{json.dumps(rc, indent=2)}
+```bash
+npm ci
+# Against the running static preview on the test machine:
+BASE_URL=http://127.0.0.1:8000/ npm run test:browser
+# Minimal containers without NSS/NSPR may also need BROWSER_COMPAT_LIBS=1.
 ```
 
----
+The browser check visits all five pages at desktop/mobile sizes, rejects body overflow and
+JavaScript page errors, tests the site filter, and hashes the actual downloaded TIFF.
+Screenshots stay in ignored `.cache/browser-review/`; the JSON receipt is inspectable in
+[evidence/browser_checks.json](evidence/browser_checks.json). These are site checks, not evidence
+of scientific efficacy or organizer upload acceptance.
 
-## 8. Preserved Full User Prompt (Standing Project Brief)
+`scripts/run_experiment.py` contains the exact frozen training screen. Its persisted experiment
+ledger and result guard deliberately **prevent silent reruns or retuning of this stopped lane**.
+Recomputing DTI/CI from persisted block terms and revalidating artifacts is allowed; another
+hypothesis needs a separately authorized prospective record, not deletion of the failed result.
+There is no competition uploader. This static site serves a real pre-generated artifact; it does
+not falsely claim that a browser button trains the model.
 
-{verbatim_details}
-"""
-    (ROOT / "README.md").write_text(readme)
-    print(f"Wrote README.md ({len(readme):,} bytes)")
+## Limitations and highest-priority next work
+
+1. **No final high-scoring upload-ready submission was produced.** The unique-byte research TIFF
+   fails the scientific and literal-overlap gates. Stop is binding; no final-dot check is claimed.
+2. **Missing lane and registry policy:** obtain an actual single-method assignment and a separately
+   authorized scope policy. Do not privately exempt lattices/dense surfaces or target lattice holes.
+3. **Input provenance and semantics:** verify official-origin data and original per-band meanings.
+   `tc` and the depth-surface interpretation are ambiguous in mirror/peer materials. Do not claim
+   physical units, heat or permeability from a classifier on unverified descriptors.
+4. **Honest current-best comparison:** the clean 19-band control was refitted, but an identically
+   rerun cross-repository best and untouched confirmation were not established. Static historical
+   catalogue-derived rasters must not be scored as if they were leak-free refitted models.
+5. **Authentication and weekly cap:** the official submissions endpoint redirects to login.
+   The rule PDF says up to three weekly; the account's actual remaining allowance and exact-file
+   score receipts are unavailable. Never request or store credentials in chat or Git.
+6. **Coverage and confidence:** nine frozen snapshots are not all 92 sites, releases/private files
+   or later commits. Hide-and-recover and conditional bootstrap intervals are not hidden-new-fault
+   leaderboard estimates. Negative/background labels remain incomplete. Separately fitted OOF
+   models can create confidence seams; geometric patterns in the thumbnail are not verified faults.
+7. **Scientific target:** competition faults are not direct vent/resource confirmation. Future
+   geothermal discovery needs convergent independent evidence, not just a probability map.
+8. **Pages administration scope:** the integration cannot change Pages settings (HTTP 403).
+   The existing main/root publisher is retained; `scripts/stage_pages.py` gives workflow deploys
+   the same root-to-`/docs/` layout. This avoids incompatible download paths without a manual
+   configuration change. Only actual GitHub run/deployment receipts establish publication.
+
+[Official-source claim register](registry/sources.json) · [Irregularities](registry/irregularities.json)
+· [Frozen preregistration](registry/preregistration.json) · [Review passes](evidence/review_passes.json)
+
+## Project principles
+
+**Maximize P(Win):** prioritize reliable out-of-sample evidence and scientific novelty over
+more submissions, cosmetic file changes or public-leaderboard overfitting.
+**Own the Outcome:** validate exact output bytes, preserve negative results, surface access gaps,
+and never hand an unapproved file to the user as an upload recommendation.
+
+## Starting point for every future session
+
+Read this current status, `registry/run_card.json`, `registry/irregularities.json`, and the full
+standing request below before work. Historical claims and intended capabilities in the prompt are
+not verified facts. The measured run card takes precedence over stale factual assumptions.
+
+<details>
+<summary><strong>Complete standing user request — archived intent, not verified findings</strong></summary>
+
+'''
+    (ROOT / "README.md").write_text(header + standing + "\n</details>\n", encoding="utf-8")
+    print("README updated with current decision and the complete archived standing request.")
 
 
 if __name__ == "__main__":

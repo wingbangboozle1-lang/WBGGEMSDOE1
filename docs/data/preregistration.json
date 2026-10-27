@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "registered_utc": "2026-10-26T21:52:00Z",
+  "hypothesis_id": "WBG-C1",
+  "hypothesis": "Scale-persistent non-coaxial curvature of cond_surf and depth_to_base_surf may identify concealed structural complexity not represented by catalogue proximity.",
+  "lane": {
+    "status": "PROVISIONAL_RESEARCH_ONLY",
+    "irregularity": "The supplied prompt refers to a single method paragraph below, but contains no assigned method paragraph. No authorized lane is inferred.",
+    "scope": "Only a conductance-depth Hessian commutator and its strain-supported persistence are implemented; other ideas are proposals only."
+  },
+  "mechanism": "For separately robust-scaled cond_surf and depth_to_base_surf, form Gaussian scale-normalized Hessians at 300 m and 800 m. Their matrix commutator measures non-coaxial curvature; use its normalized magnitude, both-field curvature strength, cross-scale persistence, and positive dilatation support as new channels in an otherwise fixed 19-band spatially cross-fitted model.",
+  "non_fault_mimic": "Oblique saline-clay basin-fill and lithologic contacts, interpolation seams, or a shared inversion artifact can mimic non-coaxial curvature; these are not proof of permeability or heat.",
+  "novelty_claim_scope": "No exact Hessian-commutator operator found by keyword and source-code review in the nine pinned repository snapshots. This does not prove worldwide or unpublished novelty.",
+  "input_policy": "Use the byte-pinned shared template's nineteen-band cache. No previous prediction pixels, leaderboard inversion, SGMC faults, catalogue distances, sample prediction values, vent labels, or catalogue-derived features enter the model.",
+  "experiment_budget": {"maximum_experiments": 3, "maximum_wall_hours": 2, "planned_experiments": 1, "stop_on_any_literal_registry_duplicate": true},
+  "holdout": {
+    "shared_template_repository": "buffedlizard55-lab/57GEMSDOE",
+    "shared_template_commit": "822a0ce5546c7b6749cdd82eb145b6b3e616603d",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "split_function": "gems57.holdout.buffered_component_draw",
+    "split_seed": 71614,
+    "hide_fraction": 0.2,
+    "feature_buffer_px": 3,
+    "quadrant_boundary_erosion_px": 12,
+    "training_collar_px": 80,
+    "truth": "Whole original 8-connected catalogue components withheld globally; original known faults minus hidden truth remain pixel-exactly masked from evaluation. Test quadrants are label-blind and training excludes their 8 km collar.",
+    "single_feature_canary": "On each held quadrant, report raw signed AUC and max(AUC,1-AUC) for every individual input channel using all withheld positives and a fixed deterministic sample of up to 50000 other active cells. Any orientation-invariant AUC > 0.90 stops efficacy claims.",
+    "metric": {"alpha": 0.2, "beta": 0.8, "triangular_radius_m": 300, "pooled_before_ratio": true},
+    "bootstrap": {"method": "shared paired physical 20 km cluster percentile", "draws": 1000, "seed": 71614, "confidence": 0.95},
+    "arms": ["control_19band_hgb", "candidate_19band_plus_commutator_hgb"],
+    "fixed_model": {"max_iter": 80, "max_leaf_nodes": 15, "learning_rate": 0.08, "l2_regularization": 5.0, "early_stopping": false, "max_training_negatives": 160000, "positive_sample_weight": "negative sample count / positive count"},
+    "evaluation_representation": "Unplaced continuous probabilities, no post-hoc threshold or dot-budget search. The output is a research surface, NOT an optimized dotted submission.",
+    "efficacy_gate": "Candidate paired 95% CI lower bound > 0 versus the refitted same-instrument control; a cross-repository current-best victory is NOT asserted without an identically rerun benchmark.",
+    "confirmation": "No confirmation or retuning after the surface duplicate STOP. A positive screen alone would not establish promotion."
+  },
+  "registry_gate": {"rank_correlation_limit": 0.9, "strictly_greater_than": true, "forward_overlap_limit": 0.7, "radius_px": 3, "positive_support": "all finite p > 0; no density exemption", "scope": "All tracked candidate-like aligned TIFFs in the nine pinned snapshots plus the inherited registry saturation witnesses. Missing/inaccessible entries prevent global uniqueness clearance.", "surface_checked_before_placement": true, "on_stop": "Retain normalized, format-validated research surface and evidence; do not place final dots, retune to evade a prior, select a slot, or upload."},
+  "promotion": {"authorized": false, "weekly_cap_verified": false, "submission_slots_used": 0},
+  "score_policy": "All new measured metric results are HOLDOUT-DTI with evaluator version, withheld-positive count and CI. Historical values supplied by the user are quarantined as USER-REPORTED, not ORGANIZER-CONFIRMED. No leaderboard projection is presented as a score."
+}

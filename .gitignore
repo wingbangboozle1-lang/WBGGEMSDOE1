@@ -1,22 +1,26 @@
-# Python & virtual environments
-__pycache__/
-*.py[cod]
-*$py.class
-*.egg-info/
+# Large, reproducible inputs and caches are not submission deliverables.
 .venv/
+.cache/
+__pycache__/
 .pytest_cache/
 .ruff_cache/
-.mypy_cache/
-.cache/
-dist/
-build/
-
-# Bulk competition, external & registry rasters (restored via scripts/restore_data.py)
-data/raw/
-data/prepared/
-data/registry/
-data/work/
-*.part-*
+node_modules/
+coverage/
+*.pyc
+data/*
+!data/README.md
+evidence/*.log
 *.partial
-*.assembling
-/tmp_*
+*.tmp
+# Only explicitly generated, reviewed research TIFFs belong in docs/downloads/.
+
+# Editable-install / optional coverage metadata.
+*.egg-info/
+.coverage
+htmlcov/
+# Inherited parallel-lane caches remain reproducible, not release artifacts.
+.mypy_cache/
+.DS_Store
+registry/cache/
+/submissions/
+/artifacts/

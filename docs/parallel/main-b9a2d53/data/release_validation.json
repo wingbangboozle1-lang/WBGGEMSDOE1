@@ -1,0 +1,91 @@
+{
+  "schema": "gemsdoe1-release-validation-v1",
+  "generated_utc": "2026-10-26T22:05:07.459094+00:00",
+  "artifact": "docs/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif",
+  "artifact_sha256": "148718d31ea75cfa3b7c643dfa25643cb0353483b2fa0e2696a62af2a107dca8",
+  "raster_metadata": {
+    "driver": "GTiff",
+    "count": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null
+  },
+  "checks": {
+    "run_card_site_copy_identity": {
+      "pass": true,
+      "detail": "evidence card equals docs card"
+    },
+    "artifact_sha256": {
+      "pass": true,
+      "detail": "148718d31ea75cfa3b7c643dfa25643cb0353483b2fa0e2696a62af2a107dca8"
+    },
+    "grid_identity": {
+      "pass": true,
+      "detail": "{'driver': 'GTiff', 'count': 1, 'dtype': 'float32', 'crs': 'EPSG:32611', 'shape': [3730, 3292], 'transform': [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0], 'nodata': None}"
+    },
+    "one_float32_band": {
+      "pass": true,
+      "detail": "count=1, dtype=float32"
+    },
+    "whole_array_finite": {
+      "pass": true,
+      "detail": "nonfinite=0"
+    },
+    "whole_array_range_0_1": {
+      "pass": true,
+      "detail": "min=0.0, max=1.0"
+    },
+    "footprint_dot_count": {
+      "pass": true,
+      "detail": "observed=37722, receipt=37722"
+    },
+    "strict_shared_validator": {
+      "pass": true,
+      "detail": "full shared validator output is embedded in run card"
+    },
+    "note_at_most_140_chars": {
+      "pass": true,
+      "detail": "length=102"
+    },
+    "negative_verdict_is_unambiguous": {
+      "pass": true,
+      "detail": "duplicate final dots under literal all-entry gate; no relocation, retuning, selector promotion or slot use"
+    },
+    "experiment_and_slot_budget": {
+      "pass": true,
+      "detail": "experiments=3, seconds=132.365, slots=0"
+    },
+    "registry_complete": {
+      "pass": true,
+      "detail": "unique=179, rejected=0"
+    },
+    "nine_site_table_complete": {
+      "pass": true,
+      "detail": "rows=9"
+    },
+    "historical_score_labels": {
+      "pass": true,
+      "detail": "all historical values remain unverified"
+    },
+    "site_packet_present": {
+      "pass": true,
+      "detail": "docs/index.html, docs/submission-instructions.html, docs/research.html, docs/methodology.html, docs/assets/style.css, docs/data/feed.json"
+    }
+  },
+  "passed": true,
+  "verdict": "negative",
+  "ok_to_download": true,
+  "ok_to_submit": false
+}

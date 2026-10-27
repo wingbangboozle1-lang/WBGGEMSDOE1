@@ -142,6 +142,175 @@ def classify_space_filling_control(
     }
 
 
+def _sha256_path(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def _load_registry_comparator(row, root, footprint, ids):
+    """Load a verified compact comparator, with GeoTIFF fallback for old manifests.
+
+    Restoring a registry validates every source GeoTIFF and writes immutable NPY
+    sidecars. Binary rasters need only sorted positive positions within the
+    footprint; this avoids decoding hundreds of 12-million-cell TIFFs per arm.
+    """
+    cache_key = row.get("comparison_cache_path")
+    if cache_key:
+        path = Path(root) / cache_key
+        expected_sha = row.get("comparison_cache_sha256")
+        if not expected_sha or _sha256_path(path) != expected_sha:
+            raise ValueError(f"Registry comparison-cache checksum mismatch: {path}")
+        payload = np.load(path, mmap_mode="r", allow_pickle=False)
+        encoding = row.get("comparison_encoding")
+        if encoding == "uint32_footprint_positive_positions":
+            positions = np.asarray(payload)
+            if (
+                positions.ndim != 1
+                or positions.dtype.kind != "u"
+                or (len(positions) and int(positions[-1]) >= len(ids))
+                or (len(positions) > 1 and np.any(positions[1:] <= positions[:-1]))
+            ):
+                raise ValueError(f"Invalid binary registry comparison cache: {path}")
+            positions = positions.astype(np.int64, copy=False)
+            flat = ids[positions]
+            yx = np.column_stack(np.unravel_index(flat, footprint.shape))
+            return None, positions, yx
+        if encoding == "float32_footprint_values":
+            values = np.asarray(payload)
+            if values.shape != (len(ids),) or not np.isfinite(values).all():
+                raise ValueError(f"Invalid value registry comparison cache: {path}")
+            content = hashlib.sha256(np.asarray(values, dtype="<f4").tobytes()).hexdigest()
+            if content != row["footprint_sha256"]:
+                raise ValueError(f"Registry footprint checksum mismatch: {path}")
+            positions = np.flatnonzero(values > 0)
+            flat = ids[positions]
+            yx = np.column_stack(np.unravel_index(flat, footprint.shape))
+            return values, positions, yx
+        raise ValueError(f"Unknown registry comparison encoding: {encoding}")
+
+    # Backward-compatible path for historical manifests.
+    path = Path(root) / row["cache_path"]
+    with rasterio.open(path) as ds:
+        if ds.shape != footprint.shape:
+            raise ValueError(f"Registry grid mismatch: {path}")
+        array = ds.read(1)
+    values = np.asarray(array.ravel()[ids])
+    content = hashlib.sha256(np.asarray(values, dtype="<f4").tobytes()).hexdigest()
+    if content != row["footprint_sha256"]:
+        raise ValueError(f"Registry footprint checksum mismatch: {path}")
+    positions = np.flatnonzero(np.isfinite(values) & (values > 0))
+    flat = ids[positions]
+    yx = np.column_stack(np.unravel_index(flat, footprint.shape))
+    return values, positions, yx
+
+
+def _binary_rank_correlation(ranks, positive_positions):
+    ranks = np.asarray(ranks, np.float64)
+    positions = np.asarray(positive_positions)
+    n_positive = len(positions)
+    if not n_positive or n_positive == len(ranks) or np.ptp(ranks) == 0:
+        return None
+    centered = ranks - ranks.mean()
+    p = n_positive / len(ranks)
+    denominator = np.sqrt(np.dot(centered, centered) * len(ranks) * p * (1.0 - p))
+    return float(centered[positions].sum() / denominator)
+
+
+def compare_registry_surfaces(surfaces, footprint, entries, root, *, sample_size=200000):
+    """Check several fixed surfaces in one registry pass without changing gates.
+
+    Every arm receives the same exact full-footprint Spearman and reproducible
+    kernel-sample checks as :func:`compare_registry`. Reading each immutable
+    comparator once is a performance correction, not an arm-selection rule.
+    """
+    footprint = np.asarray(footprint, bool)
+    if not isinstance(surfaces, dict) or not surfaces or not entries:
+        raise ValueError("Named surfaces and a nonempty registry are required")
+    arrays = {name: np.asarray(value) for name, value in surfaces.items()}
+    if (
+        footprint.ndim != 2
+        or not footprint.any()
+        or sample_size < 1
+        or any(
+            value.shape != footprint.shape or not np.isfinite(value[footprint]).all()
+            for value in arrays.values()
+        )
+    ):
+        raise ValueError("Finite footprint-aligned candidate surfaces required")
+    ids = np.flatnonzero(footprint)
+    rng = np.random.default_rng(20261025)
+    sample = rng.choice(ids, min(sample_size, len(ids)), replace=False)
+    sample_yx = np.column_stack(np.unravel_index(sample, footprint.shape))
+    ranks = {name: rankdata(value.ravel()[ids]) for name, value in arrays.items()}
+    samples = {name: value.ravel()[sample] for name, value in arrays.items()}
+    rows = {name: [] for name in arrays}
+
+    for row in entries:
+        values, positions, registry_yx = _load_registry_comparator(
+            row, root, footprint, ids
+        )
+        tree = cKDTree(registry_yx) if len(registry_yx) else None
+        kernel = (
+            np.maximum(1 - tree.query(sample_yx)[0] / 3, 0)
+            if tree is not None
+            else np.zeros(len(sample))
+        )
+        for name in arrays:
+            raw_rank = (
+                _binary_rank_correlation(ranks[name], positions)
+                if values is None
+                else rank_correlation(ranks[name], values)
+            )
+            kernel_rank = correlation(samples[name], kernel)
+            duplicate = any(
+                abs(value) > 0.90
+                for value in (raw_rank, kernel_rank)
+                if value is not None
+            )
+            rows[name].append(
+                {
+                    "registry_id": row["id"],
+                    "file": row["file"],
+                    "footprint_sha256": row["footprint_sha256"],
+                    "raw_spearman": raw_rank,
+                    "kernel_spearman": kernel_rank,
+                    "candidate_dot_overlap_within_3px": None,
+                    "duplicate": bool(duplicate),
+                }
+            )
+
+    output = {}
+    for name, arm_rows in rows.items():
+        output[name] = {
+            "stage": "surface_before_placement",
+            "passed": not any(row["duplicate"] for row in arm_rows),
+            "registry_unique_rasters": len(arm_rows),
+            "raw_rank_scope": "exact over all footprint pixels",
+            "raw_rank_pixels": len(ids),
+            "kernel_rank_sample_size": len(sample),
+            "rank_sample_seed": 20261025,
+            "rank_limit": 0.90,
+            "overlap_limit": 0.70,
+            "overlap_distance_px": 3,
+            "overlap_scope": "not applicable before placement",
+            "max_abs_rank_correlation": max(
+                (
+                    abs(row[key])
+                    for row in arm_rows
+                    for key in ("raw_spearman", "kernel_spearman")
+                    if row[key] is not None
+                ),
+                default=None,
+            ),
+            "max_dot_overlap": None,
+            "rows": arm_rows,
+        }
+    return output
+
+
 def compare_registry(
     surface,
     footprint,
@@ -180,7 +349,7 @@ def compare_registry(
     sample = rng.choice(ids, min(sample_size, len(ids)), replace=False)
     h, w = surface.shape
     sample_yx = np.column_stack(np.unravel_index(sample, (h, w)))
-    values = surface.ravel()[sample]
+    surface_sample = surface.ravel()[sample]
     full_ranks = rankdata(surface.ravel()[ids])
     if dots is not None:
         dots = np.asarray(dots, bool)
@@ -193,24 +362,23 @@ def compare_registry(
     rows = []
     n_cand_dots = len(dot_yx) if dot_yx is not None else None
     for row in entries:
-        path = Path(root) / row["cache_path"]
-        with rasterio.open(path) as ds:
-            if ds.shape != footprint.shape:
-                raise ValueError(f"Registry grid mismatch: {path}")
-            a = ds.read(1)
-        content = hashlib.sha256(np.asarray(a[footprint], dtype="<f4").tobytes()).hexdigest()
-        if content != row["footprint_sha256"]:
-            raise ValueError(f"Registry footprint checksum mismatch: {path}")
-        registry_dots = footprint & np.isfinite(a) & (a > 0)
-        registry_yx = np.argwhere(registry_dots)
+        registry_values, positive_positions, registry_yx = _load_registry_comparator(
+            row, root, footprint, ids
+        )
         tree = cKDTree(registry_yx) if len(registry_yx) else None
         kernel = (
             np.maximum(1 - tree.query(sample_yx)[0] / 3, 0)
             if tree is not None
             else np.zeros(len(sample))
         )
-        raw_rank = rank_correlation(full_ranks, a.ravel()[ids])
-        kernel_rank = correlation(candidate_kernel if dots is not None else values, kernel)
+        raw_rank = (
+            _binary_rank_correlation(full_ranks, positive_positions)
+            if registry_values is None
+            else rank_correlation(full_ranks, registry_values)
+        )
+        kernel_rank = correlation(
+            candidate_kernel if dots is not None else surface_sample, kernel
+        )
         overlap = (
             float(np.mean(tree.query(dot_yx)[0] <= 3.0))
             if dots is not None and tree is not None
@@ -221,13 +389,15 @@ def compare_registry(
         entry_dict = {
             "registry_id": row["id"],
             "file": row["file"],
-            "footprint_sha256": content,
+            "footprint_sha256": row["footprint_sha256"],
             "raw_spearman": raw_rank,
             "kernel_spearman": kernel_rank,
             "candidate_dot_overlap_within_3px": overlap,
             "duplicate": bool(literal_duplicate),
         }
         if separate_calibration_controls:
+            registry_dots = np.zeros(footprint.shape, dtype=bool)
+            registry_dots.ravel()[ids[positive_positions]] = True
             ctrl = classify_space_filling_control(
                 footprint,
                 registry_dots,

@@ -1,0 +1,377 @@
+{
+  "inherited_main_commit": "b9a2d5301c0c971dcc1219f9ad6b29c68f68ee21",
+  "reason": "Parallel runs merged main after this session branched from the one-line initial checkout. Preserve their frozen negative evidence rather than clobber it.",
+  "site_archive": "docs/parallel/main-b9a2d53/index.html",
+  "archived_site_files": [
+    {
+      "original": "docs/.nojekyll",
+      "archived": "docs/parallel/main-b9a2d53/.nojekyll",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "identical": true
+    },
+    {
+      "original": "docs/assets/app.js",
+      "archived": "docs/parallel/main-b9a2d53/assets/app.js",
+      "sha256": "cfae920273430eec67fffc976ce6be13fc58b88bec5b823903f0be5bae32aadf",
+      "identical": true
+    },
+    {
+      "original": "docs/assets/style.css",
+      "archived": "docs/parallel/main-b9a2d53/assets/style.css",
+      "sha256": "ddd3990b290b60cca10547e0ae48bc11f6748fdf91e9f8514da9f214055c1e91",
+      "identical": true
+    },
+    {
+      "original": "docs/assets/tip1-preview.png",
+      "archived": "docs/parallel/main-b9a2d53/assets/tip1-preview.png",
+      "sha256": "463634da019462da2035949d860789194cb619413c8c7edc5e631a7b7be39d1f",
+      "identical": true
+    },
+    {
+      "original": "docs/audit/README.md",
+      "archived": "docs/parallel/main-b9a2d53/audit/README.md",
+      "sha256": "ead8afc4bb85da1e788f0ab62b38e4ad77487fa339f9b1c033cea532cd5cdb5c",
+      "identical": true
+    },
+    {
+      "original": "docs/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "archived": "docs/parallel/main-b9a2d53/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "identical": true
+    },
+    {
+      "original": "docs/data/feed.json",
+      "archived": "docs/parallel/main-b9a2d53/data/feed.json",
+      "sha256": "3abb4cfbfcd2e896663408861212bfad5798da62c47bc23c9f97770e5dc8a050",
+      "identical": true
+    },
+    {
+      "original": "docs/data/footprint.bin",
+      "archived": "docs/parallel/main-b9a2d53/data/footprint.bin",
+      "sha256": "9ec93feb7c07793a81332a30853e4971d51f6bf19791a09f195307f3d1f9893f",
+      "identical": true
+    },
+    {
+      "original": "docs/data/footprint.json",
+      "archived": "docs/parallel/main-b9a2d53/data/footprint.json",
+      "sha256": "1ff930a731bf975871fe701eb2334bad48e659a76c01e19f74075896537a91fd",
+      "identical": true
+    },
+    {
+      "original": "docs/data/nine_site_executive_summary.json",
+      "archived": "docs/parallel/main-b9a2d53/data/nine_site_executive_summary.json",
+      "sha256": "6ac0df2d648d4b87ba0f4c9fceac04c8b31ec6089063a5bc9b53c20a77559efb",
+      "identical": true
+    },
+    {
+      "original": "docs/data/release_validation.json",
+      "archived": "docs/parallel/main-b9a2d53/data/release_validation.json",
+      "sha256": "f0f93048f4425af06f825622e1d80541862886574061eb3ff420c83c0ba1efbe",
+      "identical": true
+    },
+    {
+      "original": "docs/data/tip1_run_card.json",
+      "archived": "docs/parallel/main-b9a2d53/data/tip1_run_card.json",
+      "sha256": "742c2d4d2c21253e28c17a1817d2e2ec8dd9a6693b3844acf2431015ca212a51",
+      "identical": true
+    },
+    {
+      "original": "docs/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.note.txt",
+      "archived": "docs/parallel/main-b9a2d53/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.note.txt",
+      "sha256": "1324f67a613b28a3ce9e40c805bb9766ca61315f6d69a7176d7abf8be6073c10",
+      "identical": true
+    },
+    {
+      "original": "docs/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif",
+      "archived": "docs/parallel/main-b9a2d53/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif",
+      "sha256": "148718d31ea75cfa3b7c643dfa25643cb0353483b2fa0e2696a62af2a107dca8",
+      "identical": true
+    },
+    {
+      "original": "docs/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.validator.json",
+      "archived": "docs/parallel/main-b9a2d53/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.validator.json",
+      "sha256": "29c28884de4acca6e28d0007632d426add7ccca119528e8647869d76ad5afc8c",
+      "identical": true
+    },
+    {
+      "original": "docs/downloads/preview-mvgz.png",
+      "archived": "docs/parallel/main-b9a2d53/downloads/preview-mvgz.png",
+      "sha256": "eecc878b18eb5b92738a674cd468d49d74a08954c6207ec9eec43780e1da83b0",
+      "identical": true
+    },
+    {
+      "original": "docs/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif",
+      "archived": "docs/parallel/main-b9a2d53/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif",
+      "sha256": "0c2516fa5e5727eab1150750b72c189a454968aba4f9afbc5e2aac84dcc8faba",
+      "identical": true
+    },
+    {
+      "original": "docs/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.zip",
+      "archived": "docs/parallel/main-b9a2d53/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.zip",
+      "sha256": "62a975a64f2f7aaf0264a998b740979e9cc5deafff28e4af4e4cc46804230fa5",
+      "identical": true
+    },
+    {
+      "original": "docs/evidence/data_pins.json",
+      "archived": "docs/parallel/main-b9a2d53/evidence/data_pins.json",
+      "sha256": "e1d447f7aaa3fcc15727cd8e36799a501a525f6242754e2b866769a1629f832c",
+      "identical": true
+    },
+    {
+      "original": "docs/evidence/e1_leakage_canary.json",
+      "archived": "docs/parallel/main-b9a2d53/evidence/e1_leakage_canary.json",
+      "sha256": "1320f2587407ea7a79f71e4da6dac2325dc186abb2a783c5151286109b2cf68b",
+      "identical": true
+    },
+    {
+      "original": "docs/evidence/e2_tsml.json",
+      "archived": "docs/parallel/main-b9a2d53/evidence/e2_tsml.json",
+      "sha256": "e20265e6672855a91e6f8ed5f50a5be089e33437a0e0be8c217166a419e7e5fe",
+      "identical": true
+    },
+    {
+      "original": "docs/evidence/e2_uniqueness.json",
+      "archived": "docs/parallel/main-b9a2d53/evidence/e2_uniqueness.json",
+      "sha256": "760fbcb64feb8884bd58f38a9f2627af84b3bed34d14bd7cc4ea8bb5f5aa7567",
+      "identical": true
+    },
+    {
+      "original": "docs/evidence/e3_mvgz.json",
+      "archived": "docs/parallel/main-b9a2d53/evidence/e3_mvgz.json",
+      "sha256": "d412189cab8d57dec41ff725489093f3dd4bf92741036ae8761489481666125a",
+      "identical": true
+    },
+    {
+      "original": "docs/evidence/holdout_context.json",
+      "archived": "docs/parallel/main-b9a2d53/evidence/holdout_context.json",
+      "sha256": "efac07e7880fdd38910d6fca9cab7f9906c66075c260eed3ca5c8f9fdd49d31a",
+      "identical": true
+    },
+    {
+      "original": "docs/evidence/irregularities.json",
+      "archived": "docs/parallel/main-b9a2d53/evidence/irregularities.json",
+      "sha256": "e6ba18e5060a969db8522c8943d26e182221a084189f7f1702bcb679a279cd19",
+      "identical": true
+    },
+    {
+      "original": "docs/evidence/nine_site_uniqueness.json",
+      "archived": "docs/parallel/main-b9a2d53/evidence/nine_site_uniqueness.json",
+      "sha256": "ffd7abfc68ec8c9f28a2de80fcebd92ecceddb1bb1f7130addb7d55990bef9d4",
+      "identical": true
+    },
+    {
+      "original": "docs/evidence/run_card.json",
+      "archived": "docs/parallel/main-b9a2d53/evidence/run_card.json",
+      "sha256": "d5a0311dcd7cde487d4d6b088722bf9d37ba48972cbab854293b90ccaf4da191",
+      "identical": true
+    },
+    {
+      "original": "docs/evidence/run_card_wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.json",
+      "archived": "docs/parallel/main-b9a2d53/evidence/run_card_wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.json",
+      "sha256": "d5a0311dcd7cde487d4d6b088722bf9d37ba48972cbab854293b90ccaf4da191",
+      "identical": true
+    },
+    {
+      "original": "docs/evidence/validator_wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.json",
+      "archived": "docs/parallel/main-b9a2d53/evidence/validator_wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.json",
+      "sha256": "fcfff1fa51a8606cd2f51e85117d90d292fae1ea201ef676e835030142b88bbf",
+      "identical": true
+    },
+    {
+      "original": "docs/executive-summary.html",
+      "archived": "docs/parallel/main-b9a2d53/executive-summary.html",
+      "sha256": "1fac7ab98ec58164d427be80208c78b1f17de0211d33e71811fca5515523b5ca",
+      "identical": true
+    },
+    {
+      "original": "docs/how-to-submit.html",
+      "archived": "docs/parallel/main-b9a2d53/how-to-submit.html",
+      "sha256": "b99a08a8ad09eee370d4079713a9305ce1417396dcd974ee73ea22c9e21de151",
+      "identical": true
+    },
+    {
+      "original": "docs/hypotheses.html",
+      "archived": "docs/parallel/main-b9a2d53/hypotheses.html",
+      "sha256": "b9f21daf8e4a813201e757a90427f16adf1ea721a0d6741acdc5fafb5dbbf4f3",
+      "identical": true
+    },
+    {
+      "original": "docs/index.html",
+      "archived": "docs/parallel/main-b9a2d53/index.html",
+      "sha256": "8737e7a094807e071721e093cc71d573ff18e1a83df0285ec3ab6fee644270ef",
+      "identical": true
+    },
+    {
+      "original": "docs/irregularities.html",
+      "archived": "docs/parallel/main-b9a2d53/irregularities.html",
+      "sha256": "fa28fc200b135334a17a63ce5bbbcadbab01a5bc7d3501979dc4f1bc3eb3a179",
+      "identical": true
+    },
+    {
+      "original": "docs/methodology.html",
+      "archived": "docs/parallel/main-b9a2d53/methodology.html",
+      "sha256": "89cd09064a37f36d9e7792492722046c5e7374f917de803fe3ae05f548034977",
+      "identical": true
+    },
+    {
+      "original": "docs/research.html",
+      "archived": "docs/parallel/main-b9a2d53/research.html",
+      "sha256": "8be53b9a45e0a70c697add0e57dc6f7ddbc58356145e1ac78777a1d44d3f3b62",
+      "identical": true
+    },
+    {
+      "original": "docs/research/why-02778.md",
+      "archived": "docs/parallel/main-b9a2d53/research/why-02778.md",
+      "sha256": "99cce948e907080439c008999fa50263b106f2bbb3f22629a216efdd7082d163",
+      "identical": true
+    },
+    {
+      "original": "docs/sources.html",
+      "archived": "docs/parallel/main-b9a2d53/sources.html",
+      "sha256": "044528dd3f2a339d9b04de1444e119d752301a4aef9fcd6f493c2b814418ecc6",
+      "identical": true
+    },
+    {
+      "original": "docs/styles.css",
+      "archived": "docs/parallel/main-b9a2d53/styles.css",
+      "sha256": "a560796463250444fae6f998bcb72722f76c2597b9785833560cb75d45be0e32",
+      "identical": true
+    },
+    {
+      "original": "docs/submission-guide.html",
+      "archived": "docs/parallel/main-b9a2d53/submission-guide.html",
+      "sha256": "216ea177d2d486380b183f64ae9e1b9ff4bdd318ab661befebfd17c8d1822ca7",
+      "identical": true
+    },
+    {
+      "original": "docs/submission-instructions.html",
+      "archived": "docs/parallel/main-b9a2d53/submission-instructions.html",
+      "sha256": "85bc3ad50612388e0c7052535a88c74a0a9d9444ca4256a1dd304db318e82912",
+      "identical": true
+    }
+  ],
+  "all_archived_site_bytes_identical": true,
+  "inherited_shared_sources": [
+    {
+      "path": "src/gems/__init__.py",
+      "sha256": "1a0b12829abd20797161f12c4d4f900f5bfb2af13df35c68435ce647e6fb264a",
+      "unchanged": true
+    },
+    {
+      "path": "src/gems/holdout.py",
+      "sha256": "34fb7f12e849280c8162d5c433aa972f70746ddecf1a289ce3a9c81144b344dc",
+      "unchanged": true
+    },
+    {
+      "path": "src/gems/metric.py",
+      "sha256": "c024510de39746c9390e5bbf5c1d1b639a9ee895017a38fab4b609f0f2c33e48",
+      "unchanged": true
+    },
+    {
+      "path": "src/gems/submission.py",
+      "sha256": "fe26ba1d414bc56053cb04423c200f8bf3121e562361fdfac70f136c5bce4b37",
+      "unchanged": true
+    },
+    {
+      "path": "src/gems/validator.py",
+      "sha256": "a5176d6e13924382f52bfd170a1f91c8beb1f31d413765295e881b65dc79a5e0",
+      "unchanged": true
+    },
+    {
+      "path": "src/gems/footprint.py",
+      "sha256": "2e09d625b754104c72a0cf92e70ed6c387bcfb7a5824b4126f1cc2b6880a361a",
+      "unchanged": true
+    },
+    {
+      "path": "src/gems/paths.py",
+      "sha256": "fbb95ad603ea5765091a7403b36235e89f4bc7f06c99deac95083138f560aa96",
+      "unchanged": true
+    },
+    {
+      "path": "src/gems/emission.py",
+      "sha256": "8ef12efc95157108fd37af4e47c4b04dacaedcf0207728ffde310736baf33753",
+      "unchanged": true
+    },
+    {
+      "path": "src/gems/novelty.py",
+      "sha256": "0c7b98cdeb4f49c2a8cbac3ecc33499218f1233f20573a91a65c8276766ce597",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/evaluate_holdout.py",
+      "sha256": "d942edec6e48b1f80ed746318bba438b29cac131621c6c4159f0623b2cac121f",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/submission_writer.py",
+      "sha256": "9aa3b296fbdf3aa499602efc3d5a2df7e900eb65a7cf2255d9eff4a59c4fe550",
+      "unchanged": true
+    },
+    {
+      "path": "src/gems/magnetic_trough.py",
+      "sha256": "c310cd47302b10d3cc223ed0bffe563306a5c4f6012b3853e951214311b29a29",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/template_evaluate_holdout.py",
+      "sha256": "66fbe1a696c0fe48b1d277619eaf810aa2d91866a92bc2a5d819c49fe4143da1",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/template_submission_writer.py",
+      "sha256": "1bca5559952f540b5eb2b4223491e4fd1bdef6a1494857a0d3e6204e466bd45b",
+      "unchanged": true
+    }
+  ],
+  "all_inherited_shared_source_hashes_unchanged": true,
+  "frozen_artifacts_and_cards": [
+    {
+      "path": "docs/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif",
+      "sha256": "148718d31ea75cfa3b7c643dfa25643cb0353483b2fa0e2696a62af2a107dca8",
+      "unchanged": true
+    },
+    {
+      "path": "docs/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif",
+      "sha256": "0c2516fa5e5727eab1150750b72c189a454968aba4f9afbc5e2aac84dcc8faba",
+      "unchanged": true
+    },
+    {
+      "path": "docs/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.zip",
+      "sha256": "62a975a64f2f7aaf0264a998b740979e9cc5deafff28e4af4e4cc46804230fa5",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/tip1_run_card_20261026.json",
+      "sha256": "742c2d4d2c21253e28c17a1817d2e2ec8dd9a6693b3844acf2431015ca212a51",
+      "unchanged": true
+    },
+    {
+      "path": "evidence/run_card.json",
+      "sha256": "d5a0311dcd7cde487d4d6b088722bf9d37ba48972cbab854293b90ccaf4da191",
+      "unchanged": true
+    },
+    {
+      "path": "registry/registry.json",
+      "sha256": "5e592cdc43902b76d711e59f5c923a6b5869db0eb8f30549c2a546bf2d751919",
+      "unchanged": true
+    }
+  ],
+  "original_readme": "research/inherited-main-README-b9a2d53.md",
+  "original_review_record": "evidence/review_passes_inherited_tip1.json",
+  "legacy_reference_validator": {
+    "original_path": "scripts/validate_submission.py",
+    "preserved_path": "src/gems/legacy_reference_validator.py",
+    "original_sha256": "3b40f4d192a30838e5e15405cae74c642515acf43020548f11b7c39ae2c08869",
+    "byte_identical": true
+  },
+  "compatibility": "Retain supplied-reference validate() and two-argument CLI for earlier callers; current WBG-C1 still uses the unchanged gems57 all-finite validator and writer. Retain bridge-specific restore/preparation under explicit legacy filenames.",
+  "current_lane": "WBG-C1",
+  "current_lane_experiments": 1,
+  "inherited_experiments_rerun": false,
+  "submission_slots_used_this_lane": 0,
+  "no_score_pooling_or_cross_instrument_ranking": true,
+  "frozen_nine_snapshot_registry_not_reinterpreted_as_all_merged_artifacts": true,
+  "new_frontend_scope": "WBG-C1 overview and expanded nine-site audit are the active desk. Legacy bookmarks redirect to current pages with exact original-page archive links.",
+  "verdict": "negative",
+  "promotion_unchanged": true
+}

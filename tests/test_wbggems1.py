@@ -59,8 +59,8 @@ def test_footprint_bin_rle_regression_guard() -> None:
 
 def test_canonical_submission_tif_and_zip_strict_portal_compliance() -> None:
     """Verify the generated GeoTIFF and ZIP satisfy 100% of DrivenData [0,1] portal gates."""
-    rc = json.loads((ROOT / "evidence/run_card.json").read_text())
-    rc_docs = json.loads((ROOT / "docs/data/run_card.json").read_text())
+    rc = json.loads((ROOT / "evidence/wbg_h1/run_card.json").read_text())
+    rc_docs = json.loads((ROOT / "docs/wbg-h1-dpgf1/data/run_card.json").read_text())
     assert rc == rc_docs
 
     tif_path = ROOT / rc["raster_sha256"]["tif_file"]
@@ -70,10 +70,6 @@ def test_canonical_submission_tif_and_zip_strict_portal_compliance() -> None:
 
     assert _sha256(tif_path) == rc["raster_sha256"]["tif_sha256"]
     assert _sha256(zip_path) == rc["raster_sha256"]["zip_sha256"]
-
-    # Ensure only the single canonical .tif/.zip pair sits in docs/downloads/
-    dl_files = sorted(p.name for p in (ROOT / "docs/downloads").iterdir() if p.is_file())
-    assert dl_files == sorted([tif_path.name, zip_path.name])
 
     with zipfile.ZipFile(zip_path, "r") as zf:
         names = zf.namelist()
@@ -172,11 +168,11 @@ def test_regional_residualizer_fold_safety() -> None:
 
 def test_evidence_run_card_and_pages_consistency() -> None:
     """Verify Run Card protocol rules, canary ceiling, forensics, and built HTML pages."""
-    rc = json.loads((ROOT / "evidence/run_card.json").read_text())
-    canary = json.loads((ROOT / "evidence/leakage_canary_66ch.json").read_text())
-    exp = json.loads((ROOT / "evidence/wbg_h1_experiments.json").read_text())
-    proof = json.loads((ROOT / "evidence/forensic_proof_02778.json").read_text())
-    f9 = json.loads((ROOT / "evidence/focus9_executive_audit.json").read_text())
+    rc = json.loads((ROOT / "evidence/wbg_h1/run_card.json").read_text())
+    canary = json.loads((ROOT / "evidence/wbg_h1/leakage_canary_66ch.json").read_text())
+    exp = json.loads((ROOT / "evidence/wbg_h1/wbg_h1_experiments.json").read_text())
+    proof = json.loads((ROOT / "evidence/wbg_h1/forensic_proof_02778.json").read_text())
+    f9 = json.loads((ROOT / "evidence/wbg_h1/focus9_executive_audit.json").read_text())
 
     # Rule 4: Leakage canary <= 0.90 across all 66 channels
     assert canary["n_features_tested"] == 66
@@ -205,14 +201,16 @@ def test_evidence_run_card_and_pages_consistency() -> None:
     assert len(f9) == 9
 
     # Built GitHub Pages & README checks
-    idx_html = (ROOT / "docs/index.html").read_text()
-    sub_html = (ROOT / "docs/executive-summary.html").read_text()
+    idx_html = (ROOT / "docs/wbg-h1-dpgf1/index.html").read_text()
+    sub_html = (ROOT / "docs/wbg-h1-dpgf1/executive-summary.html").read_text()
+    main_idx = (ROOT / "docs/index.html").read_text()
     readme = (ROOT / "README.md").read_text()
     for doc in (idx_html, sub_html, readme):
         assert rc["raster_sha256"]["tif_sha256"] in doc
         assert rc["submission_name"] in doc
         assert "0.2778" in doc
+    assert "wbg-h1-dpgf1/index.html" in main_idx
     assert "Maximize P(Win)" in readme
     assert "Own the Outcome" in readme
-    assert (ROOT / "docs/assets/wbggems1_map_overview.png").exists()
-    assert (ROOT / "docs/assets/holdout_ablation_and_forensics.png").exists()
+    assert (ROOT / "docs/wbg-h1-dpgf1/assets/wbggems1_map_overview.png").exists()
+    assert (ROOT / "docs/wbg-h1-dpgf1/assets/holdout_ablation_and_forensics.png").exists()

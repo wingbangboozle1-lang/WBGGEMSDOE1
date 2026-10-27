@@ -1,0 +1,93 @@
+{
+  "schema": "gemsdoe1-pages-feed-v1",
+  "generated_utc": "2026-10-26T22:05:07.459094+00:00",
+  "status": {
+    "verdict": "negative",
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "submission_slots_used": 0
+  },
+  "artifact": {
+    "name": "gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif",
+    "url": "../downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif",
+    "sha256": "148718d31ea75cfa3b7c643dfa25643cb0353483b2fa0e2696a62af2a107dca8",
+    "note": "TIP1 directional LiDAR coherence-tip gradient | format-valid research; DO NOT SUBMIT | id 9a4b9b4bc8cd"
+  },
+  "latest_measurement": {
+    "label": "HOLDOUT-DTI",
+    "arm": "B",
+    "value": 0.08243410429527415,
+    "ci95": [
+      0.07287200123415499,
+      0.09173273826900923
+    ],
+    "evaluator_version": "gems-segment-pooled-v1",
+    "withheld_positive_pixels": 60988
+  },
+  "events": [
+    {
+      "date": "2026-10-26",
+      "kind": "preregistration",
+      "summary": "Ranked five hypotheses and froze TIP1 Arms A/B/C before implementation.",
+      "ref": "99d5d4a38a6a930ceca66f3f75ac64e0a7867e5b"
+    },
+    {
+      "date": "2026-10-26",
+      "kind": "registry",
+      "summary": "Restored 231 pinned sources into 179 unique comparators with zero rejected rows."
+    },
+    {
+      "date": "2026-10-26",
+      "kind": "experiment",
+      "summary": "Executed three fixed arms in 132.4 seconds; Arm B HOLDOUT-DTI 0.082434; negative."
+    },
+    {
+      "date": "2026-10-26",
+      "kind": "artifact",
+      "summary": "Wrote and validated one strict all-finite [0,1] GeoTIFF; DO NOT SUBMIT."
+    }
+  ],
+  "reviewed_sites": [
+    {
+      "site": "GEMSDOE24",
+      "readme_ref": "7790c3b3038e3fb34f2fe844e10d187a02fa3ab4"
+    },
+    {
+      "site": "GEMSDOE25",
+      "readme_ref": "af2b6f2543e5422a7e917638b70e038e6fd91cad"
+    },
+    {
+      "site": "GEMSDOE27",
+      "readme_ref": "bef7ae8e8f63b69d299c9214c75988c8f5055f9c"
+    },
+    {
+      "site": "GEMSDOE28",
+      "readme_ref": "2c839d10f57ec9b074829e93c84bc39935f52896"
+    },
+    {
+      "site": "GEMSDOE30",
+      "readme_ref": "9c0d637c0171407196b61b780444bc772ce75438"
+    },
+    {
+      "site": "GEMSDOE31",
+      "readme_ref": "eeb7da54ca4a8ae056f45e5b23eeef586ad79bf2"
+    },
+    {
+      "site": "GEMSDOE32",
+      "readme_ref": "07806249f4ed3efe70b4fbf866183c32392b7853"
+    },
+    {
+      "site": "GEMSDOE33",
+      "readme_ref": "08380a2e6f2a76d733ee6144d6de33e2907c13b8"
+    },
+    {
+      "site": "GEMSDOE36",
+      "readme_ref": "32c2660001d98f6fa9084a0971b3a9d5062d49b9"
+    }
+  ],
+  "evidence": [
+    "tip1_run_card.json",
+    "nine_site_executive_summary.json",
+    "release_validation.json"
+  ]
+}

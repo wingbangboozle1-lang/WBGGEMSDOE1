@@ -1,0 +1,74 @@
+{
+  "family_overlap": {
+    "GEMSDOE32": {
+      "max_overlap": 1.0,
+      "vs": "GEMSDOE36"
+    },
+    "GEMSDOE36": {
+      "max_overlap": 0.9757811293560509,
+      "vs": "GEMSDOE27"
+    },
+    "GEMSDOE28": {
+      "max_overlap": 1.0,
+      "vs": "GEMSDOE25"
+    },
+    "GEMSDOE31": {
+      "max_overlap": 1.0,
+      "vs": "GEMSDOE25"
+    },
+    "GEMSDOE33": {
+      "max_overlap": 0.9970858712528365,
+      "vs": "GEMSDOE27"
+    },
+    "GEMSDOE25": {
+      "max_overlap": 1.0,
+      "vs": "GEMSDOE30"
+    },
+    "GEMSDOE30": {
+      "max_overlap": 1.0,
+      "vs": "GEMSDOE25"
+    },
+    "GEMSDOE24": {
+      "max_overlap": 1.0,
+      "vs": "GEMSDOE25"
+    },
+    "GEMSDOE27": {
+      "max_overlap": 0.9801884946517089,
+      "vs": "GEMSDOE24"
+    }
+  },
+  "ours_vs_nine": {
+    "GEMSDOE32": 0.2289120587983933,
+    "GEMSDOE36": 0.2599777796769507,
+    "GEMSDOE28": 0.2300230749508589,
+    "GEMSDOE31": 0.2337407059225707,
+    "GEMSDOE33": 0.23643278352277583,
+    "GEMSDOE25": 0.2375865310657209,
+    "GEMSDOE30": 0.2375865310657209,
+    "GEMSDOE24": 0.24959405179044525,
+    "GEMSDOE27": 0.2526707119049654
+  },
+  "nine_dots": {
+    "GEMSDOE32": 37654,
+    "GEMSDOE36": 38854,
+    "GEMSDOE28": 37660,
+    "GEMSDOE31": 40199,
+    "GEMSDOE33": 41865,
+    "GEMSDOE25": 44090,
+    "GEMSDOE30": 44090,
+    "GEMSDOE24": 60069,
+    "GEMSDOE27": 61328
+  },
+  "nine_sha256": {
+    "GEMSDOE32": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "GEMSDOE36": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+    "GEMSDOE28": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+    "GEMSDOE31": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+    "GEMSDOE33": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+    "GEMSDOE25": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+    "GEMSDOE30": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+    "GEMSDOE24": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+    "GEMSDOE27": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d"
+  },
+  "ours_dots": 23402
+}

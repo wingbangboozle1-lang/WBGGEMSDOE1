@@ -1,0 +1,56 @@
+[
+  {
+    "repo": "buffedlizard55-lab/GEMSDOE24",
+    "commit": "7ab1c8f77f0b4b8644e3929403a0dab65838b008",
+    "tree": "aced462f209a4ea38ebb3282f8081e81d1fe839e",
+    "verified_commit": true
+  },
+  {
+    "repo": "buffedlizard55-lab/GEMSDOE25",
+    "commit": "af2b6f2543e5422a7e917638b70e038e6fd91cad",
+    "tree": "a0afc28e7c0381c8e92d73461942e513a54c9994",
+    "verified_commit": true
+  },
+  {
+    "repo": "buffedlizard55-lab/GEMSDOE27",
+    "commit": "bef7ae8e8f63b69d299c9214c75988c8f5055f9c",
+    "tree": "cf7e150de4b4794ec96bccb5d09b989b2c0af1fe",
+    "verified_commit": true
+  },
+  {
+    "repo": "buffedlizard55-lab/GEMSDOE28",
+    "commit": "2c839d10f57ec9b074829e93c84bc39935f52896",
+    "tree": "3c94027a769e95d0622593e968a30534f399e5a1",
+    "verified_commit": true
+  },
+  {
+    "repo": "buffedlizard55-lab/GEMSDOE30",
+    "commit": "9c0d637c0171407196b61b780444bc772ce75438",
+    "tree": "a9376a59c2ad22142c4cdd0f9e381125ef67b6e1",
+    "verified_commit": true
+  },
+  {
+    "repo": "buffedlizard55-lab/GEMSDOE31",
+    "commit": "776bf4668a8c10631908c9bba9443a8f11ce5036",
+    "tree": "9f1eb9758dab57172173e744bf715fa544591c2a",
+    "verified_commit": true
+  },
+  {
+    "repo": "buffedlizard55-lab/GEMSDOE32",
+    "commit": "07806249f4ed3efe70b4fbf866183c32392b7853",
+    "tree": "c77a802af73368840e44f9c3b8f99b07d32ff5b8",
+    "verified_commit": true
+  },
+  {
+    "repo": "buffedlizard55-lab/GEMSDOE33",
+    "commit": "1d99d73fe14d9a87126ffca2db52c69336d6099b",
+    "tree": "755bd05f5153cb085d3e46d2dc4a9820258f5c6c",
+    "verified_commit": true
+  },
+  {
+    "repo": "buffedlizard55-lab/GEMSDOE36",
+    "commit": "05979971df4775aadad34ae6749b0a7ac56d7832",
+    "tree": "052c7973dbea012eba788e0e4e764aa91ce2ab8f",
+    "verified_commit": true
+  }
+]

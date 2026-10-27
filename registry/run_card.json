@@ -1,0 +1,108 @@
+{
+  "generated_utc": "2026-10-26T22:39:01+00:00",
+  "hypothesis": "WBG-C1: conductance-depth curvature non-coaxiality",
+  "mechanism": "Scale-normalized Hessian commutator at 300/800 m, curvature strength, cross-scale persistence and dilatation support; 19-band spatial OOF HGB plus four new channels.",
+  "non_fault_mimic": "Oblique saline-clay basin-fill/lithologic contacts or shared inversion/interpolation artifacts.",
+  "lane": "provisional research only; no assigned single-method paragraph supplied",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.01404466519440323,
+    "ci95": [
+      0.01183137469362976,
+      0.01639563940835171
+    ],
+    "withheld_positive_pixels": 11330,
+    "tpw": 4835.375915678135,
+    "fpw": 1671272.600026754,
+    "fnw": 6494.624084321865
+  },
+  "control_holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.014145537328473203,
+    "ci95": [
+      0.011931414421377988,
+      0.016499752722619405
+    ],
+    "withheld_positive_pixels": 11330,
+    "tpw": 4868.066530878377,
+    "fpw": 1670519.46752637,
+    "fnw": 6461.933469121621
+  },
+  "paired_delta_holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": -0.00010087213406997399,
+    "ci95": [
+      -0.00023195991478308924,
+      3.0453847645656673e-05
+    ],
+    "withheld_positive_pixels": 11330
+  },
+  "holdout_instrument": {
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "split": "buffered-whole-components-loqo-v2",
+    "seed": 71614,
+    "representation": "continuous unplaced OOF confidence surface",
+    "physical_bootstrap_clusters": 159
+  },
+  "leaderboard_estimate": null,
+  "organizer_confirmed_submission_score": null,
+  "leakage_canary": {
+    "all_23_features_tested_alone_in_4_folds": true,
+    "maximum_orientation_invariant_auc": 0.6123974576271186,
+    "suspected_leakage": false
+  },
+  "registry": {
+    "phase": "surface-before-placement",
+    "checked_unique_file_hashes": 360,
+    "source_paths": 377,
+    "scope": "All tracked aligned single-band TIFFs outside data/ and vendor/ in nine frozen owner snapshots. Includes archives, research artifacts and calibration priors. Not all 92 user-listed sites, hidden/private rasters, releases or later commits.",
+    "max_spearman_rho": 0.15233060870020235,
+    "max_forward_3px_overlap": 0.9987243421716145,
+    "byte_unique_among_checked": true,
+    "decoded_pixel_unique_among_checked": true,
+    "passes_literal_uniqueness": false,
+    "complete_all_user_listed_sites": false,
+    "final_dots": "NOT GENERATED: surface duplicate STOP; no final-dot clearance claimed"
+  },
+  "raster_sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+  "raster_decoded_sha256": "acea88448272943f01ac28e2f465e5f6cfd47eee33b1826315cc6c2b2272e04d",
+  "validator": {
+    "all_checks_passed": true,
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "single_band_float32": true,
+    "crs_shape_transform_match": true,
+    "range_min": 0.0,
+    "range_max": 0.8809285163879395,
+    "outside_footprint_zero": true,
+    "known_fault_support_zero": true
+  },
+  "submission_name": "wbg-c1-commutator-research-surface-20261026-acea88448272",
+  "submission_note": "WBG-C1 curvature non-coaxiality; spatial OOF research surface; no dot placement; NOT approved for submission.",
+  "artifact": "docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+  "artifact_role": "newly generated research-surface TIFF; not a final dotted or promoted competition submission",
+  "verdict": "negative",
+  "decision": {
+    "verdict": "negative",
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "eligible_for_separate_selector": false,
+    "approved_for_weekly_slot": false,
+    "submission_slots_used": 0,
+    "reasons": [
+      "literal registry uniqueness not cleared",
+      "paired efficacy lower confidence bound is not positive",
+      "current best not beaten on the identical instrument",
+      "no assigned method lane was supplied",
+      "authenticated current weekly allowance unavailable",
+      "untouched confirmation has not passed"
+    ],
+    "note": "Promotion only makes a candidate eligible for a separate selector; no uploader exists in this project."
+  },
+  "experiments_completed": 1,
+  "submission_slots_used": 0,
+  "next_action": "Keep this negative result. Do not tune around registry holes or copy the historical champion. A separate authorized lane/selector and new untouched confirmation are required before further promotion research."
+}

@@ -1,0 +1,93 @@
+{
+  "generated_utc": "2026-10-26T22:27:27+00:00",
+  "network_refresh_attempted": true,
+  "official_page_refresh_attempted": false,
+  "leaderboard_status": "retained_observation_not_refreshed",
+  "leaderboard": {
+    "date_utc": "2026-10-26",
+    "rank": 1,
+    "participant": "xiaofanhu",
+    "public_dw_tversky": 0.4437,
+    "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-OBSERVATION",
+    "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "observed_date_utc": "2026-10-26",
+    "observation_method": "fetch_page direct official page retrieval in research session",
+    "not_a_project_submission_receipt": true
+  },
+  "repository_heads": [
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "audited_commit": "7ab1c8f77f0b4b8644e3929403a0dab65838b008",
+      "observed_head": "a97aefe1287bed996e4d6dcdbf379de99e7ddd5c",
+      "changed_since_audit": true,
+      "checked_utc": "2026-10-26T22:27:24+00:00"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE25",
+      "audited_commit": "af2b6f2543e5422a7e917638b70e038e6fd91cad",
+      "observed_head": "4e66254d5202f049f1dd9af3e4f3019d607cff6e",
+      "changed_since_audit": true,
+      "checked_utc": "2026-10-26T22:27:24+00:00"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE27",
+      "audited_commit": "bef7ae8e8f63b69d299c9214c75988c8f5055f9c",
+      "observed_head": "21687996529d4e3bcb83e7d8ac56fa29864acf97",
+      "changed_since_audit": true,
+      "checked_utc": "2026-10-26T22:27:24+00:00"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE28",
+      "audited_commit": "2c839d10f57ec9b074829e93c84bc39935f52896",
+      "observed_head": "b65de63c7ac483f1d19d708818b0d194f5c0397b",
+      "changed_since_audit": true,
+      "checked_utc": "2026-10-26T22:27:25+00:00"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE30",
+      "audited_commit": "9c0d637c0171407196b61b780444bc772ce75438",
+      "observed_head": "9c0d637c0171407196b61b780444bc772ce75438",
+      "changed_since_audit": false,
+      "checked_utc": "2026-10-26T22:27:25+00:00"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE31",
+      "audited_commit": "776bf4668a8c10631908c9bba9443a8f11ce5036",
+      "observed_head": "abd9a45cc7adf046d7d3829eb6e8c980943f462d",
+      "changed_since_audit": true,
+      "checked_utc": "2026-10-26T22:27:25+00:00"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE32",
+      "audited_commit": "07806249f4ed3efe70b4fbf866183c32392b7853",
+      "observed_head": "54fab4b281e9e49371f1b4dc078f0558cc5a8972",
+      "changed_since_audit": true,
+      "checked_utc": "2026-10-26T22:27:26+00:00"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE33",
+      "audited_commit": "1d99d73fe14d9a87126ffca2db52c69336d6099b",
+      "observed_head": "efa438d3104893c3e8aedf3817ac22167b1c681a",
+      "changed_since_audit": true,
+      "checked_utc": "2026-10-26T22:27:26+00:00"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE36",
+      "audited_commit": "05979971df4775aadad34ae6749b0a7ac56d7832",
+      "observed_head": "23ad503204288fd48681beacc67d83563c4cbf3b",
+      "changed_since_audit": true,
+      "checked_utc": "2026-10-26T22:27:27+00:00"
+    }
+  ],
+  "errors": [],
+  "models_retrained": false,
+  "submission_slots_used": 0,
+  "weekly_allowance": {
+    "authenticated": false,
+    "remaining": null,
+    "rule_pdf_limit": 3,
+    "rule_pdf_is_not_current_account_allowance": true
+  },
+  "promotion_status": "negative \u2014 frozen research result; feed updates never authorize a submission",
+  "scope": "Public provenance only; a changed upstream head is not a newly validated prediction or a file-specific organizer score."
+}

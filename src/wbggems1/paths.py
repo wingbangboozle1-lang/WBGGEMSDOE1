@@ -1,8 +1,9 @@
-"""Workspace and external scratch path resolution for WBGGEMSDOE1.
+"""Workspace and external scratch path resolution for WBGGEMSDOE1 (WBG-H1 / DPGF-1 lane).
 
 Raw multi-hundred-MB rasters and memmap feature caches default to ``/tmp/gems_raw``
 and ``/tmp/gems_work`` when present or requested via ``WBG_DATA_DIR`` / ``WBG_WORK_DIR``,
-preventing large binary artifacts from bloating Git history or turn snapshots.
+with automatic fallback to ``data/bridge`` for lightweight GeoTIFF format & collar
+validation on CI runners.
 """
 
 from __future__ import annotations
@@ -17,17 +18,28 @@ def repo_root() -> Path:
     return REPO_ROOT
 
 
+def wbg_evidence_dir() -> Path:
+    return REPO_ROOT / "evidence" / "wbg_h1"
+
+
+def wbg_registry_dir() -> Path:
+    return REPO_ROOT / "registry" / "wbg_h1"
+
+
 def raw_data_dir() -> Path:
     env = os.environ.get("WBG_DATA_DIR")
     if env:
         return Path(env)
     tmp_default = Path("/tmp/gems_raw")
     local_default = REPO_ROOT / "data" / "raw"
+    bridge_default = REPO_ROOT / "data" / "bridge"
     if (local_default / "training_features.tif").exists():
         return local_default
-    if tmp_default.exists():
+    if (tmp_default / "sample_submission.tif").exists():
         return tmp_default
-    return local_default
+    if (bridge_default / "sample_submission.tif").exists():
+        return bridge_default
+    return tmp_default
 
 
 def work_dir() -> Path:

@@ -1,0 +1,11 @@
+{
+  "evaluator_version": "WBGGEMSDOE1-HIDE-RECOVER-v1.0",
+  "collar_px": 15,
+  "n_withheld_sum_folds": 60161,
+  "per_fold": {
+    "NW": 10018,
+    "NE": 12410,
+    "SW": 20228,
+    "SE": 17505
+  }
+}

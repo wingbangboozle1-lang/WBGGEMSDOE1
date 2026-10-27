@@ -138,7 +138,7 @@ def fit_lli_calibrator() -> tuple[LLICalibrator, dict[str, Any]]:
         h23_pos = (np.nan_to_num(ds.read(1), nan=0.0) > 0.0) & fp_mask
     ref_3px_near = distance_transform_edt(~h23_pos) <= 3.0
 
-    scored_reg = json.loads((root / "registry" / "scored_registry.json").read_text())
+    scored_reg = json.loads((root / "registry" / "wbg_h1" / "scored_registry.json").read_text())
     entries = scored_reg["entries"] if isinstance(scored_reg, dict) and "entries" in scored_reg else scored_reg
 
     fnames = [

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "artifact": "wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+  "sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+  "submission_name": "wbg-c1-commutator-research-surface-20261026-acea88448272",
+  "note": "WBG-C1 curvature non-coaxiality; spatial OOF research surface; no dot placement; NOT approved for submission.",
+  "verdict": "negative",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "artifact_role": "newly generated research-surface TIFF; not a final dotted or promoted competition submission",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.01404466519440323,
+    "ci95": [
+      0.01183137469362976,
+      0.01639563940835171
+    ],
+    "withheld_positive_pixels": 11330,
+    "tpw": 4835.375915678135,
+    "fpw": 1671272.600026754,
+    "fnw": 6494.624084321865
+  },
+  "leaderboard_estimate": null,
+  "zip_file": "wbg-c1-commutator-research-surface-20261026-acea88448272.zip",
+  "zip_sha256": "325750e6d03066d47dc9a4401217cd1870fe49f7d004a087b126ba61d2f9c6d9",
+  "warning": "Research surface only. No final dots or promoted competition submission. No organizer score receipt."
+}

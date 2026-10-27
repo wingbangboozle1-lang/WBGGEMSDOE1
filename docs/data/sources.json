@@ -37,13 +37,13 @@
       "id": "OFFICIAL-LEADERBOARD",
       "title": "DrivenData public leaderboard",
       "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-      "access": "retrieved, first chunk",
+      "access": "Retrieved via fetch_page on 2026-10-27; rank-one public observation is not a project TIFF receipt.",
       "authority": "competition organizer public leaderboard; not a receipt for any project TIFF",
       "observation": {
-        "date_utc": "2026-10-26",
+        "date_utc": "2026-10-27",
         "rank": 1,
-        "participant": "xiaofanhu",
-        "public_dw_tversky": 0.4437
+        "participant": "public rank-one participant (see source)",
+        "public_dw_tversky": 0.4544
       },
       "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-OBSERVATION",
       "limitations": "Not a project submission-page receipt; cannot verify the user-reported historical artifact scores or private/final standings."

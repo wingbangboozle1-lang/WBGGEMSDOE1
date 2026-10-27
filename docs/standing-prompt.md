@@ -1,18 +1,12 @@
 # Standing user prompt — supplied 2026-10-26
 
-> **CURRENT STATE — read this first (updated 2026-10-27).**
-> The submittable artifact is **`docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif`**
-> (one-member `.zip` identical). Unique vs all nine focus sites (max 1.18x chance overlap,
-> max |rho| 0.009), format-valid (float32, EPSG:32611, 3730x3292, [0,1], no NaN).
-> Estimated score **0.2824** (MODEL-ESTIMATE; 95% interval 0.2795-0.2853; calibrated on nine
-> third-party reported values, R^2 0.988). **No organizer-confirmed score exists for any file here.**
-> The estimate is only +0.0046 over the best focus-site artifact (0.2778) and is within model
-> error: it ties rather than beats it. Reaching the 0.39-0.45 leaderboard band requires the
-> login-gated official `training_features.tif` (418 MB), which is absent from this sandbox.
-> Read `docs/wbg2.html` and `evidence/wbg2/run_card.json` for the full evidence chain.
-> Standing rules that still bind: do not copy another site's predictions; label every number as
-> MODEL-ESTIMATE / MEASURED / ORGANIZER-CONFIRMED; never ship NaN; do not spend a weekly slot
-> without an authenticated receipt; negative results are deliverables.
+ > **CURRENT STATE — read this first (corrected 2026-10-27).**
+> No local TIFF is approved for submission. WBG-2 is format-valid for local
+> research but fails the literal registry overlap gate and has no qualifying
+> holdout. DOWNLOAD: research only; SUBMIT: NO. The old regression projection
+> and its claimed interval are withdrawn. See `evidence/wbg2/run_card.json`.
+> The rest of this document preserves the owner's request as historical intent,
+> not independently verified facts or a replacement for the current run card.
 
 This is the user's request, retained as project intent, **not verified factual findings**. Historical scores, blocker claims, dates, source availability, and proposed capabilities below must be checked against current evidence. Read it together with the current README status, `registry/run_card.json`, and `registry/irregularities.json` before each session. The requested single-method lane paragraph was not supplied. The original request follows (trailing whitespace normalized; wording retained).
 

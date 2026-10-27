@@ -1,18 +1,18 @@
 # Starting point for every session
 
-0. **Current submittable artifact (2026-10-27): `docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif`.**
-   Unique against all nine focus sites (max 1.18x chance overlap, max |rho| 0.009), format-valid,
-   zeros-mode, sha256 `f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3`.
-   Estimated score **0.2824** (MODEL-ESTIMATE; 95% 0.2795-0.2853) - **not** organizer-confirmed and
-   only +0.0046 over the best focus-site artifact, i.e. a tie within model error. Read
-   `docs/wbg2.html` and `evidence/wbg2/run_card.json` first. The WBG-C1/TIP1/MVGZ/WBG-H1 artifacts
-   remain NEGATIVE; nothing else here is cleared to upload.
+0. **NO CURRENT SUBMIT-READY TIFF (2026-10-27).** WBG-2 is a stopped research
+   artifact, not an approved submission. Its own old gate applied an unauthorized
+   enrichment exemption. Shared-template remeasurement found 99.8972% forward
+   3-pixel overlap with the GEMSDOE24 lattice, and 100% with WBG-C1. No qualifying
+   visible-only holdout or pre-placement audit exists. DOWNLOAD for research only;
+   SUBMIT: NO. See `evidence/wbg2/run_card.json` and `scripts/review_wbg2.py`.
+   The old regression projection and purported interval are withdrawn.
 
 1. Read `README.md` **including the archived standing prompt**, then the 2026-10-27 follow-up at
    `research/03_followup_review_20261027.md`, `evidence/portfolio_review_20261027.json`,
    `docs/review-20261027.md`, `evidence/release_review_20261027.json`, `registry/run_card.json`,
    `registry/irregularities.json`, `registry/experiment_ledger.json` and `registry/preregistration.json`.
-   The prompt is intent, not evidence. **Only the WBG-2 file in item 0 is cleared to upload.**
+   The prompt is intent, not evidence. **No current local file is cleared to upload.**
    WBG-C1, TIP1, MVGZ and WBG-H1 remain **NEGATIVE / DO NOT SUBMIT**. The 2026-10-27 follow-up added
    zero experiments.
 2. The original checkout contained only a title. Do not invent prior local training, pending tasks,

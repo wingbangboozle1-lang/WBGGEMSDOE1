@@ -1,21 +1,9 @@
-"""Placement prior and rendering for WBG-2.
+"""Historical WBG-2 mathematical primitives, not an authorized lane runner.
 
-The prior uses ONLY the organizer-provided catalogue (`labels.tif`) and the
-competition footprint. It does not read, sample or imitate any other project's
-predictions.
-
-Measured basis (all locally measured this session, see docs/research):
-
-* Gaussian KDE of mapped-fault density, sampled at 1.5 km bandwidth, beat a
-  uniform draw over the same admissible cells by 1.7-2.2x in DTI on a four-fold
-  spatially blocked hide-and-recover test (/tmp/exp4 -> evidence wbg2).
-* Strike-aligned "runs" beat scattered dots ONLY when the true local strike is
-  known (0.936 vs 0.140). With a guessed or random strike they are WORSE than
-  scattering (0.090 vs 0.140). We therefore scatter: we do not claim to know
-  the trace direction.
-* At a fixed number of true hits, reducing the number of predicted pixels
-  raises DTI monotonically until the hit count starts to fall. This is why the
-  field is kept small.
+WBG-2 failed the literal registry overlap gate. Do not use these primitives to
+regenerate its placement or tune around registry entries. The catalogue mirror
+is hash-pinned but not independently authenticated to the organizer.
+The previous synthetic experiments do not establish a valid WBG-2 holdout.
 """
 
 from __future__ import annotations
@@ -27,17 +15,13 @@ from scipy import ndimage as ndi
 KDE_SIGMA_PX = 15.0
 #: Cells closer than this to a mapped fault are excluded outright.
 CATALOGUE_BUFFER_PX = 4
-#: Default predicted-pixel budget.
-#:
-#: The nine focus-site artifacts span 37,654-61,328 positive pixels with an
-#: organizer-reported score for each. 36,000 sits just inside that observed
-#: range, so the calibrated estimate stays an interpolation rather than an
-#: extrapolation into a region where the metric has not been demonstrated.
+#: Historical budget, below (not inside) the cited calibration range.
+#: The corresponding regression is not a valid leaderboard forecast.
 DEFAULT_BUDGET = 36000
 
 
 def catalogue_buffer(mask: np.ndarray, radius_px: int = CATALOGUE_BUFFER_PX) -> np.ndarray:
-    """Cells within `radius_px` (Chebyshev, 8-connected) of a True cell."""
+    """Cells in a Manhattan (four-connected) diamond, not a Euclidean disk."""
     if radius_px <= 0:
         return np.zeros_like(mask, dtype=bool)
     return ndi.binary_dilation(

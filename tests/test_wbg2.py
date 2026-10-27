@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import zipfile
 from pathlib import Path
 
 import numpy as np
@@ -68,12 +67,13 @@ def test_empty_prediction_scores_zero():
 
 
 # ------------------------------------------------------------------- placement
-def test_catalogue_buffer_excludes_a_disc():
+def test_catalogue_buffer_is_a_manhattan_diamond_not_a_disc():
     m = np.zeros((21, 21), dtype=bool)
     m[10, 10] = True
     b = P.catalogue_buffer(m, 4)
     assert b[10, 14] and b[10, 6] and b[14, 10]
     assert not b[10, 16]
+    assert not b[13, 12]  # sqrt(13) pixels < 4, but Manhattan distance 5
     assert P.catalogue_buffer(m, 0).sum() == 0
 
 
@@ -104,104 +104,124 @@ def test_density_prior_is_bounded():
 
 
 # -------------------------------------------------------------------- validator
-def test_validator_rejects_wrong_grid(tmp_path):
+@pytest.mark.parametrize("legacy", [V.validate_tif, V.validate_zip])
+def test_legacy_private_validator_is_disabled(legacy):
+    with pytest.raises(RuntimeError, match="disabled"):
+        legacy("anything")
+
+
+def test_shared_validator_rejects_shift_and_nonfinite_exterior(tmp_path, monkeypatch):
     import rasterio
+    from rasterio.transform import from_origin
+    from gems57 import validate as shared
 
-    p = tmp_path / "bad.tif"
-    with rasterio.open(
-        p, "w", driver="GTiff", height=10, width=10, count=1, dtype="float32",
-        crs="EPSG:32611", transform=rasterio.transform.from_origin(0, 0, 100, 100),
-    ) as dst:
-        dst.write(np.zeros((10, 10), np.float32), 1)
-    rep = V.validate_tif(str(p))
-    assert rep.all_checks_passed is False
-    assert "shape_matches" in rep.errors
+    transform = from_origin(243350, 4508550, 100, 100)
+    monkeypatch.setattr(shared, "HEIGHT", 20)
+    monkeypatch.setattr(shared, "WIDTH", 20)
+    monkeypatch.setattr(shared, "TRANSFORM", transform)
+    path = tmp_path / "test.tif"
+    footprint = np.ones((20, 20), dtype=bool)
+    footprint[0, 0] = False
+    arr = np.zeros((20, 20), np.float32)
 
+    def write(t):
+        with rasterio.open(path, "w", driver="GTiff", height=20, width=20, count=1,
+                           dtype="float32", crs="EPSG:32611", transform=t) as dst:
+            dst.write(arr, 1)
 
-def test_validator_detects_nan_mode(tmp_path):
-    import rasterio
-
-    p = tmp_path / "nan.tif"
-    tr = rasterio.transform.from_origin(243350, 4508550, 100, 100)
-    a = np.zeros((3730, 3292), np.float32)
-    a[0, 0] = np.nan
-    with rasterio.open(
-        p, "w", driver="GTiff", height=3730, width=3292, count=1, dtype="float32",
-        crs="EPSG:32611", transform=tr,
-    ) as dst:
-        dst.write(a, 1)
-    rep = V.validate_tif(str(p))
-    assert rep.mode == "nan"
-    assert rep.all_checks_passed is False
-
-
-def test_zip_validator_requires_single_identical_member(tmp_path):
-    import rasterio
-
-    tr = rasterio.transform.from_origin(243350, 4508550, 100, 100)
-    tif = tmp_path / "x.tif"
-    with rasterio.open(
-        tif, "w", driver="GTiff", height=8, width=8, count=1, dtype="float32",
-        crs="EPSG:32611", transform=tr,
-    ) as dst:
-        dst.write(np.ones((8, 8), np.float32), 1)
-    good = tmp_path / "good.zip"
-    with zipfile.ZipFile(good, "w") as z:
-        z.write(tif, arcname="x.tif")
-    assert V.validate_zip(str(good), str(tif))["all_checks_passed"] is True
-
-    two = tmp_path / "two.zip"
-    with zipfile.ZipFile(two, "w") as z:
-        z.write(tif, arcname="x.tif")
-        z.write(tif, arcname="y.tif")
-    assert V.validate_zip(str(two), str(tif))["all_checks_passed"] is False
+    write(transform)
+    assert shared.validate(path, footprint)["all_checks_passed"]
+    write(from_origin(243450, 4508550, 100, 100))
+    assert not shared.validate(path, footprint)["checks"]["transform_matches_sample_submission"]
+    arr[0, 0] = np.nan
+    write(transform)
+    assert not shared.validate(path, footprint)["checks"]["no_nan_anywhere"]
+    arr[0, 0] = 0
+    arr[5, 5] = 1.01
+    write(transform)
+    assert not shared.validate(path, footprint)["checks"]["range_0_1_guaranteed"]
 
 
 # ------------------------------------------------------------------- uniqueness
-def test_enrichment_is_one_for_independent_dense_field():
-    """A dense surface must not be reported as a duplicate."""
-    ours = np.zeros((200, 200), np.float32)
-    rng = np.random.default_rng(1)
-    idx = rng.choice(200 * 200, 500, replace=False)
-    ours.ravel()[idx] = 1.0
-    dense = np.ones((200, 200), np.float32) * 0.5
-    c = U.compare(ours, dense)
-    assert c["forward_overlap"] == 1.0
-    assert c["enrichment"] == pytest.approx(1.0, abs=1e-6)
+def test_legacy_enrichment_exemption_is_disabled():
+    with pytest.raises(RuntimeError, match="disabled"):
+        U.compare(np.zeros((5, 5)), np.ones((5, 5)))
 
 
-def test_enrichment_flags_a_copy():
-    a = np.zeros((200, 200), np.float32)
-    a[50:150, 100] = 1.0
-    c = U.compare(a, a.copy())
-    assert c["forward_overlap"] == pytest.approx(1.0)
-    assert c["enrichment"] > U.STOP_ENRICHMENT
-    assert c["rho"] > U.STOP_RHO
+def test_shared_literal_gate_stops_dense_field_and_shifted_grid(tmp_path):
+    import rasterio
+    from rasterio.transform import from_origin
+    from gems57 import uniqueness as shared
+
+    tr = from_origin(243350, 4508550, 100, 100)
+    ours = np.zeros((20, 20), np.float32)
+    ours[4, 4] = ours[15, 15] = 1
+    dense = np.full((20, 20), .5, np.float32)
+    paths = [tmp_path / "ours.tif", tmp_path / "dense.tif", tmp_path / "shifted.tif"]
+    for path, values, transform in zip(paths, [ours, dense, dense],
+                                       [tr, tr, from_origin(243450, 4508550, 100, 100)]):
+        with rasterio.open(path, "w", driver="GTiff", height=20, width=20, count=1,
+                           dtype="float32", crs="EPSG:32611", transform=transform) as dst:
+            dst.write(values, 1)
+    mask = np.ones((20, 20), bool)
+    with rasterio.open(paths[0]) as src:
+        grid = (src.shape, src.crs, src.transform)
+    good = shared.compare_to_registry(paths[0], [{"file": str(paths[1])}], mask, expected_grid=grid)
+    assert good["stop_required"] and not good["unique"]
+    assert good["rows"][0]["my_dots_within_3px_of_theirs"] == 1.0
+    assert good["rows"][0]["duplicate_by_overlap"]
+    bad = shared.compare_to_registry(paths[0], [{"file": str(paths[2])}], mask, expected_grid=grid)
+    assert bad["stop_required"] and not bad["unique"]
+    assert "error" in bad["rows"][0]
 
 
 # ------------------------------------------------------------- shipped artifacts
-def test_run_card_is_consistent_with_shipped_file():
+def test_run_card_is_a_negative_decision_with_pinned_reproducible_witness():
     card = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
-    for key in ("raster_sha256", "score_estimate", "registry", "validator", "decision"):
-        assert key in card
-    assert card["decision"]["ok_to_submit"] is True
-    assert card["validator"]["tif"]["all_checks_passed"] is True
-    assert card["validator"]["zip"]["all_checks_passed"] is True
-    assert card["registry"]["passes_final_dot_gate"] is True
+    assert card["verdict"] == "negative" and card["ok_to_submit"] is False
+    assert card["validator_output"]["all_checks_passed"]
+    assert card["validator_output"]["zip_exact_single_identical_tiff"]
+    assert not card["registry"]["passes_literal_uniqueness"]
+    assert card["registry"]["rows"][0]["forward_overlap_within_3px"] == pytest.approx(0.9989722222)
+    assert card["registry"]["rows"][0]["duplicate_by_overlap"]
+    assert card["registry"]["rows"][1]["forward_overlap_within_3px"] == 1.0
+    assert card["holdout"]["value"] is None and card["leaderboard_estimate"] is None
+    assert card["new_experiments"] == card["new_rasters_generated"] == card["submission_slots_used"] == 0
     assert len(card["submission_note"]) <= 140
 
 
-def test_nine_site_audit_is_recorded():
+def test_nine_site_legacy_audit_is_not_a_uniqueness_approval():
     nine = json.loads((ROOT / "evidence/wbg2/nine_site_uniqueness.json").read_text())
     assert nine["n_audited"] == 9
-    assert nine["max_enrichment_vs_chance"] < U.STOP_ENRICHMENT
-    assert nine["max_abs_spearman"] < U.STOP_RHO
-    assert nine["verdict"].startswith("UNIQUE")
+    assert "PARTIAL" in nine["verdict"]
+    assert all("USER-REPORTED" in r["score_evidence_class"] for r in nine["rows"])
+    assert any("not all site rasters" in issue for issue in nine["limitations"])
 
 
-def test_calibration_is_documented_and_honest():
+def test_calibration_is_explicitly_withdrawn():
     cal = json.loads((ROOT / "registry/wbg2_calibration.json").read_text())
     assert cal["n_observations"] == 9
-    assert 0.9 < cal["r2"] <= 1.0
-    assert any("receipt" in c for c in cal["caveats"])
-    assert cal["collinearity"]["corr_near3cat_logbudget"] > 0.5
+    assert "SUPERSEDED" in cal["status"]
+    assert "not a defensible prediction interval" in cal["additional_caveat"]
+
+
+def test_stopped_entry_points_fail_without_modifying_candidate():
+    import hashlib
+    import subprocess
+    import sys
+    tif = ROOT / "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif"
+    before = hashlib.sha256(tif.read_bytes()).hexdigest()
+    for script in ("build_wbg2_submission.py", "wbg2_nine_site_audit.py"):
+        result = subprocess.run([sys.executable, str(ROOT / "scripts" / script)], capture_output=True, text=True)
+        assert result.returncode == 2 and "STOP" in result.stderr
+    assert hashlib.sha256(tif.read_bytes()).hexdigest() == before
+
+
+def test_full_audit_card_comparison_rejects_semantic_drift():
+    from scripts.review_wbg2 import compare_documents
+    baseline = {"verdict": "negative", "registry": {"overlap": 0.998972222222, "pass": False}}
+    compare_documents(baseline, {"verdict": "negative", "registry": {"overlap": 0.998972222223, "pass": False}})
+    with pytest.raises(ValueError, match="drift"):
+        compare_documents(baseline, {"verdict": "negative", "registry": {"overlap": 0.998972222222, "pass": True}})
+    with pytest.raises(ValueError, match="drift"):
+        compare_documents(baseline, {"verdict": "negative", "registry": {"overlap": 0.998972222222}})

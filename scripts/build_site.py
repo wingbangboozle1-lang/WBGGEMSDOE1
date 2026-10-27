@@ -31,7 +31,7 @@ def link(url, text, cls=""):
 
 
 def page(name, title, body):
-    nav = [("index.html", "Overview"), ("wbg2.html", "WBG-2 submission"),
+    nav = [("index.html", "Overview"), ("wbg2.html", "WBG-2 audit"),
            ("executive-summary.html", "Site comparison"),
            ("research.html", "Research"), ("evidence.html", "Evidence"), ("how-to-submit.html", "How to submit")]
     links = "".join(link(path, label, "active" if path == name else "") for path, label in nav)
@@ -130,7 +130,7 @@ def comparison_table(audit, *, compact=False):
 
 
 def parallel_section():
-    return '''<section class="section"><div class="section-heading"><div><span class="section-num">04 / PARALLEL WORK PRESERVED</span><h2>Separate lanes. Frozen negative results.</h2><p>WBG-H1 (DPGF-1), TIP1 and MVGZ ran as independent parallel lanes alongside WBG-C1. Each retains its own frozen Run Card, validator receipt and zero-slot-expenditure decision.</p></div></div><div class="two-col" style="margin-bottom:18px"><article class="mini-card"><span class="index">PARALLEL LANE / WBG-H1 (DPGF-1 · EXP-3)</span><h3>Dip-projected basement coupling + 300 m CELF</h3><p>66-channel label-free geophysical stack + LiDAR-dual ensemble + two-regime 300 m CELF emitter (<code>37,654</code> zero-exterior dots, 10/10 <code>[0,1]</code> portal format checks PASS, sparse-peer 3 px overlap <code>64.49% ≤ 70%</code>, <code>|ρ| = 0.0347</code>). Beats matched 31-ch tree baseline <code>B0</code> across <strong>4/4 spatial folds</strong> (<code>HOLDOUT-DTI = 0.123310</code> vs <code>0.103855</code>, paired Δ <code>+0.019455</code>, <code>gems-segment-pooled-v1</code>, <code>n=60,988</code>), while marked <code>verdict: negative</code> for standalone weekly slot use versus analytical ridge reference <code>0.163792</code>.</p><a class="text-link" href="wbg-h1-dpgf1/index.html">Open WBG-H1 dashboard &amp; 9-site audit ↗</a> · <a class="text-link" href="wbg-h1-dpgf1/executive-summary.html">Upload guide ↗</a> · <a class="text-link" href="downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif">Download WBG-H1 .tif ↓</a> · <a class="text-link" href="wbg-h1-dpgf1/data/run_card.json">WBG-H1 Run Card JSON ↗</a></article><article class="mini-card"><span class="index">INHERITED / TIP1 &amp; MVGZ</span><h3>Directional tip &amp; magnetic valley lanes</h3><p>Retained TIP1 and MVGZ negative artifacts, tests and evidence remain byte-intact under their original evaluators and splits; neither authorizes a competition slot.</p><a class="text-link" href="data/tip1_run_card.json">Frozen TIP1 card ↗</a> · <a class="text-link" href="evidence/run_card.json">Frozen MVGZ card ↗</a> · <a class="text-link" href="parallel/main-b9a2d53/index.html">Original parallel site ↗</a> · <a class="text-link" href="data/parallel-main-integration.json">Integration receipt ↗</a></article></div></section>'''
+    return '''<section class="section"><div class="section-heading"><div><span class="section-num">04 / PARALLEL WORK PRESERVED</span><h2>Separate lanes. Frozen negative results.</h2><p>WBG-H1 (DPGF-1), TIP1 and MVGZ ran as independent parallel lanes alongside WBG-C1. Each retains its own frozen Run Card, validator receipt and zero-slot-expenditure decision.</p></div></div><div class="two-col" style="margin-bottom:18px"><article class="mini-card"><span class="index">PARALLEL LANE / WBG-H1 (DPGF-1 · EXP-3)</span><h3>Dip-projected basement coupling + 300 m CELF</h3><p>66-channel label-free geophysical stack + LiDAR-dual ensemble + two-regime 300 m CELF emitter (<code>37,654</code> zero-exterior dots, 10/10 <code>[0,1]</code> portal format checks PASS, partial sparse-peer 3 px overlap <code>64.49%</code> (not a valid all-registry pass), literal lattice overlap <strong>99.8035% — STOP</strong>, <code>|ρ| = 0.0347</code>). Beats matched 31-ch tree baseline <code>B0</code> across <strong>4/4 spatial folds</strong> (<code>HOLDOUT-DTI = 0.123310</code> vs <code>0.103855</code>, paired Δ <code>+0.019455</code>, <code>gems-segment-pooled-v1</code>, <code>n=60,988</code>), while marked <code>verdict: negative</code> for standalone weekly slot use versus analytical ridge reference <code>0.163792</code>.</p><a class="text-link" href="wbg-h1-dpgf1/index.html">Open WBG-H1 dashboard &amp; 9-site audit ↗</a> · <a class="text-link" href="wbg-h1-dpgf1/executive-summary.html">Evidence guide ↗</a> · <a class="text-link" href="downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif">Download WBG-H1 .tif ↓</a> · <a class="text-link" href="wbg-h1-dpgf1/data/run_card.json">WBG-H1 Run Card JSON ↗</a></article><article class="mini-card"><span class="index">INHERITED / TIP1 &amp; MVGZ</span><h3>Directional tip &amp; magnetic valley lanes</h3><p>Retained TIP1 and MVGZ negative artifacts, tests and evidence remain byte-intact under their original evaluators and splits; neither authorizes a competition slot.</p><a class="text-link" href="data/tip1_run_card.json">Frozen TIP1 card ↗</a> · <a class="text-link" href="evidence/run_card.json">Frozen MVGZ card ↗</a> · <a class="text-link" href="parallel/main-b9a2d53/index.html">Original parallel site ↗</a> · <a class="text-link" href="data/parallel-main-integration.json">Integration receipt ↗</a></article></div></section>'''
 
 
 def feed_strip(feed):
@@ -145,17 +145,18 @@ def feed_strip(feed):
 
 
 def wbg2_banner():
-    """Prominent pointer to the current, unique, submittable WBG-2 file."""
-    try:
-        card = load("evidence/wbg2/run_card.json")
-    except Exception:
-        return ""
-    tif = Path(card["artifacts"]["tif"]).name
-    est = card["score_estimate"]["value"]
-    lo, hi = card["score_estimate"]["ci95"]
-    ok = card["decision"]["ok_to_submit"]
-    tag = pill("Submit: YES", "ok") if ok else pill("Submit: NO", "no")
-    return f'''<div class="alert" role="note" style="border-color:#bcd6c6;background:#f1f6ef;color:#24564a"><p><strong>Current submittable file: WBG-2.</strong> A newly generated, format-valid, <strong>unique</strong> GeoTIFF — estimated score <strong>{est:.4f}</strong> (95% model interval {lo:.4f}–{hi:.4f}, not organizer-confirmed). It is not a copy of any of the nine focus sites. {tag} &nbsp; <a href="wbg2.html">Executive summary and download →</a> &nbsp;·&nbsp; <a href="downloads/{tif}" download>Direct TIFF download ↓</a></p></div>'''
+    """Fail closed on a stopped candidate; never turn a format pass into approval."""
+    import hashlib
+    card = load("evidence/wbg2/run_card.json")
+    path = ROOT / card["artifact"]
+    with path.open("rb") as stream:
+        digest = hashlib.file_digest(stream, "sha256").hexdigest()
+    if (digest != card["raster_sha256"] or card["verdict"] != "negative"
+            or card["ok_to_submit"] is not False or card["leaderboard_estimate"] is not None):
+        raise ValueError("WBG-2 identity/decision drift; refusing to publish")
+    tif = path.name
+    overlap = 100 * card["registry"]["rows"][0]["forward_overlap_within_3px"]
+    return f'''<div class="alert" role="note"><p><strong>NO TIFF IS APPROVED TO SUBMIT.</strong> WBG-2 is available for research only: the shared literal gate found {overlap:.4f}% overlap with a GEMSDOE24 registry raster. No qualifying holdout or credible leaderboard estimate exists. {pill("Submit: NO", "no")} &nbsp; <a href="wbg2.html">Corrected executive audit →</a> &nbsp;·&nbsp; <a href="downloads/{escape(tif)}" download>Research TIFF ↓</a></p></div>'''
 
 
 def home(card, receipt, audit, feed):
@@ -198,7 +199,7 @@ def evidence(card, sources, irregularities, feed):
     for s in sources["sources"]:
         claims = ''.join('<li>' + escape(c) + '</li>' for c in s.get("verified_claims", []))
         if s.get("observation"):
-            claims += '<li>Directly observed public rank-one value: 0.4437 on 2026-10-26. Not a project TIFF receipt.</li>'
+            claims += f"<li>Public rank-one value: {s['observation']['public_dw_tversky']:.4f}, observed {escape(s['observation']['date_utc'])}. Not a project TIFF receipt.</li>"
         sourcecards.append(f'<article class="source-card"><span class="source-id">{s["id"]}</span><h3>{escape(s["title"])}</h3><p>{escape(s["access"])}</p><ul>{claims}</ul>{link(s["url"], "Review official source ↗")}</article>')
     issues = ''.join(f'<details><summary>{escape(i["id"])} · {escape(i["title"])} {pill(i["severity"], "ok" if i["severity"] == "fixed" else "warn")}</summary><div class="detail-body"><p>{escape(i["finding"])}</p><p><strong>Action:</strong> {escape(i["action"])}</p></div></details>' for i in irregularities["items"])
     return f'''<section class="subhero"><div><p class="eyebrow">Audit trail · independently inspectable</p><h1>Know what is measured.<br><em>Know what is missing.</em></h1><p class="lead">Every material claim links to a source or measured JSON. Unknowns remain unknown; no claim of exhaustive literature review, all-site coverage, hidden-label access or guaranteed leaderboard performance is made.</p></div>{pill('No organizer score receipt', 'warn')}</section>{alert()}
@@ -212,8 +213,8 @@ def evidence(card, sources, irregularities, feed):
 def howto(card, receipt):
     tif = Path(card["artifact"]).name
     return f'''<section class="subhero"><div><p class="eyebrow">Submission guide · for a future promoted file</p><h1>Validate the exact file.<br><em>Then earn the slot.</em></h1><p class="lead">The current download is a negative research result. These instructions explain the future submission process; they do not authorize uploading this file.</p></div>{pill('Current file: do not submit', 'no')}</section>{alert()}
-<section class="content-section"><h2>The current file is safe to inspect, not approved to upload</h2><div class="two-col">{download_card(card, receipt)}<article class="panel"><div class="panel-pad prose"><h3>What automated preflight checks</h3><ul><li>One float32 raster band, values in [0,1] and no NaN/inf anywhere under our conservative export policy.</li><li>CRS EPSG:32611, shape 3,730 rows × 3,292 columns, 100 m pixel grid and exact reference geotransform/bounds.</li><li>Zero support outside the mirrored footprint and on mapped catalogue pixels.</li><li>On-disk roundtrip plus a ZIP containing exactly one identical GeoTIFF.</li><li>Separate scientific, leakage and registry gates; no “human inspection only” escape hatch.</li></ul><p>All-finite zeros outside the footprint are a conservative project choice. This is not a claim that the organizer rejects all nodata encodings. We cannot prove the cause of the old rejected upload without its actual bytes and receipt.</p></div></article></div></section>
-<section class="content-section prose"><h2>For a future candidate that passes every gate</h2><h3><span class="step-number">1</span> Read the decision, not just the filename</h3><p>Only a candidate that passes surface novelty, fixed-policy holdout efficacy, untouched confirmation and final-dot novelty may reach a separate selector. Local format validity alone never authorizes upload. This run is <strong>negative</strong>, with <strong>zero slots used</strong>.</p><h3><span class="step-number">2</span> Confirm current account allowance</h3><p>The official September rules PDF, section 3.4, states up to three entries per week as specified on the website. The logged-in submission page is the source for actual remaining allowance. This session redirects to login, so remaining allowance is <strong>unknown</strong>. No password or token should be put into chat or the repository.</p><h3><span class="step-number">3</span> Download and verify a promoted artifact</h3><p>Use the exact file linked in its approved manifest; do not rename an old artifact to create “uniqueness.” Run the project validator against the reference grid and verify its SHA-256. Do not open/resave the TIFF in software that changes pixel values, shape or metadata before upload.</p><pre><code>python -m venv .venv
+<section class="content-section"><h2>The current file is safe to inspect, not approved to upload</h2><div class="two-col">{download_card(card, receipt)}<article class="panel"><div class="panel-pad prose"><h3>What automated preflight checks</h3><ul><li>One float32 raster band, values in [0,1] and no NaN/inf anywhere under our conservative export policy.</li><li>CRS EPSG:32611, shape 3,730 rows × 3,292 columns, 100 m pixel grid and exact reference geotransform/bounds.</li><li>Zero support outside the mirrored footprint and on mapped catalogue pixels.</li><li>On-disk roundtrip plus a ZIP containing exactly one identical GeoTIFF.</li><li>Separate scientific, leakage and registry gates; no “human inspection only” escape hatch.</li></ul><p>All-finite zeros outside the footprint are a conservative project choice. The official format text asks for null/NaN outside bounds, so confirm the organizer’s interpretation before any later upload; local success does not establish portal acceptance. We cannot prove the cause of the old rejected upload without its actual bytes and receipt.</p></div></article></div></section>
+<section class="content-section prose"><h2>For a future candidate that passes every gate</h2><h3><span class="step-number">1</span> Read the decision, not just the filename</h3><p>Only a candidate that passes surface novelty, fixed-policy holdout efficacy, untouched confirmation and final-dot novelty may reach a separate selector. Local format validity alone never authorizes upload. This run is <strong>negative</strong>, with <strong>zero slots used</strong>.</p><h3><span class="step-number">2</span> Confirm current account allowance</h3><p>The official September rules PDF, section 3.4, states up to three entries per week as specified on the website. The logged-in submission page is the source for actual remaining allowance. This session redirects to login, so remaining allowance is <strong>unknown</strong>. No password or token should be put into chat or the repository. The official final round uses expert review of the submitted maps; automated local checks do not replace that review.</p><h3><span class="step-number">3</span> Download and verify a promoted artifact</h3><p>Use the exact file linked in its approved manifest; do not rename an old artifact to create “uniqueness.” Run the project validator against the reference grid and verify its SHA-256. Do not open/resave the TIFF in software that changes pixel values, shape or metadata before upload.</p><pre><code>python -m venv .venv
 .venv/bin/pip install -e '.[test]'
 .venv/bin/python scripts/validate_submission.py \
   docs/downloads/{escape(tif)}
@@ -261,9 +262,11 @@ def main():
         "review-passes.json": "evidence/review_passes.json", "browser-checks.json": "evidence/browser_checks.json",
         "parallel-main-integration.json": "evidence/parallel_main_integration.json",
         "followup-run-card.json": "evidence/followup_run_card_20261027.json",
-        "source-review-20261027.json": "evidence/source_review_20261027.json"}
+        "source-review-20261027.json": "evidence/source_review_20261027.json",
+        "h33-b2-forensics.json": "evidence/h33_b2_forensics.json"}
     for dest, source in copies.items():
         shutil.copyfile(ROOT / source, DOCS / "data" / dest)
+    shutil.copyfile(ROOT / "research/04_source_and_wbg2_review_20261027.md", DOCS / "research/source-and-wbg2-review.md")
     dump_json(DOCS / "data/run-card.json", card)
     pages = {"index.html": ("Overview", home(card, receipt, audit, feed)),
         "executive-summary.html": ("Executive summary", executive(card, receipt, audit, feed)),
@@ -302,6 +305,10 @@ def main():
     release = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(release)
     release.build()
+    wbg2_spec = importlib.util.spec_from_file_location("build_wbg2_site", ROOT / "scripts/build_wbg2_site.py")
+    wbg2 = importlib.util.module_from_spec(wbg2_spec)
+    wbg2_spec.loader.exec_module(wbg2)
+    wbg2.build()
     print("Built five static pages, executive-summary Markdown, WBG-H1 subsite, evidence downloads and fail-closed manifest.")
 
 

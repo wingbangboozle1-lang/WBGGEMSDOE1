@@ -15,32 +15,39 @@ def main():
     h1_zip = wbg_h1_rc["raster_sha256"]["zip_file"]
     standing = (ROOT / "docs/standing-prompt.md").read_text()
     w2 = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
-    w2tif = Path(w2["artifacts"]["tif"]).name
-    w2est = w2["score_estimate"]["value"]
-    w2lo, w2hi = w2["score_estimate"]["ci95"]
-    w2nine = json.loads((ROOT / "evidence/wbg2/nine_site_uniqueness.json").read_text())
+    w2tif = Path(w2["artifact"]).name
+    if w2["verdict"] != "negative" or w2["ok_to_submit"] is not False:
+        raise ValueError("WBG-2 decision drift; refuse to advertise a file")
+    w2overlap = 100 * w2["registry"]["rows"][0]["forward_overlap_within_3px"]
 
     header = f'''# WBG GEMS — evidence-first fault mapping
 
-## SUBMIT THIS FILE: [{w2tif}](docs/downloads/{w2tif})
+## NO CURRENT TIFF IS APPROVED TO SUBMIT
 
-**[Executive summary + one-click download](docs/wbg2.html)** · [ZIP](docs/downloads/{w2tif.replace('.tif', '.zip')}) ·
-[markdown summary](docs/wbg2-executive-summary.md) · [run card](evidence/wbg2/run_card.json) ·
-[live site](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/wbg2.html)
+**DOWNLOAD: YES for research. SUBMIT: NO.** [Corrected executive audit and nine-site table](docs/wbg2.html) ·
+[Research TIFF](docs/downloads/{w2tif}) · [identical ZIP](docs/downloads/{w2tif.replace('.tif', '.zip')}) ·
+[WBG-2 run card](evidence/wbg2/run_card.json) · [future submission guide](docs/how-to-submit.html).
 
-| | |
+| Decision item | Evidence |
 |---|---|
-| File to submit | `docs/downloads/{w2tif}` (+ identical one-member `.zip`) |
-| Estimated score | **{w2est:.4f}** — MODEL-ESTIMATE, 95% interval {w2lo:.4f}–{w2hi:.4f}, R² {w2["score_estimate"]["r2"]:.3f}, n=9. **Not organizer-confirmed.** |
-| Unique vs GEMSDOE24/25/27/28/30/31/32/33/36 | **YES** — {w2nine["n_audited"]}/9 audited; max {w2nine["max_enrichment_vs_chance"]:.2f}× chance overlap, max \|ρ\| {w2nine["max_abs_spearman"]:.3f} |
-| Format | single-band float32, EPSG:32611, 3730×3292, values in [0,1], no NaN anywhere (zeros mode) |
-| sha256 | `{w2["raster_sha256"]}` |
-| Slots used | 0 |
+| File | `{w2tif}` — existing research artifact, **do not submit** |
+| Local format | PASS: one float32 band, exact mirrored grid, all finite [0,1]; not organizer acceptance |
+| Literal uniqueness | **FAIL**: {w2overlap:.4f}% forward 3-pixel overlap with a registered GEMSDOE24 lattice (limit 70%); no exemption |
+| HOLDOUT-DTI | Unavailable: no qualifying visible-only buffered result or feature canary was established for WBG-2 |
+| Leaderboard estimate | Unavailable; the old regression projection and purported 95% interval are withdrawn |
+| Exact TIFF SHA-256 | `{w2["raster_sha256"]}` |
+| Competition slots used | 0; a real slot is a separate selector decision |
 
-> **Honest reading.** WBG-2 is unique and format-valid, so it is safe to upload. Its estimate is only
-> **{w2est - 0.2778:+.4f}** above the best focus-site artifact (0.2778), which is *within model error*:
-> it ties that artifact rather than beating it. The route to the 0.39–0.45 leaderboard band is the
-> login-gated official `training_features.tif`; see [the executive summary](docs/wbg2.html).
+The highest **USER-REPORTED / UNCONFIRMED** focus-site result is GEMSDOE32 B2 at 0.2778.
+B2 is an exact subset of the parent D2.8 predictions; removing catalogue-adjacent dots may
+reduce false-positive penalty, but no hidden-truth decomposition or file-linked receipt proves why.
+Do not copy a previous submission. This session revalidated existing files, restored the
+hash-pinned owner mirror and all 19 cached bands, and made no new scientific experiment.
+
+The README includes the standing user request below. Read `AGENTS.md`, the corrected run card,
+and the full request at the start of every session. Missing lane assignment, complete registry
+scope, same-instrument paired benchmark, independent official-origin verification and current
+account allowance remain blockers. [Exact remediation and commands](docs/wbg2.html).
 
 ## Older file — DOWNLOAD: YES, for research. SUBMIT: **NO**.
 
@@ -107,7 +114,7 @@ Their frozen scientific modules, receipts and artifacts are retained; they were 
 The current **one-experiment count is WBG-C1 only**, not a sum or reset of the inherited lane budgets.
 Different evaluator/split/representation results must not be pooled or ranked as comparable scores.
 
-- [Original parallel site, with its own frozen assets and data](docs/parallel/main-b9a2d53/index.html)
+- [Original frozen parallel site (historical source descriptions; see current source review)](docs/parallel/main-b9a2d53/index.html)
 - [Original main README](research/inherited-main-README-b9a2d53.md) (historical commands/paths)
 - [Byte-preservation/integration receipt](evidence/parallel_main_integration.json)
 - [Frozen TIP1 card](evidence/tip1_run_card_20261026.json) and [MVGZ card](evidence/run_card.json)

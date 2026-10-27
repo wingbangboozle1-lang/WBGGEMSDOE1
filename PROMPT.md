@@ -23,12 +23,12 @@ Reference: https://github.com/drivendataorg/gems-prize-reference-solution
 
 ## Current artifact (2026-10-27)
 
-Submittable: `docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif` (+ identical one-member ZIP).
-Unique vs GEMSDOE24/25/27/28/30/31/32/33/36 (max 1.18x chance overlap, max |rho| 0.009).
-Format-valid: float32, EPSG:32611, 3730x3292, [0,1], no NaN. Estimated score 0.2824
-(MODEL-ESTIMATE, 95% 0.2795-0.2853, 9-point calibration R^2 0.988) - not organizer-confirmed,
-and only +0.0046 over 0.2778, so treat it as a tie. Details: `docs/wbg2.html`.
-Everything else in this repository is a negative result and is NOT cleared to upload.
+**DOWNLOAD: research only. SUBMIT: NO.** WBG-2 is locally format-valid, but
+fails the literal 3-pixel registry gate against the GEMSDOE24 lattice and lacks
+an eligible holdout. There is no approved current TIFF. Its former model
+projection and claimed interval are withdrawn. See `evidence/wbg2/run_card.json`
+and run `python scripts/review_wbg2.py --check`. No new experiment or slot was
+used in this review.
 
 ## Submission contract
 

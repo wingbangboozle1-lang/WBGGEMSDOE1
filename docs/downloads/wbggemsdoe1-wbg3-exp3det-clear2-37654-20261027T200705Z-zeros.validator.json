@@ -1,0 +1,53 @@
+{
+ "tif": {
+  "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif",
+  "sha256": "30901f894a84f6150a65a86e6556d3b4d3b3f5054dd4f8f3b597d754115447c1",
+  "shape": [
+   3730,
+   3292
+  ],
+  "dtype": "float32",
+  "band_count": 1,
+  "crs": "EPSG:32611",
+  "pixel_size": [
+   100.0,
+   100.0
+  ],
+  "origin": [
+   243350.0,
+   4508550.0
+  ],
+  "nodata": null,
+  "mode": "zeros",
+  "in_footprint_pixels": 5167373,
+  "positive_pixels": 37654,
+  "value_min": 0.0,
+  "value_max": 1.0,
+  "checks": {
+   "single_band": true,
+   "dtype_float32": true,
+   "shape_matches": true,
+   "crs_epsg_32611": true,
+   "pixel_size_100m": true,
+   "in_footprint_all_finite": true,
+   "values_in_0_1": true,
+   "outside_footprint_zero": true,
+   "has_predictions": true,
+   "no_nan_anywhere": true
+  },
+  "all_checks_passed": true,
+  "errors": []
+ },
+ "zip": {
+  "zip": "/home/user/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.zip",
+  "members": [
+   "wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif"
+  ],
+  "tif_members": [
+   "wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif"
+  ],
+  "exactly_one_tif": true,
+  "byte_identical": true,
+  "all_checks_passed": true
+ }
+}

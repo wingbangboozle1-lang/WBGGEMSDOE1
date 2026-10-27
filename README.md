@@ -1,6 +1,19 @@
 # WBG GEMS — evidence-first fault mapping
 
-## NO FILE APPROVED FOR SUBMISSION
+## WBG-3 (2026-10-27, this branch) — unique new TIF, DO NOT SUBMIT YET
+
+**Download:** [wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif](docs/downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif) · [ZIP](docs/downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.zip) · [executive summary](docs/wbg3.html) · [run card](evidence/wbg3/run_card.json)
+
+| | |
+|---|---|
+| Estimated score | **0.21 [0.17–0.26]** MODEL-ESTIMATE — below champion OWNER-REPORTED 0.2778; not claimed beaten |
+| Holdout | HOLDOUT-DTI **0.1382** [0.1257, 0.1520], `gems-segment-pooled-v1`, 60,988 withheld — best reproducible detector here, does **not** beat the 0.1661 S3DEP1 benchmark |
+| Unique vs GEMSDOE24/25/27/28/30/31/32/33/36 | **YES** under the literal per-raster gate (Euclidean 3 px): see `evidence/wbg3/run_card.json` |
+| Format | single-band float32, EPSG:32611, 3730×3292, [0,1], no NaN, validator PASS |
+| sha256 | `30901f894a84f6150a65a86e6556d3b4d3b3f5054dd4f8f3b597d754115447c1` |
+| Slots used | 0 |
+
+## NO FILE APPROVED FOR SUBMISSION (earlier files)
 
 **[Executive audit and nine-site table](docs/wbg2.html)** ·
 [Download WBG-2 TIFF for research only](docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif) ·

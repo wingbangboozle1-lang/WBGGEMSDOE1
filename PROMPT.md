@@ -23,13 +23,12 @@ Reference: https://github.com/drivendataorg/gems-prize-reference-solution
 
 ## Current artifact (2026-10-27)
 
-No file is approved for submission. The existing WBG-2 TIFF is a research download:
-`docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif` (+ identical one-member ZIP).
-Its local all-finite format passes, but **99.8972%** of its existing dots overlap a registered
-lattice within 3 px (>70% STOP). The surface also fails a retrospective check. No valid
-fold-local HOLDOUT-DTI, file-specific organizer receipt or reliable score estimate exists.
-The prior "safe to upload" claim and extrapolated projection are superseded.
-See `docs/wbg2.html` and `evidence/wbg2/safety_audit_20261027.json`.
+Designated newest file: `docs/downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif`
+(WBG-3 supervised detector; HOLDOUT-DTI 0.1382 [0.1257, 0.1520], MODEL-ESTIMATE
+0.21 [0.17-0.26], unique vs the nine focus sites under the literal per-raster
+gate, format-valid, verdict NEGATIVE for a slot - does not beat the 0.1661
+benchmark; see `docs/wbg3.html` and `evidence/wbg3/run_card.json`).
+No earlier file is approved for submission (see below).
 
 ## Submission contract
 

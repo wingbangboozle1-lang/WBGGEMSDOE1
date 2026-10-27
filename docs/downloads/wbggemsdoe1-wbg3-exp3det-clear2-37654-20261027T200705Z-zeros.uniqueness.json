@@ -1,0 +1,63 @@
+{
+ "gate": "gems57 literal per-raster (Euclidean 3px dot overlap <=0.70 and |Spearman| <=0.90), no density exemption",
+ "scope": "nine focus-site champion artifacts only (fetched from pinned GitHub commits, decoded positives verified vs registry/wbg2_calibration.json). A full-registry literal scan including registered dense continuous surfaces blocks any sparse field by construction (vendor/gems57/uniqueness.py docstring); that is reported, not exempted.",
+ "rows": [
+  {
+   "site": "GEMSDOE24",
+   "forward_3px_overlap_euclidean": 0.43708503744622085,
+   "spearman_rho_subsample400k": 0.03576710022961979,
+   "their_positive": 60069
+  },
+  {
+   "site": "GEMSDOE25",
+   "forward_3px_overlap_euclidean": 0.41987571041589206,
+   "spearman_rho_subsample400k": 0.02693434210721711,
+   "their_positive": 44090
+  },
+  {
+   "site": "GEMSDOE27",
+   "forward_3px_overlap_euclidean": 0.45060285759813035,
+   "spearman_rho_subsample400k": 0.03594503114122188,
+   "their_positive": 61328
+  },
+  {
+   "site": "GEMSDOE28",
+   "forward_3px_overlap_euclidean": 0.3818717798905827,
+   "spearman_rho_subsample400k": 0.027838204019410374,
+   "their_positive": 37660
+  },
+  {
+   "site": "GEMSDOE30",
+   "forward_3px_overlap_euclidean": 0.41987571041589206,
+   "spearman_rho_subsample400k": 0.02693434210721711,
+   "their_positive": 44090
+  },
+  {
+   "site": "GEMSDOE31",
+   "forward_3px_overlap_euclidean": 0.38598820842407183,
+   "spearman_rho_subsample400k": 0.02857918900587621,
+   "their_positive": 40199
+  },
+  {
+   "site": "GEMSDOE32",
+   "forward_3px_overlap_euclidean": 0.3513570935358793,
+   "spearman_rho_subsample400k": 0.030116900070779086,
+   "their_positive": 37654
+  },
+  {
+   "site": "GEMSDOE33",
+   "forward_3px_overlap_euclidean": 0.4011791575928188,
+   "spearman_rho_subsample400k": 0.033407840910818935,
+   "their_positive": 41865
+  },
+  {
+   "site": "GEMSDOE36",
+   "forward_3px_overlap_euclidean": 0.3554204068624847,
+   "spearman_rho_subsample400k": 0.029625694097612364,
+   "their_positive": 38854
+  }
+ ],
+ "max_forward_3px_overlap_euclidean": 0.45060285759813035,
+ "max_abs_spearman": 0.03594503114122188,
+ "unique_vs_nine_focus_sites": true
+}

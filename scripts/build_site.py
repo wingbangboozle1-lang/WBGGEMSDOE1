@@ -263,7 +263,8 @@ def main():
         "parallel-main-integration.json": "evidence/parallel_main_integration.json",
         "followup-run-card.json": "evidence/followup_run_card_20261027.json",
         "source-review-20261027.json": "evidence/source_review_20261027.json",
-        "h33-b2-forensics.json": "evidence/h33_b2_forensics.json"}
+        "h33-b2-forensics.json": "evidence/h33_b2_forensics.json",
+        "wbg2-review-passes.json": "evidence/wbg2/review_passes_20261027.json"}
     for dest, source in copies.items():
         shutil.copyfile(ROOT / source, DOCS / "data" / dest)
     shutil.copyfile(ROOT / "research/04_source_and_wbg2_review_20261027.md", DOCS / "research/source-and-wbg2-review.md")

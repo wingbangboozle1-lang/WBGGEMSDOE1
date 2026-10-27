@@ -9,9 +9,12 @@ No login, credentials, account data, model, file or competition slot is used.
 from html.parser import HTMLParser
 import json
 import re
+from pathlib import Path
+import sys
 from urllib.parse import urlsplit
 
-from refresh_feed import LEADERBOARD, Tables, fetch, parse_leaderboard
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from refresh_feed import LEADERBOARD, Tables, fetch, parse_leaderboard  # noqa: E402
 
 
 class Title(HTMLParser):

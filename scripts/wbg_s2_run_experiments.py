@@ -305,7 +305,7 @@ def _audit_post_placement_dots(
     }
 
 
-def main() -> None:
+def _historical_main_do_not_run() -> None:
     t0 = time.monotonic()
     prereg_path = ROOT / "registry" / "wbg_s2" / "preregistration.json"
     prereg = json.loads(prereg_path.read_text())
@@ -876,6 +876,10 @@ def main() -> None:
     run_card["holdout_dti"]["primary_segment_holdout"]["folds"] = seg_scores[best_arm]["folds"]
     dump_json(ROOT / "evidence" / "wbg_s2" / "run_card.json", run_card)
     print(f"=== COMPLETE in {elapsed_s:.1f}s -> wrote {tif_path.name} & evidence/wbg_s2/run_card.json ===", flush=True)
+
+
+def main() -> None:
+    raise RuntimeError("WBG-S2 is stopped after a literal registry duplicate; no rerun, retuning, placement or selector is authorized. See evidence/wbg_s2/safety_review_20261027.json.")
 
 
 if __name__ == "__main__":

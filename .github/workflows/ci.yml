@@ -26,19 +26,25 @@ jobs:
         run: python -m pytest -q
       - name: Static syntax and undefined-name checks
         run: python -m ruff check scripts src tests --select E9,F --exclude test_template_evaluator.py
+      - name: Diagnose public leaderboard feed shape without modifying evidence
+        run: python scripts/probe_leaderboard.py
       - name: Revalidate the actual TIFF and ZIP
         run: |
           python scripts/validate_submission.py docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif
           python scripts/validate_submission.py docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.zip
+          python scripts/validate_submission.py docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif
+          python scripts/validate_submission.py docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip
       - name: Revalidate all four frozen research downloads and decision-report identity
         run: python scripts/review_releases.py --check
-      - name: Reproduce WBG-2 literal STOP and verify exact research download
+      - name: Verify stopped WBG-2 and WBG-S2 literal registry witnesses
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
+          PYTHONPATH: src:vendor
         run: |
-          python scripts/review_wbg2.py --check
-          python scripts/verify_wbg2_download.py --expect-negative
-          python scripts/build_wbg2_site.py
+          python scripts/ci_checked.py python scripts/verify_wbg2_download.py --expect-negative --deep --fetch
+          python scripts/ci_checked.py python scripts/review_wbg2.py --check
+          python scripts/ci_checked.py python scripts/audit_wbg_s2_safety.py --check --fetch
+          python scripts/ci_checked.py python scripts/build_wbg2_site.py
       - name: Recheck inherited frozen TIP1 & WBG-H1 receipts without retraining
         env:
           PYTHONPATH: src
@@ -64,7 +70,7 @@ jobs:
           cache: npm
       - name: Install exact optional browser-check dependencies
         run: npm ci
-      - name: Render all nine pages, test filtering and verify all four actual TIFF downloads
+      - name: Render fifteen pages, test filtering and verify research TIFF downloads
         run: |
           python3 scripts/stage_pages.py
           python3 -m http.server 8000 --bind 0.0.0.0 --directory .cache/pages > /tmp/wbg-site.log 2>&1 &

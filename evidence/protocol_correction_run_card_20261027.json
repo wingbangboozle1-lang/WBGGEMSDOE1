@@ -1,4 +1,5 @@
 {
+  "superseded_warning": "Historical parallel review retained for audit. Superseded where it describes a 400 m Euclidean buffer, private Manhattan-based focus overlap, data availability, or approval/forecast. See evidence/wbg2/run_card.json and evidence/wbg2/safety_audit_20261027.json; DO NOT SUBMIT.",
   "schema": "wbg-protocol-correction-run-card-v1",
   "date_utc": "2026-10-27",
   "hypothesis": "WBG-2: off-catalogue fault-density-prior dot field",

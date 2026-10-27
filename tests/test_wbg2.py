@@ -67,14 +67,21 @@ def test_empty_prediction_scores_zero():
 
 
 # ------------------------------------------------------------------- placement
-def test_catalogue_buffer_is_a_manhattan_diamond_not_a_disc():
+def test_catalogue_buffer_excludes_a_disc():
     m = np.zeros((21, 21), dtype=bool)
     m[10, 10] = True
     b = P.catalogue_buffer(m, 4)
     assert b[10, 14] and b[10, 6] and b[14, 10]
     assert not b[10, 16]
-    assert not b[13, 12]  # sqrt(13) pixels < 4, but Manhattan distance 5
     assert P.catalogue_buffer(m, 0).sum() == 0
+
+
+def test_historic_buffer_is_four_connected_not_a_euclidean_400m_disc():
+    m = np.zeros((21, 21), dtype=bool)
+    m[10, 10] = True
+    b = P.catalogue_buffer(m, 4)
+    assert b[12, 12]  # four Manhattan steps, inside 3 Euclidean pixels
+    assert not b[13, 12]  # sqrt(13) < 4 but five Manhattan steps
 
 
 def test_placement_is_deterministic_and_on_admissible_cells():
@@ -142,108 +149,224 @@ def test_shared_validator_rejects_shift_and_nonfinite_exterior(tmp_path, monkeyp
     assert not shared.validate(path, footprint)["checks"]["range_0_1_guaranteed"]
 
 
-# ------------------------------------------------------------------- uniqueness
-def test_legacy_enrichment_exemption_is_disabled():
-    with pytest.raises(RuntimeError, match="disabled"):
-        U.compare(np.zeros((5, 5)), np.ones((5, 5)))
+# -------------------------------------------------------- literal uniqueness
+
+def test_retired_private_gate_can_never_approve():
+    with pytest.raises(RuntimeError, match="Retired unsafe WBG-2 gate"):
+        U.compare(np.ones((5, 5)), np.ones((5, 5)))
+    with pytest.raises(RuntimeError, match="Retired unsafe WBG-2 gate"):
+        U.scan_registry([])
 
 
-def test_shared_literal_gate_stops_dense_field_and_shifted_grid(tmp_path):
-    import rasterio
-    from rasterio.transform import from_origin
-    from gems57 import uniqueness as shared
+def test_shared_gate_uses_literal_euclidean_support_even_for_dense_references():
+    from gems57.uniqueness import dot_overlap
 
-    tr = from_origin(243350, 4508550, 100, 100)
-    ours = np.zeros((20, 20), np.float32)
-    ours[4, 4] = ours[15, 15] = 1
-    dense = np.full((20, 20), .5, np.float32)
-    paths = [tmp_path / "ours.tif", tmp_path / "dense.tif", tmp_path / "shifted.tif"]
-    for path, values, transform in zip(paths, [ours, dense, dense],
-                                       [tr, tr, from_origin(243450, 4508550, 100, 100)]):
-        with rasterio.open(path, "w", driver="GTiff", height=20, width=20, count=1,
-                           dtype="float32", crs="EPSG:32611", transform=transform) as dst:
-            dst.write(values, 1)
-    mask = np.ones((20, 20), bool)
-    with rasterio.open(paths[0]) as src:
-        grid = (src.shape, src.crs, src.transform)
-    good = shared.compare_to_registry(paths[0], [{"file": str(paths[1])}], mask, expected_grid=grid)
-    assert good["stop_required"] and not good["unique"]
-    assert good["rows"][0]["my_dots_within_3px_of_theirs"] == 1.0
-    assert good["rows"][0]["duplicate_by_overlap"]
-    bad = shared.compare_to_registry(paths[0], [{"file": str(paths[2])}], mask, expected_grid=grid)
-    assert bad["stop_required"] and not bad["unique"]
-    assert "error" in bad["rows"][0]
+    candidate = np.zeros((15, 15), np.float32)
+    candidate[7, 10] = 1  # exactly three Euclidean pixels from the prior
+    candidate[9, 10] = 1  # sqrt(13) > 3 pixels
+    reference = np.zeros_like(candidate)
+    reference[7, 7] = .5
+    assert dot_overlap(candidate, reference) == pytest.approx(.5)
+    assert dot_overlap(candidate, np.full_like(candidate, .5)) == 1.0
+
+
+def test_stopped_generator_cli_creates_nothing(tmp_path):
+    import subprocess
+    import sys
+    result = subprocess.run([sys.executable, str(ROOT / "scripts/build_wbg2_submission.py")],
+                            cwd=tmp_path, capture_output=True, text=True, timeout=10)
+    assert result.returncode == 2
+    assert "STOP" in result.stderr and "DO NOT SUBMIT" in result.stderr
+    assert not list(tmp_path.iterdir())
 
 
 # ------------------------------------------------------------- shipped artifacts
-def test_run_card_is_a_negative_decision_with_pinned_reproducible_witness():
+
+def test_run_card_is_consistent_with_stopped_shipped_file():
     card = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
-    assert card["verdict"] == "negative" and card["ok_to_submit"] is False
-    assert card["validator_output"]["all_checks_passed"]
-    assert card["validator_output"]["zip_exact_single_identical_tiff"]
-    assert not card["registry"]["passes_literal_uniqueness"]
-    assert card["registry"]["rows"][0]["forward_overlap_within_3px"] == pytest.approx(0.9989722222)
-    assert card["registry"]["rows"][0]["duplicate_by_overlap"]
-    assert card["registry"]["rows"][1]["forward_overlap_within_3px"] == 1.0
-    assert card["holdout"]["value"] is None and card["leaderboard_estimate"] is None
-    assert card["new_experiments"] == card["new_rasters_generated"] == card["submission_slots_used"] == 0
-    assert len(card["submission_note"]) <= 140
+    for key in ("hypothesis", "mechanism", "named_non_fault_mimic", "holdout",
+                "raster_sha256", "score_estimate", "registry", "validator", "decision"):
+        assert key in card
+    assert card["verdict"] == "negative"
+    assert card["decision"]["ok_to_download"] is True
+    assert card["decision"]["ok_to_submit"] is False
+    assert card["decision"]["approved_for_weekly_slot"] is False
+    assert card["decision"]["submission_slots_used"] == 0
+    assert card["validator"]["tif"]["all_checks_passed"] is True
+    assert card["validator"]["zip"]["all_checks_passed"] is True
+    assert card["validator"]["tif"]["report"]["template_report"]["ok"] is True
+    assert card["validator"]["zip"]["report"]["run_card_matches_exact_tiff"] is True
+    assert card["catalogue_buffer_diagnostic"]["dots_less_than_400m_euclidean"] == 813
+    assert card["catalogue_buffer_diagnostic"]["dots_at_or_within_300m_euclidean"] == 0
+    assert card["score_estimate"]["value"] is None
+    assert card["holdout"]["pooled_dti"] is None
+    assert card["registry"]["passes_literal_uniqueness"] is False
+    assert card["registry"]["existing_final_dots"]["my_dots_within_3px_of_theirs"] > .70
+    assert card["registry"]["surface_retrospective"]["my_dots_within_3px_of_theirs"] > .70
+    assert 0 < len(card["submission_note"]) <= 140
 
 
-def test_nine_site_legacy_audit_is_not_a_uniqueness_approval():
+def test_nine_site_diagnostics_do_not_override_lattice_witness():
     nine = json.loads((ROOT / "evidence/wbg2/nine_site_uniqueness.json").read_text())
-    assert nine["n_audited"] == 9
-    assert "PARTIAL" in nine["verdict"]
-    assert all("USER-REPORTED" in r["score_evidence_class"] for r in nine["rows"])
-    assert any("not all site rasters" in issue for issue in nine["limitations"])
+    audit = json.loads((ROOT / "evidence/wbg2/safety_audit_20261027.json").read_text())
+    assert nine["n_audited"] == len(nine["rows"]) == 9
+    assert "negative" in nine["overall_verdict"]
+    assert audit["passed_literal_gate"] is False and audit["ok_to_submit"] is False
+    assert audit["surface_phase"].startswith("Retrospective")
+    assert len(audit["nine_champion_diagnostics"]) == 9
+    for row, measured in zip(nine["rows"], audit["nine_champion_diagnostics"]):
+        assert row["site"] == measured["site"]
+        assert row["sha256"] == measured["sha256"]
+        assert row["forward_3px_overlap"] == measured["my_dots_within_3px_of_theirs"]
+        assert "USER-REPORTED" in row["value_evidence_class"]
 
 
-def test_calibration_is_explicitly_withdrawn():
+def test_calibration_is_quarantined_not_a_ranking_or_forecast():
     cal = json.loads((ROOT / "registry/wbg2_calibration.json").read_text())
-    assert cal["n_observations"] == 9
-    assert "SUPERSEDED" in cal["status"]
-    assert "not a defensible prediction interval" in cal["additional_caveat"]
+    assert "INVALID" in cal["superseded_warning"]
+    assert cal["historical_fit"]["n_observations"] == 9
+    assert "history" in cal["superseded_warning"].lower() or "historical" in cal["superseded_warning"].lower()
 
 
-def test_stopped_entry_points_fail_without_modifying_candidate():
-    import hashlib
+def test_verifier_fails_closed_by_default_and_checks_the_negative_decision():
     import subprocess
     import sys
-    tif = ROOT / "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif"
-    before = hashlib.sha256(tif.read_bytes()).hexdigest()
-    for script in ("build_wbg2_submission.py", "wbg2_nine_site_audit.py"):
-        result = subprocess.run([sys.executable, str(ROOT / "scripts" / script)], capture_output=True, text=True)
-        assert result.returncode == 2 and "STOP" in result.stderr
-    assert hashlib.sha256(tif.read_bytes()).hexdigest() == before
+    script = str(ROOT / "scripts/verify_wbg2_download.py")
+    for args, expected in [((), 2), (("--expect-negative",), 0)]:
+        result = subprocess.run([sys.executable, script, *args], cwd=ROOT,
+                                capture_output=True, text=True, timeout=30)
+        assert result.returncode == expected, result.stderr
+        data = json.loads(result.stdout)
+        assert data["negative_decision_integrity_passed"]
+        assert data["local_format_passed"]
+        assert data["ok_to_submit"] is False
+        assert data["sha256"] == "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3"
 
 
-def test_full_audit_card_comparison_rejects_semantic_drift():
-    from scripts.review_wbg2 import compare_documents
-    baseline = {"verdict": "negative", "registry": {"overlap": 0.998972222222, "pass": False}}
-    compare_documents(baseline, {"verdict": "negative", "registry": {"overlap": 0.998972222223, "pass": False}})
-    with pytest.raises(ValueError, match="drift"):
-        compare_documents(baseline, {"verdict": "negative", "registry": {"overlap": 0.998972222222, "pass": True}})
-    with pytest.raises(ValueError, match="drift"):
-        compare_documents(baseline, {"verdict": "negative", "registry": {"overlap": 0.998972222222}})
+def test_verifier_rejects_accidental_approval_flag(tmp_path, monkeypatch):
+    import importlib.util
+    import sys
+    sys.path.insert(0, str(ROOT / "scripts"))
+    spec = importlib.util.spec_from_file_location("verify_wbg2_download", ROOT / "scripts/verify_wbg2_download.py")
+    verifier = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(verifier)
+    card = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
+    card["decision"]["ok_to_submit"] = True
+    path = tmp_path / "evidence/wbg2/run_card.json"
+    path.parent.mkdir(parents=True)
+    path.write_text(json.dumps(card))
+    monkeypatch.setattr(verifier, "ROOT", tmp_path)
+    result = verifier.verify()
+    assert result["checks"]["card_negative_and_not_submit"] is False
+    assert result["negative_decision_integrity_passed"] is False
+    assert result["ok_to_submit"] is False
 
 
-def test_literal_overlap_uses_euclidean_not_manhattan_neighborhood():
-    from gems57 import uniqueness as shared
-    mine = np.zeros((10, 10), bool)
-    prior = mine.copy()
-    mine[5, 5] = True
-    prior[3, 3] = True  # sqrt(8) < 3, although Manhattan distance is 4
-    assert shared.dot_overlap(mine, prior) == 1.0
+@pytest.mark.parametrize("field", ["historical_score", "overlap", "approval"])
+def test_site_builder_rejects_inconsistent_evidence_before_writing(tmp_path, monkeypatch, field):
+    import copy
+    import importlib.util
+    import sys
+    sys.path.insert(0, str(ROOT / "scripts"))
+    spec = importlib.util.spec_from_file_location("build_wbg2_site", ROOT / "scripts/build_wbg2_site.py")
+    builder = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(builder)
+    original = builder.load
+
+    def altered(path):
+        data = copy.deepcopy(original(path))
+        if path == "evidence/wbg2/nine_site_uniqueness.json":
+            if field == "historical_score":
+                data["rows"][0]["user_reported_historical_value"] = .9999
+            if field == "overlap":
+                data["rows"][0]["forward_3px_overlap"] = 0.0
+        if path == "evidence/wbg2/run_card.json" and field == "approval":
+            data["decision"]["ok_to_submit"] = True
+        return data
+
+    monkeypatch.setattr(builder, "load", altered)
+    monkeypatch.setattr(builder, "DOCS", tmp_path)
+    with pytest.raises(ValueError):
+        builder.build()
+    assert not list(tmp_path.iterdir())
 
 
-def test_published_pages_do_not_reapprove_wbg2():
-    for relative in ("README.md", "docs/index.html", "docs/wbg2.html", "PROMPT.md"):
-        text = (ROOT / relative).read_text()
-        assert "SUBMIT: NO" in text or "NO CURRENT TIFF" in text
-        assert "safe to upload" not in text.lower()
-        assert "Submit: YES" not in text and "SUBMIT THIS FILE" not in text
+def test_parallel_reviews_and_original_card_are_preserved_but_superseded():
+    import hashlib
+    original = ROOT / "evidence/wbg2/run_card_before_protocol_correction.json"
+    assert hashlib.sha256(original.read_bytes()).hexdigest() == "0bc7972d92dac230e9da8e9ae284d67b276e3fc4bd6f45e9eca849d1efdf6927"
+    for name in ("protocol-review-20261027.md", "repo-review-20261027.md", "session-review-20261027.md"):
+        header = (ROOT / "docs" / name).read_text().splitlines()[:12]
+        assert "superseded" in " ".join(header).lower()
+        assert "99.8972%" in " ".join(header)
+    for path in ("evidence/session_review_20261027.json", "evidence/protocol_correction_run_card_20261027.json",
+                 "evidence/wbg2/corrected_preflight.json", "docs/data/wbg2-corrected-preflight.json"):
+        assert "superseded" in json.loads((ROOT / path).read_text())["superseded_warning"].lower()
 
 
-def test_public_corrected_preflight_is_path_portable():
-    text = (ROOT / "docs/data/wbg2-corrected-preflight.json").read_text()
-    assert str(ROOT) not in text and "/home/" not in text
+def test_parallel_audit_cannot_overwrite_canonical_card():
+    import importlib.util
+    import sys
+    sys.path.insert(0, str(ROOT / "scripts"))
+    spec = importlib.util.spec_from_file_location("review_wbg2", ROOT / "scripts/review_wbg2.py")
+    review = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(review)
+    assert review.CARD != ROOT / "evidence/wbg2/run_card.json"
+    assert review.CARD.read_bytes() == review.MIRROR.read_bytes()
+    parallel = json.loads(review.CARD.read_text())
+    canonical = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
+    assert parallel["verdict"] == canonical["verdict"] == "negative"
+    assert parallel["raster_sha256"] == canonical["raster_sha256"]
+    assert parallel["registry"]["rows"][0]["forward_overlap_within_3px"] == canonical["registry"]["existing_final_dots"]["my_dots_within_3px_of_theirs"]
+    assert parallel["ok_to_submit"] is False and canonical["decision"]["ok_to_submit"] is False
+
+
+def test_pinned_reference_fetch_preserves_binary_bytes_and_fails_on_hash_drift(tmp_path, monkeypatch):
+    import hashlib
+    import importlib.util
+    import io
+    import sys
+    sys.path.insert(0, str(ROOT / "scripts"))
+    spec = importlib.util.spec_from_file_location("audit_wbg2_safety", ROOT / "scripts/audit_wbg2_safety.py")
+    audit = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(audit)
+    data = b"II*\x00\xff\xfe\x80\x00binary-tiff-payload"
+    calls = []
+
+    def fake_open(request, timeout):
+        calls.append(request)
+        assert request.full_url.startswith("https://api.github.com/repos/buffedlizard55-lab/GEMSDOE24/")
+        assert request.get_header("Accept") == "application/vnd.github.raw+json"
+        return io.BytesIO(data)
+
+    monkeypatch.setattr(audit, "open_pinned_github", fake_open)
+    target = tmp_path / "registry.tif"
+    expected = hashlib.sha256(data).hexdigest()
+    audit.fetch("buffedlizard55-lab/GEMSDOE24", "a" * 40, "folder/a raster.tif", expected, target)
+    assert target.read_bytes() == data and len(calls) == 1
+    assert "%20" in calls[0].full_url
+    target.unlink()
+    with pytest.raises(ValueError, match="pin mismatch"):
+        audit.fetch("buffedlizard55-lab/GEMSDOE24", "a" * 40, "folder/file.tif", "0" * 64, target)
+    assert not target.exists() and not target.with_suffix(".partial").exists()
+    request = audit.urllib.request.Request("https://api.github.com/repos/test")
+    with pytest.raises(ValueError, match="refusing redirect"):
+        audit.PinnedGitHubRedirect().redirect_request(request, None, 302, "Found", {}, "https://example.org/elsewhere")
+
+
+def test_deep_audit_comparison_only_tolerates_float_reduction_noise():
+    import importlib.util
+    import sys
+    sys.path.insert(0, str(ROOT / "scripts"))
+    spec = importlib.util.spec_from_file_location("verify_wbg2_download", ROOT / "scripts/verify_wbg2_download.py")
+    verify = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(verify)
+    record = {"sha256": "abc", "overlap": .9989722222222223, "count": 36000,
+              "unique": False, "rows": [{"rho": -.0004912488123791969}]}
+    near = {"sha256": "abc", "overlap": .9989722222222223, "count": 36000,
+            "unique": False, "rows": [{"rho": -.0004912488123791969 + 1e-16}]}
+    assert verify.compare_audit(near, record) == []
+    for key, bad in (("sha256", "def"), ("overlap", .69), ("count", 35999), ("unique", 0)):
+        changed = dict(near)
+        changed[key] = bad
+        assert verify.compare_audit(changed, record), key

@@ -1,17 +1,16 @@
-"""Quarantined legacy uniqueness API.
+"""Retired unsafe WBG-2 novelty implementation.
 
-The old private scan silently skipped files, ignored transforms and overrode the
-literal overlap gate with a chance-enrichment exemption. It must not be used to
-make decisions. The frozen implementation is retained only as audit text in
-``research/history/wbg2_20261027/``. Use the pinned shared
-``gems57.uniqueness`` implementation with a hash-verified complete registry.
+The old code applied a private chance-enrichment exemption and Manhattan
+rather than Euclidean 3-pixel distance. Both could falsely approve duplicates.
+New and retrospective audits must call the pinned ``gems57.uniqueness``
+shared implementation directly, including its literal fail-closed gate.
 """
 
 
-def _disabled(*args, **kwargs):
-    raise RuntimeError("Legacy WBG-2 uniqueness is disabled; use the pinned shared gems57.uniqueness gate.")
+def _retired(*args, **kwargs):
+    raise RuntimeError('Retired unsafe WBG-2 gate; use the pinned gems57.uniqueness shared gate')
 
 
-load_aligned = _disabled
-compare = _disabled
-scan_registry = _disabled
+compare = _retired
+scan_registry = _retired
+load_aligned = _retired

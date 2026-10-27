@@ -23,17 +23,18 @@ Reference: https://github.com/drivendataorg/gems-prize-reference-solution
 
 ## Current artifact (2026-10-27)
 
-**DOWNLOAD: research only. SUBMIT: NO.** WBG-2 is locally format-valid, but
-fails the literal 3-pixel registry gate against the GEMSDOE24 lattice and lacks
-an eligible holdout. There is no approved current TIFF. Its former model
-projection and claimed interval are withdrawn. See `evidence/wbg2/run_card.json`
-and run `python scripts/review_wbg2.py --check`. No new experiment or slot was
-used in this review.
+No file is approved for submission. The existing WBG-2 TIFF is a research download:
+`docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif` (+ identical one-member ZIP).
+Its local all-finite format passes, but **99.8972%** of its existing dots overlap a registered
+lattice within 3 px (>70% STOP). The surface also fails a retrospective check. No valid
+fold-local HOLDOUT-DTI, file-specific organizer receipt or reliable score estimate exists.
+The prior "safe to upload" claim and extrapolated projection are superseded.
+See `docs/wbg2.html` and `evidence/wbg2/safety_audit_20261027.json`.
 
 ## Submission contract
 
 - Single-band float32 GeoTIFF, EPSG:32611, 3730×3292, 100 m, sample geotransform.
-- Values in [0, 1]. **Zeros-mode** (no NaN anywhere) is the upload file — the portal has rejected NaN with “Predicted values must be in range [0, 1]”.
+- Values in [0, 1]. The reported portal error was “Predicted values must be in range [0, 1]”; its cause is unverified. The local research file uses an all-finite, zero exterior convention, while official instructions say data outside the bounds should be null/NaN. Local validation does not establish organizer acceptance; no current file is approved.
 - Unique name + short note.
 - Homepage must make **OK TO SUBMIT / DO NOT SUBMIT** obvious. Validation is automatic; no human inspector.
 

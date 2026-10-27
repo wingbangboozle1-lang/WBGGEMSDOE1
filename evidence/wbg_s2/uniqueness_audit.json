@@ -1,5 +1,7 @@
 {
   "pre_placement": {
+    "scope_warning": "Sampled Spearman-only screen. No full all-registry pre-placement 3-pixel overlap clearance is established; the passed field is not a full literal gate.",
+    "full_literal_gate_clearance": false,
     "phase": "pre_placement_continuous_surface",
     "rasters_checked": 379,
     "spearman_ceiling": 0.9,
@@ -567,8 +569,9 @@
       "registry_rasters_checked": 360,
       "max_spearman_full_footprint": 0.05109094869942613,
       "max_forward_3px_including_lattice_and_slabs": 0.9955383226217666,
-      "worst_literal_peer": "wbg-c1-commutator-research-surface-20261026-acea88448272",
-      "note": "13GEMSDOE r13-lattice-s5 (206,895 dots on 5-px grid) covers 99.8713% of footprint within 3 px, forcing >=82.34% forward overlap for any 37,654-dot in-footprint candidate. No private exemption applied."
+      "worst_literal_peer": "GEMSDOE24 r13-lattice-s5 (within frozen 360-raster scan)",
+      "note": "13GEMSDOE r13-lattice-s5 (206,895 dots on 5-px grid) covers 99.8713% of footprint within 3 px, forcing >=82.34% forward overlap for any 37,654-dot in-footprint candidate. No private exemption applied.",
+      "c1_separate_forward_3px_overlap": 1.0
     }
   }
 }

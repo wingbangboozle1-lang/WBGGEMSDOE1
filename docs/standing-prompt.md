@@ -1,12 +1,13 @@
 # Standing user prompt — supplied 2026-10-26
 
-> **CURRENT STATE — read this first (corrected 2026-10-27).**
-> No local TIFF is approved for submission. WBG-2 is format-valid for local
-> research but fails the literal registry overlap gate and has no qualifying
-> holdout. DOWNLOAD: research only; SUBMIT: NO. The old regression projection
-> and its claimed interval are withdrawn. See `evidence/wbg2/run_card.json`.
-> The rest of this document preserves the owner's request as historical intent,
-> not independently verified facts or a replacement for the current run card.
+> **CURRENT STATE — updated 2026-10-27.** The prior WBG-2 upload recommendation and
+> numerical projection were withdrawn. The exact TIFF is a local-format-passing **research-only**
+> artifact and fails the literal 70% registry rule: 99.8972% of its existing dots are within
+> 3 pixels of the pinned lattice. Its prior surface also fails a retrospective test. No verified
+> holdout result or organizer receipt is available. **DO NOT SUBMIT.** See `docs/wbg2.html`
+> and `evidence/wbg2/safety_audit_20261027.json`. This status supersedes any prior approval.
+> The user request below is archived intent, not independently verified evidence.
+
 
 ## Active follow-up instructions (2026-10-27 summary, not a verbatim transcript)
 

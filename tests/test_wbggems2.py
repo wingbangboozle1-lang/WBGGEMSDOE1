@@ -133,28 +133,28 @@ def test_wbg_s2_run_card_experiments_and_validated_geotiff() -> None:
     assert rc["organizer_confirmed_score"] is None
     assert rc["leaderboard_projection"] is None
     assert len(rc["submission_note"]) == rc["submission_note_length"] <= 140
-    assert rc["verdict"] in {"promote", "negative"}
+    assert rc["verdict"] == "negative"
 
-    # Dual-evaluator holdout superiority checks
+    # Check the parallel-reported numeric records, not independent superiority.
     seg = rc["holdout_dti"]["primary_segment_holdout"]
     g57 = rc["holdout_dti"]["secondary_gems57_buffered_components"]
     assert seg["label"] == "HOLDOUT-DTI"
     assert seg["evaluator_version"] == "gems-segment-pooled-v1"
     assert seg["withheld_positive_pixels"] == 60988
-    assert seg["dti"] > 0.180  # beats KANLERGEMSDOE2 (0.1771), GEMSDOE36 (0.1701), GEMSDOE24 (0.1661), WBG-H1 (0.1233)
+    assert seg["dti"] > 0.180  # selected on the reported splits; no untouched confirmation
     assert seg["paired_delta_vs_b0"] > 0.065
     assert seg["paired_delta_vs_b0_ci95"][0] > 0.055
 
     assert g57["label"] == "HOLDOUT-DTI"
     assert g57["evaluator_version"] == "gems57-pooled-hide-v2"
     assert g57["withheld_positive_pixels"] == 11330
-    assert g57["dti"] > 0.145  # beats GEMSDOE57 (0.1362), GEMSDOE32 H47 (0.1198), WBG-C1 (0.0140)
+    assert g57["dti"] > 0.145  # reported value, not an independently replayed fleet ranking
     assert g57["paired_delta_vs_b0_ci95"][0] > 0.040
     assert exp["gems57_buffered_component_v2"]["EXP3_MKSF_VierbeinCoulomb"]["dti"] > (
         exp["gems57_buffered_component_v2"]["EXP1_MKSF_Core"]["dti"] + 0.012
     )
 
-    # Pre-placement and post-placement competing-sparse uniqueness checks
+    # Partial diagnostics only; neither establishes complete literal clearance.
     assert uq["pre_placement"]["passed"] is True
     assert uq["pre_placement"]["max_abs_spearman_rho"] <= 0.90
     assert uq["post_placement"]["competing_sparse_gate"]["passed"] is True
@@ -241,3 +241,62 @@ def test_wbg_s2_docs_pages_and_internal_links() -> None:
 
     assert "wbg-s2-mksf1/index.html" in (ROOT / "docs/index.html").read_text()
     assert rc["artifact"]["tif_sha256"] in (ROOT / "README.md").read_text()
+
+
+def test_wbg_s2_safety_records_show_binding_two_witness_stop() -> None:
+    rc = json.loads((ROOT / "evidence/wbg_s2/run_card.json").read_text())
+    uq = json.loads((ROOT / "evidence/wbg_s2/uniqueness_audit.json").read_text())
+    safety = json.loads((ROOT / "evidence/wbg_s2/safety_review_20261027.json").read_text())
+    assert rc["verdict"] == safety["verdict"] == "negative"
+    assert not rc["strict_governance_decision"]["ok_to_submit"]
+    assert not rc["strict_governance_decision"]["eligible_for_separate_selector"]
+    assert not rc["registry_uniqueness"]["pre_placement_surface"]["full_literal_gate_clearance"]
+    assert not uq["pre_placement"]["full_literal_gate_clearance"]
+    assert uq["pre_placement"]["passed"]  # sampled Spearman diagnostic only
+    assert safety["witnesses"][0]["my_dots_within_3px_of_theirs"] == 0.9955383226217666
+    assert safety["witnesses"][1]["my_dots_within_3px_of_theirs"] == 1.0
+    assert all(w["duplicate_by_overlap"] for w in safety["witnesses"])
+    assert not rc["safety_review"]["untouched_confirmation_established"]
+    assert not rc["safety_review"]["holdout_independently_replayed_in_this_audit"]
+    for report in rc["full_local_validator_outputs"].values():
+        assert report["all_checks_passed"] and report["run_card_matches_exact_tiff"]
+        assert report["promotion_verdict"] == "negative" and not report["ok_to_submit"]
+
+
+def test_wbg_s2_publication_fails_closed_on_changed_decisions():
+    import copy
+    import importlib.util
+    import pytest
+
+    spec = importlib.util.spec_from_file_location("s2_builder_test", ROOT / "scripts/wbg_s2_build_audit_and_docs.py")
+    builder = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(builder)
+    rc = json.loads((ROOT / "evidence/wbg_s2/run_card.json").read_text())
+    safety = json.loads((ROOT / "evidence/wbg_s2/safety_review_20261027.json").read_text())
+    builder.assert_safe_to_publish(rc, safety)
+    for key in ("ok_to_submit", "eligible_for_separate_selector"):
+        bad = copy.deepcopy(rc)
+        bad["strict_governance_decision"][key] = True
+        with pytest.raises(ValueError, match="negative STOP"):
+            builder.assert_safe_to_publish(bad, safety)
+    bad = copy.deepcopy(safety)
+    bad["witnesses"][1]["my_dots_within_3px_of_theirs"] = 0.1
+    with pytest.raises(ValueError, match="negative STOP"):
+        builder.assert_safe_to_publish(rc, bad)
+    bad["witnesses"][1]["my_dots_within_3px_of_theirs"] = float("nan")
+    with pytest.raises(ValueError, match="negative STOP"):
+        builder.assert_safe_to_publish(rc, bad)
+
+
+def test_wbg_s2_published_pages_reject_selector_and_upload_workflow():
+    site_dir = ROOT / "docs/wbg-s2-mksf1"
+    for page in site_dir.glob("*.html"):
+        text = page.read_text()
+        assert "DO NOT SUBMIT" in text and "NO SELECTOR ELIGIBILITY" in text
+        assert "99.5538%" in text and "100%" in text
+        assert "research / selector review" not in text.lower()
+    guide = (site_dir / "how-to-submit.html").read_text()
+    assert "Upload the File" not in guide
+    audit = json.loads((site_dir / "data/nine_site_executive_summary_20261027.json").read_text())
+    assert "recommended_candidate_for_selector_review" not in audit
+    assert not audit["research_artifact_not_selector_eligible"]["eligible_for_separate_selector"]

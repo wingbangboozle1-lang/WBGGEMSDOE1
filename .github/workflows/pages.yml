@@ -20,7 +20,7 @@ jobs:
   publish:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -29,9 +29,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          cache: pip
-          cache-dependency-path: requirements-lock.txt
-      - name: Install dependencies for exact-file validation
+      - name: Install pinned validation and page-build dependencies
         run: python -m pip install -r requirements-lock.txt
       - name: Refresh public provenance only
         env:

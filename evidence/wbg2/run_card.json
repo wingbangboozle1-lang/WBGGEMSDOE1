@@ -1,129 +1,324 @@
 {
-  "schema": "wbg2-corrected-forensic-review-v2",
-  "reviewed_utc_date": "2026-10-27",
-  "hypothesis": "WBG-2: off-catalogue mapped-fault density prior",
-  "mechanism": "A Gaussian mapped-fault density prior drives scattered binary dots, with a four-step Manhattan catalogue exclusion. The rendered TIFF was generated in a previous session.",
-  "named_non_fault_mimic": "Range-front alluvial fans and basin margins can follow mapped-fault density without being faults.",
-  "lane": "No single-method paragraph was supplied; this stopped lane is not restarted.",
+  "schema": "wbg2-run-card-v2",
+  "review_date_utc": "2026-10-27",
+  "hypothesis": "WBG-2: off-catalogue fault-density-prior dot field",
+  "mechanism": "Gaussian KDE (1.5 km) of mapped-fault density supplied the prior. Four iterations of 4-connected dilation excluded catalogue-near cells by Manhattan distance (not a 400 m Euclidean disc); a 36,000-dot binary field was generated in zeros mode.",
+  "named_non_fault_mimic": "Basin-fill depocentres and range-front alluvial aprons concentrate next to mapped faults, so a density prior partly reproduces the sedimentary basin geometry rather than faulting. The prior is a spatial-distribution model, not a detection.",
+  "lane": "WBG-2 already stopped: no new method assigned; no retuning or dot placement",
+  "scientific_experiments_started_this_session": 0,
   "holdout": {
     "evidence_class": "HOLDOUT-DTI",
-    "value": null,
-    "ci95": null,
     "evaluator_version": null,
-    "withheld_positive_pixels": null,
-    "status": "No valid visible-only, buffered same-instrument result found for this artifact. Full-catalogue proxy DTI is not a holdout."
+    "withheld_positive_count": null,
+    "pooled_dti": null,
+    "confidence_interval_95": null,
+    "status": "NOT RUN - no reproducible fold-local terms or leakage canary for this exact file; proxy against the full catalogue is not a holdout"
   },
   "leakage_canary": {
-    "all_features_tested_alone": false,
-    "status": "Not established for the WBG-2 density prior on the required holdout."
+    "status": "NOT RUN; no clearance claimed",
+    "reason": "Prior uses the full catalogue for final generation and no archived visible-only canaries were found."
+  },
+  "score_estimate": {
+    "value": null,
+    "status": "unavailable",
+    "reason": "Retired extrapolated fit used non-independent user-reported values without file receipts or validated predictive intervals; not an estimate of unseen-fault performance."
   },
   "registry": {
     "evidence_class": "REGISTRY-MEASUREMENT",
-    "phase": "final dots, forensic recheck",
-    "surface_before_placement": "No qualifying pre-placement registry audit was found.",
-    "witnesses_checked": 2,
-    "scope": "Two SHA-verified witnesses; a failure is decisive, not a complete registry scan.",
-    "rho_limit_signed": 0.9,
-    "forward_overlap_limit": 0.7,
-    "rows": [
-      {
-        "submission": "GEMSDOE24 registered spacing-5 lattice",
-        "repo": "GEMSDOE24",
-        "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
-        "their_positive_pixels": 206895,
-        "forward_overlap_within_3px": 0.9989722222222223,
-        "spearman_full_footprint": -0.0004912488123791969,
-        "identical_bytes": false,
-        "identical_decoded_predictions": false,
-        "duplicate_by_overlap": true,
-        "duplicate_by_rho": false
-      },
-      {
-        "submission": "WBG-C1 registered continuous research surface",
-        "repo": "WBGGEMSDOE1",
-        "sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
-        "their_positive_pixels": 5106385,
-        "forward_overlap_within_3px": 1.0,
-        "spearman_full_footprint": 0.013617241283546971,
-        "identical_bytes": false,
-        "identical_decoded_predictions": false,
-        "duplicate_by_overlap": true,
-        "duplicate_by_rho": false
-      }
-    ],
-    "lattice_immutable_source": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
     "passes_literal_uniqueness": false,
-    "decision": "DUPLICATE - STOP under the stated literal >70% forward-overlap rule; no density or chance exemption."
-  },
-  "catalogue_exclusion_check": {
-    "evidence_class": "RASTER-MEASUREMENT",
-    "distance": "Euclidean pixels to nearest mapped-fault cell",
-    "minimum_px": 3.605551275463989,
-    "candidate_pixels_below_4px": 813,
-    "note": "Four iterations of a four-connected dilation exclude a Manhattan diamond, not the full 400 m Euclidean disk."
+    "surface_retrospective": {
+      "site": "GEMSDOE24 lattice witness",
+      "source": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "their_dots": 206895,
+      "my_dots_within_3px_of_theirs": 0.9987678257910066,
+      "spearman_full_footprint": -9.918789545328662e-05,
+      "identical_bytes": false,
+      "identical_decoded_predictions": false,
+      "duplicate_by_rho": false,
+      "duplicate_by_overlap": true
+    },
+    "existing_final_dots": {
+      "site": "GEMSDOE24 lattice witness",
+      "source": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "their_dots": 206895,
+      "my_dots_within_3px_of_theirs": 0.9989722222222223,
+      "spearman_full_footprint": -0.0004912488123791969,
+      "identical_bytes": false,
+      "identical_decoded_predictions": false,
+      "duplicate_by_rho": false,
+      "duplicate_by_overlap": true
+    },
+    "champions_checked": 9,
+    "scope": "One hash-pinned lattice plus one historical champion per focus site; not a complete registry, all submissions, later commits, or private rasters.",
+    "audit": "evidence/wbg2/safety_audit_20261027.json"
   },
   "raster_sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
-  "artifact": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
-  "validator_output": {
-    "evidence_class": "LOCAL-FORMAT-VALIDATION",
-    "all_checks_passed": true,
-    "checks": {
-      "single_band": true,
-      "dtype_float32": true,
-      "dimensions_3730x3292": true,
-      "crs_epsg_32611": true,
-      "transform_matches_sample_submission": true,
-      "no_nan_anywhere": true,
-      "no_inf_anywhere": true,
-      "no_sentinel_values": true,
-      "range_0_1_guaranteed": true,
-      "min_ge_0": true,
-      "max_le_1": true,
-      "in_footprint_all_finite": true,
-      "in_footprint_range_0_1": true,
-      "outside_footprint_zero": true,
-      "zero_dots_on_mapped_catalogue": true
+  "validator": {
+    "tif": {
+      "all_checks_passed": true,
+      "report": {
+        "file": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+        "bytes": 215799,
+        "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+        "meta": {
+          "crs": "EPSG:32611",
+          "shape": [
+            3730,
+            3292
+          ],
+          "dtype": "float32",
+          "count": 1,
+          "nodata": null,
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "profile_compress": "deflate"
+        },
+        "band_description": [
+          null
+        ],
+        "n_finite": 12279160,
+        "n_nan": 0,
+        "n_infinite": 0,
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.0029317967128008604,
+        "emitted_positive_pixels": 36000,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "all_checks_passed": true,
+        "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_positive_pixels": 36000,
+        "footprint_fraction": 0.006966789507937592,
+        "template_report": {
+          "path": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+          "bytes": 215799,
+          "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+          "bands": 1,
+          "dtype": "float32",
+          "crs": "EPSG:32611",
+          "width": 3292,
+          "height": 3730,
+          "bounds": [
+            243350.0,
+            4135550.0,
+            572550.0,
+            4508550.0
+          ],
+          "ref_bounds": [
+            243350.0,
+            4135550.0,
+            572550.0,
+            4508550.0
+          ],
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "nodata": null,
+          "blocksize": [
+            2,
+            3292
+          ],
+          "fixture_grid": false,
+          "has_validity_mask": false,
+          "nan_pixels": 0,
+          "infinity_pixels": 0,
+          "n_nan": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.0029317967128008604,
+          "n_nonzero": 36000,
+          "mass": 36000.0,
+          "mass_outside_footprint": 0,
+          "problems": [],
+          "ok": true,
+          "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+        },
+        "mirrored_reference_available": true,
+        "catalogue_reference_available": true,
+        "independent_organizer_origin_authenticated": false,
+        "run_card_matches_exact_tiff": true,
+        "run_card_path": "evidence/wbg2/run_card.json",
+        "promotion_verdict": "negative",
+        "ok_to_submit": false,
+        "known_negative_registry_overlap": 0.9989722222222223,
+        "warning": "FORMAT PASS is not uniqueness, scientific efficacy, organizer acceptance or slot approval."
+      }
     },
-    "meta": {
-      "crs": "EPSG:32611",
-      "shape": [
-        3730,
-        3292
-      ],
-      "dtype": "float32",
-      "count": 1,
-      "nodata": null,
-      "transform": [
-        100.0,
-        0.0,
-        243350.0,
-        0.0,
-        -100.0,
-        4508550.0
-      ],
-      "profile_compress": "deflate"
-    },
-    "n_nan": 0,
-    "n_infinite": 0,
-    "min": 0.0,
-    "max": 1.0,
-    "positive_pixels": 36000,
-    "reference_origin_authenticated": false,
-    "zip_exact_single_identical_tiff": true,
-    "zip_sha256": "b4074f093c43ebb41a2b550b5558cf4c5a38c5f1b0c7b69393575ae12e8005b4",
-    "limitation": "A local pass is not organizer acceptance. The official text requests null/NaN beyond bounds; this all-finite exterior is a conservative local response to a reported range rejection."
+    "zip": {
+      "all_checks_passed": true,
+      "single_member_identical_to_tif": true,
+      "report": {
+        "file": "wbg2-offcatalogue-density-36k-20261027.zip::wbg2-offcatalogue-density-36k-20261027.tif",
+        "bytes": 215799,
+        "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+        "meta": {
+          "crs": "EPSG:32611",
+          "shape": [
+            3730,
+            3292
+          ],
+          "dtype": "float32",
+          "count": 1,
+          "nodata": null,
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "profile_compress": "deflate"
+        },
+        "band_description": [
+          null
+        ],
+        "n_finite": 12279160,
+        "n_nan": 0,
+        "n_infinite": 0,
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.0029317967128008604,
+        "emitted_positive_pixels": 36000,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "all_checks_passed": true,
+        "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_positive_pixels": 36000,
+        "footprint_fraction": 0.006966789507937592,
+        "template_report": {
+          "path": "<temporary extracted TIFF member>",
+          "bytes": 215799,
+          "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+          "bands": 1,
+          "dtype": "float32",
+          "crs": "EPSG:32611",
+          "width": 3292,
+          "height": 3730,
+          "bounds": [
+            243350.0,
+            4135550.0,
+            572550.0,
+            4508550.0
+          ],
+          "ref_bounds": [
+            243350.0,
+            4135550.0,
+            572550.0,
+            4508550.0
+          ],
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "nodata": null,
+          "blocksize": [
+            2,
+            3292
+          ],
+          "fixture_grid": false,
+          "has_validity_mask": false,
+          "nan_pixels": 0,
+          "infinity_pixels": 0,
+          "n_nan": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.0029317967128008604,
+          "n_nonzero": 36000,
+          "mass": 36000.0,
+          "mass_outside_footprint": 0,
+          "problems": [],
+          "ok": true,
+          "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+        },
+        "mirrored_reference_available": true,
+        "catalogue_reference_available": true,
+        "independent_organizer_origin_authenticated": false,
+        "zip_sha256": "b4074f093c43ebb41a2b550b5558cf4c5a38c5f1b0c7b69393575ae12e8005b4",
+        "run_card_matches_exact_tiff": true,
+        "run_card_path": "evidence/wbg2/run_card.json",
+        "promotion_verdict": "negative",
+        "ok_to_submit": false,
+        "known_negative_registry_overlap": 0.9989722222222223,
+        "warning": "FORMAT PASS is not uniqueness, scientific efficacy, organizer acceptance or slot approval."
+      }
+    }
   },
   "submission_name": "wbg2-offcatalogue-density-36k-20261027",
-  "submission_note": "WBG-2 density-prior research; literal registry overlap failed. DO NOT SUBMIT.",
-  "leaderboard_estimate": null,
-  "organizer_confirmed_score": null,
-  "estimate_reason": "No credible estimate. The retired in-sample regression used unconfirmed values, duplicate entries, correlated predictors and extrapolation; its residual interval is not a 95% prediction interval.",
-  "artifact_role": "Existing research artifact only; not an approved submission.",
+  "submission_note": "WBG-2 density prior; duplicate under literal registry gate; research only, DO NOT SUBMIT.",
+  "note_length": 89,
+  "artifacts": {
+    "tif": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+    "zip": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip"
+  },
   "verdict": "negative",
-  "ok_to_download": true,
-  "ok_to_submit": false,
-  "new_experiments": 0,
-  "new_rasters_generated": 0,
-  "submission_slots_used": 0,
-  "supersedes": "research/history/wbg2_20261027/run_card_SUPERSEDED.json"
+  "decision": {
+    "verdict": "negative",
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "eligible_for_separate_selector": false,
+    "approved_for_weekly_slot": false,
+    "submission_slots_used": 0,
+    "reason": "Literal registry overlap stop, no valid holdout and no selector approval; a local format pass is not permission to upload."
+  },
+  "provenance_warning": "Input bytes are hash-pinned public owner mirrors, not independently authenticated organizer downloads. Historical WBG-2 raw records are superseded.",
+  "catalogue_buffer_diagnostic": {
+    "historical_mask": "four 4-connected dilation steps; Manhattan distance <=4 pixels",
+    "pixel_size_m": 100,
+    "min_euclidean_distance_px": 3.605551275463989,
+    "min_euclidean_distance_m": 360.5551275463989,
+    "dots_less_than_400m_euclidean": 813,
+    "dots_at_or_within_300m_euclidean": 0,
+    "dots_inside_historical_manhattan_mask": 0,
+    "interpretation": "The prior claim that all dots are at least 400 m Euclidean from the catalogue was incorrect."
+  }
 }

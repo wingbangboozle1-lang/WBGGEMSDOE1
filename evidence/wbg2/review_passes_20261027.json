@@ -1,51 +1,45 @@
 {
-  "schema": "wbg2-three-pass-review-v1",
-  "date_utc": "2026-10-27",
-  "scope": "Forensic review of frozen bytes and publishing pipeline, not a new method experiment",
-  "new_experiments": 0,
-  "new_prediction_rasters": 0,
-  "competition_slots_used": 0,
+  "schema": "wbg2-review-passes-v1",
+  "review_date_utc": "2026-10-27",
+  "scope": "Safety audit and publication corrections to the existing WBG-2 artifact; no new training, raster generation, dot placement or competition submission.",
   "passes": [
     {
       "pass": 1,
-      "focus": "Implement and verify evidence-first decision",
+      "focus": "Implement and test the shared literal-registry STOP and truthful records",
       "findings": [
-        "The inherited local format pass was real, but its enrichment exemption and upload approval violated the literal registry gate.",
-        "The shared validator and shared Euclidean comparison measured 99.8972222222% overlap against the hash-pinned GEMSDOE24 lattice and 100% against WBG-C1.",
-        "No qualifying WBG-2 holdout or pre-placement audit was found; the former forecast and residual interval were withdrawn.",
-        "The 19-band owner-mirror cache was restored and its hashes reproduced; organizer origin and semantics are not independently authenticated."
+        "The existing final dots and retrospectively reconstructed prior both exceed 70% 3-pixel overlap with the hash-pinned R13 lattice.",
+        "The former private enrichment exemption, approval and extrapolated numerical forecast were withdrawn.",
+        "The generator and private novelty function were retired; the negative TIFF and ZIP were retained byte-identically."
       ],
-      "fixes": "Publish a negative exact-byte card; stop the old generator, private validator and private uniqueness path; preserve their prior source and reports as historical text."
+      "verification": "148 pytest tests and Ruff E9/F passed at the end of the first pass."
     },
     {
       "pass": 2,
-      "focus": "Review correctness, publication consistency, source evidence and edge cases",
+      "focus": "Review publication, data provenance and negative-decision enforcement",
       "findings": [
-        "The four-connected catalogue buffer was incorrectly described as a full 400 m Euclidean disk; 813 dots are inside that radius.",
-        "The old nine-champion audit was partial and used a different neighborhood and sampled correlation; it could not clear every registry raster.",
-        "The MT source link and proposed shallow depth ranges were incorrect; verified USGS integrated-conductance metadata records deeper intervals.",
-        "The irregularities page, source feed, legacy review material and builder could otherwise contradict the stopped decision.",
-        "The Pages workflow lacked the Python dependencies required by its static evidence builder."
+        "Built the research-only page and nine-site table; added four untested, source-linked future hypotheses.",
+        "Validated ten desktop/mobile pages and actual TIFF downloads; the general validator now identifies the exact WBG-2 bytes and cannot approve this known negative.",
+        "Restored ten immutable references to a fresh cache and independently reproduced the recorded shared-gate audit; pinned byte integrity is not organizer-origin authentication.",
+        "Pages now installs its pinned scientific dependencies; the stage checks both the C1 and WBG-2 artifact hashes and rejects an inconsistent WBG-2 approval."
       ],
-      "fixes": "Correct generated pages and source reviews, quarantine the unsafe calibration, repair workflow dependencies, add exact-grid, all-finite, Euclidean-overlap and negative-decision regressions."
+      "verification": "155 pytest tests and Ruff E9/F passed; desktop/mobile render, nine-row table, filtering and download SHA-256 passed."
     },
     {
       "pass": 3,
-      "focus": "Recheck and integrate concurrent main-branch reviews without discarding historical evidence",
+      "focus": "Recheck original implementation, numerical claims, bounded tests and reproducibility",
       "findings": [
-        "Concurrent negative reviews were merged into this working branch; their original cards and prose remain as explicitly superseded historical records.",
-        "A standing-request update initially made the generated README stale; rebuilding it fixed the consistency test.",
-        "The full local CI-equivalent sequence passed: 148 tests, Ruff E9/F, TIFF/ZIP validation, frozen-release checks, WBG-2 literal STOP remeasurement, both inherited receipt checks and all static rebuilds.",
-        "Rendered Chromium checks passed on ten pages at desktop and mobile sizes, with no body overflow or JavaScript page errors; both primary and WBG-2 download hashes matched."
+        "The historical catalogue buffer was four-connected Manhattan dilation, not a 400 m Euclidean disc; 813 existing dots are less than 400 m away. Corrected the mechanism, public pages and docstring without changing pixels.",
+        "Embedded the full local TIFF and ZIP validator output in the negative run card and added regression tests for range, exact-byte identity, retired generator and inconsistent evidence.",
+        "Reverified inherited frozen release receipts without retraining and confirmed scientific readiness remains blocked.",
+        "Integrated three concurrent main-branch reviews without rerunning experiments; preserved their original raw card and labeled older private-distance, buffer and data-availability interpretations as superseded.",
+        "A later parallel review independently confirmed the same lattice STOP and Manhattan-buffer correction; its separate two-witness card, three-pass record, sources and historical code were preserved. The legacy private validator was disabled and the metric delegates to the pinned shared implementation.",
+        "CI diagnostics found GitHub CLI binary transcoding and an HTMX-loaded leaderboard table. Pinned source downloads now stream exact raw bytes, and the public feed strictly parses the official same-origin table fragment; remote recheck remains required."
       ],
-      "fixes": "Preserve the concurrent reviews with dated correction banners, add an explicit active standing-instruction summary, rebuild the README and run the complete validation sequence again."
+      "verification": "166 pytest tests and Ruff E9/F passed after integrating concurrent reviews and retiring the private validator; deep shared overlap and independent two-witness audit match their receipts; ten desktop/mobile pages and actual TIFF downloads passed.",
+      "limits": "No holdout test for the prospective hypotheses, no proven unique winner, no account-specific allowance, no organizer receipt, and no competition upload. Remote CI, merge and Pages deployment require separate GitHub receipts."
     }
   ],
-  "verdict": "negative",
-  "remaining_blockers": [
-    "No assigned method paragraph or authorized new lane.",
-    "Literal overlap STOP against a registered lattice; no density exemption or registry-hole tuning.",
-    "No compliant WBG-2 HOLDOUT-DTI, feature canaries, current-best paired win or untouched confirmation.",
-    "Official organizer-origin input identity, band meanings, current account allowance and file-linked score receipts remain unverified."
-  ]
+  "scientific_experiments_started_this_session": 0,
+  "submission_slots_used": 0,
+  "result": "negative \u2014 research-only artifacts; do not submit"
 }

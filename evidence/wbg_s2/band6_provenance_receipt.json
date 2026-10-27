@@ -1,4 +1,5 @@
 {
+  "scope_warning": "Parallel-reported correlation with an owner-derived comparator, not independent authentication of organizer band semantics. The TIFF description and inferred comparator disagree; treat physical interpretation as unresolved.",
   "generated_utc": "2026-10-27T17:54:43+00:00",
   "evidence_class": "PROVENANCE-MEASUREMENT",
   "band_index_1based": 6,
@@ -7,5 +8,5 @@
   "valid_overlap_pixels": 5164300,
   "sampled_pixels": 516417,
   "spearman_rho": 0.9999532279694864,
-  "finding": "Band 6 (`tc`) has Spearman rho = 0.99995 with USGS GeoDAWN radiometric Total Count (`TC`), not Bouguer terrain-corrected gravity. WBG-S2 treats Band 6 strictly as radiometric TC and uses Band 13 (`iso_grav_anom`) + Band 18 (`iso_grav_anom_hg`) for gravity operators."
+  "finding": "The parallel report measured high rank correlation with its GeoDAWN TC comparator. This is provisional evidence, not proof of physical band identity or organizer provenance."
 }

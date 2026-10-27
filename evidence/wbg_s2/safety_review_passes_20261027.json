@@ -1,0 +1,43 @@
+{
+  "schema": "wbg-s2-safety-review-passes-v1",
+  "review_date_utc": "2026-10-27",
+  "scope": "Independent forensic integration of the already-produced parallel WBG-S2 TIFF and records. No model fitting, new placement, selector decision or competition submission occurred in these safety passes.",
+  "passes": [
+    {
+      "pass": 1,
+      "focus": "Implement and test the literal duplicate STOP against exact pinned references",
+      "findings": [
+        "The final TIFF overlaps the pinned GEMSDOE24 r13 lattice by 0.9955383226217666 and WBG-C1 by 1.0 within three pixels; both exceed the 0.70 STOP threshold.",
+        "The producer's pre-placement screen tested sampled Spearman correlation, not full literal overlap; clearance is not established.",
+        "The prior report combined a lattice numerical maximum and C1 peer identity from different scans; historical records were archived, the canonical witnesses corrected, and the TIFF and ZIP retained byte-identically.",
+        "The exact TIFF and ZIP are a known negative in the command-line validator; the stopped runner cannot accidentally start a new lane."
+      ]
+    },
+    {
+      "pass": 2,
+      "focus": "Review scientific and public-facing claims; preserve historical records",
+      "findings": [
+        "Rebuilt the research-only subsite with DO NOT SUBMIT / no selector eligibility and removed the specific upload workflow for the stopped file.",
+        "The parallel holdouts were selected on the same splits, have not been independently replayed here and have no established untouched confirmation; peer-only diagnostics and an owner-mirror band correlation are scoped accordingly.",
+        "Local range checks do not establish portal acceptance or the cause of the prior range error. The earlier numerical forecast and unverified hidden-label causal claims are not repeated as evidence.",
+        "Publishers and staging now fail closed on inconsistent artifact bytes, witness decisions or selector flags."
+      ]
+    },
+    {
+      "pass": 3,
+      "focus": "Recheck integration, reproducibility, responsive site and safety",
+      "findings": [
+        "The whole test suite passed 181 tests and Ruff E9/F; earlier inherited negative release and WBG-2 recorded reviews revalidated without retraining.",
+        "A fresh hash-pinned r13 witness download reproduced both exact S2 overlaps and matched the recorded safety JSON; the WBG-2 deep shared-gate audit also matched its record.",
+        "Fifteen pages rendered at desktop and mobile widths without body overflow or JavaScript errors. Both WBG-2 and WBG-S2 research TIFF downloads matched their SHA-256 values.",
+        "The static builders and staging are checked for deterministic output; a later remote CI and deployment receipt are separate evidence."
+      ]
+    }
+  ],
+  "parallel_experiments_recorded": 3,
+  "new_experiments_in_safety_review": 0,
+  "submission_slots_used_in_safety_review": 0,
+  "verdict": "negative",
+  "eligible_for_separate_selector": false,
+  "ok_to_submit": false
+}

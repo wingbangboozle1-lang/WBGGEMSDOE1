@@ -4,15 +4,18 @@ publication figures, and GitHub Pages UI (`docs/wbg-s2-mksf1/`).
 """
 from __future__ import annotations
 
+import hashlib
 import html
 import json
+import math
 import shutil
 import sys
+import zipfile
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path[:0] = [str(ROOT / "src"), str(ROOT / "vendor")]
+sys.path[:0] = [str(ROOT / "src"), str(ROOT / "vendor"), str(ROOT / "scripts")]
 
 import numpy as np
 import rasterio
@@ -37,7 +40,7 @@ def _build_nine_site_audit(
             "symmetric_3px_overlap": round(r["symmetric_3px_overlap"], 6),
             "worst_directional_3px_overlap": round(r["worst_directional_3px"], 6),
             "spearman_rho": round(r["spearman_rho"], 6),
-            "passes_competing_uniqueness_gate": bool(
+            "passes_this_peer_diagnostic_only": bool(
                 r["worst_directional_3px"] <= 0.70 and abs(r["spearman_rho"]) <= 0.90
             ),
         }
@@ -57,13 +60,12 @@ def _build_nine_site_audit(
             ),
             "live_score_labeled": "NONE (0 competition slots spent; never inferred or projected from holdout)",
             "uniqueness_across_sites": (
-                "Literal unseparated r13-lattice-s5/slab forward overlap = 99.5459% (>70% — FAIL literal gate; no private waiver). "
-                "Competing sparse diagnostic PASS (364/364 rasters + WBG-2 33.85%: max fwd 3px = 66.20% <= 70%, max worst-dir = 68.75% <= 70%, "
-                "max |rho| = 0.0473 <= 0.90; pre-placement surface max |rho| = 0.5819 <= 0.90)."
+                "Final forward overlap 99.5538% with r13-lattice-s5 and 100% with WBG-C1; both exceed 70% — STOP. "
+                "The sparse subset and sampled Spearman screening are diagnostic only, not full pre-placement clearance."
             ),
-            "portal_format_status": "PASS (15/15 checks: float32 [0.0, 1.0], 0 NaN, 0 Inf, 0 dead-collar <=200m dots)",
-            "go_no_go_status": "DOWNLOAD: YES · SUBMIT: NO (Literal lattice STOP; candidate for separate human selector review only; 0 slots spent)",
-            "notes": "#1 highest measured HOLDOUT-DTI across all 10 repositories on BOTH SegmentHoldout and gems57-v2.",
+            "portal_format_status": "LOCAL FORMAT PASS (not proof of portal acceptance)",
+            "go_no_go_status": "RESEARCH DOWNLOAD ONLY · DO NOT SUBMIT · NO SELECTOR ELIGIBILITY",
+            "notes": "Parallel-reported holdouts; the selected arm was chosen using these splits and has not been independently replayed here.",
         },
         {
             "site": "GEMSDOE24",
@@ -186,7 +188,7 @@ def _build_nine_site_audit(
             "uniqueness_vs_wbg_s2": _ov("GEMSDOE32_H47_LDGI"),
             "uniqueness_vs_wbg_s2_historical_b2": _ov("GEMSDOE32_H33_B2_HIST"),
             "uniqueness_across_sites": "H47-1-LDGI is distinct vs WBG-S2 (37.74% fwd) and historical B2 is distinct vs WBG-S2 (49.26% fwd); B2 itself is spent & 100%-subset of H19-5/D2.8.",
-            "portal_format_status": "H47-1-LDGI & B2 `-zeros`: PASS ([0, 1], 0 NaN); H38-G1 `-nan.tif`: FAILED [0,1] portal check",
+            "portal_format_status": "H47-1-LDGI & B2 `-zeros`: PASS ([0, 1], 0 NaN); H38-G1 `-nan.tif`: failed the parallel local all-finite policy (portal cause unverified)",
             "go_no_go_status": "NO-GO (B2 is spent; H47-1-LDGI self-stopped at 0.119765 vs WBG-S2's 0.147773 on identical gems57-pooled-hide-v2)",
         },
         {
@@ -314,19 +316,51 @@ def _build_nine_site_audit(
         },
     ]
 
+    # Scope and safety corrections supersede the producer's historical claims;
+    # the original builder and report are preserved in research/history.
+    irregularities[0]["title"] = "Band 6 provenance requires independent confirmation"
+    irregularities[0]["evidence"] = (
+        f"The parallel receipt reports Spearman {b6['spearman_rho']:.5f} against an owner-mirrored "
+        "GeoDAWN TC raster. Correlation is useful but does not independently authenticate organizer-provided bytes."
+    )
+    irregularities[0]["resolution"] = "Use the feature interpretation provisionally; verify provenance with organizer sources before relying on it."
+    irregularities[1]["title"] = "Range-rejection cause and exterior convention remain unresolved"
+    irregularities[1]["evidence"] = (
+        "A previous upload reported a [0,1] range error. Local all-finite checks pass for this file; "
+        "there is no file-specific portal receipt proving what caused that rejection or that this TIFF would be accepted. "
+        "The organizer's public data guidance says outside-boundary values should be null/NaN."
+    )
+    irregularities[1]["resolution"] = "Do not submit a negative TIFF; reconcile the public exterior guidance with the authenticated portal before any future cleared submission."
+    irregularities[2]["resolution"] = "Parallel-reported ablations only; the selected arm was chosen on these splits and was not independently replayed in this review."
+    irregularities[4]["title"] = "Near-fault purge and halo are a hypothesis, not a proven causal mechanism"
+    irregularities[4]["evidence"] = "Different negative-purge configurations were evaluated by the parallel run; the halo explanation remains unverified."
+    irregularities[4]["resolution"] = "Retain the ablation as a reported diagnostic, not proof of generalization."
+    irregularities[6]["resolution"] = "Regardless of selected peers, final overlap is 100% with WBG-C1 and 99.5538% with r13; both independently trigger STOP."
+    irregularities[7]["resolution"] = "Do not rank across inconsistent evaluations. The parallel values below are selection-limited and not independently replayed."
+    for row in focus_sites:
+        row["holdout_score_labeled"] = "PARALLEL-REPORTED (some peer metadata may be incomplete); " + row["holdout_score_labeled"]
+        row["scope_warning"] = "A peer-specific comparison cannot establish complete uniqueness or approve a submission."
+        if row is not focus_sites[0]:
+            row["go_no_go_status"] = "RESEARCH COMPARISON ONLY; no full registry or submission clearance established"
+            row["portal_format_status"] = "PRODUCER-REPORTED LOCAL FORMAT: " + row["portal_format_status"]
+    observation = json.loads((ROOT / "docs/data/feed.json").read_text())["leaderboard"]
     return {
         "schema_version": "wbggems-s2-executive-audit-20261027-v1",
+        "scope_warning": "Research only; final literal STOP against two pinned witnesses. Pre-placement full literal clearance not established. Parallel holdouts and peer diagnostics are not independent confirmation.",
         "generated_utc": rc["generated_utc"],
         "audit_date": "2026-10-27",
         "official_public_leaderboard_observation": {
-            "score": 0.4437,
-            "observed_date": "2026-10-26",
+            "score": observation["public_dw_tversky"],
+            "observed_date": observation.get("observed_utc") or observation.get("observed_date_utc") or "date unavailable",
             "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-            "note": "External leaderboard high (prompt text also cites earlier 0.3195 and 0.4413 snapshots); NOT achieved by any GEMSDOE repo artifact.",
+            "note": "Dated public leaderboard observation, not a file-specific organizer receipt. See the automated feed for status.",
         },
-        "recommended_candidate_for_selector_review": {
+        "research_artifact_not_selector_eligible": {
             "lane_id": "WBG-S2",
-            "winning_arm": rc["selected_arm"],
+            "selected_arm": rc["selected_arm"],
+            "holdout_limitation": "Parallel-reported; selected on these same splits; no independent replay or untouched confirmation here.",
+            "eligible_for_separate_selector": False,
+            "ok_to_submit": False,
             "tif_path": rc["artifact"]["tif_path"],
             "zip_path": rc["artifact"]["zip_path"],
             "tif_sha256": rc["artifact"]["tif_sha256"],
@@ -334,11 +368,16 @@ def _build_nine_site_audit(
             "decoded_pixels_sha256": rc["artifact"]["decoded_pixels_sha256"],
             "submission_name": rc["submission_name"],
             "submission_note": rc["submission_note"],
+            "holdout_segment_v1_evaluator": "gems-segment-pooled-v1",
+            "holdout_segment_v1_withheld_positives": 60988,
             "holdout_segment_v1_dti": rc["holdout_dti"]["primary_segment_holdout"]["dti"],
             "holdout_segment_v1_ci95": rc["holdout_dti"]["primary_segment_holdout"]["ci95"],
+            "holdout_gems57_v2_evaluator": "gems57-pooled-hide-v2",
+            "holdout_gems57_v2_withheld_positives": 11330,
             "holdout_gems57_v2_dti": rc["holdout_dti"]["secondary_gems57_buffered_components"]["dti"],
             "holdout_gems57_v2_ci95": rc["holdout_dti"]["secondary_gems57_buffered_components"]["ci95"],
-            "competing_detector_gate_pass": rc["competing_detector_gate"]["all_scientific_and_competing_uniqueness_gates_pass"],
+            "partial_sparse_screen_pass": rc["competing_detector_gate"]["competing_sparse_3px_and_spearman_pass"],
+            "literal_registry_gate_pass": False,
             "strict_governance_verdict": rc["verdict"],
             "live_slots_used_in_this_session": 0,
         },
@@ -498,7 +537,7 @@ def _generate_figures(rc: dict[str, Any], exp: dict[str, Any], uq: dict[str, Any
         ("KANLERGEMSDOE2 KG2", 0.177056, (59, 130, 246)),
         ("WBG-S2 EXP-2 (+SGMC)", exp["segment_holdout_v1"]["EXP2_MKSF_SGMCDualPop"]["dti"], (45, 212, 191)),
         ("WBG-S2 EXP-1 (MKSF-1)", exp["segment_holdout_v1"]["EXP1_MKSF_Core"]["dti"], (20, 184, 166)),
-        ("WBG-S2 EXP-3 (WINNER)", exp["segment_holdout_v1"]["EXP3_MKSF_VierbeinCoulomb"]["dti"], (15, 118, 110)),
+        ("WBG-S2 EXP-3 (selected)", exp["segment_holdout_v1"]["EXP3_MKSF_VierbeinCoulomb"]["dti"], (15, 118, 110)),
     ]
     g57_items = [
         ("WBG-C1 Surface (Prior)", 0.014045, (252, 165, 165)),
@@ -507,19 +546,19 @@ def _generate_figures(rc: dict[str, Any], exp: dict[str, Any], uq: dict[str, Any
         ("WBG-S2 EXP-2 (+SGMC)", exp["gems57_buffered_component_v2"]["EXP2_MKSF_SGMCDualPop"]["dti"], (45, 212, 191)),
         ("WBG-S2 EXP-1 (MKSF-1)", exp["gems57_buffered_component_v2"]["EXP1_MKSF_Core"]["dti"], (20, 184, 166)),
         ("GEMSDOE57 H57 Ref", 0.136150, (96, 165, 250)),
-        ("WBG-S2 EXP-3 (WINNER)", exp["gems57_buffered_component_v2"]["EXP3_MKSF_VierbeinCoulomb"]["dti"], (15, 118, 110)),
+        ("WBG-S2 EXP-3 (selected)", exp["gems57_buffered_component_v2"]["EXP3_MKSF_VierbeinCoulomb"]["dti"], (15, 118, 110)),
     ]
     _draw_panel(
         24,
         "Evaluator 1: gems-segment-pooled-v1 (n = 60,988 Withheld Fault Pixels)",
-        "WBG-S2 EXP-3 = 0.183594 (#1 Across All 10 Repositories; +0.0720 vs B0)",
+        "Parallel-reported values; selected on these splits; not a fleet ranking",
         seg_items,
         0.20,
     )
     _draw_panel(
         680,
         "Evaluator 2: gems57-pooled-hide-v2 (n = 11,330 Buffered Component Holdout)",
-        "WBG-S2 EXP-3 = 0.147773 (#1 Benchmark; +0.0146 Vierbein-Coulomb Lift Over EXP-1)",
+        "Parallel-reported values; selection-limited; not independently replayed",
         g57_items,
         0.165,
     )
@@ -527,73 +566,46 @@ def _generate_figures(rc: dict[str, Any], exp: dict[str, Any], uq: dict[str, Any
 
 
 def _write_markdown_report(audit: dict[str, Any], rc: dict[str, Any], exp: dict[str, Any]) -> None:
-    md = f"""# Executive Summary, 9-Site Audit & PhD Forensic Proof of `0.2778` (2026-10-27)
+    """Emit a truthful executive record; preserve prior claims only as historical material."""
+    md = """# WBG-S2 research audit — DO NOT SUBMIT
 
-## 1. Executive Summary & Automated Submission Gate Decision
+The parallel run produced three experiments and this research TIFF. This integration did not
+retrain, place dots, select a weekly slot or submit. **WBG-S2 is negative and is not eligible
+for a selector**. Its final forward overlap is **99.5538%** with pinned r13 and **100%** with
+WBG-C1; both exceed 70%. The pre-placement Spearman sample is not the full literal overlap gate.
+See [the independent forensic audit](../evidence/wbg_s2/safety_review_20261027.json) and
+[run card](../evidence/wbg_s2/run_card.json). Local all-finite, range and grid checks pass;
+that is not proof of portal acceptance and does not resolve the prior range error.
 
-- **Newly Generated Unique Candidate (`WBG-S2 / EXP-3`):**
-  - **GeoTIFF:** [`{rc['artifact']['tif_path']}`](../{rc['artifact']['tif_path']}) (`144,419` bytes, `SHA-256: {rc['artifact']['tif_sha256']}`)
-  - **One-TIFF ZIP:** [`{rc['artifact']['zip_path']}`](../{rc['artifact']['zip_path']}) (`SHA-256: {rc['artifact']['zip_sha256']}`)
-  - **Decoded Float32 Array SHA-256:** `{rc['artifact']['decoded_pixels_sha256']}` (`37,654` binary `{{0.0, 1.0}}` dots; `28,617` Regime A scarp/flexure + `9,037` Regime B concealed conduit; `0` exterior `NaN`; `0` `<= 200 m` dead-collar dots)
-  - **Submission Name:** `{rc['submission_name']}`
-  - **Submission Note (`{rc['submission_note_length']}/140` chars):** `{rc['submission_note']}`
-- **Measured Holdout Scores (Strictly Labeled — Zero Live Projections):**
-  - **`HOLDOUT-DTI = 0.183594`** (`95% CI [0.170313, 0.196956]`, `gems-segment-pooled-v1`, `n = 60,988` withheld fault pixels; paired Δ vs `B0 = +0.072043`, `95% CI [+0.060140, +0.085236]`; `+0.060284` over prior `WBGGEMSDOE1 WBG-H1` `0.123310`; **#1 across all 10 repositories** ahead of `KANLERGEMSDOE2` `0.177056`, `GEMSDOE36` `0.170100`, `GEMSDOE24` `0.166060`, and `GEMSDOE30` `0.158160`).
-  - **`HOLDOUT-DTI = 0.147773`** (`95% CI [0.128077, 0.167791]`, `gems57-pooled-hide-v2`, `n = 11,330` buffered 20% component holdout; paired Δ vs `B0 = +0.057697`, `95% CI [+0.043831, +0.072035]`, and `+0.014572` over `EXP-1` alone across **4/4 quadrants**; **#1 across all `gems57-v2` benchmarks** ahead of `GEMSDOE57` `0.13615` and `GEMSDOE32 H47` `0.119765`).
-  - **Organizer-Confirmed Score for This File:** `NONE` (`0` competition slots spent in this session).
-- **Dual-Scope Automated GO / NO-GO Gate:**
-  1. **DrivenData `[0, 1]` Portal & Competing-Detector Technical Gate — `PASS (ALL 7 TECHNICAL GATES GREEN)`:** `15/15` local `[0.0, 1.0]` GeoTIFF/ZIP checks PASS (`n_nan = 0`, `n_inf = 0` across all `12,279,160` cells), `332/332` single-feature leakage canaries PASS (`max AUC = 0.79251 <= 0.90`), pre-placement continuous surface novelty PASS (`max |Spearman| = 0.5819 <= 0.90` across `379` rasters), and post-placement competing-sparse uniqueness PASS across all `364` sparse detector rasters (`max forward 3-px overlap = 66.20% <= 70%`, `max worst-directional = 68.75% <= 70%`, `max |Spearman| = 0.0473 <= 0.90`).
-  2. **Strict `AGENTS.md` Weekly-Slot Governance Gate — `verdict: "negative"` (`HOLD FOR SEPARATE HUMAN SELECTOR DECISION; 0 SLOTS SPENT`):** Without inventing a private density/lattice waiver, the `13GEMSDOE` synthetic spacing-5 calibration lattice (`206,895` dots covering `99.8713%` of the footprint within 300 m) and continuous research slabs trigger `>70%` literal unseparated forward overlap (`99.55%`), and DrivenData's `3/week` allowance is login-walled. Therefore `WBG-S2 EXP-3` is delivered as our **top-ranked, portal-ready candidate for human selector review**, with zero automated slot expenditure.
+The parallel run reports **HOLDOUT-DTI 0.183594** (95% CI [0.170313, 0.196956],
+`gems-segment-pooled-v1`, 60,988 positives) and **0.147773** (95% CI [0.128077, 0.167791],
+`gems57-pooled-hide-v2`, 11,330 positives). These results were not independently replayed
+here; arm selection used these holdouts and untouched confirmation has not been established.
+They are not organizer scores or leaderboard forecasts. Input hashes are owner-mirrored, not
+authenticated organizer downloads. The original report, source and card are retained in
+`research/history/wbg_s2_20261027/` as historical, non-authoritative records.
 
----
+## Peer-specific diagnostics (not overall uniqueness clearance)
 
-## 2. 2026-10-27 Nine-Site (`GEMSDOE24..36`) & Peer Comparison Table
-
-| Site & Pinned 2026-10-27 Commit | Latest Downloadable `.tif` | Measured Holdout Score (Evaluator, `n`) | Historical / Recent Live Score (Evidence Class) | 3-px Overlap & `ρ` vs `WBG-S2` | Automated Gate Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
+| Site | File reported by the parallel run | Holdout reported | Historical live claim | Decision / scope |
+|---|---|---|---|---|
 """
     for row in audit["sites_table"]:
-        if "uniqueness_vs_wbg_s2" in row:
-            u = row["uniqueness_vs_wbg_s2"]
-            u_str = f"fwd `{u['wbg_s2_in_peer_3px']*100:.2f}%`, rev `{u['peer_in_wbg_s2_3px']*100:.2f}%`, `ρ={u['spearman_rho']:.4f}` (`PASS`)"
-        else:
-            u_str = "Self (`max sparse fwd 66.20% <= 70%`, `max |ρ|=0.0473`)"
-        md += (
-            f"| **{row['site']}** (`{row['pinned_head_20261027'][:12]}`) | `{row['file_to_download']}` | "
-            f"{row['holdout_score_labeled']} | {row['live_score_labeled']} | {u_str} | **{row['go_no_go_status']}** |\n"
-        )
-
+        md += (f"| {row['site']} | `{row['file_to_download']}` | {row['holdout_score_labeled'].replace('|', '<br>')} | "
+               f"{row['live_score_labeled']} | {row['go_no_go_status']} |\n")
     md += """
----
 
-## 3. PhD-Level Forensic Proof: Why & How `GEMSDOE32` Achieved `0.2778`, Why Peers Regressed, and How to Beat `0.2778`
+## Why the GEMSDOE32 0.2778 is not proof of a new score
 
-### 3.1 Exact Mathematical Decomposition of `GEMSDOE32` `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` (`0.2778`)
-Under the official DrivenData GEMS Distance-Tolerant IoU (`DTI`) metric (`alpha = 0.2` precision penalty, `beta = 0.8` missed-fault penalty, `R = 300 m = 3 px` linear distance-decay kernel $k(d) = \\max(0, 1 - d/3)$, with pixel-exact masking of `existing_faults.tif`):
-$$\\text{DTI}(P, G) = \\frac{\\text{TP}_w}{\\text{TP}_w + 0.2\\,\\text{FP}_w + 0.8\\,\\text{FN}_w}, \\qquad \\text{TP}_w = \\sum_{g \\in G} \\max_{p:\\, d(p,g)<3} P(p)\\Big(1 - \\frac{d(p,g)}{3}\\Big).$$
-
-`GEMSDOE32`'s `0.2778` (`USER-REPORTED / PEER-REPO-CLAIMED`, recorded in peer file `GEMSDOE32/registry/submissions/sub-20261004T234342Z-h33-b2.json` — quarantined as unconfirmed here because `WBGGEMSDOE1` holds no direct organizer portal receipt) corresponds on the inspected byte grid to three exact operations — **not** a black-box deep network:
-1. **Multi-Line Corroborated Ridge Field (`19GEMSDOE H19-5`, `USER-REPORTED 0.1922`):** Combined four independent physical lines across the 19 competition bands: (i) multi-azimuth topographic openness/slope breaks (`det_elev`, `det_elev_slope`), (ii) horizontal gravity/magnetic gradient worms (`iso_grav_anom_hg`, `tmi_hg`, `rtp`), (iii) geodetic shear/dilatation + earthquake density (`geod_shearrate`, `deq_n100a15`), and (iv) electrical conductivity + shallow basement boundaries (`cond_surf`, `depth_to_base_surf`), gated by a **second-best corroboration floor (`2nd-best >= 0.18`)** that rejected single-modality volcanic plugs and road embankments.
-2. **Discrete `min_sep = 2.8 px` Ridge Point-Process Discretization (`D2.8`, `USER-REPORTED 0.2600`):** Replaced continuous `[0, 1]` aprons (which accumulate catastrophic `0.2 * FP_w` mass across millions of background pixels!) with `44,090` binary `{0.0, 1.0}` ridge-crest dots spaced by $d_{\\min} = 2.8\\text{ px}$ (`280 m`), matching the `300 m` triangular kernel radius so adjacent dots along strike maintain continuous `>= 0.53` kernel overlap without double-paying `FP_w`.
-3. **200 m Catalogue Dead-Collar Pruning (`H33-2-B2`, `0.2600 -> 0.2778` peer-reported, `+0.0178` precision lift):** Because the organizer scorer masks `existing_faults.tif` **pixel-exactly** (`1 px` wide) and hidden evaluation faults (`G_private`) are distinct strands rather than `100–200 m` parallel duplicates of mapped traces, the `6,436` `D2.8` dots sitting at $0 < d_{\\text{cat}} \\le 2.0\\text{ px}$ contribute near-zero $\\text{TP}_w$ while adding up to `0.2 * 6,436 = 1,287.2` false-positive penalty to the DTI denominator. Stripping `d_cat <= 2.0 px` (`44,090 - 6,436 = 37,654` dots, `0`-XOR byte identity verified) removes that dead-collar penalty without new features!
-
-### 3.2 Exact Non-Identifiability Theorem (`TP_w != M_w`) & Order-of-Magnitude Sensitivity Model for Beating `0.2778`, `0.3195`, and `0.4437`
-In the official asymmetric max-cover DTI (`vendor/gems57/metric.py`), **truth-side credit** $\\text{TP}_w = \\sum_{g \\in G} \\max_{p \\in P} k(p,g)$ and **prediction-side matched credit** $M_w = N - \\text{FP}_w = \\sum_{p \\in P} \\max_{g \\in G} k(p,g)$ are **distinct quantities** ($\\text{TP}_w \\neq M_w$ whenever one predicted dot covers multiple connected 100 m fault pixels, e.g. a single dot adjacent to two truth cells gives $\\text{TP}_w = 1 + 2/3 > M_w = 1$). Consequently, **exact inversion of $|G_{\\text{private}}|$ from scalar leaderboard numbers is mathematically non-identifiable (`not verified evidence`)**. Under an illustrative homogeneous isolated-strand sensitivity model (`r13-lattice-s5` `USER-REPORTED 0.0904` at `206,895` dots and `D2.8 -> B2` `44,090 -> 37,654`), $|G_{\\text{private}}|$ scales at the order of `~10^4` pixels (`~11k–14k` illustrative toy range, NOT verified ground truth):
-- **Beating `0.2778` in expectation** requires genuinely higher off-catalogue fault crest recall per emitted dot — specifically recovering scarps inside the **24.63% 1 m LiDAR gap** (`1,272,604` pixels where 1 m LiDAR is blind!), transgressive **piedmont-bajada monoclinal flexures** (`pjmf_bajada_break_10m`, standalone `AUC = 0.7385`), and **en-echelon relay ramps / crack-tip splays** (`fold_vis_tip_lobe`, standalone `AUC = 0.7925`).
-- **Reaching the observed public high (`0.4437` on 2026-10-26)** requires both higher multi-sensor crest recall AND adaptive precision-budget stopping (`~18k–26k` ultra-pure crests rather than fixed `37,654` dots) so `0.2 * FP_w` no longer caps the DTI denominator.
-
-### 3.3 Why Oct 26 ML Attempts Regressed (`0.0206–0.1647`) & How `WBG-S2` Fixed Every Root Cause
-1. **Near-Flank Negative Purge Trap (`WBG-H1` `0.1233`):** Purging `0 < d_vis < 9 px` starved trees of near-scarp alluvial negatives, smearing probability 300–800 m off the fault crest. `WBG-S2` purges only `0 < d_vis < 3.2 px` AND trains a dedicated `HistGradientBoostingRegressor` directly on continuous `max(0, 1 - d_vis/3)` expected DTI credit (`+0.0603` SegmentHoldout gain!).
-2. **1 m LiDAR Feature Starvation Across the 24.63% Gap:** Single-model 1 m + 10 m trees split heavily on 1 m scarps and collapsed inside the `1.27M`-pixel gap. `WBG-S2`'s unstarved `Seamless-68ch` specialist + OOB quantile alignment lifted `NE_LidarGapHeavy` from `0.1797` (`WBG-H1`) to **`0.2592`** (`+44.2%`!).
-3. **Band 6 (`tc`) Misattribution (`IR-S2-001`):** `WBG-S2` verified `Spearman(Band 6, GeoDAWN TC) = 0.99995` and separated radiometric alteration from pure isostatic gravity (`Band 13 / 18`) in its Gallardo-Meju cross-gradient & magnetite-destruction conduits.
-4. **Fold-Visible Crack-Tip & Relay-Ramp Corroboration (`EXP-3`):** On `gems57-pooled-hide-v2` (80% visible strands, matching test-time catalogue geometry), `EXP-3` jumped **`+0.01457`** over `EXP-1` (`0.13320 -> 0.14777`) across **4/4 quadrants** by boosting `MKSF-1` odds only where physical scarp/geophysical evidence (`p >= q_60`) co-occurs inside forward crack-tip cones or 6-hash inter-component relay bridges.
-
----
-
-## 4. Remaining Limitations & Recommended Next Steps
-1. **Adaptive Precision-Budget Pruning (`24k–32k` Dots):** Our `37,654`-dot budget matches `B2`'s collar-free support; testing an OOF-calibrated marginal-gain stopping threshold (`ΔF(e | S) >= τ_opt`) on a fresh pre-registered lane is the highest-leverage path toward the `0.32–0.44` precision regime.
-2. **10 m 3DEP Dip-Azimuth Facet Curvature Tensor:** Extending `pjmf_bajada_break_10m` (`AUC = 0.7385`) to 16 azimuths at `100 m / 300 m / 900 m` scales can sharpen concealed range-front step-overs further.
-3. **Human Selector Slot Authorization:** Verify remaining DrivenData weekly submission allowance (`3/week` rolling window) and literal lattice governance before uploading [`{rc['artifact']['tif_path']}`](../{rc['artifact']['tif_path']}).
+`h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` and 0.2778 are owner-reported;
+we have no organizer receipt binding the score to these bytes. D2.8, B1 and B2 progressively
+reduce 44,090, 40,199 and 37,654 predicted dots. Sparse kernel coverage and avoiding
+low-credit predictions are plausible explanations, not established causal facts: hidden
+labels and exact per-dot contributions are unavailable. A genuinely unique model might
+outperform it, but there is no verified forecast, no proven submission, and no copy or
+retuning of a stopped lane is allowed. See
+[the corrected analysis](../docs/research/wbg2-why-02778.md) and
+[future hypotheses](../docs/research/future-hypotheses-20261027.md).
 """
     (ROOT / "knowledge" / "03_executive_summary_and_02778_forensics_2026-10-27.md").write_text(md)
 
@@ -604,6 +616,8 @@ def _write_site_html(audit: dict[str, Any], rc: dict[str, Any], exp: dict[str, A
 
     # Copy exact run_card.json and audit JSON into `docs/wbg-s2-mksf1/data/`
     shutil.copyfile(ROOT / "evidence" / "wbg_s2" / "run_card.json", site_dir / "data" / "run_card.json")
+    shutil.copyfile(ROOT / "evidence" / "wbg_s2" / "safety_review_20261027.json", site_dir / "data" / "safety_review_20261027.json")
+    shutil.copyfile(ROOT / "evidence" / "wbg_s2" / "safety_review_passes_20261027.json", site_dir / "data" / "safety_review_passes_20261027.json")
     shutil.copyfile(
         ROOT / "evidence" / "wbg_s2" / "nine_site_executive_summary_20261027.json",
         site_dir / "data" / "nine_site_executive_summary_20261027.json",
@@ -628,8 +642,9 @@ def _write_site_html(audit: dict[str, Any], rc: dict[str, Any], exp: dict[str, A
 }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.55; }
-a { color: var(--teal-dark); text-decoration: underline; text-underline-offset: 2px; }
+a { color: var(--teal-dark); text-decoration: underline; text-underline-offset: 2px; overflow-wrap: anywhere; }
 a:hover { color: #042f2e; }
+code { overflow-wrap: anywhere; }
 .wrap { max-width: 1200px; margin: 0 auto; padding: 0 22px; }
 header.top { background: #0f292e; color: #f0fdfa; border-bottom: 3px solid var(--teal); }
 .nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 14px 0; gap: 14px; }
@@ -676,15 +691,14 @@ code { font-family: var(--mono); font-size: 0.84em; background: #edf2f4; padding
 
     tif_rel = f"../downloads/{Path(rc['artifact']['tif_path']).name}"
     zip_rel = f"../downloads/{Path(rc['artifact']['zip_path']).name}"
-    json_rel = f"../downloads/{Path(rc['artifact']['receipt_json_path']).name}"
 
     def _layout(title: str, active: str, body: str) -> str:
         nav_items = [
             ("index.html", "Overview & Download"),
             ("executive-summary.html", "9-Site Executive Audit"),
-            ("forensics-02778.html", "0.2778 PhD Forensics"),
+            ("forensics-02778.html", "0.2778 Analysis"),
             ("hypotheses-and-validation.html", "Hypotheses & Ablations"),
-            ("how-to-submit.html", "DrivenData Upload Steps"),
+            ("how-to-submit.html", "No-submit guidance"),
         ]
         nav_html = "".join(
             f'<a class="{"active" if href == active else ""}" href="{href}">{html.escape(lbl)}</a>'
@@ -714,7 +728,7 @@ code { font-family: var(--mono); font-size: 0.84em; background: #edf2f4; padding
 </main>
 <footer>
   <div class="wrap">
-    <strong>WBGGEMSDOE1 · WBG-S2 (MKSF-1)</strong> · DOWNLOAD: YES (research / selector review). SUBMIT: NO automatically (no competition slot spent). Every number strictly labeled (`HOLDOUT-DTI`, `ORGANIZER-CONFIRMED`, or `USER-REPORTED / NOT ORGANIZER-CONFIRMED`). Zero live leaderboard projections.<br>
+    <strong>WBGGEMSDOE1 · WBG-S2 (MKSF-1)</strong> · Research download only. <strong>DO NOT SUBMIT; NO SELECTOR ELIGIBILITY.</strong> Parallel holdouts are not independently confirmed. No slot spent by this integration.<br>
     Artifacts: <a href="data/run_card.json">Run Card JSON</a> · <a href="data/nine_site_executive_summary_20261027.json">9-Site Audit JSON</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData Competition #306 ↗</a> · <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">GitHub Repository ↗</a>
   </div>
 </footer>
@@ -723,36 +737,32 @@ code { font-family: var(--mono); font-size: 0.84em; background: #edf2f4; padding
 """
 
     top_dl_banner = f"""
-<div class="hero-dl" role="region" aria-label="Primary GeoTIFF Download and Automated Gate Verdict">
+<div class="hero-dl" role="region" aria-label="Research artifact and strict no-submit verdict">
   <div class="badge-row">
-    <span class="badge gov">DOWNLOAD: YES · SUBMIT: NO (Literal uniqueness: FAIL 99.55% vs r13-lattice-s5 · No competition slot spent)</span>
-    <span class="badge pass">✓ PORTAL FORMAT [0,1]: PASS (15/15 CHECKS · 0 NaN · 0 Inf)</span>
-    <span class="badge pass">✓ LEAKAGE CANARIES: PASS (332/332 · max AUC 0.7925 ≤ 0.90)</span>
-    <span class="badge pass">✓ COMPETING SPARSE DIAGNOSTIC: PASS (364/364 + WBG-2 · max fwd 66.20% ≤ 70%, |ρ|=0.0473)</span>
-    <span class="badge pass">★ #1 FLEET HOLDOUT-DTI ON BOTH EVALUATORS (0.1836 &amp; 0.1478)</span>
+    <span class="badge gov">DOWNLOAD: YES (RESEARCH ONLY) · SUBMIT: NO · DO NOT SUBMIT · NO SELECTOR ELIGIBILITY</span>
+    <span class="badge gov">R13 OVERLAP 99.5538% · WBG-C1 OVERLAP 100% · STOP</span>
   </div>
   <div class="dl-grid">
     <div>
-      <h1>WBG-S2 (<code>EXP-3</code>): Seamless 10m/1m Flexure + Cross-Gradient + Vierbein-Coulomb CELF</h1>
-      <p style="margin:6px 0 10px;color:var(--muted)">
-        Genuinely new 81-channel multi-resolution fault detector (`37,654` binary `{{0.0, 1.0}}` dots, `0` exterior `NaN`, `0` `≤200 m` dead-collar dots).
-        Beats matched control `B0`, prior `WBGGEMSDOE1 WBG-H1` (`+48.9%`), and every peer across all 9 focus repositories on both `gems-segment-pooled-v1` and `gems57-pooled-hide-v2`.
-      </p>
+      <h1>WBG-S2 · parallel research result</h1>
+      <p>Research download only. Both independently reproduced final-dot overlaps exceed 70%.
+      The sampled pre-placement Spearman screen did not establish full literal clearance; a selector cannot waive STOP.
+      No competition slot was used by this integration.</p>
       <div class="btn-row">
-        <a class="btn" href="{tif_rel}" download>↓ Download Validated .TIF (141 KB)</a>
-        <a class="btn sec" href="{zip_rel}" download>↓ Download One-TIFF .ZIP</a>
-        <a class="btn outline" href="how-to-submit.html">Step-by-Step DrivenData Upload Guide →</a>
-        <a class="btn outline" href="executive-summary.html">9-Site Comparison Table →</a>
+        <a class="btn" href="{tif_rel}" download>↓ Research-only TIFF</a>
+        <a class="btn sec" href="{zip_rel}" download>↓ Research-only ZIP</a>
+        <a class="btn outline" href="data/safety_review_20261027.json">Independent safety audit</a>
+        <a class="btn outline" href="data/run_card.json">Run card</a>
+        <a class="btn outline" href="data/safety_review_passes_20261027.json">Three review passes</a>
       </div>
+      <p>Local all-finite [0,1] raster checks pass; this does <strong>not</strong> establish portal acceptance or the cause of the prior range rejection.</p>
     </div>
     <div class="codebox">
       <div><strong>File:</strong> <code>{Path(rc['artifact']['tif_path']).name}</code></div>
-      <div><strong>TIFF SHA-256:</strong> <code>{rc['artifact']['tif_sha256'][:24]}…</code></div>
-      <div><strong>ZIP SHA-256:</strong> <code>{rc['artifact']['zip_sha256'][:24]}…</code></div>
-      <div><strong>Grid / Bounds:</strong> <code>EPSG:32611 · 3730×3292 · float32 [0.0, 1.0]</code></div>
-      <div><strong>Emitted Dots:</strong> <code>37,654</code> (<code>28,617</code> scarp + <code>9,037</code> blind)</div>
-      <div><strong>Submission Note ({rc['submission_note_length']}/140):</strong><br><code>{html.escape(rc['submission_note'])}</code></div>
-      <div style="margin-top:6px"><a href="{json_rel}">Validator Receipt JSON ↗</a> · <a href="data/run_card.json">Canonical Run Card JSON ↗</a></div>
+      <div><strong>TIFF SHA-256:</strong> <code>{rc['artifact']['tif_sha256']}</code></div>
+      <div><strong>Grid:</strong> <code>EPSG:32611 · 3730×3292 · float32 [0,1]</code></div>
+      <div><strong>Dots:</strong> <code>37,654</code></div>
+      <div><strong>Holdouts:</strong> parallel-reported, selected on these splits; not independently replayed or confirmed on untouched data.</div>
     </div>
   </div>
 </div>
@@ -761,61 +771,35 @@ code { font-family: var(--mono); font-size: 0.84em; background: #edf2f4; padding
     # 1. index.html
     seg = rc["holdout_dti"]["primary_segment_holdout"]
     g57 = rc["holdout_dti"]["secondary_gems57_buffered_components"]
-    index_body = (
-        top_dl_banner
-        + f"""
-<div class="kpi-grid">
-  <div class="kpi">
-    <label>SegmentHoldout · HOLDOUT-DTI</label>
-    <div class="val">{seg['dti']:.6f}</div>
-    <p class="sub">95% CI [{seg['ci95'][0]:.4f}, {seg['ci95'][1]:.4f}] · <code>gems-segment-pooled-v1</code> (n=60,988)<br><strong>+0.0720</strong> vs B0 · <strong>+0.0603</strong> vs WBG-H1 · <strong>#1 of 10 repos</strong></p>
-  </div>
-  <div class="kpi">
-    <label>Buffered-Component · HOLDOUT-DTI</label>
-    <div class="val">{g57['dti']:.6f}</div>
-    <p class="sub">95% CI [{g57['ci95'][0]:.4f}, {g57['ci95'][1]:.4f}] · <code>gems57-pooled-hide-v2</code> (n=11,330)<br><strong>+0.0577</strong> vs B0 · <strong>+0.0146</strong> from Vierbein-Coulomb</p>
-  </div>
-  <div class="kpi">
-    <label>Competing Sparse Uniqueness</label>
-    <div class="val" style="color:var(--teal)">66.20%</div>
-    <p class="sub">Max forward 3-px overlap across 364 sparse detectors (limit ≤70%)<br>Pre-surface |ρ| = 0.5819 · Post-dot |ρ| = 0.0473 (≤0.90)</p>
-  </div>
-  <div class="kpi">
-    <label>Portal Readiness &amp; Slot Status</label>
-    <div class="val">15 / 15 PASS</div>
-    <p class="sub"><code>min=0.0, max=1.0, n_nan=0</code> across 12,279,160 px<br>Literal r13-lattice overlap 99.55% disclosed · 0 slots used</p>
-  </div>
-</div>
-
+    index_body = top_dl_banner + f"""
 <section class="two-col">
   <div class="card">
-    <h2>Is This File OK to Download &amp; Submit? (Unmistakable Dual-Gate Answer)</h2>
-    <ul>
-      <li><strong>Download &amp; Technical DrivenData Portal Validity — <span style="color:var(--teal)">YES (100% AUTOMATED PASS)</span>:</strong> Reopened on disk by both <code>vendor/gems57/validator.py</code> and <code>scripts/validate_submission.py</code>: single-band <code>float32</code>, <code>EPSG:32611</code>, <code>3730×3292</code>, <code>0 NaN</code> and <code>0 Inf</code> across all <code>12,279,160</code> pixels (eliminating the <code>"Predicted values must be in range [0, 1]"</code> portal error), <code>0</code> catalogue pixels, and <code>0</code> dead-collar (<code>≤200 m</code>) pixels.</li>
-      <li><strong>Scientific Holdout Superiority &amp; Competing-Method Uniqueness — <span style="color:var(--teal)">YES (#1 ACROSS ALL REPOS)</span>:</strong> Beats every peer across <code>GEMSDOE24..36</code>, <code>KANLERGEMSDOE2</code>, and prior <code>WBGGEMSDOE1</code> on holdout, with <code>31.0%–61.9%</code> forward 3-px dot overlap against all 2026-10-27 peer artifacts (strictly <code>≤70%</code>).</li>
-      <li><strong>Strict Repository Weekly-Slot Governance (<code>AGENTS.md</code>) — <span style="color:var(--amber)">HUMAN SELECTOR DECISION REQUIRED</span>:</strong> Per <code>AGENTS.md</code>, no private exemption is invented for the synthetic <code>13GEMSDOE</code> spacing-5 calibration lattice (which covers <code>99.87%</code> of the footprint within 300 m, forcing <code>≥82.34%</code> overlap for any 37,654-dot map), and remaining weekly DrivenData slots (<code>3/week</code>) require authenticated human verification. Zero slots were spent automatically.</li>
-    </ul>
+    <h2>Parallel-reported holdouts, not organizer scores</h2>
+    <p><strong>HOLDOUT-DTI {seg['dti']:.6f}</strong>, 95% CI [{seg['ci95'][0]:.6f}, {seg['ci95'][1]:.6f}],
+    <code>gems-segment-pooled-v1</code>, 60,988 withheld positives.</p>
+    <p><strong>HOLDOUT-DTI {g57['dti']:.6f}</strong>, 95% CI [{g57['ci95'][0]:.6f}, {g57['ci95'][1]:.6f}],
+    <code>gems57-pooled-hide-v2</code>, 11,330 withheld positives.</p>
+    <p>The parallel run selected arms on these same splits. We did not replay training or confirm the result on untouched data.
+    Evaluators and representations differ; do not convert these into a leaderboard forecast.</p>
   </div>
   <div class="card">
-    <h2>Four Root-Cause Breakthroughs Over Prior Runs</h2>
-    <ol>
-      <li><strong>Expected 300 m Kernel-Credit Dual Target:</strong> Purges only <code>0 &lt; d_vis &lt; 3.2 px</code> and trains <code>HGB_Kernel</code> directly on continuous <code>max(0, 1 - d_vis/3)</code> DTI credit, curing <code>WBG-H1</code>'s 900 m collar-starvation halo.</li>
-      <li><strong>Unstarved Seamless 10 m Specialist Across the 24.63% LiDAR Gap:</strong> Pairs <code>Full-81ch</code> with an unstarved <code>Seamless-68ch</code> 10 m 3DEP specialist + OOB quantile alignment; <code>pjmf_bajada_break_10m</code> achieves <strong>0.7385 standalone holdout AUC</strong> and lifts <code>NE_LidarGapHeavy</code> to <strong>0.2592</strong>.</li>
-      <li><strong>Band-6 Provenance Correction (<code>IR-S2-001</code>):</strong> Proved <code>Band 6 (tc)</code> is GeoDAWN Radiometric Total Count (<code>ρ = 0.99995</code>), separating potassium/thorium alteration from pure isostatic gravity in Gallardo-Meju cross-gradient &amp; magnetite-destruction conduits.</li>
-      <li><strong>Fold-Visible Vierbein-Coulomb Tip &amp; Relay Corroboration (<code>EXP-3</code>):</strong> Boosts odds only where physical backbone evidence (<code>p ≥ q_60</code>) co-occurs inside elastic crack-tip cones (<code>AUC = 0.7925</code>) or 6-hash inter-component relay bridges (<code>+0.0146</code> on <code>gems57-v2</code>).</li>
-    </ol>
+    <h2>What the safety check established</h2>
+    <p>The existing TIFF and ZIP are byte-identical after extraction; local single-band, grid and finite [0,1] checks passed.
+    Final predictions fail the literal registry gate against two witnesses. Sparse peer-only results do not cancel either failure.
+    Organizer provenance and a file-specific score receipt are not established.</p>
+    <p>Read the <a href="executive-summary.html">peer evidence table</a>,
+    <a href="forensics-02778.html">0.2778 analysis</a> and
+    <a href="../research/future-hypotheses-20261027.md">future hypothesis limitations</a>.</p>
   </div>
 </section>
-
 <section>
-  <h2>Spatial Prediction Map &amp; Multi-Evaluator Fleet Benchmark</h2>
+  <h2>Parallel-generated figures (descriptive only)</h2>
   <div class="two-col">
-    <div class="card"><img class="fig" src="assets/wbg_s2_map_overview.png" alt="Spatial map of WBG-S2 37,654 binary fault predictions across the Great Basin GeoDAWN footprint and 24.63% LiDAR gap"></div>
-    <div class="card"><img class="fig" src="assets/wbg_s2_holdout_and_fleet_comparison.png" alt="Bar charts comparing WBG-S2 EXP-1, EXP-2, EXP-3 against B0 and all focus-9 and peer benchmarks on SegmentHoldout and gems57-pooled-hide-v2"></div>
+    <div class="card"><img class="fig" src="assets/wbg_s2_map_overview.png" alt="Parallel research raster map"></div>
+    <div class="card"><p>The parallel comparison figure is retained as a historical asset, not as a reliable fleet ranking. The selected arm and peer values have not been independently replayed for comparability.</p></div>
   </div>
 </section>
 """
-    )
     (site_dir / "index.html").write_text(_layout("Overview & Validated GeoTIFF", "index.html", index_body))
 
     # 2. executive-summary.html
@@ -827,13 +811,13 @@ code { font-family: var(--mono); font-size: 0.84em; background: #edf2f4; padding
                 f"Fwd 3px: <strong>{u['wbg_s2_in_peer_3px']*100:.2f}%</strong><br>"
                 f"Rev 3px: <strong>{u['peer_in_wbg_s2_3px']*100:.2f}%</strong><br>"
                 f"Sym 3px: {u['symmetric_3px_overlap']*100:.2f}% · ρ={u['spearman_rho']:.4f}<br>"
-                f"<span class='badge pass'>PASS ≤70%</span>"
+                f"<span class='badge pass'>THIS PEER ONLY</span>"
             )
         else:
             u_cell = (
-                "Self · Checked vs 364 sparse rasters:<br>"
+                "Self · Sparse-only diagnostic (not full gate):<br>"
                 "Max fwd <strong>66.20%</strong> · Max sym <strong>59.42%</strong> · Max |ρ| <strong>0.0473</strong><br>"
-                "<span class='badge pass'>PASS COMPETING</span>"
+                "<span class='badge gov'>LITERAL STOP</span>"
             )
         rows_html += f"""
         <tr>
@@ -862,7 +846,7 @@ code { font-family: var(--mono); font-size: 0.84em; background: #edf2f4; padding
         + f"""
 <section>
   <h2>2026-10-27 Executive Audit Across GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36 &amp; Peers</h2>
-  <p>Every score below carries its exact protocol evidence class (<code>HOLDOUT-DTI</code> with evaluator version, withheld positive pixel count, and 95% CI; <code>ORGANIZER-CONFIRMED</code> where an in-repo organizer receipt exists; or <code>USER-REPORTED / NOT ORGANIZER-CONFIRMED</code>). Zero live leaderboard projections are stated anywhere.</p>
+  <p>These are parallel-run peer reports, not independently replayed results. Missing evaluator details or confidence intervals limit comparability. A per-peer diagnostic is not overall uniqueness clearance and does not override the two literal STOP witnesses. Historical live values are owner-reported unless backed by a file-specific organizer receipt.</p>
   <div class="table-wrap">
     <table>
       <thead>
@@ -893,7 +877,7 @@ code { font-family: var(--mono); font-size: 0.84em; background: #edf2f4; padding
 </section>
 
 <section class="card">
-  <h2>Verified Official Free Public Data Sources</h2>
+  <h2>Parallel-reported source links (coverage and bytes require separate verification)</h2>
   <ul>{src_html}</ul>
 </section>
 """
@@ -903,40 +887,19 @@ code { font-family: var(--mono); font-size: 0.84em; background: #edf2f4; padding
     )
 
     # 3. forensics-02778.html
-    forensics_body = (
-        top_dl_banner
-        + """
+    forensics_body = top_dl_banner + """
 <section class="card">
-  <h2>PhD-Level Forensic Proof: How <code>GEMSDOE32</code>'s <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code> Achieved <code>0.2778</code></h2>
-  <p>Under the official DrivenData GEMS Distance-Tolerant IoU metric (<code>α = 0.2</code> precision weight, <code>β = 0.8</code> missed-fault weight, <code>R = 300 m = 3 px</code> linear distance-decay kernel <code>k(d) = max(0, 1 − d/3)</code>, pixel-exact masking of <code>existing_faults.tif</code>):</p>
-  <div class="codebox">DTI(P, G) = TP_w / (TP_w + 0.2 · FP_w + 0.8 · FN_w),   TP_w = Σ_{g ∈ G_private} max_{p : d(p,g)&lt;3} P(p)·(1 − d(p,g)/3)</div>
-  <h3>The Exact Three-Step Chain Behind <code>0.2778</code></h3>
-  <ol>
-    <li><strong>4-Line Corroborated Geophysical/Topographic Ridges (<code>19GEMSDOE H19-5</code> → <code>0.1922</code>):</strong> Combined topographic openness/slope breaks, horizontal gravity &amp; magnetic gradients, geodetic shear/seismicity, and MT shallow basement boundaries, requiring <strong>at least two independent modalities (<code>2nd-best ≥ 0.18</code>)</strong> to fire simultaneously.</li>
-    <li><strong>Discrete <code>min_sep = 2.8 px</code> Ridge Point-Process Discretization (<code>D2.8</code> → <code>0.2600</code>, <code>+0.0678</code>):</strong> Continuous probability maps pay catastrophic <code>0.2 · FP_w</code> mass across millions of background cells (as confirmed by <code>WBG-C1</code> scoring <code>0.014045</code>!). Discretizing ridges into <code>44,090</code> binary <code>{0.0, 1.0}</code> crests separated by <code>2.8 px</code> matched the <code>3.0 px</code> kernel radius without double-paying false-positive mass.</li>
-    <li><strong>200 m Catalogue Dead-Collar Stripping (<code>H33-2-B2</code> → <code>0.2778</code>, <code>+0.0178</code>; 0-XOR proved):</strong> Because organizer masking removes only the 1-px mapped fault centerline while unmapped test faults (<code>G_private</code>) are distinct strands rather than 100–200 m parallel halos, the <code>6,436</code> dots inside <code>0 &lt; d_cat ≤ 2.0 px</code> contributed ~0 to <code>TP_w</code> while adding <code>0.2 × 6,436 = 1,287.2</code> pure penalty to the DTI denominator. Removing those exact <code>6,436</code> dots left <code>37,654</code> binary dots and raised DTI from <code>0.2600</code> to <code>0.2778</code>.</li>
-  </ol>
-</section>
-
-<section class="two-col">
-  <div class="card">
-    <h2>Non-Identifiability Theorem (<code>TP_w != M_w</code>) vs Illustrative Sensitivity</h2>
-    <p>In the official max-cover DTI metric (<code>vendor/gems57/metric.py</code>), truth-side credit <code>TP_w = Σ_{g∈G} max_{p∈P} k(p,g)</code> and prediction-side matched credit <code>M_w = N − FP_w = Σ_{p∈P} max_{g∈G} k(p,g)</code> cannot be collapsed (<code>TP_w ≠ M_w</code> whenever one dot covers multiple adjacent 100 m fault pixels). Therefore:</p>
-    <ul>
-      <li><strong>Exact scalar inversion of <code>|G_private|</code> is non-identifiable (not verified evidence):</strong> Truth geometry changes kernel-conditioned ratios even at fixed <code>N</code> and <code>|G|</code>.</li>
-      <li><strong>Order-of-magnitude sensitivity model only:</strong> Under an idealized homogeneous strand density model (<code>r13-lattice-s5</code> user-reported <code>0.0904</code> at <code>206,895</code> dots; <code>D2.8 → B2</code> <code>0.2600 → 0.2778</code>), hidden fault support scales at <code>~10^4</code> pixels, showing why dead-collar <code>FP_w</code> removal moves DTI by <code>~+0.018</code> without changing recall.</li>
-    </ul>
-  </div>
-  <div class="card">
-    <h2>Mathematical Requirements to Beat <code>0.2778</code>, <code>0.3195</code> &amp; <code>0.4437</code></h2>
-    <ul>
-      <li><strong>To surpass <code>0.2778</code> at <code>37,654</code> zero-collar dots:</strong> Increase off-catalogue fault crest recall per emitted dot by recovering blind faults in the <strong>24.63% 1 m LiDAR gap</strong> (<code>1.27M px</code> where 1 m LiDAR is absent), transgressive piedmont-bajada flexures (<code>pjmf_bajada_break_10m</code>, <code>AUC = 0.7385</code>), and en-echelon relay ramps (<code>fold_vis_tip_lobe</code>, <code>AUC = 0.7925</code>).</li>
-      <li><strong>To reach the observed public high (<code>0.4437</code> on 2026-10-26):</strong> At fixed <code>37,654</code> dots, <code>0.2 · FP_w</code> bounds DTI unless recall is extreme. Reaching <code>0.44+</code> requires <em>both</em> higher multi-sensor crest recall AND adaptive marginal-gain stopping around <code>~20,000–25,000</code> ultra-pure crests.</li>
-    </ul>
-  </div>
+  <h2>GEMSDOE32 B2 and the reported 0.2778</h2>
+  <p><code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code> has a
+  <strong>USER/OWNER-REPORTED 0.2778</strong>; no file-specific organizer receipt is available here.
+  D2.8, B1 and B2 reduce the predictions from 44,090 to 40,199 to 37,654 dots.
+  Sparse max-cover and avoiding low-credit predictions are plausible explanations, not established causes:
+  hidden labels and individual false-positive contributions are unknown.</p>
+  <p>A genuinely unique file might beat that number, but no such validated winner was demonstrated.
+  Different holdouts do not establish a live score. The public leaderboard is a separate observation, not a receipt for this artifact.
+  <a href="../research/wbg2-why-02778.md">Read the corrected analysis and limitations.</a></p>
 </section>
 """
-    )
     (site_dir / "forensics-02778.html").write_text(
         _layout("PhD Forensics of 0.2778 & Path Higher", "forensics-02778.html", forensics_body)
     )
@@ -950,17 +913,17 @@ code { font-family: var(--mono); font-size: 0.84em; background: #edf2f4; padding
             "title": "Seamless 10m/1m Transgressive Piedmont-Flexure, Gallardo-Meju Cross-Gradient & Expected 300m Kernel-Credit Submodular Field",
             "layers": "12 seamless USGS 3DEP 10 m bands (`dem10_*`), 13 1 m LiDAR scarp bands, 19 competition bands (Band 6 fixed as radiometric TC), 8 GeoDAWN rad/mag bands, DOE GDR #1391 F2mDAB/springs/wells/vents, Census TIGER 2024 roads.",
             "transform": "Transgressive piedmont-bajada slope break (`pjmf_bajada_break_10m`, AUC=0.7385) + Lake Lahontan contour-obliquity + Gallardo-Meju gravity×magnetic cross-gradient + magnetite-destruction conduit + Dual-Specialist (`Full-81ch` + unstarved `Seamless-68ch`) × Dual-Target (`Crest` + `max(0, 1-d/3)` Kernel Regressor) + Two-Regime CELF (`d>=2.8`, `37,654` dots).",
-            "why": "Recovers scarps across the 1,272,604-px (24.63%) 1 m LiDAR gap, eroded piedmont monoclinal flexures, and concealed basin hydrothermal transfer faults while eliminating 300–800 m apron halos.",
+            "why": "Could detect scarps across reported LiDAR gaps and concealed structures; whether it does so remains unconfirmed.",
             "gain_cost": "Expected +0.045 to +0.070 vs B0 (Observed: +0.07204 SegDTI, +0.04313 g57DTI) · ~18 min CPU",
         },
         {
             "rank": 2,
             "id": "WBG-S2-H2 (Vierbein-Coulomb)",
-            "status": "EXECUTED · EXP-3 WINNER (+0.0146 g57 lift)",
+            "status": "EXECUTED · EXP-3 SELECTED (+0.0146 g57 lift)",
             "title": "Fold-Visible Elastic Crack-Tip & En-Echelon Relay-Ramp Stress-Transfer Corroboration",
             "layers": "Strictly fold-visible fault graph (`fold['visible']` during CV; `existing_faults.tif` at test time) + MKSF-1 physical backbone.",
             "transform": "PCA tangent tip orientation (`AUC=0.7925`) + 6-hash inter-component en-echelon relay bridge (`AUC=0.6613`) multiplying MKSF-1 odds ONLY where physical scarp/geophysical evidence (`p >= q_60`) co-occurs.",
-            "why": "Mapped faults terminate prematurely at horse-tail splays and step-over relay ramps across alluvial fans; physical gate prevents featureless tip spray.",
+            "why": "Concealed splays and relay ramps may extend mapped faults; the gate is intended to limit featureless tip spray, not proven to prevent it.",
             "gain_cost": "Expected +0.006 to +0.018 on component holdout (Observed: +0.01457 over EXP-1 on gems57-v2 across 4/4 folds) · ~2 min CPU",
         },
         {
@@ -1000,7 +963,7 @@ code { font-family: var(--mono); font-size: 0.84em; background: #edf2f4; padding
         f"<td>{html.escape(h['layers'])}</td>"
         f"<td>{html.escape(h['transform'])}</td>"
         f"<td>{html.escape(h['why'])}</td>"
-        f"<td>{html.escape(h['gain_cost'])}</td></tr>"
+        f"<td>{html.escape(h['gain_cost'].split(' · ')[-1])} (parallel estimate)</td></tr>"
         for h in hyp_specs
     )
     seg_e = exp["segment_holdout_v1"]
@@ -1009,12 +972,12 @@ code { font-family: var(--mono); font-size: 0.84em; background: #edf2f4; padding
         top_dl_banner
         + f"""
 <section>
-  <h2>Five Pre-Registered Untried Geological Hypotheses (Locked Before Implementation)</h2>
-  <p>Pre-registration SHA-256: <code>{exp['preregistration_sha256']}</code> (<a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/main/knowledge/02_preregistration_wbg_s2_hypotheses_2026-10-27.md">view full markdown specification</a>).</p>
+  <h2>Five parallel hypotheses (three arms run; two deferred)</h2>
+  <p>Results were reported by the parallel run and selected on the same splits; they have not been independently replayed here. Pre-registration SHA-256: <code>{exp['preregistration_sha256']}</code> (<a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/main/knowledge/02_preregistration_wbg_s2_hypotheses_2026-10-27.md">view full markdown specification</a>).</p>
   <div class="table-wrap">
     <table>
       <thead>
-        <tr><th>Rank &amp; ID</th><th>Hypothesis</th><th>Specific Layers</th><th>Physical Transform</th><th>Why Missing From Catalogue</th><th>Expected Gain &amp; Cost</th></tr>
+        <tr><th>Rank &amp; ID</th><th>Hypothesis</th><th>Specific Layers</th><th>Physical Transform</th><th>Why Missing From Catalogue</th><th>Approximate cost (parallel estimate)</th></tr>
       </thead>
       <tbody>{hyp_rows}</tbody>
     </table>
@@ -1022,7 +985,7 @@ code { font-family: var(--mono); font-size: 0.84em; background: #edf2f4; padding
 </section>
 
 <section>
-  <h2>Frozen 3-Experiment Holdout Results Across Both Evaluators</h2>
+  <h2>Parallel-reported holdout results (selection-limited)</h2>
   <div class="table-wrap">
     <table>
       <thead>
@@ -1043,20 +1006,20 @@ code { font-family: var(--mono); font-size: 0.84em; background: #edf2f4; padding
         <tr>
           <td><strong>EXP1_MKSF_Core</strong> (H1: MKSF-1)</td>
           <td><code>HOLDOUT-DTI {seg_e['EXP1_MKSF_Core']['dti']:.6f}</code><br>95% CI [{seg_e['EXP1_MKSF_Core']['ci95']['interval'][0]:.6f}, {seg_e['EXP1_MKSF_Core']['ci95']['interval'][1]:.6f}]</td>
-          <td><code>HOLDOUT-DTI {g57_e['EXP1_MKSF_Core']['dti']:.6f}</code><br>Δ vs B0 = <strong>+{g57_e['EXP1_vs_B0']['delta']:.6f}</strong></td>
-          <td>Massive <strong>+0.0720</strong> SegmentHoldout &amp; <strong>+0.0431</strong> gems57 lift from seamless 10m flexure + expected kernel-credit regression.</td>
+          <td><code>HOLDOUT-DTI {g57_e['EXP1_MKSF_Core']['dti']:.6f}</code><br>95% CI [{g57_e['EXP1_MKSF_Core']['ci95'][0]:.6f}, {g57_e['EXP1_MKSF_Core']['ci95'][1]:.6f}]</td>
+          <td>Parallel-reported differences vs B0; causal attribution and generalization are not established.</td>
         </tr>
         <tr>
           <td><strong>EXP2_MKSF_SGMCDualPop</strong> (H1 + H3)</td>
           <td><code>HOLDOUT-DTI {seg_e['EXP2_MKSF_SGMCDualPop']['dti']:.6f}</code><br>95% CI [{seg_e['EXP2_MKSF_SGMCDualPop']['ci95']['interval'][0]:.6f}, {seg_e['EXP2_MKSF_SGMCDualPop']['ci95']['interval'][1]:.6f}]</td>
-          <td><code>HOLDOUT-DTI {g57_e['EXP2_MKSF_SGMCDualPop']['dti']:.6f}</code><br>Δ vs B0 = <strong>+{g57_e['EXP2_vs_B0']['delta']:.6f}</strong></td>
-          <td>Honest negative ablation vs EXP-1 (<code>-0.0009</code> / <code>-0.0018</code>): inactive pre-Quaternary SGMC contacts slightly dilute active Holocene scarp precision.</td>
+          <td><code>HOLDOUT-DTI {g57_e['EXP2_MKSF_SGMCDualPop']['dti']:.6f}</code><br>95% CI [{g57_e['EXP2_MKSF_SGMCDualPop']['ci95'][0]:.6f}, {g57_e['EXP2_MKSF_SGMCDualPop']['ci95'][1]:.6f}]</td>
+          <td>Parallel-reported negative ablation vs EXP-1; its causal mechanism is unconfirmed.</td>
         </tr>
         <tr>
-          <td><strong>EXP3_MKSF_VierbeinCoulomb</strong> (H1 + H2 · <strong>SELECTED WINNER</strong>)</td>
+          <td><strong>EXP3_MKSF_VierbeinCoulomb</strong> (H1 + H2 · <strong>SELECTED ARM</strong>)</td>
           <td><strong><code>HOLDOUT-DTI {seg_e['EXP3_MKSF_VierbeinCoulomb']['dti']:.6f}</code></strong><br>95% CI [{seg_e['EXP3_MKSF_VierbeinCoulomb']['ci95']['interval'][0]:.6f}, {seg_e['EXP3_MKSF_VierbeinCoulomb']['ci95']['interval'][1]:.6f}]</td>
-          <td><strong><code>HOLDOUT-DTI {g57_e['EXP3_MKSF_VierbeinCoulomb']['dti']:.6f}</code></strong><br>Δ vs B0 = <strong>+{g57_e['EXP3_vs_B0']['delta']:.6f}</strong> (<strong>+0.0146</strong> over EXP-1!)</td>
-          <td>Selected winner across both evaluators; boosts odds on physically corroborated crack-tip &amp; relay-ramp bridges across 4/4 folds.</td>
+          <td><strong><code>HOLDOUT-DTI {g57_e['EXP3_MKSF_VierbeinCoulomb']['dti']:.6f}</code></strong><br>95% CI [{g57_e['EXP3_MKSF_VierbeinCoulomb']['ci95'][0]:.6f}, {g57_e['EXP3_MKSF_VierbeinCoulomb']['ci95'][1]:.6f}]</td>
+          <td>Selected on these reported splits; no independent replay or untouched confirmation is established.</td>
         </tr>
       </tbody>
     </table>
@@ -1069,40 +1032,50 @@ code { font-family: var(--mono); font-size: 0.84em; background: #edf2f4; padding
     )
 
     # 5. how-to-submit.html
-    submit_body = (
-        top_dl_banner
-        + f"""
+    submit_body = top_dl_banner + """
 <section class="card">
-  <h2>Exact Step-by-Step DrivenData Submission Workflow (Only If Authorized by Separate Selector)</h2>
-  <p><strong>DO NOT SUBMIT WITHOUT SEPARATE SELECTOR SIGN-OFF:</strong> Under <code>AGENTS.md</code>, literal one-way overlap against <code>GEMSDOE24</code>'s spacing-5 calibration lattice is <strong>99.5459% (&gt;70% — STOP)</strong>, so <code>verdict = "negative"</code> and <strong>no competition slot was spent</strong>. Do not upload negative research artifacts casually; DrivenData enforces a rolling limit of <strong>3 submissions per 7 days</strong> across the account. If a human selector explicitly authorizes promoting a future cleared or lattice-policy-resolved artifact after checking remaining slots at <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData Submissions ↗</a>, use the exact procedure below:</p>
-  <ol>
-    <li><strong>Download the Validated GeoTIFF (or One-TIFF ZIP):</strong><br>
-      Click <a href="{tif_rel}" download><code>{Path(rc['artifact']['tif_path']).name}</code></a> (<code>144,419</code> bytes, deflate-compressed single-band <code>float32</code>) or <a href="{zip_rel}" download><code>{Path(rc['artifact']['zip_path']).name}</code></a>.</li>
-    <li><strong>(Optional) Verify SHA-256 &amp; Automated 15-Check Validator Locally:</strong>
-      <div class="codebox">sha256sum {Path(rc['artifact']['tif_path']).name}<br># Expected: {rc['artifact']['tif_sha256']}<br><br>.venv/bin/python scripts/validate_submission.py docs/downloads/{Path(rc['artifact']['tif_path']).name}</div>
-    </li>
-    <li><strong>Open the Official DrivenData GEMS Submission Portal:</strong><br>
-      Navigate to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/</a> and click <strong>Submit</strong>.</li>
-    <li><strong>Upload the File &amp; Paste the ≤140-Character Submission Note:</strong>
-      <ul>
-        <li>Upload <code>{Path(rc['artifact']['tif_path']).name}</code> (or the <code>.zip</code> if preferred by your browser).</li>
-        <li>Paste exact submission note (<code>{rc['submission_note_length']}</code> chars):<br>
-          <code>{html.escape(rc['submission_note'])}</code></li>
-      </ul>
-    </li>
-    <li><strong>Record the Organizer Receipt:</strong><br>
-      Once scored on the portal, save the timestamped score screenshot/JSON receipt before labeling any live result <code>ORGANIZER-CONFIRMED</code>.</li>
-  </ol>
+  <h2>No submission workflow for this stopped artifact</h2>
+  <p><strong>Do not upload WBG-S2.</strong> The literal duplicate STOP is binding; it is not eligible for a selector.
+  Local format checks are not a portal acceptance receipt. A future distinct candidate would need the
+  unchanged complete gate before and after placement, a comparable holdout win, a valid filename/note,
+  and a separate selector decision before any competition slot is used.</p>
+  <p>See the <a href="../how-to-submit.html">general submission guide</a> and the
+  <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official task guidance</a>.
+  Account-specific availability and acceptance are not visible without authenticated access.</p>
 </section>
 """
-    )
     (site_dir / "how-to-submit.html").write_text(
         _layout("How to Submit to DrivenData", "how-to-submit.html", submit_body)
     )
 
 
+def assert_safe_to_publish(rc: dict[str, Any], safety: dict[str, Any]) -> None:
+    """Reject inconsistent decision records or changed negative artifact bytes."""
+    from audit_wbg_s2_safety import C1_SHA, EXPECTED, WITNESS_SHA
+
+    artifact = rc["artifact"]
+    tif = ROOT / artifact["tif_path"]
+    zip_path = ROOT / artifact["zip_path"]
+    witnesses = safety["witnesses"]
+    decision = rc["strict_governance_decision"]
+    if (artifact["tif_sha256"] != EXPECTED or hashlib.sha256(tif.read_bytes()).hexdigest() != EXPECTED
+            or safety["existing_tiff_sha256"] != EXPECTED or rc["verdict"] != "negative"
+            or decision["ok_to_submit"] is not False or decision["eligible_for_separate_selector"] is not False
+            or safety["ok_to_submit"] is not False or safety["eligible_for_separate_selector"] is not False
+            or len(witnesses) != 2 or [row["sha256"] for row in witnesses] != [WITNESS_SHA, C1_SHA]
+            or any(not math.isfinite(row["my_dots_within_3px_of_theirs"])
+                   or not .70 < row["my_dots_within_3px_of_theirs"] <= 1
+                   or row["duplicate_by_overlap"] is not True for row in witnesses)):
+        raise ValueError("WBG-S2 artifact or binding negative STOP is inconsistent")
+    with zipfile.ZipFile(zip_path) as archive:
+        if archive.namelist() != [tif.name] or hashlib.sha256(archive.read(tif.name)).hexdigest() != EXPECTED:
+            raise ValueError("WBG-S2 ZIP does not contain the exact stopped TIFF")
+
+
 def main() -> None:
     rc = json.loads((ROOT / "evidence" / "wbg_s2" / "run_card.json").read_text())
+    safety = json.loads((ROOT / "evidence" / "wbg_s2" / "safety_review_20261027.json").read_text())
+    assert_safe_to_publish(rc, safety)
     uq = json.loads((ROOT / "evidence" / "wbg_s2" / "uniqueness_audit.json").read_text())
     exp = json.loads((ROOT / "evidence" / "wbg_s2" / "experiments.json").read_text())
     canary = json.loads((ROOT / "evidence" / "wbg_s2" / "leakage_canary_81ch.json").read_text())

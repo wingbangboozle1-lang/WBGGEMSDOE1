@@ -1,6 +1,13 @@
 # Repository review — 2026-10-27
 
-> **Historical parallel review, superseded where it differs from the [current forensic audit](research/source-and-wbg2-review.md).** The 19-band owner mirror was subsequently restored and hash-verified (not independently authenticated to the organizer). A directly retrieved public leaderboard observation is dated 2026-10-27; it is not an artifact receipt. WBG-2's buffer is a four-step Manhattan diamond, not a complete 400 m Euclidean disk. The nine-champion comparison is a partial diagnostic; the current shared-gate result against the GEMSDOE24 lattice is 99.8972% and **SUBMIT: NO**. No new experiment or slot was used.
+> **Historical parallel review — superseded in part by the current shared-Euclidean safety audit.**
+> Its earlier nine-champion overlap figures used a different private distance diagnostic; use
+> [the WBG-2 executive audit](wbg2.html) and [current safety receipt](data/wbg2-safety.json)
+> instead. The existing final TIFF fails the literal rule (99.8972% overlap with the pinned
+> lattice), its prior was reconstructed only retrospectively, and 813 existing dots are
+> less than 400 m Euclidean from the catalogue because the historical buffer was Manhattan.
+> Owner-mirror inputs were restored later; organizer-origin authentication remains unavailable.
+> Historical forecasts are withdrawn, and no file is approved for submission.
 
 > Preserved parallel review from PR #16. Its historical model estimate and test count
 > are superseded by the [protocol correction](protocol-review-20261027.md): forecast

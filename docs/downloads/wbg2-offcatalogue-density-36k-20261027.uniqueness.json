@@ -1,38 +1,30 @@
 {
-  "evidence_class": "REGISTRY-MEASUREMENT",
-  "phase": "final dots, forensic recheck",
-  "surface_before_placement": "No qualifying pre-placement registry audit was found.",
-  "witnesses_checked": 2,
-  "scope": "Two SHA-verified witnesses; a failure is decisive, not a complete registry scan.",
-  "rho_limit_signed": 0.9,
-  "forward_overlap_limit": 0.7,
-  "rows": [
-    {
-      "submission": "GEMSDOE24 registered spacing-5 lattice",
-      "repo": "GEMSDOE24",
-      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
-      "their_positive_pixels": 206895,
-      "forward_overlap_within_3px": 0.9989722222222223,
-      "spearman_full_footprint": -0.0004912488123791969,
-      "identical_bytes": false,
-      "identical_decoded_predictions": false,
-      "duplicate_by_overlap": true,
-      "duplicate_by_rho": false
-    },
-    {
-      "submission": "WBG-C1 registered continuous research surface",
-      "repo": "WBGGEMSDOE1",
-      "sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
-      "their_positive_pixels": 5106385,
-      "forward_overlap_within_3px": 1.0,
-      "spearman_full_footprint": 0.013617241283546971,
-      "identical_bytes": false,
-      "identical_decoded_predictions": false,
-      "duplicate_by_overlap": true,
-      "duplicate_by_rho": false
-    }
-  ],
-  "lattice_immutable_source": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+  "status": "negative",
   "passes_literal_uniqueness": false,
-  "decision": "DUPLICATE - STOP under the stated literal >70% forward-overlap rule; no density or chance exemption."
+  "surface_witness": {
+    "site": "GEMSDOE24 lattice witness",
+    "source": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "their_dots": 206895,
+    "my_dots_within_3px_of_theirs": 0.9987678257910066,
+    "spearman_full_footprint": -9.918789545328662e-05,
+    "identical_bytes": false,
+    "identical_decoded_predictions": false,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": true
+  },
+  "final_dots_witness": {
+    "site": "GEMSDOE24 lattice witness",
+    "source": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "their_dots": 206895,
+    "my_dots_within_3px_of_theirs": 0.9989722222222223,
+    "spearman_full_footprint": -0.0004912488123791969,
+    "identical_bytes": false,
+    "identical_decoded_predictions": false,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": true
+  },
+  "scope": "One hash-pinned lattice plus one historical champion per focus site; not a complete registry, all submissions, later commits, or private rasters.",
+  "audit": "../../data/wbg2-safety.json"
 }

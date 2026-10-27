@@ -16,8 +16,9 @@
 }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); line-height: 1.55; }
-a { color: var(--teal-dark); text-decoration: underline; text-underline-offset: 2px; }
+a { color: var(--teal-dark); text-decoration: underline; text-underline-offset: 2px; overflow-wrap: anywhere; }
 a:hover { color: #042f2e; }
+code { overflow-wrap: anywhere; }
 .wrap { max-width: 1200px; margin: 0 auto; padding: 0 22px; }
 header.top { background: #0f292e; color: #f0fdfa; border-bottom: 3px solid var(--teal); }
 .nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 14px 0; gap: 14px; }

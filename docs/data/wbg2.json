@@ -1,91 +1,489 @@
 {
-  "schema": "wbg2-page-bundle-v2",
   "run_card": {
-    "schema": "wbg2-corrected-forensic-review-v2",
-    "reviewed_utc_date": "2026-10-27",
-    "hypothesis": "WBG-2: off-catalogue mapped-fault density prior",
-    "mechanism": "A Gaussian mapped-fault density prior drives scattered binary dots, with a four-step Manhattan catalogue exclusion. The rendered TIFF was generated in a previous session.",
-    "named_non_fault_mimic": "Range-front alluvial fans and basin margins can follow mapped-fault density without being faults.",
-    "lane": "No single-method paragraph was supplied; this stopped lane is not restarted.",
+    "schema": "wbg2-run-card-v2",
+    "review_date_utc": "2026-10-27",
+    "hypothesis": "WBG-2: off-catalogue fault-density-prior dot field",
+    "mechanism": "Gaussian KDE (1.5 km) of mapped-fault density supplied the prior. Four iterations of 4-connected dilation excluded catalogue-near cells by Manhattan distance (not a 400 m Euclidean disc); a 36,000-dot binary field was generated in zeros mode.",
+    "named_non_fault_mimic": "Basin-fill depocentres and range-front alluvial aprons concentrate next to mapped faults, so a density prior partly reproduces the sedimentary basin geometry rather than faulting. The prior is a spatial-distribution model, not a detection.",
+    "lane": "WBG-2 already stopped: no new method assigned; no retuning or dot placement",
+    "scientific_experiments_started_this_session": 0,
     "holdout": {
       "evidence_class": "HOLDOUT-DTI",
-      "value": null,
-      "ci95": null,
       "evaluator_version": null,
-      "withheld_positive_pixels": null,
-      "status": "No valid visible-only, buffered same-instrument result found for this artifact. Full-catalogue proxy DTI is not a holdout."
+      "withheld_positive_count": null,
+      "pooled_dti": null,
+      "confidence_interval_95": null,
+      "status": "NOT RUN - no reproducible fold-local terms or leakage canary for this exact file; proxy against the full catalogue is not a holdout"
     },
     "leakage_canary": {
-      "all_features_tested_alone": false,
-      "status": "Not established for the WBG-2 density prior on the required holdout."
+      "status": "NOT RUN; no clearance claimed",
+      "reason": "Prior uses the full catalogue for final generation and no archived visible-only canaries were found."
+    },
+    "score_estimate": {
+      "value": null,
+      "status": "unavailable",
+      "reason": "Retired extrapolated fit used non-independent user-reported values without file receipts or validated predictive intervals; not an estimate of unseen-fault performance."
     },
     "registry": {
       "evidence_class": "REGISTRY-MEASUREMENT",
-      "phase": "final dots, forensic recheck",
-      "surface_before_placement": "No qualifying pre-placement registry audit was found.",
-      "witnesses_checked": 2,
-      "scope": "Two SHA-verified witnesses; a failure is decisive, not a complete registry scan.",
-      "rho_limit_signed": 0.9,
-      "forward_overlap_limit": 0.7,
-      "rows": [
-        {
-          "submission": "GEMSDOE24 registered spacing-5 lattice",
-          "repo": "GEMSDOE24",
-          "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
-          "their_positive_pixels": 206895,
-          "forward_overlap_within_3px": 0.9989722222222223,
-          "spearman_full_footprint": -0.0004912488123791969,
-          "identical_bytes": false,
-          "identical_decoded_predictions": false,
-          "duplicate_by_overlap": true,
-          "duplicate_by_rho": false
-        },
-        {
-          "submission": "WBG-C1 registered continuous research surface",
-          "repo": "WBGGEMSDOE1",
-          "sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
-          "their_positive_pixels": 5106385,
-          "forward_overlap_within_3px": 1.0,
-          "spearman_full_footprint": 0.013617241283546971,
-          "identical_bytes": false,
-          "identical_decoded_predictions": false,
-          "duplicate_by_overlap": true,
-          "duplicate_by_rho": false
-        }
-      ],
-      "lattice_immutable_source": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
       "passes_literal_uniqueness": false,
-      "decision": "DUPLICATE - STOP under the stated literal >70% forward-overlap rule; no density or chance exemption."
-    },
-    "catalogue_exclusion_check": {
-      "evidence_class": "RASTER-MEASUREMENT",
-      "distance": "Euclidean pixels to nearest mapped-fault cell",
-      "minimum_px": 3.605551275463989,
-      "candidate_pixels_below_4px": 813,
-      "note": "Four iterations of a four-connected dilation exclude a Manhattan diamond, not the full 400 m Euclidean disk."
+      "surface_retrospective": {
+        "site": "GEMSDOE24 lattice witness",
+        "source": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+        "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+        "their_dots": 206895,
+        "my_dots_within_3px_of_theirs": 0.9987678257910066,
+        "spearman_full_footprint": -9.918789545328662e-05,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": true
+      },
+      "existing_final_dots": {
+        "site": "GEMSDOE24 lattice witness",
+        "source": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+        "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+        "their_dots": 206895,
+        "my_dots_within_3px_of_theirs": 0.9989722222222223,
+        "spearman_full_footprint": -0.0004912488123791969,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": true
+      },
+      "champions_checked": 9,
+      "scope": "One hash-pinned lattice plus one historical champion per focus site; not a complete registry, all submissions, later commits, or private rasters.",
+      "audit": "evidence/wbg2/safety_audit_20261027.json"
     },
     "raster_sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
-    "artifact": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
-    "validator_output": {
-      "evidence_class": "LOCAL-FORMAT-VALIDATION",
-      "all_checks_passed": true,
-      "checks": {
-        "single_band": true,
-        "dtype_float32": true,
-        "dimensions_3730x3292": true,
-        "crs_epsg_32611": true,
-        "transform_matches_sample_submission": true,
-        "no_nan_anywhere": true,
-        "no_inf_anywhere": true,
-        "no_sentinel_values": true,
-        "range_0_1_guaranteed": true,
-        "min_ge_0": true,
-        "max_le_1": true,
-        "in_footprint_all_finite": true,
-        "in_footprint_range_0_1": true,
-        "outside_footprint_zero": true,
-        "zero_dots_on_mapped_catalogue": true
+    "validator": {
+      "tif": {
+        "all_checks_passed": true,
+        "report": {
+          "file": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+          "bytes": 215799,
+          "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+          "meta": {
+            "crs": "EPSG:32611",
+            "shape": [
+              3730,
+              3292
+            ],
+            "dtype": "float32",
+            "count": 1,
+            "nodata": null,
+            "transform": [
+              100.0,
+              0.0,
+              243350.0,
+              0.0,
+              -100.0,
+              4508550.0
+            ],
+            "profile_compress": "deflate"
+          },
+          "band_description": [
+            null
+          ],
+          "n_finite": 12279160,
+          "n_nan": 0,
+          "n_infinite": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.0029317967128008604,
+          "emitted_positive_pixels": 36000,
+          "checks": {
+            "single_band": true,
+            "dtype_float32": true,
+            "dimensions_3730x3292": true,
+            "crs_epsg_32611": true,
+            "transform_matches_sample_submission": true,
+            "no_nan_anywhere": true,
+            "no_inf_anywhere": true,
+            "no_sentinel_values": true,
+            "range_0_1_guaranteed": true,
+            "min_ge_0": true,
+            "max_le_1": true,
+            "in_footprint_all_finite": true,
+            "in_footprint_range_0_1": true,
+            "outside_footprint_zero": true,
+            "zero_dots_on_mapped_catalogue": true
+          },
+          "all_checks_passed": true,
+          "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+          "on_catalogue_positive_pixels": 0,
+          "in_footprint_positive_pixels": 36000,
+          "footprint_fraction": 0.006966789507937592,
+          "template_report": {
+            "path": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+            "bytes": 215799,
+            "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+            "bands": 1,
+            "dtype": "float32",
+            "crs": "EPSG:32611",
+            "width": 3292,
+            "height": 3730,
+            "bounds": [
+              243350.0,
+              4135550.0,
+              572550.0,
+              4508550.0
+            ],
+            "ref_bounds": [
+              243350.0,
+              4135550.0,
+              572550.0,
+              4508550.0
+            ],
+            "transform": [
+              100.0,
+              0.0,
+              243350.0,
+              0.0,
+              -100.0,
+              4508550.0
+            ],
+            "nodata": null,
+            "blocksize": [
+              2,
+              3292
+            ],
+            "fixture_grid": false,
+            "has_validity_mask": false,
+            "nan_pixels": 0,
+            "infinity_pixels": 0,
+            "n_nan": 0,
+            "min": 0.0,
+            "max": 1.0,
+            "mean": 0.0029317967128008604,
+            "n_nonzero": 36000,
+            "mass": 36000.0,
+            "mass_outside_footprint": 0,
+            "problems": [],
+            "ok": true,
+            "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+          },
+          "mirrored_reference_available": true,
+          "catalogue_reference_available": true,
+          "independent_organizer_origin_authenticated": false,
+          "run_card_matches_exact_tiff": true,
+          "run_card_path": "evidence/wbg2/run_card.json",
+          "promotion_verdict": "negative",
+          "ok_to_submit": false,
+          "known_negative_registry_overlap": 0.9989722222222223,
+          "warning": "FORMAT PASS is not uniqueness, scientific efficacy, organizer acceptance or slot approval."
+        }
       },
+      "zip": {
+        "all_checks_passed": true,
+        "single_member_identical_to_tif": true,
+        "report": {
+          "file": "wbg2-offcatalogue-density-36k-20261027.zip::wbg2-offcatalogue-density-36k-20261027.tif",
+          "bytes": 215799,
+          "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+          "meta": {
+            "crs": "EPSG:32611",
+            "shape": [
+              3730,
+              3292
+            ],
+            "dtype": "float32",
+            "count": 1,
+            "nodata": null,
+            "transform": [
+              100.0,
+              0.0,
+              243350.0,
+              0.0,
+              -100.0,
+              4508550.0
+            ],
+            "profile_compress": "deflate"
+          },
+          "band_description": [
+            null
+          ],
+          "n_finite": 12279160,
+          "n_nan": 0,
+          "n_infinite": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.0029317967128008604,
+          "emitted_positive_pixels": 36000,
+          "checks": {
+            "single_band": true,
+            "dtype_float32": true,
+            "dimensions_3730x3292": true,
+            "crs_epsg_32611": true,
+            "transform_matches_sample_submission": true,
+            "no_nan_anywhere": true,
+            "no_inf_anywhere": true,
+            "no_sentinel_values": true,
+            "range_0_1_guaranteed": true,
+            "min_ge_0": true,
+            "max_le_1": true,
+            "in_footprint_all_finite": true,
+            "in_footprint_range_0_1": true,
+            "outside_footprint_zero": true,
+            "zero_dots_on_mapped_catalogue": true
+          },
+          "all_checks_passed": true,
+          "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+          "on_catalogue_positive_pixels": 0,
+          "in_footprint_positive_pixels": 36000,
+          "footprint_fraction": 0.006966789507937592,
+          "template_report": {
+            "path": "<temporary extracted TIFF member>",
+            "bytes": 215799,
+            "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+            "bands": 1,
+            "dtype": "float32",
+            "crs": "EPSG:32611",
+            "width": 3292,
+            "height": 3730,
+            "bounds": [
+              243350.0,
+              4135550.0,
+              572550.0,
+              4508550.0
+            ],
+            "ref_bounds": [
+              243350.0,
+              4135550.0,
+              572550.0,
+              4508550.0
+            ],
+            "transform": [
+              100.0,
+              0.0,
+              243350.0,
+              0.0,
+              -100.0,
+              4508550.0
+            ],
+            "nodata": null,
+            "blocksize": [
+              2,
+              3292
+            ],
+            "fixture_grid": false,
+            "has_validity_mask": false,
+            "nan_pixels": 0,
+            "infinity_pixels": 0,
+            "n_nan": 0,
+            "min": 0.0,
+            "max": 1.0,
+            "mean": 0.0029317967128008604,
+            "n_nonzero": 36000,
+            "mass": 36000.0,
+            "mass_outside_footprint": 0,
+            "problems": [],
+            "ok": true,
+            "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+          },
+          "mirrored_reference_available": true,
+          "catalogue_reference_available": true,
+          "independent_organizer_origin_authenticated": false,
+          "zip_sha256": "b4074f093c43ebb41a2b550b5558cf4c5a38c5f1b0c7b69393575ae12e8005b4",
+          "run_card_matches_exact_tiff": true,
+          "run_card_path": "evidence/wbg2/run_card.json",
+          "promotion_verdict": "negative",
+          "ok_to_submit": false,
+          "known_negative_registry_overlap": 0.9989722222222223,
+          "warning": "FORMAT PASS is not uniqueness, scientific efficacy, organizer acceptance or slot approval."
+        }
+      }
+    },
+    "submission_name": "wbg2-offcatalogue-density-36k-20261027",
+    "submission_note": "WBG-2 density prior; duplicate under literal registry gate; research only, DO NOT SUBMIT.",
+    "note_length": 89,
+    "artifacts": {
+      "tif": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+      "zip": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip"
+    },
+    "verdict": "negative",
+    "decision": {
+      "verdict": "negative",
+      "ok_to_download": true,
+      "ok_to_submit": false,
+      "eligible_for_separate_selector": false,
+      "approved_for_weekly_slot": false,
+      "submission_slots_used": 0,
+      "reason": "Literal registry overlap stop, no valid holdout and no selector approval; a local format pass is not permission to upload."
+    },
+    "provenance_warning": "Input bytes are hash-pinned public owner mirrors, not independently authenticated organizer downloads. Historical WBG-2 raw records are superseded.",
+    "catalogue_buffer_diagnostic": {
+      "historical_mask": "four 4-connected dilation steps; Manhattan distance <=4 pixels",
+      "pixel_size_m": 100,
+      "min_euclidean_distance_px": 3.605551275463989,
+      "min_euclidean_distance_m": 360.5551275463989,
+      "dots_less_than_400m_euclidean": 813,
+      "dots_at_or_within_300m_euclidean": 0,
+      "dots_inside_historical_manhattan_mask": 0,
+      "interpretation": "The prior claim that all dots are at least 400 m Euclidean from the catalogue was incorrect."
+    }
+  },
+  "safety_audit": {
+    "schema": "wbg2-safety-audit-v1",
+    "review_date_utc": "2026-10-27",
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "scientific_experiments_started": 0,
+    "existing_tiff_sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+    "no_new_dots_placed": true,
+    "surface_phase": "Retrospective deterministic reconstruction, not a contemporaneous pre-placement check.",
+    "surface_witness": {
+      "site": "GEMSDOE24 lattice witness",
+      "source": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "their_dots": 206895,
+      "my_dots_within_3px_of_theirs": 0.9987678257910066,
+      "spearman_full_footprint": -9.918789545328662e-05,
+      "identical_bytes": false,
+      "identical_decoded_predictions": false,
+      "duplicate_by_rho": false,
+      "duplicate_by_overlap": true
+    },
+    "already_placed_final_dots_witness": {
+      "site": "GEMSDOE24 lattice witness",
+      "source": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "their_dots": 206895,
+      "my_dots_within_3px_of_theirs": 0.9989722222222223,
+      "spearman_full_footprint": -0.0004912488123791969,
+      "identical_bytes": false,
+      "identical_decoded_predictions": false,
+      "duplicate_by_rho": false,
+      "duplicate_by_overlap": true
+    },
+    "catalogue_buffer_diagnostic": {
+      "historical_mask": "four 4-connected dilation steps; Manhattan distance <=4 pixels",
+      "pixel_size_m": 100,
+      "min_euclidean_distance_px": 3.605551275463989,
+      "min_euclidean_distance_m": 360.5551275463989,
+      "dots_less_than_400m_euclidean": 813,
+      "dots_at_or_within_300m_euclidean": 0,
+      "dots_inside_historical_manhattan_mask": 0,
+      "interpretation": "The prior claim that all dots are at least 400 m Euclidean from the catalogue was incorrect."
+    },
+    "nine_champion_diagnostics": [
+      {
+        "site": "GEMSDOE32",
+        "source": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "their_dots": 37654,
+        "my_dots_within_3px_of_theirs": 0.17705555555555555,
+        "spearman_full_footprint": 0.0016871007986990181,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": false
+      },
+      {
+        "site": "GEMSDOE36",
+        "source": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/05979971df4775aadad34ae6749b0a7ac56d7832/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+        "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+        "their_dots": 38854,
+        "my_dots_within_3px_of_theirs": 0.1816111111111111,
+        "spearman_full_footprint": 0.0017860039042889918,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": false
+      },
+      {
+        "site": "GEMSDOE28",
+        "source": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/2c839d10f57ec9b074829e93c84bc39935f52896/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+        "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+        "their_dots": 37660,
+        "my_dots_within_3px_of_theirs": 0.17741666666666667,
+        "spearman_full_footprint": 0.0007558003294129468,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": false
+      },
+      {
+        "site": "GEMSDOE31",
+        "source": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/776bf4668a8c10631908c9bba9443a8f11ce5036/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+        "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+        "their_dots": 40199,
+        "my_dots_within_3px_of_theirs": 0.17938888888888888,
+        "spearman_full_footprint": 0.0011636844154296968,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": false
+      },
+      {
+        "site": "GEMSDOE33",
+        "source": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/1d99d73fe14d9a87126ffca2db52c69336d6099b/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+        "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+        "their_dots": 41865,
+        "my_dots_within_3px_of_theirs": 0.18155555555555555,
+        "spearman_full_footprint": 0.0006835133122621634,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": false
+      },
+      {
+        "site": "GEMSDOE25",
+        "source": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/af2b6f2543e5422a7e917638b70e038e6fd91cad/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+        "their_dots": 44090,
+        "my_dots_within_3px_of_theirs": 0.17966666666666667,
+        "spearman_full_footprint": 0.00042584478609290733,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": false
+      },
+      {
+        "site": "GEMSDOE30",
+        "source": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/9c0d637c0171407196b61b780444bc772ce75438/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+        "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+        "their_dots": 44090,
+        "my_dots_within_3px_of_theirs": 0.17966666666666667,
+        "spearman_full_footprint": 0.00042584478609290733,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": false
+      },
+      {
+        "site": "GEMSDOE24",
+        "source": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+        "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+        "their_dots": 60069,
+        "my_dots_within_3px_of_theirs": 0.18911111111111112,
+        "spearman_full_footprint": 3.2817827382632724e-05,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": false
+      },
+      {
+        "site": "GEMSDOE27",
+        "source": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/bef7ae8e8f63b69d299c9214c75988c8f5055f9c/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+        "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+        "their_dots": 61328,
+        "my_dots_within_3px_of_theirs": 0.20047222222222222,
+        "spearman_full_footprint": 0.0002952160408371382,
+        "identical_bytes": false,
+        "identical_decoded_predictions": false,
+        "duplicate_by_rho": false,
+        "duplicate_by_overlap": false
+      }
+    ],
+    "scope": "One hash-pinned lattice plus one historical champion per focus site; not a complete registry, all submissions, later commits, or private rasters.",
+    "metric": "shared gems57.uniqueness, positive support, Euclidean distance <=3 pixels; signed Spearman over footprint",
+    "literal_rule": "STOP when signed rho > 0.90 OR forward overlap > 0.70, without enrichment/density exemptions",
+    "passed_literal_gate": false,
+    "verdict": "negative",
+    "ok_to_submit": false,
+    "local_format_passed": true,
+    "local_format": {
+      "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
       "meta": {
         "crs": "EPSG:32611",
         "shape": [
@@ -109,24 +507,148 @@
       "n_infinite": 0,
       "min": 0.0,
       "max": 1.0,
-      "positive_pixels": 36000,
-      "reference_origin_authenticated": false,
-      "zip_exact_single_identical_tiff": true,
-      "zip_sha256": "b4074f093c43ebb41a2b550b5558cf4c5a38c5f1b0c7b69393575ae12e8005b4",
-      "limitation": "A local pass is not organizer acceptance. The official text requests null/NaN beyond bounds; this all-finite exterior is a conservative local response to a reported range rejection."
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      }
     },
-    "submission_name": "wbg2-offcatalogue-density-36k-20261027",
-    "submission_note": "WBG-2 density-prior research; literal registry overlap failed. DO NOT SUBMIT.",
-    "leaderboard_estimate": null,
-    "organizer_confirmed_score": null,
-    "estimate_reason": "No credible estimate. The retired in-sample regression used unconfirmed values, duplicate entries, correlated predictors and extrapolation; its residual interval is not a 95% prediction interval.",
-    "artifact_role": "Existing research artifact only; not an approved submission.",
-    "verdict": "negative",
-    "ok_to_download": true,
-    "ok_to_submit": false,
-    "new_experiments": 0,
-    "new_rasters_generated": 0,
-    "submission_slots_used": 0,
-    "supersedes": "research/history/wbg2_20261027/run_card_SUPERSEDED.json"
-  }
+    "zip_single_member_identical": true,
+    "format_caveat": "Local mirrored-grid check and zero-exterior policy only, not organizer acceptance or proof of official data origin.",
+    "slots_used": 0
+  },
+  "nine_champion_diagnostics": {
+    "schema": "wbg2-nine-champion-diagnostic-v2",
+    "generated_utc": "2026-10-27",
+    "ours": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+    "n_audited": 9,
+    "n_sites": 9,
+    "scope": "One hash-pinned historical champion per focus site; diagnostic only, not all files on each site or a complete registry.",
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "metric": "shared gems57.uniqueness, positive support, Euclidean distance <=3 pixels; signed Spearman over footprint",
+    "overall_verdict": "negative: lattice witness exceeds 70%; comparison to nine champions cannot clear all-registry gate",
+    "rows": [
+      {
+        "site": "GEMSDOE32",
+        "artifact": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "immutable_file_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "user_reported_historical_value": 0.2778,
+        "value_evidence_class": "USER-REPORTED; NOT ORGANIZER-CONFIRMED",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "forward_3px_overlap": 0.17705555555555555,
+        "spearman_full_footprint": 0.0016871007986990181,
+        "same_decoded_predictions": false,
+        "duplicate_by_overlap": false
+      },
+      {
+        "site": "GEMSDOE36",
+        "artifact": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+        "immutable_file_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/05979971df4775aadad34ae6749b0a7ac56d7832/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+        "user_reported_historical_value": 0.275,
+        "value_evidence_class": "USER-REPORTED; NOT ORGANIZER-CONFIRMED",
+        "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+        "forward_3px_overlap": 0.1816111111111111,
+        "spearman_full_footprint": 0.0017860039042889918,
+        "same_decoded_predictions": false,
+        "duplicate_by_overlap": false
+      },
+      {
+        "site": "GEMSDOE28",
+        "artifact": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+        "immutable_file_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/2c839d10f57ec9b074829e93c84bc39935f52896/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+        "user_reported_historical_value": 0.271,
+        "value_evidence_class": "USER-REPORTED; NOT ORGANIZER-CONFIRMED",
+        "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+        "forward_3px_overlap": 0.17741666666666667,
+        "spearman_full_footprint": 0.0007558003294129468,
+        "same_decoded_predictions": false,
+        "duplicate_by_overlap": false
+      },
+      {
+        "site": "GEMSDOE31",
+        "artifact": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+        "immutable_file_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/776bf4668a8c10631908c9bba9443a8f11ce5036/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+        "user_reported_historical_value": 0.2708,
+        "value_evidence_class": "USER-REPORTED; NOT ORGANIZER-CONFIRMED",
+        "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+        "forward_3px_overlap": 0.17938888888888888,
+        "spearman_full_footprint": 0.0011636844154296968,
+        "same_decoded_predictions": false,
+        "duplicate_by_overlap": false
+      },
+      {
+        "site": "GEMSDOE33",
+        "artifact": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+        "immutable_file_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/1d99d73fe14d9a87126ffca2db52c69336d6099b/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+        "user_reported_historical_value": 0.2632,
+        "value_evidence_class": "USER-REPORTED; NOT ORGANIZER-CONFIRMED",
+        "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+        "forward_3px_overlap": 0.18155555555555555,
+        "spearman_full_footprint": 0.0006835133122621634,
+        "same_decoded_predictions": false,
+        "duplicate_by_overlap": false
+      },
+      {
+        "site": "GEMSDOE25",
+        "artifact": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "immutable_file_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/af2b6f2543e5422a7e917638b70e038e6fd91cad/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "user_reported_historical_value": 0.26,
+        "value_evidence_class": "USER-REPORTED; NOT ORGANIZER-CONFIRMED",
+        "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+        "forward_3px_overlap": 0.17966666666666667,
+        "spearman_full_footprint": 0.00042584478609290733,
+        "same_decoded_predictions": false,
+        "duplicate_by_overlap": false
+      },
+      {
+        "site": "GEMSDOE30",
+        "artifact": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+        "immutable_file_url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/9c0d637c0171407196b61b780444bc772ce75438/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+        "user_reported_historical_value": 0.26,
+        "value_evidence_class": "USER-REPORTED; NOT ORGANIZER-CONFIRMED",
+        "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+        "forward_3px_overlap": 0.17966666666666667,
+        "spearman_full_footprint": 0.00042584478609290733,
+        "same_decoded_predictions": false,
+        "duplicate_by_overlap": false
+      },
+      {
+        "site": "GEMSDOE24",
+        "artifact": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+        "immutable_file_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+        "user_reported_historical_value": 0.2477,
+        "value_evidence_class": "USER-REPORTED; NOT ORGANIZER-CONFIRMED",
+        "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+        "forward_3px_overlap": 0.18911111111111112,
+        "spearman_full_footprint": 3.2817827382632724e-05,
+        "same_decoded_predictions": false,
+        "duplicate_by_overlap": false
+      },
+      {
+        "site": "GEMSDOE27",
+        "artifact": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+        "immutable_file_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/bef7ae8e8f63b69d299c9214c75988c8f5055f9c/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+        "user_reported_historical_value": 0.2449,
+        "value_evidence_class": "USER-REPORTED; NOT ORGANIZER-CONFIRMED",
+        "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+        "forward_3px_overlap": 0.20047222222222222,
+        "spearman_full_footprint": 0.0002952160408371382,
+        "same_decoded_predictions": false,
+        "duplicate_by_overlap": false
+      }
+    ]
+  },
+  "warning": "Current decision supersedes raw historical approvals; no forecast or upload authorization."
 }

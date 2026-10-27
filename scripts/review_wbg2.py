@@ -5,9 +5,10 @@ This is a forensic recheck of existing bytes, NOT an experiment, model run,
 placement, selector, upload or authorization. The GEMSDOE24 lattice is an
 immutable, hash-pinned audit witness; only the cache copy is downloaded.
 
-    python scripts/review_wbg2.py --write   # refresh the recorded audit
+    python scripts/review_wbg2.py --write   # refresh this independent parallel audit
     python scripts/review_wbg2.py --check   # remeasure, fail on any drift
 
+The audit writes only its own parallel record, never the canonical run card.
 The GitHub API is used solely when the ignored witness cache is absent. No
 credentials are requested; an existing GITHUB_TOKEN may increase rate limits.
 """
@@ -30,6 +31,7 @@ import rasterio
 from scipy import ndimage
 from gems57 import uniqueness
 from validate_submission import check_tiff
+from audit_wbg2_safety import open_pinned_github
 
 TIF = ROOT / "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif"
 ZIP = TIF.with_suffix(".zip")
@@ -37,7 +39,7 @@ TEMPLATE = ROOT / "data/bridge/sample_submission.tif"
 LABELS = ROOT / "data/bridge/labels.tif"
 LATTICE = ROOT / ".cache/wbg2_review/focus24-lattice.tif"
 C1 = ROOT / "docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif"
-CARD = ROOT / "evidence/wbg2/run_card.json"
+CARD = ROOT / "evidence/wbg2/parallel_forensic_review_20261027.json"
 MIRROR = ROOT / "docs/data/wbg2-review.json"
 TIF_SHA = "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3"
 LATTICE_SHA = "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2"
@@ -59,9 +61,10 @@ def restore_witness() -> None:
         return
     url = f"https://api.github.com/repos/buffedlizard55-lab/GEMSDOE24/git/blobs/{LATTICE_BLOB}"
     headers = {"Accept": "application/vnd.github+json", "User-Agent": "WBGGEMSDOE1-audit"}
-    if os.environ.get("GITHUB_TOKEN"):
-        headers["Authorization"] = "Bearer " + os.environ["GITHUB_TOKEN"]
-    with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=45) as response:
+    token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+    if token:
+        headers["Authorization"] = "Bearer " + token
+    with open_pinned_github(urllib.request.Request(url, headers=headers), timeout=45) as response:
         payload = json.load(response)
     if payload.get("sha") != LATTICE_BLOB or payload.get("encoding") != "base64":
         raise ValueError("unexpected GitHub lattice blob response")
@@ -200,7 +203,7 @@ def main() -> int:
         # approval fields while allowing stale or contradictory details through.
         stored = json.loads(CARD.read_text())
         if MIRROR.read_bytes() != CARD.read_bytes():
-            raise ValueError("published WBG-2 review differs from canonical card")
+            raise ValueError("published WBG-2 review differs from the parallel forensic record")
         compare_documents(stored, result)
     print(json.dumps({"format_valid": result["validator_output"]["all_checks_passed"],
                       "lattice_overlap": result["registry"]["rows"][0]["forward_overlap_within_3px"],

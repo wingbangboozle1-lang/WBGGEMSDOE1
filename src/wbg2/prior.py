@@ -1,9 +1,13 @@
-"""Historical WBG-2 mathematical primitives, not an authorized lane runner.
+"""Retained WBG-2 primitives for retrospective audit only.
 
-WBG-2 failed the literal registry overlap gate. Do not use these primitives to
-regenerate its placement or tune around registry entries. The catalogue mirror
-is hash-pinned but not independently authenticated to the organizer.
-The previous synthetic experiments do not establish a valid WBG-2 holdout.
+The WBG-2 lane is stopped. These functions describe the already-generated
+artifact and do not grant permission to place or retune dots. Historic claims
+of a validated holdout and a forecast were withdrawn: no reproducible
+visible-only holdout or file-specific organizer receipt was found.
+
+The buffer uses repeated four-connected dilation (Manhattan distance), not
+Chebyshev distance or a Euclidean disc. See the safety audit for measured
+Euclidean distances of the existing dots to the catalogue.
 """
 
 from __future__ import annotations
@@ -13,15 +17,14 @@ from scipy import ndimage as ndi
 
 #: Gaussian bandwidth for the catalogue-density prior, in pixels (100 m each).
 KDE_SIGMA_PX = 15.0
-#: Cells closer than this to a mapped fault are excluded outright.
+#: Four-connected Manhattan steps from a mapped catalogue cell.
 CATALOGUE_BUFFER_PX = 4
-#: Historical budget, below (not inside) the cited calibration range.
-#: The corresponding regression is not a valid leaderboard forecast.
+#: Historical budget; retained for reproducing the recorded prior, not for a new run.
 DEFAULT_BUDGET = 36000
 
 
 def catalogue_buffer(mask: np.ndarray, radius_px: int = CATALOGUE_BUFFER_PX) -> np.ndarray:
-    """Cells in a Manhattan (four-connected) diamond, not a Euclidean disk."""
+    """Cells within ``radius_px`` four-connected steps (Manhattan distance)."""
     if radius_px <= 0:
         return np.zeros_like(mask, dtype=bool)
     return ndi.binary_dilation(

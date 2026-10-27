@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
-"""Blocked historical entry point: WBG-2 failed the literal registry gate.
+"""Retired WBG-2 generator. The lane stopped on the literal registry gate.
 
-This command cannot regenerate, overwrite, promote or authorize the frozen
-artifact. For a reproducible forensic recheck run `python scripts/review_wbg2.py
---check`. The superseded code is preserved as non-executable audit text under
-`research/history/wbg2_20261027/`; it is not a supported alternative pipeline.
+The old builder placed dots before checking novelty, exempted dense references,
+and issued unsupported approvals.  It must not run again, overwrite the TIFF,
+create a new raster, or consume a slot. The original output remains available as
+an explicitly negative research artifact; see ``scripts/audit_wbg2_safety.py``.
 """
 import sys
 
 
 def main() -> int:
-    print("STOP: WBG-2 is a negative, duplicate-gate research result; no placement or submission is authorized.", file=sys.stderr)
+    print('STOP: WBG-2 failed the literal registry gate. No TIFF was generated; DO NOT SUBMIT.', file=sys.stderr)
+    print('Audit only: python scripts/audit_wbg2_safety.py --fetch', file=sys.stderr)
     return 2
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     raise SystemExit(main())

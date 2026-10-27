@@ -1,6 +1,8 @@
 # WBG GEMS — evidence-first fault mapping
 
-## SUBMIT THIS FILE: [wbg2-offcatalogue-density-36k-20261027.tif](docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif)
+## DOWNLOAD FOR AUDIT — NOT CLEARED TO SUBMIT: [wbg2-offcatalogue-density-36k-20261027.tif](docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif)
+
+**Status correction:** local format validity and a nine-site uniqueness comparison do not establish full-registry clearance or a same-evaluator holdout win. Do not upload under the current protocol. See [repository review](docs/repo-review-20261027.md).
 
 **[Executive summary + one-click download](docs/wbg2.html)** · [ZIP](docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip) ·
 [markdown summary](docs/wbg2-executive-summary.md) · [run card](evidence/wbg2/run_card.json) ·
@@ -15,10 +17,7 @@
 | sha256 | `f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3` |
 | Slots used | 0 |
 
-> **Honest reading.** WBG-2 is unique and format-valid, so it is safe to upload. Its estimate is only
-> **+0.0046** above the best focus-site artifact (0.2778), which is *within model error*:
-> it ties that artifact rather than beating it. The route to the 0.39–0.45 leaderboard band is the
-> login-gated official `training_features.tif`; see [the executive summary](docs/wbg2.html).
+> **Honest reading.** WBG-2 has a local format pass and was compared with the nine focus-site artifacts, but that is not complete current registry clearance or an efficacy holdout. Its estimate is only **+0.0046** above the unverified owner-reported 0.2778 and does not establish a win. **Download for audit; not cleared to upload under the current protocol.** See [the repository review](docs/repo-review-20261027.md) and [executive summary](docs/wbg2.html).
 
 ## Older file — DOWNLOAD: YES, for research. SUBMIT: **NO**.
 

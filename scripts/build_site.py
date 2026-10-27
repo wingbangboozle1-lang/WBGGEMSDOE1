@@ -145,7 +145,7 @@ def feed_strip(feed):
 
 
 def wbg2_banner():
-    """Prominent pointer to the current, unique, submittable WBG-2 file."""
+    """Prominent audit download; fail closed until global gates and holdout win exist."""
     try:
         card = load("evidence/wbg2/run_card.json")
     except Exception:
@@ -153,9 +153,10 @@ def wbg2_banner():
     tif = Path(card["artifacts"]["tif"]).name
     est = card["score_estimate"]["value"]
     lo, hi = card["score_estimate"]["ci95"]
-    ok = card["decision"]["ok_to_submit"]
-    tag = pill("Submit: YES", "ok") if ok else pill("Submit: NO", "no")
-    return f'''<div class="alert" role="note" style="border-color:#bcd6c6;background:#f1f6ef;color:#24564a"><p><strong>Current submittable file: WBG-2.</strong> A newly generated, format-valid, <strong>unique</strong> GeoTIFF — estimated score <strong>{est:.4f}</strong> (95% model interval {lo:.4f}–{hi:.4f}, not organizer-confirmed). It is not a copy of any of the nine focus sites. {tag} &nbsp; <a href="wbg2.html">Executive summary and download →</a> &nbsp;·&nbsp; <a href="downloads/{tif}" download>Direct TIFF download ↓</a></p></div>'''
+    # A local nine-site check is not the complete registry/literal-dot audit required by
+    # PROMPT.md. The estimator is not a same-evaluator holdout result. Fail closed.
+    tag = pill("Submit: NO", "no")
+    return f'''<div class="alert" role="alert" style="border-color:#e2b9b5;background:#fbefed;color:#783c39"><p><strong>Download for audit: WBG-2. NOT CLEARED TO SUBMIT.</strong> Format-valid GeoTIFF; model estimate <strong>{est:.4f}</strong> (95% calibration interval {lo:.4f}–{hi:.4f}, not organizer-confirmed). Nine-site comparison is not complete registry clearance and no same-evaluator holdout win is established. {tag} &nbsp; <a href="wbg2.html">Executive summary and download →</a> &nbsp;·&nbsp; <a href="repo-review-20261027.md">Review and gates →</a> &nbsp;·&nbsp; <a href="downloads/{tif}" download>Direct TIFF download ↓</a></p></div>'''
 
 
 def home(card, receipt, audit, feed):

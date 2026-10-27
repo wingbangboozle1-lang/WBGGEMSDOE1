@@ -145,17 +145,8 @@ def feed_strip(feed):
 
 
 def wbg2_banner():
-    """Prominent pointer to the current, unique, submittable WBG-2 file."""
-    try:
-        card = load("evidence/wbg2/run_card.json")
-    except Exception:
-        return ""
-    tif = Path(card["artifacts"]["tif"]).name
-    est = card["score_estimate"]["value"]
-    lo, hi = card["score_estimate"]["ci95"]
-    ok = card["decision"]["ok_to_submit"]
-    tag = pill("Submit: YES", "ok") if ok else pill("Submit: NO", "no")
-    return f'''<div class="alert" role="note" style="border-color:#bcd6c6;background:#f1f6ef;color:#24564a"><p><strong>Current submittable file: WBG-2.</strong> A newly generated, format-valid, <strong>unique</strong> GeoTIFF — estimated score <strong>{est:.4f}</strong> (95% model interval {lo:.4f}–{hi:.4f}, not organizer-confirmed). It is not a copy of any of the nine focus sites. {tag} &nbsp; <a href="wbg2.html">Executive summary and download →</a> &nbsp;·&nbsp; <a href="downloads/{tif}" download>Direct TIFF download ↓</a></p></div>'''
+    """Never advertise a stopped candidate as submission-ready."""
+    return '<div class="alert" role="note"><p><strong>WBG-2 approval revoked: DO NOT SUBMIT.</strong> Literal overlap STOP; no qualifying holdout or reliable leaderboard estimate. <a href="wbg2.html">Corrected executive summary and research download</a> · <a href="protocol-review-20261027.md">Protocol review</a></p></div>'
 
 
 def home(card, receipt, audit, feed):

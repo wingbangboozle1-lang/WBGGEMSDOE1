@@ -1,0 +1,128 @@
+{
+  "schema": "wbg2-corrected-preflight-v1",
+  "raster_sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+  "validator": {
+    "file": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+    "bytes": 215799,
+    "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0029317967128008604,
+    "emitted_positive_pixels": 36000,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 36000,
+    "footprint_fraction": 0.006966789507937592,
+    "template_report": {
+      "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+      "bytes": 215799,
+      "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "width": 3292,
+      "height": 3730,
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "ref_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "blocksize": [
+        2,
+        3292
+      ],
+      "fixture_grid": false,
+      "has_validity_mask": false,
+      "nan_pixels": 0,
+      "infinity_pixels": 0,
+      "n_nan": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0029317967128008604,
+      "n_nonzero": 36000,
+      "mass": 36000.0,
+      "mass_outside_footprint": 0,
+      "problems": [],
+      "ok": true,
+      "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+    },
+    "mirrored_reference_available": true,
+    "catalogue_reference_available": true,
+    "independent_organizer_origin_authenticated": false
+  },
+  "zip_identical_single_member": true,
+  "format_ok": true,
+  "ok_to_submit": false,
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "value": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positive_pixels": null,
+    "reason": "Not performed; mapped-catalogue exclusion check is not hide-and-recover."
+  },
+  "score_estimate": null,
+  "recorded_max_forward_overlap": 1.0,
+  "surface_gate_measured": false,
+  "verdict": "negative",
+  "reason": "Literal final-dot overlap STOP (recorded 1.0 >0.70); pre-placement gate and qualifying holdout absent. No live selector approval."
+}

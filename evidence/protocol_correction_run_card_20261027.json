@@ -1,0 +1,154 @@
+{
+  "schema": "wbg-protocol-correction-run-card-v1",
+  "date_utc": "2026-10-27",
+  "hypothesis": "WBG-2: off-catalogue fault-density-prior dot field",
+  "mechanism": "Gaussian KDE (1.5 km) of mapped-fault density supplies a placement prior; all cells within 400 m of the catalogue are excluded because the scored target is the faults that are NOT in the catalogue; a 36k-cell scattered field is rendered binary in zeros mode.",
+  "named_non_fault_mimic": "Basin-fill depocentres and range-front alluvial aprons concentrate next to mapped faults, so a density prior partly reproduces the sedimentary basin geometry rather than faulting. The prior is a spatial-distribution model, not a detection.",
+  "activity": "Audit-only continuation; frozen candidate; zero new experiments and zero slots used.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "value": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positive_pixels": null,
+    "reason": "Not performed; mapped-catalogue exclusion check is not hide-and-recover."
+  },
+  "correlation_overlap_vs_registry": {
+    "recorded_max_forward_3px_overlap": 1.0,
+    "recorded_max_abs_spearman": 0.06438757182955884,
+    "scope": "Inherited eight-raster local audit; not complete or freshly refreshed global registry. Witness alone sufficient to stop.",
+    "surface_gate": "Not measured before placement",
+    "literal_gate": "FAIL; enrichment exemption rejected"
+  },
+  "raster_sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+  "validator": {
+    "file": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+    "bytes": 215799,
+    "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0029317967128008604,
+    "emitted_positive_pixels": 36000,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 36000,
+    "footprint_fraction": 0.006966789507937592,
+    "template_report": {
+      "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+      "bytes": 215799,
+      "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "width": 3292,
+      "height": 3730,
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "ref_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "blocksize": [
+        2,
+        3292
+      ],
+      "fixture_grid": false,
+      "has_validity_mask": false,
+      "nan_pixels": 0,
+      "infinity_pixels": 0,
+      "n_nan": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0029317967128008604,
+      "n_nonzero": 36000,
+      "mass": 36000.0,
+      "mass_outside_footprint": 0,
+      "problems": [],
+      "ok": true,
+      "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+    },
+    "mirrored_reference_available": true,
+    "catalogue_reference_available": true,
+    "independent_organizer_origin_authenticated": false
+  },
+  "zip_identical_single_member": true,
+  "submission_name": "wbg2-offcatalogue-density-36k-20261027",
+  "submission_note": "WBG-2 density-prior research only; literal overlap STOP; holdout not measured; DO NOT SUBMIT.",
+  "verdict": "negative",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "previous_card_sha256": "0bc7972d92dac230e9da8e9ae284d67b276e3fc4bd6f45e9eca849d1efdf6927",
+  "official_reference_head": "aebe92f7c8a990f0e3443451b7a825d9afd6336b",
+  "review_passes": [
+    {
+      "pass": 1,
+      "result": "Removed unauthorized WBG-2 approval and unvalidated regression forecast."
+    },
+    {
+      "pass": 2,
+      "result": "Fixed literal diagnostic, exact-grid handling, empty-registry/undefined-rho pass, shared validation integration and CI."
+    },
+    {
+      "pass": 3,
+      "result": "148 tests pass; static checks pass; frozen release checks pass. No eligible high-scoring unique file claimed."
+    }
+  ]
+}

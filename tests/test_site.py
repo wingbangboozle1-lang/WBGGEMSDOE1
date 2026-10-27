@@ -40,7 +40,7 @@ def module(name):
     return result
 
 
-@pytest.mark.parametrize("name", ["index.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html", "release-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html"])
+@pytest.mark.parametrize("name", ["index.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html", "release-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html", "wbg2.html"])
 def test_all_site_local_links_resolve_and_decision_is_unmistakable(name):
     file = DOCS / name
     html = file.read_text()
@@ -48,7 +48,9 @@ def test_all_site_local_links_resolve_and_decision_is_unmistakable(name):
     parser.feed(html)
     text = " ".join(parser.text).lower()
     assert "download: yes" in text and "submit: no" in text
-    if name in {"release-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html"}:
+    if name == "wbg2.html":
+        assert "no weekly slot was used" in text and "retrospective" in text
+    elif name in {"release-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html"}:
         assert "no competition slot" in text
     else:
         assert "no final dots" in text and "no competition slot" in text
@@ -68,6 +70,28 @@ def test_all_site_local_links_resolve_and_decision_is_unmistakable(name):
             p = Elements()
             p.feed(target.read_text())
             assert parts.fragment in p.ids, (name, url)
+
+
+def test_wbg2_negative_decision_and_download_are_prominent():
+    card = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
+    name = Path(card["artifacts"]["tif"]).name
+    for file in ("index.html", "executive-summary.html", "wbg2.html"):
+        html = (DOCS / file).read_text()
+        assert f'href="downloads/{name}" download' in html
+        assert "DO NOT SUBMIT" in html
+        assert "0.2824" not in html
+    assert "future-hypotheses-20261027.md" in (DOCS / "wbg2.html").read_text()
+
+
+@pytest.mark.parametrize("file", ["wbg2-executive-summary.md", "research/future-hypotheses-20261027.md"])
+def test_current_research_markdown_local_links_resolve(file):
+    path = DOCS / file
+    for raw in re.findall(r"\[[^]]+\]\(([^)]+)\)", path.read_text()):
+        parts = urlsplit(raw)
+        if parts.scheme or parts.netloc or not parts.path:
+            continue
+        target = (path.parent / unquote(parts.path)).resolve()
+        assert target.is_relative_to(ROOT) and target.exists(), (file, raw)
 
 
 def test_exact_primary_download_has_no_generate_or_upload_simulation():
@@ -172,6 +196,12 @@ def test_staged_pages_match_legacy_url_layout_and_preserve_artifact_bytes(tmp_pa
     (tmp_path / "docs/downloads/fixture.tif").write_bytes(raw)
     card = {"artifact": "docs/downloads/fixture.tif", "raster_sha256": hashlib.sha256(raw).hexdigest()}
     (tmp_path / "registry/run_card.json").write_text(json.dumps(card))
+    (tmp_path / "evidence/wbg2").mkdir(parents=True)
+    w2 = {"verdict": "negative", "decision": {"ok_to_submit": False},
+          "artifacts": {"tif": "docs/downloads/fixture.tif"}, "raster_sha256": card["raster_sha256"]}
+    safety = {"passed_literal_gate": False, "existing_tiff_sha256": card["raster_sha256"]}
+    (tmp_path / "evidence/wbg2/run_card.json").write_text(json.dumps(w2))
+    (tmp_path / "evidence/wbg2/safety_audit_20261027.json").write_text(json.dumps(safety))
     (tmp_path / "index.html").write_text('<meta http-equiv="refresh" content="0; url=docs/">')
     monkeypatch.setattr(stage, "ROOT", tmp_path)
     target = stage.stage()
@@ -179,6 +209,13 @@ def test_staged_pages_match_legacy_url_layout_and_preserve_artifact_bytes(tmp_pa
     assert (target / "index.html").read_bytes() == (tmp_path / "index.html").read_bytes()
     assert (target / ".nojekyll").is_file()
     assert stage.stage() == target  # Marked generated bundles may be rebuilt.
+    w2["decision"]["ok_to_submit"] = True
+    (tmp_path / "evidence/wbg2/run_card.json").write_text(json.dumps(w2))
+    with pytest.raises(ValueError, match="negative decision"):
+        stage.stage()
+    w2["decision"]["ok_to_submit"] = False
+    (tmp_path / "evidence/wbg2/run_card.json").write_text(json.dumps(w2))
+    assert stage.stage() == target
     (target / ".wbg-pages-stage").unlink()
     with pytest.raises(ValueError, match="unmarked"):
         stage.stage()

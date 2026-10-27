@@ -1,21 +1,13 @@
-"""Placement prior and rendering for WBG-2.
+"""Retained WBG-2 primitives for retrospective audit only.
 
-The prior uses ONLY the organizer-provided catalogue (`labels.tif`) and the
-competition footprint. It does not read, sample or imitate any other project's
-predictions.
+The WBG-2 lane is stopped. These functions describe the already-generated
+artifact and do not grant permission to place or retune dots. Historic claims
+of a validated holdout and a forecast were withdrawn: no reproducible
+visible-only holdout or file-specific organizer receipt was found.
 
-Measured basis (all locally measured this session, see docs/research):
-
-* Gaussian KDE of mapped-fault density, sampled at 1.5 km bandwidth, beat a
-  uniform draw over the same admissible cells by 1.7-2.2x in DTI on a four-fold
-  spatially blocked hide-and-recover test (/tmp/exp4 -> evidence wbg2).
-* Strike-aligned "runs" beat scattered dots ONLY when the true local strike is
-  known (0.936 vs 0.140). With a guessed or random strike they are WORSE than
-  scattering (0.090 vs 0.140). We therefore scatter: we do not claim to know
-  the trace direction.
-* At a fixed number of true hits, reducing the number of predicted pixels
-  raises DTI monotonically until the hit count starts to fall. This is why the
-  field is kept small.
+The buffer uses repeated four-connected dilation (Manhattan distance), not
+Chebyshev distance or a Euclidean disc. See the safety audit for measured
+Euclidean distances of the existing dots to the catalogue.
 """
 
 from __future__ import annotations
@@ -25,19 +17,14 @@ from scipy import ndimage as ndi
 
 #: Gaussian bandwidth for the catalogue-density prior, in pixels (100 m each).
 KDE_SIGMA_PX = 15.0
-#: Cells closer than this to a mapped fault are excluded outright.
+#: Four-connected Manhattan steps from a mapped catalogue cell.
 CATALOGUE_BUFFER_PX = 4
-#: Default predicted-pixel budget.
-#:
-#: The nine focus-site artifacts span 37,654-61,328 positive pixels with an
-#: organizer-reported score for each. 36,000 sits just inside that observed
-#: range, so the calibrated estimate stays an interpolation rather than an
-#: extrapolation into a region where the metric has not been demonstrated.
+#: Historical budget; retained for reproducing the recorded prior, not for a new run.
 DEFAULT_BUDGET = 36000
 
 
 def catalogue_buffer(mask: np.ndarray, radius_px: int = CATALOGUE_BUFFER_PX) -> np.ndarray:
-    """Cells within `radius_px` (Chebyshev, 8-connected) of a True cell."""
+    """Cells within ``radius_px`` four-connected steps (Manhattan distance)."""
     if radius_px <= 0:
         return np.zeros_like(mask, dtype=bool)
     return ndi.binary_dilation(

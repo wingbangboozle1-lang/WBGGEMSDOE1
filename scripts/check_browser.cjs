@@ -19,7 +19,7 @@ const chromium = importedChromium.default || importedChromium;
   if (!base) throw new Error("BASE_URL must identify the running static site preview");
   const artifacts = path.join(root, ".cache/browser-review");
   fs.mkdirSync(artifacts, { recursive: true });
-  const card = JSON.parse(fs.readFileSync(path.join(root, "registry/run_card.json")));
+  const wbg2 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg2/run_card.json")));
   if (process.env.BROWSER_COMPAT_LIBS === "1") {
     // Minimal Linux containers may lack NSS/NSPR. Use the dependency's own
     // bundled compatibility libraries instead of downloading system packages.
@@ -56,9 +56,9 @@ const chromium = importedChromium.default || importedChromium;
     const downloadPromise = page.waitForEvent("download");
     await page.locator("a[download]").first().click();
     const download = await downloadPromise;
-    assert.equal(download.suggestedFilename(), path.basename(card.artifact));
+    assert.equal(download.suggestedFilename(), path.basename(wbg2.artifacts.tif));
     const downloaded = fs.readFileSync(await download.path());
-    assert.equal(crypto.createHash("sha256").update(downloaded).digest("hex"), card.raster_sha256);
+    assert.equal(crypto.createHash("sha256").update(downloaded).digest("hex"), wbg2.raster_sha256);
     await page.goto(new URL("index.html", base).href, { waitUntil: "networkidle" });
     await page.screenshot({ path: path.join(artifacts, "desktop.png"), fullPage: true });
     await page.setViewportSize({ width: 390, height: 844 });
@@ -70,7 +70,7 @@ const chromium = importedChromium.default || importedChromium;
     }
     await page.goto(new URL("index.html", base).href, { waitUntil: "networkidle" });
     await page.screenshot({ path: path.join(artifacts, "mobile.png"), fullPage: true });
-    for (const file of ["portfolio-review.html", "release-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html"]) {
+    for (const file of ["portfolio-review.html", "release-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html", "wbg2.html"]) {
       const result = { file };
       for (const [label, width, height] of [["desktop", 1440, 1100], ["mobile", 390, 844]]) {
         await page.setViewportSize({ width, height });
@@ -82,6 +82,14 @@ const chromium = importedChromium.default || importedChromium;
       }
       checked.push(result);
     }
+    await page.setViewportSize({ width: 1440, height: 1100 });
+    await page.goto(new URL("wbg2.html", base).href, { waitUntil: "networkidle" });
+    assert.equal(await page.locator("table tbody tr").count(), 9);
+    assert.match(await page.locator("main").innerText(), /99\.8972%/);
+    assert.doesNotMatch(await page.locator("main").innerText(), /0\.2824/);
+    await page.screenshot({ path: path.join(artifacts, "wbg2-desktop.png"), fullPage: true });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.screenshot({ path: path.join(artifacts, "wbg2-mobile.png"), fullPage: true });
     const portfolio = JSON.parse(fs.readFileSync(path.join(root, "docs/data/portfolio-review.json")));
     for (const row of portfolio.rows) {
       const response = await page.request.get(new URL(row.artifact.replace(/^docs\//, ""), base).href);
@@ -91,7 +99,7 @@ const chromium = importedChromium.default || importedChromium;
     assert.deepEqual(errors, []);
     const report = { generated_utc: new Date().toISOString(), browser: browser.version(), checked,
       desktop_viewport: [1440, 1100], mobile_viewport: [390, 844],
-      javascript_page_errors: errors, site_filter: "passed", primary_download_sha256: card.raster_sha256,
+      javascript_page_errors: errors, site_filter: "passed", wbg2_nine_site_table: "passed", primary_download_sha256: wbg2.raster_sha256,
       primary_download_identity: "passed", body_overflow: false, all_passed: true,
       no_model_training_or_slot_use: true };
     fs.writeFileSync(path.join(root, "evidence/browser_checks.json"), JSON.stringify(report, null, 2) + "\n");

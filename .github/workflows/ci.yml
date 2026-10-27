@@ -30,14 +30,16 @@ jobs:
         run: |
           python scripts/validate_submission.py docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif
           python scripts/validate_submission.py docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.zip
+          python scripts/validate_submission.py docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif
+          python scripts/validate_submission.py docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip
       - name: Revalidate all four frozen research downloads and decision-report identity
         run: python scripts/review_releases.py --check
-      - name: Verify the WBG-2 submission download, fail-closed
+      - name: Verify the stopped WBG-2 TIFF and literal registry witness
         env:
-          PYTHONPATH: src
+          GH_TOKEN: ${{ github.token }}
+          PYTHONPATH: src:vendor
         run: |
-          python scripts/build_wbg2_submission.py
-          python scripts/verify_wbg2_download.py
+          python scripts/verify_wbg2_download.py --expect-negative --deep --fetch
           python scripts/build_wbg2_site.py
       - name: Recheck inherited frozen TIP1 & WBG-H1 receipts without retraining
         env:
@@ -64,7 +66,7 @@ jobs:
           cache: npm
       - name: Install exact optional browser-check dependencies
         run: npm ci
-      - name: Render all nine pages, test filtering and verify all four actual TIFF downloads
+      - name: Render ten pages, test filtering and verify five research TIFF downloads
         run: |
           python3 scripts/stage_pages.py
           python3 -m http.server 8000 --bind 0.0.0.0 --directory .cache/pages > /tmp/wbg-site.log 2>&1 &

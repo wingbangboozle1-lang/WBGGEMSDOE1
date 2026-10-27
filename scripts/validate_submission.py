@@ -124,12 +124,37 @@ def main():
         report = check_tiff(source)
     else:
         raise ValueError("expected a .tif/.tiff or a ZIP with exactly one TIFF")
-    card_path = ROOT / "registry/run_card.json"
-    card = json.loads(card_path.read_text()) if card_path.exists() else None
-    identity_matches = bool(card and report["sha256"] == card["raster_sha256"])
+    # Select only by exact TIFF bytes, not by filename or a format pass. WBG-2 is
+    # a known negative: even inconsistent/fabricated future card flags must not
+    # unlock those exact bytes without changing this code and its safety review.
+    known_negative = "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3"
+    paths = ("registry/run_card.json", "evidence/wbg2/run_card.json")
+    matches = []
+    for name in paths:
+        card_path = ROOT / name
+        if card_path.exists():
+            candidate = json.loads(card_path.read_text())
+            if candidate.get("raster_sha256") == report["sha256"]:
+                matches.append((name, candidate))
+    if len(matches) > 1:
+        raise ValueError("multiple decision cards claim these exact TIFF bytes")
+    card_name, card = matches[0] if matches else (None, None)
+    identity_matches = bool(card)
     report["run_card_matches_exact_tiff"] = identity_matches
+    report["run_card_path"] = card_name
     report["promotion_verdict"] = card["verdict"] if identity_matches else "untracked"
     report["ok_to_submit"] = approval_matches(card, report, identity_matches)
+    if report["sha256"] == known_negative:
+        if (not identity_matches or card_name != "evidence/wbg2/run_card.json"
+                or card.get("verdict") != "negative" or card.get("decision", {}).get("ok_to_submit") is not False):
+            raise ValueError("WBG-2 known-negative decision missing or inconsistent")
+        safety = json.loads((ROOT / "evidence/wbg2/safety_audit_20261027.json").read_text())
+        witness = safety["already_placed_final_dots_witness"]
+        if (safety["existing_tiff_sha256"] != known_negative or safety["passed_literal_gate"] is not False
+                or not witness["duplicate_by_overlap"] or witness["my_dots_within_3px_of_theirs"] <= .70):
+            raise ValueError("WBG-2 known-negative registry witness missing or inconsistent")
+        report["ok_to_submit"] = False
+        report["known_negative_registry_overlap"] = witness["my_dots_within_3px_of_theirs"]
     report["warning"] = "FORMAT PASS is not uniqueness, scientific efficacy, organizer acceptance or slot approval."
     print(json.dumps(report, indent=2, allow_nan=False))
     if not report["all_checks_passed"]:
@@ -140,6 +165,6 @@ def main():
 if __name__ == "__main__":
     try:
         raise SystemExit(main())
-    except (ValueError, OSError, RuntimeError, zipfile.BadZipFile, rasterio.errors.RasterioError) as error:
+    except (ValueError, KeyError, OSError, RuntimeError, zipfile.BadZipFile, rasterio.errors.RasterioError) as error:
         print(json.dumps({"all_checks_passed": False, "ok_to_submit": False, "error": str(error)}), file=sys.stderr)
         raise SystemExit(1)

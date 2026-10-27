@@ -34,9 +34,21 @@ def stage():
         digest = hashlib.file_digest(stream, "sha256").hexdigest()
     if digest != card["raster_sha256"]:
         raise ValueError("staged research TIFF checksum differs from the frozen run card")
+    wbg2 = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
+    safety = json.loads((ROOT / "evidence/wbg2/safety_audit_20261027.json").read_text())
+    if (wbg2["verdict"] != "negative" or wbg2["decision"]["ok_to_submit"] is not False
+            or safety["passed_literal_gate"] is not False):
+        raise ValueError("staged WBG-2 decision is not the recorded negative decision")
+    path = Path(wbg2["artifacts"]["tif"])
+    if path.is_absolute() or ".." in path.parts or path.parts[:2] != ("docs", "downloads"):
+        raise ValueError("invalid staged WBG-2 research path")
+    with (target / path).open("rb") as stream:
+        wbg2_digest = hashlib.file_digest(stream, "sha256").hexdigest()
+    if wbg2_digest != wbg2["raster_sha256"] or wbg2_digest != safety["existing_tiff_sha256"]:
+        raise ValueError("staged WBG-2 TIFF checksum differs from its recorded audit")
     print(json.dumps({"staged_site": str(target.relative_to(ROOT)),
         "canonical_path": "/WBGGEMSDOE1/docs/", "root_redirect": "docs/",
-        "artifact_sha256": digest, "ok_to_submit": False}))
+        "artifact_sha256": digest, "wbg2_sha256": wbg2_digest, "ok_to_submit": False}))
     return target
 
 

@@ -1,0 +1,42 @@
+{
+  "schema": "wbg2-review-passes-v1",
+  "review_date_utc": "2026-10-27",
+  "scope": "Safety audit and publication corrections to the existing WBG-2 artifact; no new training, raster generation, dot placement or competition submission.",
+  "passes": [
+    {
+      "pass": 1,
+      "focus": "Implement and test the shared literal-registry STOP and truthful records",
+      "findings": [
+        "The existing final dots and retrospectively reconstructed prior both exceed 70% 3-pixel overlap with the hash-pinned R13 lattice.",
+        "The former private enrichment exemption, approval and extrapolated numerical forecast were withdrawn.",
+        "The generator and private novelty function were retired; the negative TIFF and ZIP were retained byte-identically."
+      ],
+      "verification": "148 pytest tests and Ruff E9/F passed at the end of the first pass."
+    },
+    {
+      "pass": 2,
+      "focus": "Review publication, data provenance and negative-decision enforcement",
+      "findings": [
+        "Built the research-only page and nine-site table; added four untested, source-linked future hypotheses.",
+        "Validated ten desktop/mobile pages and actual TIFF downloads; the general validator now identifies the exact WBG-2 bytes and cannot approve this known negative.",
+        "Restored ten immutable references to a fresh cache and independently reproduced the recorded shared-gate audit; pinned byte integrity is not organizer-origin authentication.",
+        "Pages now installs its pinned scientific dependencies; the stage checks both the C1 and WBG-2 artifact hashes and rejects an inconsistent WBG-2 approval."
+      ],
+      "verification": "155 pytest tests and Ruff E9/F passed; desktop/mobile render, nine-row table, filtering and download SHA-256 passed."
+    },
+    {
+      "pass": 3,
+      "focus": "Recheck original implementation, numerical claims, bounded tests and reproducibility",
+      "findings": [
+        "The historical catalogue buffer was four-connected Manhattan dilation, not a 400 m Euclidean disc; 813 existing dots are less than 400 m away. Corrected the mechanism, public pages and docstring without changing pixels.",
+        "Embedded the full local TIFF and ZIP validator output in the negative run card and added regression tests for range, exact-byte identity, retired generator and inconsistent evidence.",
+        "Reverified inherited frozen release receipts without retraining and confirmed scientific readiness remains blocked."
+      ],
+      "verification": "158 pytest tests and Ruff E9/F passed; deep literal overlap audit exactly matches its recorded receipt; ten desktop/mobile pages and actual TIFF downloads passed.",
+      "limits": "No holdout test for the prospective hypotheses, no proven unique winner, no account-specific allowance, no organizer receipt, and no competition upload. Remote CI, merge and Pages deployment require separate GitHub receipts."
+    }
+  ],
+  "scientific_experiments_started_this_session": 0,
+  "submission_slots_used": 0,
+  "result": "negative \u2014 research-only artifacts; do not submit"
+}

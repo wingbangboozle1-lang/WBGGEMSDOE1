@@ -161,14 +161,14 @@
    "severity": "medium",
    "title": "Score is rank-ordered by catalogue distance, and this is confounded with budget",
    "finding": "Across the nine artifacts the reported score is perfectly rank-ordered by the fraction of positive pixels within 300 m of the mapped catalogue (0.190->0.2477 ... 0.049->0.2778). The same sites also vary in budget, and the two regressors are collinear at r=0.751, so the two effects cannot be separated from nine points.",
-   "action": "Report the calibration as a ranking device with an explicit collinearity caveat; do not claim a causal effect of either lever alone."
+   "action": "This descriptive association is confounded. The old extrapolated calibration is withdrawn, not a ranking device or leaderboard forecast."
   },
   {
    "id": "IR-024",
    "severity": "high",
-   "title": "Official feature stack still absent; detector attempts are negative",
-   "finding": "training_features.tif (418 MB, 19 bands) is login-gated and absent, so no feature-based model was trained. A detector built from peer-restored official GeoDAWN radiometrics and 3DEP terrain descriptors scored AUC 0.549 against mapped faults and 0.0303 at the real budget versus 0.0695 for a uniform random draw.",
-   "action": "Do not use those layers in a submission. Record the negative result. Reaching the 0.39-0.45 band requires the official stack."
+   "title": "Owner-mirror 19-band stack restored; origin not authenticated",
+   "finding": "All 19 cached band hashes and the training stack match pinned owner mirrors, but no organizer-origin manifest or authenticated competition download was obtained. The prior detector using peer-restored radiometrics and terrain descriptors was negative; its AUC and DTI are not a valid prediction for WBG-2.",
+   "action": "Retain the negative detector result. Verify primary data semantics and provenance for future lanes; availability of the stack does not establish any achievable score."
   },
   {
    "id": "IR-025",
@@ -179,10 +179,24 @@
   },
   {
    "id": "IR-026",
-   "severity": "low",
-   "title": "WBG-2 estimate is a near-tie, not an improvement",
-   "finding": "WBG-2's MODEL-ESTIMATE is 0.2824 against 0.2778 reported for the best focus-site artifact: a difference of +0.0046, smaller than the calibration's own residual SD (0.00147 x 1.96) plus extrapolation risk, because near3cat=0 lies below the fitted range [0.049, 0.190].",
-   "action": "Present the file as unique and valid, not as a proven score improvement. No organizer receipt exists."
+   "severity": "blocking",
+   "title": "WBG-2 forecast withdrawn; literal gate fails",
+   "finding": "The previous WBG-2 forecast extrapolated non-independent user-reported values without receipts and used an unjustified interval. It is not a defensible estimate. The unchanged shared registry rule also measures 99.8972% final-dot overlap with a pinned lattice (threshold 70%).",
+   "action": "Mark WBG-2 negative and research-only. Do not use the old estimate or private enrichment exception; preserve superseded records for audit."
+  },
+  {
+   "id": "IR-027",
+   "severity": "blocking",
+   "title": "No contemporaneous WBG-2 surface gate",
+   "finding": "A deterministic retrospective reconstruction overlaps the registered lattice by 99.8768%; there is no evidence of the required pre-placement check before the existing dots were generated.",
+   "action": "Keep the WBG-2 lane stopped; never interpret a retrospective audit as prior clearance or place new dots."
+  },
+  {
+   "id": "IR-028",
+   "severity": "high",
+   "title": "WBG-2 catalogue buffer was Manhattan, not 400 m Euclidean",
+   "finding": "Four iterations of 4-connected dilation exclude cells within four Manhattan steps, not all cells within a 400 m Euclidean disc. In the exact existing TIFF, 813 of 36,000 dots are closer than 400 m Euclidean to the mapped catalogue; the minimum is about 360.56 m. Zero lie within 300 m.",
+   "action": "Correct the mechanism and never treat the previous 400 m Euclidean claim as evidence. This diagnostic does not change any TIFF pixels or the literal STOP."
   }
  ]
 }

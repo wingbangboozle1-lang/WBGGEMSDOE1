@@ -1,28 +1,30 @@
 # WBG GEMS — evidence-first fault mapping
 
-## SUBMIT THIS FILE: [wbg2-offcatalogue-density-36k-20261027.tif](docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif)
+## NO FILE APPROVED FOR SUBMISSION
 
-**[Executive summary + one-click download](docs/wbg2.html)** · [ZIP](docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip) ·
-[markdown summary](docs/wbg2-executive-summary.md) · [run card](evidence/wbg2/run_card.json) ·
-[live site](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/wbg2.html)
+**[Executive audit and nine-site table](docs/wbg2.html)** ·
+[Download WBG-2 TIFF for research only](docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif) ·
+[ZIP for research](docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip) ·
+[run card](evidence/wbg2/run_card.json) · [shared-gate audit](evidence/wbg2/safety_audit_20261027.json)
 
-| | |
-|---|---|
-| File to submit | `docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif` (+ identical one-member `.zip`) |
-| Estimated score | **0.2824** — MODEL-ESTIMATE, 95% interval 0.2795–0.2853, R² 0.988, n=9. **Not organizer-confirmed.** |
-| Unique vs GEMSDOE24/25/27/28/30/31/32/33/36 | **YES** — 9/9 audited; max 1.18× chance overlap, max \|ρ\| 0.009 |
-| Format | single-band float32, EPSG:32611, 3730×3292, values in [0,1], no NaN anywhere (zeros mode) |
-| sha256 | `f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3` |
-| Slots used | 0 |
+| Artifact | Local format | Score estimate / holdout | Literal registry decision |
+|---|---|---|---|
+| `wbg2-offcatalogue-density-36k-20261027.tif` | One float32 band, finite [0,1], grid matches pinned mirror; TIFF/ZIP bytes verified | **Unavailable**; no verified fold-local HOLDOUT-DTI or organizer receipt | **DO NOT SUBMIT**. 99.8972% final-dot overlap with a registered lattice exceeds 70%. |
 
-> **Honest reading.** WBG-2 is unique and format-valid, so it is safe to upload. Its estimate is only
-> **+0.0046** above the best focus-site artifact (0.2778), which is *within model error*:
-> it ties that artifact rather than beating it. The route to the 0.39–0.45 leaderboard band is the
-> login-gated official `training_features.tif`; see [the executive summary](docs/wbg2.html).
+The previous WBG-2 "safe to upload" claim and numerical projection are **withdrawn**. The old
+code applied a private enrichment exception, checked eight local references and a separate nine-champion
+diagnostic rather than the full registry. The shared literal rule has no such exception. A retrospective surface check also fails and cannot establish that
+pre-placement checks happened. No new training, final placement, or competition slot was used.
+The historic catalogue buffer was Manhattan, not a 400 m Euclidean disc: 813 existing dots are
+closer than 400 m Euclidean. The owner-mirror 19-band stack was restored and hash-checked, not
+authenticated by DrivenData.
+See [four untested research hypotheses](docs/research/future-hypotheses-20261027.md) and
+[the 27 October source audit](evidence/official_source_audit_20261027.json) and
+[three safety-review passes](evidence/wbg2/review_passes_20261027.json).
 
-## Older file — DOWNLOAD: YES, for research. SUBMIT: **NO**.
+## Earlier file — DOWNLOAD: YES, for research. SUBMIT: **NO**.
 
-**27 October 2026 follow-up: [all four releases, exact-byte revalidation and trust corrections](docs/portfolio-review.html)** ·
+**27 October 2026 follow-up: [four earlier releases, exact-byte revalidation and trust corrections](docs/portfolio-review.html)** ·
 [Machine-readable review](docs/data/portfolio-review.json). No new experiment: the lane remains stopped.
 All four are negative research downloads, not recommended contest submissions. Leaderboard estimates remain unavailable.
 The [parallel exact-reference audit](docs/release-review.html) and its [review notes](docs/review-20261027.md) are also preserved; both reviews reach the same negative decision.
@@ -73,8 +75,7 @@ credit and avoiding low-marginal-credit predictions are plausible reasons for th
 ordering, not a causal proof from unavailable hidden labels. A 200 m exclusion is **not** an
 organizer rule. No historical file should be copied into a new "unique" entry.
 
-The direct **official public-leaderboard observation on 2026-10-26 was 0.4437**, not the prompt's
-older targets. That is **not** an organizer result for any project TIFF. A higher project score
+The official public leaderboard displayed **0.4544 on 2026-10-27** (public-page observation, not a project-file receipt), rather than the prompt's older targets. That is **not** an organizer result for any project TIFF. A higher project score
 was not obtained or credibly projected in this session.
 
 ## Parallel work preserved during integration
@@ -108,7 +109,7 @@ Different evaluator/split/representation results must not be pooled or ranked as
 
 ## What is implemented
 
-- [Four ranked pre-implementation hypotheses](docs/hypotheses.md), with layers, transforms,
+- [Four earlier ranked hypotheses](docs/hypotheses.md), with layers, transforms,
   missing-catalogue rationale, mimics, novelty limits and data readiness. Only WBG-C1 was tested.
 - A catalogue-blind conductivity/depth Hessian-commutator transform and scale/strain support.
 - **Unchanged shared template** at `buffedlizard55-lab/57GEMSDOE@822a0ce5546c7b6749cdd82eb145b6b3e616603d`:
@@ -187,7 +188,7 @@ not falsely claim that a browser button trains the model.
 
 1. **No final high-scoring upload-ready submission was produced.** The unique-byte research TIFF
    fails the scientific and literal-overlap gates. Stop is binding; no final-dot check is claimed.
-2. **Missing lane and registry policy:** obtain an actual single-method assignment and a separately
+2. **Missing lane and registry policy:** establish an actual single-method assignment and a separately
    authorized scope policy. Do not privately exempt lattices/dense surfaces or target lattice holes.
 3. **Input provenance and semantics:** verify official-origin data and original per-band meanings.
    `tc` and the depth-surface interpretation are ambiguous in mirror/peer materials. Do not claim
@@ -230,19 +231,14 @@ not verified facts. The measured run card takes precedence over stale factual as
 
 # Standing user prompt — supplied 2026-10-26
 
-> **CURRENT STATE — read this first (updated 2026-10-27).**
-> The submittable artifact is **`docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif`**
-> (one-member `.zip` identical). Unique vs all nine focus sites (max 1.18x chance overlap,
-> max |rho| 0.009), format-valid (float32, EPSG:32611, 3730x3292, [0,1], no NaN).
-> Estimated score **0.2824** (MODEL-ESTIMATE; 95% interval 0.2795-0.2853; calibrated on nine
-> third-party reported values, R^2 0.988). **No organizer-confirmed score exists for any file here.**
-> The estimate is only +0.0046 over the best focus-site artifact (0.2778) and is within model
-> error: it ties rather than beats it. Reaching the 0.39-0.45 leaderboard band requires the
-> login-gated official `training_features.tif` (418 MB), which is absent from this sandbox.
-> Read `docs/wbg2.html` and `evidence/wbg2/run_card.json` for the full evidence chain.
-> Standing rules that still bind: do not copy another site's predictions; label every number as
-> MODEL-ESTIMATE / MEASURED / ORGANIZER-CONFIRMED; never ship NaN; do not spend a weekly slot
-> without an authenticated receipt; negative results are deliverables.
+> **CURRENT STATE — updated 2026-10-27.** The prior WBG-2 upload recommendation and
+> numerical projection were withdrawn. The exact TIFF is a local-format-passing **research-only**
+> artifact and fails the literal 70% registry rule: 99.8972% of its existing dots are within
+> 3 pixels of the pinned lattice. Its prior surface also fails a retrospective test. No verified
+> holdout result or organizer receipt is available. **DO NOT SUBMIT.** See `docs/wbg2.html`
+> and `evidence/wbg2/safety_audit_20261027.json`. This status supersedes any prior approval.
+> The user request below is archived intent, not independently verified evidence.
+
 
 This is the user's request, retained as project intent, **not verified factual findings**. Historical scores, blocker claims, dates, source availability, and proposed capabilities below must be checked against current evidence. Read it together with the current README status, `registry/run_card.json`, and `registry/irregularities.json` before each session. The requested single-method lane paragraph was not supplied. The original request follows (trailing whitespace normalized; wording retained).
 

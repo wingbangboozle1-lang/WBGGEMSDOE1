@@ -1,93 +1,30 @@
 {
- "rasters_compared": 8,
- "max_forward_3px_overlap": 1.0,
- "max_enrichment_vs_chance": 2.991809606853254,
- "max_abs_spearman": 0.06438757182955884,
- "stop_enrichment_threshold": 3.0,
- "stop_overlap_threshold": 0.7,
- "stop_rho_threshold": 0.9,
- "passes_final_dot_gate": true,
- "gate_rule": "STOP if |signed Spearman rho| > 0.90, or if forward 3 px overlap > 0.70 AND that overlap is at least 3x chance (enrichment >= 3). The enrichment requirement exists because raw forward overlap is 1.0 for any sparse field compared against a dense continuous surface.",
- "top_matches": [
-  {
-   "forward_overlap": 0.11605555555555555,
-   "rho": 0.006106786707284402,
-   "enrichment": 2.991809606853254,
-   "chance_overlap": 0.038791089944263286,
-   "their_positive": 23402,
-   "ours_positive": 36000,
-   "their_density": 0.0019058306920017331,
-   "path": "docs/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif"
+  "status": "negative",
+  "passes_literal_uniqueness": false,
+  "surface_witness": {
+    "site": "GEMSDOE24 lattice witness",
+    "source": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "their_dots": 206895,
+    "my_dots_within_3px_of_theirs": 0.9987678257910066,
+    "spearman_full_footprint": -9.918789545328662e-05,
+    "identical_bytes": false,
+    "identical_decoded_predictions": false,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": true
   },
-  {
-   "forward_overlap": 0.11605555555555555,
-   "rho": 0.006106786707284402,
-   "enrichment": 2.991809606853254,
-   "chance_overlap": 0.038791089944263286,
-   "their_positive": 23402,
-   "ours_positive": 36000,
-   "their_density": 0.0019058306920017331,
-   "path": "docs/parallel/main-b9a2d53/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif"
+  "final_dots_witness": {
+    "site": "GEMSDOE24 lattice witness",
+    "source": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "their_dots": 206895,
+    "my_dots_within_3px_of_theirs": 0.9989722222222223,
+    "spearman_full_footprint": -0.0004912488123791969,
+    "identical_bytes": false,
+    "identical_decoded_predictions": false,
+    "duplicate_by_rho": false,
+    "duplicate_by_overlap": true
   },
-  {
-   "forward_overlap": 0.14152777777777778,
-   "rho": 0.0028395927964473665,
-   "enrichment": 2.9136183413296526,
-   "chance_overlap": 0.04857457676257985,
-   "their_positive": 37654,
-   "ours_positive": 36000,
-   "their_density": 0.0030664964052915674,
-   "path": "docs/downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif"
-  },
-  {
-   "forward_overlap": 0.16030555555555556,
-   "rho": 0.00947404544224616,
-   "enrichment": 2.791325421843948,
-   "chance_overlap": 0.05742990562872379,
-   "their_positive": 37654,
-   "ours_positive": 36000,
-   "their_density": 0.0030664964052915674,
-   "path": "docs/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
-  },
-  {
-   "forward_overlap": 0.16030555555555556,
-   "rho": 0.00947404544224616,
-   "enrichment": 2.791325421843948,
-   "chance_overlap": 0.05742990562872379,
-   "their_positive": 37654,
-   "ours_positive": 36000,
-   "their_density": 0.0030664964052915674,
-   "path": "docs/parallel/main-b9a2d53/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
-  },
-  {
-   "forward_overlap": 0.17988888888888888,
-   "rho": 0.0020402336031860144,
-   "enrichment": 2.7514068519579595,
-   "chance_overlap": 0.06538069379338651,
-   "their_positive": 37722,
-   "ours_positive": 36000,
-   "their_density": 0.003072034243384727,
-   "path": "docs/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif"
-  },
-  {
-   "forward_overlap": 0.17988888888888888,
-   "rho": 0.0020402336031860144,
-   "enrichment": 2.7514068519579595,
-   "chance_overlap": 0.06538069379338651,
-   "their_positive": 37722,
-   "ours_positive": 36000,
-   "their_density": 0.003072034243384727,
-   "path": "docs/parallel/main-b9a2d53/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif"
-  },
-  {
-   "forward_overlap": 1.0,
-   "rho": 0.06438757182955884,
-   "enrichment": 2.3612157246957177,
-   "chance_overlap": 0.42351064730812205,
-   "their_positive": 5106385,
-   "ours_positive": 36000,
-   "their_density": 0.4158578436961486,
-   "path": "docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif"
-  }
- ]
+  "scope": "One hash-pinned lattice plus one historical champion per focus site; not a complete registry, all submissions, later commits, or private rasters.",
+  "audit": "../../data/wbg2-safety.json"
 }

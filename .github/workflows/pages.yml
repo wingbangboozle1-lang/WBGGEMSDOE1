@@ -29,6 +29,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install pinned validation and page-build dependencies
+        run: python -m pip install -r requirements-lock.txt
       - name: Refresh public provenance only
         env:
           GITHUB_TOKEN: ${{ github.token }}

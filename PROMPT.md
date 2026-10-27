@@ -23,12 +23,13 @@ Reference: https://github.com/drivendataorg/gems-prize-reference-solution
 
 ## Current artifact (2026-10-27)
 
-Submittable: `docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif` (+ identical one-member ZIP).
-Unique vs GEMSDOE24/25/27/28/30/31/32/33/36 (max 1.18x chance overlap, max |rho| 0.009).
-Format-valid: float32, EPSG:32611, 3730x3292, [0,1], no NaN. Estimated score 0.2824
-(MODEL-ESTIMATE, 95% 0.2795-0.2853, 9-point calibration R^2 0.988) - not organizer-confirmed,
-and only +0.0046 over 0.2778, so treat it as a tie. Details: `docs/wbg2.html`.
-Everything else in this repository is a negative result and is NOT cleared to upload.
+No file is approved for submission. The existing WBG-2 TIFF is a research download:
+`docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif` (+ identical one-member ZIP).
+Its local all-finite format passes, but **99.8972%** of its existing dots overlap a registered
+lattice within 3 px (>70% STOP). The surface also fails a retrospective check. No valid
+fold-local HOLDOUT-DTI, file-specific organizer receipt or reliable score estimate exists.
+The prior "safe to upload" claim and extrapolated projection are superseded.
+See `docs/wbg2.html` and `evidence/wbg2/safety_audit_20261027.json`.
 
 ## Submission contract
 

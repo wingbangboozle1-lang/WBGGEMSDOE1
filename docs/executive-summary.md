@@ -1,8 +1,8 @@
-# Executive summary — 26 October 2026
+# Executive summary — 27 October 2026
 
 ## DOWNLOAD: YES (research only). SUBMIT: NO.
 
-[27 October follow-up: all four releases and trust corrections](portfolio-review.html). No new experiment; the existing lane remains stopped. All leaderboard estimates remain unavailable.
+[WBG-2 decision, nine-site audit and research download](wbg2.html): literal overlap STOP; no verified holdout or leaderboard estimate. [Earlier four-release review](portfolio-review.html). No new experiment or slot was used.
 
 [Download the frozen research TIFF](downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif) · [one-TIFF ZIP](downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.zip) · [machine-readable run card](data/run-card.json)
 
@@ -25,7 +25,7 @@ Paired delta versus refitted 19-band control: **-0.000101** (HOLDOUT-DTI), 95% C
 | GEMSDOE24: [gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif?raw=1) | USER-REPORTED historical 0.2477; **NOT ORGANIZER-CONFIRMED** | Unavailable for a new file | Historical learning reference; family overlap fails. Do not copy as a unique submission. |
 | GEMSDOE27: [gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE27/blob/bef7ae8e8f63b69d299c9214c75988c8f5055f9c/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif?raw=1) | USER-REPORTED historical 0.2449; **NOT ORGANIZER-CONFIRMED** | Unavailable for a new file | Historical learning reference; family overlap fails. Do not copy as a unique submission. |
 
-## 2026-10-27 follow-up
+## Earlier four-release follow-up
 
 [All four local download decisions](release-review.html): exact files revalidated, all research-only. WBG-H1 literal lattice overlap exceeds 70%; filtered diagnostics do not clear uniqueness. No new experiment or slot use. [Review and access limits](review-20261027.md).
 
@@ -33,7 +33,7 @@ Paired delta versus refitted 19-band control: **-0.000101** (HOLDOUT-DTI), 95% C
 
 Exact raster identities: D2.8 44,090 dots → remove 3,891 within 100 m of the catalogue → B1 40,199 → remove 2,545 more within 200 m → B2 37,654. GEMSDOE25 and GEMSDOE30 have identical decoded predictions. GEMSDOE36 contains all B2 pixels plus 1,200 additions. Sparse support and low-marginal-credit pruning can reduce redundant false-positive cost under the official max-cover metric. Hidden labels are unavailable, so that mechanism is plausible, not a proved causal account of each historical result. A 200 m exclusion is not an organizer rule.
 
-GEMSDOE32's supplied 0.2778 is USER-REPORTED, not a verified file receipt. The direct official public leaderboard observation on 2026-10-26 was 0.4437; it is not a result for any project TIFF. No leaderboard projection is justified for the new surface.
+GEMSDOE32's supplied 0.2778 is USER-REPORTED, not a verified file receipt. The direct official public leaderboard observation on 2026-10-27 was 0.4544; it is not a result for any project TIFF. No leaderboard projection is justified for the new surface.
 
 ## Site-by-site findings
 
@@ -73,14 +73,14 @@ Inspected SHA-256: `68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a0728952
 The supplied historical leader contains 61,328 positive pixels, 1,259 more than D1.5. Its lower user-reported value suggests that adding topographic bridges was not automatically beneficial; hidden labels are unavailable to establish a cause. The later H29 value in the prompt is also below this site's supplied historical leader.
 Inspected SHA-256: `33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d`. [Pinned source](https://github.com/buffedlizard55-lab/GEMSDOE27/tree/bef7ae8e8f63b69d299c9214c75988c8f5055f9c).
 
-## Four pre-implementation hypotheses
+## Earlier pre-implementation hypotheses
 
 1. Conductivity/depth Hessian non-coaxiality: lowest cost, highest-priority uncertain benefit; executed once, negative.
 2. Magnetic texture transport in a depth-contour frame: medium cost, untested, related peer ideas exist.
 3. Radiometric compositional changes across terrain saddles: medium cost, conditional on original-layer semantics/coverage verification.
 4. Anisotropic conductivity-boundary persistence: medium cost, untested; related coherence operators already exist.
 
-[Specific layers, signatures, missing-catalogue rationale, non-fault mimics, novelty caveats and data readiness](hypotheses.md). No numerical improvement was forecast.
+[Earlier proposals](hypotheses.md) · [Four ranked future hypotheses, source and data-readiness audit](research/future-hypotheses-20261027.md). No numerical improvement was forecast.
 
 ## Limitations and next actions
 

@@ -54,9 +54,9 @@
   {
    "id": "IR-008",
    "severity": "medium",
-   "title": "Prompt leaderboard targets are stale and inconsistent",
-   "finding": "The prompt contains both 0.4413 and 0.3195 as current targets. Direct official public-page retrieval during this session shows xiaofanhu at 0.4437. This observation is not a score for any project artifact.",
-   "action": "Show source/date and a refresh feed; do not transform public ranking into a project score or private-score prediction."
+   "title": "Conflicting historical leaderboard observations; current value unresolved",
+   "finding": "The current user brief reports 0.3195. Repository-held dated public-page observations include 0.4437 (2026-10-26) and 0.4544 (2026-10-27); an earlier prompt also reports 0.4413. These conflict, and the DrivenData host could not be refreshed in this session. None is a score for a project TIFF.",
+   "action": "Keep each observation dated and separately sourced; label current leaderboard value unresolved until a fresh official-page check. Do not transform leaderboard rank into a project score."
   },
   {
    "id": "IR-009",
@@ -137,10 +137,10 @@
   },
   {
    "id": "IR-020",
-   "severity": "high",
-   "title": "Public leaderboard has moved again",
-   "finding": "Direct retrieval of https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ on 2026-10-27 shows rank 1 at 0.4544 (xiaofanhu). Earlier briefs quoted 0.4437 and 0.4413. This observation is not a score for any artifact in this repository.",
-   "action": "Record the dated observation; never convert a public ranking into a project score."
+   "severity": "medium",
+   "title": "Later retained leaderboard capture is not a current verified value",
+   "finding": "The repository preserves a 0.4544 rank-one observation dated 2026-10-27, alongside a 0.4437 observation dated 2026-10-26. The current user brief reports 0.3195 (an earlier brief reports 0.4413). The DrivenData host was not refreshed in this review; these conflict and none is a project-file score.",
+   "action": "Keep each capture dated and labeled as a historical public-page observation. Current leaderboard value is unresolved pending a fresh official check."
   },
   {
    "id": "IR-021",
@@ -161,14 +161,14 @@
    "severity": "medium",
    "title": "Score is rank-ordered by catalogue distance, and this is confounded with budget",
    "finding": "Across the nine artifacts the reported score is perfectly rank-ordered by the fraction of positive pixels within 300 m of the mapped catalogue (0.190->0.2477 ... 0.049->0.2778). The same sites also vary in budget, and the two regressors are collinear at r=0.751, so the two effects cannot be separated from nine points.",
-   "action": "Report the calibration as a ranking device with an explicit collinearity caveat; do not claim a causal effect of either lever alone."
+   "action": "Treat as a descriptive association across related owner-reported examples only. The regression and its forecast are withdrawn; do not use it for ranking candidates, slot selection, or causal inference."
   },
   {
    "id": "IR-024",
    "severity": "high",
    "title": "Official feature stack still absent; detector attempts are negative",
    "finding": "training_features.tif (418 MB, 19 bands) is login-gated and absent, so no feature-based model was trained. A detector built from peer-restored official GeoDAWN radiometrics and 3DEP terrain descriptors scored AUC 0.549 against mapped faults and 0.0303 at the real budget versus 0.0695 for a uniform random draw.",
-   "action": "Do not use those layers in a submission. Record the negative result. Reaching the 0.39-0.45 band requires the official stack."
+   "action": "Do not reuse the peer-data detector or claim a target leaderboard band is attainable. Any future test requires authorized inputs, a preregistered lane, leakage controls and untouched spatial validation; no score is implied."
   },
   {
    "id": "IR-025",
@@ -179,10 +179,17 @@
   },
   {
    "id": "IR-026",
-   "severity": "low",
-   "title": "WBG-2 estimate is a near-tie, not an improvement",
-   "finding": "WBG-2's MODEL-ESTIMATE is 0.2824 against 0.2778 reported for the best focus-site artifact: a difference of +0.0046, smaller than the calibration's own residual SD (0.00147 x 1.96) plus extrapolation risk, because near3cat=0 lies below the fitted range [0.049, 0.190].",
-   "action": "Present the file as unique and valid, not as a proven score improvement. No organizer receipt exists."
+   "severity": "blocking",
+   "title": "WBG-2 is not approved: literal registry STOP and no efficacy evidence",
+   "finding": "The former 0.2824 regression output is withdrawn, not a score estimate. WBG-2 has no qualifying HOLDOUT-DTI or pre-placement surface check. The nine-focus-site comparison is scoped only; the repository-wide audit records 100% forward 3 px overlap with WBG-C1, exceeding the literal 70% STOP rule.",
+   "action": "DOWNLOAD: YES, research only. SUBMIT: NO. No density/enrichment exception, holdout inference, or slot selection is allowed."
+  },
+  {
+   "id": "IR-027",
+   "severity": "blocking",
+   "title": "Scoped nine-site uniqueness must not be presented as global clearance",
+   "finding": "WBG-2 comparison against the nine requested focus-site artifacts has max forward overlap 18.61%, but the recorded broader registry witness has 100% overlap with a dense WBG-C1 surface. The pre-placement surface gate was not measured.",
+   "action": "Retain the literal STOP; no density exemption or private registry-scope waiver. Do not submit WBG-2."
   }
  ]
 }

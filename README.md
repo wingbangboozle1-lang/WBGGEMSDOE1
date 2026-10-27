@@ -1,20 +1,17 @@
 # WBG GEMS — evidence-first fault mapping
 
-## RESEARCH TIFF — DOWNLOAD FOR AUDIT; DO NOT SUBMIT
+## DO NOT SUBMIT — no candidate currently clears all gates
 
-**[WBG-2 evidence and decision](docs/wbg2.html)** · [current repository review](docs/session-review-20261027.md) · [research TIFF](docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif) · [one-TIFF ZIP](docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip) · [run card](evidence/wbg2/run_card.json)
+**[Executive summary and research download](docs/wbg2.html)** · [Nine-site comparison](docs/executive-summary.html)
 
-| | |
-|---|---|
-| Artifact | `docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif` (research only) |
-| Comparable HOLDOUT-DTI | **Unavailable**; no efficacy claim for this artifact |
-| Leaderboard score estimate | **Unavailable**. The former exploratory regression output is withdrawn as a score estimate. |
-| Uniqueness vs GEMSDOE24/25/27/28/30/31/32/33/36 | nine-site audit recorded; exact uniqueness is not submission eligibility |
-| Format | single-band float32, EPSG:32611, 3730×3292, values in [0,1], no NaN anywhere (zeros mode) |
-| sha256 | `f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3` |
-| Slots used | 0 |
+| File | Leaderboard estimate | Literal uniqueness | Submit? |
+|---|---|---|---|
+| [wbg2-offcatalogue-density-36k-20261027.tif](docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif) | Unavailable; prior regression forecast withdrawn | FAIL: recorded forward overlap 100% >70%; surface gate absent | **NO — research only** |
 
-> **Decision: DO NOT SUBMIT.** No comparable hide-and-recover HOLDOUT-DTI win over the current best and no separate authorized selector record are present. The old 0.2824 MODEL-ESTIMATE was fitted to unverified third-party reports and is not an organizer score or valid slot-selection estimate.
+The WBG-2 approval was revoked on 2026-10-27. Its density-adjusted exemption violated
+this project's literal registry rule. Format-valid does not mean eligible or high scoring.
+No qualifying WBG-2 HOLDOUT-DTI, CI, withheld-positive count or evaluator version exists.
+No weekly competition slot was used. [Correction and next steps](docs/protocol-review-20261027.md) · [site-by-site session review](docs/session-review-20261027.md).
 
 ## Older file — DOWNLOAD: YES, for research. SUBMIT: **NO**.
 
@@ -69,10 +66,10 @@ credit and avoiding low-marginal-credit predictions are plausible reasons for th
 ordering, not a causal proof from unavailable hidden labels. A 200 m exclusion is **not** an
 organizer rule. No historical file should be copied into a new "unique" entry.
 
-**Leaderboard status is unresolved.** The repository retains a dated 0.4437 public-page observation
-(2026-10-26) and another dated capture of 0.4544 (2026-10-27); the latest user brief reports
-0.3195. The current value was not freshly verified. None of these observations is an organizer
-result for a project TIFF. No higher project score was obtained or credibly projected.
+**Leaderboard status is unresolved.** The repository retains public-page observations of 0.4437
+(2026-10-26) and 0.4544 (2026-10-27); the latest user brief reports 0.3195, and an earlier
+brief reports 0.4413. These were not freshly reconciled because the DrivenData host was not
+available to this review. None is an organizer result for a project TIFF.
 
 ## Parallel work preserved during integration
 
@@ -227,14 +224,11 @@ not verified facts. The measured run card takes precedence over stale factual as
 
 # Standing user prompt — supplied 2026-10-26
 
-> **CURRENT STATE — read this first (reviewed 2026-10-27).** No artifact is cleared to submit.
-> WBG-2 `docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif` is a research download only:
-> it passes local format checks and has a nine-focus-site uniqueness audit, but has no comparable
-> HOLDOUT-DTI efficacy validation and no separate selector authorization. The former 0.2824
-> regression is withdrawn as a score estimate because it used unverified owner-reported values.
-> No new experiment or slot use occurred in this review. Read `docs/wbg2.html` and
-> `evidence/wbg2/run_card.json`. Historical site values remain OWNER-REPORTED / NOT ORGANIZER-CONFIRMED.
-> Prompt goal is intent, not evidence. Do not select an upload; slot selection is separate.
+> **CURRENT STATE — 2026-10-27 protocol correction.** No TIFF is approved for upload.
+> WBG-2's approval and regression forecast are withdrawn: literal overlap STOP,
+> no measured pre-placement surface gate, no qualifying hide-and-recover.
+> Read `protocol-review-20261027.md` and the corrected `evidence/wbg2/run_card.json`.
+> Research downloads remain available; no competition slots were used.
 
 This is the user's request, retained as project intent, **not verified factual findings**. Historical scores, blocker claims, dates, source availability, and proposed capabilities below must be checked against current evidence. Read it together with the current README status, `registry/run_card.json`, and `registry/irregularities.json` before each session. The requested single-method lane paragraph was not supplied. The original request follows (trailing whitespace normalized; wording retained).
 

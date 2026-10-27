@@ -14,7 +14,6 @@ from wbg2 import uniqueness as U
 from wbg2 import validate as V
 from wbg2.metric import ALPHA, BETA, EPS, R_PIXELS, dti, triangular_kernel
 from wbg2 import verification
-from wbggems1.eligibility import submission_eligibility
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -160,7 +159,7 @@ def test_zip_validator_requires_single_identical_member(tmp_path):
 
 # ------------------------------------------------------------------- uniqueness
 def test_enrichment_is_one_for_independent_dense_field():
-    """A dense surface must not be reported as a duplicate."""
+    """Enrichment is diagnostic only; it cannot waive the literal overlap STOP."""
     ours = np.zeros((200, 200), np.float32)
     rng = np.random.default_rng(1)
     idx = rng.choice(200 * 200, 500, replace=False)
@@ -186,12 +185,9 @@ def test_run_card_is_consistent_with_shipped_file():
     for key in ("raster_sha256", "score_estimate", "registry", "validator", "decision"):
         assert key in card
     assert card["decision"]["ok_to_submit"] is False
-    assert card["decision"]["ok_to_download"] is True
-    assert card["eligibility_gates"]["comparable_holdout_dti_available"] is False
-    assert card["score_estimate"]["valid_for_submission_decision"] is False
     assert card["validator"]["tif"]["all_checks_passed"] is True
     assert card["validator"]["zip"]["all_checks_passed"] is True
-    assert card["registry"]["passes_final_dot_gate"] is True
+    assert card["registry"]["passes_final_dot_gate"] is False
     assert len(card["submission_note"]) <= 140
 
 
@@ -209,31 +205,58 @@ def test_calibration_is_documented_and_honest():
     assert 0.9 < cal["r2"] <= 1.0
     assert any("receipt" in c for c in cal["caveats"])
     assert cal["collinearity"]["corr_near3cat_logbudget"] > 0.5
+    assert cal["status"].startswith("WITHDRAWN")
+    assert cal["valid_for_submission_decision"] is False
+    assert all("owner_reported_score" in row for row in cal["observations"])
 
 
-def test_submission_eligibility_fails_closed_without_all_gates():
-    gates = {
-        "format_valid": True,
-        "focus_site_uniqueness_pass": True,
-        "comparable_holdout_dti_available": True,
-        "beats_current_holdout_best": True,
-        "authorized_slot_selector_record": True,
-    }
-    assert submission_eligibility(gates) is True
-    for key in gates:
-        incomplete = dict(gates)
-        incomplete[key] = False
-        assert submission_eligibility(incomplete) is False
-    assert submission_eligibility({}) is False
+def test_literal_overlap_cannot_be_waived(tmp_path):
+    import rasterio
+    from rasterio.transform import from_origin
+    a = np.zeros((20, 20), np.float32)
+    a[10, 10] = 1
+    tr = from_origin(0, 2000, 100, 100)
+    path = tmp_path / 'dense.tif'
+    with rasterio.open(path, 'w', driver='GTiff', height=20, width=20,
+                       count=1, dtype='float32', transform=tr, crs='EPSG:32611') as dst:
+        dst.write(np.full((20, 20), 0.5, np.float32), 1)
+    result = U.scan_registry(a, a.shape, tr, rasterio.crs.CRS.from_epsg(32611), [str(tmp_path)])
+    assert result['max_forward_3px_overlap'] == 1
+    assert result['passes_final_dot_gate'] is False
+    assert U.load_aligned(str(path), a.shape, from_origin(100, 2000, 100, 100), rasterio.crs.CRS.from_epsg(32611)) is None
 
 
-def test_wbg2_page_never_calls_research_file_submittable():
-    page = (ROOT / "docs/wbg2.html").read_text()
-    assert "Do not submit" in page or "DO NOT SUBMIT" in page
-    assert "Download and submit" not in page
-    assert "old 0.2824" in page
-    assert "withdrawn as a score estimate" in page
-    home = (ROOT / "docs/index.html").read_text()
-    assert "DO NOT SUBMIT" in home
-    assert "Current repository review" in home
-    assert "Current submittable file" not in home
+def test_no_registry_is_not_a_pass(tmp_path):
+    a = np.zeros((10, 10), np.float32)
+    assert not U.scan_registry(a, a.shape, None, None, [str(tmp_path)])['passes_final_dot_gate']
+
+
+def test_wbg2_default_preflight_refuses_upload():
+    import subprocess
+    import sys
+    result = subprocess.run([sys.executable, str(ROOT / 'scripts/verify_wbg2_download.py')], capture_output=True, text=True)
+    assert result.returncode == 1
+    assert json.loads(result.stdout)['ok_to_submit'] is False
+
+
+def test_registry_overlap_uses_euclidean_distance():
+    a = np.zeros((10, 10), np.float32)
+    b = a.copy()
+    a[5, 5] = 1
+    b[3, 3] = 1  # sqrt(8) <= 3, but Manhattan distance is 4
+    assert U.compare(a, b)['forward_overlap'] == 1
+
+
+def test_current_pages_do_not_reapprove_wbg2():
+    for relative in ('README.md', 'docs/index.html', 'docs/wbg2.html', 'PROMPT.md'):
+        text = (ROOT / relative).read_text()
+        assert 'DO NOT SUBMIT' in text or 'No submittable artifact' in text
+        assert 'safe to upload' not in text
+        assert 'Submit: YES' not in text
+        assert 'SUBMIT THIS FILE' not in text
+
+
+def test_wbg2_published_preflight_has_no_machine_specific_paths():
+    text = (ROOT / 'docs/data/wbg2-corrected-preflight.json').read_text()
+    assert str(ROOT) not in text
+    assert '/home/' not in text

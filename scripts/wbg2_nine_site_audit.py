@@ -84,7 +84,7 @@ def main() -> int:
         path = find_artifact(root, key) if os.path.isdir(root) else None
         row = {
             "site": site,
-            "organizer_reported_score": float(reported),
+            "owner_reported_score": float(reported),
             "expected_artifact": key,
             "audited": path is not None,
         }

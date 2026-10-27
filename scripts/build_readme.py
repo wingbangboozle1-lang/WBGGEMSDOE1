@@ -16,24 +16,20 @@ def main():
     standing = (ROOT / "docs/standing-prompt.md").read_text()
     w2 = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
     w2tif = Path(w2["artifacts"]["tif"]).name
-
     header = f'''# WBG GEMS — evidence-first fault mapping
 
-## RESEARCH TIFF — DOWNLOAD FOR AUDIT; DO NOT SUBMIT
+## DO NOT SUBMIT — no candidate currently clears all gates
 
-**[WBG-2 evidence and decision](docs/wbg2.html)** · [current repository review](docs/session-review-20261027.md) · [research TIFF](docs/downloads/{w2tif}) · [one-TIFF ZIP](docs/downloads/{w2tif.replace('.tif', '.zip')}) · [run card](evidence/wbg2/run_card.json)
+**[Executive summary and research download](docs/wbg2.html)** · [Nine-site comparison](docs/executive-summary.html)
 
-| | |
-|---|---|
-| Artifact | `docs/downloads/{w2tif}` (research only) |
-| Comparable HOLDOUT-DTI | **Unavailable**; no efficacy claim for this artifact |
-| Leaderboard score estimate | **Unavailable**. The former exploratory regression output is withdrawn as a score estimate. |
-| Uniqueness vs GEMSDOE24/25/27/28/30/31/32/33/36 | nine-site audit recorded; exact uniqueness is not submission eligibility |
-| Format | single-band float32, EPSG:32611, 3730×3292, values in [0,1], no NaN anywhere (zeros mode) |
-| sha256 | `{w2["raster_sha256"]}` |
-| Slots used | 0 |
+| File | Leaderboard estimate | Literal uniqueness | Submit? |
+|---|---|---|---|
+| [{w2tif}](docs/downloads/{w2tif}) | Unavailable; prior regression forecast withdrawn | FAIL: recorded forward overlap 100% >70%; surface gate absent | **NO — research only** |
 
-> **Decision: DO NOT SUBMIT.** No comparable hide-and-recover HOLDOUT-DTI win over the current best and no separate authorized selector record are present. The old 0.2824 MODEL-ESTIMATE was fitted to unverified third-party reports and is not an organizer score or valid slot-selection estimate.
+The WBG-2 approval was revoked on 2026-10-27. Its density-adjusted exemption violated
+this project's literal registry rule. Format-valid does not mean eligible or high scoring.
+No qualifying WBG-2 HOLDOUT-DTI, CI, withheld-positive count or evaluator version exists.
+No weekly competition slot was used. [Correction and next steps](docs/protocol-review-20261027.md) · [site-by-site session review](docs/session-review-20261027.md).
 
 ## Older file — DOWNLOAD: YES, for research. SUBMIT: **NO**.
 
@@ -88,10 +84,10 @@ credit and avoiding low-marginal-credit predictions are plausible reasons for th
 ordering, not a causal proof from unavailable hidden labels. A 200 m exclusion is **not** an
 organizer rule. No historical file should be copied into a new "unique" entry.
 
-**Leaderboard status is unresolved.** The repository retains a dated 0.4437 public-page observation
-(2026-10-26) and another dated capture of 0.4544 (2026-10-27); the latest user brief reports
-0.3195. The current value was not freshly verified. None of these observations is an organizer
-result for a project TIFF. No higher project score was obtained or credibly projected.
+**Leaderboard status is unresolved.** The repository retains public-page observations of 0.4437
+(2026-10-26) and 0.4544 (2026-10-27); the latest user brief reports 0.3195, and an earlier
+brief reports 0.4413. These were not freshly reconciled because the DrivenData host was not
+available to this review. None is an organizer result for a project TIFF.
 
 ## Parallel work preserved during integration
 

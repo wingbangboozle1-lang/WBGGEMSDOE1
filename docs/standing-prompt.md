@@ -1,13 +1,10 @@
 # Standing user prompt — supplied 2026-10-26
 
-> **CURRENT STATE — read this first (reviewed 2026-10-27).** No artifact is cleared to submit.
-> WBG-2 `docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif` is a research download only:
-> it passes local format checks and has a nine-focus-site uniqueness audit, but has no comparable
-> HOLDOUT-DTI efficacy validation and no separate selector authorization. The former 0.2824
-> regression is withdrawn as a score estimate because it used unverified owner-reported values.
-> No new experiment or slot use occurred in this review. Read `docs/wbg2.html` and
-> `evidence/wbg2/run_card.json`. Historical site values remain OWNER-REPORTED / NOT ORGANIZER-CONFIRMED.
-> Prompt goal is intent, not evidence. Do not select an upload; slot selection is separate.
+> **CURRENT STATE — 2026-10-27 protocol correction.** No TIFF is approved for upload.
+> WBG-2's approval and regression forecast are withdrawn: literal overlap STOP,
+> no measured pre-placement surface gate, no qualifying hide-and-recover.
+> Read `protocol-review-20261027.md` and the corrected `evidence/wbg2/run_card.json`.
+> Research downloads remain available; no competition slots were used.
 
 This is the user's request, retained as project intent, **not verified factual findings**. Historical scores, blocker claims, dates, source availability, and proposed capabilities below must be checked against current evidence. Read it together with the current README status, `registry/run_card.json`, and `registry/irregularities.json` before each session. The requested single-method lane paragraph was not supplied. The original request follows (trailing whitespace normalized; wording retained).
 

@@ -21,22 +21,19 @@ Reference: https://github.com/drivendataorg/gems-prize-reference-solution
 5. **RUN CARD.** JSON: hypothesis; mechanism; named non-fault mimic; holdout DTI + CI; correlation/overlap vs registry; raster sha256; validator; submission name + ≤140 char note; verdict promote / negative.
 6. **BUDGET.** Stop after 3 experiments or 2 hours. Do not pick live slots.
 
-## Current artifact decision (2026-10-27)
+## Current artifact (2026-10-27)
 
-No artifact in this repository is currently cleared to submit. WBG-2
-`docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif` is downloadable for research only.
-It is format-valid and the repo records a nine-focus-site uniqueness audit, but there is no
-comparable HOLDOUT-DTI demonstrating improvement over the same-instrument current best and no
-separate selector authorization. Its former 0.2824 regression output is withdrawn as a score
-estimate because it was fit to unverified owner-reported historical values. Details:
-`docs/wbg2.html`, `evidence/wbg2/run_card.json`, `registry/wbg2_submission.json`.
+**No submittable artifact.** WBG-2 remains available as a research TIFF/ZIP.
+Its approval and regression forecast were withdrawn: recorded literal overlap 100%
+exceeds 70%, no pre-placement measured gate or qualifying hide-and-recover exists.
+See `docs/protocol-review-20261027.md`. All other artifacts remain negative.
 
 ## Submission contract
 
 - Single-band float32 GeoTIFF, EPSG:32611, 3730×3292, 100 m, sample geotransform.
 - Values in [0, 1]. **Zeros-mode** (no NaN anywhere) is the upload file — the portal has rejected NaN with “Predicted values must be in range [0, 1]”.
 - Unique name + short note.
-- Homepage must make **OK TO SUBMIT / DO NOT SUBMIT** obvious. Current state: **DO NOT SUBMIT**. Validation is automatic; no human inspector.
+- Homepage must make **OK TO SUBMIT / DO NOT SUBMIT** obvious. Validation is automatic; no human inspector.
 
 ## Nine focus sites
 

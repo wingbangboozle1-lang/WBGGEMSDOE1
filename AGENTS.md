@@ -1,18 +1,15 @@
 # Starting point for every session
 
-0. **No artifact in this repository is currently cleared to submit.** WBG-2
-   (`docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif`) is downloadable for research only.
-   It is format-valid and has a recorded nine-focus-site uniqueness audit, but it has no comparable
-   HOLDOUT-DTI validation proving improvement over a same-instrument current best and no separately
-   authorized selector record. Its former 0.2824 regression output is withdrawn as a score estimate:
-   it was fitted to unverified owner-reported values. Read `docs/wbg2.html` and
-   `evidence/wbg2/run_card.json` first. Other artifacts remain negative; none is cleared to upload.
+0. **No artifact is currently approved for upload.** WBG-2's inherited approval is revoked.
+   Read `docs/protocol-review-20261027.md` and `evidence/wbg2/run_card.json` first.
+   Its recorded literal overlap is 100%, no pre-placement measurement or qualifying
+   holdout exists, and its regression forecast is withdrawn. TIFF remains research-only.
 
 1. Read `README.md` **including the archived standing prompt**, then the 2026-10-27 follow-up at
    `research/03_followup_review_20261027.md`, `evidence/portfolio_review_20261027.json`,
    `docs/review-20261027.md`, `evidence/release_review_20261027.json`, `registry/run_card.json`,
    `registry/irregularities.json`, `registry/experiment_ledger.json` and `registry/preregistration.json`.
-   The prompt is intent, not evidence. **No artifact is cleared to upload.**
+   The prompt is intent, not evidence. **No file is cleared to upload.**
    WBG-C1, TIP1, MVGZ and WBG-H1 remain **NEGATIVE / DO NOT SUBMIT**. The 2026-10-27 follow-up added
    zero experiments.
 2. The original checkout contained only a title. Do not invent prior local training, pending tasks,

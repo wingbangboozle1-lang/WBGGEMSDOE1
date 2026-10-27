@@ -22,7 +22,9 @@ def main():
 
     header = f'''# WBG GEMS — evidence-first fault mapping
 
-## SUBMIT THIS FILE: [{w2tif}](docs/downloads/{w2tif})
+## DOWNLOAD FOR AUDIT — NOT CLEARED TO SUBMIT: [{w2tif}](docs/downloads/{w2tif})
+
+**Status correction:** local format validity and a nine-site uniqueness comparison do not establish full-registry clearance or a same-evaluator holdout win. Do not upload under the current protocol. See [repository review](docs/repo-review-20261027.md).
 
 **[Executive summary + one-click download](docs/wbg2.html)** · [ZIP](docs/downloads/{w2tif.replace('.tif', '.zip')}) ·
 [markdown summary](docs/wbg2-executive-summary.md) · [run card](evidence/wbg2/run_card.json) ·
@@ -37,10 +39,7 @@ def main():
 | sha256 | `{w2["raster_sha256"]}` |
 | Slots used | 0 |
 
-> **Honest reading.** WBG-2 is unique and format-valid, so it is safe to upload. Its estimate is only
-> **{w2est - 0.2778:+.4f}** above the best focus-site artifact (0.2778), which is *within model error*:
-> it ties that artifact rather than beating it. The route to the 0.39–0.45 leaderboard band is the
-> login-gated official `training_features.tif`; see [the executive summary](docs/wbg2.html).
+> **Honest reading.** WBG-2 has a local format pass and was compared with the nine focus-site artifacts, but that is not complete current registry clearance or an efficacy holdout. Its estimate is only **{w2est - 0.2778:+.4f}** above the unverified owner-reported 0.2778 and does not establish a win. **Download for audit; not cleared to upload under the current protocol.** See [the repository review](docs/repo-review-20261027.md) and [executive summary](docs/wbg2.html).
 
 ## Older file — DOWNLOAD: YES, for research. SUBMIT: **NO**.
 

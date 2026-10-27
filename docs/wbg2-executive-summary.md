@@ -1,46 +1,37 @@
-# WBG-2 — executive summary
+# WBG-2 — research artifact review
 
-**Download:** `docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif` (or `wbg2-offcatalogue-density-36k-20261027.zip`). **Submit:** YES.
+**DOWNLOAD: YES, research only. SUBMIT: NO.** The local format pass does not override the missing lane, missing pre-placement check, strict overlap STOP, absent HOLDOUT-DTI, or absent organizer receipt.
 
-- Estimated score: **0.2824** (MODEL-ESTIMATE, 95% 0.2795–0.2853, R² 0.988, n=9).
-- Organizer-confirmed score: **none**.
-- Unique vs the nine focus sites: **YES** — max 1.18× chance overlap, max |ρ| 0.009, 9/9 sites audited.
-- Format: single-band float32, EPSG:32611, 3730×3292, values in [0,1], no NaN, 36,000 positive pixels.
-- sha256: `f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3`
+- Research TIFF: [`docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif`](downloads/wbg2-offcatalogue-density-36k-20261027.tif) (or [`wbg2-offcatalogue-density-36k-20261027.zip`](downloads/wbg2-offcatalogue-density-36k-20261027.zip)).
+- SHA-256: `f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3`.
+- Local format validation: **PASS**; one float32 band, EPSG:32611, shape 3730×3292, [0,1], no NaN, exact sample-template affine transform revalidated.
+- HOLDOUT-DTI: **NOT MEASURED**; no evaluator version, withheld-positive count, or 95% CI.
+- Organizer-confirmed score: **none**. Current leaderboard estimate: **unavailable**.
+- Focus-nine pairwise audit: 9/9 exact artifacts; max forward overlap 0.1861; max sampled |ρ| 0.0095 (diagnostic only). This is not full-registry clearance.
+- Partial local registry scan: 8 rasters; maximum literal forward 3 px overlap 1.0000 against WBG-C1 research surface. **STOP** under the no-exemption rule.
+- Surface-before-placement check: **not recorded**. Method lane: **not authorized**.
 
-## What to download
+## Why GEMSDOE32 B2 led the supplied focus-site results
 
-| Site | File | Reported score | Overlap with WBG-2 | Unique? |
-|---|---|---|---|---|
-| **WBG-2 (this)** | `wbg2-offcatalogue-density-36k-20261027.tif` | **0.2824** (estimate) | reference | — |
-| GEMSDOE32 | `gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif` | 0.2778 | 1.18× chance | Unique |
-| GEMSDOE36 | `gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif` | 0.2750 | 1.18× chance | Unique |
-| GEMSDOE28 | `gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif` | 0.2710 | 1.12× chance | Unique |
-| GEMSDOE31 | `gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif` | 0.2708 | 1.12× chance | Unique |
-| GEMSDOE33 | `GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif` | 0.2632 | 1.09× chance | Unique |
-| GEMSDOE25 | `gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif` | 0.2600 | 1.04× chance | Unique |
-| GEMSDOE30 | `gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside.tif` | 0.2600 | 1.04× chance | Unique |
-| GEMSDOE24 | `gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif` | 0.2477 | 1.04× chance | Unique |
-| GEMSDOE27 | `gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif` | 0.2449 | 1.08× chance | Unique |
+GEMSDOE32 B2 is the highest supplied value, **USER-REPORTED 0.2778 / NOT ORGANIZER-CONFIRMED**. The stored raster lineage is D2.8 (44,090 dots) → B1 (40,199) → B2 (37,654), removing catalogue-near predictions at each step. Under a max-cover DTI, removing low-marginal-coverage predictions can reduce false-positive cost; this is consistent with the reported ordering but is not proven without hidden labels and a receipt. It does not establish a universal exclusion buffer.
 
-## Why 0.2778 won
+Whether a genuinely unique artifact can beat 0.2778 is **unknown**. WBG-2 has no valid HOLDOUT-DTI and no defensible score estimate.
 
-All nine artifacts are binary dot fields (only 0.0 and 1.0). Their reported score is perfectly rank-ordered by how far their dots sit from the mapped catalogue: 0.190→0.2477, 0.187→0.2600, 0.136→0.2632, 0.109→0.2708, 0.050→0.2750, 0.049→0.2778. The GEMSDOE32 winner is documented in its own audit as the 0.2708 base with every dot within 200 m of the catalogue deleted. The gain came from deletion, not detection.
+## Artifact mechanism and mimic
 
-## Levers, measured
+A Gaussian KDE of mapped-fault density (1.5 km) supplies the placement prior, with a 400 m catalogue exclusion and 36,000 scattered cells. This is a spatial prior, not a fault detector. Basin-fill depocentres and range-front alluvial aprons are named non-fault mimics.
 
-1. Exclude the catalogue — proven, used by WBG-2 at 400 m.
-2. Continuous traces — only with the true strike (0.936) vs scattered (0.140) vs guessed strike (0.090). WBG-2 scatters.
-3. Smaller budget at fixed hits — monotone gain (0.132→0.221 from 20k→2.5k pixels), but confounded with lever 1 across the nine sites (r=0.75).
+The recorded PROXY-DTI against mapped catalogue faults is 0.0 by construction and is not a score. The former regression projection was withdrawn because it used unverified user reports, included duplicate prediction fields, had collinear predictors, and extrapolated beyond its fit domain.
 
-## Negative results
+## Three-pass review
 
-- A detector built from official GeoDAWN radiometrics and 3DEP terrain descriptors scored AUC 0.549 against mapped faults and 0.0303 versus 0.0695 for random at the real budget. Rejected.
-- The official 418 MB `training_features.tif` is absent (login-gated), so no feature-based model could be trained here.
+1. **Audit:** found a false submit approval, an unauthorized chance-enrichment exception, a withdrawn projection, and no pre-placement surface gate.
+2. **Correct:** reclassified the unchanged TIFF/ZIP as research-only; made score and eligibility fields fail closed; kept the focus-nine result explicitly scoped.
+3. **Verify:** the exact TIFF and one-member ZIP passed the shared format validator; 146 repository tests, Ruff E9/F, Chromium 153 desktop/mobile checks for 10 pages, and all local CI validation commands passed. Download identities matched pinned hashes. GitHub Actions remains pending PR creation; none of these checks constitute organizer acceptance or global uniqueness clearance.
 
-## Irregularities
+## Manual-review sources
 
-- All nine reported scores are third-party values with no receipt.
-- GEMSDOE25 and GEMSDOE30 share an identical positive-pixel set.
-- Public leaderboard observed 2026-10-27 at 0.4544 (rank 1), superseding 0.4437/0.4413.
-- External geophysical layers are peer re-distributions, not primary-download bytes; not used by WBG-2.
+- [DrivenData problem / metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) · [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) · [submission page](https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/) · [DOE/NLR rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf)
+- [DrivenData reference solution](https://github.com/drivendataorg/gems-prize-reference-solution) · [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) · [DOE GDR 1391](https://gdr.openei.org/submissions/1391) · [EPSG:32611](https://epsg.io/32611)
+
+External sources and the competition portal were not freshly accessed in this review. No experiment, TIFF regeneration, upload, or slot use occurred.

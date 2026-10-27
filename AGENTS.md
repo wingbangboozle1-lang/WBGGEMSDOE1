@@ -1,20 +1,14 @@
 # Starting point for every session
 
-0. **Current submittable artifact (2026-10-27): `docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif`.**
-   Unique against all nine focus sites (max 1.18x chance overlap, max |rho| 0.009), format-valid,
-   zeros-mode, sha256 `f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3`.
-   Estimated score **0.2824** (MODEL-ESTIMATE; 95% 0.2795-0.2853) - **not** organizer-confirmed and
-   only +0.0046 over the best focus-site artifact, i.e. a tie within model error. Read
-   `docs/wbg2.html` and `evidence/wbg2/run_card.json` first. The WBG-C1/TIP1/MVGZ/WBG-H1 artifacts
-   remain NEGATIVE; nothing else here is cleared to upload.
+0. **No artifact is cleared to submit (corrected 2026-10-27).** WBG-2 `docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif` and its byte-identical ZIP are **DOWNLOAD: YES (research only) / SUBMIT: NO**. SHA-256 `f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3`; local format-valid. Its nine-focus-site comparison is scoped, not global. The assigned method paragraph and pre-placement surface check are missing. The legacy chance-enrichment exception wrongly waived a raw 100% 3-pixel overlap against the WBG-C1 research surface; the literal shared rule requires STOP. There is no valid WBG-2 HOLDOUT-DTI or organizer receipt; its regression projection is withdrawn, not a score. Read `docs/wbg2.html`, `evidence/wbg2/run_card.json`, and `evidence/wbg2/review_20261027.json` first. WBG-C1, TIP1, MVGZ and WBG-H1 also remain **NEGATIVE / DO NOT SUBMIT**.
 
-1. Read `README.md` **including the archived standing prompt**, then the 2026-10-27 follow-up at
+1. Read `README.md` **including the archived standing prompt**, then the WBG-2 correction at
+   `evidence/wbg2/review_20261027.json`, the 2026-10-27 follow-up at
    `research/03_followup_review_20261027.md`, `evidence/portfolio_review_20261027.json`,
    `docs/review-20261027.md`, `evidence/release_review_20261027.json`, `registry/run_card.json`,
    `registry/irregularities.json`, `registry/experiment_ledger.json` and `registry/preregistration.json`.
-   The prompt is intent, not evidence. **Only the WBG-2 file in item 0 is cleared to upload.**
-   WBG-C1, TIP1, MVGZ and WBG-H1 remain **NEGATIVE / DO NOT SUBMIT**. The 2026-10-27 follow-up added
-   zero experiments.
+   The prompt is intent, not evidence. **No file here is cleared to upload.** No new experiment, TIFF
+   regeneration, upload, or slot use is authorized.
 2. The original checkout contained only a title. Do not invent prior local training, pending tasks,
    organizer receipts, lane assignments, scores, GPU requirements or authenticated data access.
 3. No assigned single-method paragraph was supplied. WBG-C1 is provisional research only. Its
@@ -40,14 +34,17 @@
   observations are separately dated and do not identify a project file.
 - Test each feature alone, including reversed orientation/missingness. AUC >0.90 is suspected
   leakage until resolved. Passing canaries does not prove absence of every kind of leakage.
-- Surface and final-dot novelty are separate gates: signed Spearman >0.90 or forward overlap
-  >70% within 3 pixels is STOP. No density exemption. Exact-byte/pixel uniqueness is weaker.
-  If surface STOP occurs, **do not claim a final-dot check or final dotted submission exists**.
+- Surface and final-dot novelty are separate gates: rank-correlation >0.90 or forward overlap
+  >70% within 3 pixels is STOP. No density/chance exemption. Exact-byte/pixel uniqueness is weaker.
+  If a surface STOP occurs, do not place final dots or claim lane clearance. WBG-2's already-created
+  dots are a quarantined research artifact; its missing pre-placement check and strict final overlap
+  STOP prohibit promotion.
 
 ## Artifacts, website and reviews
 
 - A local format pass is not a scientific win, global uniqueness, organizer acceptance or slot
-  approval. The downloadable negative TIFF is a **continuous research surface**.
+  approval. WBG-C1 is a continuous research surface; WBG-2 is a 36,000-dot research prior. Both are
+  quarantined as downloads only, and neither is cleared to submit.
 - Keep `DOWNLOAD: YES (research only)` and `SUBMIT: NO` unmistakable on every decision page.
 - Reopen exact TIFF bytes, reject NaN/inf/out-of-range output without silently repairing it,
   compare CRS/shape/transform, and validate a ZIP contains exactly one identical TIFF.
@@ -68,6 +65,9 @@
 
 ## 2026-10-27 follow-up corrections
 
+- WBG-2 was incorrectly promoted by a private chance-enrichment exception. The exact TIFF/ZIP bytes
+  are preserved, but its score projection is withdrawn and its current decision is **research-only /
+  do not submit**. The nine-site audit is not a full registry scan.
 - DPGF-1 also fails the literal one-way gate (99.8035% lattice overlap); sparse/symmetric
   diagnostics are not authorized substitutes. No optional negative-result upload recommendation.
 - Inherited LLI forecasts, private-fault-count inversion and ORGANIZER-CONFIRMED labels are not

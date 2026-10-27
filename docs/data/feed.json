@@ -1,82 +1,91 @@
 {
-  "generated_utc": "2026-10-27T17:20:58+00:00",
+  "generated_utc": "2026-10-27T19:24:03+00:00",
   "network_refresh_attempted": true,
   "official_page_refresh_attempted": false,
   "leaderboard_status": "retained_observation_not_refreshed",
   "leaderboard": {
-    "date_utc": "2026-10-26",
+    "date_utc": "2026-10-27",
     "rank": 1,
     "participant": "xiaofanhu",
-    "public_dw_tversky": 0.4437,
+    "public_dw_tversky": 0.4544,
     "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-OBSERVATION",
     "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-    "observed_date_utc": "2026-10-26",
-    "observation_method": "fetch_page direct official page retrieval in research session",
-    "not_a_project_submission_receipt": true
+    "observed_date_utc": "2026-10-27",
+    "observation_method": "Latest in-repository direct retrieval recorded under registry/irregularities.json IR-020; not freshly reverified in the current GitHub-only refresh.",
+    "not_a_project_submission_receipt": true,
+    "prior_observations": [
+      {
+        "date_utc": "2026-10-26",
+        "rank": 1,
+        "participant": "xiaofanhu",
+        "public_dw_tversky": 0.4437,
+        "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-OBSERVATION"
+      }
+    ]
   },
   "repository_heads": [
     {
       "repo": "buffedlizard55-lab/GEMSDOE24",
       "audited_commit": "7ab1c8f77f0b4b8644e3929403a0dab65838b008",
-      "observed_head": "2521cb676e172c141a4417e4925b73b6a896c1eb",
+      "observed_head": "af8576cf23d1e8cfda69fd859e1fb98d3d72194f",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-27T17:20:54+00:00"
+      "checked_utc": "2026-10-27T19:23:59+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE25",
       "audited_commit": "af2b6f2543e5422a7e917638b70e038e6fd91cad",
-      "observed_head": "5a60fb475b7171af93cfce795abe6d96c4021ea2",
+      "observed_head": "eb70599f5cad08cb8808499dd38589d33fc183b5",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-27T17:20:55+00:00"
+      "checked_utc": "2026-10-27T19:24:00+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE27",
       "audited_commit": "bef7ae8e8f63b69d299c9214c75988c8f5055f9c",
-      "observed_head": "9833bff8a373355c8ed6acf0e10c8cc4bf77cd0f",
+      "observed_head": "4f34228a9f39e99da592aa34fd835c96d1b693f5",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-27T17:20:55+00:00"
+      "checked_utc": "2026-10-27T19:24:00+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE28",
       "audited_commit": "2c839d10f57ec9b074829e93c84bc39935f52896",
-      "observed_head": "67dbdf4da84fc92a98dd9644ab816ed18ae36bcc",
+      "observed_head": "4955e29c7b66503ba2178b25d356d713dc1bc534",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-27T17:20:56+00:00"
+      "checked_utc": "2026-10-27T19:24:01+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE30",
       "audited_commit": "9c0d637c0171407196b61b780444bc772ce75438",
-      "observed_head": "3c3d7255fdbb3a94375eff086522463a8eaca449",
+      "observed_head": "d21ddd9502f3c3911e8d77b8f1e6abfaadffc876",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-27T17:20:56+00:00"
+      "checked_utc": "2026-10-27T19:24:01+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE31",
       "audited_commit": "776bf4668a8c10631908c9bba9443a8f11ce5036",
-      "observed_head": "abd9a45cc7adf046d7d3829eb6e8c980943f462d",
+      "observed_head": "88ec212955353f7590e94b8ef2a9763ffa035d45",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-27T17:20:57+00:00"
+      "checked_utc": "2026-10-27T19:24:02+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE32",
       "audited_commit": "07806249f4ed3efe70b4fbf866183c32392b7853",
-      "observed_head": "1398109a23f04a2ace71c1bd2f527cfba87860b5",
+      "observed_head": "6a28a39a2bca6bbb49cd8a56292c78d474c9ef91",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-27T17:20:57+00:00"
+      "checked_utc": "2026-10-27T19:24:02+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE33",
       "audited_commit": "1d99d73fe14d9a87126ffca2db52c69336d6099b",
-      "observed_head": "122e2240a835c9c84831943ee3489dbb48fd6e85",
+      "observed_head": "844f514819041c7be9efd345a24cf5cd70263f00",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-27T17:20:58+00:00"
+      "checked_utc": "2026-10-27T19:24:03+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE36",
       "audited_commit": "05979971df4775aadad34ae6749b0a7ac56d7832",
-      "observed_head": "61783525af4aa6dcf8da0bc68b06fa38b89ed27a",
+      "observed_head": "b9d8ce07c10a0adb08bb0302b867a0ccc1eba18e",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-27T17:20:58+00:00"
+      "checked_utc": "2026-10-27T19:24:03+00:00"
     }
   ],
   "errors": [],

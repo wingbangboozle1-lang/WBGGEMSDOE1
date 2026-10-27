@@ -32,11 +32,8 @@ jobs:
           python scripts/validate_submission.py docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.zip
       - name: Revalidate all four frozen research downloads and decision-report identity
         run: python scripts/review_releases.py --check
-      - name: Verify the WBG-2 submission download, fail-closed
-        env:
-          PYTHONPATH: src
+      - name: Verify the preserved WBG-2 research download; never regenerate or promote
         run: |
-          python scripts/build_wbg2_submission.py
           python scripts/verify_wbg2_download.py
           python scripts/build_wbg2_site.py
       - name: Recheck inherited frozen TIP1 & WBG-H1 receipts without retraining
@@ -64,7 +61,7 @@ jobs:
           cache: npm
       - name: Install exact optional browser-check dependencies
         run: npm ci
-      - name: Render all nine pages, test filtering and verify all four actual TIFF downloads
+      - name: Render decision pages and verify WBG-C1, WBG-2, and four portfolio downloads
         run: |
           python3 scripts/stage_pages.py
           python3 -m http.server 8000 --bind 0.0.0.0 --directory .cache/pages > /tmp/wbg-site.log 2>&1 &

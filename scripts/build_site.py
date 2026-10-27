@@ -31,7 +31,7 @@ def link(url, text, cls=""):
 
 
 def page(name, title, body):
-    nav = [("index.html", "Overview"), ("wbg2.html", "WBG-2 submission"),
+    nav = [("index.html", "Overview"), ("wbg2.html", "WBG-2 review"),
            ("executive-summary.html", "Site comparison"),
            ("research.html", "Research"), ("evidence.html", "Evidence"), ("how-to-submit.html", "How to submit")]
     links = "".join(link(path, label, "active" if path == name else "") for path, label in nav)
@@ -145,17 +145,14 @@ def feed_strip(feed):
 
 
 def wbg2_banner():
-    """Prominent pointer to the current, unique, submittable WBG-2 file."""
+    """Prominently label the preserved WBG-2 TIFF as research-only."""
     try:
         card = load("evidence/wbg2/run_card.json")
     except Exception:
         return ""
     tif = Path(card["artifacts"]["tif"]).name
-    est = card["score_estimate"]["value"]
-    lo, hi = card["score_estimate"]["ci95"]
-    ok = card["decision"]["ok_to_submit"]
-    tag = pill("Submit: YES", "ok") if ok else pill("Submit: NO", "no")
-    return f'''<div class="alert" role="note" style="border-color:#bcd6c6;background:#f1f6ef;color:#24564a"><p><strong>Current submittable file: WBG-2.</strong> A newly generated, format-valid, <strong>unique</strong> GeoTIFF — estimated score <strong>{est:.4f}</strong> (95% model interval {lo:.4f}–{hi:.4f}, not organizer-confirmed). It is not a copy of any of the nine focus sites. {tag} &nbsp; <a href="wbg2.html">Executive summary and download →</a> &nbsp;·&nbsp; <a href="downloads/{tif}" download>Direct TIFF download ↓</a></p></div>'''
+    overlap = card["registry"]["max_forward_3px_overlap"]
+    return f'''<div class="alert" role="alert"><p><strong>WBG-2 research download: YES. Submit: NO — DO NOT SUBMIT.</strong> Its local format check passed, but the lane was not assigned, the surface-before-placement check is missing, the literal final-dot overlap is {overlap:.0%} against a registered research surface, and no valid HOLDOUT-DTI exists. The chance-enrichment exemption was invalid. <a href="wbg2.html">Read the corrected artifact review →</a> &nbsp;·&nbsp; <a href="downloads/{tif}" download>Download research TIFF ↓</a></p></div>'''
 
 
 def home(card, receipt, audit, feed):
@@ -198,13 +195,24 @@ def evidence(card, sources, irregularities, feed):
     for s in sources["sources"]:
         claims = ''.join('<li>' + escape(c) + '</li>' for c in s.get("verified_claims", []))
         if s.get("observation"):
-            claims += '<li>Directly observed public rank-one value: 0.4437 on 2026-10-26. Not a project TIFF receipt.</li>'
+            observation = s["observation"]
+            claims += (
+                f'<li>Latest recorded official public rank-one value: '
+                f'{float(observation["public_dw_tversky"]):.4f} on '
+                f'{escape(observation["date_utc"])} ({escape(observation["participant"])}). '
+                'Not a project TIFF receipt.</li>'
+            )
+            for prior in s.get("prior_observations", []):
+                claims += (
+                    f'<li>Prior recorded observation: {float(prior["public_dw_tversky"]):.4f} '
+                    f'on {escape(prior["date_utc"])} ({escape(prior["participant"])}); history only.</li>'
+                )
         sourcecards.append(f'<article class="source-card"><span class="source-id">{s["id"]}</span><h3>{escape(s["title"])}</h3><p>{escape(s["access"])}</p><ul>{claims}</ul>{link(s["url"], "Review official source ↗")}</article>')
     issues = ''.join(f'<details><summary>{escape(i["id"])} · {escape(i["title"])} {pill(i["severity"], "ok" if i["severity"] == "fixed" else "warn")}</summary><div class="detail-body"><p>{escape(i["finding"])}</p><p><strong>Action:</strong> {escape(i["action"])}</p></div></details>' for i in irregularities["items"])
     return f'''<section class="subhero"><div><p class="eyebrow">Audit trail · independently inspectable</p><h1>Know what is measured.<br><em>Know what is missing.</em></h1><p class="lead">Every material claim links to a source or measured JSON. Unknowns remain unknown; no claim of exhaustive literature review, all-site coverage, hidden-label access or guaranteed leaderboard performance is made.</p></div>{pill('No organizer score receipt', 'warn')}</section>{alert()}
 <section class="content-section"><h2>Keep these evidence classes separate</h2><div class="three-col"><article class="mini-card"><span class="index">HOLDOUT-DTI</span><h3>A local measured result</h3><p>Must carry evaluator version, withheld-positive count, representation and confidence interval. These recover withheld public-catalogue faults, not the organizer's unseen new-fault labels.</p></article><article class="mini-card"><span class="index">ORGANIZER-CONFIRMED</span><h3>Requires a real file receipt</h3><p>Reserved for a submission-page receipt linking the actual artifact to its result. No project file has such a verified receipt here. The public leaderboard is a separate dated observation.</p></article><article class="mini-card"><span class="index">USER-REPORTED / UNCONFIRMED</span><h3>Historical claims, quarantined</h3><p>The supplied site values stay in this class. A source repository repeating a claim does not independently verify it. Predictions and projections are never relabelled as measured scores.</p></article></div></section>
 <section class="content-section"><h2>Current receipts and inventory</h2><div class="check-grid"><div class="check"><b>360 unique file hashes / 377 source paths</b><p>Aligned prediction-like TIFFs from nine frozen snapshots; 0 unreadable indexed candidates. Not the entire competition or all 92 sites.</p></div><div class="check"><b>Shared template reused unchanged</b><p>24 pinned source files match, including evaluate_holdout.py and submission_writer.py. All nineteen original-cache band hashes match.</p></div><div class="check"><b>Exact newly generated artifact</b><p class="mono">SHA-256 {card['raster_sha256']}</p></div><div class="check"><b>Unknowns block approval automatically</b><p>Lane authorization, independent organizer-origin data, same-instrument current-best victory, untouched confirmation and authenticated account allowance.</p></div></div><div class="actions" style="margin-top:20px">{link('data/registry-surface-audit.json', 'All 360 registry comparisons ↗', 'button secondary')}{link('data/template-integrity.json', 'Shared-template integrity ↗', 'text-link')}{link('data/shared-feature-cache.json', '19-band cache receipt ↗', 'text-link')}{link('data/experiment.json', 'Holdout folds & CI ↗', 'text-link')}{link('data/upstream-template-verification.json', '24 direct upstream matches ↗', 'text-link')}{link('data/snapshot-commit-verification.json', '9 verified commit pins ↗', 'text-link')}{link('data/review-passes.json', 'Three review passes ↗', 'text-link')}{link('data/browser-checks.json', 'Desktop / mobile / download checks ↗', 'text-link')}</div></section>
-<section class="content-section"><h2>Official sources and checked claims</h2><p class="note">Retrieved 26 October 2026. Relevant sections were read; the full rules PDF, every external dataset and all linked literature were not exhaustively verified. Original raster bytes have not been independently downloaded from the organizer.</p><div class="source-grid">{''.join(sourcecards)}</div><p class="note">{link('data/sources.json', 'Machine-readable sources, access status and normalized excerpts ↗')}</p></section>
+<section class="content-section"><h2>Official sources and checked claims</h2><p class="note">Competition problem/background pages were retrieved on 26 October 2026. The latest recorded public leaderboard observation is dated 27 October 2026 (IR-020), but it was not freshly reverified in this build. Relevant sections were read; the full rules PDF, every external dataset and all linked literature were not exhaustively verified. Original raster bytes have not been independently downloaded from the organizer.</p><div class="source-grid">{''.join(sourcecards)}</div><p class="note">{link('data/sources.json', 'Machine-readable sources, access status and normalized excerpts ↗')}</p></section>
 <section class="content-section"><h2>Irregularities, not hidden exceptions</h2><div class="details-list">{issues}</div></section>
 <section class="content-section"><h2>Public provenance feed</h2>{feed_strip(feed)}<p class="prose">Scheduled Pages builds attempt to refresh the official leaderboard and the nine GitHub heads. If a request fails, the last verified observation stays dated and the error is reported; it is never called a fresh measurement. Head changes flag that the frozen inventory may be stale. The feed never retrains a model, changes an approval, picks a submission or spends a slot.</p><div class="actions">{link('data/feed.json', 'Current feed JSON ↗', 'button secondary')}{link('data/repository-snapshots.json', 'Immutable audit pins ↗', 'text-link')}{link('data/irregularities.json', 'All irregularities JSON ↗', 'text-link')}</div></section>'''
 
@@ -223,9 +231,16 @@ def howto(card, receipt):
 <section class="content-section prose"><h2>Autonomous pipeline, not a browser simulation</h2><p>This static site serves the pre-generated artifact and its exact automated receipts. It does not pretend a browser click can train on hundreds of megabytes of geophysical rasters. The Python pipeline restores hashes, reuses the shared cache, tests features, fits spatially held-out models, measures pooled DTI, writes the validated TIFF/ZIP and applies the literal registry STOP. Its ledger blocks rerunning or retuning this stopped experiment. New work belongs to a separately assigned, preregistered future session.</p><p>{link(REPO + '/blob/main/README.md', 'Reproducible commands and full standing request ↗')} · {link('data/run-card.json', 'Exact current decision JSON ↗')}</p></section>'''
 
 
-def markdown_summary(card, audit):
+def markdown_summary(card, audit, feed):
     h, d = card["holdout"], card["paired_delta_holdout"]
     tif = Path(card["artifact"]).name
+    observation = feed["leaderboard"]
+    observed_date = observation.get("observed_date_utc") or observation.get("date_utc") or "unknown date"
+    observation_note = (
+        "latest recorded observation; not freshly checked in this build"
+        if feed.get("leaderboard_status") != "network_verified"
+        else "fresh official-page retrieval"
+    )
     lines = ["# Executive summary — 26 October 2026", "", "## DOWNLOAD: YES (research only). SUBMIT: NO.", "", "[27 October follow-up: all four releases and trust corrections](portfolio-review.html). No new experiment; the existing lane remains stopped. All leaderboard estimates remain unavailable.", "",
         f"[Download the frozen research TIFF](downloads/{tif}) · [one-TIFF ZIP](downloads/{tif.replace('.tif', '.zip')}) · [machine-readable run card](data/run-card.json)", "",
         "No final dotted or high-scoring promoted competition submission was produced. The literal surface overlap STOP and negative efficacy screen prohibit promotion. No weekly slot was used.", "",
@@ -237,7 +252,7 @@ def markdown_summary(card, audit):
         lines.append(f"| {row['site']}: [{row['file']}]({row['immutable_file_url']}?raw=1) | USER-REPORTED historical {row['reported_historical_value']:.4f}; **NOT ORGANIZER-CONFIRMED** | Unavailable for a new file | Historical learning reference; family overlap fails. Do not copy as a unique submission. |")
     lines += ["", "## 2026-10-27 follow-up", "", "[All four local download decisions](release-review.html): exact files revalidated, all research-only. WBG-H1 literal lattice overlap exceeds 70%; filtered diagnostics do not clear uniqueness. No new experiment or slot use. [Review and access limits](review-20261027.md).", "", "## Why GEMSDOE32 leads the supplied historical records", "",
         "Exact raster identities: D2.8 44,090 dots → remove 3,891 within 100 m of the catalogue → B1 40,199 → remove 2,545 more within 200 m → B2 37,654. GEMSDOE25 and GEMSDOE30 have identical decoded predictions. GEMSDOE36 contains all B2 pixels plus 1,200 additions. Sparse support and low-marginal-credit pruning can reduce redundant false-positive cost under the official max-cover metric. Hidden labels are unavailable, so that mechanism is plausible, not a proved causal account of each historical result. A 200 m exclusion is not an organizer rule.", "",
-        "GEMSDOE32's supplied 0.2778 is USER-REPORTED, not a verified file receipt. The direct official public leaderboard observation on 2026-10-26 was 0.4437; it is not a result for any project TIFF. No leaderboard projection is justified for the new surface.", "", "## Site-by-site findings", ""]
+        f"GEMSDOE32's supplied 0.2778 is USER-REPORTED, not a verified file receipt. The latest recorded official public leaderboard observation was {float(observation['public_dw_tversky']):.4f} on {observed_date} ({observation_note}); it is not a result for any project TIFF. No leaderboard projection is justified for the new surface.", "", "## Site-by-site findings", ""]
     for row in audit["rows"]:
         lines += [f"### {row['site']} — {HISTORY[row['site']][0]}", HISTORY[row['site']][1], f"Inspected SHA-256: `{row['sha256']}`. [Pinned source]({row['snapshot_url']}).", ""]
     lines += ["## Four pre-implementation hypotheses", "", "1. Conductivity/depth Hessian non-coaxiality: lowest cost, highest-priority uncertain benefit; executed once, negative.", "2. Magnetic texture transport in a depth-contour frame: medium cost, untested, related peer ideas exist.", "3. Radiometric compositional changes across terrain saddles: medium cost, conditional on original-layer semantics/coverage verification.", "4. Anisotropic conductivity-boundary persistence: medium cost, untested; related coherence operators already exist.", "", "[Specific layers, signatures, missing-catalogue rationale, non-fault mimics, novelty caveats and data readiness](hypotheses.md). No numerical improvement was forecast.", "", "## Limitations and next actions", "", "- No assigned lane paragraph was supplied. The screen is provisional research, not an authorized promotion lane.", "- Core data and all 19 band-cache hashes match public owner mirrors, not an independently authenticated organizer-origin manifest.", "- Literal band metadata are ambiguous across documents. Do not claim physical units, heat, permeability or geothermal vent discovery from these numbers.", "- The historical file scores lack organizer submission-page receipts. No hidden test labels or private-score access exists.", "- The nine frozen snapshots are not the entire 92-site/competition registry. No global uniqueness is claimed. The measured duplicate is enough for STOP.", "- The current account allowance is unknown because the submissions page redirects to login. The rules PDF's three-per-week limit is not proof of remaining allowance.", "- An independent future authorized lane needs a clean same-instrument current-best comparator, untouched confirmation, surface and final-dot uniqueness and exact-artifact format validation before a separate selector considers a real slot.", "", "[How to submit a future promoted file](how-to-submit.html) · [official sources and irregularities](evidence.html) · [full prompt](standing-prompt.md)", "", "## Run card", "", "[Download the complete JSON run card](data/run-card.json). Verdict: **negative**.", ""]
@@ -278,7 +293,7 @@ def main():
     for name, target in legacy.items():
         archived = "parallel/main-b9a2d53/" + name
         (DOCS / name).write_text(f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="refresh" content="0; url={target}"><title>Research page moved</title><link rel="stylesheet" href="assets/style.css"></head><body><main class="wrap"><h1>Research page moved</h1><p><strong>DO NOT SUBMIT the negative research artifacts.</strong></p><p><a href="{target}">Open the current evidence desk</a> · <a href="{archived}">Original frozen parallel page</a></p></main></body></html>''', encoding="utf-8")
-    (DOCS / "executive-summary.md").write_text(markdown_summary(card, audit), encoding="utf-8")
+    (DOCS / "executive-summary.md").write_text(markdown_summary(card, audit, feed), encoding="utf-8")
     (DOCS / ".nojekyll").touch()
     manifest = {"schema_version": 1, "artifact": Path(card["artifact"]).name, "sha256": card["raster_sha256"],
                 "submission_name": card["submission_name"], "note": card["submission_note"],

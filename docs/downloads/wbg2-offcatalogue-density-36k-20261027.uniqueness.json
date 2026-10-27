@@ -6,8 +6,8 @@
  "stop_enrichment_threshold": 3.0,
  "stop_overlap_threshold": 0.7,
  "stop_rho_threshold": 0.9,
- "passes_final_dot_gate": true,
- "gate_rule": "STOP if |signed Spearman rho| > 0.90, or if forward 3 px overlap > 0.70 AND that overlap is at least 3x chance (enrichment >= 3). The enrichment requirement exists because raw forward overlap is 1.0 for any sparse field compared against a dense continuous surface.",
+ "passes_final_dot_gate": false,
+ "gate_rule": "Literal STOP if Spearman rank correlation exceeds 0.90 or if more than 70% of candidate positive pixels lie within 3 pixels of any one registry raster. No chance-enrichment/density exemption.",
  "top_matches": [
   {
    "forward_overlap": 0.11605555555555555,
@@ -17,7 +17,9 @@
    "their_positive": 23402,
    "ours_positive": 36000,
    "their_density": 0.0019058306920017331,
-   "path": "docs/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif"
+   "path": "docs/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif",
+   "diagnostic_only": true,
+   "enrichment_cannot_waive_literal_overlap_stop": true
   },
   {
    "forward_overlap": 0.11605555555555555,
@@ -27,7 +29,9 @@
    "their_positive": 23402,
    "ours_positive": 36000,
    "their_density": 0.0019058306920017331,
-   "path": "docs/parallel/main-b9a2d53/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif"
+   "path": "docs/parallel/main-b9a2d53/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif",
+   "diagnostic_only": true,
+   "enrichment_cannot_waive_literal_overlap_stop": true
   },
   {
    "forward_overlap": 0.14152777777777778,
@@ -37,7 +41,9 @@
    "their_positive": 37654,
    "ours_positive": 36000,
    "their_density": 0.0030664964052915674,
-   "path": "docs/downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif"
+   "path": "docs/downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif",
+   "diagnostic_only": true,
+   "enrichment_cannot_waive_literal_overlap_stop": true
   },
   {
    "forward_overlap": 0.16030555555555556,
@@ -47,7 +53,9 @@
    "their_positive": 37654,
    "ours_positive": 36000,
    "their_density": 0.0030664964052915674,
-   "path": "docs/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+   "path": "docs/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+   "diagnostic_only": true,
+   "enrichment_cannot_waive_literal_overlap_stop": true
   },
   {
    "forward_overlap": 0.16030555555555556,
@@ -57,7 +65,9 @@
    "their_positive": 37654,
    "ours_positive": 36000,
    "their_density": 0.0030664964052915674,
-   "path": "docs/parallel/main-b9a2d53/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+   "path": "docs/parallel/main-b9a2d53/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+   "diagnostic_only": true,
+   "enrichment_cannot_waive_literal_overlap_stop": true
   },
   {
    "forward_overlap": 0.17988888888888888,
@@ -67,7 +77,9 @@
    "their_positive": 37722,
    "ours_positive": 36000,
    "their_density": 0.003072034243384727,
-   "path": "docs/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif"
+   "path": "docs/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif",
+   "diagnostic_only": true,
+   "enrichment_cannot_waive_literal_overlap_stop": true
   },
   {
    "forward_overlap": 0.17988888888888888,
@@ -77,7 +89,9 @@
    "their_positive": 37722,
    "ours_positive": 36000,
    "their_density": 0.003072034243384727,
-   "path": "docs/parallel/main-b9a2d53/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif"
+   "path": "docs/parallel/main-b9a2d53/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif",
+   "diagnostic_only": true,
+   "enrichment_cannot_waive_literal_overlap_stop": true
   },
   {
    "forward_overlap": 1.0,
@@ -87,7 +101,26 @@
    "their_positive": 5106385,
    "ours_positive": 36000,
    "their_density": 0.4158578436961486,
-   "path": "docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif"
+   "path": "docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+   "diagnostic_only": true,
+   "enrichment_cannot_waive_literal_overlap_stop": true
   }
- ]
+ ],
+ "legacy_gate": {
+  "recorded_pass": true,
+  "rule": "STOP on >70% forward overlap only when enrichment >=3x chance",
+  "status": "RETIRED — unauthorized density/chance exemption"
+ },
+ "literal_thresholds": {
+  "forward_3px_overlap_stop_if_gt": 0.7,
+  "absolute_spearman_stop_if_gt": 0.9,
+  "density_or_chance_exemption": false
+ },
+ "literal_stop_observed": true,
+ "strict_literal_result": "STOP: raw forward 3-pixel overlap is 1.0 against docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif, above the 0.70 limit.",
+ "surface_before_placement": "NOT RECORDED; required check was missing.",
+ "inventory_complete": false,
+ "global_registry_clearance": false,
+ "scope": "Partial local scan of 8 rasters only; not a complete registry or organizer-certified inventory.",
+ "verdict": "NEGATIVE — strict literal overlap STOP; no global clearance."
 }

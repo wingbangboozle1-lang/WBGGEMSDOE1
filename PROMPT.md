@@ -21,14 +21,11 @@ Reference: https://github.com/drivendataorg/gems-prize-reference-solution
 5. **RUN CARD.** JSON: hypothesis; mechanism; named non-fault mimic; holdout DTI + CI; correlation/overlap vs registry; raster sha256; validator; submission name + ≤140 char note; verdict promote / negative.
 6. **BUDGET.** Stop after 3 experiments or 2 hours. Do not pick live slots.
 
-## Current artifact (2026-10-27)
+## Current artifact and decision (corrected 2026-10-27)
 
-Submittable: `docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif` (+ identical one-member ZIP).
-Unique vs GEMSDOE24/25/27/28/30/31/32/33/36 (max 1.18x chance overlap, max |rho| 0.009).
-Format-valid: float32, EPSG:32611, 3730x3292, [0,1], no NaN. Estimated score 0.2824
-(MODEL-ESTIMATE, 95% 0.2795-0.2853, 9-point calibration R^2 0.988) - not organizer-confirmed,
-and only +0.0046 over 0.2778, so treat it as a tie. Details: `docs/wbg2.html`.
-Everything else in this repository is a negative result and is NOT cleared to upload.
+WBG-2 is **not cleared to submit**. Its preserved TIFF and byte-identical ZIP are **DOWNLOAD: YES (research only) / SUBMIT: NO**. The local format validator passes, and the separate pairwise comparison covers the nine named focus-site artifacts only; it is not full-registry clearance. The assigned single-method paragraph is missing and the surface-before-placement check was not recorded. A prior custom uniqueness rule wrongly waived the literal >70% overlap STOP based on chance enrichment. Its partial local comparison records 100% raw 3-pixel overlap against the WBG-C1 research surface, so the shared literal rule requires STOP. No valid WBG-2 HOLDOUT-DTI, withheld-positive count, 95% CI, or organizer receipt exists. The former regression projection is withdrawn, not a score; a defensible estimate is unavailable. Exact TIFF bytes are preserved; no new experiment, regeneration, upload, or slot use is authorized. See `docs/wbg2.html`, `evidence/wbg2/run_card.json`, and `evidence/wbg2/review_20261027.json`.
+
+GEMSDOE32 B2 remains the highest supplied focus-site claim: **USER-REPORTED 0.2778 / NOT ORGANIZER-CONFIRMED**. Whether a genuinely unique file can beat it is unknown from the recorded evidence. Everything else remains research-only unless a separate authorized selector clears it.
 
 ## Submission contract
 

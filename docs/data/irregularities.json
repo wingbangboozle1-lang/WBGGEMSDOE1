@@ -154,35 +154,35 @@
    "severity": "medium",
    "title": "GEMSDOE25 and GEMSDOE30 publish the same prediction set",
    "finding": "Their files differ in bytes and encoding but their 44,090 positive pixels are the identical set, and both are reported at 0.2600. The 'nine sites' therefore contain at most eight independent fields.",
-   "action": "Count eight independent artifacts when reasoning about sample size; the calibration records this."
+   "action": "Treat the inspected files as at most eight distinct prediction fields. The former regression is retired and must not use these rows as independent score-estimation evidence."
   },
   {
    "id": "IR-023",
-   "severity": "medium",
-   "title": "Score is rank-ordered by catalogue distance, and this is confounded with budget",
-   "finding": "Across the nine artifacts the reported score is perfectly rank-ordered by the fraction of positive pixels within 300 m of the mapped catalogue (0.190->0.2477 ... 0.049->0.2778). The same sites also vary in budget, and the two regressors are collinear at r=0.751, so the two effects cannot be separated from nine points.",
-   "action": "Report the calibration as a ranking device with an explicit collinearity caveat; do not claim a causal effect of either lever alone."
+   "severity": "high",
+   "title": "Former WBG-2 regression projection is withdrawn",
+   "finding": "The earlier nine-row regression used user-reported historical values without artifact-linked receipts, included two sites with identical decoded predictions, had collinear predictors, and extrapolated outside its fit domain. Its high in-sample fit is not a spatial holdout result and is not evidence of a leaderboard score.",
+   "action": "Keep the coefficients and rows only in the quarantined historical calibration file. Publish no active WBG-2 score estimate and never use the projection for promotion."
   },
   {
    "id": "IR-024",
    "severity": "high",
-   "title": "Official feature stack still absent; detector attempts are negative",
-   "finding": "training_features.tif (418 MB, 19 bands) is login-gated and absent, so no feature-based model was trained. A detector built from peer-restored official GeoDAWN radiometrics and 3DEP terrain descriptors scored AUC 0.549 against mapped faults and 0.0303 at the real budget versus 0.0695 for a uniform random draw.",
-   "action": "Do not use those layers in a submission. Record the negative result. Reaching the 0.39-0.45 band requires the official stack."
+   "title": "Previously published external-detector metrics lack durable run evidence",
+   "finding": "An older WBG-2 page asserted AUC and fixed-budget DTI comparisons for a GeoDAWN/3DEP detector. The committed WBG-2 evidence does not include a reproducible evaluator output, fold-level predictions, or a valid run card for those numbers. Treat those performance claims as withdrawn, not as measured findings.",
+   "action": "Do not cite the old performance figures. Reintroduce any such result only with a preregistered shared holdout run, leakage canaries, full output hashes, and verified input provenance."
   },
   {
    "id": "IR-025",
    "severity": "medium",
-   "title": "External geophysical layers are peer re-distributions",
-   "finding": "The GeoDAWN radiometric and 3DEP terrain rasters used in the rejected experiment were read from a peer repository, not re-downloaded from USGS. Their sidecars cite DOI 10.5066/P93LGLVQ and ScienceBase 657e1d85d34e23d3533209f7 but the bytes were not independently authenticated.",
-   "action": "WBG-2 does not use them. Any future use requires a primary download and hash pin."
+   "title": "Peer-derived external layer bytes are not primary-source verified",
+   "finding": "Earlier project notes identify GeoDAWN radiometric and 3DEP terrain rasters from peer repositories and cite official source identifiers, but the exact bytes were not freshly downloaded from primary USGS sources in this review. A sidecar DOI or catalog identifier does not authenticate the local raster bytes.",
+   "action": "WBG-2 uses only mapped-fault density. Any future external-layer use requires a primary-source download, hash pin, license/access check, and literal band-semantics verification."
   },
   {
    "id": "IR-026",
-   "severity": "low",
-   "title": "WBG-2 estimate is a near-tie, not an improvement",
-   "finding": "WBG-2's MODEL-ESTIMATE is 0.2824 against 0.2778 reported for the best focus-site artifact: a difference of +0.0046, smaller than the calibration's own residual SD (0.00147 x 1.96) plus extrapolation risk, because near3cat=0 lies below the fitted range [0.049, 0.190].",
-   "action": "Present the file as unique and valid, not as a proven score improvement. No organizer receipt exists."
+   "severity": "high",
+   "title": "WBG-2 submit approval was invalid and is revoked",
+   "finding": "The former run card set ok_to_submit=true despite no assigned method paragraph, no recorded surface-before-placement check, no shared HOLDOUT-DTI or receipt, and a partial registry diagnostic with raw 3-pixel overlap 1.0. The private gate waived that >70% overlap because chance enrichment was below 3x; the standing literal rule has no such exemption.",
+   "action": "Set WBG-2 to DOWNLOAD: YES (research only) / SUBMIT: NO. Preserve TIFF/ZIP bytes, mark the projection withdrawn, and make CI check fail-closed status plus shared format validity without rebuilding or promoting the artifact."
   }
  ]
 }

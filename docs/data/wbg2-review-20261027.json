@@ -1,0 +1,184 @@
+{
+  "schema": "wbg2-promotion-review-v1",
+  "reviewed_utc": "2026-10-27",
+  "review_type": "evidence reconciliation and release-policy audit; no scientific experiment, no TIFF regeneration, no upload, and no slot use",
+  "hypothesis": "A spatial prior based on mapped-fault density, displaced away from the mapped catalogue, might rank undiscovered-fault locations better than uniform placement.",
+  "mechanism": "The artifact is a 36,000-cell binary point field sampled from a 1.5 km Gaussian KDE of mapped faults after a 400 m catalogue exclusion. It encodes mapped-fault proximity, not a direct geophysical detection of a fault.",
+  "named_non_fault_mimic": "Basin-fill depocentres and range-front alluvial aprons can cluster near mapped faults, causing the prior to reproduce basin geometry rather than undiscovered faulting.",
+  "lane_status": {
+    "assigned_single_method_paragraph_present": false,
+    "authorized_for_promotion": false,
+    "surface_before_placement_check": "NOT RECORDED; required gate missing",
+    "final_dot_check": "Legacy custom diagnostic only; the literal overlap rule requires STOP",
+    "submission_slots_used": 0
+  },
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT MEASURED",
+    "value": null,
+    "evaluator_version": null,
+    "withheld_positive_pixels": null,
+    "ci95": null,
+    "reason": "No shared whole-segment hide-and-recover result for WBG-2 exists in the recorded evidence. The recorded PROXY-DTI is against mapped catalogue faults and is not a holdout score."
+  },
+  "score_estimate": {
+    "status": "UNAVAILABLE",
+    "value": null,
+    "reason": "The former regression projection was withdrawn: it used unverified user-reported outcomes, included duplicate prediction fields, had collinear predictors, extrapolated beyond its fit domain, and was not a holdout evaluator or organizer receipt."
+  },
+  "withdrawn_projection_for_audit_only": {
+    "evidence_class": "WITHDRAWN MODEL-ESTIMATE \u2014 NOT A SCORE",
+    "value": 0.2824288396367217,
+    "interval95": [
+      0.27954821881994424,
+      0.2853094604534992
+    ],
+    "r_squared": 0.9878460510789473,
+    "source": "Retained historical projection from registry/wbg2_calibration.json; not valid evidence of expected leaderboard performance."
+  },
+  "registry": {
+    "focus_site_scope": "The exact nine named artifacts for GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33, and GEMSDOE36 only.",
+    "focus_site_audit": {
+      "evidence_class": "REGISTRY-MEASUREMENT (scoped pairwise audit, not clearance)",
+      "rasters_checked": 9,
+      "max_forward_3px_overlap": 0.18611111111111112,
+      "interpretation": "Pairwise distinct from those nine focus-site artifacts under the recorded comparison only; not a full registry audit.",
+      "max_absolute_sampled_spearman_diagnostic_only": 0.00947404544224616,
+      "correlation_method": "Deterministic sample of up to 400,000 cells; diagnostic only, not a full-footprint shared novelty result."
+    },
+    "partial_local_registry_audit": {
+      "evidence_class": "REGISTRY-MEASUREMENT (legacy partial inventory; diagnostic only)",
+      "rasters_compared": 8,
+      "blocking_reference": "docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+      "max_forward_3px_overlap": 1.0,
+      "legacy_chance_enrichment_for_blocking_reference": 2.3612157246957177,
+      "former_private_rule": "Required both >70% overlap and >=3x chance enrichment to stop.",
+      "strict_literal_result": "STOP: the raw forward 3-pixel overlap is 1.0, above the 0.70 limit. The chance-enrichment exception is not authorized.",
+      "inventory_complete": false,
+      "max_absolute_sampled_spearman_diagnostic_only": 0.06438757182955884,
+      "correlation_method": "Deterministic sample of up to 400,000 cells; diagnostic only, not a full-footprint shared novelty result."
+    },
+    "global_uniqueness_cleared": false,
+    "density_exemption_authorized": false
+  },
+  "artifact": {
+    "path": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+    "zip_path": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip",
+    "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+    "existing_artifact_preserved_without_rewrite": true,
+    "download_decision": "YES \u2014 research only",
+    "submit_decision": "NO"
+  },
+  "validator": {
+    "evidence_class": "LOCAL FORMAT VALIDATION ONLY; not scientific efficacy, registry clearance, or organizer acceptance",
+    "status": "PASS \u2014 independently revalidated with the pinned shared format validator",
+    "single_band_float32": true,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "values_in_0_1": true,
+    "no_nan_anywhere": true,
+    "exact_template_transform": "PASS: exact six-term affine transform matches the reference submission template; see validator_report_20261027.json.",
+    "zip_contains_one_byte_identical_tiff": true,
+    "report": "evidence/wbg2/validator_report_20261027.json",
+    "tif_sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+    "zip_sha256": "b4074f093c43ebb41a2b550b5558cf4c5a38c5f1b0c7b69393575ae12e8005b4",
+    "exact_transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "all_shared_format_checks_passed": true,
+    "no_nan_or_inf_anywhere": true,
+    "positive_cells": 36000
+  },
+  "artifact_name": "wbg2-offcatalogue-density-36k-20261027",
+  "artifact_note": "WBG-2 research-only prior; format-checked but not cleared by lane, uniqueness or holdout gates. DO NOT SUBMIT.",
+  "verdict": "negative",
+  "review_passes": [
+    {
+      "pass": 1,
+      "result": "Found contradictory submit approval, an invalid chance-enrichment exception, a withdrawn score projection, and a missing pre-placement gate."
+    },
+    {
+      "pass": 2,
+      "result": "Reclassified WBG-2 as a research-only download; retained the exact TIFF and ZIP bytes; removed active score-estimate and submission-clearance claims."
+    },
+    {
+      "pass": 3,
+      "result": "Independent shared format verification passed for the exact TIFF and ZIP with unchanged hashes; 146 repository tests passed (16 known Rasterio deprecation warnings); Ruff E9/F checks passed; static pages, README, link checks, and staged site were rebuilt. No experiment, TIFF regeneration, upload, or slot use occurred. Headless Chromium 153 also passed desktop/mobile checks for 10 pages, with no JavaScript errors or horizontal overflow; both primary and WBG-2 downloads matched pinned SHA-256s. All non-remote repository CI validation commands also passed locally; GitHub Actions remains pending PR creation."
+    }
+  ],
+  "limitations": [
+    "No new experiment or fresh scientific score was run in this review.",
+    "The focus-nine audit does not establish global registry uniqueness.",
+    "The partial local registry diagnostic is not an organizer-complete inventory.",
+    "External official sources and the current competition portal were not freshly accessed in this review.",
+    "Local browser regression checks are not a remote GitHub Actions run or organizer review.",
+    "The official public leaderboard was not live-refreshed in this run; the latest in-repository recorded observation is 0.4544 dated 2026-10-27 (IR-020), not a project receipt. Authenticated portal allowance remains unknown."
+  ],
+  "verification": {
+    "wbg2_shared_validator": "PASS \u2014 exact TIFF and one-member byte-identical ZIP; see evidence/wbg2/validator_report_20261027.json",
+    "tiff_sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+    "zip_sha256": "b4074f093c43ebb41a2b550b5558cf4c5a38c5f1b0c7b69393575ae12e8005b4",
+    "pytest": "PASS \u2014 146 passed, 16 pending-deprecation warnings",
+    "ruff": "PASS \u2014 E9/F static checks",
+    "static_site": "PASS \u2014 rebuilt pages, README, local links, and staged site",
+    "scientific_experiments": 0,
+    "tiff_regenerated": false,
+    "competition_uploads": 0,
+    "submission_slots_used": 0,
+    "browser": {
+      "status": "PASS \u2014 headless Chromium 153 desktop and mobile checks",
+      "pages_checked": 10,
+      "viewports_px": {
+        "desktop": [
+          1440,
+          1100
+        ],
+        "mobile": [
+          390,
+          844
+        ]
+      },
+      "javascript_page_errors": 0,
+      "horizontal_overflow": false,
+      "site_filter": "PASS",
+      "primary_download_identity": "PASS \u2014 SHA-256 8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+      "wbg2_research_download_identity": "PASS \u2014 exact TIFF SHA-256 f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3; displayed SUBMIT: NO",
+      "report": "evidence/browser_checks.json"
+    },
+    "public_feed": {
+      "refresh_scope": "GitHub-only public provenance refresh; no DrivenData page or authenticated portal access",
+      "repository_heads_checked": 9,
+      "errors": 0,
+      "leaderboard_status": "retained_observation_not_refreshed",
+      "last_official_public_leaderboard_observation_date_utc": "2026-10-27",
+      "implication": "No new official score observation in this run; the latest in-repository recorded rank-one value is 0.4544 dated 2026-10-27 and is not a project receipt.",
+      "latest_recorded_rank_one_value": 0.4544,
+      "prior_observation": {
+        "date_utc": "2026-10-26",
+        "value": 0.4437
+      }
+    },
+    "local_ci_parity": {
+      "status": "PASS \u2014 all repository CI checks executed locally, excluding the remote GitHub Actions job and its final clean-diff assertion",
+      "checks": [
+        "146-test pytest suite",
+        "Ruff E9/F",
+        "WBG-C1 TIFF and ZIP validation",
+        "four-release review",
+        "WBG-2 preserved-artifact verification",
+        "TIP1 recorded-run verification",
+        "WBG-H1 recorded holdout verification",
+        "release validation"
+      ],
+      "remote_github_actions_run": "NOT RUN; PR not yet opened"
+    }
+  }
+}

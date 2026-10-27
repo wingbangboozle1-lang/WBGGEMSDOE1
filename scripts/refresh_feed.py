@@ -69,9 +69,11 @@ def parse_leaderboard(html):
                 if column >= len(row) or not re.fullmatch(r"(?:0\.\d{4,8}|1(?:\.0{4,8})?)", row[column]):
                     raise ValueError("rank-one metric cell did not contain one unambiguous [0,1] score")
                 participant_column = next((i for i, text in enumerate(header) if "Participant" in text), None)
+                participant = row[participant_column] if participant_column is not None else None
                 return {"evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-OBSERVATION", "rank": 1,
                         "public_dw_tversky": float(row[column]),
-                        "participant_display": row[participant_column] if participant_column is not None else None,
+                        "participant": participant,
+                        "participant_display": participant,
                         "source": LEADERBOARD,
                         "not_a_project_submission_receipt": True}
     raise ValueError("no recognizable public Tversky leaderboard table with rank one")
@@ -99,16 +101,46 @@ def main():
     previous = json.loads(path.read_text()) if path.exists() else {}
     sources = json.loads((ROOT / "registry/sources.json").read_text())
     seed = next(s for s in sources["sources"] if s["id"] == "OFFICIAL-LEADERBOARD")
-    last = previous.get("leaderboard", {**seed["observation"], "evidence_class": seed["evidence_class"],
-        "source": seed["url"], "observed_date_utc": "2026-10-26", "observation_method": "fetch_page direct official page retrieval in research session",
-        "not_a_project_submission_receipt": True})
+    seed_observation = {
+        **seed["observation"],
+        "evidence_class": seed["evidence_class"],
+        "source": seed["url"],
+        "observed_date_utc": seed["observation"].get("date_utc"),
+        "observation_method": seed["observation"].get("observation_method", seed.get("access", "recorded official-page observation")),
+        "prior_observations": seed.get("prior_observations", []),
+        "not_a_project_submission_receipt": True,
+    }
+    last = previous.get("leaderboard", seed_observation)
     errors, heads = [], []
     leaderboard_status = "retained_observation_not_refreshed"
     if not args.offline:
         if not args.github_only:
             try:
-                last = {**parse_leaderboard(fetch(LEADERBOARD)), "observed_utc": utc_now(),
-                        "observation_method": "strict official HTML leaderboard table parse"}
+                fetched_at = utc_now()
+                fresh = {
+                    **parse_leaderboard(fetch(LEADERBOARD)),
+                    "observed_utc": fetched_at,
+                    "observed_date_utc": fetched_at[:10],
+                    "observation_method": "strict official HTML leaderboard table parse",
+                }
+                history = list(last.get("prior_observations", []))
+                old_record = {
+                    key: last[key]
+                    for key in ("date_utc", "observed_date_utc", "rank", "participant", "public_dw_tversky", "evidence_class")
+                    if key in last
+                }
+                fresh_key = (fresh["observed_date_utc"], fresh["rank"], fresh.get("participant"), fresh["public_dw_tversky"])
+                old_key = (
+                    old_record.get("observed_date_utc") or old_record.get("date_utc"),
+                    old_record.get("rank"), old_record.get("participant"), old_record.get("public_dw_tversky"),
+                )
+                if old_record and old_key != fresh_key and old_key not in {
+                    (row.get("observed_date_utc") or row.get("date_utc"), row.get("rank"), row.get("participant"), row.get("public_dw_tversky"))
+                    for row in history
+                }:
+                    history.append(old_record)
+                fresh["prior_observations"] = history[-20:]
+                last = fresh
                 leaderboard_status = "network_verified"
             except Exception as e:
                 errors.append({"source": LEADERBOARD, "error": str(e)[:220]})

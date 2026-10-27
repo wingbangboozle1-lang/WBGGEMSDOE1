@@ -16,33 +16,39 @@ def main():
     standing = (ROOT / "docs/standing-prompt.md").read_text()
     w2 = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
     w2tif = Path(w2["artifacts"]["tif"]).name
-    w2est = w2["score_estimate"]["value"]
-    w2lo, w2hi = w2["score_estimate"]["ci95"]
     w2nine = json.loads((ROOT / "evidence/wbg2/nine_site_uniqueness.json").read_text())
+    w2review = json.loads((ROOT / "evidence/wbg2/review_20261027.json").read_text())
+    if w2review.get("verdict") != "negative":
+        raise ValueError("WBG-2 review must remain fail-closed before publishing README status")
+    feed = json.loads((ROOT / "docs/data/feed.json").read_text())
+    public = feed["leaderboard"]
+    public_date = public.get("observed_date_utc") or public.get("date_utc") or "unknown date"
+    public_refresh = "the public page was successfully refreshed in this build" if feed.get("leaderboard_status") == "network_verified" else "the public page was not freshly verified in this build"
 
     header = f'''# WBG GEMS — evidence-first fault mapping
 
-## SUBMIT THIS FILE: [{w2tif}](docs/downloads/{w2tif})
+## WBG-2 research artifact — DOWNLOAD: YES (research only). SUBMIT: **NO**.
 
-**[Executive summary + one-click download](docs/wbg2.html)** · [ZIP](docs/downloads/{w2tif.replace('.tif', '.zip')}) ·
-[markdown summary](docs/wbg2-executive-summary.md) · [run card](evidence/wbg2/run_card.json) ·
-[live site](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/wbg2.html)
+**DO NOT SUBMIT** `docs/downloads/{w2tif}`. The existing TIFF and identical one-member ZIP are preserved for research and format checks only. There is no authorized method lane, no recorded surface-before-placement check, the strict literal final-dot overlap STOP is triggered, and no valid HOLDOUT-DTI or organizer receipt exists.
+
+**[Corrected WBG-2 review and research download](docs/wbg2.html)** · [ZIP](docs/downloads/{w2tif.replace('.tif', '.zip')}) ·
+[markdown review](docs/wbg2-executive-summary.md) · [run card](evidence/wbg2/run_card.json) ·
+[three-pass review record](evidence/wbg2/review_20261027.json) ·
+[live page](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/wbg2.html)
 
 | | |
 |---|---|
-| File to submit | `docs/downloads/{w2tif}` (+ identical one-member `.zip`) |
-| Estimated score | **{w2est:.4f}** — MODEL-ESTIMATE, 95% interval {w2lo:.4f}–{w2hi:.4f}, R² {w2["score_estimate"]["r2"]:.3f}, n=9. **Not organizer-confirmed.** |
-| Unique vs GEMSDOE24/25/27/28/30/31/32/33/36 | **YES** — {w2nine["n_audited"]}/9 audited; max {w2nine["max_enrichment_vs_chance"]:.2f}× chance overlap, max \|ρ\| {w2nine["max_abs_spearman"]:.3f} |
-| Format | single-band float32, EPSG:32611, 3730×3292, values in [0,1], no NaN anywhere (zeros mode) |
-| sha256 | `{w2["raster_sha256"]}` |
+| Research artifact | `docs/downloads/{w2tif}` — not an upload recommendation |
+| Estimated score | **Unavailable** — no valid HOLDOUT-DTI, independent calibration, or organizer receipt. The old regression projection is withdrawn and must not be used as a score. |
+| Focus-nine pairwise comparison | **Scoped only** — {w2nine["n_audited"]}/9 exact artifacts; max raw overlap {w2nine["max_forward_overlap"]:.4f}. This is not global registry clearance. |
+| Literal local registry result | **STOP** — maximum raw 3-pixel overlap {w2["registry"]["max_forward_3px_overlap"]:.1%}, above the 70% limit; chance-enrichment exemption is invalid. |
+| Local format | single-band float32, EPSG:32611, 3730×3292, values in [0,1], no NaN (research download only) |
+| SHA-256 | `{w2["raster_sha256"]}` |
 | Slots used | 0 |
 
-> **Honest reading.** WBG-2 is unique and format-valid, so it is safe to upload. Its estimate is only
-> **{w2est - 0.2778:+.4f}** above the best focus-site artifact (0.2778), which is *within model error*:
-> it ties that artifact rather than beating it. The route to the 0.39–0.45 leaderboard band is the
-> login-gated official `training_features.tif`; see [the executive summary](docs/wbg2.html).
+> **What the evidence supports.** The focus-nine result only establishes pairwise difference from those nine artifacts. It does not establish global uniqueness or eligibility. GEMSDOE32 B2 remains the highest supplied historical claim at **USER-REPORTED 0.2778 / NOT ORGANIZER-CONFIRMED**. Whether a genuinely unique file can beat it is unknown; WBG-2 has no valid holdout score.
 
-## Older file — DOWNLOAD: YES, for research. SUBMIT: **NO**.
+## Earlier WBG-C1 artifact — DOWNLOAD: YES, for research. SUBMIT: **NO**.
 
 **27 October 2026 follow-up: [all four releases, exact-byte revalidation and trust corrections](docs/portfolio-review.html)** ·
 [Machine-readable review](docs/data/portfolio-review.json). No new experiment: the lane remains stopped.
@@ -95,9 +101,7 @@ credit and avoiding low-marginal-credit predictions are plausible reasons for th
 ordering, not a causal proof from unavailable hidden labels. A 200 m exclusion is **not** an
 organizer rule. No historical file should be copied into a new "unique" entry.
 
-The direct **official public-leaderboard observation on 2026-10-26 was 0.4437**, not the prompt's
-older targets. That is **not** an organizer result for any project TIFF. A higher project score
-was not obtained or credibly projected in this session.
+The latest recorded **official public-leaderboard observation is {public["public_dw_tversky"]:.4f} on {public_date}** ({public.get("participant", "rank-one participant")}); {public_refresh}. The prior recorded observation was 0.4437 on 2026-10-26. Neither observation is a project-TIFF result or submission receipt. A higher project score was not obtained or credibly projected in this session.
 
 ## Parallel work preserved during integration
 

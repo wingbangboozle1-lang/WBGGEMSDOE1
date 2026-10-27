@@ -1,7 +1,10 @@
-"""Official distance-weighted Tversky index (DTI) for the DOE GEMS Prize.
+"""Retired WBG-2 metric cross-check; not the authoritative evaluation path.
 
-Transcribed from the organizer problem description:
-https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
+This historical implementation was transcribed from the organizer problem
+page. It is retained for archived arithmetic and unit tests only. It must not
+be used for holdout scoring, promotion, or organizer-score claims; any newly
+authorized lane must use the pinned shared evaluator in ``vendor/gems57``.
+Manual-review source: https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
 
     TI(a,b) = sum_x p(x)g(x) /
               ( sum_x p(x)g(x) + a*sum_x p(x)(1-g(x)) + b*sum_x (1-p(x))g(x) )

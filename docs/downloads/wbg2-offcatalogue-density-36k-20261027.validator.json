@@ -1,53 +1,246 @@
 {
- "tif": {
-  "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
-  "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
-  "shape": [
-   3730,
-   3292
-  ],
-  "dtype": "float32",
-  "band_count": 1,
-  "crs": "EPSG:32611",
-  "pixel_size": [
-   100.0,
-   100.0
-  ],
-  "origin": [
-   243350.0,
-   4508550.0
-  ],
-  "nodata": null,
-  "mode": "zeros",
-  "in_footprint_pixels": 5167373,
-  "positive_pixels": 36000,
-  "value_min": 0.0,
-  "value_max": 1.0,
-  "checks": {
-   "single_band": true,
-   "dtype_float32": true,
-   "shape_matches": true,
-   "crs_epsg_32611": true,
-   "pixel_size_100m": true,
-   "in_footprint_all_finite": true,
-   "values_in_0_1": true,
-   "outside_footprint_zero": true,
-   "has_predictions": true,
-   "no_nan_anywhere": true
-  },
-  "all_checks_passed": true,
-  "errors": []
+ "checks": {
+  "tif_sha256_matches_preserved_artifact": true,
+  "zip_sha256_matches_preserved_archive": true,
+  "shared_tif_format_validation": true,
+  "zip_contains_exactly_one_tiff": true,
+  "zip_member_bytes_match_tif": true,
+  "shared_zip_member_format_validation": true,
+  "card_tif_identity_matches": true,
+  "card_artifact_paths_match": true,
+  "decision_is_explicitly_negative": true,
+  "no_valid_holdout_score_is_claimed": true,
+  "literal_registry_stop_is_recorded": true,
+  "note_within_140_characters": true,
+  "focus_nine_audit_is_scoped_not_global": true
  },
- "zip": {
-  "zip": "/home/user/WBGGEMSDOE1/docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip",
-  "members": [
-   "wbg2-offcatalogue-density-36k-20261027.tif"
-  ],
-  "tif_members": [
-   "wbg2-offcatalogue-density-36k-20261027.tif"
-  ],
-  "exactly_one_tif": true,
-  "byte_identical": true,
-  "all_checks_passed": true
- }
+ "details": {
+  "tif_sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+  "zip_sha256": "b4074f093c43ebb41a2b550b5558cf4c5a38c5f1b0c7b69393575ae12e8005b4",
+  "tif_format_report": {
+   "file": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+   "bytes": 215799,
+   "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+   "meta": {
+    "crs": "EPSG:32611",
+    "shape": [
+     3730,
+     3292
+    ],
+    "dtype": "float32",
+    "count": 1,
+    "nodata": null,
+    "transform": [
+     100.0,
+     0.0,
+     243350.0,
+     0.0,
+     -100.0,
+     4508550.0
+    ],
+    "profile_compress": "deflate"
+   },
+   "band_description": [
+    null
+   ],
+   "n_finite": 12279160,
+   "n_nan": 0,
+   "n_infinite": 0,
+   "min": 0.0,
+   "max": 1.0,
+   "mean": 0.0029317967128008604,
+   "emitted_positive_pixels": 36000,
+   "checks": {
+    "single_band": true,
+    "dtype_float32": true,
+    "dimensions_3730x3292": true,
+    "crs_epsg_32611": true,
+    "transform_matches_sample_submission": true,
+    "no_nan_anywhere": true,
+    "no_inf_anywhere": true,
+    "no_sentinel_values": true,
+    "range_0_1_guaranteed": true,
+    "min_ge_0": true,
+    "max_le_1": true,
+    "in_footprint_all_finite": true,
+    "in_footprint_range_0_1": true,
+    "outside_footprint_zero": true,
+    "zero_dots_on_mapped_catalogue": true
+   },
+   "all_checks_passed": true,
+   "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+   "on_catalogue_positive_pixels": 0,
+   "in_footprint_positive_pixels": 36000,
+   "footprint_fraction": 0.006966789507937592,
+   "template_report": {
+    "path": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+    "bytes": 215799,
+    "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+     243350.0,
+     4135550.0,
+     572550.0,
+     4508550.0
+    ],
+    "ref_bounds": [
+     243350.0,
+     4135550.0,
+     572550.0,
+     4508550.0
+    ],
+    "transform": [
+     100.0,
+     0.0,
+     243350.0,
+     0.0,
+     -100.0,
+     4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+     2,
+     3292
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0029317967128008604,
+    "n_nonzero": 36000,
+    "mass": 36000.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+   },
+   "mirrored_reference_available": true,
+   "catalogue_reference_available": true,
+   "independent_organizer_origin_authenticated": false
+  },
+  "zip_member_format_report": {
+   "file": "wbg2-offcatalogue-density-36k-20261027.tif",
+   "bytes": 215799,
+   "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+   "meta": {
+    "crs": "EPSG:32611",
+    "shape": [
+     3730,
+     3292
+    ],
+    "dtype": "float32",
+    "count": 1,
+    "nodata": null,
+    "transform": [
+     100.0,
+     0.0,
+     243350.0,
+     0.0,
+     -100.0,
+     4508550.0
+    ],
+    "profile_compress": "deflate"
+   },
+   "band_description": [
+    null
+   ],
+   "n_finite": 12279160,
+   "n_nan": 0,
+   "n_infinite": 0,
+   "min": 0.0,
+   "max": 1.0,
+   "mean": 0.0029317967128008604,
+   "emitted_positive_pixels": 36000,
+   "checks": {
+    "single_band": true,
+    "dtype_float32": true,
+    "dimensions_3730x3292": true,
+    "crs_epsg_32611": true,
+    "transform_matches_sample_submission": true,
+    "no_nan_anywhere": true,
+    "no_inf_anywhere": true,
+    "no_sentinel_values": true,
+    "range_0_1_guaranteed": true,
+    "min_ge_0": true,
+    "max_le_1": true,
+    "in_footprint_all_finite": true,
+    "in_footprint_range_0_1": true,
+    "outside_footprint_zero": true,
+    "zero_dots_on_mapped_catalogue": true
+   },
+   "all_checks_passed": true,
+   "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+   "on_catalogue_positive_pixels": 0,
+   "in_footprint_positive_pixels": 36000,
+   "footprint_fraction": 0.006966789507937592,
+   "template_report": {
+    "path": "temporary extracted ZIP member",
+    "bytes": 215799,
+    "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+     243350.0,
+     4135550.0,
+     572550.0,
+     4508550.0
+    ],
+    "ref_bounds": [
+     243350.0,
+     4135550.0,
+     572550.0,
+     4508550.0
+    ],
+    "transform": [
+     100.0,
+     0.0,
+     243350.0,
+     0.0,
+     -100.0,
+     4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+     2,
+     3292
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0029317967128008604,
+    "n_nonzero": 36000,
+    "mass": 36000.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+   },
+   "mirrored_reference_available": true,
+   "catalogue_reference_available": true,
+   "independent_organizer_origin_authenticated": false
+  },
+  "artifact_role": "research-only download",
+  "download_decision": "YES — research only",
+  "submit_decision": "NO",
+  "format_is_not_scientific_or_organizer_clearance": true
+ },
+ "all_checks_passed": true,
+ "verified_utc": "2026-10-27T19:13:49+00:00",
+ "evidence_class": "LOCAL SHARED FORMAT VALIDATION AND EXACT-BYTE INTEGRITY ONLY — not scientific efficacy, global uniqueness, or organizer acceptance",
+ "no_tiff_regenerated": true,
+ "no_submission_slot_used": true
 }

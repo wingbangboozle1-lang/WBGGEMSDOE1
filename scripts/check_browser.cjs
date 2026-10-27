@@ -20,6 +20,7 @@ const chromium = importedChromium.default || importedChromium;
   const artifacts = path.join(root, ".cache/browser-review");
   fs.mkdirSync(artifacts, { recursive: true });
   const card = JSON.parse(fs.readFileSync(path.join(root, "registry/run_card.json")));
+  const wbg2 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg2/run_card.json")));
   if (process.env.BROWSER_COMPAT_LIBS === "1") {
     // Minimal Linux containers may lack NSS/NSPR. Use the dependency's own
     // bundled compatibility libraries instead of downloading system packages.
@@ -38,12 +39,21 @@ const chromium = importedChromium.default || importedChromium;
     const context = await browser.newContext({ viewport: { width: 1440, height: 1100 }, acceptDownloads: true });
     const page = await context.newPage();
     page.on("pageerror", error => errors.push(String(error)));
-    for (const file of ["index.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"]) {
+    const corePages = ["index.html", "wbg2.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"];
+    for (const file of corePages) {
       const response = await page.goto(new URL(file, base).href, { waitUntil: "networkidle" });
       assert.equal(response.status(), 200);
       const text = await page.locator("main").innerText();
-      assert.match(text, /Download: YES, for research\. Submit: NO\./);
-      assert.match(text, /No final dots were placed/);
+      assert.ok(text.includes("SUBMIT: NO"));
+      if (file === "wbg2.html") {
+        assert.ok(text.includes("DOWNLOAD: YES (RESEARCH ONLY)"));
+        assert.ok(text.includes("HOLDOUT-DTI") && text.includes("NOT MEASURED"));
+        assert.ok(text.toLowerCase().includes("literal final-dot overlap"));
+        assert.ok(!text.toLowerCase().includes("download the submission tiff"));
+      } else {
+        assert.ok(text.includes("Download: YES, for research. Submit: NO."));
+        assert.ok(text.includes("No final dots were placed"));
+      }
       const overflow = await page.evaluate(() => document.body.scrollWidth > window.innerWidth);
       assert.equal(overflow, false, `desktop body overflow: ${file}`);
       checked.push({ file, desktop: "passed" });
@@ -59,11 +69,22 @@ const chromium = importedChromium.default || importedChromium;
     assert.equal(download.suggestedFilename(), path.basename(card.artifact));
     const downloaded = fs.readFileSync(await download.path());
     assert.equal(crypto.createHash("sha256").update(downloaded).digest("hex"), card.raster_sha256);
+    await page.goto(new URL("wbg2.html", base).href, { waitUntil: "networkidle" });
+    const wbg2DownloadPromise = page.waitForEvent("download");
+    await page.getByRole("link", { name: /Download research TIFF/ }).first().click();
+    const wbg2Download = await wbg2DownloadPromise;
+    assert.equal(wbg2Download.suggestedFilename(), path.basename(wbg2.artifacts.tif));
+    const wbg2Bytes = fs.readFileSync(await wbg2Download.path());
+    assert.equal(crypto.createHash("sha256").update(wbg2Bytes).digest("hex"), wbg2.raster_sha256);
     await page.goto(new URL("index.html", base).href, { waitUntil: "networkidle" });
     await page.screenshot({ path: path.join(artifacts, "desktop.png"), fullPage: true });
     await page.setViewportSize({ width: 390, height: 844 });
-    for (const file of ["index.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"]) {
+    for (const file of corePages) {
       await page.goto(new URL(file, base).href, { waitUntil: "networkidle" });
+      if (file === "wbg2.html") {
+        const text = await page.locator("main").innerText();
+        assert.ok(text.includes("DOWNLOAD: YES (RESEARCH ONLY)") && text.includes("SUBMIT: NO"));
+      }
       const overflow = await page.evaluate(() => document.body.scrollWidth > window.innerWidth);
       assert.equal(overflow, false, `mobile body overflow: ${file}`);
       checked.find(row => row.file === file).mobile = "passed";
@@ -92,7 +113,8 @@ const chromium = importedChromium.default || importedChromium;
     const report = { generated_utc: new Date().toISOString(), browser: browser.version(), checked,
       desktop_viewport: [1440, 1100], mobile_viewport: [390, 844],
       javascript_page_errors: errors, site_filter: "passed", primary_download_sha256: card.raster_sha256,
-      primary_download_identity: "passed", body_overflow: false, all_passed: true,
+      primary_download_identity: "passed", wbg2_research_download_sha256: wbg2.raster_sha256,
+      wbg2_research_download_identity: "passed; clearly marked SUBMIT: NO", body_overflow: false, all_passed: true,
       no_model_training_or_slot_use: true };
     fs.writeFileSync(path.join(root, "evidence/browser_checks.json"), JSON.stringify(report, null, 2) + "\n");
     console.log(JSON.stringify(report, null, 2));

@@ -1,18 +1,12 @@
-"""Registry uniqueness gates.
+"""Retired WBG-2 pairwise diagnostic; never an approval or clearance gate.
 
-Two separate gates, per the standing protocol:
-
-1. SURFACE gate (before placement) -- we never copy another project's surface,
-   so this is a provenance statement, not a measurement.
-2. FINAL-DOT gate (after placement) -- measured against every registry raster:
-   * forward overlap: fraction of OUR positive cells within 3 px of theirs
-   * signed Spearman rho between the two surfaces
-   STOP if forward overlap > 0.70 or |rho| > 0.90.
-
-Uniqueness is necessary but never sufficient: a byte-unique file can still be
-scientifically redundant.
+Authoritative parallel-lane registry checks must use the pinned shared
+``gems57.uniqueness`` implementation with its hash-verified inventory. This
+module exists only to preserve diagnostics for the archived WBG-2 research
+artifact. A directory scan here is necessarily partial and can NEVER return a
+positive clearance. In particular, chance enrichment is diagnostic only and
+must not waive the literal overlap STOP.
 """
-
 from __future__ import annotations
 
 import glob
@@ -20,119 +14,132 @@ import os
 
 import numpy as np
 import rasterio
-from scipy import ndimage as ndi
 from scipy.stats import spearmanr
+from gems57.uniqueness import OVERLAP_LIMIT, RHO_LIMIT, dot_overlap
 
-STOP_OVERLAP = 0.70
-STOP_RHO = 0.90
-STOP_ENRICHMENT = 3.0
-THREE_PX = 3
+THREE_PX = 3.0
 
 
 def load_aligned(path: str, shape, transform, crs):
-    """Read band 1 if the grid matches; return None otherwise."""
+    """Read band 1 only when the full grid identity matches exactly."""
     try:
         with rasterio.open(path) as src:
             if (src.height, src.width) != tuple(shape):
                 return None
-            if src.crs is not None and crs is not None and src.crs != crs:
+            if src.transform != transform or src.crs != crs:
                 return None
             a = src.read(1).astype(np.float32)
     except Exception:
         return None
-    a = np.nan_to_num(a, nan=0.0, posinf=0.0, neginf=0.0)
-    return a
+    return np.where(np.isfinite(a), a, 0.0)
 
 
 def compare(ours: np.ndarray, theirs: np.ndarray, evaluated: np.ndarray | None = None) -> dict:
-    """Raw overlap plus a chance-corrected enrichment.
+    """Return non-authoritative diagnostics; never use these to promote a file.
 
-    Raw forward overlap is NOT interpretable on its own: against a dense
-    continuous surface (most of the footprint positive) every sparse field has
-    forward overlap 1.0 while sharing no information. We therefore also report
-
-        enrichment = observed_overlap / chance_overlap
-        chance_overlap = fraction of the evaluated footprint within 3 px of theirs
-
-    which is 1.0 for independent fields of any density and only exceeds 1 when
-    our dots genuinely sit where theirs do. STOP is applied to enrichment, with
-    the raw numbers reported for transparency.
+    ``forward_overlap`` calls the pinned shared template's positive-support,
+    Euclidean three-pixel overlap function. Chance enrichment and sampled rho
+    are retained only to explain historical WBG-2 measurements; they cannot
+    exempt overlap above the standing limit.
     """
-    o = ours > 0
-    t = theirs > 0
+    ours = np.asarray(ours)
+    theirs = np.asarray(theirs)
+    if ours.shape != theirs.shape:
+        raise ValueError("candidate and comparison raster grids differ")
     if evaluated is None:
         evaluated = np.ones(ours.shape, dtype=bool)
     evaluated = np.asarray(evaluated, dtype=bool)
-    if not t.any():
+    if evaluated.shape != ours.shape:
+        raise ValueError("evaluation mask grid differs")
+    mine = np.isfinite(ours) & (ours > 0) & evaluated
+    their_support = np.isfinite(theirs) & (theirs > 0) & evaluated
+    masked_ours = np.where(evaluated, ours, 0.0)
+    masked_theirs = np.where(evaluated, theirs, 0.0)
+    overlap = dot_overlap(masked_ours, masked_theirs, radius_px=THREE_PX)
+    if not their_support.any():
         return {
-            "forward_overlap": 0.0, "rho": 0.0, "enrichment": 0.0,
-            "their_positive": 0, "ours_positive": int(o.sum()),
-            "their_density": 0.0, "chance_overlap": 0.0,
+            "forward_overlap": overlap,
+            "rho_sampled_diagnostic_only": 0.0,
+            "chance_overlap_diagnostic_only": 0.0,
+            "enrichment_diagnostic_only": 0.0,
+            "their_positive": 0,
+            "ours_positive": int(mine.sum()),
+            "literal_pairwise_stop": overlap > OVERLAP_LIMIT,
+            "diagnostic_only": True,
         }
-    t_dil = ndi.binary_dilation(t, ndi.generate_binary_structure(2, 1), iterations=THREE_PX)
-    n_eval = max(1, int(evaluated.sum()))
-    fwd = float((o & t_dil).sum()) / max(1, int(o.sum()))
-    chance = float((t_dil & evaluated).sum()) / n_eval
-    enrichment = fwd / chance if chance > 0 else 0.0
-    # Spearman on a subsample for tractability, deterministic
+    # Deterministic subset for a historical diagnostic only. The pinned shared
+    # evaluator, not this sample, governs any authorized promotion decision.
     rng = np.random.default_rng(0)
     idx = rng.choice(ours.size, size=min(400_000, ours.size), replace=False)
-    rho = float(spearmanr(ours.ravel()[idx], theirs.ravel()[idx]).statistic)
-    if not np.isfinite(rho):
+    sample_ours, sample_theirs = ours.ravel()[idx], theirs.ravel()[idx]
+    if np.ptp(sample_ours) == 0 or np.ptp(sample_theirs) == 0:
         rho = 0.0
+    else:
+        rho = float(spearmanr(sample_ours, sample_theirs).statistic)
+        if not np.isfinite(rho):
+            rho = 0.0
+    # Report chance coverage only as context. It is never part of STOP logic.
+    from scipy import ndimage as ndi
+
+    r = int(np.ceil(THREE_PX))
+    yy, xx = np.mgrid[-r:r + 1, -r:r + 1]
+    disk = yy * yy + xx * xx <= THREE_PX * THREE_PX
+    near = ndi.binary_dilation(their_support, structure=disk)
+    n_eval = max(1, int(evaluated.sum()))
+    chance = float((near & evaluated).sum()) / n_eval
+    enrichment = overlap / chance if chance > 0 else 0.0
     return {
-        "forward_overlap": fwd,
-        "rho": rho,
-        "enrichment": enrichment,
-        "chance_overlap": chance,
-        "their_positive": int(t.sum()),
-        "ours_positive": int(o.sum()),
-        "their_density": float((t & evaluated).sum()) / n_eval,
+        "forward_overlap": overlap,
+        "rho_sampled_diagnostic_only": rho,
+        "chance_overlap_diagnostic_only": chance,
+        "enrichment_diagnostic_only": enrichment,
+        "their_positive": int(their_support.sum()),
+        "ours_positive": int(mine.sum()),
+        "literal_pairwise_stop": bool(overlap > OVERLAP_LIMIT or abs(rho) > RHO_LIMIT),
+        "diagnostic_only": True,
     }
 
 
 def scan_registry(ours: np.ndarray, shape, transform, crs, roots: list[str],
                   exclude: set[str] | None = None, extra_paths: list[str] | None = None) -> dict:
+    """Scan paths for forensic context, but fail closed on clearance every time."""
     entries = []
     seen = set(exclude or set())
     for root in roots:
         for path in sorted(glob.glob(os.path.join(root, "**", "*.tif"), recursive=True)):
-            if os.path.abspath(path) in seen:
+            absolute = os.path.abspath(path)
+            if absolute in seen:
                 continue
-            seen.add(os.path.abspath(path))
+            seen.add(absolute)
             theirs = load_aligned(path, shape, transform, crs)
             if theirs is None:
                 continue
-            c = compare(ours, theirs)
-            c["path"] = os.path.relpath(path)
-            entries.append(c)
-    for path in (extra_paths or []):
+            row = compare(ours, theirs)
+            row["path"] = os.path.relpath(path)
+            entries.append(row)
+    for path in extra_paths or []:
         theirs = load_aligned(path, shape, transform, crs)
         if theirs is None:
             continue
-        c = compare(ours, theirs)
-        c["path"] = path
-        entries.append(c)
-    entries.sort(key=lambda e: -e["enrichment"])
-    worst_overlap = max((e["forward_overlap"] for e in entries), default=0.0)
-    worst_enrich = max((e["enrichment"] for e in entries), default=0.0)
-    worst_rho = max((abs(e["rho"]) for e in entries), default=0.0)
+        row = compare(ours, theirs)
+        row["path"] = path
+        entries.append(row)
+
+    entries.sort(key=lambda row: -row["forward_overlap"])
+    worst_overlap = max((row["forward_overlap"] for row in entries), default=None)
+    worst_rho = max((abs(row["rho_sampled_diagnostic_only"]) for row in entries), default=None)
+    worst_enrichment = max((row["enrichment_diagnostic_only"] for row in entries), default=None)
     return {
         "rasters_compared": len(entries),
+        "inventory_complete": False,
         "max_forward_3px_overlap": worst_overlap,
-        "max_enrichment_vs_chance": worst_enrich,
-        "max_abs_spearman": worst_rho,
-        "stop_enrichment_threshold": STOP_ENRICHMENT,
-        "stop_overlap_threshold": STOP_OVERLAP,
-        "stop_rho_threshold": STOP_RHO,
-        "passes_final_dot_gate": bool(
-            worst_rho <= STOP_RHO and not (worst_enrich >= STOP_ENRICHMENT and worst_overlap > STOP_OVERLAP)
-        ),
-        "gate_rule": (
-            "STOP if |signed Spearman rho| > 0.90, or if forward 3 px overlap > 0.70 "
-            "AND that overlap is at least 3x chance (enrichment >= 3). The "
-            "enrichment requirement exists because raw forward overlap is 1.0 for any "
-            "sparse field compared against a dense continuous surface."
-        ),
+        "max_enrichment_diagnostic_only": worst_enrichment,
+        "max_abs_sampled_spearman_diagnostic_only": worst_rho,
+        "overlap_stop_threshold_from_shared_template": OVERLAP_LIMIT,
+        "rho_stop_threshold_from_shared_template": RHO_LIMIT,
+        "literal_stop_observed": any(row["literal_pairwise_stop"] for row in entries),
+        "passes_final_dot_gate": False,
+        "clearance": "NOT ESTABLISHED — partial directory diagnostics cannot clear the pinned shared registry gate",
+        "gate_rule": "The pinned shared template uses literal positive-support overlap and correlation thresholds. Chance enrichment is diagnostic only; no density exemption is permitted.",
         "top_matches": entries[:12],
     }

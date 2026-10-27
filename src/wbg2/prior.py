@@ -1,21 +1,16 @@
-"""Placement prior and rendering for WBG-2.
+"""Archived WBG-2 research prior and point-field renderer.
 
-The prior uses ONLY the organizer-provided catalogue (`labels.tif`) and the
-competition footprint. It does not read, sample or imitate any other project's
-predictions.
+The existing output is a research-only spatial prior based on mapped-fault
+locations; it is not a geological detector or an authorized submission. The
+WBG-2 lane is stopped. The generator is retired, and no run should be started
+without a separately authorized lane, a shared-tool surface check before
+placement, and a prospective review card.
 
-Measured basis (all locally measured this session, see docs/research):
-
-* Gaussian KDE of mapped-fault density, sampled at 1.5 km bandwidth, beat a
-  uniform draw over the same admissible cells by 1.7-2.2x in DTI on a four-fold
-  spatially blocked hide-and-recover test (/tmp/exp4 -> evidence wbg2).
-* Strike-aligned "runs" beat scattered dots ONLY when the true local strike is
-  known (0.936 vs 0.140). With a guessed or random strike they are WORSE than
-  scattering (0.090 vs 0.140). We therefore scatter: we do not claim to know
-  the trace direction.
-* At a fixed number of true hits, reducing the number of predicted pixels
-  raises DTI monotonically until the hit count starts to fall. This is why the
-  field is kept small.
+The previously published claims of a four-fold DTI advantage over uniform
+placement and synthetic strike-trace comparisons were not supported by a
+committed reproducible WBG-2 holdout record. They are withdrawn and are not
+used by this module or its documentation. The existing measured PROXY-DTI
+against the mapped catalogue is not a holdout score.
 """
 
 from __future__ import annotations
@@ -23,21 +18,21 @@ from __future__ import annotations
 import numpy as np
 from scipy import ndimage as ndi
 
-#: Gaussian bandwidth for the catalogue-density prior, in pixels (100 m each).
+#: Gaussian bandwidth for the archived catalogue-density prior, in pixels.
 KDE_SIGMA_PX = 15.0
-#: Cells closer than this to a mapped fault are excluded outright.
+#: L1-neighborhood iterations used by the historical renderer; diagnostic only.
 CATALOGUE_BUFFER_PX = 4
-#: Default predicted-pixel budget.
-#:
-#: The nine focus-site artifacts span 37,654-61,328 positive pixels with an
-#: organizer-reported score for each. 36,000 sits just inside that observed
-#: range, so the calibrated estimate stays an interpolation rather than an
-#: extrapolation into a region where the metric has not been demonstrated.
+#: Historical positive-cell budget of the preserved research artifact.
+#: This is below the smallest focus-site count and carries no calibrated score.
 DEFAULT_BUDGET = 36000
 
 
 def catalogue_buffer(mask: np.ndarray, radius_px: int = CATALOGUE_BUFFER_PX) -> np.ndarray:
-    """Cells within `radius_px` (Chebyshev, 8-connected) of a True cell."""
+    """Historical L1 dilation used to build the archived research prior.
+
+    This is not the shared 3-pixel novelty kernel and must not be used as a
+    substitute for the protocol's shared catalogue masking or uniqueness gate.
+    """
     if radius_px <= 0:
         return np.zeros_like(mask, dtype=bool)
     return ndi.binary_dilation(
@@ -46,40 +41,34 @@ def catalogue_buffer(mask: np.ndarray, radius_px: int = CATALOGUE_BUFFER_PX) -> 
 
 
 def density_prior(catalogue: np.ndarray, sigma_px: float = KDE_SIGMA_PX) -> np.ndarray:
-    """Isotropic Gaussian KDE of mapped-fault density, normalised to max 1."""
-    d = ndi.gaussian_filter(catalogue.astype(np.float32), sigma_px)
-    peak = float(d.max())
-    if peak <= 0.0:
-        return np.zeros_like(d)
-    return (d / peak).astype(np.float32)
+    """Compute the archived KDE diagnostic from the visible mapped catalogue."""
+    if sigma_px <= 0:
+        raise ValueError("sigma_px must be positive")
+    smoothed = ndi.gaussian_filter(np.asarray(catalogue, dtype=np.float32), sigma_px)
+    maximum = float(smoothed.max())
+    return (smoothed / maximum).astype(np.float32) if maximum > 0 else smoothed.astype(np.float32)
 
 
-def place(
-    prior: np.ndarray,
-    admissible: np.ndarray,
-    budget: int,
-    seed: int,
-) -> np.ndarray:
-    """Weighted sample without replacement over `admissible` cells.
-
-    Returns an int32 array of (row, col) pairs, shape (n, 2).
-    """
-    flat = np.nonzero(admissible.ravel())[0]
-    if flat.size == 0:
-        raise ValueError("no admissible cells")
-    w = prior.ravel()[flat].astype(np.float64)
-    if not np.isfinite(w).all() or w.sum() <= 0:
-        w = np.ones(flat.size, dtype=np.float64)
-    w = w / w.sum()
-    n = int(min(budget, flat.size))
+def place(intensity: np.ndarray, admissible: np.ndarray, budget: int, seed: int) -> np.ndarray:
+    """Deterministically sample cells for the archived research artifact."""
+    intensity = np.asarray(intensity, dtype=np.float64)
+    admissible = np.asarray(admissible, dtype=bool)
+    if intensity.shape != admissible.shape:
+        raise ValueError("intensity/admissible grid mismatch")
+    cells = np.flatnonzero(admissible.ravel())
+    if budget < 0 or budget > len(cells):
+        raise ValueError("budget exceeds admissible cells")
+    weights = np.maximum(intensity.ravel()[cells], 0.0)
+    if weights.sum() <= 0:
+        weights = np.ones(len(cells), dtype=np.float64)
     rng = np.random.default_rng(seed)
-    pick = rng.choice(flat, size=n, replace=False, p=w)
-    rows, cols = np.divmod(pick, prior.shape[1])
-    return np.column_stack([rows, cols]).astype(np.int32)
+    chosen = rng.choice(cells, size=budget, replace=False, p=weights / weights.sum())
+    return np.column_stack(np.unravel_index(chosen, intensity.shape)).astype(np.int32)
 
 
-def render(shape, cells: np.ndarray, dtype=np.float32) -> np.ndarray:
-    """Binary p=1 surface on a zero background."""
-    out = np.zeros(shape, dtype=dtype)
-    out[cells[:, 0], cells[:, 1]] = 1.0
-    return out
+def render(shape: tuple[int, int], cells: np.ndarray) -> np.ndarray:
+    """Render a binary point field; retained for historical unit tests only."""
+    result = np.zeros(shape, dtype=np.float32)
+    if len(cells):
+        result[cells[:, 0], cells[:, 1]] = 1.0
+    return result

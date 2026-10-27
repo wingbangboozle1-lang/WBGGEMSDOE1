@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
+import subprocess
+import sys
 import zipfile
 from pathlib import Path
 
@@ -158,8 +161,8 @@ def test_zip_validator_requires_single_identical_member(tmp_path):
 
 
 # ------------------------------------------------------------------- uniqueness
-def test_enrichment_is_one_for_independent_dense_field():
-    """A dense surface must not be reported as a duplicate."""
+def test_literal_overlap_stops_on_dense_positive_surface():
+    """The standing rule has no chance-enrichment exception for dense surfaces."""
     ours = np.zeros((200, 200), np.float32)
     rng = np.random.default_rng(1)
     idx = rng.choice(200 * 200, 500, replace=False)
@@ -167,41 +170,82 @@ def test_enrichment_is_one_for_independent_dense_field():
     dense = np.ones((200, 200), np.float32) * 0.5
     c = U.compare(ours, dense)
     assert c["forward_overlap"] == 1.0
-    assert c["enrichment"] == pytest.approx(1.0, abs=1e-6)
+    assert c["enrichment_diagnostic_only"] == pytest.approx(1.0, abs=1e-6)
+    assert c["literal_pairwise_stop"] is True
+    assert c["diagnostic_only"] is True
 
 
-def test_enrichment_flags_a_copy():
+def test_shared_literal_overlap_flags_a_copy():
     a = np.zeros((200, 200), np.float32)
     a[50:150, 100] = 1.0
     c = U.compare(a, a.copy())
     assert c["forward_overlap"] == pytest.approx(1.0)
-    assert c["enrichment"] > U.STOP_ENRICHMENT
-    assert c["rho"] > U.STOP_RHO
+    assert c["literal_pairwise_stop"] is True
+    assert abs(c["rho_sampled_diagnostic_only"]) > U.RHO_LIMIT
 
 
 # ------------------------------------------------------------- shipped artifacts
-def test_run_card_is_consistent_with_shipped_file():
+def test_retired_generator_refuses_without_touching_pinned_artifacts():
+    artifacts = [
+        ROOT / "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+        ROOT / "docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip",
+        ROOT / "evidence/wbg2/run_card.json",
+    ]
+    before = {
+        path: hashlib.sha256(path.read_bytes()).hexdigest()
+        for path in artifacts
+    }
+    result = subprocess.run(
+        [sys.executable, str(ROOT / "scripts/build_wbg2_submission.py")],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert result.returncode == 2
+    refusal = json.loads(result.stdout)
+    assert refusal["action"] == "refused"
+    assert refusal["files_written"] == []
+    assert refusal["submit"] == "NO"
+    assert all(hashlib.sha256(path.read_bytes()).hexdigest() == digest for path, digest in before.items())
+
+
+def test_run_card_is_consistent_with_research_only_decision():
     card = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
-    for key in ("raster_sha256", "score_estimate", "registry", "validator", "decision"):
+    for key in ("raster_sha256", "score_estimate", "registry", "validator", "decision", "holdout_dti"):
         assert key in card
-    assert card["decision"]["ok_to_submit"] is True
+    assert card["decision"]["ok_to_download"] is True
+    assert card["decision"]["ok_to_submit"] is False
+    assert card["decision"]["eligible_for_separate_selector"] is False
+    assert card["verdict"] == "negative"
+    assert card["holdout_dti"]["status"] == "NOT MEASURED"
+    assert card["holdout_dti"]["value"] is None
+    assert card["score_estimate"]["value"] is None
+    assert card["historical_withdrawn_projection"]["evidence_class"] == "WITHDRAWN MODEL-ESTIMATE — NOT A SCORE"
     assert card["validator"]["tif"]["all_checks_passed"] is True
     assert card["validator"]["zip"]["all_checks_passed"] is True
-    assert card["registry"]["passes_final_dot_gate"] is True
+    assert card["registry"]["passes_final_dot_gate"] is False
+    assert card["registry"]["max_forward_3px_overlap"] > U.OVERLAP_LIMIT
     assert len(card["submission_note"]) <= 140
+    assert "DO NOT SUBMIT" in card["submission_note"]
 
 
-def test_nine_site_audit_is_recorded():
+def test_nine_site_audit_is_explicitly_scoped():
     nine = json.loads((ROOT / "evidence/wbg2/nine_site_uniqueness.json").read_text())
     assert nine["n_audited"] == 9
-    assert nine["max_enrichment_vs_chance"] < U.STOP_ENRICHMENT
-    assert nine["max_abs_spearman"] < U.STOP_RHO
-    assert nine["verdict"].startswith("UNIQUE")
+    assert nine["max_forward_overlap"] < U.OVERLAP_LIMIT
+    assert nine["max_abs_sampled_spearman_diagnostic_only"] < U.RHO_LIMIT
+    assert "diagnostic" in nine["correlation_method"].lower()
+    assert nine["verdict"].startswith("PASS_FOCUS9")
+    assert "not a full registry" in nine["scope"].lower()
 
 
-def test_calibration_is_documented_and_honest():
+def test_historical_calibration_is_retired_not_a_score_estimator():
     cal = json.loads((ROOT / "registry/wbg2_calibration.json").read_text())
     assert cal["n_observations"] == 9
-    assert 0.9 < cal["r2"] <= 1.0
-    assert any("receipt" in c for c in cal["caveats"])
-    assert cal["collinearity"]["corr_near3cat_logbudget"] > 0.5
+    assert cal["status"].startswith("RETIRED")
+    assert cal["evidence_class"] == "WITHDRAWN MODEL-ESTIMATE — NOT A SCORE"
+    assert cal["usable_for_promotion"] is False
+    assert cal["usable_for_leaderboard_forecast"] is False
+    assert all("user_reported_value" in row for row in cal["observations"])
+    assert not any("organizer_reported_score" in row for row in cal["observations"])

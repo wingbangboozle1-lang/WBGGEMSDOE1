@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_date_utc": "2026-10-26",
+  "reviewed_date_utc": "2026-10-27",
   "method": "Official pages retrieved with fetch_page during this session; short excerpts below (formatting normalized). Repository mirrors are separately pinned and are not official organizer downloads.",
   "sources": [
     {
@@ -17,8 +17,8 @@
         "External data are allowed only with an appropriate license permitting use and sharing with the sponsor."
       ],
       "excerpts_normalized_for_formatting": [
-        "For this challenge, your task is to develop models and algorithms that provide accurate information about the presence of structures that are indicative of geothermal resources\u2014namely, geological faults.",
-        "For this competition, we set \u03b1=0.2 and \u03b2=0.8, which reduces the penalty for false positive predictions and increases the penalty for false negative predictions.",
+        "For this challenge, your task is to develop models and algorithms that provide accurate information about the presence of structures that are indicative of geothermal resources—namely, geological faults.",
+        "For this competition, we set α=0.2 and β=0.8, which reduces the penalty for false positive predictions and increases the penalty for false negative predictions.",
         "Your submission contains a single layer with datatype of 32-bit float (`float32`) with values between 0 and 1 indicating the confidence or probability of fault presence, with higher values indicating higher probability."
       ]
     },
@@ -37,16 +37,28 @@
       "id": "OFFICIAL-LEADERBOARD",
       "title": "DrivenData public leaderboard",
       "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-      "access": "retrieved, first chunk",
+      "access": "Latest recorded direct retrieval is dated 2026-10-27 (IR-020); not freshly reverified in this build.",
       "authority": "competition organizer public leaderboard; not a receipt for any project TIFF",
       "observation": {
-        "date_utc": "2026-10-26",
+        "date_utc": "2026-10-27",
         "rank": 1,
         "participant": "xiaofanhu",
-        "public_dw_tversky": 0.4437
+        "public_dw_tversky": 0.4544,
+        "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-OBSERVATION",
+        "recorded_in": "registry/irregularities.json#IR-020",
+        "observation_method": "Direct official public-page retrieval recorded under IR-020; raw HTML is not archived and this observation was not freshly reverified in the current build."
       },
       "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-OBSERVATION",
-      "limitations": "Not a project submission-page receipt; cannot verify the user-reported historical artifact scores or private/final standings."
+      "limitations": "A public rank-one observation is not a receipt for any project TIFF and does not identify a project file, verify user-reported site values, or establish private/final standings. The 2026-10-27 retrieval is recorded in IR-020 but was not freshly repeated in this run.",
+      "prior_observations": [
+        {
+          "date_utc": "2026-10-26",
+          "rank": 1,
+          "participant": "xiaofanhu",
+          "public_dw_tversky": 0.4437,
+          "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-OBSERVATION"
+        }
+      ]
     },
     {
       "id": "OFFICIAL-SUBMISSIONS-ACCESS",
@@ -74,7 +86,7 @@
       "id": "OFFICIAL-RULES-PDF",
       "title": "Geologic Enhanced Mapping System (GEMS) Prize Official Rules, September 2026",
       "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
-      "access": "retrieved chunks 0 and 3; relevant submission sections 3.3\u20133.6 read, not the entire PDF",
+      "access": "retrieved chunks 0 and 3; relevant submission sections 3.3–3.6 read, not the entire PDF",
       "authority": "DOE prize official rules publication",
       "verified_claims": [
         "Section 3.4 states up to three prediction submissions per week as specified on the competition website.",
@@ -116,7 +128,7 @@
     },
     {
       "id": "GDR-INGENIOUS",
-      "title": "INGENIOUS \u2014 Great Basin Regional Dataset Compilation",
+      "title": "INGENIOUS — Great Basin Regional Dataset Compilation",
       "url": "https://gdr.openei.org/submissions/1391",
       "doi": "10.15121/1881483",
       "access": "retrieved main catalogue and resource links",

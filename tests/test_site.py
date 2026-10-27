@@ -40,7 +40,7 @@ def module(name):
     return result
 
 
-@pytest.mark.parametrize("name", ["index.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html", "release-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html"])
+@pytest.mark.parametrize("name", ["index.html", "wbg2.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html", "release-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html"])
 def test_all_site_local_links_resolve_and_decision_is_unmistakable(name):
     file = DOCS / name
     html = file.read_text()
@@ -48,7 +48,11 @@ def test_all_site_local_links_resolve_and_decision_is_unmistakable(name):
     parser.feed(html)
     text = " ".join(parser.text).lower()
     assert "download: yes" in text and "submit: no" in text
-    if name in {"release-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html"}:
+    if name == "wbg2.html":
+        assert "research only" in text and "do not submit" in text
+        assert "holdout-dti" in text and "not measured" in text
+        assert "no competition slot used" in text
+    elif name in {"release-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html"}:
         assert "no competition slot" in text
     else:
         assert "no final dots" in text and "no competition slot" in text
@@ -68,6 +72,16 @@ def test_all_site_local_links_resolve_and_decision_is_unmistakable(name):
             p = Elements()
             p.feed(target.read_text())
             assert parts.fragment in p.ids, (name, url)
+
+
+def test_wbg2_review_card_is_deployed_inside_pages_root():
+    source = json.loads((ROOT / "evidence/wbg2/review_20261027.json").read_text())
+    deployed_path = DOCS / "data/wbg2-review-20261027.json"
+    assert deployed_path.exists()
+    assert json.loads(deployed_path.read_text()) == source
+    page = (DOCS / "wbg2.html").read_text()
+    assert 'href="data/wbg2-review-20261027.json"' in page
+    assert '../evidence/wbg2/review_20261027.json' not in page
 
 
 def test_exact_primary_download_has_no_generate_or_upload_simulation():
@@ -135,7 +149,9 @@ def test_github_only_feed_never_requests_the_official_leaderboard(tmp_path, monk
     assert result["network_refresh_attempted"]
     assert not result["official_page_refresh_attempted"]
     assert result["leaderboard_status"] == "retained_observation_not_refreshed"
-    assert result["leaderboard"]["public_dw_tversky"] == .4437
+    assert result["leaderboard"]["public_dw_tversky"] == .4544
+    assert result["leaderboard"]["observed_date_utc"] == "2026-10-27"
+    assert result["leaderboard"]["prior_observations"][0]["public_dw_tversky"] == .4437
     assert result["models_retrained"] is False and result["submission_slots_used"] == 0
 
 

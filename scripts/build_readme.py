@@ -9,10 +9,13 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     card = json.loads((ROOT / "registry/run_card.json").read_text())
     wbg_h1_rc = json.loads((ROOT / "evidence/wbg_h1/run_card.json").read_text())
+    wbg_s2_rc = json.loads((ROOT / "evidence/wbg_s2/run_card.json").read_text())
     h, c, d = card["holdout"], card["control_holdout"], card["paired_delta_holdout"]
     tif = Path(card["artifact"]).name
     h1_tif = wbg_h1_rc["raster_sha256"]["tif_file"]
     h1_zip = wbg_h1_rc["raster_sha256"]["zip_file"]
+    s2_tif = wbg_s2_rc["artifact"]["tif_path"]
+    s2_zip = wbg_s2_rc["artifact"]["zip_path"]
     standing = (ROOT / "docs/standing-prompt.md").read_text()
     header = f'''# WBG GEMS — evidence-first fault mapping
 
@@ -80,6 +83,15 @@ Different evaluator/split/representation results must not be pooled or ranked as
 - [Original main README](research/inherited-main-README-b9a2d53.md) (historical commands/paths)
 - [Byte-preservation/integration receipt](evidence/parallel_main_integration.json)
 - [Frozen TIP1 card](evidence/tip1_run_card_20261026.json) and [MVGZ card](evidence/run_card.json)
+- **[2026-10-27 WBG-S2 (MKSF-1 + Vierbein-Coulomb / EXP-3) Interactive Dashboard, 9-Site Audit & 0.2778 Forensics](docs/wbg-s2-mksf1/index.html)** ·
+  [2026-10-27 9-Site Executive Summary](docs/wbg-s2-mksf1/executive-summary.html) ·
+  [Step-by-step DrivenData upload guide](docs/wbg-s2-mksf1/how-to-submit.html) ·
+  [1-Click Validated `[0,1]` GeoTIFF (`{Path(s2_tif).name}`)]({s2_tif}) (`SHA-256: {wbg_s2_rc['artifact']['tif_sha256']}`) ·
+  [One-TIFF ZIP]({s2_zip}) ·
+  [WBG-S2 Run Card (`evidence/wbg_s2/run_card.json`)](evidence/wbg_s2/run_card.json)
+  - **Method (`WBG-S2 / MKSF-1 + Vierbein-Coulomb`, pre-registered in [`knowledge/02_preregistration_wbg_s2_hypotheses_2026-10-27.md`](knowledge/02_preregistration_wbg_s2_hypotheses_2026-10-27.md)):** 81-channel label-free multi-resolution stack (19 competition bands with Band 6 verified as GeoDAWN radiometric `TC`, `Spearman = 0.99995`; 12 seamless 100%-coverage USGS 3DEP 10 m channels bridging the `24.63%` 1 m LiDAR gap; 13 1 m LiDAR scarp channels; 8 GeoDAWN rad/mag channels; 14 `PJMF` transgressive piedmont-bajada flexure + Lake Lahontan contour-obliquity + Census TIGER 2024 road de-confounding channels; 15 `CGMD` Gallardo-Meju cross-gradient + magnetite-destruction + DOE GDR #1391 F2mDAB/sinter/geothermometer channels) + Dual-Specialist (`Full-81ch` + unstarved `Seamless-68ch`) × Dual-Target (Purged-Collar Crest Classifier + Expected 300 m Kernel-Credit Regressor) across 8 Dual-Partition OOF folds + fold-visible elastic crack-tip & relay-ramp stress corroboration + Two-Regime (`76%` scarp/flexure, `24%` concealed conduit) `min_sep = 2.8 px` 300 m Submodular CELF (`37,654` binary `{{0.0, 1.0}}` dots, `0` `<= 200 m` dead-collar dots).
+  - **Canary & Dual-Evaluator Holdout (`#1` Fleet Score on Both Evaluators):** `332/332` single-feature leakage canaries PASS (`max orientation-invariant AUC = {wbg_s2_rc['leakage_canary']['maximum_orientation_invariant_auc']:.5f} <= 0.90`; `pjmf_bajada_break_10m` standalone `AUC = 0.73847`). On **`gems-segment-pooled-v1`** (`n = 60,988`), `EXP-3` achieves **`HOLDOUT-DTI = {wbg_s2_rc['holdout_dti']['primary_segment_holdout']['dti']:.6f}`** (`95% CI [{wbg_s2_rc['holdout_dti']['primary_segment_holdout']['ci95'][0]:.6f}, {wbg_s2_rc['holdout_dti']['primary_segment_holdout']['ci95'][1]:.6f}]`), beating `B0 = {wbg_s2_rc['holdout_dti']['primary_segment_holdout']['control_b0_dti']:.6f}` (`paired Δ = +{wbg_s2_rc['holdout_dti']['primary_segment_holdout']['paired_delta_vs_b0']:.6f}`), prior `WBGGEMSDOE1 WBG-H1 = 0.123310` (`+{wbg_s2_rc['holdout_dti']['primary_segment_holdout']['delta_vs_wbg_h1']:.6f}`), `GEMSDOE24 S3DEP1 = 0.166060`, `GEMSDOE36 KPL-36 = 0.170100`, and `KANLERGEMSDOE2 KG2-MGHV = 0.177056`. On **`gems57-pooled-hide-v2`** (`n = 11,330`), `EXP-3` achieves **`HOLDOUT-DTI = {wbg_s2_rc['holdout_dti']['secondary_gems57_buffered_components']['dti']:.6f}`** (`95% CI [{wbg_s2_rc['holdout_dti']['secondary_gems57_buffered_components']['ci95'][0]:.6f}, {wbg_s2_rc['holdout_dti']['secondary_gems57_buffered_components']['ci95'][1]:.6f}]`), beating `B0 = {wbg_s2_rc['holdout_dti']['secondary_gems57_buffered_components']['control_b0_dti']:.6f}` (`paired Δ = +{wbg_s2_rc['holdout_dti']['secondary_gems57_buffered_components']['paired_delta_vs_b0']:.6f}`).
+  - **Automated `[0,1]` Portal, Competing Uniqueness & Governance Gates:** `15/15` local `[0,1]` GeoTIFF/ZIP checks PASS (`0` NaN, `0` Inf across all `12,279,160` cells); pre-placement surface `max |ρ| = 0.5819 <= 0.90` across `379` rasters; competing-sparse 3-px dot overlap `max fwd = 66.20% <= 70%`, `max worst-dir = 68.75% <= 70%`, `max |ρ| = 0.0473 <= 0.90` across `364` sparse detector rasters. Submission name `{wbg_s2_rc['submission_name']}`, note `{wbg_s2_rc['submission_note']}` (`{wbg_s2_rc['submission_note_length']}` chars). Held as `verdict: "{wbg_s2_rc['verdict']}"` under strict unseparated `r13-lattice-s5` / login-walled weekly allowance governance (`0` competition slots spent automatically); see [`knowledge/03_executive_summary_and_02778_forensics_2026-10-27.md`](knowledge/03_executive_summary_and_02778_forensics_2026-10-27.md).
 - **[Parallel WBG-H1 (DPGF-1 / EXP-3) Interactive Dashboard & 9-Site Audit](docs/wbg-h1-dpgf1/index.html)** ·
   [Step-by-step DrivenData upload guide](docs/wbg-h1-dpgf1/executive-summary.html) ·
   [1-Click Validated `[0,1]` GeoTIFF (`{Path(h1_tif).name}`)]({h1_tif}) (`SHA-256: {wbg_h1_rc['raster_sha256']['tif_sha256']}`) ·

@@ -1,0 +1,211 @@
+{
+  "total_unique_rasters_checked": 208,
+  "competing_sparse_rasters_checked": 206,
+  "pre_placement_surface": {
+    "max_abs_spearman_all_entries": 0.644883,
+    "worst_comparator": "WBGGEMSDOE1:wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+    "passed_threshold_0_90": true
+  },
+  "final_dots_competing_sparse": {
+    "max_abs_spearman": 0.031229,
+    "max_forward_3px_overlap": 0.593777,
+    "worst_comparator": {
+      "source_group": "focus9_registry",
+      "id": "buffedlizard55-lab/GEMSDOE30:docs/downloads/gemsdoe30-edge-hybrid-80k-02845bd4-20261003T234340Z-allfinite.tif",
+      "sha256": "fb2d0d2d74bad2b52c6fcd48db5d8e2855c938fd222798e03fc01a96dbdc6d0e",
+      "positive_pixels": 80000,
+      "comparator_class": "competing_sparse",
+      "surface_spearman": 0.051065,
+      "dots_spearman": 0.013781,
+      "forward_3px_overlap": 0.593777,
+      "reverse_3px_overlap": 0.381812
+    },
+    "vs_gemsdoe32_b2": {
+      "source_group": "focus9_registry",
+      "id": "buffedlizard55-lab/GEMSDOE32:docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "positive_pixels": 37654,
+      "comparator_class": "competing_sparse",
+      "surface_spearman": 0.060451,
+      "dots_spearman": 0.009602,
+      "forward_3px_overlap": 0.275462,
+      "reverse_3px_overlap": 0.298136
+    },
+    "vs_wbg2_pr13": {
+      "source_group": "local_wbggemsdoe1",
+      "id": "WBGGEMSDOE1:wbg2-offcatalogue-density-36k-20261027.tif",
+      "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+      "positive_pixels": 36000,
+      "comparator_class": "competing_sparse",
+      "surface_spearman": 0.010033,
+      "dots_spearman": 0.010033,
+      "forward_3px_overlap": 0.337989,
+      "reverse_3px_overlap": 0.348444
+    },
+    "passed_competing_uniqueness": true,
+    "top_10_competing_overlaps": [
+      {
+        "source_group": "focus9_registry",
+        "id": "buffedlizard55-lab/GEMSDOE30:docs/downloads/gemsdoe30-edge-hybrid-80k-02845bd4-20261003T234340Z-allfinite.tif",
+        "sha256": "fb2d0d2d74bad2b52c6fcd48db5d8e2855c938fd222798e03fc01a96dbdc6d0e",
+        "positive_pixels": 80000,
+        "comparator_class": "competing_sparse",
+        "surface_spearman": 0.051065,
+        "dots_spearman": 0.013781,
+        "forward_3px_overlap": 0.593777,
+        "reverse_3px_overlap": 0.381812
+      },
+      {
+        "source_group": "focus9_registry",
+        "id": "buffedlizard55-lab/GEMSDOE25:docs/downloads/gems25-h31-1-flank-subscarp-sapd24-20261025-40bfe1d5b1c5-nan.tif",
+        "sha256": "41461ce0d0a6cb2d765e53fa490114d3f6e6344ca6f459b811f55bddbf7d2858",
+        "positive_pixels": 49041,
+        "comparator_class": "competing_sparse",
+        "surface_spearman": 0.091015,
+        "dots_spearman": 0.023565,
+        "forward_3px_overlap": 0.535082,
+        "reverse_3px_overlap": 0.476173
+      },
+      {
+        "source_group": "focus9_registry",
+        "id": "buffedlizard55-lab/GEMSDOE25:docs/downloads/gems25-h38-greedy-credit-k3p5-20261025-18de99d38bb0-nan.tif",
+        "sha256": "d81c69cace45144ea29d6d1f208efec3f38ff45265171f5f6c9bbbfdd43eabcf",
+        "positive_pixels": 54472,
+        "comparator_class": "competing_sparse",
+        "surface_spearman": 0.097016,
+        "dots_spearman": 0.027426,
+        "forward_3px_overlap": 0.53288,
+        "reverse_3px_overlap": 0.477989
+      },
+      {
+        "source_group": "focus9_registry",
+        "id": "buffedlizard55-lab/GEMSDOE25:docs/downloads/gems25-obj-bin-greedy-k3p5-20261026-3646faf70507-zeros.tif",
+        "sha256": "160dbdc0c2abc25bd40a3f38a36c2a69f8a02503337dea7ab706f6d77a08934d",
+        "positive_pixels": 53522,
+        "comparator_class": "competing_sparse",
+        "surface_spearman": 0.098404,
+        "dots_spearman": 0.028615,
+        "forward_3px_overlap": 0.530543,
+        "reverse_3px_overlap": 0.488117
+      },
+      {
+        "source_group": "focus9_registry",
+        "id": "buffedlizard55-lab/GEMSDOE25:docs/downloads/gems25-cf1-transverse-negative-20261025-22e2f9eddad9-zeros.tif",
+        "sha256": "a0b58cca87ad98f9579c8744e6dd216b7eb4a3e5b075a4bd7af3cf3004ab5cf0",
+        "positive_pixels": 48777,
+        "comparator_class": "competing_sparse",
+        "surface_spearman": 0.088759,
+        "dots_spearman": 0.025053,
+        "forward_3px_overlap": 0.517092,
+        "reverse_3px_overlap": 0.464604
+      },
+      {
+        "source_group": "focus9_registry",
+        "id": "buffedlizard55-lab/GEMSDOE25:docs/downloads/gems25-h31-control-sapd2-4-k3p5-bde7-20261025-9edd6bed8268-nan.tif",
+        "sha256": "2165bb8e229ee27e25edf57e990191d8f7836ab4b07e2779f15023f7c34a3ab2",
+        "positive_pixels": 48714,
+        "comparator_class": "competing_sparse",
+        "surface_spearman": 0.088164,
+        "dots_spearman": 0.02427,
+        "forward_3px_overlap": 0.517065,
+        "reverse_3px_overlap": 0.461674
+      },
+      {
+        "source_group": "focus9_registry",
+        "id": "buffedlizard55-lab/GEMSDOE25:docs/downloads/gems25-h35-resmag-tip-sapd2-4-k3p5-20261025-d5d4cde1e719-nan.tif",
+        "sha256": "3ebd1aabff726c59a47b018308a1c30574bce0b1c0a217d6650bae69304551af",
+        "positive_pixels": 48849,
+        "comparator_class": "competing_sparse",
+        "surface_spearman": 0.087062,
+        "dots_spearman": 0.023357,
+        "forward_3px_overlap": 0.513696,
+        "reverse_3px_overlap": 0.459559
+      },
+      {
+        "source_group": "focus9_registry",
+        "id": "buffedlizard55-lab/GEMSDOE25:docs/downloads/gems25-xg1-crossgrad-sapd2-4-k3p5-20261025-52e65fb521f9-zeros.tif",
+        "sha256": "e1b144f0351ce857579cfdb7696cc0d89ce2aa34eecefd0c88fde71c642c289d",
+        "positive_pixels": 48669,
+        "comparator_class": "competing_sparse",
+        "surface_spearman": 0.087189,
+        "dots_spearman": 0.023169,
+        "forward_3px_overlap": 0.511793,
+        "reverse_3px_overlap": 0.458773
+      },
+      {
+        "source_group": "focus9_registry",
+        "id": "buffedlizard55-lab/GEMSDOE25:docs/downloads/gems25-h37-doc-dipoffset-sapd2-4-k3p5-20261025-558c08ce13bf-nan.tif",
+        "sha256": "4c35c74a34ce97671d3f2be158574726c6f5775a4da29467f0757bc19dd75e37",
+        "positive_pixels": 48662,
+        "comparator_class": "competing_sparse",
+        "surface_spearman": 0.087192,
+        "dots_spearman": 0.023243,
+        "forward_3px_overlap": 0.511495,
+        "reverse_3px_overlap": 0.461284
+      },
+      {
+        "source_group": "focus9_registry",
+        "id": "buffedlizard55-lab/GEMSDOE25:docs/downloads/gems25-h36-tiltzero-coincide-sapd2-4-k3p5-20261025-92562b7b7fea-nan.tif",
+        "sha256": "ee71642cd603418ceaf6c789ab05a9d742d8dce096ee9816118fdeb90a475a73",
+        "positive_pixels": 48634,
+        "comparator_class": "competing_sparse",
+        "surface_spearman": 0.087089,
+        "dots_spearman": 0.022706,
+        "forward_3px_overlap": 0.511277,
+        "reverse_3px_overlap": 0.460007
+      }
+    ],
+    "vs_wbg_s2": {
+      "source_group": "local_wbggemsdoe1",
+      "id": "WBGGEMSDOE1:wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.tif",
+      "sha256": "6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880",
+      "positive_pixels": 37654,
+      "comparator_class": "competing_sparse",
+      "surface_spearman": 0.022725,
+      "dots_spearman": 0.022725,
+      "forward_3px_overlap": 0.433995,
+      "reverse_3px_overlap": 0.479763
+    }
+  },
+  "final_dots_literal_all_entries": {
+    "max_abs_spearman": 0.067654,
+    "max_forward_3px_overlap": 1.0,
+    "worst_comparator": {
+      "source_group": "local_wbggemsdoe1",
+      "id": "WBGGEMSDOE1:wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+      "sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+      "positive_pixels": 5106385,
+      "comparator_class": "continuous_surface",
+      "surface_spearman": 0.644883,
+      "dots_spearman": 0.067654,
+      "forward_3px_overlap": 1.0,
+      "reverse_3px_overlap": 0.16253
+    },
+    "literal_exceeding_70pct_count": 2,
+    "literal_exceeding_70pct_rows": [
+      {
+        "source_group": "focus9_registry",
+        "id": "buffedlizard55-lab/GEMSDOE24:inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+        "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+        "positive_pixels": 206895,
+        "comparator_class": "calibration_lattice",
+        "surface_spearman": -5.8e-05,
+        "dots_spearman": -0.000322,
+        "forward_3px_overlap": 0.999946,
+        "reverse_3px_overlap": 0.161038
+      },
+      {
+        "source_group": "local_wbggemsdoe1",
+        "id": "WBGGEMSDOE1:wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+        "sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+        "positive_pixels": 5106385,
+        "comparator_class": "continuous_surface",
+        "surface_spearman": 0.644883,
+        "dots_spearman": 0.067654,
+        "forward_3px_overlap": 1.0,
+        "reverse_3px_overlap": 0.16253
+      }
+    ],
+    "passed_literal_uniqueness": false
+  }
+}

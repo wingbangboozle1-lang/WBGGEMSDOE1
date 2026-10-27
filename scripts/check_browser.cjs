@@ -21,6 +21,7 @@ const chromium = importedChromium.default || importedChromium;
   fs.mkdirSync(artifacts, { recursive: true });
   const wbg2 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg2/run_card.json")));
   const s2 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg_s2/run_card.json")));
+  const wbg3 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg3/run_card.json")));
   if (process.env.BROWSER_COMPAT_LIBS === "1") {
     // Minimal Linux containers may lack NSS/NSPR. Use the dependency's own
     // bundled compatibility libraries instead of downloading system packages.
@@ -109,6 +110,32 @@ const chromium = importedChromium.default || importedChromium;
     await page.screenshot({ path: path.join(artifacts, "wbg-s2-desktop.png"), fullPage: true });
     await page.setViewportSize({ width: 390, height: 844 });
     await page.screenshot({ path: path.join(artifacts, "wbg-s2-mobile.png"), fullPage: true });
+    for (const file of ["wbg3.html", "wbg3/index.html", "wbg3/how-to-submit.html", "wbg3/forensics-and-hypotheses.html"]) {
+      const result = { file };
+      for (const [label, width, height] of [["desktop", 1440, 1100], ["mobile", 390, 844]]) {
+        await page.setViewportSize({ width, height });
+        const response = await page.goto(new URL(file, base).href, { waitUntil: "networkidle" });
+        assert.equal(response.status(), 200);
+        const text = await page.locator("main").innerText();
+        assert.match(text, /DO NOT SUBMIT/);
+        assert.match(text, /NO SELECTOR ELIGIBILITY/);
+        assert.match(text, /99\.9946%/);
+        assert.match(text, /100%/);
+        assert.equal(await page.evaluate(() => document.body.scrollWidth > window.innerWidth), false, `${label} overflow: ${file}`);
+        result[label] = "passed";
+      }
+      checked.push(result);
+    }
+    await page.setViewportSize({ width: 1440, height: 1100 });
+    await page.goto(new URL("wbg3/index.html", base).href, { waitUntil: "networkidle" });
+    const w3DownloadPromise = page.waitForEvent("download");
+    await page.locator("a[download]").first().click();
+    const w3Download = await w3DownloadPromise;
+    assert.equal(w3Download.suggestedFilename(), path.basename(wbg3.artifact));
+    assert.equal(crypto.createHash("sha256").update(fs.readFileSync(await w3Download.path())).digest("hex"), wbg3.raster_sha256);
+    await page.screenshot({ path: path.join(artifacts, "wbg3-desktop.png"), fullPage: true });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.screenshot({ path: path.join(artifacts, "wbg3-mobile.png"), fullPage: true });
     await page.setViewportSize({ width: 1440, height: 1100 });
     await page.goto(new URL("wbg2.html", base).href, { waitUntil: "networkidle" });
     assert.equal(await page.locator("table tbody tr").count(), 9);
@@ -128,7 +155,8 @@ const chromium = importedChromium.default || importedChromium;
       desktop_viewport: [1440, 1100], mobile_viewport: [390, 844],
       javascript_page_errors: errors, site_filter: "passed", wbg2_nine_site_table: "passed", primary_download_sha256: wbg2.raster_sha256,
       primary_download_identity: "passed", wbg_s2_download_sha256: s2.artifact.tif_sha256,
-      wbg_s2_download_identity: "passed", body_overflow: false, all_passed: true,
+      wbg_s2_download_identity: "passed", wbg3_download_sha256: wbg3.raster_sha256,
+      wbg3_download_identity: "passed", body_overflow: false, all_passed: true,
       no_model_training_or_slot_use: true };
     fs.writeFileSync(path.join(root, "evidence/browser_checks.json"), JSON.stringify(report, null, 2) + "\n");
     console.log(JSON.stringify(report, null, 2));

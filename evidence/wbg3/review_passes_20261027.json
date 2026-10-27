@@ -1,0 +1,25 @@
+{
+  "schema": "wbg3-review-passes-v1",
+  "lane": "WBG-3 (SPI-PMR-WCS-1)",
+  "completed_utc": "2026-10-27T20:25:00Z",
+  "passes": [
+    {
+      "pass": 1,
+      "title": "Implementation, 3-Arm Spatially-Blocked Holdout Execution, & Automated Validation",
+      "summary": "Restored pinned competition/SGMC/GeoDAWN/GDR1391 stacks, verified all 9 focus-site GeoTIFF identities byte-for-byte, locked preregistration registry/wbg3_preregistration.json (SHA-256 e891cd7c...), passed 40/40 SegmentHoldout leakage canaries (max orientation-invariant AUC = 0.572653 <= 0.90), ran all 3 preregistered arms in 444.34s (0 competition slots used), beat 19-band control across 4/4 spatial folds (HOLDOUT-DTI = 0.118180 vs 0.090781 on gems-segment-pooled-v1; 0.121862 vs 0.076470 on gems57-pooled-hide-v2), measured fold-safe WBG-2 replay (0.000341 / 0.097610), and emitted portal-safe zeros-mode wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif + .zip passing 15/15 automated checks."
+    },
+    {
+      "pass": 2,
+      "title": "Edge-Case, Merge-Invariance, Uniqueness-Witness, & CI/Browser Bug Review",
+      "summary": "Fast-forwarded arena/5be9ab0e-wbggemsdoe1 cleanly onto origin/main (2e8e104), audited WBG-3 against newly merged WBG-S2 (forward 3-px overlap 43.40% <= 70%, Spearman +0.0227 <= 0.90; 208 total unique rasters / 206 competing sparse rasters), verified exact literal STOP witnesses (99.9946% vs r13-lattice-s5 and 100.00% vs WBG-C1), eliminated raw LaTeX dollar delimiters from static HTML, cleaned 3 ruff F401/F841 items, copied feed.json into docs/wbg3/data/feed.json to eliminate background 404s, and preserved synthetic fixture compatibility in scripts/stage_pages.py."
+    },
+    {
+      "pass": 3,
+      "title": "Full End-to-End Re-Check: 188 Pytest Tests, Ruff, Freeze Guards, & 19-Page Desktop/Mobile Playwright Audit",
+      "summary": "Visually inspected rendered desktop (1440x1100) and mobile (390x844) screenshots of docs/wbg3/index.html, upgraded the per-fold and 208-raster uniqueness tables from narrow two-column layout to full-width crisp tables, re-verified zero horizontal body overflow and zero JS errors across all 19 pages, verified SHA-256 download roundtrips for WBG-2, WBG-S2, WBG-3, and all portfolio artifacts, and passed all 188 pytest tests + ruff + deterministic rebuild check."
+    }
+  ],
+  "all_passes_complete": true,
+  "submission_slots_used": 0,
+  "ok_to_submit": false
+}

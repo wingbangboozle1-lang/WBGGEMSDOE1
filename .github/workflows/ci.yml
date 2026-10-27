@@ -34,6 +34,8 @@ jobs:
           python scripts/validate_submission.py docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.zip
           python scripts/validate_submission.py docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif
           python scripts/validate_submission.py docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip
+          python scripts/validate_submission.py docs/downloads/wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif
+          python scripts/validate_submission.py docs/downloads/wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.zip
       - name: Revalidate all four frozen research downloads and decision-report identity
         run: python scripts/review_releases.py --check
       - name: Verify stopped WBG-2 and WBG-S2 literal registry witnesses

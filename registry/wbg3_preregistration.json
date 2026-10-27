@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "registered_utc": "2026-10-27T19:15:00Z",
+  "hypothesis_id": "WBG-3",
+  "method_code": "SPI-PMR-WCS-1",
+  "preregistration_markdown": "research/04_wbg3_preregistration_20261027.md",
+  "hypothesis": "100% 1m-LiDAR-free Crustal Source-Parameter Imaging (SPI local wavenumber) x Poisson Pseudogravity Magnetite-Destruction Residual (PPDR) x 2D FFT Riesz Monogenic Phase Congruency (PC) x Fold-Safe Visible-Only Crack-Tip Wing-Crack & Orphan Hydrothermal Synthesis (SPI-PMR-WCS-1), emitted at 36,800 off-catalogue binary dots via Two-Regime 300 m triangular-kernel CELF submodular max-cover.",
+  "mechanism": "Unmapped Great Basin geothermal and Quaternary faults missed by subaerial scarp mapping exhibit three amplitude-invariant physical signatures: (1) local-wavenumber peaks k_SPI = |grad atan2(VG, HG)| directly over shallow buried magnetic and density fault contacts regardless of magnetization inclination or regional amplitude; (2) positive isostatic-gravity minus FFT-pseudogravity gradient residuals where hydrothermal fluids oxidize primary magnetite to clay/pyrite (enriched in K/Th and cond_surf); and (3) dimensionless 2D Riesz monogenic step phase congruency across <1 m degraded piedmont scarps, corroborated near visible fault tips and step-overs by Pollard-Segall tensile wing-crack lobes and orphan GDR 1391 thermal anomalies.",
+  "named_non_fault_mimic": "Pleistocene pluvial Lake Lahontan / Lake Dixie wave-cut shoreline benches (low-amplitude contrast-invariant piedmont steps), shallow buried Tertiary basaltic flow or sill margins (high magnetic local wavenumber without Quaternary vertical throw), and linear railroad/highway embankments across flat playas.",
+  "experiment_budget": {
+    "maximum_experiments": 3,
+    "planned_arms": [
+      "arm1_ctrl_19band_celf36800",
+      "arm2_spi_pmr_pc_36ch_celf36800",
+      "arm3_spi_pmr_wcs_40ch_tworegime36800"
+    ],
+    "primary_arm": "arm3_spi_pmr_wcs_40ch_tworegime36800",
+    "maximum_wall_seconds": 7200,
+    "submission_slots_used": 0
+  },
+  "emission": {
+    "dot_budget": 36800,
+    "regime_a_dots": 27600,
+    "regime_b_dots": 9200,
+    "visible_collar_px": 2.0,
+    "min_separation_px": 2.25,
+    "outside_footprint_mode": "zeros"
+  },
+  "model": {
+    "ctrl_hgb": {
+      "max_iter": 140,
+      "max_leaf_nodes": 31,
+      "min_samples_leaf": 80,
+      "learning_rate": 0.06,
+      "l2_regularization": 4.0,
+      "max_training_negatives": 180000,
+      "seed": 20261027
+    },
+    "ens_hgb_a": {
+      "max_iter": 160,
+      "max_leaf_nodes": 31,
+      "min_samples_leaf": 80,
+      "learning_rate": 0.06,
+      "l2_regularization": 4.0
+    },
+    "ens_hgb_b": {
+      "max_iter": 160,
+      "max_leaf_nodes": 63,
+      "min_samples_leaf": 100,
+      "learning_rate": 0.05,
+      "l2_regularization": 6.0
+    },
+    "wcs_corroboration_weights": {
+      "wing_crack": 0.55,
+      "relay_stepover": 0.65,
+      "echelon_halo": 0.35,
+      "orphan_hydro": 0.50
+    }
+  },
+  "evaluators": {
+    "primary": {
+      "evaluator_version": "gems-segment-pooled-v1",
+      "module": "src.gems.holdout.SegmentHoldout",
+      "buffer_px": 15,
+      "withheld_positive_pixels": 60988,
+      "benchmark_to_beat_dti": 0.16606013635163805
+    },
+    "secondary_intrabasin": {
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "module": "vendor.gems57.holdout.buffered_component_draw",
+      "split_seed": 71614,
+      "hide_fraction": 0.2,
+      "feature_buffer_px": 3,
+      "quadrant_boundary_erosion_px": 12,
+      "training_collar_px": 80,
+      "withheld_positive_pixels": 11330
+    }
+  },
+  "gates": {
+    "canary_max_orientation_invariant_auc": 0.90,
+    "surface_max_abs_spearman": 0.90,
+    "final_dots_max_abs_spearman": 0.90,
+    "final_dots_max_3px_forward_overlap": 0.70,
+    "require_literal_all_entries_pass_for_promotion": true,
+    "require_separate_selector_and_verified_quota": true
+  }
+}

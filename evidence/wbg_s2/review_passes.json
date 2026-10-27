@@ -1,0 +1,39 @@
+{
+  "safety_review_warning": "Historical parallel review, not current release readiness. Its fleet ranking, full uniqueness and provenance interpretations were not independently validated; the final file is STOP / no selector eligibility. See safety_review_20261027.json and the current run card.",
+  "schema_version": 1,
+  "lane_id": "WBG-S2",
+  "recorded_utc": "2026-10-27T19:35:00+00:00",
+  "passes": [
+    {
+      "pass": 1,
+      "focus": "Implement & Verify",
+      "actions": [
+        "Pre-registered 5 ranked hypotheses (WBG-S2-H1..H5) and locked registry/wbg_s2/preregistration.json before model code.",
+        "Restored and SHA-256 verified all core competition rasters, 19 shared template57 cache bands, 13 external datasets, 14 seamless 10 m 3DEP files, 9 frozen research snapshots, and 15 peer 2026-10-27 TIFFs.",
+        "Built 81-channel label-free float32 feature stack (src/wbggems2/features.py), verified Band-6 radiometric TC provenance (Spearman = 0.99995), and passed 332/332 single-feature leakage canaries (max AUC = 0.79251 <= 0.90).",
+        "Executed B0, EXP-1, EXP-2, and EXP-3 across both gems-segment-pooled-v1 (0.183594, #1 of 10 repos) and gems57-pooled-hide-v2 (0.147773, #1 benchmark), synthesized 8-fold Dual-Partition OOF 37,654-dot GeoTIFF + ZIP, verified 15/15 [0, 1] checks and 364-raster competing uniqueness, and passed 102 pytest tests."
+      ],
+      "outcome": "completed"
+    },
+    {
+      "pass": 2,
+      "focus": "Adversarial Review for Bugs, Requirements, Edge Cases & Implicit Assumptions",
+      "issues_found_and_fixed": [
+        "Caught CELF candidate_oversample=9 edge case at min_sep=2.8 px and raised candidate_oversample=16 so all folds and full-footprint regimes emit exact target dot budgets with zero shortfall.",
+        "Caught Ruff F821 closure false-alarm caused by trailing del statements in fit_predict_mksf_dual_fold plus 3 unused imports across scripts; fixed so CI ruff check (--select E9,F) passes with 0 errors.",
+        "Caught CI rebuild-idempotence requirement in .github/workflows/ci.yml (python scripts/build_site.py && python scripts/build_readme.py && python scripts/stage_pages.py && git diff --exit-code); wired wbg_s2_build_audit_and_docs.py into build_site.py, wired WBG-S2 Run Card into build_readme.py, pinned deterministic timestamps, and guarded PNG regeneration when git-ignored data/ is absent on CI runners."
+      ],
+      "outcome": "all_issues_resolved"
+    },
+    {
+      "pass": 3,
+      "focus": "Full Re-Check, Idempotence Verification & Release Readiness",
+      "actions": [
+        "Re-ran build_site.py, build_readme.py, and stage_pages.py twice consecutively and verified zero git diff across tracked files.",
+        "Re-ran full pytest suite (102 passed), CI Ruff check (0 errors), TIP1/WBG-H1 recorded-receipt verifiers, release validator, and both GeoTIFF & ZIP portal validators.",
+        "Verified standing-prompt preservation in README.md, frozen root governance invariants, internal HTML link resolution across all docs/ pages, and compact patchset footprint (<< 128 MB)."
+      ],
+      "outcome": "passed"
+    }
+  ]
+}

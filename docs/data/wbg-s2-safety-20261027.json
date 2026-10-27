@@ -1,0 +1,41 @@
+{
+  "schema": "wbg-s2-literal-safety-review-v1",
+  "review_date_utc": "2026-10-27",
+  "evidence_class": "REGISTRY-MEASUREMENT",
+  "existing_tiff_sha256": "6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880",
+  "existing_positive_pixels": 37654,
+  "local_format_passed": true,
+  "zip_single_member_identical": true,
+  "witnesses": [
+    {
+      "repo": "GEMSDOE24",
+      "submission": "pinned r13 spacing-5 lattice",
+      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "their_dots": 206895,
+      "my_dots_within_3px_of_theirs": 0.9955383226217666,
+      "spearman_full_footprint": -0.0005178337979990045,
+      "duplicate_by_overlap": true,
+      "duplicate_by_rho": false
+    },
+    {
+      "repo": "WBGGEMSDOE1",
+      "submission": "C1 continuous research surface",
+      "sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+      "their_dots": 5106385,
+      "my_dots_within_3px_of_theirs": 1.0,
+      "spearman_full_footprint": 0.08257496782552909,
+      "duplicate_by_overlap": true,
+      "duplicate_by_rho": false
+    }
+  ],
+  "phase": "Final dots from a parallel session; forensic remeasurement, not a new placement.",
+  "pre_placement_limitation": "The original record reports a sampled Spearman screen only, not the full literal overlap test against every registry raster. No qualifying pre-placement clearance is established.",
+  "scope": "Two hash-pinned references. Either STOP is decisive; this is not a complete registry scan or proof of copying.",
+  "correction": "The earlier report paired the r13 lattice overlap with the C1 peer name. Measured separately: 99.5538% against r13 and 100% against C1.",
+  "holdout_limitation": "The parallel-run HOLDOUT-DTI figures were not independently replayed here; arms were selected on the reported holdouts and no untouched confirmation is established.",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "eligible_for_separate_selector": false,
+  "new_experiments_in_this_audit": 0,
+  "submission_slots_used_in_this_audit": 0
+}

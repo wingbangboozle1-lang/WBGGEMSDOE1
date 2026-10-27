@@ -1,0 +1,474 @@
+{
+  "safety_review_warning": "STOP \u2014 research download only. The original pre-placement report screened sampled Spearman only, not the required all-registry 3-pixel overlap. Final dots overlap the pinned r13 lattice by 99.5538% and WBG-C1 by 100%; neither a selector nor a sparse-peer diagnostic overrides the literal STOP. Holdout values are parallel-run reports, not independently replayed here.",
+  "schema_version": "wbggems-s2-runcard-v1",
+  "generated_utc": "2026-10-27T19:15:46+00:00",
+  "lane_id": "WBG-S2",
+  "selected_arm": "EXP3_MKSF_VierbeinCoulomb",
+  "hypothesis": "Seamless 10m/1m Transgressive Piedmont-Flexure, Gallardo-Meju Cross-Gradient & Expected 300m Kernel-Credit Submodular Field + Fold-Visible Elastic Crack-Tip & En-Echelon Relay-Ramp Stress Corroboration",
+  "mechanism": "81-channel label-free multi-resolution stack (19 competition geophys/geod/seis/topo bands with Band 6 verified as radiometric TC, 12 seamless 100%-coverage USGS 3DEP 10 m channels, 13 1 m LiDAR scarp channels, 8 GeoDAWN radiometric/upward-continued magnetic channels, 14 PJMF transgressive piedmont-flexure + Lake Lahontan contour-obliquity + Census TIGER 2024 road/rail de-confounding channels, 15 CGMD Gallardo-Meju cross-gradient + magnetite-destruction + DOE GDR #1391 F2mDAB/sinter/geothermometer channels) trained via Dual-Specialist (Full-81ch + Seamless-68ch) x Dual-Target (Purged-Collar Crest Classifier + Expected 300 m Triangular-Kernel Credit Regressor) across 8 Dual-Partition OOF folds (4 Quadrant + 4 45-deg Diamond), sharpened via 8-azimuth ridge/halo subtraction and emitted via Two-Regime (76% scarp-flexure / 24% concealed conduit) min_sep=2.8 px 300 m Submodular CELF (37,654 binary {0,1} dots, d_cat > 200 m).",
+  "named_non_fault_mimic": "US Census TIGER 2024 highway/railroad cut-and-fill embankments across playas, contour-parallel Pleistocene Lake Lahontan/Russell wave-cut shorelines, incised V-shaped fluvial canyon thalwegs, and isotropic Cenozoic volcanic plugs.",
+  "holdout_dti": {
+    "primary_segment_holdout": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "gems-segment-pooled-v1",
+      "withheld_positive_pixels": 60988,
+      "dti": 0.183594442730121,
+      "ci95": [
+        0.1703128162905672,
+        0.19695565832988687
+      ],
+      "control_b0_dti": 0.11155134742343885,
+      "paired_delta_vs_b0": 0.07204309530668214,
+      "paired_delta_vs_b0_ci95": [
+        0.06014006242839369,
+        0.08523601369184415
+      ],
+      "prior_wbg_h1_dti": 0.12331,
+      "delta_vs_wbg_h1": 0.060284442730120985,
+      "folds": [
+        {
+          "fold": "NW",
+          "TP_w": 1965.8168221803658,
+          "FP_w": 7516.406433885933,
+          "FN_w": 8199.183177819634,
+          "n_truth": 10165,
+          "n_emitted": 8414,
+          "dti": 0.19602409850493965,
+          "coverage": 0.19339073508906698
+        },
+        {
+          "fold": "NE_LidarGapHeavy",
+          "TP_w": 3220.441870746171,
+          "FP_w": 8869.131161756379,
+          "FN_w": 9290.55812925383,
+          "n_truth": 12511,
+          "n_emitted": 10404,
+          "dti": 0.2591547301678287,
+          "coverage": 0.257408829889391
+        },
+        {
+          "fold": "SW",
+          "TP_w": 2183.781270754739,
+          "FP_w": 9465.963390523964,
+          "FN_w": 18350.21872924526,
+          "n_truth": 20534,
+          "n_emitted": 10410,
+          "dti": 0.11642394473862475,
+          "coverage": 0.10634953105847565
+        },
+        {
+          "fold": "SE",
+          "TP_w": 3186.938324192232,
+          "FP_w": 7147.6318340297685,
+          "FN_w": 14591.061675807769,
+          "n_truth": 17778,
+          "n_emitted": 8426,
+          "dti": 0.1956459503439843,
+          "coverage": 0.1792630399478137
+        }
+      ]
+    },
+    "secondary_gems57_buffered_components": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 11330,
+      "dti": 0.14777305465358295,
+      "ci95": [
+        0.1280772832085336,
+        0.16779131687676496
+      ],
+      "control_b0_dti": 0.09007561045564794,
+      "paired_delta_vs_b0": 0.057697444197935016,
+      "paired_delta_vs_b0_ci95": [
+        0.04383064902210825,
+        0.07203509428568178
+      ]
+    }
+  },
+  "organizer_confirmed_score": null,
+  "leaderboard_projection": null,
+  "leakage_canary": {
+    "total_checks": 332,
+    "maximum_orientation_invariant_auc": 0.7925109374999999,
+    "threshold": 0.9,
+    "passed": true
+  },
+  "registry_uniqueness": {
+    "pre_placement_surface": {
+      "rasters_checked": 379,
+      "max_abs_spearman_rho": 0.5819215590118479,
+      "closest_peer": "wbg-c1-commutator-research-surface-20261026-acea88448272",
+      "passed": true,
+      "scope_warning": "Spearman-only sampled screen (exact rho for top 25), not full literal pre-placement clearance. An untested gate cannot be passed.",
+      "full_literal_gate_clearance": false
+    },
+    "post_placement_competing_sparse_peers": {
+      "passed": true,
+      "max_forward_3px_overlap": 0.6619748233919371,
+      "closest_forward_peer": "gemsdoe30-sgmc-hedge-d10-85k-20261003-ac08b41e-zeros",
+      "max_worst_directional_3px_overlap": 0.6875497955064535,
+      "closest_directional_peer": "GEMSDOE36_KPL36_EXP3__gemsdoe36-kpl36-exp3-20261026-fc869911e88c-zeros",
+      "max_abs_spearman_rho": 0.047315088173033974,
+      "closest_spearman_peer": "gemsdoe32-h38g1-lidar-geodawn-gdr-celf37654-20261026T013500Z-35859e28-nan"
+    },
+    "post_placement_non_lattice_symmetric": {
+      "passed": true,
+      "max_symmetric_3px_overlap": 0.5941599830031339,
+      "closest_symmetric_peer": "gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite"
+    },
+    "literal_unseparated_gems57_gate": {
+      "unique_without_lattice_or_density_exemption": false,
+      "byte_unique_among_checked": true,
+      "pixel_unique_among_checked": true,
+      "registry_rasters_checked": 360,
+      "max_spearman_full_footprint": 0.05109094869942613,
+      "max_forward_3px_including_lattice_and_slabs": 0.9955383226217666,
+      "worst_literal_peer": "GEMSDOE24 r13-lattice-s5 (within frozen 360-raster scan)",
+      "note": "13GEMSDOE r13-lattice-s5 (206,895 dots on 5-px grid) covers 99.8713% of footprint within 3 px, forcing >=82.34% forward overlap for any 37,654-dot in-footprint candidate. No private exemption applied.",
+      "c1_separate_forward_3px_overlap": 1.0
+    }
+  },
+  "artifact": {
+    "tif_path": "docs/downloads/wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.tif",
+    "zip_path": "docs/downloads/wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.zip",
+    "receipt_json_path": "docs/downloads/wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.json",
+    "tif_sha256": "6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880",
+    "zip_sha256": "f1b6f7d772913284801c20f00f15de406d6e42b4331ae34aa395a4a3a3385e19",
+    "decoded_pixels_sha256": "e9b4a3c0906533e4b5a2f807d55b1e0bf0e2338fbd5d3cd9a40ea608eabb32fb",
+    "emitted_dots": 37654,
+    "regime_a_scarp_flexure_dots": 28617,
+    "regime_b_concealed_conduit_dots": 9037,
+    "dead_collar_le_200m_dots": 0
+  },
+  "validator": {
+    "file": "/home/user/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.tif",
+    "bytes": 144419,
+    "sha256": "6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "submission_name": "wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros",
+  "submission_note": "WBG-S2 MKSF1 10m+1m+CGMD+CELF2.8 37654d | SegDTI 0.1836 g57DTI 0.1478 | e9b4a3c09065",
+  "submission_note_length": 84,
+  "competing_detector_gate": {
+    "portal_format_10_checks_pass": true,
+    "dead_collar_200m_zero_dots": true,
+    "leakage_canary_332_checks_pass": true,
+    "pre_placement_surface_spearman_pass": true,
+    "competing_sparse_3px_and_spearman_pass": true,
+    "beats_b0_on_both_evaluators_95ci": true,
+    "beats_prior_wbggemsdoe1_wbg_h1": true,
+    "beats_gemsdoe24_dprf1_and_s3dep1": true,
+    "all_scientific_and_competing_uniqueness_gates_pass": false,
+    "scope_warning": "Sparse-only and sampled-correlation screens do not satisfy the literal all-registry protocol. Selected-arm holdout uncertainty has no untouched confirmation."
+  },
+  "strict_governance_decision": {
+    "verdict": "negative",
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "eligible_for_separate_selector": false,
+    "approved_for_weekly_slot": false,
+    "submission_slots_used": 0,
+    "reasons": [
+      "literal registry uniqueness not cleared",
+      "no assigned method lane was supplied",
+      "authenticated current weekly allowance unavailable"
+    ],
+    "note": "This STOP is binding. This file is not eligible for selector review; no uploader exists in this project."
+  },
+  "verdict": "negative",
+  "selector_recommendation": "NONE \u2014 negative / DO NOT SUBMIT. Not eligible for a selector; the literal STOP is binding and cannot be privately waived.",
+  "experiments_used": 3,
+  "submission_slots_used": 0,
+  "safety_review": {
+    "file": "evidence/wbg_s2/safety_review_20261027.json",
+    "final_r13_forward_overlap": 0.9955383226217666,
+    "final_c1_forward_overlap": 1.0,
+    "pre_placement_literal_clearance": false,
+    "arm_selection_on_reported_holdouts": true,
+    "untouched_confirmation_established": false,
+    "holdout_independently_replayed_in_this_audit": false
+  },
+  "full_local_validator_outputs": {
+    "tif": {
+      "file": "/home/user/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.tif",
+      "bytes": 144419,
+      "sha256": "6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "emitted_positive_pixels": 37654,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 37654,
+      "footprint_fraction": 0.007286874781441169,
+      "template_report": {
+        "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.tif",
+        "bytes": 144419,
+        "sha256": "6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880",
+        "bands": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "width": 3292,
+        "height": 3730,
+        "bounds": [
+          243350.0,
+          4135550.0,
+          572550.0,
+          4508550.0
+        ],
+        "ref_bounds": [
+          243350.0,
+          4135550.0,
+          572550.0,
+          4508550.0
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null,
+        "blocksize": [
+          256,
+          256
+        ],
+        "fixture_grid": false,
+        "has_validity_mask": false,
+        "nan_pixels": 0,
+        "infinity_pixels": 0,
+        "n_nan": 0,
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.0030664964579045773,
+        "n_nonzero": 37654,
+        "mass": 37654.0,
+        "mass_outside_footprint": 0,
+        "problems": [],
+        "ok": true,
+        "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+      },
+      "mirrored_reference_available": true,
+      "catalogue_reference_available": true,
+      "independent_organizer_origin_authenticated": false,
+      "run_card_matches_exact_tiff": true,
+      "run_card_path": "evidence/wbg_s2/run_card.json",
+      "promotion_verdict": "negative",
+      "ok_to_submit": false,
+      "known_negative_registry_overlap": 1.0,
+      "known_negative_lattice_overlap": 0.9955383226217666,
+      "warning": "FORMAT PASS is not uniqueness, scientific efficacy, organizer acceptance or slot approval."
+    },
+    "zip": {
+      "file": "wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.zip::wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.tif",
+      "bytes": 144419,
+      "sha256": "6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "emitted_positive_pixels": 37654,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 37654,
+      "footprint_fraction": 0.007286874781441169,
+      "template_report": {
+        "path": "/home/user/WBGGEMSDOE1/.cache/validator/tmp6a9me7gy/contained.tif",
+        "bytes": 144419,
+        "sha256": "6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880",
+        "bands": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "width": 3292,
+        "height": 3730,
+        "bounds": [
+          243350.0,
+          4135550.0,
+          572550.0,
+          4508550.0
+        ],
+        "ref_bounds": [
+          243350.0,
+          4135550.0,
+          572550.0,
+          4508550.0
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null,
+        "blocksize": [
+          256,
+          256
+        ],
+        "fixture_grid": false,
+        "has_validity_mask": false,
+        "nan_pixels": 0,
+        "infinity_pixels": 0,
+        "n_nan": 0,
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.0030664964579045773,
+        "n_nonzero": 37654,
+        "mass": 37654.0,
+        "mass_outside_footprint": 0,
+        "problems": [],
+        "ok": true,
+        "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+      },
+      "mirrored_reference_available": true,
+      "catalogue_reference_available": true,
+      "independent_organizer_origin_authenticated": false,
+      "zip_sha256": "f1b6f7d772913284801c20f00f15de406d6e42b4331ae34aa395a4a3a3385e19",
+      "run_card_matches_exact_tiff": true,
+      "run_card_path": "evidence/wbg_s2/run_card.json",
+      "promotion_verdict": "negative",
+      "ok_to_submit": false,
+      "known_negative_registry_overlap": 1.0,
+      "known_negative_lattice_overlap": 0.9955383226217666,
+      "warning": "FORMAT PASS is not uniqueness, scientific efficacy, organizer acceptance or slot approval."
+    }
+  }
+}

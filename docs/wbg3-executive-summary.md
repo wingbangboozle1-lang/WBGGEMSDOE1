@@ -26,7 +26,7 @@ TIP1 0.0824 — same evaluator) and the designated file if a slot is spent anywa
 
 | File to download | Estimated score | Evidence class | Unique vs GEMSDOE24/25/27/28/30/31/32/33/36? | OK to submit? |
 |---|---|---|---|---|
-| **`wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif` (THIS session)** | **0.21 [0.17–0.26]** | MODEL-ESTIMATE (holdout × 2-anchor ratio; see run card) | **YES** — max 3-px dot overlap 43.1% (limit 70%), max \|ρ\| 0.036 (limit 0.90), per-raster gate PASS vs all 9 | **NO — not yet** (holdout gate vs 0.1661 not cleared). Designated file if owner spends a slot anyway |
+| **`wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif` (THIS session)** | **0.21 [0.17–0.26]** | MODEL-ESTIMATE (holdout × 2-anchor ratio; see run card) | **YES** — max 3-px dot overlap 45.1% (limit 70%), max \|ρ\| 0.036 (limit 0.90), per-raster gate PASS vs all 9 | **NO — not yet** (holdout gate vs 0.1661 not cleared). Designated file if owner spends a slot anyway |
 | `wbg2-offcatalogue-density-36k-20261027.tif` (previous session) | ~~0.2824~~ **retracted** | Estimator invalid (IR-WBG2-EST) | Yes (max overlap 18.6%) | **NO** — scattered off-catalogue field; DTI vs champion field 0.067; no measured detector support |
 | GEMSDOE32 `h33-h33-2-b2…-zeros` (champion, learning only) | 0.2778 | OWNER-REPORTED, no receipt | It *is* a focus site | NO — already submitted by its owner; copying it is a duplicate |
 | GEMSDOE36 `anderson-geothermal-pinn-38854…` | 0.2750 | OWNER-REPORTED | focus site | NO — historical |

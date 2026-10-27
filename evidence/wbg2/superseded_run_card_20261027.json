@@ -1,0 +1,211 @@
+{
+  "superseded_warning": "HISTORICAL RAW RECORD ONLY. Its approval, enrichment exemption, projection and unverified score labels are invalid; see current safety audit.",
+  "original_record": {
+    "schema": "wbg2-run-card-v1",
+    "generated_utc": "2026-10-27T18:02:06+00:00",
+    "hypothesis": "WBG-2: off-catalogue fault-density-prior dot field",
+    "mechanism": "Gaussian KDE (1.5 km) of mapped-fault density supplies a placement prior; all cells within 400 m of the catalogue are excluded because the scored target is the faults that are NOT in the catalogue; a 36k-cell scattered field is rendered binary in zeros mode.",
+    "named_non_fault_mimic": "Basin-fill depocentres and range-front alluvial aprons concentrate next to mapped faults, so a density prior partly reproduces the sedimentary basin geometry rather than faulting. The prior is a spatial-distribution model, not a detection.",
+    "lane": "provisional research; no single-method paragraph supplied",
+    "budget_pixels": 36000,
+    "seed": 20261027,
+    "catalogue_buffer_px": 4,
+    "kde_sigma_px": 15.0,
+    "measured": {
+      "evidence_class": "PROXY-DTI",
+      "note": "DTI of this surface against the *mapped* catalogue. It is 0.0 by construction and serves as proof that the >=400 m catalogue exclusion held. The scored target is the complement of the catalogue, so this is NOT a score estimate.",
+      "dti_vs_catalogue": 0.0,
+      "components": {
+        "tp_w": 0.0,
+        "fp_w": 36000.0,
+        "fn_w": 60988.0,
+        "denominator": 55990.400000001,
+        "gt_pixels": 60988,
+        "predicted_pixels": 36000,
+        "alpha": 0.2,
+        "beta": 0.8,
+        "r_pixels": 3.0
+      }
+    },
+    "score_estimate": {
+      "evidence_class": "MODEL-ESTIMATE",
+      "value": 0.2824288396367217,
+      "ci95": [
+        0.27954821881994424,
+        0.2853094604534992
+      ],
+      "model": "score = intercept + a*(fraction of our positive pixels within 3 px of the mapped catalogue) + b*ln(number of positive pixels)",
+      "fitted_on": "ORGANIZER-REPORTED values supplied in the session brief (user message), one per focus site; these are NOT submission-page receipts.",
+      "r2": 0.9878460510789473,
+      "residual_sd": 0.00146970449835585,
+      "caveats": [
+        "Calibrated on nine third-party reported values, not organizer receipts.",
+        "Positive-pixel budget range in the fit is 37,654 to 61,328; predicting outside that range is extrapolation.",
+        "The fit cannot separate budget reduction from catalogue-proximity reduction (r=0.75).",
+        "Two of the nine values are the same artifact reported on two sites (GEMSDOE25 and GEMSDOE30 share an identical positive-pixel set), so the effective sample is eight independent artifacts.",
+        "The estimator is a ranking device for choosing between our own candidate files. It is not a forecast of a leaderboard position."
+      ]
+    },
+    "registry": {
+      "rasters_compared": 8,
+      "max_forward_3px_overlap": 1.0,
+      "max_enrichment_vs_chance": 2.991809606853254,
+      "max_abs_spearman": 0.06438757182955884,
+      "stop_enrichment_threshold": 3.0,
+      "stop_overlap_threshold": 0.7,
+      "stop_rho_threshold": 0.9,
+      "passes_final_dot_gate": true,
+      "gate_rule": "STOP if |signed Spearman rho| > 0.90, or if forward 3 px overlap > 0.70 AND that overlap is at least 3x chance (enrichment >= 3). The enrichment requirement exists because raw forward overlap is 1.0 for any sparse field compared against a dense continuous surface.",
+      "top_matches": [
+        {
+          "forward_overlap": 0.11605555555555555,
+          "rho": 0.006106786707284402,
+          "enrichment": 2.991809606853254,
+          "chance_overlap": 0.038791089944263286,
+          "their_positive": 23402,
+          "ours_positive": 36000,
+          "their_density": 0.0019058306920017331,
+          "path": "docs/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif"
+        },
+        {
+          "forward_overlap": 0.11605555555555555,
+          "rho": 0.006106786707284402,
+          "enrichment": 2.991809606853254,
+          "chance_overlap": 0.038791089944263286,
+          "their_positive": 23402,
+          "ours_positive": 36000,
+          "their_density": 0.0019058306920017331,
+          "path": "docs/parallel/main-b9a2d53/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif"
+        },
+        {
+          "forward_overlap": 0.14152777777777778,
+          "rho": 0.0028395927964473665,
+          "enrichment": 2.9136183413296526,
+          "chance_overlap": 0.04857457676257985,
+          "their_positive": 37654,
+          "ours_positive": 36000,
+          "their_density": 0.0030664964052915674,
+          "path": "docs/downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif"
+        },
+        {
+          "forward_overlap": 0.16030555555555556,
+          "rho": 0.00947404544224616,
+          "enrichment": 2.791325421843948,
+          "chance_overlap": 0.05742990562872379,
+          "their_positive": 37654,
+          "ours_positive": 36000,
+          "their_density": 0.0030664964052915674,
+          "path": "docs/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+        },
+        {
+          "forward_overlap": 0.16030555555555556,
+          "rho": 0.00947404544224616,
+          "enrichment": 2.791325421843948,
+          "chance_overlap": 0.05742990562872379,
+          "their_positive": 37654,
+          "ours_positive": 36000,
+          "their_density": 0.0030664964052915674,
+          "path": "docs/parallel/main-b9a2d53/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+        },
+        {
+          "forward_overlap": 0.17988888888888888,
+          "rho": 0.0020402336031860144,
+          "enrichment": 2.7514068519579595,
+          "chance_overlap": 0.06538069379338651,
+          "their_positive": 37722,
+          "ours_positive": 36000,
+          "their_density": 0.003072034243384727,
+          "path": "docs/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif"
+        },
+        {
+          "forward_overlap": 0.17988888888888888,
+          "rho": 0.0020402336031860144,
+          "enrichment": 2.7514068519579595,
+          "chance_overlap": 0.06538069379338651,
+          "their_positive": 37722,
+          "ours_positive": 36000,
+          "their_density": 0.003072034243384727,
+          "path": "docs/parallel/main-b9a2d53/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif"
+        },
+        {
+          "forward_overlap": 1.0,
+          "rho": 0.06438757182955884,
+          "enrichment": 2.3612157246957177,
+          "chance_overlap": 0.42351064730812205,
+          "their_positive": 5106385,
+          "ours_positive": 36000,
+          "their_density": 0.4158578436961486,
+          "path": "docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif"
+        }
+      ]
+    },
+    "raster_sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+    "validator": {
+      "tif": {
+        "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+        "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "band_count": 1,
+        "crs": "EPSG:32611",
+        "pixel_size": [
+          100.0,
+          100.0
+        ],
+        "origin": [
+          243350.0,
+          4508550.0
+        ],
+        "nodata": null,
+        "mode": "zeros",
+        "in_footprint_pixels": 5167373,
+        "positive_pixels": 36000,
+        "value_min": 0.0,
+        "value_max": 1.0,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "shape_matches": true,
+          "crs_epsg_32611": true,
+          "pixel_size_100m": true,
+          "in_footprint_all_finite": true,
+          "values_in_0_1": true,
+          "outside_footprint_zero": true,
+          "has_predictions": true,
+          "no_nan_anywhere": true
+        },
+        "all_checks_passed": true,
+        "errors": []
+      },
+      "zip": {
+        "zip": "/home/user/WBGGEMSDOE1/docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip",
+        "members": [
+          "wbg2-offcatalogue-density-36k-20261027.tif"
+        ],
+        "tif_members": [
+          "wbg2-offcatalogue-density-36k-20261027.tif"
+        ],
+        "exactly_one_tif": true,
+        "byte_identical": true,
+        "all_checks_passed": true
+      }
+    },
+    "submission_name": "wbg2-offcatalogue-density-36k-20261027",
+    "submission_note": "WBG-2 unique: off-catalogue (>=400 m) fault-density prior, 36k scattered dots, zeros-mode, no NaN. Not a copy of GEMSDOE24-36.",
+    "note_length": 126,
+    "artifacts": {
+      "tif": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+      "zip": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip"
+    },
+    "verdict": "promote_local",
+    "decision": {
+      "ok_to_download": true,
+      "ok_to_submit": true,
+      "submission_slots_used": 0,
+      "reason": "Unique, format-valid, zeros-mode. Expected score is a MODEL-ESTIMATE only; it is not organizer-confirmed and the expected gain over the 0.2778 artifact is within model error."
+    }
+  }
+}

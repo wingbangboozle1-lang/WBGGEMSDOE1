@@ -10,10 +10,12 @@ from __future__ import annotations
 
 import hashlib
 import json
+import math
 from pathlib import Path
 import shutil
 
 ROOT = Path(__file__).resolve().parents[1]
+S2_SHA = "6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880"
 
 
 def stage():
@@ -34,9 +36,38 @@ def stage():
         digest = hashlib.file_digest(stream, "sha256").hexdigest()
     if digest != card["raster_sha256"]:
         raise ValueError("staged research TIFF checksum differs from the frozen run card")
+    wbg2 = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
+    safety = json.loads((ROOT / "evidence/wbg2/safety_audit_20261027.json").read_text())
+    if (wbg2["verdict"] != "negative" or wbg2["decision"]["ok_to_submit"] is not False
+            or safety["passed_literal_gate"] is not False):
+        raise ValueError("staged WBG-2 decision is not the recorded negative decision")
+    path = Path(wbg2["artifacts"]["tif"])
+    if path.is_absolute() or ".." in path.parts or path.parts[:2] != ("docs", "downloads"):
+        raise ValueError("invalid staged WBG-2 research path")
+    with (target / path).open("rb") as stream:
+        wbg2_digest = hashlib.file_digest(stream, "sha256").hexdigest()
+    if wbg2_digest != wbg2["raster_sha256"] or wbg2_digest != safety["existing_tiff_sha256"]:
+        raise ValueError("staged WBG-2 TIFF checksum differs from its recorded audit")
+    s2 = json.loads((ROOT / "evidence/wbg_s2/run_card.json").read_text())
+    s2_safety = json.loads((ROOT / "evidence/wbg_s2/safety_review_20261027.json").read_text())
+    s2_path = Path(s2["artifact"]["tif_path"])
+    if s2_path.is_absolute() or ".." in s2_path.parts or s2_path.parts[:2] != ("docs", "downloads"):
+        raise ValueError("invalid staged WBG-S2 research path")
+    with (target / s2_path).open("rb") as stream:
+        s2_digest = hashlib.file_digest(stream, "sha256").hexdigest()
+    witnesses = s2_safety["witnesses"]
+    if (s2_digest != S2_SHA or s2_digest != s2["artifact"]["tif_sha256"] or s2_digest != s2_safety["existing_tiff_sha256"]
+            or s2["verdict"] != "negative" or s2_safety["ok_to_submit"] is not False
+            or s2["strict_governance_decision"]["ok_to_submit"] is not False
+            or s2_safety["eligible_for_separate_selector"] is not False
+            or s2["strict_governance_decision"]["eligible_for_separate_selector"] is not False
+            or len(witnesses) != 2 or any(row["duplicate_by_overlap"] is not True
+                or not math.isfinite(row["my_dots_within_3px_of_theirs"])
+                or not .70 < row["my_dots_within_3px_of_theirs"] <= 1 for row in witnesses)):
+        raise ValueError("staged WBG-S2 bytes or negative decision changed")
     print(json.dumps({"staged_site": str(target.relative_to(ROOT)),
         "canonical_path": "/WBGGEMSDOE1/docs/", "root_redirect": "docs/",
-        "artifact_sha256": digest, "ok_to_submit": False}))
+        "artifact_sha256": digest, "wbg2_sha256": wbg2_digest, "wbg_s2_sha256": s2_digest, "ok_to_submit": False}))
     return target
 
 

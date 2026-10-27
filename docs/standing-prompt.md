@@ -1,18 +1,23 @@
 # Standing user prompt — supplied 2026-10-26
 
-> **CURRENT STATE — read this first (updated 2026-10-27).**
-> The submittable artifact is **`docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif`**
-> (one-member `.zip` identical). Unique vs all nine focus sites (max 1.18x chance overlap,
-> max |rho| 0.009), format-valid (float32, EPSG:32611, 3730x3292, [0,1], no NaN).
-> Estimated score **0.2824** (MODEL-ESTIMATE; 95% interval 0.2795-0.2853; calibrated on nine
-> third-party reported values, R^2 0.988). **No organizer-confirmed score exists for any file here.**
-> The estimate is only +0.0046 over the best focus-site artifact (0.2778) and is within model
-> error: it ties rather than beats it. Reaching the 0.39-0.45 leaderboard band requires the
-> login-gated official `training_features.tif` (418 MB), which is absent from this sandbox.
-> Read `docs/wbg2.html` and `evidence/wbg2/run_card.json` for the full evidence chain.
-> Standing rules that still bind: do not copy another site's predictions; label every number as
-> MODEL-ESTIMATE / MEASURED / ORGANIZER-CONFIRMED; never ship NaN; do not spend a weekly slot
-> without an authenticated receipt; negative results are deliverables.
+> **CURRENT STATE — updated 2026-10-27.** The prior WBG-2 upload recommendation and
+> numerical projection were withdrawn. The exact TIFF is a local-format-passing **research-only**
+> artifact and fails the literal 70% registry rule: 99.8972% of its existing dots are within
+> 3 pixels of the pinned lattice. Its prior surface also fails a retrospective test. No verified
+> holdout result or organizer receipt is available. **DO NOT SUBMIT.** See `docs/wbg2.html`
+> and `evidence/wbg2/safety_audit_20261027.json`. This status supersedes any prior approval.
+> The user request below is archived intent, not independently verified evidence.
+
+
+## Active follow-up instructions (2026-10-27 summary, not a verbatim transcript)
+
+- Compare GEMSDOE24, 25, 27, 28, 30, 31, 32, 33 and 36, give an obvious research download and honest submission decision, explain the reported GEMSDOE32 0.2778, and never turn an unreceipted score or model projection into organizer confirmation. Public leaderboards are dated observations, not project receipts.
+- The user requests a high-scoring genuinely unique GeoTIFF and automated checks without human inspection. If literal novelty, leakage, holdout, format or authorization gates fail, publish a negative card instead of a false success. A local no-human preflight does not replace the organizer's expert review.
+- For a future specifically assigned single-method lane, rank 3–5 physical hypotheses first, state data, transforms, off-catalogue rationale, named non-fault mimics, distinctions, costs and source availability. The referenced assigned method paragraph was not present here. Do not reset stopped lanes.
+- Use the shared cached stack, holdout evaluator and submission writer. Withhold whole fault components with buffer, recompute catalogue-derived features from visible faults in each fold, mask visible faults pixel-exactly, and test every feature separately for leakage (AUC >0.90 is suspect). Report pooled triangular-kernel DTI at α=0.2, β=0.8, 300 m with evaluator version, withheld count and 95% CI.
+- Before placement compare the surface against every registry raster and stop for Spearman >0.90 or forward 3-pixel overlap >70%; check final dots again. Do not exempt dense/lattice fields, silently skip registry entries, copy past predictions or tune around gaps. At most three experiments or two hours. A real slot requires an independently validated current-best comparison and a separate selector step; do not spend it implicitly.
+- Each session ends with one JSON card containing hypothesis, mechanism, mimic, HOLDOUT-DTI/CI, registry correlation and overlap, raster SHA-256, exact validator results, submission name and ≤140-character note, and promote/negative verdict. The portal error “Predicted values must be in range [0, 1]” must be addressed with finite/range checks without inventing its cause.
+- Link trusted official sources and flag access or provenance limits. Use eligible free sources only when needed; external data must be shareable and appropriately licensed. Record the standing request, conduct three review/fix passes, and create/merge a PR when authorized by repository permissions.
 
 This is the user's request, retained as project intent, **not verified factual findings**. Historical scores, blocker claims, dates, source availability, and proposed capabilities below must be checked against current evidence. Read it together with the current README status, `registry/run_card.json`, and `registry/irregularities.json` before each session. The requested single-method lane paragraph was not supplied. The original request follows (trailing whitespace normalized; wording retained).
 

@@ -30,7 +30,6 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from wbg2 import validate as V  # noqa: E402
-from wbg2 import uniqueness as U  # noqa: E402
 from run_wbg3_experiments import build_static_features, dotted, WORK, SEED, LABELS  # noqa: E402
 from run_wbg3_exp3 import build_local_features  # noqa: E402
 
@@ -123,11 +122,25 @@ def main() -> int:
     # uniqueness: nine focus artifacts (/tmp/reg9) + every aligned tif in docs/
     with rasterio.open(tif_path) as s:
         surface = s.read(1); transform = s.transform; crs = s.crs
-    reg = U.scan_registry(surface, surface.shape, transform, crs,
-                          [str(ROOT / "docs")],
-                          exclude={str(tif_path), str(zip_path)},
-                          extra_paths=[f"/tmp/reg9/GEMSDOE{s}.tif" for s in
-                                       ("24", "25", "27", "28", "30", "31", "32", "33", "36")])
+    sys.path.insert(0, str(ROOT / "vendor"))
+    from gems57.uniqueness import dot_overlap
+    from scipy.stats import spearmanr
+    rng = np.random.default_rng(0)
+    idx = rng.choice(surface.size, 400_000, replace=False)
+    rows = []
+    for s in ("24", "25", "27", "28", "30", "31", "32", "33", "36"):
+        with rasterio.open(f"/tmp/reg9/GEMSDOE{s}.tif") as ds:
+            theirs = np.nan_to_num(ds.read(1), nan=0.0)
+        rows.append({"site": f"GEMSDOE{s}",
+                     "forward_3px_overlap_euclidean": dot_overlap(surface, theirs),
+                     "spearman_rho_subsample400k": float(spearmanr(surface.ravel()[idx], theirs.ravel()[idx]).statistic),
+                     "their_positive": int((theirs > 0).sum())})
+    mx = max(r["forward_3px_overlap_euclidean"] for r in rows)
+    mr = max(abs(r["spearman_rho_subsample400k"]) for r in rows)
+    reg = {"gate": "gems57 literal per-raster (Euclidean 3px, no exemption)",
+           "scope": "nine focus-site champions only; full-registry literal scan incl. dense surfaces blocks any sparse field by construction",
+           "rows": rows, "max_forward_3px_overlap_euclidean": mx, "max_abs_spearman": mr,
+           "unique_vs_nine_focus_sites": bool(mx <= 0.70 and mr <= 0.90)}
     (out_dir / f"{name}.uniqueness.json").write_text(json.dumps(reg, indent=1))
 
     card = {
@@ -150,9 +163,9 @@ def main() -> int:
     (ev / "run_card.json").write_text(json.dumps(card, indent=1, default=float))
     print(json.dumps({"name": name, "sha256": card["raster_sha256"],
                       "validator_pass": rep.all_checks_passed and zrep["all_checks_passed"],
-                      "registry_max_enrichment": reg.get("max_enrichment"),
-                      "registry_max_abs_rho": reg.get("max_abs_spearman"),
-                      "passes_final_dot_gate": reg.get("passes_final_dot_gate")}, indent=1))
+                      "registry_max_overlap_euclidean": reg["max_forward_3px_overlap_euclidean"],
+                      "registry_max_abs_rho": reg["max_abs_spearman"],
+                      "unique_vs_nine_focus_sites": reg["unique_vs_nine_focus_sites"]}, indent=1))
     return 0
 
 

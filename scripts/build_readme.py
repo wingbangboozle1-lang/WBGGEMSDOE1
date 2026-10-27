@@ -16,35 +16,42 @@ def main():
     standing = (ROOT / "docs/standing-prompt.md").read_text()
     w2 = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
     w2tif = Path(w2["artifacts"]["tif"]).name
-    w2est = w2["score_estimate"]["value"]
-    w2lo, w2hi = w2["score_estimate"]["ci95"]
-    w2nine = json.loads((ROOT / "evidence/wbg2/nine_site_uniqueness.json").read_text())
+    s2 = json.loads((ROOT / "evidence/wbg_s2/run_card.json").read_text())
+    s2_tif = Path(s2["artifact"]["tif_path"]).name
+    w2audit = json.loads((ROOT / "evidence/wbg2/safety_audit_20261027.json").read_text())
+    w2overlap = w2audit["already_placed_final_dots_witness"]["my_dots_within_3px_of_theirs"] * 100
 
     header = f'''# WBG GEMS — evidence-first fault mapping
 
-## SUBMIT THIS FILE: [{w2tif}](docs/downloads/{w2tif})
+## NO FILE APPROVED FOR SUBMISSION
 
-**[Executive summary + one-click download](docs/wbg2.html)** · [ZIP](docs/downloads/{w2tif.replace('.tif', '.zip')}) ·
-[markdown summary](docs/wbg2-executive-summary.md) · [run card](evidence/wbg2/run_card.json) ·
-[live site](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/wbg2.html)
+**[Executive audit and nine-site table](docs/wbg2.html)** ·
+[Download WBG-2 TIFF for research only](docs/downloads/{w2tif}) ·
+[ZIP for research](docs/downloads/{w2tif.replace('.tif', '.zip')}) ·
+[run card](evidence/wbg2/run_card.json) · [shared-gate audit](evidence/wbg2/safety_audit_20261027.json)
 
-| | |
-|---|---|
-| File to submit | `docs/downloads/{w2tif}` (+ identical one-member `.zip`) |
-| Estimated score | **{w2est:.4f}** — MODEL-ESTIMATE, 95% interval {w2lo:.4f}–{w2hi:.4f}, R² {w2["score_estimate"]["r2"]:.3f}, n=9. **Not organizer-confirmed.** |
-| Unique vs GEMSDOE24/25/27/28/30/31/32/33/36 | **YES** — {w2nine["n_audited"]}/9 audited; max {w2nine["max_enrichment_vs_chance"]:.2f}× chance overlap, max \|ρ\| {w2nine["max_abs_spearman"]:.3f} |
-| Format | single-band float32, EPSG:32611, 3730×3292, values in [0,1], no NaN anywhere (zeros mode) |
-| sha256 | `{w2["raster_sha256"]}` |
-| Slots used | 0 |
+| Artifact | Local format | Score estimate / holdout | Literal registry decision |
+|---|---|---|---|
+| `{w2tif}` | One float32 band, finite [0,1], grid matches pinned mirror; TIFF/ZIP bytes verified | **Unavailable**; no verified fold-local HOLDOUT-DTI or organizer receipt | **DO NOT SUBMIT**. {w2overlap:.4f}% final-dot overlap with a registered lattice exceeds 70%. |
 
-> **Honest reading.** WBG-2 is unique and format-valid, so it is safe to upload. Its estimate is only
-> **{w2est - 0.2778:+.4f}** above the best focus-site artifact (0.2778), which is *within model error*:
-> it ties that artifact rather than beating it. The route to the 0.39–0.45 leaderboard band is the
-> login-gated official `training_features.tif`; see [the executive summary](docs/wbg2.html).
+The previous WBG-2 "safe to upload" claim and numerical projection are **withdrawn**. The old
+code applied a private enrichment exception, checked eight local references and a separate nine-champion
+diagnostic rather than the full registry. The shared literal rule has no such exception. A retrospective surface check also fails and cannot establish that
+pre-placement checks happened. This safety integration did no new training or placement and used no competition slot.
+The historic catalogue buffer was Manhattan, not a 400 m Euclidean disc: 813 existing dots are
+closer than 400 m Euclidean. The owner-mirror 19-band stack was restored and hash-checked, not
+authenticated by DrivenData.
+See [four untested research hypotheses](docs/research/future-hypotheses-20261027.md) and
+[the 27 October source audit](evidence/official_source_audit_20261027.json) and
+[three safety-review passes](evidence/wbg2/review_passes_20261027.json).
+Concurrent reviews are preserved as historical context: [protocol](docs/protocol-review-20261027.md),
+[repository](docs/repo-review-20261027.md), and [session](docs/session-review-20261027.md).
+Their older private-distance metrics and 400 m buffer interpretation are superseded by the
+shared-Euclidean safety audit above. The earlier raw approval remains archived, never authorized.
 
-## Older file — DOWNLOAD: YES, for research. SUBMIT: **NO**.
+## Earlier file — DOWNLOAD: YES, for research. SUBMIT: **NO**.
 
-**27 October 2026 follow-up: [all four releases, exact-byte revalidation and trust corrections](docs/portfolio-review.html)** ·
+**27 October 2026 follow-up: [four earlier releases, exact-byte revalidation and trust corrections](docs/portfolio-review.html)** ·
 [Machine-readable review](docs/data/portfolio-review.json). No new experiment: the lane remains stopped.
 All four are negative research downloads, not recommended contest submissions. Leaderboard estimates remain unavailable.
 The [parallel exact-reference audit](docs/release-review.html) and its [review notes](docs/review-20261027.md) are also preserved; both reviews reach the same negative decision.
@@ -95,16 +102,29 @@ credit and avoiding low-marginal-credit predictions are plausible reasons for th
 ordering, not a causal proof from unavailable hidden labels. A 200 m exclusion is **not** an
 organizer rule. No historical file should be copied into a new "unique" entry.
 
-The direct **official public-leaderboard observation on 2026-10-26 was 0.4437**, not the prompt's
-older targets. That is **not** an organizer result for any project TIFF. A higher project score
+The official public leaderboard displayed **0.4544 on 2026-10-27** (public-page observation, not a project-file receipt), rather than the prompt's older targets. That is **not** an organizer result for any project TIFF. A higher project score
 was not obtained or credibly projected in this session.
 
 ## Parallel work preserved during integration
 
+- **[WBG-S2 / MKSF-1 result](docs/wbg-s2-mksf1/index.html): DO NOT SUBMIT; no selector eligibility.**
+  [Research TIFF](docs/downloads/{s2_tif}) · [ZIP](docs/downloads/{s2_tif.replace('.tif', '.zip')}) ·
+  [run card](evidence/wbg_s2/run_card.json) · [independent two-witness safety audit](evidence/wbg_s2/safety_review_20261027.json) ·
+  [three safety-review passes](evidence/wbg_s2/safety_review_passes_20261027.json).
+  TIFF SHA-256 `{s2['artifact']['tif_sha256']}`. Local format checks pass, but final dots overlap pinned
+  r13 by **99.5538%** and WBG-C1 by **100%**; both exceed 70%. The sampled pre-placement
+  Spearman screen is not full literal clearance. Three arms were run in the parallel session;
+  this integration did not retrain or place new dots. Parallel-reported selected-arm
+  **HOLDOUT-DTI 0.183594**, 95% CI [0.170313, 0.196956], `gems-segment-pooled-v1`, n=60,988;
+  **HOLDOUT-DTI 0.147773**, 95% CI [0.128077, 0.167791], `gems57-pooled-hide-v2`, n=11,330.
+  Arms were selected on these splits, not independently replayed here or confirmed on untouched data.
+  They are not a verified fleet ranking, organizer score or leaderboard forecast.
+
 While this branch was working from the one-line initial checkout, other sessions merged TIP1 and
 MVGZ negative results into `main` (integrated snapshot `b9a2d5301c0c971dcc1219f9ad6b29c68f68ee21`).
 Their frozen scientific modules, receipts and artifacts are retained; they were **not rerun**.
-The current **one-experiment count is WBG-C1 only**, not a sum or reset of the inherited lane budgets.
+The earlier WBG-C1 screen used one experiment; the parallel WBG-S2 run used three separate arms.
+This safety integration started no experiment and did not reset any inherited budget.
 Different evaluator/split/representation results must not be pooled or ranked as comparable scores.
 
 - [Original parallel site, with its own frozen assets and data](docs/parallel/main-b9a2d53/index.html)
@@ -130,7 +150,7 @@ Different evaluator/split/representation results must not be pooled or ranked as
 
 ## What is implemented
 
-- [Four ranked pre-implementation hypotheses](docs/hypotheses.md), with layers, transforms,
+- [Four earlier ranked hypotheses](docs/hypotheses.md), with layers, transforms,
   missing-catalogue rationale, mimics, novelty limits and data readiness. Only WBG-C1 was tested.
 - A catalogue-blind conductivity/depth Hessian-commutator transform and scale/strain support.
 - **Unchanged shared template** at `buffedlizard55-lab/57GEMSDOE@822a0ce5546c7b6749cdd82eb145b6b3e616603d`:
@@ -209,7 +229,7 @@ not falsely claim that a browser button trains the model.
 
 1. **No final high-scoring upload-ready submission was produced.** The unique-byte research TIFF
    fails the scientific and literal-overlap gates. Stop is binding; no final-dot check is claimed.
-2. **Missing lane and registry policy:** obtain an actual single-method assignment and a separately
+2. **Missing lane and registry policy:** establish an actual single-method assignment and a separately
    authorized scope policy. Do not privately exempt lattices/dense surfaces or target lattice holes.
 3. **Input provenance and semantics:** verify official-origin data and original per-band meanings.
    `tc` and the depth-surface interpretation are ambiguous in mirror/peer materials. Do not claim

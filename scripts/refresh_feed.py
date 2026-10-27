@@ -15,26 +15,43 @@ from pathlib import Path
 import re
 import sys
 import urllib.request
+from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from wbggems.audit import dump_json, utc_now
 
 LEADERBOARD = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
+LEADERBOARD_PARTIAL = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard_partial/"
 
 
 class Tables(HTMLParser):
     def __init__(self):
         super().__init__()
         self.tables, self.table, self.row, self.cell = [], None, None, None
+        self.orphan_headers = []
+        self.orphan_cell = False
+
+    def flush_orphan_headers(self):
+        if self.orphan_headers and self.table is not None:
+            self.table.append(self.orphan_headers)
+            self.orphan_headers = []
 
     def handle_starttag(self, tag, attrs):
         if tag == "table":
             self.table = []
+            self.orphan_headers = []
         elif tag == "tr" and self.table is not None:
+            self.flush_orphan_headers()
             self.row = []
         elif tag in ("td", "th") and self.row is not None:
             self.cell = []
+            self.orphan_cell = False
+        elif tag == "th" and self.table is not None:
+            # The official HTMX fragment currently puts <th> directly under
+            # <thead>, without a <tr>; browsers repair this automatically.
+            self.cell = []
+            self.orphan_cell = True
 
     def handle_data(self, data):
         if self.cell is not None:
@@ -42,12 +59,20 @@ class Tables(HTMLParser):
 
     def handle_endtag(self, tag):
         if tag in ("td", "th") and self.cell is not None:
-            self.row.append(" ".join(" ".join(self.cell).split()))
+            text = " ".join(" ".join(self.cell).split())
+            if self.orphan_cell:
+                self.orphan_headers.append(text)
+            else:
+                self.row.append(text)
             self.cell = None
+            self.orphan_cell = False
         elif tag == "tr" and self.row is not None:
             self.table.append(self.row)
             self.row = None
+        elif tag == "thead":
+            self.flush_orphan_headers()
         elif tag == "table" and self.table is not None:
+            self.flush_orphan_headers()
             self.tables.append(self.table)
             self.table = None
 
@@ -77,15 +102,26 @@ def parse_leaderboard(html):
     raise ValueError("no recognizable public Tversky leaderboard table with rank one")
 
 
+class SameOriginRedirect(urllib.request.HTTPRedirectHandler):
+    """Do not forward GitHub authorization across hosts or HTTPS downgrades."""
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        original, target = urlsplit(req.full_url), urlsplit(newurl)
+        if target.scheme != "https" or target.hostname != original.hostname:
+            raise ValueError("refusing cross-host or non-HTTPS redirect")
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
 def fetch(url, *, github=False):
     headers = {"User-Agent": "WBGGEMSDOE1-provenance-feed/1.0"}
     if github and os.environ.get("GH_TOKEN", os.environ.get("GITHUB_TOKEN")):
         headers["Authorization"] = "Bearer " + os.environ.get("GH_TOKEN", os.environ.get("GITHUB_TOKEN"))
     request = urllib.request.Request(url, headers=headers)
-    with urllib.request.urlopen(request, timeout=25) as response:
+    with urllib.request.build_opener(SameOriginRedirect()).open(request, timeout=25) as response:
         final = response.geturl()
         if "login" in final:
             raise ValueError("redirected to login; no authenticated evidence available")
+        if not github and urlsplit(final).hostname != "www.drivendata.org":
+            raise ValueError("public leaderboard redirected away from the official host")
         return response.read().decode("utf-8")
 
 
@@ -100,15 +136,26 @@ def main():
     sources = json.loads((ROOT / "registry/sources.json").read_text())
     seed = next(s for s in sources["sources"] if s["id"] == "OFFICIAL-LEADERBOARD")
     last = previous.get("leaderboard", {**seed["observation"], "evidence_class": seed["evidence_class"],
-        "source": seed["url"], "observed_date_utc": "2026-10-26", "observation_method": "fetch_page direct official page retrieval in research session",
+        "source": seed["url"], "observed_date_utc": seed["observation"]["date_utc"], "observation_method": "fetch_page direct official page retrieval in research session",
         "not_a_project_submission_receipt": True})
     errors, heads = [], []
     leaderboard_status = "retained_observation_not_refreshed"
     if not args.offline:
         if not args.github_only:
             try:
-                last = {**parse_leaderboard(fetch(LEADERBOARD)), "observed_utc": utc_now(),
-                        "observation_method": "strict official HTML leaderboard table parse"}
+                # The official page loads its public table via HTMX. First
+                # accept a server-rendered table if present, otherwise fetch
+                # only the pinned same-origin public partial, then apply the
+                # same strict rank-one and metric-cell parser.
+                page_html = fetch(LEADERBOARD)
+                try:
+                    row = parse_leaderboard(page_html)
+                    source_fetch_url = LEADERBOARD
+                except ValueError:
+                    row = parse_leaderboard(fetch(LEADERBOARD_PARTIAL))
+                    source_fetch_url = LEADERBOARD_PARTIAL
+                last = {**row, "observed_utc": utc_now(), "source_fetch_url": source_fetch_url,
+                        "observation_method": "strict official public leaderboard table parse"}
                 leaderboard_status = "network_verified"
             except Exception as e:
                 errors.append({"source": LEADERBOARD, "error": str(e)[:220]})

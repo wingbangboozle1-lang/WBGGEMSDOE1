@@ -1,0 +1,408 @@
+{
+  "schema_version": "wbggems-s2-executive-audit-20261027-v1",
+  "scope_warning": "Research only; final literal STOP against two pinned witnesses. Pre-placement full literal clearance not established. Parallel holdouts and peer diagnostics are not independent confirmation.",
+  "generated_utc": "2026-10-27T19:15:46+00:00",
+  "audit_date": "2026-10-27",
+  "official_public_leaderboard_observation": {
+    "score": 0.4544,
+    "observed_date": "2026-10-27",
+    "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "note": "Dated public leaderboard observation, not a file-specific organizer receipt. See the automated feed for status."
+  },
+  "research_artifact_not_selector_eligible": {
+    "lane_id": "WBG-S2",
+    "selected_arm": "EXP3_MKSF_VierbeinCoulomb",
+    "holdout_limitation": "Parallel-reported; selected on these same splits; no independent replay or untouched confirmation here.",
+    "eligible_for_separate_selector": false,
+    "ok_to_submit": false,
+    "tif_path": "docs/downloads/wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.tif",
+    "zip_path": "docs/downloads/wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.zip",
+    "tif_sha256": "6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880",
+    "zip_sha256": "f1b6f7d772913284801c20f00f15de406d6e42b4331ae34aa395a4a3a3385e19",
+    "decoded_pixels_sha256": "e9b4a3c0906533e4b5a2f807d55b1e0bf0e2338fbd5d3cd9a40ea608eabb32fb",
+    "submission_name": "wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros",
+    "submission_note": "WBG-S2 MKSF1 10m+1m+CGMD+CELF2.8 37654d | SegDTI 0.1836 g57DTI 0.1478 | e9b4a3c09065",
+    "holdout_segment_v1_evaluator": "gems-segment-pooled-v1",
+    "holdout_segment_v1_withheld_positives": 60988,
+    "holdout_segment_v1_dti": 0.183594442730121,
+    "holdout_segment_v1_ci95": [
+      0.1703128162905672,
+      0.19695565832988687
+    ],
+    "holdout_gems57_v2_evaluator": "gems57-pooled-hide-v2",
+    "holdout_gems57_v2_withheld_positives": 11330,
+    "holdout_gems57_v2_dti": 0.14777305465358295,
+    "holdout_gems57_v2_ci95": [
+      0.1280772832085336,
+      0.16779131687676496
+    ],
+    "partial_sparse_screen_pass": true,
+    "literal_registry_gate_pass": false,
+    "strict_governance_verdict": "negative",
+    "live_slots_used_in_this_session": 0
+  },
+  "official_external_data_sources": [
+    {
+      "name": "DrivenData DOE GEMS Competition #306",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/",
+      "license": "Competition Rules (CC-BY / Public Federal Source Data)"
+    },
+    {
+      "name": "USGS 3D Elevation Program (3DEP) 1 m LiDAR & Seamless 1/3 arc-second (~10 m) DEM",
+      "url": "https://www.usgs.gov/3d-elevation-program",
+      "api_url": "https://tnmaccess.nationalmap.gov/api/v1/products",
+      "license": "US Public Domain (17 USC 105)"
+    },
+    {
+      "name": "USGS GeoDAWN Airborne Magnetic & Gamma-Ray Radiometric Survey (Data Release)",
+      "url": "https://www.sciencebase.gov/catalog/item/61955dcad34eb622f6908d6c",
+      "license": "US Public Domain"
+    },
+    {
+      "name": "DOE Geothermal Data Repository (GDR) Submission #1391 \u2014 Great Basin INGENIOUS Play Fairway",
+      "url": "https://gdr.openei.org/submissions/1391",
+      "license": "CC-BY-4.0 / US DOE Open Data"
+    },
+    {
+      "name": "USGS State Geologic Map Compilation (SGMC) \u2014 Held-In Auxiliary Label Ablation Only",
+      "url": "https://pubs.usgs.gov/ds/1052/",
+      "license": "US Public Domain"
+    },
+    {
+      "name": "US Census Bureau TIGER/Line 2024 Roads & Rails (`tl_2024_32/06/41/16`)",
+      "url": "https://www2.census.gov/geo/tiger/TIGER2024/PRISECROADS/",
+      "license": "US Public Domain"
+    },
+    {
+      "name": "NREL / DOE GEMS Benchmark Technical Report (FY26 OSTI #96647)",
+      "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+      "license": "US DOE Technical Report"
+    }
+  ],
+  "sites_table": [
+    {
+      "site": "WBGGEMSDOE1 (This Repo \u00b7 WBG-S2 EXP-3)",
+      "repo_url": "https://github.com/wingbangboozle1-lang/WBGGEMSDOE1",
+      "pinned_head_20261027": "arena/7dce52ff-wbggemsdoe1 (merged with main d5949b5)",
+      "file_to_download": "docs/downloads/wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.tif",
+      "zip_to_download": "docs/downloads/wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.zip",
+      "tif_sha256": "6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880",
+      "emitted_dots": 37654,
+      "holdout_score_labeled": "PARALLEL-REPORTED (some peer metadata may be incomplete); HOLDOUT-DTI 0.183594 (95% CI [0.170313, 0.196956], gems-segment-pooled-v1, n=60,988) | HOLDOUT-DTI 0.147773 (95% CI [0.128077, 0.167791], gems57-pooled-hide-v2, n=11,330)",
+      "live_score_labeled": "NONE (0 competition slots spent; never inferred or projected from holdout)",
+      "uniqueness_across_sites": "Final forward overlap 99.5538% with r13-lattice-s5 and 100% with WBG-C1; both exceed 70% \u2014 STOP. The sparse subset and sampled Spearman screening are diagnostic only, not full pre-placement clearance.",
+      "portal_format_status": "LOCAL FORMAT PASS (not proof of portal acceptance)",
+      "go_no_go_status": "RESEARCH DOWNLOAD ONLY \u00b7 DO NOT SUBMIT \u00b7 NO SELECTOR ELIGIBILITY",
+      "notes": "Parallel-reported holdouts; the selected arm was chosen using these splits and has not been independently replayed here.",
+      "scope_warning": "A peer-specific comparison cannot establish complete uniqueness or approve a submission."
+    },
+    {
+      "site": "GEMSDOE24",
+      "repo_url": "https://github.com/buffedlizard55-lab/GEMSDOE24",
+      "pinned_head_20261027": "2521cb671989fc5b2c20f88926d86e335f63cf45",
+      "file_to_download": "docs/downloads/gems24-s3dep1-negative-10m-monoclinal-20261026-464fa34b4091-zeros.tif (latest) / gems24-dprf1-stitched-oof-tworegime-20261026-81849d67c8bf-zeros.tif (prior)",
+      "tif_sha256": "86516533fb525ebce792152ae4ed852e88ae4feda0bd596710c7319a238b8071",
+      "emitted_dots": 37654,
+      "holdout_score_labeled": "PARALLEL-REPORTED (some peer metadata may be incomplete); HOLDOUT-DTI 0.166060 (95% CI [0.151839, 0.179725], gems-segment-pooled-v1, n=60,988; S3DEP1) | HOLDOUT-DTI 0.163792 (DPRF1)",
+      "live_score_labeled": "Historical H24-0 mirror: USER-REPORTED / NOT ORGANIZER-CONFIRMED 0.2477 (100% H19-5 clone). Oct 26 gvc1: USER-REPORTED / NOT ORGANIZER-CONFIRMED 0.0859.",
+      "uniqueness_vs_wbg_s2": {
+        "peer_sha256": "86516533fb525ebce792152ae4ed852e88ae4feda0bd596710c7319a238b8071",
+        "peer_positive_pixels": 37654,
+        "wbg_s2_in_peer_3px": 0.446938,
+        "peer_in_wbg_s2_3px": 0.40434,
+        "symmetric_3px_overlap": 0.425639,
+        "worst_directional_3px_overlap": 0.446938,
+        "spearman_rho": 0.023719,
+        "passes_this_peer_diagnostic_only": true
+      },
+      "uniqueness_across_sites": "S3DEP1 & DPRF1 are distinct (<70% peer overlap), but S3DEP1 self-marked NEGATIVE (\u0394 +0.0023 CI includes 0 vs DPRF1).",
+      "portal_format_status": "PRODUCER-REPORTED LOCAL FORMAT: PASS ([0, 1], 0 NaN)",
+      "go_no_go_status": "RESEARCH COMPARISON ONLY; no full registry or submission clearance established",
+      "scope_warning": "A peer-specific comparison cannot establish complete uniqueness or approve a submission."
+    },
+    {
+      "site": "GEMSDOE25",
+      "repo_url": "https://github.com/buffedlizard55-lab/GEMSDOE25",
+      "pinned_head_20261027": "5a60fb47506a6c94366b7938c149cc4544888d17",
+      "file_to_download": "docs/downloads/gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-zeros.tif",
+      "tif_sha256": "9e0200dc3b1597c7cfc94b1a39938da3e7e61cac52f89a1249992eaccf23b9ed",
+      "emitted_dots": 37654,
+      "holdout_score_labeled": "PARALLEL-REPORTED (some peer metadata may be incomplete); HOLDOUT-DTI 0.039060 (95% CI [0.02561, 0.05635], subsurface-only H74) | H73-PM: HOLDOUT-DTI 0.0954",
+      "live_score_labeled": "Historical D2.8: USER-REPORTED / NOT ORGANIZER-CONFIRMED 0.2600 (100% identical dot set to GEMSDOE30). Oct 26 h66: USER-REPORTED / NOT ORGANIZER-CONFIRMED 0.0742.",
+      "uniqueness_vs_wbg_s2": {
+        "peer_sha256": "9e0200dc3b1597c7cfc94b1a39938da3e7e61cac52f89a1249992eaccf23b9ed",
+        "peer_positive_pixels": 37654,
+        "wbg_s2_in_peer_3px": 0.396213,
+        "peer_in_wbg_s2_3px": 0.352632,
+        "symmetric_3px_overlap": 0.374422,
+        "worst_directional_3px_overlap": 0.396213,
+        "spearman_rho": 0.013928,
+        "passes_this_peer_diagnostic_only": true
+      },
+      "uniqueness_across_sites": "H74 is distinct (39.62% fwd overlap vs WBG-S2), but historical D2.8 is 100.0% pixel-identical to GEMSDOE30.",
+      "portal_format_status": "PRODUCER-REPORTED LOCAL FORMAT: PASS ([0, 1], 0 NaN)",
+      "go_no_go_status": "RESEARCH COMPARISON ONLY; no full registry or submission clearance established",
+      "scope_warning": "A peer-specific comparison cannot establish complete uniqueness or approve a submission."
+    },
+    {
+      "site": "GEMSDOE27",
+      "repo_url": "https://github.com/buffedlizard55-lab/GEMSDOE27",
+      "pinned_head_20261027": "69d6f0339b83d46d796f8d3808764be05f688080",
+      "file_to_download": "docs/downloads/gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite.tif",
+      "tif_sha256": "2c002b02792419864bd3b29a218e543cb41e3f07b3b57c29ef35c6e39e184bfe",
+      "emitted_dots": 37654,
+      "holdout_score_labeled": "PARALLEL-REPORTED (some peer metadata may be incomplete); HOLDOUT-DTI 0.143678 (95% CI [0.130198, 0.157302], 24-block holdout, n=76,120)",
+      "live_score_labeled": "Oct 26 H31-1: USER-REPORTED / NOT ORGANIZER-CONFIRMED 0.2250 (highest Oct 26 live ML/hybrid submission). Historical H27-5: USER-REPORTED / NOT ORGANIZER-CONFIRMED 0.2449.",
+      "uniqueness_vs_wbg_s2": {
+        "peer_sha256": "2c002b02792419864bd3b29a218e543cb41e3f07b3b57c29ef35c6e39e184bfe",
+        "peer_positive_pixels": 37654,
+        "wbg_s2_in_peer_3px": 0.618792,
+        "peer_in_wbg_s2_3px": 0.569528,
+        "symmetric_3px_overlap": 0.59416,
+        "worst_directional_3px_overlap": 0.618792,
+        "spearman_rho": 0.039717,
+        "passes_this_peer_diagnostic_only": true
+      },
+      "uniqueness_across_sites": "Distinct from WBG-S2 (61.88% fwd / 59.42% sym <= 70%); already submitted in prior cycle.",
+      "portal_format_status": "PRODUCER-REPORTED LOCAL FORMAT: PASS ([0, 1], 0 NaN)",
+      "go_no_go_status": "RESEARCH COMPARISON ONLY; no full registry or submission clearance established",
+      "scope_warning": "A peer-specific comparison cannot establish complete uniqueness or approve a submission."
+    },
+    {
+      "site": "GEMSDOE28",
+      "repo_url": "https://github.com/buffedlizard55-lab/GEMSDOE28",
+      "pinned_head_20261027": "67dbdf4df6b09cb1064415660394053d296be94a",
+      "file_to_download": "NONE generated in S22 (stopped on pre-placement surface Spearman 0.9036); prior S21: gems28-s21-puhgb-20261026-16bbf281ba9b-allfinite.tif",
+      "tif_sha256": "2bf4737ae0a3b844a160d4041d435e5a7daf92c6ec92f128a0c2c596ba23787c",
+      "emitted_dots": 37654,
+      "holdout_score_labeled": "PARALLEL-REPORTED (some peer metadata may be incomplete); S22: HOLDOUT-DTI 0.095452 (surface stopped, no dots) | S21: HOLDOUT-DTI 0.1038",
+      "live_score_labeled": "Historical H24-2-q990: USER-REPORTED / NOT ORGANIZER-CONFIRMED 0.2710 (95.4% H19-5 family overlap). Oct 26 S21 PU-HGB: USER-REPORTED / NOT ORGANIZER-CONFIRMED 0.0206.",
+      "uniqueness_vs_wbg_s2": {
+        "peer_sha256": "2bf4737ae0a3b844a160d4041d435e5a7daf92c6ec92f128a0c2c596ba23787c",
+        "peer_positive_pixels": 37654,
+        "wbg_s2_in_peer_3px": 0.310432,
+        "peer_in_wbg_s2_3px": 0.403144,
+        "symmetric_3px_overlap": 0.356788,
+        "worst_directional_3px_overlap": 0.403144,
+        "spearman_rho": 0.014945,
+        "passes_this_peer_diagnostic_only": true
+      },
+      "uniqueness_across_sites": "S22 triggered surface Spearman STOP (0.9036 > 0.90); S21 overlapped GEMSDOE31 by 91.59%.",
+      "portal_format_status": "PRODUCER-REPORTED LOCAL FORMAT: S22: NO FILE; S21: PASS format",
+      "go_no_go_status": "RESEARCH COMPARISON ONLY; no full registry or submission clearance established",
+      "scope_warning": "A peer-specific comparison cannot establish complete uniqueness or approve a submission."
+    },
+    {
+      "site": "GEMSDOE30",
+      "repo_url": "https://github.com/buffedlizard55-lab/GEMSDOE30",
+      "pinned_head_20261027": "3c3d7255eb078f8457dc3946411c1ca6387ec4af",
+      "file_to_download": "docs/downloads/gems30-CSR1-44090-20261026-502fb5948335-zeros.tif",
+      "tif_sha256": "0fbf3b4a47c2229b68de59e174617f3b47973613ff57950712d25b9166c1d900",
+      "emitted_dots": 44090,
+      "holdout_score_labeled": "PARALLEL-REPORTED (some peer metadata may be incomplete); HOLDOUT-DTI 0.158160 (95% CI [0.14502, 0.17142], gems-segment-pooled-v1, n=60,988)",
+      "live_score_labeled": "Historical D2.8: USER-REPORTED / NOT ORGANIZER-CONFIRMED 0.2600 (100% clone of GEMSDOE25). Oct 26 MSDB1: USER-REPORTED / NOT ORGANIZER-CONFIRMED 0.1462.",
+      "uniqueness_vs_wbg_s2": {
+        "peer_sha256": "0fbf3b4a47c2229b68de59e174617f3b47973613ff57950712d25b9166c1d900",
+        "peer_positive_pixels": 44090,
+        "wbg_s2_in_peer_3px": 0.508498,
+        "peer_in_wbg_s2_3px": 0.38773,
+        "symmetric_3px_overlap": 0.448114,
+        "worst_directional_3px_overlap": 0.508498,
+        "spearman_rho": 0.026488,
+        "passes_this_peer_diagnostic_only": true
+      },
+      "uniqueness_across_sites": "CSR1 fixed prior 7.11M exterior-NaN bug (`-zeros.tif`), distinct vs WBG-S2 (50.85% fwd overlap), but places 6,436 excess dots vs 37,654 collar-free optimum.",
+      "portal_format_status": "PRODUCER-REPORTED LOCAL FORMAT: PASS on CSR1 (`-zeros.tif`); prior `-nan.tif` FAILED [0,1] check (7,111,787 NaNs)",
+      "go_no_go_status": "RESEARCH COMPARISON ONLY; no full registry or submission clearance established",
+      "scope_warning": "A peer-specific comparison cannot establish complete uniqueness or approve a submission."
+    },
+    {
+      "site": "GEMSDOE31",
+      "repo_url": "https://github.com/buffedlizard55-lab/GEMSDOE31",
+      "pinned_head_20261027": "fbebc0179bb0c188055e12759ebaf3c68b2ef639",
+      "file_to_download": "docs/downloads/gemsdoe31-h31x-piedmont-junction-37654-20261026-5a956da9-zeros.tif",
+      "tif_sha256": "eff2b18e37378d0f0a2f5c8e22fc68e7c359ee161114502a985135e03dd217f9",
+      "emitted_dots": 37654,
+      "holdout_score_labeled": "PARALLEL-REPORTED (some peer metadata may be incomplete); HOLDOUT-DTI 0.166100 (95% CI [0.1465, 0.1859], 8-block spatial CV, n=76,120)",
+      "live_score_labeled": "Historical union-b-p060: USER-REPORTED / NOT ORGANIZER-CONFIRMED 0.2708 (93.2% H19-5 family overlap). Oct 26 H31-A: USER-REPORTED / NOT ORGANIZER-CONFIRMED 0.0882.",
+      "uniqueness_vs_wbg_s2": {
+        "peer_sha256": "eff2b18e37378d0f0a2f5c8e22fc68e7c359ee161114502a985135e03dd217f9",
+        "peer_positive_pixels": 37654,
+        "wbg_s2_in_peer_3px": 0.46906,
+        "peer_in_wbg_s2_3px": 0.516014,
+        "symmetric_3px_overlap": 0.492537,
+        "worst_directional_3px_overlap": 0.516014,
+        "spearman_rho": 0.032013,
+        "passes_this_peer_diagnostic_only": true
+      },
+      "uniqueness_across_sites": "Distinct vs WBG-S2 (46.91% fwd / 51.60% rev <= 70%); self-marked HOLD vs historical 0.2708.",
+      "portal_format_status": "PRODUCER-REPORTED LOCAL FORMAT: PASS ([0, 1], 0 NaN)",
+      "go_no_go_status": "RESEARCH COMPARISON ONLY; no full registry or submission clearance established",
+      "scope_warning": "A peer-specific comparison cannot establish complete uniqueness or approve a submission."
+    },
+    {
+      "site": "GEMSDOE32",
+      "repo_url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
+      "pinned_head_20261027": "1398109a56e4099b63f74d335c3e1cf76821c074",
+      "file_to_download": "docs/downloads/gemsdoe32-h47-ldgi-dualhorizon-corridor-37654-20261026T230609Z-0eb8a25c-zeros.tif (latest) / h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif (historical 0.2778)",
+      "tif_sha256": "d82d63ab9c935b4eb6d8886129a7820da4642d20c3304c57364c55380438f27a",
+      "emitted_dots": 37654,
+      "holdout_score_labeled": "PARALLEL-REPORTED (some peer metadata may be incomplete); H47-1-LDGI: HOLDOUT-DTI 0.119765 (95% CI [0.100357, 0.140466], gems57-pooled-hide-v2, n=11,330)",
+      "live_score_labeled": "Historical H33-2-B2 (`e5eb6e7e`): USER-REPORTED / PEER-REPO-CLAIMED 0.2778 (NOT ORGANIZER-CONFIRMED by this repo; recorded in peer file `GEMSDOE32/registry/submissions/sub-20261004T234342Z-h33-b2.json`). Oct 26 H38-G1: USER-REPORTED / NOT ORGANIZER-CONFIRMED 0.1456.",
+      "uniqueness_vs_wbg_s2": {
+        "peer_sha256": "d82d63ab9c935b4eb6d8886129a7820da4642d20c3304c57364c55380438f27a",
+        "peer_positive_pixels": 37654,
+        "wbg_s2_in_peer_3px": 0.37741,
+        "peer_in_wbg_s2_3px": 0.438625,
+        "symmetric_3px_overlap": 0.408018,
+        "worst_directional_3px_overlap": 0.438625,
+        "spearman_rho": 0.035464,
+        "passes_this_peer_diagnostic_only": true
+      },
+      "uniqueness_vs_wbg_s2_historical_b2": {
+        "peer_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "peer_positive_pixels": 37654,
+        "wbg_s2_in_peer_3px": 0.492644,
+        "peer_in_wbg_s2_3px": 0.50316,
+        "symmetric_3px_overlap": 0.497902,
+        "worst_directional_3px_overlap": 0.50316,
+        "spearman_rho": 0.030809,
+        "passes_this_peer_diagnostic_only": true
+      },
+      "uniqueness_across_sites": "H47-1-LDGI is distinct vs WBG-S2 (37.74% fwd) and historical B2 is distinct vs WBG-S2 (49.26% fwd); B2 itself is spent & 100%-subset of H19-5/D2.8.",
+      "portal_format_status": "PRODUCER-REPORTED LOCAL FORMAT: H47-1-LDGI & B2 `-zeros`: PASS ([0, 1], 0 NaN); H38-G1 `-nan.tif`: failed the parallel local all-finite policy (portal cause unverified)",
+      "go_no_go_status": "RESEARCH COMPARISON ONLY; no full registry or submission clearance established",
+      "scope_warning": "A peer-specific comparison cannot establish complete uniqueness or approve a submission."
+    },
+    {
+      "site": "GEMSDOE33",
+      "repo_url": "https://github.com/buffedlizard55-lab/GEMSDOE33",
+      "pinned_head_20261027": "122e2240ad4e0be1124f275c3ccedfb043bf8a85",
+      "file_to_download": "docs/downloads/gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif",
+      "tif_sha256": "5eb9572946fa62356ebc0cbfef22bb54aa2ef094cb8b4a84b52e6b80e120db96",
+      "emitted_dots": 37654,
+      "holdout_score_labeled": "PARALLEL-REPORTED (some peer metadata may be incomplete); S33-SEISDIL: HOLDOUT-DTI 0.044577 (block CV) | G33-COHERENCE: HOLDOUT-DTI 0.025120 (7,949 dots)",
+      "live_score_labeled": "Historical H24-1-d2.6: USER-REPORTED / NOT ORGANIZER-CONFIRMED 0.2632 (97.5% H19-5 overlap). Oct 26 s33-seisdil: USER-REPORTED / NOT ORGANIZER-CONFIRMED 0.0963.",
+      "uniqueness_vs_wbg_s2": {
+        "peer_sha256": "5eb9572946fa62356ebc0cbfef22bb54aa2ef094cb8b4a84b52e6b80e120db96",
+        "peer_positive_pixels": 37654,
+        "wbg_s2_in_peer_3px": 0.337972,
+        "peer_in_wbg_s2_3px": 0.377224,
+        "symmetric_3px_overlap": 0.357598,
+        "worst_directional_3px_overlap": 0.377224,
+        "spearman_rho": 0.015694,
+        "passes_this_peer_diagnostic_only": true
+      },
+      "uniqueness_across_sites": "Distinct vs WBG-S2 (33.80% fwd overlap), but coarse geodetic strain/seismicity severely under-localizes 100 m fault traces.",
+      "portal_format_status": "PRODUCER-REPORTED LOCAL FORMAT: PASS ([0, 1], 0 NaN)",
+      "go_no_go_status": "RESEARCH COMPARISON ONLY; no full registry or submission clearance established",
+      "scope_warning": "A peer-specific comparison cannot establish complete uniqueness or approve a submission."
+    },
+    {
+      "site": "GEMSDOE36",
+      "repo_url": "https://github.com/buffedlizard55-lab/GEMSDOE36",
+      "pinned_head_20261027": "757694238d0dcdf3c5840560a912a988b81a7ec1",
+      "file_to_download": "docs/downloads/gemsdoe36-kpl36-exp3-20261026-fc869911e88c-zeros.tif",
+      "tif_sha256": "86fc8243ad573bcdbfac8b432daf0ec5b6800b991b2c3278706358be7eb9922d",
+      "emitted_dots": 37654,
+      "holdout_score_labeled": "PARALLEL-REPORTED (some peer metadata may be incomplete); HOLDOUT-DTI 0.170100 (95% CI [0.15660, 0.18440], gems-segment-pooled-v1, n=60,988)",
+      "live_score_labeled": "Historical H36-4: USER-REPORTED / NOT ORGANIZER-CONFIRMED 0.2750 (86.7% H33-B2 overlap). Oct 26 KPL-36 EXP-3: USER-REPORTED / NOT ORGANIZER-CONFIRMED 0.1647.",
+      "uniqueness_vs_wbg_s2": {
+        "peer_sha256": "86fc8243ad573bcdbfac8b432daf0ec5b6800b991b2c3278706358be7eb9922d",
+        "peer_positive_pixels": 37654,
+        "wbg_s2_in_peer_3px": 0.364928,
+        "peer_in_wbg_s2_3px": 0.68755,
+        "symmetric_3px_overlap": 0.526239,
+        "worst_directional_3px_overlap": 0.68755,
+        "spearman_rho": 0.044533,
+        "passes_this_peer_diagnostic_only": true
+      },
+      "uniqueness_across_sites": "Distinct vs WBG-S2 (36.49% fwd / 68.75% rev <= 70%, |rho|=0.0445); strong PU-HGB + CELF peer, already tested live at 0.1647 user-reported.",
+      "portal_format_status": "PRODUCER-REPORTED LOCAL FORMAT: PASS ([0, 1], 0 NaN)",
+      "go_no_go_status": "RESEARCH COMPARISON ONLY; no full registry or submission clearance established",
+      "scope_warning": "A peer-specific comparison cannot establish complete uniqueness or approve a submission."
+    },
+    {
+      "site": "KANLERGEMSDOE2 (External Peer Benchmark)",
+      "repo_url": "https://github.com/kanlerxz87-cyber/KANLERGEMSDOE2",
+      "pinned_head_20261027": "4edc3346c394c54638f8635e3265870f010668cc",
+      "file_to_download": "docs/downloads/kanlergemsdoe2-kg2-mghv-exp-1-37654-20261026-f5a469e94b14-zeros.tif",
+      "tif_sha256": "cf1d07726f5fb838dc75d9ffa00d5d6b6da7d5120f0362026ca241d454ce3c6e",
+      "emitted_dots": 37654,
+      "holdout_score_labeled": "PARALLEL-REPORTED (some peer metadata may be incomplete); HOLDOUT-DTI 0.177056 (95% CI [0.163689, 0.190497], gems-segment-pooled-v1, n=60,988)",
+      "live_score_labeled": "NONE reported",
+      "uniqueness_vs_wbg_s2": {
+        "peer_sha256": "cf1d07726f5fb838dc75d9ffa00d5d6b6da7d5120f0362026ca241d454ce3c6e",
+        "peer_positive_pixels": 37654,
+        "wbg_s2_in_peer_3px": 0.570829,
+        "peer_in_wbg_s2_3px": 0.502895,
+        "symmetric_3px_overlap": 0.536862,
+        "worst_directional_3px_overlap": 0.570829,
+        "spearman_rho": 0.033832,
+        "passes_this_peer_diagnostic_only": true
+      },
+      "uniqueness_across_sites": "Distinct vs WBG-S2 (57.08% fwd / 50.29% rev <= 70%, |rho|=0.0338); previous fleet holdout leader before WBG-S2 (0.183594).",
+      "portal_format_status": "PRODUCER-REPORTED LOCAL FORMAT: PASS ([0, 1], 0 NaN)",
+      "go_no_go_status": "RESEARCH COMPARISON ONLY; no full registry or submission clearance established",
+      "scope_warning": "A peer-specific comparison cannot establish complete uniqueness or approve a submission."
+    }
+  ],
+  "irregularities": [
+    {
+      "id": "IR-S2-001",
+      "severity": "HIGH",
+      "title": "Band 6 provenance requires independent confirmation",
+      "evidence": "The parallel receipt reports Spearman 0.99995 against an owner-mirrored GeoDAWN TC raster. Correlation is useful but does not independently authenticate organizer-provided bytes.",
+      "resolution": "Use the feature interpretation provisionally; verify provenance with organizer sources before relying on it."
+    },
+    {
+      "id": "IR-S2-002",
+      "severity": "CRITICAL",
+      "title": "Range-rejection cause and exterior convention remain unresolved",
+      "evidence": "A previous upload reported a [0,1] range error. Local all-finite checks pass for this file; there is no file-specific portal receipt proving what caused that rejection or that this TIFF would be accepted. The organizer's public data guidance says outside-boundary values should be null/NaN.",
+      "resolution": "Do not submit a negative TIFF; reconcile the public exterior guidance with the authenticated portal before any future cleared submission."
+    },
+    {
+      "id": "IR-S2-003",
+      "severity": "HIGH",
+      "title": "24.63% USGS 3DEP 1 m LiDAR Coverage Gap & Tree Feature-Starvation Trap",
+      "evidence": "`lidar_scarp_features_u8.tif` covers 3,894,769 / 5,167,373 footprint pixels (75.37%), leaving 1,272,604 basin/range pixels (`24.63%`, heavily concentrated in NE fold) without 1 m LiDAR. Single-tree models trained on 1 m + 10 m features simultaneously allocate top splits to 1 m scarps and starve seamless 10 m features.",
+      "resolution": "Parallel-reported ablations only; the selected arm was chosen on these splits and was not independently replayed in this review."
+    },
+    {
+      "id": "IR-S2-004",
+      "severity": "CRITICAL",
+      "title": "99.95% Target Leakage in `derived_gdr_qfaults_v2_100m_u8.tif` & GDR `dist_known_fault_px`",
+      "evidence": "`derived_gdr_qfaults_v2_100m_u8.tif` overlaps `labels.tif` at 99.95%, and GDR CSV `dist_known_fault_px` columns encode full-catalogue distances.",
+      "resolution": "Hard-banned in `src/wbggems2/features.py`; verified by 332/332 single-feature orientation-invariant & missingness leakage canaries (`max AUC = 0.79251 <= 0.90`)."
+    },
+    {
+      "id": "IR-S2-005",
+      "severity": "HIGH",
+      "title": "Near-fault purge and halo are a hypothesis, not a proven causal mechanism",
+      "evidence": "Different negative-purge configurations were evaluated by the parallel run; the halo explanation remains unverified.",
+      "resolution": "Retain the ablation as a reported diagnostic, not proof of generalization."
+    },
+    {
+      "id": "IR-S2-006",
+      "severity": "MEDIUM",
+      "title": "Synthetic `13GEMSDOE` Spacing-5 Calibration Lattice Covers 99.8713% of Footprint Within 300 m",
+      "evidence": "`r13-lattice-s5` places 206,895 grid dots covering 5,160,722 / 5,167,373 footprint pixels within 3 px, forcing >=82.34% literal forward overlap for any 37,654-dot submission.",
+      "resolution": "Reported transparently in dual scope: competing sparse detectors pass (`max 66.20% <= 70%`), while literal unseparated `gems57.uniqueness` overlap (`99.55%`) is preserved unwaived per `AGENTS.md`."
+    },
+    {
+      "id": "IR-S2-007",
+      "severity": "HIGH",
+      "title": "Historical Focus-9 `0.2449\u20130.2778` Family Clone Saturation",
+      "evidence": "All 9 historical high-scoring Focus-9 files (`GEMSDOE24..36`) derive from `19GEMSDOE H19-5` (`86.7%\u2013100.0%` 3-px dot overlap; `GEMSDOE25 == GEMSDOE30` 0-XOR identical).",
+      "resolution": "Regardless of selected peers, final overlap is 100% with WBG-C1 and 99.5538% with r13; both independently trigger STOP."
+    },
+    {
+      "id": "IR-S2-008",
+      "severity": "MEDIUM",
+      "title": "Evaluator Incomparability Across Repositories (`SegmentHoldout` vs `gems57-v2` vs `8/24-block CV`)",
+      "evidence": "`gems-segment-pooled-v1` withholds 60,988 positives (100% quadrant), whereas `gems57-pooled-hide-v2` withholds 11,330 positives (20% components).",
+      "resolution": "Do not rank across inconsistent evaluations. The parallel values below are selection-limited and not independently replayed."
+    }
+  ]
+}

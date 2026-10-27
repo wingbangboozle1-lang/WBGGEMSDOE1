@@ -128,7 +128,7 @@ def build_review():
                     "A mean lattice-kernel assumption cannot identify hidden fault count or weighted recall from one rounded reported score. Private-count inversion is not verified evidence.",
                     "Sparse-only or symmetric overlap does not satisfy the literal one-way all-registry threshold; no density exemption is authorized.",
                     "Mirrored data integrity is not independent organizer provenance. Core data and all nineteen shared cache bands were restored and hash-checked in this follow-up; that still does not authorize resuming a stopped lane.",
-                    "The official leaderboard cannot be refreshed on this sandbox's outbound allowlist. Retain the dated observation; do not label it current.",
+                    "Direct sandbox access to the leaderboard was blocked in the earlier review; a separate 2026-10-27 official-page retrieval is recorded in the current feed, not as a file receipt.",
                 ])
 
 
@@ -141,10 +141,10 @@ def render(review):
 <td>HOLDOUT-DTI {h['dti']:.6f}<br>95% CI [{h['ci95'][0]:.6f}, {h['ci95'][1]:.6f}]<br>{escape(h['evaluator_version'])}<br>{h['withheld_positive_pixels']:,} withheld positives; frozen</td>
 <td>{'PASS' if r['validation']['passed'] else 'FAIL'} local format/integrity</td><td>{escape(r['blocker'])}<br><strong>DO NOT SUBMIT</strong></td><td>Unavailable</td></tr>''')
     issues = "".join(f"<li>{escape(c)}</li>" for c in review["corrections"])
-    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>All-release review · WBG GEMS</title><link rel="stylesheet" href="assets/style.css"></head>
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Earlier four-release review · WBG GEMS</title><link rel="stylesheet" href="assets/style.css"></head>
 <body><header class="wrap"><nav><a href="index.html">Research desk</a> · <a href="executive-summary.html">Nine-site summary</a> · <a href="how-to-submit.html">Submission guide</a></nav></header>
-<main class="wrap" id="main"><h1>All-release review — {REVIEW_DATE}</h1><p class="alert"><strong>DOWNLOAD: YES (research only). SUBMIT: NO. No eligible submission.</strong></p>
-<p>All four local TIFFs are research downloads, not recommended uploads. Different evaluators, splits and prediction representations cannot be ranked as one leaderboard. Estimated leaderboard results and organizer-confirmed file scores are unavailable.</p>
+<main class="wrap" id="main"><h1>Earlier four-release review — {REVIEW_DATE}</h1><p class="alert"><strong>DOWNLOAD: YES (research only). SUBMIT: NO. No eligible submission.</strong></p>
+<p>These four earlier TIFFs are research downloads, not recommended uploads. <a href="wbg2.html">The later WBG-2 research TIFF is also not approved; see its separate audit.</a> Different evaluators, splits and prediction representations cannot be ranked as one leaderboard. Estimated leaderboard results and organizer-confirmed file scores are unavailable.</p>
 <div class="table-wrap"><table><thead><tr><th>Method</th><th>Exact research file</th><th>Recorded local evidence</th><th>Reopened bytes</th><th>Uniqueness / promotion blocker</th><th>Leaderboard estimate</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>
 <h2>Trust corrections</h2><ul>{issues}</ul><p>The original cards remain unchanged as historical records. This review overrides unsupported interpretations, not their frozen measurements. No training, tuning, final-dot placement, new raster, or submission slot was used.</p>
 <p>The highest supplied historical nine-site claim remains GEMSDOE32 B2 at USER-REPORTED 0.2778, not an organizer receipt. Pruning catalogue-near redundant dots is a plausible metric explanation, not proof of hidden-label locations.</p>

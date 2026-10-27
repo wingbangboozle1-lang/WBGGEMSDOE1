@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hypotheses, Canaries &amp; Holdout Ablations · WBGGEMSDOE1 WBG-S2 (MKSF-1)</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a href="#main" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">Skip to main content</a>
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="index.html">WBGGEMSDOE1 · Lane WBG-S2 (MKSF-1 / EXP-3)<small>2026-10-27 · Seamless 10m/1m + Cross-Gradient + Vierbein-Coulomb · 37,654 Binary Dots</small></a>
+    <nav class="navlinks" aria-label="WBG-S2 navigation">
+      <a class="" href="index.html">Overview &amp; Download</a><a class="" href="executive-summary.html">9-Site Executive Audit</a><a class="" href="forensics-02778.html">0.2778 Analysis</a><a class="active" href="hypotheses-and-validation.html">Hypotheses &amp; Ablations</a><a class="" href="how-to-submit.html">No-submit guidance</a>
+      <a href="../index.html">← Root Desk</a>
+    </nav>
+  </div>
+</header>
+<main id="main" class="wrap">
+
+<div class="hero-dl" role="region" aria-label="Research artifact and strict no-submit verdict">
+  <div class="badge-row">
+    <span class="badge gov">DOWNLOAD: YES (RESEARCH ONLY) · SUBMIT: NO · DO NOT SUBMIT · NO SELECTOR ELIGIBILITY</span>
+    <span class="badge gov">R13 OVERLAP 99.5538% · WBG-C1 OVERLAP 100% · STOP</span>
+  </div>
+  <div class="dl-grid">
+    <div>
+      <h1>WBG-S2 · parallel research result</h1>
+      <p>Research download only. Both independently reproduced final-dot overlaps exceed 70%.
+      The sampled pre-placement Spearman screen did not establish full literal clearance; a selector cannot waive STOP.
+      No competition slot was used by this integration.</p>
+      <div class="btn-row">
+        <a class="btn" href="../downloads/wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.tif" download>↓ Research-only TIFF</a>
+        <a class="btn sec" href="../downloads/wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.zip" download>↓ Research-only ZIP</a>
+        <a class="btn outline" href="data/safety_review_20261027.json">Independent safety audit</a>
+        <a class="btn outline" href="data/run_card.json">Run card</a>
+        <a class="btn outline" href="data/safety_review_passes_20261027.json">Three review passes</a>
+      </div>
+      <p>Local all-finite [0,1] raster checks pass; this does <strong>not</strong> establish portal acceptance or the cause of the prior range rejection.</p>
+    </div>
+    <div class="codebox">
+      <div><strong>File:</strong> <code>wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.tif</code></div>
+      <div><strong>TIFF SHA-256:</strong> <code>6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880</code></div>
+      <div><strong>Grid:</strong> <code>EPSG:32611 · 3730×3292 · float32 [0,1]</code></div>
+      <div><strong>Dots:</strong> <code>37,654</code></div>
+      <div><strong>Holdouts:</strong> parallel-reported, selected on these splits; not independently replayed or confirmed on untouched data.</div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <h2>Five parallel hypotheses (three arms run; two deferred)</h2>
+  <p>Results were reported by the parallel run and selected on the same splits; they have not been independently replayed here. Pre-registration SHA-256: <code>562ab4484078e2ee447a51b2d23a5c9e7c22e1c88b9255f82a41bdd0f608350f</code> (<a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/main/knowledge/02_preregistration_wbg_s2_hypotheses_2026-10-27.md">view full markdown specification</a>).</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Rank &amp; ID</th><th>Hypothesis</th><th>Specific Layers</th><th>Physical Transform</th><th>Why Missing From Catalogue</th><th>Approximate cost (parallel estimate)</th></tr>
+      </thead>
+      <tbody><tr><td><strong>#1 · WBG-S2-H1 (MKSF-1)</strong><br><code>EXECUTED · EXP-1 (+0.0720 SegDTI)</code></td><td><strong>Seamless 10m/1m Transgressive Piedmont-Flexure, Gallardo-Meju Cross-Gradient &amp; Expected 300m Kernel-Credit Submodular Field</strong></td><td>12 seamless USGS 3DEP 10 m bands (`dem10_*`), 13 1 m LiDAR scarp bands, 19 competition bands (Band 6 fixed as radiometric TC), 8 GeoDAWN rad/mag bands, DOE GDR #1391 F2mDAB/springs/wells/vents, Census TIGER 2024 roads.</td><td>Transgressive piedmont-bajada slope break (`pjmf_bajada_break_10m`, AUC=0.7385) + Lake Lahontan contour-obliquity + Gallardo-Meju gravity×magnetic cross-gradient + magnetite-destruction conduit + Dual-Specialist (`Full-81ch` + unstarved `Seamless-68ch`) × Dual-Target (`Crest` + `max(0, 1-d/3)` Kernel Regressor) + Two-Regime CELF (`d&gt;=2.8`, `37,654` dots).</td><td>Could detect scarps across reported LiDAR gaps and concealed structures; whether it does so remains unconfirmed.</td><td>~18 min CPU (parallel estimate)</td></tr><tr><td><strong>#2 · WBG-S2-H2 (Vierbein-Coulomb)</strong><br><code>EXECUTED · EXP-3 SELECTED (+0.0146 g57 lift)</code></td><td><strong>Fold-Visible Elastic Crack-Tip &amp; En-Echelon Relay-Ramp Stress-Transfer Corroboration</strong></td><td>Strictly fold-visible fault graph (`fold[&#x27;visible&#x27;]` during CV; `existing_faults.tif` at test time) + MKSF-1 physical backbone.</td><td>PCA tangent tip orientation (`AUC=0.7925`) + 6-hash inter-component en-echelon relay bridge (`AUC=0.6613`) multiplying MKSF-1 odds ONLY where physical scarp/geophysical evidence (`p &gt;= q_60`) co-occurs.</td><td>Concealed splays and relay ramps may extend mapped faults; the gate is intended to limit featureless tip spray, not proven to prevent it.</td><td>~2 min CPU (parallel estimate)</td></tr><tr><td><strong>#3 · WBG-S2-H3 (SGMC-DualPop)</strong><br><code>EXECUTED · EXP-2 (-0.0009 Honest Negative)</code></td><td><strong>Held-In Pre-2022 Bedrock Fault Reactivation Dual-Population Transfer</strong></td><td>USGS SGMC (`derived_sgmc_faults_100m_u8.tif`) strictly inside held-in `train` fold + `geod_shearrate` + hydrothermal conduit.</td><td>Auxiliary Seamless-68ch HGB head trained with `w=0.32` on high-strain/hydrothermal held-in SGMC bedrock contacts; zero SGMC input at inference.</td><td>Tests whether pre-Quaternary bedrock faults reactivated under modern Basin-and-Range transtension improve blind fault recall.</td><td>~4 min CPU (parallel estimate)</td></tr><tr><td><strong>#4 · WBG-S2-H4 (Chi-Knick)</strong><br><code>DEFERRED (3-Experiment Cap)</code></td><td><strong>D8 Fluvial Hack-Chi Steepness &amp; Cross-Divide Disequilibrium</strong></td><td>100 m `det_elev` + seamless 10 m `dem10_hand_mean` / `dem10_tpi15_max`.</td><td>Upstream integral chi-steepness step across range-bounding footwall-to-hangingwall transitions.</td><td>Captures transient fluvial knickzones migrating upstream from unmapped active normal faults.</td><td>Medium cost (~20 min D8 routing) (parallel estimate)</td></tr><tr><td><strong>#5 · WBG-S2-H5 (Biharmonic-Flexure)</strong><br><code>DEFERRED (3-Experiment Cap)</code></td><td><strong>Thin-Plate Elastic Basement Flexure Curvature Coupling</strong></td><td>`depth_to_base_surf`, `iso_grav_anom`, `geod_2ndinv`.</td><td>Biharmonic flexural stress concentration `D·∇⁴w_base` gated by geodetic second invariant.</td><td>Targets deep blind accommodation zones beneath &gt;1.5 km Cenozoic basin fill.</td><td>Low-Medium cost (2 km gravity grid limits 100 m localization) (parallel estimate)</td></tr></tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Parallel-reported holdout results (selection-limited)</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Experiment Arm</th>
+          <th><code>gems-segment-pooled-v1</code> (n=60,988, 100% Quadrant Holdout)</th>
+          <th><code>gems57-pooled-hide-v2</code> (n=11,330, 20% Buffered Component Holdout)</th>
+          <th>Empirical Takeaway</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>B0_19ch_CELF28</strong> (Control)</td>
+          <td><code>HOLDOUT-DTI 0.111551</code><br>95% CI [0.099938, 0.123533]</td>
+          <td><code>HOLDOUT-DTI 0.090076</code><br>95% CI [0.072884, 0.109089]</td>
+          <td>19 competition bands + purged 3.2 px collar + 37,654-dot CELF d≥2.8 control.</td>
+        </tr>
+        <tr>
+          <td><strong>EXP1_MKSF_Core</strong> (H1: MKSF-1)</td>
+          <td><code>HOLDOUT-DTI 0.183588</code><br>95% CI [0.170282, 0.196945]</td>
+          <td><code>HOLDOUT-DTI 0.133201</code><br>95% CI [0.113707, 0.154074]</td>
+          <td>Parallel-reported differences vs B0; causal attribution and generalization are not established.</td>
+        </tr>
+        <tr>
+          <td><strong>EXP2_MKSF_SGMCDualPop</strong> (H1 + H3)</td>
+          <td><code>HOLDOUT-DTI 0.182685</code><br>95% CI [0.169282, 0.195740]</td>
+          <td><code>HOLDOUT-DTI 0.131402</code><br>95% CI [0.111862, 0.152292]</td>
+          <td>Parallel-reported negative ablation vs EXP-1; its causal mechanism is unconfirmed.</td>
+        </tr>
+        <tr>
+          <td><strong>EXP3_MKSF_VierbeinCoulomb</strong> (H1 + H2 · <strong>SELECTED ARM</strong>)</td>
+          <td><strong><code>HOLDOUT-DTI 0.183594</code></strong><br>95% CI [0.170313, 0.196956]</td>
+          <td><strong><code>HOLDOUT-DTI 0.147773</code></strong><br>95% CI [0.128077, 0.167791]</td>
+          <td>Selected on these reported splits; no independent replay or untouched confirmation is established.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+<footer>
+  <div class="wrap">
+    <strong>WBGGEMSDOE1 · WBG-S2 (MKSF-1)</strong> · Research download only. <strong>DO NOT SUBMIT; NO SELECTOR ELIGIBILITY.</strong> Parallel holdouts are not independently confirmed. No slot spent by this integration.<br>
+    Artifacts: <a href="data/run_card.json">Run Card JSON</a> · <a href="data/nine_site_executive_summary_20261027.json">9-Site Audit JSON</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData Competition #306 ↗</a> · <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">GitHub Repository ↗</a>
+  </div>
+</footer>
+</body>
+</html>

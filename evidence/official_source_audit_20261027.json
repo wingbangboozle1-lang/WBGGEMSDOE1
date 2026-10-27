@@ -1,0 +1,69 @@
+{
+  "date_utc": "2026-10-27",
+  "method": "public web page and PDF text retrieved via research fetch tool; binary data not downloaded from the restricted hosts",
+  "sources": [
+    {
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "verified": "fault target; newly expert-labelled test faults; DTI parameters and 300 m triangular kernel; float32 one-layer EPSG:32611 100 m format; external data requires appropriate license"
+    },
+    {
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+      "verified": "redirects to login; no authenticated dataset access"
+    },
+    {
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/",
+      "verified": "redirects to login; account allowance and file receipts unavailable"
+    },
+    {
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "verified": "public rank 1 xiaofanhu DW-Tversky 0.4544 at 2026-10-27; not a score for a project TIFF"
+    },
+    {
+      "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+      "verified": "sections 3.2\u20133.5: up to three feedback submissions per week as website specifies; choose one final file; generative-AI-use disclosure; reproducible code and documentation for finalists"
+    },
+    {
+      "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "verified": "GeoDAWN magnetic and radiometric survey, coordinated lidar, DOI 10.5066/P93LGLVQ, CC0"
+    },
+    {
+      "url": "https://gdr.openei.org/submissions/1391",
+      "verified": "public INGENIOUS catalogue, DOI 10.15121/1881483, CC BY 4.0; lists 2 m temperature and well data; raw files not accessed here"
+    },
+    {
+      "url": "https://www.usgs.gov/data/heat-flow-maps-and-supporting-data-great-basin-usa",
+      "verified": "CC0 release DOI 10.5066/P9BZPVUC; background conductive maps and well residuals; raw data not accessed here"
+    },
+    {
+      "url": "https://www.usgs.gov/publications/a-geophysical-characterization-structure-and-geology-northern-granite-springs-valley",
+      "verified": "reports potential-field methods for buried faults and non-fault contacts, including possible dike swarm"
+    },
+    {
+      "url": "https://www.usgs.gov/publications/structural-discontinuities-and-their-control-hydrothermal-systems-great-basin-usa",
+      "verified": "structural discontinuities can localize stress/strain around hydrothermal systems; does not validate a particular algorithm"
+    },
+    {
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
+      "verified": "site calls 0.2778 an OWNER-REPORT and says no file-specific organizer receipt is present"
+    },
+    {
+      "url": "https://doi.org/10.5066/P9TWT2LU",
+      "verified": "USGS ScienceBase conductance maps integrate conductivity across 2\u201312, 12\u201320, 20\u201350, 50\u201390 and 90\u2013200 km depth ranges. Listed TIFFs were not downloaded or checked for study-area coverage."
+    },
+    {
+      "url": "https://www.usgs.gov/3d-elevation-program",
+      "verified": "3DEP products are available free of charge and without use restrictions. Raw local tiles and derived owner-cache provenance were not independently reproduced."
+    },
+    {
+      "url": "https://www.usgs.gov/data/shapefile-slip-tendency-and-dilation-tendency-calculated-quaternary-faults-great-basin",
+      "verified": "CC0 slip/dilation attributes are calculated from publicly mapped Quaternary faults; catalogue-derived inputs must be recomputed from visible faults in every holdout fold to avoid leakage."
+    }
+  ],
+  "limits": [
+    "Only referenced sections and abstracts were checked, not every source line, file or dataset license.",
+    "Public page access does not grant programmatic access to downloadable raw data, private labels, receipts or account allowance.",
+    "No organizer score for any WBG-2 file was retrieved."
+  ],
+  "experiments_started": 0,
+  "submission_slots_used": 0
+}

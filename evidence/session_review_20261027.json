@@ -1,0 +1,83 @@
+{
+  "superseded_warning": "Historical parallel review retained for audit. Superseded where it describes a 400 m Euclidean buffer, private Manhattan-based focus overlap, data availability, or approval/forecast. See evidence/wbg2/run_card.json and evidence/wbg2/safety_audit_20261027.json; DO NOT SUBMIT.",
+  "schema": "wbggems-session-review-v1",
+  "review_date_utc": "2026-10-27",
+  "run_type": "reporting and fail-closed correction review; no scientific experiment",
+  "hypothesis": "WBG-2 off-catalogue fault-density spatial prior",
+  "mechanism": "A 1.5 km KDE of mapped-fault density informed 36,000 scattered placements, with a radius-four Manhattan catalogue exclusion, not a 400 m Euclidean disk. This is a placement prior, not a fault detector.",
+  "named_non_fault_mimic": "Basin-fill depocentres and range-front alluvial aprons may be tracked by mapped-fault density without identifying hidden faults.",
+  "holdout_dti": null,
+  "holdout_dti_status": "NOT MEASURED for WBG-2; do not substitute proxy DTI against the mapped catalogue or the withdrawn regression estimate.",
+  "current_best_comparable_holdout": null,
+  "correlation_overlap_vs_registry": {
+    "focus_site_scope": "Nine frozen focus-site submission rasters: GEMSDOE24/25/27/28/30/31/32/33/36 only. One artifact per site, not every registered raster.",
+    "all_nine_focus_artifacts_audited": true,
+    "focus_site_max_forward_3px_overlap": 0.18611111111111112,
+    "focus_site_max_abs_spearman": 0.00947404544224616,
+    "focus_site_scoped_result": "Historical partial diagnostic, different neighborhood and sampled correlation; not a compliant complete-registry clearance",
+    "global_literal_registry_max_forward_3px_overlap": null,
+    "global_literal_overlap_witness": "WBG-C1 dense research surface; see evidence/wbg2/run_card.json",
+    "rank_correlation_max_abs_in_limited_record": 0.06438757182955884,
+    "literal_stop_threshold_overlap": 0.7,
+    "global_literal_uniqueness": "NOT ESTABLISHED GLOBALLY; FAIL / STOP under two measured witnesses",
+    "preplacement_surface_gate_measured": false,
+    "final_dot_global_uniqueness": "FAIL under measured witnesses; no complete global scan",
+    "focus_site_pass_is_not_global_clearance": true,
+    "measured_wbg_c1_witness_forward_overlap": 1.0,
+    "measured_gemsdoe24_lattice_forward_overlap": 0.9989722222222223
+  },
+  "raster_sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+  "validator_output": {
+    "local_format": "PASS",
+    "single_band_float32": true,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "no_nan_anywhere": true,
+    "no_infinite_anywhere": true,
+    "values_in_0_1": true,
+    "zip_exactly_one_identical_tiff": true,
+    "submission_eligibility": "FAIL CLOSED: no comparable HOLDOUT-DTI win and no separately authorized selector record"
+  },
+  "submission_name": "wbg2-offcatalogue-density-36k-20261027",
+  "submission_note": "Off-catalogue density prior; 36k scattered dots; zeros-mode. Research artifact only; DO NOT SUBMIT.",
+  "verdict": "negative",
+  "score_estimate": null,
+  "withdrawn_exploratory_regression": {
+    "evidence_class": "WITHDRAWN-MODEL-ESTIMATE; NOT A SCORE",
+    "former_output": 0.2824288396367217,
+    "status": "WITHDRAWN; not a score; do not use for slot selection",
+    "reason": "Fit to nine unverified owner-reported observations including a duplicated decoded raster pair; confounded predictors and no prospective holdout transfer test."
+  },
+  "leaderboard_status": {
+    "latest_user_reported_value": 0.3195,
+    "repository_dated_public_observations": [
+      {
+        "value": 0.4437,
+        "date": "2026-10-26"
+      },
+      {
+        "value": 0.4544,
+        "date": "2026-10-27"
+      }
+    ],
+    "older_user_reported_value": 0.4413,
+    "status": "The 0.4544 value is a dated official public-page observation on 2026-10-27, not a file-linked receipt; may change."
+  },
+  "new_experiments": 0,
+  "submission_slots_used": 0,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "status": "SUPERSEDED \u2014 historical parallel reporting, corrected by evidence/wbg2/run_card.json",
+  "superseded_by": "evidence/wbg2/run_card.json"
+}

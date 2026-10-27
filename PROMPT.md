@@ -21,23 +21,19 @@ Reference: https://github.com/drivendataorg/gems-prize-reference-solution
 5. **RUN CARD.** JSON: hypothesis; mechanism; named non-fault mimic; holdout DTI + CI; correlation/overlap vs registry; raster sha256; validator; submission name + ≤140 char note; verdict promote / negative.
 6. **BUDGET.** Stop after 3 experiments or 2 hours. Do not pick live slots.
 
-## Current artifact (2026-10-27, WBG-3 session)
+## Current artifact (2026-10-27)
 
-Designated file: `docs/downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif`
-(+ identical one-member ZIP). Unique vs GEMSDOE24/25/27/28/30/31/32/33/36
-(max 43.1% 3-px overlap, max |rho| 0.036). Format-valid: float32, EPSG:32611,
-3730x3292, [0,1], no NaN. HOLDOUT-DTI 0.1382 [0.1257, 0.1520]
-(gems-segment-pooled-v1, 60,988 withheld). MODEL-ESTIMATE 0.21 [0.17-0.26] -
-below champion OWNER-REPORTED 0.2778; verdict NEGATIVE for a slot
-(does not beat the 0.1661 S3DEP1 holdout benchmark). Details: `docs/wbg3.html`,
-`evidence/wbg3/run_card.json`.
-WBG-2 (0.2824 estimate) is RETRACTED (IR-WBG2-EST): research download only.
-Everything else remains a negative result, NOT cleared to upload.
+Designated newest file: `docs/downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif`
+(WBG-3 supervised detector; HOLDOUT-DTI 0.1382 [0.1257, 0.1520], MODEL-ESTIMATE
+0.21 [0.17-0.26], unique vs the nine focus sites under the literal per-raster
+gate, format-valid, verdict NEGATIVE for a slot - does not beat the 0.1661
+benchmark; see `docs/wbg3.html` and `evidence/wbg3/run_card.json`).
+No earlier file is approved for submission (see below).
 
 ## Submission contract
 
 - Single-band float32 GeoTIFF, EPSG:32611, 3730×3292, 100 m, sample geotransform.
-- Values in [0, 1]. **Zeros-mode** (no NaN anywhere) is the upload file — the portal has rejected NaN with “Predicted values must be in range [0, 1]”.
+- Values in [0, 1]. The reported portal error was “Predicted values must be in range [0, 1]”; its cause is unverified. The local research file uses an all-finite, zero exterior convention, while official instructions say data outside the bounds should be null/NaN. Local validation does not establish organizer acceptance; no current file is approved.
 - Unique name + short note.
 - Homepage must make **OK TO SUBMIT / DO NOT SUBMIT** obvious. Validation is automatic; no human inspector.
 

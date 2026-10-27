@@ -44,7 +44,9 @@
     "The fit cannot separate budget reduction from catalogue-proximity reduction (r=0.75).",
     "Two of the nine values are the same artifact reported on two sites (GEMSDOE25 and GEMSDOE30 share an identical positive-pixel set), so the effective sample is eight independent artifacts.",
     "The estimator is a ranking device for choosing between our own candidate files. It is not a forecast of a leaderboard position."
-   ]
+   ],
+   "status": "WITHDRAWN-EXPLORATORY-REGRESSION; NOT A SCORE; DO NOT USE FOR SLOT SELECTION",
+   "valid_for_submission_decision": false
   },
   "registry": {
    "rasters_compared": 8,
@@ -200,12 +202,19 @@
    "tif": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
    "zip": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip"
   },
-  "verdict": "promote_local",
+  "verdict": "negative",
   "decision": {
    "ok_to_download": true,
-   "ok_to_submit": true,
+   "ok_to_submit": false,
    "submission_slots_used": 0,
-   "reason": "Unique, format-valid, zeros-mode. Expected score is a MODEL-ESTIMATE only; it is not organizer-confirmed and the expected gain over the 0.2778 artifact is within model error."
+   "reason": "Research download only. No comparable HOLDOUT-DTI result establishes improvement over the current best and no separately authorized selector record exists. The regression on unverified third-party owner-reported values is withdrawn as a score estimate."
+  },
+  "eligibility_gates": {
+   "format_valid": true,
+   "nine_focus_site_uniqueness_audit_recorded": true,
+   "comparable_holdout_dti_available": false,
+   "beats_current_holdout_best": false,
+   "authorized_slot_selector_record": false
   }
  },
  "nine_site_uniqueness": {

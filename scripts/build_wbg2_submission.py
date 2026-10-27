@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Build, validate and register the WBG-2 competition submission.
+"""Build and validate the WBG-2 research artifact; submission eligibility is fail-closed.
 
 Deterministic: same inputs + same seed -> same bytes.
 
@@ -9,7 +9,7 @@ Run from the repository root:
 
 Outputs
 -------
-docs/downloads/<name>.tif            the file to submit
+docs/downloads/<name>.tif            research-only file; not submission-cleared
 docs/downloads/<name>.zip            single-member ZIP of the same bytes
 docs/downloads/<name>.validator.json format validator report
 docs/downloads/<name>.uniqueness.json registry gate report
@@ -34,6 +34,7 @@ from wbg2 import prior as P  # noqa: E402
 from wbg2 import uniqueness as U  # noqa: E402
 from wbg2 import validate as V  # noqa: E402
 from wbg2.metric import dti  # noqa: E402
+from wbggems1.eligibility import submission_eligibility  # noqa: E402
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 LABELS = os.path.join(ROOT, "data", "bridge", "labels.tif")
@@ -127,6 +128,15 @@ def main() -> int:
     est = b["intercept"] + b["near3cat"] * near3 + b["log_budget"] * float(np.log(BUDGET))
     half = 1.96 * calib["residual_sd"]
 
+    eligibility_gates = {
+        "format_valid": bool(rep.all_checks_passed and zrep["all_checks_passed"]),
+        "focus_site_uniqueness_pass": bool(reg["passes_final_dot_gate"]),
+        "comparable_holdout_dti_available": False,
+        "beats_current_holdout_best": False,
+        "authorized_slot_selector_record": False,
+    }
+    can_submit = submission_eligibility(eligibility_gates)
+
     run_card = {
         "schema": "wbg2-run-card-v1",
         "generated_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
@@ -161,6 +171,8 @@ def main() -> int:
         },
         "score_estimate": {
             "evidence_class": "MODEL-ESTIMATE",
+            "status": "WITHDRAWN-EXPLORATORY-REGRESSION; NOT A SCORE; DO NOT USE FOR SLOT SELECTION",
+            "valid_for_submission_decision": False,
             "value": est,
             "ci95": [est - half, est + half],
             "model": calib["model"],
@@ -179,15 +191,17 @@ def main() -> int:
             "tif": os.path.relpath(out_tif, ROOT),
             "zip": os.path.relpath(out_zip, ROOT),
         },
-        "verdict": "promote_local" if (rep.all_checks_passed and zrep["all_checks_passed"] and reg["passes_final_dot_gate"]) else "negative",
+        "verdict": "negative",
+        "eligibility_gates": eligibility_gates,
         "decision": {
             "ok_to_download": True,
-            "ok_to_submit": bool(rep.all_checks_passed and zrep["all_checks_passed"] and reg["passes_final_dot_gate"]),
+            "ok_to_submit": can_submit,
             "submission_slots_used": 0,
             "reason": (
-                "Unique, format-valid, zeros-mode. Expected score is a "
-                "MODEL-ESTIMATE only; it is not organizer-confirmed and the "
-                "expected gain over the 0.2778 artifact is within model error."
+                "Research download only. Format and the limited nine-site byte/dot audit pass, "
+                "but there is no comparable HOLDOUT-DTI result showing a win over the current "
+                "best and no separately authorized selector record. The exploratory regression "
+                "from unverified owner-reported values is not a score estimate suitable for slot selection."
             ),
         },
     }
@@ -205,11 +219,12 @@ def main() -> int:
         "max_rho": reg["max_abs_spearman"],
         "rasters_compared": reg["rasters_compared"],
         "dti_vs_catalogue": dti_vs_catalogue,
-        "score_estimate": est,
-        "ci95": [est - half, est + half],
+        "withdrawn_exploratory_model_output_not_score": est,
+        "model_interval_not_score_ci": [est - half, est + half],
         "note_len": len(NOTE),
     }, indent=1))
-    return 0 if run_card["decision"]["ok_to_submit"] else 1
+    # Exit 0 reports successful artifact generation/validation, not submission approval.
+    return 0 if rep.all_checks_passed and zrep["all_checks_passed"] else 1
 
 
 if __name__ == "__main__":

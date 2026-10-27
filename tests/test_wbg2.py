@@ -14,6 +14,7 @@ from wbg2 import uniqueness as U
 from wbg2 import validate as V
 from wbg2.metric import ALPHA, BETA, EPS, R_PIXELS, dti, triangular_kernel
 from wbg2 import verification
+from wbggems1.eligibility import submission_eligibility
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -184,7 +185,10 @@ def test_run_card_is_consistent_with_shipped_file():
     card = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
     for key in ("raster_sha256", "score_estimate", "registry", "validator", "decision"):
         assert key in card
-    assert card["decision"]["ok_to_submit"] is True
+    assert card["decision"]["ok_to_submit"] is False
+    assert card["decision"]["ok_to_download"] is True
+    assert card["eligibility_gates"]["comparable_holdout_dti_available"] is False
+    assert card["score_estimate"]["valid_for_submission_decision"] is False
     assert card["validator"]["tif"]["all_checks_passed"] is True
     assert card["validator"]["zip"]["all_checks_passed"] is True
     assert card["registry"]["passes_final_dot_gate"] is True
@@ -205,3 +209,31 @@ def test_calibration_is_documented_and_honest():
     assert 0.9 < cal["r2"] <= 1.0
     assert any("receipt" in c for c in cal["caveats"])
     assert cal["collinearity"]["corr_near3cat_logbudget"] > 0.5
+
+
+def test_submission_eligibility_fails_closed_without_all_gates():
+    gates = {
+        "format_valid": True,
+        "focus_site_uniqueness_pass": True,
+        "comparable_holdout_dti_available": True,
+        "beats_current_holdout_best": True,
+        "authorized_slot_selector_record": True,
+    }
+    assert submission_eligibility(gates) is True
+    for key in gates:
+        incomplete = dict(gates)
+        incomplete[key] = False
+        assert submission_eligibility(incomplete) is False
+    assert submission_eligibility({}) is False
+
+
+def test_wbg2_page_never_calls_research_file_submittable():
+    page = (ROOT / "docs/wbg2.html").read_text()
+    assert "Do not submit" in page or "DO NOT SUBMIT" in page
+    assert "Download and submit" not in page
+    assert "old 0.2824" in page
+    assert "withdrawn as a score estimate" in page
+    home = (ROOT / "docs/index.html").read_text()
+    assert "DO NOT SUBMIT" in home
+    assert "Current repository review" in home
+    assert "Current submittable file" not in home

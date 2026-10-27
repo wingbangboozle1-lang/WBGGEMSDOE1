@@ -2,7 +2,7 @@
  "schema": "wbg2-registry-entry-v1",
  "artifact": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
  "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
- "evidence_class": "MODEL-ESTIMATE",
+ "evidence_class": "RESEARCH-ARTIFACT-NOT-APPROVED",
  "score_estimate": {
   "evidence_class": "MODEL-ESTIMATE",
   "value": 0.2824288396367217,
@@ -20,7 +20,9 @@
    "The fit cannot separate budget reduction from catalogue-proximity reduction (r=0.75).",
    "Two of the nine values are the same artifact reported on two sites (GEMSDOE25 and GEMSDOE30 share an identical positive-pixel set), so the effective sample is eight independent artifacts.",
    "The estimator is a ranking device for choosing between our own candidate files. It is not a forecast of a leaderboard position."
-  ]
+  ],
+  "status": "WITHDRAWN-EXPLORATORY-REGRESSION; NOT A SCORE; DO NOT USE FOR SLOT SELECTION",
+  "valid_for_submission_decision": false
  },
  "uniqueness": {
   "rasters_compared": 8,
@@ -116,9 +118,17 @@
   ]
  },
  "validator_pass": true,
- "ok_to_submit": true,
+ "ok_to_submit": false,
  "organizer_confirmed_score": null,
  "submission_slots_used": 0,
  "note": "WBG-2 unique: off-catalogue (>=400 m) fault-density prior, 36k scattered dots, zeros-mode, no NaN. Not a copy of GEMSDOE24-36.",
- "name": "wbg2-offcatalogue-density-36k-20261027"
+ "name": "wbg2-offcatalogue-density-36k-20261027",
+ "eligibility": {
+  "format_valid": true,
+  "focus_site_uniqueness_audit_recorded": true,
+  "comparable_holdout_dti_available": false,
+  "beats_current_holdout_best": false,
+  "authorized_slot_selector_record": false
+ },
+ "decision_reason": "Research only; no comparable HOLDOUT-DTI efficacy win or authorized selector record. The former regression on unverified owner reports is withdrawn as a submission score estimate."
 }

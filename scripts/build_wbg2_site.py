@@ -49,7 +49,7 @@ def pill(text, kind):
 def page(title: str, body: str) -> str:
     nav = [
         ("index.html", "Overview"),
-        ("wbg2.html", "WBG-2 submission"),
+        ("wbg2.html", "WBG-2 research"),
         ("executive-summary.html", "Site comparison"),
         ("research.html", "Research"),
         ("evidence.html", "Evidence"),
@@ -62,7 +62,7 @@ def page(title: str, body: str) -> str:
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{escape(title)} · WBG GEMS research desk</title>
-<meta name="description" content="WBG-2: a unique, format-valid GEMS submission with a calibrated score estimate and a verified uniqueness audit against GEMSDOE24/25/27/28/30/31/32/33/36.">
+<meta name="description" content="WBG-2 is a research-only GEMS GeoTIFF; format and limited focus-site uniqueness checks do not establish efficacy or submission eligibility.">
 <meta name="theme-color" content="#173b42"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/style.css"><script defer src="assets/app.js"></script></head>
 <body><a class="skip" href="#main">Skip to content</a>
@@ -80,11 +80,8 @@ def build():
     calib = load("registry/wbg2_calibration.json")
     tif = Path(card["artifacts"]["tif"]).name
     zipn = Path(card["artifacts"]["zip"]).name
-    est = card["score_estimate"]["value"]
-    lo, hi = card["score_estimate"]["ci95"]
     v = card["validator"]["tif"]
     sha = card["raster_sha256"]
-    ok = card["decision"]["ok_to_submit"]
     size = (ROOT / card["artifacts"]["tif"]).stat().st_size / (1024 ** 2)
 
     rows = []
@@ -122,68 +119,61 @@ def build():
         for k, val in checks.items()
     )
 
-    obs = calib["observations"]
-    fit_rows = "".join(
-        f'<tr><td class="site-cell">{escape(o["site"])}</td>'
-        f'<td>{o["positive_pixels"]:,}</td>'
-        f'<td>{100*o["fraction_positive_within_3px_of_catalogue"]:.1f}%</td>'
-        f'<td><span class="score">{o["organizer_reported_score"]:.4f}</span></td>'
-        f'<td><span class="score">{f:.4f}</span></td></tr>'
-        for o, f in zip(obs, [x["fitted"] for x in calib["fitted_values"]])
-    )
 
-    status_pill = pill("OK to submit", "ok") if ok else pill("Do not submit", "no")
+
+    status_pill = pill("Do not submit", "no")
 
     body = f'''
 <section class="hero"><div><p class="eyebrow">Executive summary · WBG-2</p>
-<h1>One file.<br><em>Download and submit.</em></h1>
-<p class="lead">WBG-2 is a newly generated, format-valid, <strong>unique</strong> GeoTIFF for the DOE GEMS Prize. It is not a copy of GEMSDOE24, 25, 27, 28, 30, 31, 32, 33 or 36. Its score is a calibrated <strong>model estimate</strong>, not an organizer result — and the honest reading is that it ties the best focus-site artifact rather than beating it.</p>
-<div class="actions"><a class="button" href="downloads/{tif}" download>Download the submission TIFF ↓</a>
-<a class="text-link" href="downloads/{zipn}">One-TIFF ZIP ↓</a></div>
+<h1>Research file.<br><em>Do not submit.</em></h1>
+<p class="lead">WBG-2 is a format-valid research GeoTIFF with a limited uniqueness audit against the nine focus-site artifacts. It has <strong>not</strong> passed a comparable hide-and-recover HOLDOUT-DTI efficacy gate and has no authorized slot-selection record. Its historical regression output is withdrawn as a score estimate.</p>
+<div class="actions"><a class="button" href="downloads/{tif}" download>Download research TIFF ↓</a>
+<a class="text-link" href="downloads/{zipn}">One-TIFF ZIP ↓</a>
+<a class="text-link" href="session-review-20261027.md">Full repository review ↗</a></div>
 <p class="micro" style="margin-top:18px">Name <code>{escape(card["submission_name"])}</code> · note {card["note_length"]}/140 characters · 0 competition slots used.</p></div>
 <aside class="download-card" aria-label="Submission file and decision">
 <div class="card-top"><div class="file-icon" aria-hidden="true">.TIF</div>
 <div class="file-label">WBG-2 · off-catalogue density prior<small>36,000 scattered dots · zeros mode</small></div>{status_pill}</div>
 <div class="card-body">
 <div class="status-line"><span>Local format validator</span><b style="color:var(--teal)">PASS · {len(checks)} checks</b></div>
-<div class="status-line"><span>Uniqueness vs 9 focus sites</span><b style="color:var(--teal)">PASS · {nine["max_enrichment_vs_chance"]:.2f}× chance</b></div>
-<div class="status-line"><span>Estimated score (model)</span><b>{est:.4f}</b></div>
-<div class="status-line"><span>Organizer-confirmed score</span><b style="color:var(--red)">none</b></div>
+<div class="status-line"><span>Focus-site uniqueness audit</span><b style="color:var(--teal)">recorded · limited scope</b></div>
+<div class="status-line"><span>Comparable HOLDOUT-DTI</span><b style="color:var(--red)">not measured</b></div>
+<div class="status-line"><span>Submission decision</span><b style="color:var(--red)">DO NOT SUBMIT</b></div>
 <div class="filename">{escape(tif)}</div>
 <a class="button" href="downloads/{tif}" download><span>Download TIFF</span><span aria-hidden="true">↓</span></a>
 <div class="under-download"><span>{size:.1f} MiB · float32 · EPSG:32611</span><a href="downloads/{zipn}">ZIP ↓</a></div>
-<p class="micro" style="margin:15px 0 0">Upload this file, or its ZIP — they contain identical bytes. Do not upload anything under <code>docs/audit/</code> (those are other people's artifacts, kept for comparison only).</p>
+<p class="micro" style="margin:15px 0 0"><strong>Research download only — do not upload.</strong> The ZIP contains the identical TIFF bytes. Do not upload comparison artifacts under <code>docs/audit/</code>.</p>
 </div></aside></section>
 
-<div class="alert" role="note"><p><strong>Read this before you spend a slot.</strong> The estimated score <strong>{est:.4f}</strong> (95% model interval {lo:.4f}–{hi:.4f}) comes from a 9-point regression on <em>third-party reported</em> values, R² {calib["r2"]:.3f}. It is <strong>not</strong> a leaderboard forecast, and the predicted gain over GEMSDOE32's 0.2778 is only <strong>+{est-0.2778:.4f}</strong> — smaller than the model's own error and built on an extrapolation below the fitted range of catalogue proximity. Submit it because it is <em>unique and valid</em>, not because it is proven to score higher.</p></div>
+<div class="alert" role="note"><p><strong>Do not spend a slot on this file.</strong> The old 0.2824 output was a MODEL-ESTIMATE fit to nine unverified third-party reports (one duplicated raster pair), not HOLDOUT-DTI and not an organizer result. It is withdrawn as a score estimate. Without comparable holdout efficacy, superiority is unknown.</p></div>
 
 <section class="stats" aria-label="Key numbers">
-<div class="stat"><label>Estimated score · MODEL-ESTIMATE</label><div class="value">{est:.4f}</div><p>95% interval {lo:.4f}–{hi:.4f}<br>9-point calibration, R² {calib["r2"]:.3f}</p></div>
+<div class="stat"><label>HOLDOUT-DTI</label><div class="value word bad">Unavailable</div><p>No comparable hide-and-recover result<br>no leaderboard score estimate</p></div>
 <div class="stat"><label>Uniqueness · MEASURED</label><div class="value word good">Unique</div><p>Max {nine["max_enrichment_vs_chance"]:.2f}× chance overlap<br>max |ρ| {nine["max_abs_spearman"]:.3f} across {nine["n_audited"]}/9 sites</p></div>
 <div class="stat"><label>Format · MEASURED</label><div class="value word good">Passed</div><p>{v["positive_pixels"]:,} positive pixels<br>no NaN anywhere, values in [0, 1]</p></div>
 <div class="stat"><label>Slots used</label><div class="value word">Zero</div><p>No upload performed here<br>no organizer receipt exists</p></div>
 </section>
 
-<section class="section"><div class="section-heading"><div><span class="section-num">01 / THE ANSWER</span><h2>What to download, what it should score, and why it is not a duplicate</h2><p>Every number below is measured in this repository or copied from a dated source. Nothing is projected as if it were a score.</p></div></div>
-<div class="table-wrap"><table><caption>The required table — one row per focus site, plus our submission</caption>
-<thead><tr><th>Site / artifact</th><th>File</th><th>Reported score</th><th>Overlap with WBG-2</th><th>Unique?</th></tr></thead>
+<section class="section"><div class="section-heading"><div><span class="section-num">01 / THE ANSWER</span><h2>What can be downloaded, why it is not an exact duplicate, and why it is not cleared</h2><p>Historical values are OWNER-REPORTED, not organizer-confirmed. WBG-2 is not assigned a projected score; its only local clearance is format plus a limited focus-site uniqueness audit.</p></div></div>
+<div class="table-wrap"><table><caption>Historical reference values are owner-reported; WBG-2 has no validated score estimate</caption>
+<thead><tr><th>Site / artifact</th><th>File</th><th>Historical reported value</th><th>Overlap with WBG-2</th><th>Unique?</th></tr></thead>
 <tbody>
-<tr class="featured"><td class="site-cell">WBG-2<small>this submission</small></td>
+<tr class="featured"><td class="site-cell">WBG-2<small>research artifact only</small></td>
 <td class="file-cell"><a href="downloads/{tif}">{escape(tif)}</a>
 <div class="cell-note">{v["positive_pixels"]:,} positive pixels · 0.0% within 300 m of the mapped catalogue (excluded by construction)</div></td>
-<td><span class="score">{est:.4f}</span><div class="cell-note">MODEL-ESTIMATE, 95% {lo:.4f}–{hi:.4f} · no organizer receipt</div></td>
+<td><span class="score">Unavailable</span><div class="cell-note">No comparable HOLDOUT-DTI or organizer receipt. Prior regression withdrawn; not a score.</div></td>
 <td><span class="score">—</span><div class="cell-note">reference row</div></td>
-<td>{pill("Reference", "neutral")}</td></tr>
+<td>{pill("Research only", "no")}</td></tr>
 {"".join(rows)}
 </tbody></table></div>
 <p class="note">Reported scores are the values supplied in the session brief. They are <strong>user/owner-reported</strong>: no submission-page receipt in this repository binds those bytes to a score. Two of the nine rows (GEMSDOE25 and GEMSDOE30) share an <em>identical</em> positive-pixel set, so the nine sites contain at most eight independent fields.</p></section>
 
-<section class="section"><div class="section-heading"><div><span class="section-num">02 / WHY 0.2778 WON</span><h2>Not geology. Catalogue distance and budget.</h2><p>The mechanism is visible in the artifacts themselves.</p></div><a class="text-link" href="research/wbg2-why-02778.md">Full research note →</a></div>
+<section class="section"><div class="section-heading"><div><span class="section-num">02 / WHY GEMSDOE32 LEADS THE OWNER-REPORTS</span><h2>Catalogue-distance pruning is a plausible explanation, not proven causality.</h2><p>The raster ancestry is visible; hidden labels and an artifact-linked submission receipt are not available.</p></div><a class="text-link" href="research/wbg2-why-02778.md">Full research note →</a></div>
 <div class="two-col"><article class="panel"><div class="panel-head">Measured on the nine original files<span>only values 0.0 and 1.0</span></div>
 <div class="panel-pad"><ul class="gate-list">
 <li><span class="gate-icon ok">✓</span><div class="gate-copy"><b>All nine are binary dot fields</b><small>Exactly two distinct values, 0.0 and 1.0. No continuous probability anywhere. Positive counts run 37,654–61,328 out of 5,167,373 scored cells.</small></div></li>
-<li><span class="gate-icon ok">✓</span><div class="gate-copy"><b>Score is monotone in distance from the catalogue</b><small>Fraction of dots within 300 m of a mapped fault: 0.190 → 0.2477; 0.187 → 0.2600; 0.136 → 0.2632; 0.109 → 0.2708; 0.050 → 0.2750; 0.049 → 0.2778. Perfect rank order, no exceptions.</small></div></li>
-<li><span class="gate-icon ok">✓</span><div class="gate-copy"><b>The winner is a controlled deletion, not a new model</b><small>Its own audit JSON states: "0.2708 base with every dot at d(catalogue) ≤ 2 px deleted (37,654 dots)". The +0.0070 came from deleting dots, not from finding faults.</small></div></li>
+<li><span class="gate-icon ok">✓</span><div class="gate-copy"><b>Owner-reported value is ordered with catalogue distance</b><small>The reported value is rank-ordered with decreasing mapped-fault proximity across this small related set. Historical values are OWNER-REPORTED, not ORGANIZER-CONFIRMED; this association does not establish causality.</small></div></li>
+<li><span class="gate-icon ok">✓</span><div class="gate-copy"><b>The highest reported raster is a controlled deletion, not a new model</b><small>Raster forensics show B2 is a strict subset of the D2.8 parent: 6,436 dots were removed, none added; all removed pixels were within two 100 m cells of the mapped catalogue. This supports a precision-cleanup hypothesis but cannot prove their hidden-truth status or explain a private score.</small></div></li>
 <li><span class="gate-icon ok">✓</span><div class="gate-copy"><b>No dot sits on a mapped fault</b><small>All nine have 0.0000 fraction of positives on catalogue pixels — the scored target is defined as the faults the catalogue is missing.</small></div></li>
 </ul></div></article>
 <article class="mini-card"><span class="index">THE MECHANISM</span><h3>The metric pays you to delete bad guesses.</h3>
@@ -205,16 +195,13 @@ def build():
 <li><span class="gate-icon fail">×</span><div class="gate-copy"><b>No discrimination</b><small>AUC vs mapped faults: step 0.574, crest 0.585, asymmetry 0.493, line-likeness 0.497, radiometric alteration 0.487, combined 0.549.</small></div></li>
 <li><span class="gate-icon fail">×</span><div class="gate-copy"><b>Worse than random at the real budget</b><small>Ranking the whole grid and taking 37,654 cells scored 0.0303 against the catalogue; a uniform random draw of the same size scored 0.0695.</small></div></li>
 </ul><p class="micro">Cause: at 100 m the shipped 8-bit rad/3DEP aggregates do not localise Great Basin faults. The official 19-band <code>training_features.tif</code> is the missing input and is login-gated.</p></div></article>
-<article class="mini-card"><span class="index">WHAT THIS MEANS</span><h3>The binding constraint is data, not cleverness.</h3>
-<p>Every route that could beat 0.28 requires a better fault-probability map. With only the catalogue plus weak external aggregates, the best available placement skill is roughly 2× chance — measured on a spatially blocked holdout — which is not enough to move a score meaningfully.</p>
-<p><strong>To reach the 0.39–0.45 leaderboard band</strong>, download the official <code>training_features.tif</code>, train the reference U-Net, then apply the three measured rules: exclude the catalogue, keep the field small, and never ship NaN.</p>
-<a class="text-link" href="how-to-submit.html">Submission checklist →</a></article></div></section>
+<article class="mini-card"><span class="index">WHAT THIS MEANS</span><h3>Evidence and authorization are the current blockers.</h3>
+<p>The WBG-2 surface is a catalogue-derived spatial prior, not a validated fault detector. No comparable holdout result supports a performance claim. Official competition data access and account allowance are not available in this environment.</p>
+<p>Do not infer that a higher score follows from excluding mapped faults or reducing dot count. Those are hypotheses requiring prospective blocked validation.</p>
+<a class="text-link" href="how-to-submit.html">Submission requirements →</a></article></div></section>
 
-<section class="section"><div class="section-heading"><div><span class="section-num">05 / HOW THE ESTIMATE WAS BUILT</span><h2>A 9-point calibration, shown in full.</h2><p>score = {calib["coefficients"]["intercept"]:.4f} {calib["coefficients"]["near3cat"]:+.4f}·near3cat {calib["coefficients"]["log_budget"]:+.4f}·ln(budget)</p></div></div>
-<div class="table-wrap"><table><caption>Fitted against the nine reported values — every point is shown, none are hidden</caption>
-<thead><tr><th>Site</th><th>Positive pixels</th><th>Within 300 m of catalogue</th><th>Reported</th><th>Fitted</th></tr></thead>
-<tbody>{fit_rows}</tbody></table></div>
-<p class="note">R² {calib["r2"]:.3f} · residual SD {calib["residual_sd"]:.4f} · n = {calib["n_observations"]}. The two regressors are collinear (r = {calib["collinearity"]["corr_near3cat_logbudget"]:.2f}) because every site obtained a low catalogue fraction by deleting dots, which also lowered the budget. Predicted values are MODEL-ESTIMATES, never scores. The estimator ranks our own candidate files; it does not forecast a leaderboard position.</p></section>
+<section class="section"><div class="section-heading"><div><span class="section-num">05 / WITHDRAWN ESTIMATE</span><h2>No score estimate is available for WBG-2.</h2><p>The old regression is retained only to document why a tempting number was rejected.</p></div></div>
+<div class="alert" role="note"><p>The previous 0.2824 regression output used nine owner-reported points without artifact-linked organizer receipts; GEMSDOE25 and GEMSDOE30 also share the same decoded predictions. The model cannot isolate dot-budget effects from catalogue-distance effects. It is withdrawn and must not be used as a submission-score estimate or slot-selection signal.</p></div></section>
 
 <section class="section"><div class="section-heading"><div><span class="section-num">06 / VALIDATION</span><h2>Every gate, automatically checked.</h2><p>No human inspector is needed for these checks — they run in CI on the exact bytes you download.</p></div></div>
 <div class="two-col"><article class="panel"><div class="panel-head">Format validator<span>{escape(tif)}</span></div>
@@ -222,36 +209,34 @@ def build():
 <li><span class="gate-icon ok">✓</span><div class="gate-copy"><b>zip single member, byte identical</b><small>{"pass" if card["validator"]["zip"]["all_checks_passed"] else "FAIL"}</small></div></li>
 <li><span class="gate-icon ok">✓</span><div class="gate-copy"><b>radix-2 sha256 recorded</b><small class="mono">{sha}</small></div></li>
 </ul></div></article>
-<article class="mini-card"><span class="index">HOW TO SUBMIT</span><h3>Four steps.</h3>
-<p><strong>1.</strong> Download the TIFF above (or the ZIP).<br>
-<strong>2.</strong> Open the submission form: <a href="{SUBMISSIONS}">drivendata.org/…/submissions/</a><br>
-<strong>3.</strong> Name: <code>{escape(card["submission_name"])}</code><br>
-<strong>4.</strong> Note ({card["note_length"]}/140): <code>{escape(card["submission_note"])}</code></p>
-<p>Check your remaining weekly allowance on the page before confirming. This repository has no uploader and used no slot.</p>
+<article class="mini-card"><span class="index">SUBMISSION GATE</span><h3>Do not upload this research artifact.</h3>
+<p>It has no comparable HOLDOUT-DTI result showing improvement over the current same-instrument best. A separate authorized selector record and current account allowance are also absent.</p>
+<p>Format validation and uniqueness alone do not establish scientific efficacy or slot eligibility. No uploader exists here; no slot was used.</p>
 <a class="text-link" href="{PROBLEM}">Official submission format →</a></article></div></section>
 
 <section class="section"><div class="section-heading"><div><span class="section-num">07 / IRREGULARITIES</span><h2>Flagged for review.</h2><p>Things a reviewer should know before trusting any number on this page.</p></div></div>
 <div class="details-list">
-<details open><summary>All nine reported scores are unverified third-party values</summary><div class="detail-body"><p>No submission-page receipt in this repository binds any of the nine artifacts to a score, and none binds WBG-2 to anything. The public leaderboard was observed at <strong>0.4544</strong> for rank 1 on 2026-10-27 (xiaofanhu), which supersedes the 0.4437 and 0.4413 figures quoted in earlier briefs. That observation says nothing about any file in this repository.</p></div></details>
+<details open><summary>Historical scores and leaderboard values are not artifact receipts</summary><div class="detail-body"><p>No submission-page receipt in this repository binds any of the nine artifacts to a score, and none binds WBG-2 to anything. Repository observations include 0.4437 (2026-10-26) and 0.4544 (2026-10-27); the latest user brief reports 0.3195. Current leaderboard value is unresolved because no fresh official-page check was available. None is a score for a file in this repository.</p></div></details>
 <details><summary>GEMSDOE25 and GEMSDOE30 publish the same predictions</summary><div class="detail-body"><p>Their files differ in bytes and encoding, but their 44,090 positive pixels are the same set, and both are reported at 0.2600. Treat the "nine sites" as at most eight independent fields.</p></div></details>
 <details><summary>The reported gap to the leaderboard is unexplained by the artifacts</summary><div class="detail-body"><p>The focus sites cluster at 0.245–0.278 while the public leaderboard runs 0.32–0.45. Nothing in the nine artifacts explains the gap; the most likely cause is access to the official 19-band feature stack, but that is an inference, not a measurement.</p></div></details>
 <details><summary>External layers used in the rejected experiment are peer re-distributions</summary><div class="detail-body"><p>The GeoDAWN radiometric and 3DEP terrain rasters were read from a peer repository, not from the primary USGS archive. Their sidecars record DOI 10.5066/P93LGLVQ and ScienceBase item 657e1d85d34e23d3533209f7, but the bytes were not re-downloaded from USGS in this session. They are <strong>not</strong> used by WBG-2.</p></div></details>
 <details><summary>WBG-2 is a spatial prior, not a detection</summary><div class="detail-body"><p>WBG-2 places dots where mapped faults are dense, displaced away from the catalogue. It encodes no measurement of any individual fault. Its named non-fault mimic is basin geometry: basin-fill depocentres and range-front aprons concentrate near mapped faults, so the prior partly tracks sedimentary basins rather than faulting.</p></div></details>
 </div></section>
 
-<aside class="feed-strip" aria-label="Official leaderboard"><div><strong>Official public leaderboard</strong> &nbsp; <b>0.4544</b> &nbsp; <span>observed 2026-10-27 (rank 1)</span><br><span>A dated observation, not a score for our file.</span></div>
-<a href="{LEADERBOARD}">View official leaderboard ↗</a></aside>
+<aside class="feed-strip" aria-label="Leaderboard status"><div><strong>Current leaderboard score</strong><br><span>Unverified in this review. The repository retains a prior dated public-page observation of 0.4544; the latest user message reports 0.3195. These conflict and must not be presented as current without a fresh official-page check.</span></div>
+<a href="{LEADERBOARD}">Open official leaderboard ↗</a></aside>
 '''
 
-    html = page("WBG-2 submission", body)
+    html = page("WBG-2 research artifact", body)
     (DOCS / "wbg2.html").write_text(html, encoding="utf-8")
 
     md = [
         "# WBG-2 — executive summary",
         "",
-        f"**Download:** `docs/downloads/{tif}` (or `{zipn}`). **Submit:** {'YES' if ok else 'NO'}.",
+        f"**Download for research:** `docs/downloads/{tif}` (or `{zipn}`). **Submit:** NO.",
         "",
-        f"- Estimated score: **{est:.4f}** (MODEL-ESTIMATE, 95% {lo:.4f}–{hi:.4f}, R² {calib['r2']:.3f}, n={calib['n_observations']}).",
+        "- Comparable HOLDOUT-DTI: **unavailable**. Validated leaderboard score estimate: **unavailable**.",
+        "- Former 0.2824 exploratory regression output: withdrawn; not a score and not for slot selection.",
         "- Organizer-confirmed score: **none**.",
         f"- Unique vs the nine focus sites: **YES** — max {nine['max_enrichment_vs_chance']:.2f}× chance overlap, max |ρ| {nine['max_abs_spearman']:.3f}, {nine['n_audited']}/9 sites audited.",
         f"- Format: single-band float32, EPSG:32611, 3730×3292, values in [0,1], no NaN, {v['positive_pixels']:,} positive pixels.",
@@ -259,29 +244,29 @@ def build():
         "",
         "## What to download",
         "",
-        "| Site | File | Reported score | Overlap with WBG-2 | Unique? |",
+        "| Site | File | OWNER-REPORTED historical value | Overlap with WBG-2 | Unique? |",
         "|---|---|---|---|---|",
-        f"| **WBG-2 (this)** | `{tif}` | **{est:.4f}** (estimate) | reference | — |",
+        f"| **WBG-2 research artifact** | `{tif}` | unavailable | reference | limited audit only; DO NOT SUBMIT |",
     ]
     for r in sorted(nine["rows"], key=lambda r: -r["organizer_reported_score"]):
         if r.get("status") != "audited":
-            md.append(f"| {r['site']} | not audited | {r['organizer_reported_score']:.4f} | unknown | unverified |")
+            md.append(f"| {r['site']} | not audited | {r['organizer_reported_score']:.4f} (OWNER-REPORTED) | unknown | unverified |")
         else:
             md.append(
-                f"| {r['site']} | `{r['artifact']}` | {r['organizer_reported_score']:.4f} | "
+                f"| {r['site']} | `{r['artifact']}` | {r['organizer_reported_score']:.4f} (OWNER-REPORTED) | "
                 f"{r['enrichment_vs_chance']:.2f}× chance | Unique |"
             )
     md += [
         "",
-        "## Why 0.2778 won",
+        "## Why GEMSDOE32 is the highest supplied owner-reported result",
         "",
-        "All nine artifacts are binary dot fields (only 0.0 and 1.0). Their reported score is perfectly rank-ordered by how far their dots sit from the mapped catalogue: 0.190→0.2477, 0.187→0.2600, 0.136→0.2632, 0.109→0.2708, 0.050→0.2750, 0.049→0.2778. The GEMSDOE32 winner is documented in its own audit as the 0.2708 base with every dot within 200 m of the catalogue deleted. The gain came from deletion, not detection.",
+        "Raster forensics show the B2 field is a strict deletion-only subset of D2.8: 6,436 dots removed, none added, with every removed pixel within 200 m of the mapped catalogue. This supports a precision-cleanup hypothesis. It does not prove the deleted dots were false positives or that this deletion caused the reported score, because hidden labels and an artifact-linked submission receipt are unavailable. The reported 0.2778 is OWNER-REPORTED, not ORGANIZER-CONFIRMED.",
         "",
         "## Levers, measured",
         "",
-        "1. Exclude the catalogue — proven, used by WBG-2 at 400 m.",
-        "2. Continuous traces — only with the true strike (0.936) vs scattered (0.140) vs guessed strike (0.090). WBG-2 scatters.",
-        "3. Smaller budget at fixed hits — monotone gain (0.132→0.221 from 20k→2.5k pixels), but confounded with lever 1 across the nine sites (r=0.75).",
+        "1. Catalogue exclusion — used by WBG-2 as a placement rule, not proven to improve hidden-fault detection.",
+        "2. Continuous-trace and fixed-budget comparisons remain exploratory; they do not authorize a submission without a prospective holdout.",
+        "3. Dot-budget effects are confounded with catalogue proximity in these related artifacts; do not treat the historical association as a causal score law.",
         "",
         "## Negative results",
         "",
@@ -292,7 +277,7 @@ def build():
         "",
         "- All nine reported scores are third-party values with no receipt.",
         "- GEMSDOE25 and GEMSDOE30 share an identical positive-pixel set.",
-        "- Public leaderboard observed 2026-10-27 at 0.4544 (rank 1), superseding 0.4437/0.4413.",
+        "- Leaderboard current value is unresolved: a prior dated repository observation is 0.4544; the current user brief reports 0.3195. Neither is refreshed by this build.",
         "- External geophysical layers are peer re-distributions, not primary-download bytes; not used by WBG-2.",
         "",
     ]
@@ -310,7 +295,7 @@ def build():
         ),
         encoding="utf-8",
     )
-    print(f"wrote docs/wbg2.html, docs/wbg2-executive-summary.md, docs/data/wbg2.json ({est:.4f})")
+    print("wrote docs/wbg2.html, docs/wbg2-executive-summary.md, docs/data/wbg2.json (research-only; DO NOT SUBMIT; score estimate unavailable)")
     return 0
 
 

@@ -16,31 +16,24 @@ def main():
     standing = (ROOT / "docs/standing-prompt.md").read_text()
     w2 = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
     w2tif = Path(w2["artifacts"]["tif"]).name
-    w2est = w2["score_estimate"]["value"]
-    w2lo, w2hi = w2["score_estimate"]["ci95"]
-    w2nine = json.loads((ROOT / "evidence/wbg2/nine_site_uniqueness.json").read_text())
 
     header = f'''# WBG GEMS — evidence-first fault mapping
 
-## SUBMIT THIS FILE: [{w2tif}](docs/downloads/{w2tif})
+## RESEARCH TIFF — DOWNLOAD FOR AUDIT; DO NOT SUBMIT
 
-**[Executive summary + one-click download](docs/wbg2.html)** · [ZIP](docs/downloads/{w2tif.replace('.tif', '.zip')}) ·
-[markdown summary](docs/wbg2-executive-summary.md) · [run card](evidence/wbg2/run_card.json) ·
-[live site](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/wbg2.html)
+**[WBG-2 evidence and decision](docs/wbg2.html)** · [current repository review](docs/session-review-20261027.md) · [research TIFF](docs/downloads/{w2tif}) · [one-TIFF ZIP](docs/downloads/{w2tif.replace('.tif', '.zip')}) · [run card](evidence/wbg2/run_card.json)
 
 | | |
 |---|---|
-| File to submit | `docs/downloads/{w2tif}` (+ identical one-member `.zip`) |
-| Estimated score | **{w2est:.4f}** — MODEL-ESTIMATE, 95% interval {w2lo:.4f}–{w2hi:.4f}, R² {w2["score_estimate"]["r2"]:.3f}, n=9. **Not organizer-confirmed.** |
-| Unique vs GEMSDOE24/25/27/28/30/31/32/33/36 | **YES** — {w2nine["n_audited"]}/9 audited; max {w2nine["max_enrichment_vs_chance"]:.2f}× chance overlap, max \|ρ\| {w2nine["max_abs_spearman"]:.3f} |
+| Artifact | `docs/downloads/{w2tif}` (research only) |
+| Comparable HOLDOUT-DTI | **Unavailable**; no efficacy claim for this artifact |
+| Leaderboard score estimate | **Unavailable**. The former exploratory regression output is withdrawn as a score estimate. |
+| Uniqueness vs GEMSDOE24/25/27/28/30/31/32/33/36 | nine-site audit recorded; exact uniqueness is not submission eligibility |
 | Format | single-band float32, EPSG:32611, 3730×3292, values in [0,1], no NaN anywhere (zeros mode) |
 | sha256 | `{w2["raster_sha256"]}` |
 | Slots used | 0 |
 
-> **Honest reading.** WBG-2 is unique and format-valid, so it is safe to upload. Its estimate is only
-> **{w2est - 0.2778:+.4f}** above the best focus-site artifact (0.2778), which is *within model error*:
-> it ties that artifact rather than beating it. The route to the 0.39–0.45 leaderboard band is the
-> login-gated official `training_features.tif`; see [the executive summary](docs/wbg2.html).
+> **Decision: DO NOT SUBMIT.** No comparable hide-and-recover HOLDOUT-DTI win over the current best and no separate authorized selector record are present. The old 0.2824 MODEL-ESTIMATE was fitted to unverified third-party reports and is not an organizer score or valid slot-selection estimate.
 
 ## Older file — DOWNLOAD: YES, for research. SUBMIT: **NO**.
 
@@ -95,9 +88,10 @@ credit and avoiding low-marginal-credit predictions are plausible reasons for th
 ordering, not a causal proof from unavailable hidden labels. A 200 m exclusion is **not** an
 organizer rule. No historical file should be copied into a new "unique" entry.
 
-The direct **official public-leaderboard observation on 2026-10-26 was 0.4437**, not the prompt's
-older targets. That is **not** an organizer result for any project TIFF. A higher project score
-was not obtained or credibly projected in this session.
+**Leaderboard status is unresolved.** The repository retains a dated 0.4437 public-page observation
+(2026-10-26) and another dated capture of 0.4544 (2026-10-27); the latest user brief reports
+0.3195. The current value was not freshly verified. None of these observations is an organizer
+result for a project TIFF. No higher project score was obtained or credibly projected.
 
 ## Parallel work preserved during integration
 

@@ -1,18 +1,18 @@
 # Starting point for every session
 
-0. **Current submittable artifact (2026-10-27): `docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif`.**
-   Unique against all nine focus sites (max 1.18x chance overlap, max |rho| 0.009), format-valid,
-   zeros-mode, sha256 `f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3`.
-   Estimated score **0.2824** (MODEL-ESTIMATE; 95% 0.2795-0.2853) - **not** organizer-confirmed and
-   only +0.0046 over the best focus-site artifact, i.e. a tie within model error. Read
-   `docs/wbg2.html` and `evidence/wbg2/run_card.json` first. The WBG-C1/TIP1/MVGZ/WBG-H1 artifacts
-   remain NEGATIVE; nothing else here is cleared to upload.
+0. **No artifact in this repository is currently cleared to submit.** WBG-2
+   (`docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif`) is downloadable for research only.
+   It is format-valid and has a recorded nine-focus-site uniqueness audit, but it has no comparable
+   HOLDOUT-DTI validation proving improvement over a same-instrument current best and no separately
+   authorized selector record. Its former 0.2824 regression output is withdrawn as a score estimate:
+   it was fitted to unverified owner-reported values. Read `docs/wbg2.html` and
+   `evidence/wbg2/run_card.json` first. Other artifacts remain negative; none is cleared to upload.
 
 1. Read `README.md` **including the archived standing prompt**, then the 2026-10-27 follow-up at
    `research/03_followup_review_20261027.md`, `evidence/portfolio_review_20261027.json`,
    `docs/review-20261027.md`, `evidence/release_review_20261027.json`, `registry/run_card.json`,
    `registry/irregularities.json`, `registry/experiment_ledger.json` and `registry/preregistration.json`.
-   The prompt is intent, not evidence. **Only the WBG-2 file in item 0 is cleared to upload.**
+   The prompt is intent, not evidence. **No artifact is cleared to upload.**
    WBG-C1, TIP1, MVGZ and WBG-H1 remain **NEGATIVE / DO NOT SUBMIT**. The 2026-10-27 follow-up added
    zero experiments.
 2. The original checkout contained only a title. Do not invent prior local training, pending tasks,

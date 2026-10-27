@@ -83,6 +83,31 @@ def test_wbg2_negative_decision_and_download_are_prominent():
     assert "future-hypotheses-20261027.md" in (DOCS / "wbg2.html").read_text()
 
 
+def test_nine_site_table_reports_estimate_and_measured_uniqueness_scope():
+    site = module("build_site")
+    audit = json.loads((DOCS / "data/nine-site-audit.json").read_text())
+    html = site.comparison_table(audit)
+    expected_sites = {
+        "GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
+        "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36",
+    }
+    assert {row["site"] for row in audit["rows"]} == expected_sites
+    assert "Estimated leaderboard score" in html
+    assert "Not inferred from a proxy" in html
+    assert "other eight listed site files only" in html
+    for row in audit["rows"]:
+        pct = f"{row['maximum_forward_3px_overlap_vs_other_focus_champions']:.2%}"
+        assert pct in html
+        assert 'NO · fails 70% gate' in html
+    published = (DOCS / "executive-summary.html").read_text()
+    assert "Unique new submission?" in published
+    assert "Maximum forward 3 px overlap with another focus-site champion" in published
+    assert "0.2778" in published and "USER-REPORTED" in published
+    markdown = (DOCS / "executive-summary.md").read_text()
+    assert "maximum forward 3 px overlap" in markdown
+    assert "Unavailable for a new file" in markdown
+
+
 @pytest.mark.parametrize("file", ["wbg2-executive-summary.md", "research/future-hypotheses-20261027.md"])
 def test_current_research_markdown_local_links_resolve(file):
     path = DOCS / file

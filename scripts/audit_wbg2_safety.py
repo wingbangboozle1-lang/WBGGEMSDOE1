@@ -13,9 +13,12 @@ import argparse
 from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import json
+import os
 from pathlib import Path
-import subprocess
+import shutil
 import sys
+from urllib.parse import quote, urlsplit
+import urllib.request
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -37,6 +40,19 @@ CACHE = ROOT / '.cache/registry'
 OUT = ROOT / 'evidence/wbg2/safety_audit_20261027.json'
 
 
+class PinnedGitHubRedirect(urllib.request.HTTPRedirectHandler):
+    """Never forward an API token to a redirected host."""
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        target = urlsplit(newurl)
+        if target.scheme != 'https' or target.hostname != 'api.github.com':
+            raise ValueError('refusing redirect away from the pinned GitHub API host')
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+def open_pinned_github(request, timeout):
+    return urllib.request.build_opener(PinnedGitHubRedirect()).open(request, timeout=timeout)
+
+
 def digest(p: Path) -> str:
     with p.open('rb') as f:
         return hashlib.file_digest(f, 'sha256').hexdigest()
@@ -52,10 +68,17 @@ def fetch(repo: str, ref: str, remote: str, expected: str, target: Path) -> Path
     target.parent.mkdir(parents=True, exist_ok=True)
     temporary = target.with_suffix('.partial')
     try:
-        with temporary.open('wb') as out:
-            subprocess.run(['gh', 'api', f'repos/{repo}/contents/{remote}?ref={ref}',
-                            '-H', 'Accept: application/vnd.github.raw+json'],
-                           stdout=out, check=True, timeout=180)
+        url = f'https://api.github.com/repos/{repo}/contents/{quote(remote, safe="/")}?ref={ref}'
+        headers = {'Accept': 'application/vnd.github.raw+json',
+                   'User-Agent': 'WBGGEMSDOE1-hash-pinned-audit/1.0'}
+        token = os.environ.get('GH_TOKEN') or os.environ.get('GITHUB_TOKEN')
+        if token:
+            headers['Authorization'] = 'Bearer ' + token
+        request = urllib.request.Request(url, headers=headers)
+        # Stream bytes directly: newer gh versions can transcode binary output
+        # and fail with "transform: short source buffer" on valid TIFFs.
+        with open_pinned_github(request, timeout=180) as response, temporary.open('wb') as out:
+            shutil.copyfileobj(response, out)
         if digest(temporary) != expected:
             raise ValueError(f'pin mismatch for {repo}/{remote}')
         temporary.replace(target)
@@ -193,6 +216,6 @@ def main():
 if __name__ == '__main__':
     try:
         raise SystemExit(main())
-    except (OSError, ValueError, subprocess.SubprocessError, zipfile.BadZipFile) as exc:
+    except (OSError, ValueError, zipfile.BadZipFile) as exc:
         print(json.dumps({'error': str(exc), 'ok_to_submit': False}), file=sys.stderr)
         raise SystemExit(1)

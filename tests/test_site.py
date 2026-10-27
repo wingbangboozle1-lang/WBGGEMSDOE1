@@ -251,3 +251,45 @@ def test_feed_parser_handles_split_public_header_and_probe_reports_only_structur
     assert shape["title"] == "Public leaderboard" and shape["table_count"] == 1
     assert shape["first_headers"] == [["Rank", "Participant", "Best public DW-Tversky"]]
     assert "Do not include body text" not in json.dumps(shape)
+
+
+def test_feed_fetches_the_official_htmx_partial_and_labels_the_observation(tmp_path, monkeypatch):
+    feed = module("refresh_feed")
+    (tmp_path / "registry").mkdir()
+    (tmp_path / "docs/data").mkdir(parents=True)
+    for file in ("sources.json", "repository_snapshots.json"):
+        (tmp_path / "registry" / file).write_bytes((ROOT / "registry" / file).read_bytes())
+    calls = []
+    fragment = '''<table><tr><th>Rank</th><th>Participant</th><th>Best public DW-Tversky</th></tr>
+    <tr><td>#1</td><td>Example</td><td>0.4544</td></tr></table>'''
+
+    def fake_fetch(url, *, github=False):
+        calls.append(url)
+        if url == feed.LEADERBOARD:
+            return '<div id="leaderboard_table" hx-get="/competitions/306/competition-doe-gems/leaderboard_partial/"></div>'
+        if url == feed.LEADERBOARD_PARTIAL:
+            return fragment
+        if github:
+            return json.dumps({"sha": "a" * 40})
+        raise AssertionError(url)
+
+    monkeypatch.setattr(feed, "ROOT", tmp_path)
+    monkeypatch.setattr(feed, "fetch", fake_fetch)
+    monkeypatch.setattr("sys.argv", ["refresh_feed.py"])
+    feed.main()
+    result = json.loads((tmp_path / "docs/data/feed.json").read_text())
+    assert calls[:2] == [feed.LEADERBOARD, feed.LEADERBOARD_PARTIAL]
+    assert result["leaderboard_status"] == "network_verified"
+    assert result["leaderboard"]["public_dw_tversky"] == .4544
+    assert result["leaderboard"]["source"] == feed.LEADERBOARD
+    assert result["leaderboard"]["source_fetch_url"] == feed.LEADERBOARD_PARTIAL
+    assert result["leaderboard"]["not_a_project_submission_receipt"] is True
+
+
+def test_feed_refuses_cross_origin_or_insecure_redirects():
+    feed = module("refresh_feed")
+    request = feed.urllib.request.Request("https://api.github.com/repos/example/project")
+    handler = feed.SameOriginRedirect()
+    for target in ("https://elsewhere.example/path", "http://api.github.com/path"):
+        with pytest.raises(ValueError, match="refusing cross-host"):
+            handler.redirect_request(request, None, 302, "Found", {}, target)

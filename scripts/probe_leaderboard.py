@@ -14,7 +14,7 @@ import sys
 from urllib.parse import urlsplit
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from refresh_feed import LEADERBOARD, Tables, fetch, parse_leaderboard  # noqa: E402
+from refresh_feed import LEADERBOARD, LEADERBOARD_PARTIAL, Tables, fetch, parse_leaderboard  # noqa: E402
 
 
 class Title(HTMLParser):
@@ -65,9 +65,18 @@ def main():
         html = fetch(LEADERBOARD)
         try:
             row = parse_leaderboard(html)
-            message = f"strict parse OK; public rank 1 = {row['public_dw_tversky']} (not a file receipt)"
-        except ValueError as error:
-            message = f"strict parse unavailable: {error}; shape=" + json.dumps(public_shape(html), ensure_ascii=True)
+            source = "main page"
+        except ValueError:
+            partial = fetch(LEADERBOARD_PARTIAL)
+            try:
+                row = parse_leaderboard(partial)
+                source = "official HTMX partial"
+            except ValueError as error:
+                message = f"strict parse unavailable: {error}; main=" + json.dumps(public_shape(html), ensure_ascii=True)
+                message += "; partial=" + json.dumps(public_shape(partial), ensure_ascii=True)
+                row = None
+        if row is not None:
+            message = f"strict parse OK from {source}; public rank 1 = {row['public_dw_tversky']} (not a file receipt)"
     except Exception as error:
         message = f"public source unavailable: {type(error).__name__}: {str(error)[:160]}"
     # Escape workflow-command metacharacters and keep the annotation bounded.

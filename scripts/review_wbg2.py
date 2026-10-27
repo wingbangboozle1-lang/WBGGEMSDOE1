@@ -31,6 +31,7 @@ import rasterio
 from scipy import ndimage
 from gems57 import uniqueness
 from validate_submission import check_tiff
+from audit_wbg2_safety import open_pinned_github
 
 TIF = ROOT / "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif"
 ZIP = TIF.with_suffix(".zip")
@@ -63,7 +64,7 @@ def restore_witness() -> None:
     token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
     if token:
         headers["Authorization"] = "Bearer " + token
-    with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=45) as response:
+    with open_pinned_github(urllib.request.Request(url, headers=headers), timeout=45) as response:
         payload = json.load(response)
     if payload.get("sha") != LATTICE_BLOB or payload.get("encoding") != "base64":
         raise ValueError("unexpected GitHub lattice blob response")

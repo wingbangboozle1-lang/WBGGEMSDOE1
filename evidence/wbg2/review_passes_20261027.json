@@ -32,9 +32,10 @@
         "Embedded the full local TIFF and ZIP validator output in the negative run card and added regression tests for range, exact-byte identity, retired generator and inconsistent evidence.",
         "Reverified inherited frozen release receipts without retraining and confirmed scientific readiness remains blocked.",
         "Integrated three concurrent main-branch reviews without rerunning experiments; preserved their original raw card and labeled older private-distance, buffer and data-availability interpretations as superseded.",
-        "A later parallel review independently confirmed the same lattice STOP and Manhattan-buffer correction; its separate two-witness card, three-pass record, sources and historical code were preserved. The legacy private validator was disabled and the metric delegates to the pinned shared implementation."
+        "A later parallel review independently confirmed the same lattice STOP and Manhattan-buffer correction; its separate two-witness card, three-pass record, sources and historical code were preserved. The legacy private validator was disabled and the metric delegates to the pinned shared implementation.",
+        "CI diagnostics found GitHub CLI binary transcoding and an HTMX-loaded leaderboard table. Pinned source downloads now stream exact raw bytes, and the public feed strictly parses the official same-origin table fragment; remote recheck remains required."
       ],
-      "verification": "163 pytest tests and Ruff E9/F passed after integrating concurrent reviews and retiring the private validator; deep shared overlap and independent two-witness audit match their receipts; ten desktop/mobile pages and actual TIFF downloads passed.",
+      "verification": "166 pytest tests and Ruff E9/F passed after integrating concurrent reviews and retiring the private validator; deep shared overlap and independent two-witness audit match their receipts; ten desktop/mobile pages and actual TIFF downloads passed.",
       "limits": "No holdout test for the prospective hypotheses, no proven unique winner, no account-specific allowance, no organizer receipt, and no competition upload. Remote CI, merge and Pages deployment require separate GitHub receipts."
     }
   ],

@@ -319,3 +319,36 @@ def test_parallel_audit_cannot_overwrite_canonical_card():
     assert parallel["raster_sha256"] == canonical["raster_sha256"]
     assert parallel["registry"]["rows"][0]["forward_overlap_within_3px"] == canonical["registry"]["existing_final_dots"]["my_dots_within_3px_of_theirs"]
     assert parallel["ok_to_submit"] is False and canonical["decision"]["ok_to_submit"] is False
+
+
+def test_pinned_reference_fetch_preserves_binary_bytes_and_fails_on_hash_drift(tmp_path, monkeypatch):
+    import hashlib
+    import importlib.util
+    import io
+    import sys
+    sys.path.insert(0, str(ROOT / "scripts"))
+    spec = importlib.util.spec_from_file_location("audit_wbg2_safety", ROOT / "scripts/audit_wbg2_safety.py")
+    audit = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(audit)
+    data = b"II*\x00\xff\xfe\x80\x00binary-tiff-payload"
+    calls = []
+
+    def fake_open(request, timeout):
+        calls.append(request)
+        assert request.full_url.startswith("https://api.github.com/repos/buffedlizard55-lab/GEMSDOE24/")
+        assert request.get_header("Accept") == "application/vnd.github.raw+json"
+        return io.BytesIO(data)
+
+    monkeypatch.setattr(audit, "open_pinned_github", fake_open)
+    target = tmp_path / "registry.tif"
+    expected = hashlib.sha256(data).hexdigest()
+    audit.fetch("buffedlizard55-lab/GEMSDOE24", "a" * 40, "folder/a raster.tif", expected, target)
+    assert target.read_bytes() == data and len(calls) == 1
+    assert "%20" in calls[0].full_url
+    target.unlink()
+    with pytest.raises(ValueError, match="pin mismatch"):
+        audit.fetch("buffedlizard55-lab/GEMSDOE24", "a" * 40, "folder/file.tif", "0" * 64, target)
+    assert not target.exists() and not target.with_suffix(".partial").exists()
+    request = audit.urllib.request.Request("https://api.github.com/repos/test")
+    with pytest.raises(ValueError, match="refusing redirect"):
+        audit.PinnedGitHubRedirect().redirect_request(request, None, 302, "Found", {}, "https://example.org/elsewhere")

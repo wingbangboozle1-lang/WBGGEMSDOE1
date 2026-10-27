@@ -15,12 +15,14 @@ from pathlib import Path
 import re
 import sys
 import urllib.request
+from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from wbggems.audit import dump_json, utc_now
 
 LEADERBOARD = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
+LEADERBOARD_PARTIAL = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard_partial/"
 
 
 class Tables(HTMLParser):
@@ -77,15 +79,26 @@ def parse_leaderboard(html):
     raise ValueError("no recognizable public Tversky leaderboard table with rank one")
 
 
+class SameOriginRedirect(urllib.request.HTTPRedirectHandler):
+    """Do not forward GitHub authorization across hosts or HTTPS downgrades."""
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        original, target = urlsplit(req.full_url), urlsplit(newurl)
+        if target.scheme != "https" or target.hostname != original.hostname:
+            raise ValueError("refusing cross-host or non-HTTPS redirect")
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
 def fetch(url, *, github=False):
     headers = {"User-Agent": "WBGGEMSDOE1-provenance-feed/1.0"}
     if github and os.environ.get("GH_TOKEN", os.environ.get("GITHUB_TOKEN")):
         headers["Authorization"] = "Bearer " + os.environ.get("GH_TOKEN", os.environ.get("GITHUB_TOKEN"))
     request = urllib.request.Request(url, headers=headers)
-    with urllib.request.urlopen(request, timeout=25) as response:
+    with urllib.request.build_opener(SameOriginRedirect()).open(request, timeout=25) as response:
         final = response.geturl()
         if "login" in final:
             raise ValueError("redirected to login; no authenticated evidence available")
+        if not github and urlsplit(final).hostname != "www.drivendata.org":
+            raise ValueError("public leaderboard redirected away from the official host")
         return response.read().decode("utf-8")
 
 
@@ -107,8 +120,19 @@ def main():
     if not args.offline:
         if not args.github_only:
             try:
-                last = {**parse_leaderboard(fetch(LEADERBOARD)), "observed_utc": utc_now(),
-                        "observation_method": "strict official HTML leaderboard table parse"}
+                # The official page loads its public table via HTMX. First
+                # accept a server-rendered table if present, otherwise fetch
+                # only the pinned same-origin public partial, then apply the
+                # same strict rank-one and metric-cell parser.
+                page_html = fetch(LEADERBOARD)
+                try:
+                    row = parse_leaderboard(page_html)
+                    source_fetch_url = LEADERBOARD
+                except ValueError:
+                    row = parse_leaderboard(fetch(LEADERBOARD_PARTIAL))
+                    source_fetch_url = LEADERBOARD_PARTIAL
+                last = {**row, "observed_utc": utc_now(), "source_fetch_url": source_fetch_url,
+                        "observation_method": "strict official public leaderboard table parse"}
                 leaderboard_status = "network_verified"
             except Exception as e:
                 errors.append({"source": LEADERBOARD, "error": str(e)[:220]})

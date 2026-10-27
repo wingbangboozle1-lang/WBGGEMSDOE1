@@ -47,10 +47,10 @@ def test_dated_official_observation_is_not_an_organizer_receipt():
 def test_inherited_subsite_cannot_recommend_negative_file_or_owner_claims_as_receipts():
     for page in ("index.html", "executive-summary.html"):
         text = (ROOT / "docs/wbg-h1-dpgf1" / page).read_text()
-        assert "DOWNLOAD: YES, for research" in text
+        assert "DOWNLOAD: YES (research only)" in text
         assert "SUBMIT: NO" in text and "DO NOT SUBMIT" in text
-        assert "OWNER-REPORTED / UNVERIFIED" in text
-        assert "99.80%" in text
+        assert "USER-REPORTED / NOT ORGANIZER-CONFIRMED" in text
+        assert "99.8035%" in text
         assert "CONDITIONAL BACKUP" not in text
         assert "ORGANIZER-CONFIRMED</code>" not in text
         assert "Open DrivenData GEMS Submission Portal" not in text
@@ -78,6 +78,39 @@ def test_review_decision_card_is_not_a_second_scientific_run():
     assert card["experiment_budget"]["weekly_slots_used_this_review"] == 0
     assert len(old["proposed_name_never_uploaded"]) <= 140
     assert len(old["proposed_note_never_uploaded"]) <= 140
+
+
+@pytest.mark.parametrize("tamper", ["verdict", "overlap", "tiff", "zip"])
+def test_inherited_site_publication_guard_refuses_changed_science_or_bytes(tmp_path, monkeypatch, tamper):
+    builder = module("wbg_h1_build_pages")
+    (tmp_path / "docs/downloads").mkdir(parents=True)
+    (tmp_path / "evidence/wbg_h1").mkdir(parents=True)
+    tif = tmp_path / "docs/downloads/research.tif"
+    tif.write_bytes(b"synthetic bytes; not an actual geospatial raster")
+    archive = tif.with_suffix(".zip")
+    with zipfile.ZipFile(archive, "w") as bundle:
+        bundle.writestr(tif.name, tif.read_bytes())
+    card = {"verdict": "negative", "registry_correlation_and_overlap": {
+        "literal_oneway_vs_r13_space_filling_lattice_ir_wbg1_01": .998035},
+        "raster_sha256": {"tif_file": "docs/downloads/research.tif", "zip_file": "docs/downloads/research.zip",
+            "tif_sha256": hashlib.sha256(tif.read_bytes()).hexdigest(),
+            "zip_sha256": hashlib.sha256(archive.read_bytes()).hexdigest()}}
+    (tmp_path / "evidence/wbg_h1/run_card.json").write_text(json.dumps(card))
+    if tamper == "verdict":
+        card["verdict"] = "promote"
+    elif tamper == "overlap":
+        card["registry_correlation_and_overlap"]["literal_oneway_vs_r13_space_filling_lattice_ir_wbg1_01"] = .3
+    elif tamper == "tiff":
+        tif.write_bytes(b"modified pixels after receipt")
+    elif tamper == "zip":
+        with zipfile.ZipFile(archive, "w") as bundle:
+            bundle.writestr("different.tif", tif.read_bytes())
+        card["raster_sha256"]["zip_sha256"] = hashlib.sha256(archive.read_bytes()).hexdigest()
+    (tmp_path / "evidence/wbg_h1/run_card.json").write_text(json.dumps(card))
+    monkeypatch.setattr(builder, "ROOT", tmp_path)
+    with pytest.raises(ValueError):
+        builder.main()
+    assert not (tmp_path / "docs/wbg-h1-dpgf1/index.html").exists()
 
 
 def test_inherited_subsite_internal_links_really_exist():

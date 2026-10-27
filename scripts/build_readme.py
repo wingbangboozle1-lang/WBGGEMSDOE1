@@ -50,6 +50,17 @@ def main():
 - Name: `{card['submission_name']}`.
 - Note (≤140 characters): `{card['submission_note']}`.
 
+## 2026-10-27 follow-up: all download decisions
+
+**[Which file is safe to submit? None currently — see all four exact-file checks](docs/release-review.html)** ·
+[Machine-readable report](evidence/release_review_20261027.json) · [Review and next steps](docs/review-20261027.md).
+All four frozen research TIFFs pass local format revalidation. None is approved for submission.
+No new experiment or TIFF was generated in either review: the existing STOP remains binding.
+The earlier release review could not fetch non-GitHub pages through its sandbox; a separate later
+27 October direct page-reader check retrieved the official public leaderboard and official source
+pages, recorded below. Neither review authenticated organizer-origin raster downloads or an
+artifact-linked score. Public rank one is a dated observation, **not a live guarantee**.
+
 ## Review outcome and historical learning
 
 The starting checkout at `5d2236b` contained only `README.md` with a one-line title: no existing
@@ -85,13 +96,13 @@ Different evaluator/split/representation results must not be pooled or ranked as
 - [Original main README](research/inherited-main-README-b9a2d53.md) (historical commands/paths)
 - [Byte-preservation/integration receipt](evidence/parallel_main_integration.json)
 - [Frozen TIP1 card](evidence/tip1_run_card_20261026.json) and [MVGZ card](evidence/run_card.json)
-- **[Parallel WBG-H1 (DPGF-1 / EXP-3): read-only, negative research notes](docs/wbg-h1-dpgf1/index.html)** ·
-  [Safety-corrected submission guide](docs/wbg-h1-dpgf1/executive-summary.html) ·
+- **[WBG-H1 corrected negative-result summary](docs/wbg-h1-dpgf1/index.html)** ·
+  [Safety-corrected guidance](docs/wbg-h1-dpgf1/executive-summary.html) ·
   [Research-only all-finite GeoTIFF (`{Path(h1_tif).name}`)]({h1_tif}) (research identifier `{wbg_h1_rc['submission_name']}`; `SHA-256: {wbg_h1_rc['raster_sha256']['tif_sha256']}`) ·
   [ZIP archive]({h1_zip}) · [Frozen WBG-H1 run card](evidence/wbg_h1/run_card.json).
-  - Inherited EXP-3 records **HOLDOUT-DTI {wbg_h1_rc['holdout_dti']['dti']:.6f}**, 95% CI [{wbg_h1_rc['holdout_dti']['ci95'][0]:.6f}, {wbg_h1_rc['holdout_dti']['ci95'][1]:.6f}], evaluator `{wbg_h1_rc['holdout_dti']['evaluator_version']}`, {wbg_h1_rc['holdout_dti']['n_withheld_positives']:,} withheld positives. Its matched B0 control has HOLDOUT-DTI {wbg_h1_rc['holdout_dti']['baseline_b0_dti']:.6f} on that instrument and count, but this is not a leaderboard score.
-  - Format validation passes; **literal final-dot overlap 99.80%** with a registered calibration lattice (limit 70%). Sparse-only overlap is not a protocol clearance. Frozen verdict **{wbg_h1_rc['verdict']} / DO NOT SUBMIT**; no weekly slot is authorized.
-  - The previous generated WBG-H1 subsite contained unqualified “ORGANIZER-CONFIRMED” owner claims, unsafe backup/upload advice, and a speculative inversion of hidden labels. The current subsite **replaces that advice without changing the archived scientific card/TIFF**. Such inversions are not verified private truth; no exact-artifact organizer receipts are available.
+  - Inherited EXP-3 records **HOLDOUT-DTI {wbg_h1_rc['holdout_dti']['dti']:.6f}**, 95% CI [{wbg_h1_rc['holdout_dti']['ci95'][0]:.6f}, {wbg_h1_rc['holdout_dti']['ci95'][1]:.6f}], evaluator `{wbg_h1_rc['holdout_dti']['evaluator_version']}`, {wbg_h1_rc['holdout_dti']['n_withheld_positives']:,} withheld positives. Its matched B0 control has HOLDOUT-DTI {wbg_h1_rc['holdout_dti']['baseline_b0_dti']:.6f} on that instrument and count, not a leaderboard score; it was not rerun on 27 October.
+  - Format validation passes; **literal final-dot overlap {wbg_h1_rc['registry_correlation_and_overlap']['literal_oneway_vs_r13_space_filling_lattice_ir_wbg1_01']*100:.4f}% >70%** with the registered calibration lattice. Sparse-only and symmetric checks do not clear this gate. Frozen verdict **{wbg_h1_rc['verdict']} / DO NOT SUBMIT**; no weekly slot was authorized.
+  - The previous generated WBG-H1 subsite contained unqualified “ORGANIZER-CONFIRMED” owner claims, unsafe backup/upload advice, and speculative inversion of hidden labels. Its published correction does **not** rewrite the frozen card or TIFF. The implied private-count/recall inversion equates different metric sums and is mathematically unsupported without hidden geometry. No file-linked organizer receipt is available; see the [dated correction](docs/review-20261027.md).
 - Older two-argument `validate_submission.py candidate.tif reference.tif` callers retain their
   supplied-reference format API; this is compatibility only and never confers slot approval.
   WBG-C1 still uses the unchanged, pinned `gems57` all-finite validator/writer.
@@ -141,6 +152,10 @@ bash scripts/download_competition_data.sh
 .venv/bin/python scripts/validate_submission.py docs/downloads/{tif}
 # Deliberately exits 2 for this locally valid but unapproved artifact:
 .venv/bin/python scripts/validate_submission.py --require-submit-ready docs/downloads/{tif}
+# Reopen and compare all four exact negative downloads with committed evidence:
+.venv/bin/python scripts/review_releases.py --check
+# Three-way input/cache/artifact report; INPUTS_READY_LANE_STOPPED is not slot approval:
+.venv/bin/python scripts/check_readiness.py
 
 # Restore frozen peer corpus only for audit, never model inputs:
 .venv/bin/python scripts/fetch_repositories.py
@@ -165,7 +180,7 @@ BASE_URL=http://127.0.0.1:8000/ npm run test:browser
 # Minimal containers without NSS/NSPR may also need BROWSER_COMPAT_LIBS=1.
 ```
 
-The browser check visits all five pages at desktop/mobile sizes, rejects body overflow and
+The browser check visits the five main, all-download decision and two corrected WBG-H1 pages at desktop/mobile sizes, rejects body overflow and
 JavaScript page errors, tests the site filter, and hashes the actual downloaded TIFF.
 Screenshots stay in ignored `.cache/browser-review/`; the JSON receipt is inspectable in
 [evidence/browser_checks.json](evidence/browser_checks.json). These are site checks, not evidence

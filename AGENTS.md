@@ -1,9 +1,10 @@
 # Starting point for every session
 
 1. Read `README.md` **including the archived standing prompt**, then `registry/run_card.json`,
-   `registry/irregularities.json`, `registry/experiment_ledger.json`, `registry/preregistration.json`,
-   and the dated `research/2026-10-27-prospective-hypotheses.md`.
-   The prompt is intent, not evidence. The current measured status is **NEGATIVE / DO NOT SUBMIT**.
+   `registry/irregularities.json`, `registry/experiment_ledger.json`, and `registry/preregistration.json`.
+   Also read `docs/review-20261027.md`, `evidence/release_review_20261027.json` and the dated
+   `research/2026-10-27-prospective-hypotheses.md`. The prompt is intent, not evidence.
+   The current status is **NEGATIVE / DO NOT SUBMIT**; neither 27 October review ran an experiment.
 2. The original checkout contained only a title. Do not invent prior local training, pending tasks,
    organizer receipts, lane assignments, scores, GPU requirements or authenticated data access.
 3. No assigned single-method paragraph was supplied. WBG-C1 is provisional research only. Its

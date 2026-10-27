@@ -1,0 +1,28 @@
+{
+  "review_date_utc": "2026-10-27",
+  "run_type": "repository/reporting/exact-file review, not a new scientific experiment",
+  "passes": [
+    {
+      "pass": 1,
+      "focus": "Read standing brief, code, frozen experiment ledger and inherited evidence",
+      "result": "Baseline 97 pytest tests passed. Confirmed missing assigned method paragraph, binding WBG-C1 STOP and lack of organizer artifact receipts. No lane restarted."
+    },
+    {
+      "pass": 2,
+      "focus": "Correct inherited publication and add consolidated automatic decisions",
+      "result": "Replaced unsupported WBG-H1 confirmation/inversion/optional-upload claims with a corrected negative-result summary. Added unchanged-shared-validator exact-file review for four TIFFs and stale identity/reference/error tests. All four local formats pass; none is approved."
+    },
+    {
+      "pass": 3,
+      "focus": "Regression, boundary, portability, publication and rendered pages",
+      "result": "110 pytest tests passed, with eight non-failing third-party pending-deprecation warnings. Ruff E9/F passed. Recorded TIP1 and WBG-H1 verifiers passed without training; primary ZIP revalidated. Browser checks passed all eight current pages at 1440px and 390px with no body overflow or page errors; downloaded primary TIFF matched its SHA-256. Archived scientific/parallel bytes remain unchanged."
+    }
+  ],
+  "new_experiments": 0,
+  "new_tiffs_generated": 0,
+  "submission_slots_used": 0,
+  "scientific_goal_fully_satisfied": false,
+  "unmet_goal": "No higher-scoring literal-unique promoted TIFF. Existing STOP cannot be overridden by a repeated request, filtered registry check or invented method assignment.",
+  "fresh_external_checks": "Nine GitHub repository heads and organizer-owned reference notebook identity verified; official non-GitHub sources not freshly fetched due outbound host restrictions.",
+  "publication_status": "Remote PR, CI, merge and Pages success must be checked from actual GitHub receipts; this local review is not a deployment claim."
+}

@@ -44,8 +44,9 @@
       "focus": "Independent exact-byte, regression and rendered-site verification",
       "actions": [
         "Reopened the exact saved WBG-C1 TIFF and ZIP with the strict validator: SHA-256 8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875, one float32 band, EPSG:32611, 3730×3292, 100 m, min 0, max 0.8809285163879395, all finite and aligned. --require-submit-ready deliberately exited 2.",
-        "Ran full pytest (105 passed; 8 third-party Rasterio/Affine PendingDeprecationWarnings), targeted Ruff (pass) and git diff --check (pass); replayed frozen TIP1/WBG-H1 verify-recorded checks and TIP1 release validation without training.",
-        "Staged only the public /docs/ bundle, checksum-checked the primary TIFF, ran headless Chromium on all five current pages at 1440px and 390px with no JavaScript errors or horizontal overflow; tested nine-to-one site filter and SHA-256 of a real browser-downloaded TIFF. Inspected rendered desktop/mobile screenshots."
+        "Ran full pytest before integration (105 passed) and again after merging concurrent main release review and adding four WBG-H1 publication-guard regressions (122 passed); 8 third-party Rasterio/Affine PendingDeprecationWarnings. Targeted Ruff, E9/F and git diff --check passed; replayed frozen TIP1/WBG-H1 verify-recorded checks and TIP1 release validation without training.",
+        "Staged only the public /docs/ bundle, checksum-checked the primary TIFF, ran headless Chromium on all eight current, release-review and WBG-H1 pages at 1440px and 390px with no JavaScript errors or horizontal overflow; tested nine-to-one site filter and SHA-256 of a real browser-downloaded TIFF. Inspected rendered desktop/mobile screenshots.",
+        "Integrated the concurrent 27 October release-review branch, retaining its four-artifact automatic decision report, official GitHub reference verification and evidence cards. Harmonized source-access timelines and strengthened WBG-H1 publication with exact TIFF/ZIP hash and negative-verdict guards; no scientific pixels or thresholds changed."
       ],
       "receipts": [
         "evidence/browser_checks.json",

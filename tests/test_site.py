@@ -40,7 +40,7 @@ def module(name):
     return result
 
 
-@pytest.mark.parametrize("name", ["index.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"])
+@pytest.mark.parametrize("name", ["index.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html", "release-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html"])
 def test_all_site_local_links_resolve_and_decision_is_unmistakable(name):
     file = DOCS / name
     html = file.read_text()
@@ -48,7 +48,10 @@ def test_all_site_local_links_resolve_and_decision_is_unmistakable(name):
     parser.feed(html)
     text = " ".join(parser.text).lower()
     assert "download: yes" in text and "submit: no" in text
-    assert "no final dots" in text and "no competition slot" in text
+    if name in {"release-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html"}:
+        assert "no competition slot" in text
+    else:
+        assert "no final dots" in text and "no competition slot" in text
     assert '<html lang="en">' in html
     assert 'name="viewport"' in html
     assert 'href="#main"' in html

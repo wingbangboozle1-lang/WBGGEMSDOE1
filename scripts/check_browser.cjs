@@ -38,12 +38,19 @@ const chromium = importedChromium.default || importedChromium;
     const context = await browser.newContext({ viewport: { width: 1440, height: 1100 }, acceptDownloads: true });
     const page = await context.newPage();
     page.on("pageerror", error => errors.push(String(error)));
-    for (const file of ["index.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"]) {
+    const pages = ["index.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html",
+      "release-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html"];
+    for (const file of pages) {
       const response = await page.goto(new URL(file, base).href, { waitUntil: "networkidle" });
       assert.equal(response.status(), 200);
       const text = await page.locator("main").innerText();
-      assert.match(text, /Download: YES, for research\. Submit: NO\./);
-      assert.match(text, /No final dots were placed/);
+      if (file === "release-review.html" || file.startsWith("wbg-h1-dpgf1/")) {
+        assert.match(text, /SUBMIT: NO/);
+        assert.match(text, /research only/);
+      } else {
+        assert.match(text, /Download: YES, for research\. Submit: NO\./);
+        assert.match(text, /No final dots were placed/);
+      }
       const overflow = await page.evaluate(() => document.body.scrollWidth > window.innerWidth);
       assert.equal(overflow, false, `desktop body overflow: ${file}`);
       checked.push({ file, desktop: "passed" });
@@ -62,7 +69,7 @@ const chromium = importedChromium.default || importedChromium;
     await page.goto(new URL("index.html", base).href, { waitUntil: "networkidle" });
     await page.screenshot({ path: path.join(artifacts, "desktop.png"), fullPage: true });
     await page.setViewportSize({ width: 390, height: 844 });
-    for (const file of ["index.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"]) {
+    for (const file of pages) {
       await page.goto(new URL(file, base).href, { waitUntil: "networkidle" });
       const overflow = await page.evaluate(() => document.body.scrollWidth > window.innerWidth);
       assert.equal(overflow, false, `mobile body overflow: ${file}`);
@@ -70,6 +77,9 @@ const chromium = importedChromium.default || importedChromium;
     }
     await page.goto(new URL("index.html", base).href, { waitUntil: "networkidle" });
     await page.screenshot({ path: path.join(artifacts, "mobile.png"), fullPage: true });
+    await page.goto(new URL("release-review.html", base).href, { waitUntil: "networkidle" });
+    assert.equal(await page.locator("tbody tr").count(), 4);
+    await page.screenshot({ path: path.join(artifacts, "release-review-mobile.png"), fullPage: true });
     assert.deepEqual(errors, []);
     const report = { generated_utc: new Date().toISOString(), browser: browser.version(), checked,
       desktop_viewport: [1440, 1100], mobile_viewport: [390, 844],

@@ -108,3 +108,10 @@ Official manual-review links (not claims of fresh access):
 
 **Maximize P(Win):** prevent unsupported uploads from consuming slots.
 **Own the Outcome:** remove false approvals rather than disguise a negative result.
+
+## Parallel-main reconciliation
+
+PR #16 landed during this review. Its independent fail-closed review is retained in
+[repo-review-20261027.md](repo-review-20261027.md). Conflicting generators were
+resolved to retain the stricter literal STOP, null forecast, shared exact-file
+validation and stopped builder. No scientific experiment or raster was rerun.

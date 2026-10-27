@@ -1,0 +1,21 @@
+{
+  "n_organizer_scored_rasters": 118,
+  "loo_mae": 0.0353,
+  "loo_rmse": 0.04473,
+  "loo_spearman_rho": 0.82417,
+  "standardized_weights": {
+    "log_mass": 0.01746,
+    "frac_active": -0.00713,
+    "mass_frac": -0.00884,
+    "is_binary": 0.01131,
+    "collar_waste_frac": -0.00915,
+    "mid_band_frac": -0.0195,
+    "far_band_frac": 0.02405,
+    "lidar_share": -0.00356,
+    "mean_slope": -0.02676,
+    "h23_scarp_3px_share": 0.06053,
+    "mass_sweet_bell": 0.00576,
+    "clean_sweet_bell": 0.00456
+  },
+  "intercept": 0.10916
+}

@@ -1,0 +1,73 @@
+{
+  "hypothesis": "WBG-H1 (DPGF-1 / EXP-3): Updip Subsurface-to-Surface Fault Dip Back-Projection (DipShift 500m/1000m) + Tectonic-vs-Fluvial Scarp Discrimination Index (TFSDI) + LiDAR-Completeness Slope-Quantile Calibrated Dual Ensemble + 300 m CELF Submodular Coverage",
+  "mechanism": "Normal faults dipping 50-65 deg into alluvial basins displace subsurface gravity/magnetic/MT basement steps 400-1,000 m basinward of the surface piedmont scarp (outside the 300 m DTI kernel). Advecting subsurface potential-field gradients updip along smooth regional elevation gradients re-aligns subsurface basement steps onto surface fault traces, while TFSDI suppresses cross-contour fluvial washes and the 51-ch LiDAR-blind specialist bridges the 24.63% 3DEP coverage gap.",
+  "mimic": "Pleistocene Lake Lahontan / Columbus paleo-shoreline beach ridges (contour-parallel benches with low cross-slope incision, mitigated by requiring updip-projected gravity/magnetic/MT corroboration) and steep non-fault volcanic/intrusive pediment contacts.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI = 0.123310 (gems-segment-pooled-v1, n=60,988 withheld positives, 95% CI [0.108921, 0.137557])",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "n_withheld_positives": 60988,
+    "dti": 0.12331,
+    "ci95": [
+      0.108921,
+      0.137557
+    ],
+    "baseline_b0_dti": 0.103855,
+    "baseline_b0_ci95": [
+      0.090213,
+      0.117398
+    ],
+    "paired_delta_vs_b0": 0.019455,
+    "paired_delta_vs_b0_ci95": [
+      0.007288,
+      0.031848
+    ],
+    "fold_wins_vs_b0": "4/4"
+  },
+  "registry_correlation_and_overlap": {
+    "pre_placement_surface_max_abs_spearman": 0.240409,
+    "pre_placement_surface_passed": true,
+    "focus9_sites_max_3px_dot_overlap": 0.644898,
+    "focus9_sites_closest_peer": "GEMSDOE30::gemsdoe30-sgmc-hedge-d10-85k-20261003-ac08b41e-zeros.tif",
+    "focus9_sites_max_abs_spearman": 0.034715,
+    "focus9_sites_passed": true,
+    "sparse_dot_submissions_le_100k_max_3px_overlap": 0.644898,
+    "sparse_dot_submissions_closest_peer": "GEMSDOE30::gemsdoe30-sgmc-hedge-d10-85k-20261003-ac08b41e-zeros.tif",
+    "sparse_dot_submissions_passed": true,
+    "all_206_competing_symmetric_3px_max_overlap": 0.560537,
+    "literal_oneway_vs_516k_continuous_slabs_ir_wbg1_03": 0.8832,
+    "literal_oneway_vs_r13_space_filling_lattice_ir_wbg1_01": 0.998035
+  },
+  "raster_sha256": {
+    "tif_file": "docs/downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif",
+    "tif_sha256": "e46e4c175c5afceac148d0475a23808c3ae8bf6e5edad8faea919ed847b0d7dd",
+    "zip_file": "docs/downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.zip",
+    "zip_sha256": "a8b337396316eb8261eb576ca613523de606c20754921ffc0952b9c3639fe9be",
+    "footprint_sha256": "85f937b995481067d5eb27c1e041132c7fae24477bd7c14fe4c273d57bb25b29"
+  },
+  "validator_output": {
+    "all_10_portal_gates_passed": true,
+    "format_valid": true,
+    "strict_whole_array_0_1_no_nan": true,
+    "nan_cells_whole_raster": 0,
+    "inf_cells_whole_raster": 0,
+    "whole_raster_range": [
+      0.0,
+      1.0
+    ],
+    "footprint_positive_dots": 37654,
+    "dead_collar_le_200m_dots": 0
+  },
+  "submission_name": "wbggems1-dpgf1-exp-3-20261026-0749b3c8195f",
+  "submission_note": "WBGGEMSDOE1 WBG-H1 (EXP-3): DipShift+TFSDI+DualLiDAR+CELF300m; HOLDOUT-DTI=0.1233 vs B0=0.1039; 37654 zero-ext dots",
+  "submission_note_length": 115,
+  "verdict": "negative",
+  "verdict_rationale": "Beats matched 31-ch tree baseline B0 across 4/4 spatial folds (+0.019455 HOLDOUT-DTI, 95% paired CI [+0.007288, +0.031848]) and passes 10/10 DrivenData [0,1] portal gates + sparse/Focus-9 uniqueness (64.49% <= 70%, |rho|=0.0347 <= 0.90), but trails portfolio analytical scarp-ridge holdout reference DPRF1 (0.163792) and live H19-5 (0.2778). Per Rule 5, marked negative for spending a live 3/week DrivenData slot standalone; unique validated GeoTIFF provided for optional testing or multi-family fusion.",
+  "lli_empirical_projection": {
+    "label": "LLI-PROJECTION (empirical Ridge on n=118 ORGANIZER-CONFIRMED rasters; LOO MAE=0.0353, LOO Spearman=0.824; NOT an organizer score)",
+    "projected_value": 0.1898,
+    "approx_interval_pm_1mae": [
+      0.1545,
+      0.2251
+    ]
+  }
+}

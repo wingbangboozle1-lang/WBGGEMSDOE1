@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "locked_utc": "2026-10-26T22:05:00Z",
+  "markdown_path": "knowledge/01_preregistration_wbg_hypotheses_2026-10-26.md",
+  "markdown_sha256": "7d53a790122433e86f926c9371162433a9a883289e40602764d0496b888686ce",
+  "evaluator_version": "gems-segment-pooled-v1",
+  "max_experiments_budget": 3,
+  "max_hours_budget": 2.0,
+  "selected_lane": "WBG-H1 (DPGF-1: Dip-Projected Basement-to-Surface Coupling + Tectonic-vs-Fluvial Scarp Discrimination + Two-Regime Hydrothermal Submodular Allocation)",
+  "hypotheses_ranked": [
+    {
+      "rank": 1,
+      "id": "WBG-H1",
+      "code": "DPGF-1",
+      "title": "Dip-Projected Basement-to-Surface Coupling + Tectonic-vs-Fluvial Scarp Discrimination + Two-Regime Hydrothermal Submodular Allocation",
+      "status": "selected_for_validation",
+      "external_data_obtainable_in_sandbox": true
+    },
+    {
+      "rank": 2,
+      "id": "WBG-H2",
+      "code": "BHTD-2",
+      "title": "Potential-Field Upward-Continuation (0->150 m) Structural-Index Attenuation & Azimuth-90 Flight-Line Notch Filter",
+      "status": "deferred_rank2",
+      "external_data_obtainable_in_sandbox": true
+    },
+    {
+      "rank": 3,
+      "id": "WBG-H3",
+      "code": "MTCC-3",
+      "title": "Magnetotelluric Smectite Clay-Cap Lateral Perimeter & Radiometric Adularia (K/Th) Halo Asymmetry",
+      "status": "deferred_rank3",
+      "external_data_obtainable_in_sandbox": true
+    },
+    {
+      "rank": 4,
+      "id": "WBG-H4",
+      "code": "DRKN-4",
+      "title": "Multi-Catchment Coherent Ephemeral-Wash Deflection & Wineglass-Mouth Knickpoint Collinearity on Raw 1 m 3DEP Tiles",
+      "status": "blocked_external_1m_tiles_sandbox_allowlist",
+      "official_source": "https://www.usgs.gov/3d-elevation-program",
+      "external_data_obtainable_in_sandbox": false
+    },
+    {
+      "rank": 5,
+      "id": "WBG-H5",
+      "code": "OPERA-5",
+      "title": "NASA/JPL OPERA Sentinel-1 (DISP-S1) InSAR Velocity-Gradient & Concealed Fault-Aquifer Compartment Barrier Detection",
+      "status": "blocked_external_insar_sandbox_allowlist",
+      "official_source": "https://asf.alaska.edu/datasets/daac/opera/",
+      "external_data_obtainable_in_sandbox": false
+    }
+  ],
+  "arms": [
+    "B0: 31-ch Multi-Physics HGB + Ridge-NMS + 3-px Priority Thinning (Control)",
+    "EXP-1: DPGF-1 Core Physics (DipShift 500m/1000m + TFSDI + Hydrothermal Upflow + LiDAR-Gap Calibrated Dual Ensemble + Single-Regime 300m Submodular)",
+    "EXP-2: EXP-1 + Training-Background Regional Nuisance Residualization + Stratified d_vis>=3px Hard Negatives + 8-Azimuth Ridge Sharpening",
+    "EXP-3: EXP-2 + Two-Regime 300m Submodular Facility-Location Allocation (72% Dip-Coupled Piedmont/Scarp + 28% Concealed Hydrothermal/Intrabasin) + Dual-Partition Stitched-OOF Synthesis"
+  ]
+}

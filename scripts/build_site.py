@@ -129,7 +129,7 @@ def comparison_table(audit, *, compact=False):
 
 
 def parallel_section():
-    return '''<section class="section"><div class="section-heading"><div><span class="section-num">04 / PARALLEL WORK PRESERVED</span><h2>Separate lanes. Frozen negative results.</h2><p>TIP1 and MVGZ merged into main while WBG-C1 ran. They were not rerun or combined with its ledger.</p></div></div><div class="three-col"><article class="mini-card"><span class="index">INHERITED / TIP1</span><h3>Directional tip gradients</h3><p>Retained artifact and original negative card. Different evaluator and split: not a comparable score or current-slot recommendation.</p><a class="text-link" href="data/tip1_run_card.json">Frozen TIP1 card ↗</a></article><article class="mini-card"><span class="index">INHERITED / MVGZ</span><h3>Magnetic valley gradients</h3><p>Prior negative artifact, tests and evidence remain intact. Do not upload or treat it as a newly promoted file.</p><a class="text-link" href="evidence/run_card.json">Frozen MVGZ card ↗</a></article><article class="mini-card"><span class="index">BYTE-PRESERVED ARCHIVE</span><h3>Prior site and provenance</h3><p>The original site keeps its own assets and data. Current WBG-C1 counts and frozen nine-snapshot registry are scoped separately.</p><a class="text-link" href="parallel/main-b9a2d53/index.html">Open original parallel site ↗</a> · <a href="data/parallel-main-integration.json">Integration receipt</a></article></div></section>'''
+    return '''<section class="section"><div class="section-heading"><div><span class="section-num">04 / PARALLEL WORK PRESERVED</span><h2>Separate lanes. Frozen negative results.</h2><p>WBG-H1 (DPGF-1), TIP1 and MVGZ ran as independent parallel lanes alongside WBG-C1. Each retains its own frozen Run Card, validator receipt and zero-slot-expenditure decision.</p></div></div><div class="two-col" style="margin-bottom:18px"><article class="mini-card"><span class="index">PARALLEL LANE / WBG-H1 (DPGF-1 · EXP-3)</span><h3>Dip-projected basement coupling + 300 m CELF</h3><p>66-channel label-free geophysical stack + LiDAR-dual ensemble + two-regime 300 m CELF emitter (<code>37,654</code> zero-exterior dots, 10/10 <code>[0,1]</code> portal format checks PASS, sparse-peer 3 px overlap <code>64.49% ≤ 70%</code>, <code>|ρ| = 0.0347</code>). Beats matched 31-ch tree baseline <code>B0</code> across <strong>4/4 spatial folds</strong> (<code>HOLDOUT-DTI = 0.123310</code> vs <code>0.103855</code>, paired Δ <code>+0.019455</code>, <code>gems-segment-pooled-v1</code>, <code>n=60,988</code>), while marked <code>verdict: negative</code> for standalone weekly slot use versus analytical ridge reference <code>0.163792</code>.</p><a class="text-link" href="wbg-h1-dpgf1/index.html">Open WBG-H1 dashboard &amp; 9-site audit ↗</a> · <a class="text-link" href="wbg-h1-dpgf1/executive-summary.html">Upload guide ↗</a> · <a class="text-link" href="downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif">Download WBG-H1 .tif ↓</a> · <a class="text-link" href="wbg-h1-dpgf1/data/run_card.json">WBG-H1 Run Card JSON ↗</a></article><article class="mini-card"><span class="index">INHERITED / TIP1 &amp; MVGZ</span><h3>Directional tip &amp; magnetic valley lanes</h3><p>Retained TIP1 and MVGZ negative artifacts, tests and evidence remain byte-intact under their original evaluators and splits; neither authorizes a competition slot.</p><a class="text-link" href="data/tip1_run_card.json">Frozen TIP1 card ↗</a> · <a class="text-link" href="evidence/run_card.json">Frozen MVGZ card ↗</a> · <a class="text-link" href="parallel/main-b9a2d53/index.html">Original parallel site ↗</a> · <a class="text-link" href="data/parallel-main-integration.json">Integration receipt ↗</a></article></div></section>'''
 
 
 def feed_strip(feed):
@@ -269,7 +269,13 @@ def main():
                 "zip_file": receipt["zip_file"], "zip_sha256": receipt["zip_sha256"],
                 "warning": "Research surface only. No final dots or promoted competition submission. No organizer score receipt."}
     dump_json(DOCS / "downloads/manifest.json", manifest)
-    print("Built five static pages, executive-summary Markdown, evidence downloads and fail-closed manifest.")
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location("wbg_h1_build_pages", ROOT / "scripts" / "wbg_h1_build_pages.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    mod.main()
+    print("Built five static pages, executive-summary Markdown, WBG-H1 subsite, evidence downloads and fail-closed manifest.")
 
 
 if __name__ == "__main__":

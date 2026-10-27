@@ -3,7 +3,7 @@ name: Verify research evidence
 on:
   pull_request:
   push:
-    branches: [main, arena/71614a0a-wbggemsdoe1]
+    branches: [main, arena/71614a0a-wbggemsdoe1, arena/09489235-wbggemsdoe1]
   workflow_dispatch:
 
 permissions:
@@ -30,11 +30,12 @@ jobs:
         run: |
           python scripts/validate_submission.py docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif
           python scripts/validate_submission.py docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.zip
-      - name: Recheck inherited frozen TIP1 receipt without retraining
+      - name: Recheck inherited frozen TIP1 & WBG-H1 receipts without retraining
         env:
           PYTHONPATH: src
         run: |
           python scripts/run_tip1_lane.py --verify-recorded
+          python scripts/wbg_h1_evaluate_holdout.py --verify-recorded
           python scripts/validate_release.py
       - name: Rebuild static reports without changing research results
         run: |

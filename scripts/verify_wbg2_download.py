@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 from pathlib import Path
 import sys
 import zipfile
@@ -19,6 +20,40 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / 'src'), str(ROOT / 'vendor'), str(ROOT / 'scripts')]
 from audit_wbg2_safety import EXPECTED, OUT, TIF, ZIP, WITNESS_SHA, audit  # noqa: E402
 from validate_submission import check_tiff  # noqa: E402
+
+
+def compare_audit(actual, expected):
+    """Exact structures/identity plus very small cross-platform float tolerance.
+
+    Raster hashes, verdicts, counts, source URLs, booleans and all other values
+    remain exact. Numeric tolerance only accommodates platform reduction noise;
+    it is far smaller than a pixel fraction or any protocol threshold.
+    """
+    differences = []
+
+    def walk(a, b, path):
+        if isinstance(b, dict):
+            if not isinstance(a, dict) or set(a) != set(b):
+                differences.append(f"{path}: object keys or type changed")
+                return
+            for key in b:
+                walk(a[key], b[key], f"{path}.{key}")
+        elif isinstance(b, list):
+            if not isinstance(a, list) or len(a) != len(b):
+                differences.append(f"{path}: list length or type changed")
+                return
+            for index, (x, y) in enumerate(zip(a, b)):
+                walk(x, y, f"{path}[{index}]")
+        elif isinstance(b, float):
+            if (isinstance(a, bool) or not isinstance(a, (float, int))
+                    or not math.isfinite(a) or not math.isfinite(b)
+                    or not math.isclose(a, b, rel_tol=1e-12, abs_tol=1e-14)):
+                differences.append(f"{path}: {a!r} vs {b!r}")
+        elif type(a) is not type(b) or a != b:
+            differences.append(f"{path}: {a!r} vs {b!r}")
+
+    walk(actual, expected, "audit")
+    return differences
 
 
 def verify(deep=False, fetch=False):
@@ -42,12 +77,16 @@ def verify(deep=False, fetch=False):
         'note_within_140': 0 < len(card['submission_note']) <= 140,
         'no_slot_approval': card['decision']['approved_for_weekly_slot'] is False,
     }
+    differences = []
     if deep:
         fresh = audit(do_fetch=fetch)
-        checks['deep_audit_exactly_matches_record'] = fresh == evidence
+        differences = compare_audit(fresh, evidence)
+        checks['deep_audit_matches_record_with_float_tolerance'] = not differences
     return {'checks': checks, 'negative_decision_integrity_passed': all(checks.values()),
             'local_format_passed': report['all_checks_passed'], 'ok_to_submit': False,
             'sha256': report['sha256'], 'verdict': 'negative',
+            'deep_comparison': {'performed': deep, 'float_rtol': 1e-12, 'float_atol': 1e-14,
+                                'difference_count': len(differences), 'first_differences': differences[:10]},
             'warning': 'DO NOT SUBMIT; diagnostic integrity is not submission approval.'}
 
 

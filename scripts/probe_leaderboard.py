@@ -47,17 +47,42 @@ class Title(HTMLParser):
             self.parts.append(data)
 
 
+class HeadingCells(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.active = False
+        self.current = []
+        self.cells = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "th":
+            self.active = True
+            self.current = []
+
+    def handle_endtag(self, tag):
+        if tag == "th" and self.active:
+            self.cells.append(" ".join(" ".join(self.current).split())[:100])
+            self.active = False
+
+    def handle_data(self, data):
+        if self.active:
+            self.current.append(data)
+
+
 def public_shape(html):
     tables = Tables()
     tables.feed(html)
     title = Title()
     title.feed(html)
+    headings = HeadingCells()
+    headings.feed(html)
     # Only public structural fields; no page body or login information.
     paths = sorted(set(re.findall(r"[\"'](/[^\"'\s?#]*(?:leaderboard|ranking)[^\"'\s?#]*)", html, re.I)))
     return {"title": " ".join(" ".join(title.parts).split())[:120],
             "table_count": len(tables.tables),
             "first_headers": [row[0][:6] for row in tables.tables[:2] if row],
-            "script_sources": title.scripts[:8], "markers": title.markers[:8], "public_paths": paths[:8]}
+            "heading_cells": headings.cells[:8], "script_sources": title.scripts[:8],
+            "markers": title.markers[:8], "public_paths": paths[:8]}
 
 
 def main():
@@ -72,8 +97,14 @@ def main():
                 row = parse_leaderboard(partial)
                 source = "official HTMX partial"
             except ValueError as error:
-                message = f"strict parse unavailable: {error}; main=" + json.dumps(public_shape(html), ensure_ascii=True)
-                message += "; partial=" + json.dumps(public_shape(partial), ensure_ascii=True)
+                full_shape, partial_shape = public_shape(html), public_shape(partial)
+                message = f"strict parse unavailable: {error}; " + json.dumps({
+                    "main_headings": full_shape["heading_cells"],
+                    "partial_headings": partial_shape["heading_cells"],
+                    "partial_first_rows": partial_shape["first_headers"],
+                    "main_has_metric_label": "DW-Tversky" in html,
+                    "partial_has_metric_label": "DW-Tversky" in partial,
+                }, ensure_ascii=True)
                 row = None
         if row is not None:
             message = f"strict parse OK from {source}; public rank 1 = {row['public_dw_tversky']} (not a file receipt)"

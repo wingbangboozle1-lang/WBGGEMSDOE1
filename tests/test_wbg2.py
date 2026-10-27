@@ -352,3 +352,21 @@ def test_pinned_reference_fetch_preserves_binary_bytes_and_fails_on_hash_drift(t
     request = audit.urllib.request.Request("https://api.github.com/repos/test")
     with pytest.raises(ValueError, match="refusing redirect"):
         audit.PinnedGitHubRedirect().redirect_request(request, None, 302, "Found", {}, "https://example.org/elsewhere")
+
+
+def test_deep_audit_comparison_only_tolerates_float_reduction_noise():
+    import importlib.util
+    import sys
+    sys.path.insert(0, str(ROOT / "scripts"))
+    spec = importlib.util.spec_from_file_location("verify_wbg2_download", ROOT / "scripts/verify_wbg2_download.py")
+    verify = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(verify)
+    record = {"sha256": "abc", "overlap": .9989722222222223, "count": 36000,
+              "unique": False, "rows": [{"rho": -.0004912488123791969}]}
+    near = {"sha256": "abc", "overlap": .9989722222222223, "count": 36000,
+            "unique": False, "rows": [{"rho": -.0004912488123791969 + 1e-16}]}
+    assert verify.compare_audit(near, record) == []
+    for key, bad in (("sha256", "def"), ("overlap", .69), ("count", 35999), ("unique", 0)):
+        changed = dict(near)
+        changed[key] = bad
+        assert verify.compare_audit(changed, record), key

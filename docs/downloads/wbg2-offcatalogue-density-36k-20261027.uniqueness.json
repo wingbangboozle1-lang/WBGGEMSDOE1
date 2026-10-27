@@ -1,5 +1,5 @@
 {
- "rasters_compared": 9,
+ "rasters_compared": 8,
  "max_forward_3px_overlap": 1.0,
  "max_enrichment_vs_chance": 2.991809606853254,
  "max_abs_spearman": 0.06438757182955884,
@@ -58,16 +58,6 @@
    "ours_positive": 36000,
    "their_density": 0.0030664964052915674,
    "path": "docs/parallel/main-b9a2d53/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
-  },
-  {
-   "forward_overlap": 0.19619444444444445,
-   "rho": 0.0025670760168144684,
-   "enrichment": 2.7609596754887282,
-   "chance_overlap": 0.07106023539069448,
-   "their_positive": 37654,
-   "ours_positive": 36000,
-   "their_density": 0.0030664964052915674,
-   "path": "docs/downloads/wbggemsdoe1-wbg-d1-rad-alteration-20261027-93a82d4bc116-zeros.tif"
   },
   {
    "forward_overlap": 0.17988888888888888,

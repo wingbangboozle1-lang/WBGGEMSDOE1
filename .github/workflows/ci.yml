@@ -57,7 +57,7 @@ jobs:
           cache: npm
       - name: Install exact optional browser-check dependencies
         run: npm ci
-      - name: Render all five pages, test filtering and verify the actual download
+      - name: Render all nine pages, test filtering and verify all four actual TIFF downloads
         run: |
           python3 scripts/stage_pages.py
           python3 -m http.server 8000 --bind 0.0.0.0 --directory .cache/pages > /tmp/wbg-site.log 2>&1 &

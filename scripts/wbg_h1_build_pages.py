@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""Publish a corrected WBG-H1 summary; never rerun inherited science.
+"""Publish the frozen DPGF-1 result with the literal protocol and evidence labels.
 
-Frozen source receipts remain available for audit, including unsupported claims.
-Only the publication layer is corrected. No private evaluator/writer or forecast.
+Do not republish the inherited private-label inversion or LLI projection as
+verified science. Frozen cards and figures remain available for provenance;
+this entry point never alters a model, measurement, artifact or slot decision.
 """
 from __future__ import annotations
 
-import html
+from html import escape
 import json
 from pathlib import Path
 import shutil
@@ -17,73 +18,56 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     out = ROOT / "docs/wbg-h1-dpgf1"
     (out / "data").mkdir(parents=True, exist_ok=True)
-    rc = json.loads((ROOT / "evidence/wbg_h1/run_card.json").read_text())
-    # Preserve raw receipts as historical evidence, not as approved conclusions.
-    for name in ("run_card.json", "forensic_proof_02778.json"):
+    # Keep exactly the original downloadable evidence set. Raw cards are historical,
+    # not normalized approval or score forecasts.
+    for name in ("run_card.json", "experiment_ledger.json"):
         source = ROOT / "evidence/wbg_h1" / name
-        shutil.copyfile(source, out / "data" / name)
-    h = rc["holdout_dti"]
-    overlap = rc["registry_correlation_and_overlap"]
-    tif = Path(rc["raster_sha256"]["tif_file"]).name
-    esc = html.escape
-    body = f'''<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WBG-H1 — corrected negative-result summary</title><link rel="stylesheet" href="../assets/style.css"></head>
-<body><a class="skip" href="#main">Skip to content</a><main id="main" class="wrap review-page">
-<nav><a href="../index.html">Research desk</a> · <a href="../executive-summary.html">Nine-site executive summary</a> ·
-<a href="../release-review.html">All local download decisions</a></nav>
-<h1>WBG-H1 / DPGF-1: negative result</h1>
-<section class="notice"><h2>DOWNLOAD: YES (research only). SUBMIT: NO.</h2>
-<p>The inherited TIFF is retained for reproducibility. Local format validation is not organizer acceptance,
-scientific promotion or permission to spend a weekly slot. Do not upload it as an optional benchmark.</p>
-<a class="button" href="../downloads/{esc(tif)}" download>Download frozen research TIFF ↓</a>
-<p><a href="../data/release-review.json">Automatic exact-file validation and decision report</a></p></section>
-<h2>Measured evidence, not a leaderboard estimate</h2>
-<p><strong>HOLDOUT-DTI {h['dti']:.6f}</strong>; 95% CI [{h['ci95'][0]:.6f}, {h['ci95'][1]:.6f}];
-evaluator <code>{esc(h['evaluator_version'])}</code>; {h['n_withheld_positives']:,} withheld positives.
-This is an inherited measurement, not rerun on 2026-10-27.</p>
-<p>Matched B0 control: <strong>HOLDOUT-DTI {h['baseline_b0_dti']:.6f}</strong>;
-95% CI [{h['baseline_b0_ci95'][0]:.6f}, {h['baseline_b0_ci95'][1]:.6f}], same evaluator and positives.
-Paired delta: <strong>HOLDOUT-DTI {h['paired_delta_vs_b0']:+.6f}</strong>;
-95% CI [{h['paired_delta_vs_b0_ci95'][0]:+.6f}, {h['paired_delta_vs_b0_ci95'][1]:+.6f}].
-A lift against B0 does not prove a win against the current best or hidden leaderboard.</p>
-<p>Leaderboard estimate: <strong>unavailable</strong>. Artifact-linked organizer receipt: <strong>none supplied</strong>.</p>
-<h2>Literal uniqueness: FAILED</h2>
-<p>Recorded final-dot forward overlap with the registry lattice within 3 px is
-<strong>{overlap['literal_oneway_vs_r13_space_filling_lattice_ir_wbg1_01']*100:.4f}%</strong>, exceeding 70%.
-The recorded slab overlap is {overlap['literal_oneway_vs_516k_continuous_slabs_ir_wbg1_03']*100:.2f}%.
-Sparse-only overlap ({overlap['focus9_sites_max_3px_dot_overlap']*100:.2f}%) and symmetric overlap
-are diagnostics, not authorized replacements for the literal forward gate. No lattice exemption applies.</p>
-<p>The recorded pre-placement |Spearman| is {overlap['pre_placement_surface_max_abs_spearman']:.6f},
-but this does not certify a complete pre-placement forward-overlap pass.
-Different TIFF bytes do not establish lane uniqueness.</p>
-<h2>Correction of inherited claims</h2>
-<ul><li>GEMSDOE32's historical 0.2778 is <strong>USER-REPORTED / NOT ORGANIZER-CONFIRMED</strong> here.
-The exact nested raster identity is useful learning evidence; it cannot prove the hidden-label cause of the reported gain.</li>
-<li>The claimed private fault count, private recall and recall targets from lattice inversion are not established.
-For binary dots, DTI = T / [0.2(T + N − M) + 0.8K]. T and M sum coverage over different sets;
-a global lattice mean does not determine its value on unknown test faults.</li>
-<li>The inherited LLI forecast is not published as an estimated score: its claimed organizer-confirmed training values
-lack receipts, and no untouched validation establishes its applicability to a new geological lane.</li>
-<li>The exact organizer portal implementation and the cause of the originally rejected upload are unknown.
-The conservative all-finite [0,1] export avoids NaN/range risks locally; it cannot guarantee acceptance.</li>
-<li>Cross-evaluator numbers must not be ranked as a common holdout result. A fault-prediction raster is not proof of geothermal vents.</li></ul>
-<h2>Identity and traceability</h2>
-<p>SHA-256: <code>{esc(rc['raster_sha256']['tif_sha256'])}</code></p>
-<p>Recorded name: <code>{esc(rc['submission_name'])}</code></p>
-<p>Research note (not upload authorization): <code>WBG-H1 frozen dip-projection experiment; literal overlap FAILED; research download only; DO NOT SUBMIT.</code></p>
-<h2>Evidence and next action</h2>
-<p><a href="data/run_card.json">Original inherited run card</a> ·
-<a href="data/forensic_proof_02778.json">Original forensic claims (not accepted conclusions)</a> ·
-<a href="../review-20261027.md">Dated review and limitations</a> ·
-<a href="../how-to-submit.html">Future submission procedure</a></p>
-<p>Keep frozen scientific modules, source cards, TIFF bytes and negative results. Do not tune a stopped lane or
-relocate dots into lattice holes. A distinct assigned lane and clean paired benchmark are prerequisites to new research.
-No experiments were rerun and no competition slots were used in this review.</p>
+        if source.exists():
+            shutil.copyfile(source, out / "data" / name)
+    card = json.loads((ROOT / "evidence/wbg_h1/run_card.json").read_text())
+    h = card["holdout_dti"]
+    registry = card["registry_correlation_and_overlap"]
+    tif = Path(card["raster_sha256"]["tif_file"]).name
+    zipname = Path(card["raster_sha256"]["zip_file"]).name
+    html = f'''<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>DPGF-1 frozen negative result · WBG GEMS</title>
+<link rel="stylesheet" href="../assets/style.css"></head><body><a class="skip" href="#main">Skip to content</a><header class="wrap"><nav>
+<a href="../index.html">Research desk</a> · <a href="../portfolio-review.html">All-release review</a> · <a href="../executive-summary.html">Nine-site summary</a></nav></header>
+<main class="wrap" id="main"><h1>WBG-H1 / DPGF-1 — frozen negative result</h1>
+<div class="alert"><p><strong>DOWNLOAD: YES, research only. SUBMIT: NO. DO NOT SUBMIT.</strong>
+Format-valid does not mean scientifically promoted, lane-unique or organizer-accepted.</p></div>
+<h2>Exact research artifact</h2><p><a class="button" href="../downloads/{escape(tif)}" download>Download research TIFF</a> ·
+<a href="../downloads/{escape(zipname)}" download>One-TIFF ZIP</a></p>
+<p class="filename">{escape(tif)}<br>SHA-256: {card['raster_sha256']['tif_sha256']}</p>
+<p>Name: <code>{escape(card['submission_name'])}</code><br>Original note (historical, not approval): {escape(card['submission_note'])}</p>
+<h2>Recorded holdout, not a leaderboard forecast</h2><p><strong>HOLDOUT-DTI {h['dti']:.6f}</strong>,
+95% CI [{h['ci95'][0]:.6f}, {h['ci95'][1]:.6f}], evaluator <code>{escape(h['evaluator_version'])}</code>,
+{h['n_withheld_positives']:,} withheld positives. This is a frozen measurement, not a new experiment.</p>
+<p>Matched B0: HOLDOUT-DTI {h['baseline_b0_dti']:.6f}, 95% CI [{h['baseline_b0_ci95'][0]:.6f}, {h['baseline_b0_ci95'][1]:.6f}],
+same evaluator/positives. Paired difference: HOLDOUT-DTI +{h['paired_delta_vs_b0']:.6f},
+95% CI [{h['paired_delta_vs_b0_ci95'][0]:.6f}, {h['paired_delta_vs_b0_ci95'][1]:.6f}].
+A positive matched-baseline difference is not a verified win over the current same-instrument portfolio best.</p>
+<h2>Literal uniqueness: FAILED</h2><p>Recorded one-way 3 px overlap with the registered lattice:
+<strong>{registry['literal_oneway_vs_r13_space_filling_lattice_ir_wbg1_01']*100:.4f}%</strong>.
+Recorded one-way overlap with a dense slab: {registry['literal_oneway_vs_516k_continuous_slabs_ir_wbg1_03']*100:.2f}%.
+Both exceed 70%. Sparse-only and symmetric overlap do not replace the user's all-registry forward-overlap gate.
+No lattice or density exemption was authorized. These are frozen registry measurements; no fresh full-registry clearance is claimed.</p>
+<h2>Corrections to inherited interpretation</h2><ul>
+<li>GEMSDOE32's historical 0.2778 and other supplied artifact values are USER-REPORTED / NOT ORGANIZER-CONFIRMED. No receipt identifies these exact bytes and a result.</li>
+<li>No verified leaderboard estimate exists for this TIFF. The inherited LLI regression used unverified historical claims; its projection is not a validated forecast.</li>
+<li>One rounded lattice result plus an assumed average kernel response does not identify the private fault count, private recall, or locations of hidden faults. The inherited private-count inversion is not verified evidence.</li>
+<li>Catalogue-distance pruning offers a plausible efficiency explanation; private-label causality cannot be proved from these files.</li>
+<li>All local format checks passing is not a guarantee about the live portal. The cause of the original range rejection cannot be reconstructed without its exact bytes.</li></ul>
+<h2>How a future approved submission would work</h2><p>There is no eligible file now. Do not upload this negative result for optional testing or as an optional benchmark. No competition slot was used.
+Follow the <a href="../how-to-submit.html">future submission guide</a> only after same-instrument efficacy,
+canaries, literal surface and final-dot uniqueness, provenance, and saved-file checks pass, and a separate selector approves a slot.</p>
+<p><a href="../portfolio-review.html">All four reopened files and current blockers</a> ·
+<a href="data/run_card.json">Frozen original card (contains superseded interpretation; read corrections above)</a> ·
+<a href="../data/portfolio-review.json">Current review JSON</a></p>
 </main></body></html>'''
     for name in ("index.html", "executive-summary.html"):
-        (out / name).write_text(body, encoding="utf-8")
-    print("Built corrected WBG-H1 negative-result pages; frozen numerical evidence unchanged.")
+        (out / name).write_text(html)
+    print("Built corrected, fail-closed DPGF-1 result pages; preserved frozen evidence and artifacts.")
 
 
 if __name__ == "__main__":

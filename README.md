@@ -2,11 +2,16 @@
 
 ## DOWNLOAD: YES, for research. SUBMIT: **NO**.
 
+**27 October 2026 follow-up: [all four releases, exact-byte revalidation and trust corrections](docs/portfolio-review.html)** ·
+[Machine-readable review](docs/data/portfolio-review.json). No new experiment: the lane remains stopped.
+All four are negative research downloads, not recommended contest submissions. Leaderboard estimates remain unavailable.
+The [parallel exact-reference audit](docs/release-review.html) and its [review notes](docs/review-20261027.md) are also preserved; both reviews reach the same negative decision.
+
 **[Open the research desk](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/)** ·
 [Executive summary](docs/executive-summary.md) · [Submission guide](docs/how-to-submit.html) ·
 [Exact JSON run card](registry/run_card.json)
 
-**[Download the newly generated research TIFF](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif)** ·
+**[Download the frozen research TIFF](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif)** ·
 [One-TIFF ZIP](docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.zip) ·
 [TIFF in repository](docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif) · [Validation receipt](docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.json)
 
@@ -28,15 +33,6 @@
 - SHA-256: `8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875`.
 - Name: `wbg-c1-commutator-research-surface-20261026-acea88448272`.
 - Note (≤140 characters): `WBG-C1 curvature non-coaxiality; spatial OOF research surface; no dot placement; NOT approved for submission.`.
-
-## 2026-10-27 follow-up: all download decisions
-
-**[Which file is safe to submit? None currently — see all four exact-file checks](docs/release-review.html)** ·
-[Machine-readable report](evidence/release_review_20261027.json) · [Review and next steps](docs/review-20261027.md).
-All four frozen research TIFFs pass local format revalidation. None is approved for submission.
-No new experiment or TIFF was generated in this follow-up: the existing STOP remains binding.
-The current sandbox permits GitHub and package registries, not live DrivenData/USGS/GDR/Dropbox/PDF retrieval.
-The last official-page leaderboard observation below is historical, not today's verified ranking.
 
 ## Review outcome and historical learning
 
@@ -73,21 +69,20 @@ Different evaluator/split/representation results must not be pooled or ranked as
 - [Original main README](research/inherited-main-README-b9a2d53.md) (historical commands/paths)
 - [Byte-preservation/integration receipt](evidence/parallel_main_integration.json)
 - [Frozen TIP1 card](evidence/tip1_run_card_20261026.json) and [MVGZ card](evidence/run_card.json)
-- **[WBG-H1 corrected negative-result summary](docs/wbg-h1-dpgf1/index.html)** ·
-  [Research-only GeoTIFF (`wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif`)](docs/downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif) · [ZIP archive](docs/downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.zip).
-  - SHA-256: `e46e4c175c5afceac148d0475a23808c3ae8bf6e5edad8faea919ed847b0d7dd`.
-  - Recorded name: `wbggems1-dpgf1-exp-3-20261026-0749b3c8195f`. **DO NOT SUBMIT.**
-  - Inherited **HOLDOUT-DTI 0.123310**,
-    95% CI [0.108921, 0.137557],
-    evaluator `gems-segment-pooled-v1`, 60,988 withheld positives.
-    Not rerun in the 2026-10-27 review; not a leaderboard forecast.
-  - The recorded literal lattice overlap is **99.8035% >70%**.
-    Sparse-only and symmetric diagnostics cannot override the protocol. Local format PASS is not portal acceptance.
-  - Original receipts remain unchanged for audit. Their organizer-confirmed labels, private-label inversion,
-    forecast and optional-upload advice are **not accepted conclusions**. See the [dated corrections](docs/review-20261027.md).
+- **[WBG-H1 / DPGF-1 corrected result page](docs/wbg-h1-dpgf1/index.html)** — research only, **DO NOT SUBMIT**.
+  [TIFF](docs/downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif) · [ZIP](docs/downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.zip) · SHA-256 `e46e4c175c5afceac148d0475a23808c3ae8bf6e5edad8faea919ed847b0d7dd`.
+  Name `wbggems1-dpgf1-exp-3-20261026-0749b3c8195f`. Frozen **HOLDOUT-DTI 0.123310**,
+  95% CI [0.108921, 0.137557],
+  `gems-segment-pooled-v1`, 60,988 withheld positives.
+  Literal lattice overlap **99.8035%** exceeds 70%; sparse/symmetric checks do not authorize an exemption.
+  The inherited LLI forecast, claims of organizer-confirmed scores, and private-count inversion are
+  **not verified evidence**. Original cards remain frozen with explicit corrections on the live page.
 - Older two-argument `validate_submission.py candidate.tif reference.tif` callers retain their
   supplied-reference format API; this is compatibility only and never confers slot approval.
   WBG-C1 still uses the unchanged, pinned `gems57` all-finite validator/writer.
+  The separate integration CLI now rejects mismatched source grids, input overwrite aliases and
+  portal-unsafe NaN twins; [explicit source amendment](evidence/integration_amendments_20261027.json)
+  preserves its prior hash/archive. No metric, evaluator or pinned-template fork was introduced.
 - The older bridge-specific restore entry point is retained as `scripts/download_bridge_legacy.sh`
   with `scripts/prepare_bridge_legacy.py`; current WBG-C1 commands below are unchanged.
 
@@ -135,6 +130,9 @@ bash scripts/download_competition_data.sh
 # The next command audits the unchanged surface; it does NOT retrain/place dots:
 .venv/bin/python scripts/audit_registry.py
 
+# Reopen all four local releases (no modelling, no slot):
+.venv/bin/python scripts/build_portfolio_review.py
+
 # Rebuild report pages from persisted measured JSON (no modelling):
 python scripts/refresh_feed.py --offline
 python scripts/build_site.py
@@ -152,8 +150,8 @@ BASE_URL=http://127.0.0.1:8000/ npm run test:browser
 # Minimal containers without NSS/NSPR may also need BROWSER_COMPAT_LIBS=1.
 ```
 
-The browser check visits all five pages at desktop/mobile sizes, rejects body overflow and
-JavaScript page errors, tests the site filter, and hashes the actual downloaded TIFF.
+The browser check visits all nine current pages at desktop/mobile sizes, rejects body overflow and
+JavaScript page errors, tests the site filter, and hashes all four actual downloaded TIFFs.
 Screenshots stay in ignored `.cache/browser-review/`; the JSON receipt is inspectable in
 [evidence/browser_checks.json](evidence/browser_checks.json). These are site checks, not evidence
 of scientific efficacy or organizer upload acceptance.

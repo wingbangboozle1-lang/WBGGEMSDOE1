@@ -198,6 +198,28 @@ not verified facts. The measured run card takes precedence over stale factual as
 <details>
 <summary><strong>Complete standing user request — archived intent, not verified findings</strong></summary>
 
+## Newest lane — WBG-D1 radiometric alteration (2026-10-27): unique TIF, verdict negative
+
+**[Open the WBG-D1 dashboard](docs/wbg-d1.html)** · [Five ranked hypotheses](docs/wbg-d1-hypotheses.md) ·
+[Download the unique research TIF](docs/downloads/wbggemsdoe1-wbg-d1-rad-alteration-20261027-93a82d4bc116-zeros.tif) · [Run card](registry/run_card_wbg_d1.json)
+
+A self-declared, preregistered lane (`registry/preregistration_wbg_d1.json`) built seven new channels
+from official USGS GeoDAWN radiometric grids (K, Th/K, U/Th high-pass/edge transforms and a
+TMI−upward-continuation shallow residual; DOI [10.5066/P93LGLVQ](https://doi.org/10.5066/P93LGLVQ)) and
+ran all three budgeted experiments on `gems57-pooled-hide-v2` (n=11,330 withheld positives):
+
+- EXP-1 deterministic radiometric composite: **HOLDOUT-DTI 0.0283** vs fixed-seed random dots **0.0345** — the off-ridge alteration placements underperform random catalogue recovery.
+- EXP-2 19-band control **HOLDOUT-DTI 0.014146** vs 19+7 channel candidate **0.014072**; paired Δ **-0.000074**, 95% CI [-0.000280, +0.000112] — no improvement established.
+- EXP-3 fixed 37,654-dot NMS emission: dotted intrinsic HOLDOUT-DTI **0.0591** (collar-packaged pessimistic bound **0.0092**).
+
+The shipped TIF passes all 10 automated portal gates (0 NaN/inf across 12,279,160 cells, strict [0,1],
+EPSG:32611, exact grid, 200 m dead-collar clean) and is byte/pixel-unique across 364 aligned registry
+rasters; against every real geological dot-field prior the worst 3 px overlap is **0.4846 ≤ 0.70** and
+worst Spearman **0.106 ≤ 0.90**. Literal STOPs come only from the synthetic r13 calibration lattice
+(pigeonhole artifact) and the project's own dense continuous WBG-C1 surface. Because the efficacy gate
+failed, **DOWNLOAD: YES (research) · SUBMIT: NO · zero slots used**. No leaderboard projection is made
+from a local HOLDOUT-DTI.
+
 # Standing user prompt — supplied 2026-10-26
 
 This is the user's request, retained as project intent, **not verified factual findings**. Historical scores, blocker claims, dates, source availability, and proposed capabilities below must be checked against current evidence. Read it together with the current README status, `registry/run_card.json`, and `registry/irregularities.json` before each session. The requested single-method lane paragraph was not supplied. The original request follows (trailing whitespace normalized; wording retained).

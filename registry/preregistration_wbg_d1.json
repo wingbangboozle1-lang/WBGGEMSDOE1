@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "registered_utc": "2026-10-27T17:40:00Z",
+  "hypothesis_id": "WBG-D1",
+  "lane": {
+    "status": "PROVISIONAL_RESEARCH_ONLY",
+    "irregularity": "The supplied prompt references a single method paragraph that was not included. No authorized lane is inferred; WBG-D1 is a self-declared, preregistered research lane and its output reaches at most a separate selector, never an automatic slot.",
+    "scope": "Radiometric alteration / shallow magnetic edge lane for concealed, non-ridge-expressed faults. No previous prediction pixel, leaderboard inversion, catalogue-distance pruning as an objective, or registry-hole targeting enters the method. The overlap gates are acceptance tests, not optimization targets."
+  },
+  "hypothesis": "Concealed basin/interior faults without topographic ridge expression carry two physically independent signatures: (i) hydrothermal alteration halos with local potassium enrichment relative to thorium and compositional edge energy in the USGS GeoDAWN airborne radiometric grids; (ii) coincident shallow magnetic discontinuities (RTP gradient; TMI minus 150 m upward-continued TMI). Fusing these off-ridge signals with the shared 19-band potential-field stack in the fixed spatial cross-fitted HGB framework improves whole-component hide-and-recover recovery over the 19-band control, while yielding a spatially distinct sparse dot field.",
+  "mechanism": "Robust-standardized Gaussian high-pass residuals and gradient-magnitude edges of K, Th/K and U/Th at 500 m-1 km scales isolate localized compositional change from broad lithologic gradients; a TMI-vs-upward-continuation residual isolates shallow magnetic sources; HistGradientBoosting combines the seven new channels with the nineteen cached bands under whole-component spatial LOQO cross-fitting.",
+  "non_fault_mimic": "Playa/evaporite and Pleistocene Lake Lahontan paleo-lacustrine clays and potassium-bearing basin fill, sediment sorting/weathering, radiometric flight-line leveling, and cultural magnetic noise. Mitigated by requiring concord across independent channels rather than any single anomaly.",
+  "data_inputs": {
+    "shared_19_band_cache": "data/template57/.cache/features/band-01..19.npy, hash-pinned via registry/template_pins.json",
+    "radiometric": "data/external/geodawn_rad_u8.tif (K, Th, U, TC; uint8; nodata 0) sha256 c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8d7538582",
+    "extensions": "data/external/geodawn_extensions_u8.tif (ThK, UK, UTh, TMI_up150) sha256 a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b",
+    "official_source": "USGS GeoDAWN airborne magnetic and radiometric surveys, sciencebase item 657e1d85d34e23d3533209f7, DOI 10.5066/P93LGLVQ; owner-derived resampled grids, organizer-origin not independently authenticated; live USGS re-verification unavailable from this sandbox network allowlist",
+    "forbidden_inputs": "prior prediction rasters as features or labels, sample_submission values, SGMC/QFault external traces, vent/well/temperature point data, registry dot coordinates"
+  },
+  "new_channels": [
+    "K_hp5: robust-z K Gaussian high-pass residual, sigma=5 px (500 m)",
+    "K_hp10: robust-z K Gaussian high-pass residual, sigma=10 px (1 km)",
+    "potassic_hp5: K_hp5 minus ThK_hp5 (relative K enrichment vs Th/K)",
+    "ThK_edge5: gradient magnitude of robust-z Th/K smoothed at sigma=5",
+    "K_edge5: gradient magnitude of robust-z K smoothed at sigma=5",
+    "UTh_edge5: gradient magnitude of robust-z U/Th smoothed at sigma=5",
+    "tmi_shallow: robust-z TMI (band 14) minus robust-z TMI_up150"
+  ],
+  "deterministic_composite_exp1": {
+    "formula": "S = 0.5*potassic_hp5 + 0.3*K_hp10 + 0.4*tanh(rtp_edge3/2) + 0.3*tanh(ThK_edge5/2); rtp_edge3 = gradient magnitude of robust-z RTP (band 2) smoothed at sigma=3",
+    "emission": "skimage peak_local_max min_distance=3 px, num_peaks=37654, restricted to footprint and excluding catalogue pixels; binary dots of value 1.0",
+    "random_baseline": "fixed-seed 37654 uniform-random dots over the same allowed mask"
+  },
+  "holdout": {
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "split_function": "gems57.holdout.buffered_component_draw",
+    "split_seed": 71614,
+    "hide_fraction": 0.2,
+    "feature_buffer_px": 3,
+    "quadrant_boundary_erosion_px": 12,
+    "training_collar_px": 80,
+    "metric": {"alpha": 0.2, "beta": 0.8, "triangular_radius_m": 300, "pooled_before_ratio": true},
+    "bootstrap": {"method": "shared paired physical 20 km block percentile", "draws": 1000, "seed": 520810, "confidence": 0.95},
+    "same_instrument_prior_control": {"dti": 0.014145537328473203, "n_withheld": 11330, "source_run_card": "registry/run_card.json (WBG-C1 control_19band_hgb); rerun identically inside EXP-2 rather than trusted across sessions"}
+  },
+  "fixed_model": {
+    "class": "sklearn HistGradientBoostingClassifier",
+    "max_iter": 80,
+    "max_leaf_nodes": 15,
+    "learning_rate": 0.08,
+    "l2_regularization": 5.0,
+    "early_stopping": false,
+    "max_training_negatives": 160000,
+    "positive_sample_weight": "negative count / positive count",
+    "arms": ["control_19band_hgb", "candidate_19band_plus_7rad_hgb"]
+  },
+  "leakage_canary": "Each of the 26 input channels tested alone per fold with audit.single_feature_canary; orientation-invariant AUC > 0.90 stops the experiment. Missingness AUC reported for the radiometric channels.",
+  "efficacy_gate": "EXP-2 candidate paired 95% CI lower bound > 0 versus the simultaneously refitted 19-band control on the identical folds, with candidate pooled DTI no worse than the prior same-instrument control (0.0141455).",
+  "registry_gate": {
+    "rank_correlation_limit": 0.9,
+    "forward_overlap_limit": 0.7,
+    "radius_px": 3,
+    "support_definition": "all finite p > 0; no density exemption",
+    "surface_before_placement": true,
+    "scope": "registry/focus_inventory.json (377 files, 360 unique hashes, nine frozen owner snapshots) plus three project-local prior artifacts in docs/downloads (tip1, wbg-h1, wbg-c1). Literal and dot-field like-for-like readings both reported; continuous-surface priors cannot be dot-compared and are never silently filtered from the Spearman test.",
+    "on_stop": "retain evidence, verdict negative, no promotion claims"
+  },
+  "emission_budget_dots": 37654,
+  "experiments": [
+    {"id": "EXP-1", "description": "deterministic radiometric composite NMS dots and random baseline on v2 holdout; no fitting"},
+    {"id": "EXP-2", "description": "19-band control vs 19+7 channel HGB spatial LOQO, continuous OOF surfaces, per-channel canaries, paired pooled DTI"},
+    {"id": "EXP-3", "description": "full-footprint synthesis of the better arm, fixed-budget NMS dots, full registry uniqueness, portal validation, TIF/ZIP/run card"}
+  ],
+  "budget": {"maximum_experiments": 3, "maximum_wall_hours": 2, "submission_slots_used": 0},
+  "promotion": {
+    "authorized": false,
+    "rule": "promote-to-selector only if format gates, both uniqueness gates and the efficacy gate all pass; weekly-slot upload remains a separate manual action because no authenticated uploader exists",
+    "weekly_cap_verified": false
+  },
+  "score_policy": "New measurements are HOLDOUT-DTI with evaluator version, withheld-positive count and 95% CI. User-supplied historical numbers remain USER-REPORTED, never ORGANIZER-CONFIRMED. No leaderboard projection is presented as a score."
+}

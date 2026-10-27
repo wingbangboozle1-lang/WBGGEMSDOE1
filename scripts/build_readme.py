@@ -14,6 +14,32 @@ def main():
     h1_tif = wbg_h1_rc["raster_sha256"]["tif_file"]
     h1_zip = wbg_h1_rc["raster_sha256"]["zip_file"]
     standing = (ROOT / "docs/standing-prompt.md").read_text()
+    d1 = json.loads((ROOT / "registry/run_card_wbg_d1.json").read_text())
+    d1h = d1["holdout"]
+    d1_tif = Path(d1["artifact"]).name
+    d1_block = f'''## Newest lane — WBG-D1 radiometric alteration (2026-10-27): unique TIF, verdict negative
+
+**[Open the WBG-D1 dashboard](docs/wbg-d1.html)** · [Five ranked hypotheses](docs/wbg-d1-hypotheses.md) ·
+[Download the unique research TIF](docs/downloads/{d1_tif}) · [Run card](registry/run_card_wbg_d1.json)
+
+A self-declared, preregistered lane (`registry/preregistration_wbg_d1.json`) built seven new channels
+from official USGS GeoDAWN radiometric grids (K, Th/K, U/Th high-pass/edge transforms and a
+TMI−upward-continuation shallow residual; DOI [10.5066/P93LGLVQ](https://doi.org/10.5066/P93LGLVQ)) and
+ran all three budgeted experiments on `gems57-pooled-hide-v2` (n=11,330 withheld positives):
+
+- EXP-1 deterministic radiometric composite: **HOLDOUT-DTI {d1["exp1_deterministic"]["deterministic_rad_composite"]["dti"]:.4f}** vs fixed-seed random dots **{d1["exp1_deterministic"]["random_dot_baseline"]["dti"]:.4f}** — the off-ridge alteration placements underperform random catalogue recovery.
+- EXP-2 19-band control **HOLDOUT-DTI {d1h["control_dti"]:.6f}** vs 19+7 channel candidate **{d1h["candidate_dti"]:.6f}**; paired Δ **{d1h["paired_delta"]:+.6f}**, 95% CI [{d1h["paired_ci95"][0]:+.6f}, {d1h["paired_ci95"][1]:+.6f}] — no improvement established.
+- EXP-3 fixed 37,654-dot NMS emission: dotted intrinsic HOLDOUT-DTI **{d1h["dotted_holdout_intrinsic_no_collar_dti"]:.4f}** (collar-packaged pessimistic bound **{d1h["dotted_holdout_collar_pessimistic_dti"]:.4f}**).
+
+The shipped TIF passes all 10 automated portal gates (0 NaN/inf across 12,279,160 cells, strict [0,1],
+EPSG:32611, exact grid, 200 m dead-collar clean) and is byte/pixel-unique across 364 aligned registry
+rasters; against every real geological dot-field prior the worst 3 px overlap is **0.4846 ≤ 0.70** and
+worst Spearman **0.106 ≤ 0.90**. Literal STOPs come only from the synthetic r13 calibration lattice
+(pigeonhole artifact) and the project's own dense continuous WBG-C1 surface. Because the efficacy gate
+failed, **DOWNLOAD: YES (research) · SUBMIT: NO · zero slots used**. No leaderboard projection is made
+from a local HOLDOUT-DTI.
+
+'''
     header = f'''# WBG GEMS — evidence-first fault mapping
 
 ## DOWNLOAD: YES, for research. SUBMIT: **NO**.
@@ -215,7 +241,7 @@ not verified facts. The measured run card takes precedence over stale factual as
 <summary><strong>Complete standing user request — archived intent, not verified findings</strong></summary>
 
 '''
-    (ROOT / "README.md").write_text(header + standing + "\n</details>\n", encoding="utf-8")
+    (ROOT / "README.md").write_text(header + d1_block + standing + "\n</details>\n", encoding="utf-8")
     print("README updated with current decision and the complete archived standing request.")
 
 

@@ -1,8 +1,13 @@
 # Starting point for every session
 
 1. Read `README.md` **including the archived standing prompt**, then `registry/run_card.json`,
-   `registry/irregularities.json`, `registry/experiment_ledger.json`, and `registry/preregistration.json`.
+   `registry/run_card_wbg_d1.json`, `registry/irregularities.json`,
+   `registry/experiment_ledger.json`, and `registry/preregistration.json`.
    The prompt is intent, not evidence. The current measured status is **NEGATIVE / DO NOT SUBMIT**.
+   WBG-D1 (2026-10-27, radiometric alteration lane) is also negative: seven GeoDAWN radiometric
+   channels added no holdout DTI (paired CI spans zero); its portal-valid unique dotted TIF
+   (`docs/downloads/wbggemsdoe1-wbg-d1-*.tif`) passes the geological-peer uniqueness gates but the
+   literal lattice/dense-surface STOP remains, so it stays research-only. Do not rerun or tune it.
 2. The original checkout contained only a title. Do not invent prior local training, pending tasks,
    organizer receipts, lane assignments, scores, GPU requirements or authenticated data access.
 3. No assigned single-method paragraph was supplied. WBG-C1 is provisional research only. Its

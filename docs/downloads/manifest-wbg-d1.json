@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "artifact": "wbggemsdoe1-wbg-d1-rad-alteration-20261027-93a82d4bc116-zeros.tif",
+  "sha256": "e6deaa8375f93318c1e3ebefda903d92336e5ebba71c4ed88795a7bb77183a22",
+  "decoded_sha256": "93a82d4bc1167391f1c68d2701abb08c103e7099e52473cdb099d3b2a77c6a92",
+  "submission_name": "wbggemsdoe1-wbg-d1-rad-alteration-20261027-93a82d4bc116-zeros",
+  "note": "WBG-D1 GeoDAWN radiometric alteration+shallow magnetic edge HGB; 37654 off-catalogue NMS dots; HOLDOUT gated; unique bytes",
+  "note_chars": 122,
+  "verdict": "negative",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "zip_file": "wbggemsdoe1-wbg-d1-rad-alteration-20261027-93a82d4bc116-zeros.zip",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "candidate_dti": 0.014071620309873594,
+    "candidate_ci95": [
+      0.01191041397043182,
+      0.01643947635982908
+    ],
+    "control_dti": 0.014145537328473203,
+    "control_ci95": [
+      0.011902164672950225,
+      0.016612356157080375
+    ],
+    "withheld_positive_pixels": 11330,
+    "paired_delta": -7.391701859960943e-05,
+    "paired_ci95": [
+      -0.0002804390899238284,
+      0.00011221295341251707
+    ],
+    "dotted_pooled_dti": 0.009158999446495378,
+    "dotted_holdout_intrinsic_no_collar_dti": 0.05914544535559731,
+    "dotted_holdout_collar_pessimistic_dti": 0.009158999446495378,
+    "representation_note": "No-collar DTI treats hidden catalogue components as discoverable new faults (the deployment analogue; labels.tif contains only known faults). The 200 m collar version is pessimistic on this local instrument because withheld truth is itself catalogue the collar excludes; G10 collar is a project gate, not an organizer rule."
+  },
+  "gates": {
+    "efficacy_paired_ci_positive": false,
+    "spearman_ok": true,
+    "dotfield_overlap_ok": false,
+    "format_ok": true
+  },
+  "warning": "Research artifact. Negative efficacy gate; literal registry STOP from synthetic lattice and continuous-surface priors. No organizer receipt."
+}

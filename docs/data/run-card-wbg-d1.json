@@ -1,0 +1,232 @@
+{
+  "generated_utc": "2026-10-27T18:22:59+00:00",
+  "hypothesis": "WBG-D1: radiometric alteration halos (K enrichment vs Th/K, compositional edges) plus shallow magnetic edges identify concealed non-ridge faults, fused with the 19-band potential-field stack by spatial LOQO HGB.",
+  "mechanism": "Robust-z Gaussian high-pass/edge transforms of GeoDAWN K, Th/K, U/Th at 500m-1km; TMI minus 150m upward continuation shallow residual; 26-channel HistGradientBoosting under buffered whole-component LOQO; fixed 37,654-dot 300m NMS emission off the mapped catalogue.",
+  "non_fault_mimic": "Playa/evaporite and Lake Lahontan paleo-lacustrine clays, K-bearing basin fill, weathering/sorting and flight-line leveling, cultural magnetic noise.",
+  "lane": "self-declared provisional research lane; no assigned method paragraph; no slot authorization",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "candidate_dti": 0.014071620309873594,
+    "candidate_ci95": [
+      0.01191041397043182,
+      0.01643947635982908
+    ],
+    "control_dti": 0.014145537328473203,
+    "control_ci95": [
+      0.011902164672950225,
+      0.016612356157080375
+    ],
+    "withheld_positive_pixels": 11330,
+    "paired_delta": -7.391701859960943e-05,
+    "paired_ci95": [
+      -0.0002804390899238284,
+      0.00011221295341251707
+    ],
+    "dotted_pooled_dti": 0.009158999446495378,
+    "dotted_holdout_intrinsic_no_collar_dti": 0.05914544535559731,
+    "dotted_holdout_collar_pessimistic_dti": 0.009158999446495378,
+    "representation_note": "No-collar DTI treats hidden catalogue components as discoverable new faults (the deployment analogue; labels.tif contains only known faults). The 200 m collar version is pessimistic on this local instrument because withheld truth is itself catalogue the collar excludes; G10 collar is a project gate, not an organizer rule."
+  },
+  "canary": {
+    "generated_utc": "2026-10-27T17:52:23+00:00",
+    "all_features_tested_alone": true,
+    "n_rows": 104,
+    "maximum_orientation_invariant_auc": 0.6253233039832286,
+    "leakage_suspected": false
+  },
+  "registry": {
+    "phase": "surface-before-placement then final dots",
+    "rasters_checked": 364,
+    "scope": "Checked against every registry raster whose bytes are present locally (plus any explicitly fetched witnesses). Un-fetched registry entries are a stated scope limitation, never a claim of absence.",
+    "surface_worst_spearman": 0.9760515354975291,
+    "dots_worst_spearman": 0.1059524822839613,
+    "dots_worst_rho_submission": "WBGGEMSDOE1:docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+    "literal_worst_forward_overlap": 1.0,
+    "literal_worst_overlap_submission": "WBGGEMSDOE1:docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+    "dotfield_worst_forward_overlap": 0.9847559356243692,
+    "dotfield_worst_submission": "GEMSDOE24:inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "dotfield_rasters": 363,
+    "continuous_surface_rasters": 1,
+    "geological_peer_worst_forward_overlap": 0.4846231476071599,
+    "geological_peer_worst_submission": "GEMSDOE30:docs/downloads/gemsdoe30-sgmc-hedge-d10-85k-20261003-ac08b41e-zeros.tif",
+    "top_geological_dotfield_peers": [
+      {
+        "submission": "GEMSDOE30:docs/downloads/gemsdoe30-sgmc-hedge-d10-85k-20261003-ac08b41e-zeros.tif",
+        "their_dots": 85526,
+        "my_dots_within_3px_of_theirs": 0.4846231476071599,
+        "their_dots_within_3px_of_mine": 0.295348782826275,
+        "spearman_full_footprint": 0.008021588595501682,
+        "jaccard_dot_sets": 0.008787375007165846
+      },
+      {
+        "submission": "GEMSDOE30:docs/downloads/gemsdoe30-sgmc-hedge-d10-85k-20261003-ac08b41e.tif",
+        "their_dots": 85526,
+        "my_dots_within_3px_of_theirs": 0.4846231476071599,
+        "their_dots_within_3px_of_mine": 0.295348782826275,
+        "spearman_full_footprint": 0.008021588595501682,
+        "jaccard_dot_sets": 0.008787375007165846
+      },
+      {
+        "submission": "GEMSDOE24:inputs/calibration/gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
+        "their_dots": 69281,
+        "my_dots_within_3px_of_theirs": 0.4022680193339353,
+        "their_dots_within_3px_of_mine": 0.28823198279470563,
+        "spearman_full_footprint": 0.01444519541588062,
+        "jaccard_dot_sets": 0.011684011352885526
+      },
+      {
+        "submission": "GEMSDOE31:docs/downloads/gemsdoe31-h31n-pseudograv-37654-20261026-70fd6538-nan.tif",
+        "their_dots": 37654,
+        "my_dots_within_3px_of_theirs": 0.4019493280926329,
+        "their_dots_within_3px_of_mine": 0.3925213788707707,
+        "spearman_full_footprint": 0.03848674802810022,
+        "jaccard_dot_sets": 0.02327603777430532
+      },
+      {
+        "submission": "GEMSDOE31:docs/downloads/gemsdoe31-h31n-pseudograv-37654-20261026-70fd6538-zeros.tif",
+        "their_dots": 37654,
+        "my_dots_within_3px_of_theirs": 0.4019493280926329,
+        "their_dots_within_3px_of_mine": 0.3925213788707707,
+        "spearman_full_footprint": 0.03848674802810022,
+        "jaccard_dot_sets": 0.02327603777430532
+      }
+    ],
+    "synthetic_lattice_controls": [
+      {
+        "submission": "GEMSDOE24:inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+        "forward_overlap": 0.9847559356243692,
+        "their_dots": 206895
+      }
+    ],
+    "lattice_note": "The r13-lattice rasters are uniform synthetic calibration grids; pigeonhole overlap with any sparse dot field is structural (IR-WBG1-01), not geological duplication.",
+    "byte_unique": true,
+    "pixel_unique": true,
+    "geological_peer_note": "Against real geological dot-field priors the worst forward 3 px overlap is 0.4846 <= 0.70 and worst Spearman 0.106 <= 0.90. Literal STOPs come only from (a) the synthetic r13 space-filling calibration lattice (pigeonhole artifact IR-WBG1-01) and (b) the project-owned continuous WBG-C1 surface whose dense support is a universal overlap blocker."
+  },
+  "raster_sha256": "e6deaa8375f93318c1e3ebefda903d92336e5ebba71c4ed88795a7bb77183a22",
+  "raster_decoded_sha256": "93a82d4bc1167391f1c68d2701abb08c103e7099e52473cdb099d3b2a77c6a92",
+  "artifact": "docs/downloads/wbggemsdoe1-wbg-d1-rad-alteration-20261027-93a82d4bc116-zeros.tif",
+  "zip_artifact": "docs/downloads/wbggemsdoe1-wbg-d1-rad-alteration-20261027-93a82d4bc116-zeros.zip",
+  "validator": {
+    "single_band": true,
+    "dtype_float32": true,
+    "dimensions_3730x3292": true,
+    "crs_epsg_32611": true,
+    "transform_matches_sample_submission": true,
+    "no_nan_anywhere": true,
+    "no_inf_anywhere": true,
+    "no_sentinel_values": true,
+    "range_0_1_guaranteed": true,
+    "min_ge_0": true,
+    "max_le_1": true,
+    "in_footprint_all_finite": true,
+    "in_footprint_range_0_1": true,
+    "outside_footprint_zero": true,
+    "zero_dots_on_mapped_catalogue": true
+  },
+  "validator_all_passed": true,
+  "submission_name": "wbggemsdoe1-wbg-d1-rad-alteration-20261027-93a82d4bc116-zeros",
+  "submission_note": "WBG-D1 GeoDAWN radiometric alteration+shallow magnetic edge HGB; 37654 off-catalogue NMS dots; HOLDOUT gated; unique bytes",
+  "submission_note_chars": 122,
+  "gates": {
+    "efficacy_paired_ci_positive": false,
+    "spearman_ok": true,
+    "dotfield_overlap_ok": false,
+    "format_ok": true
+  },
+  "verdict": "negative",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "submission_slots_used": 0,
+  "experiments_completed": 3,
+  "exp1_deterministic": {
+    "deterministic_rad_composite": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.028279755927962297,
+      "ci95": [
+        0.024248119275777302,
+        0.03219430492533221
+      ],
+      "withheld_positive_pixels": 11330,
+      "tpw": 458.3166161935272,
+      "fpw": 35254.316296376164,
+      "fnw": 10871.683383806472
+    },
+    "random_dot_baseline": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0344826922613338,
+      "ci95": [
+        0.030175952564861823,
+        0.03841008651958566
+      ],
+      "withheld_positive_pixels": 11330,
+      "tpw": 560.132833012358,
+      "fpw": 35339.28425415738,
+      "fnw": 10769.867166987638
+    }
+  },
+  "exp1_vs_random_paired": {
+    "random_dot_baseline": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": -0.0062029363333715,
+      "ci95": [
+        -0.01089698389812604,
+        -0.0006984035475730466
+      ],
+      "withheld_positive_pixels": 11330
+    }
+  },
+  "top_geological_peers": [
+    {
+      "submission": "GEMSDOE30:docs/downloads/gemsdoe30-sgmc-hedge-d10-85k-20261003-ac08b41e-zeros.tif",
+      "their_dots": 85526,
+      "my_dots_within_3px_of_theirs": 0.4846231476071599,
+      "their_dots_within_3px_of_mine": 0.295348782826275,
+      "spearman_full_footprint": 0.008021588595501682,
+      "jaccard_dot_sets": 0.008787375007165846
+    },
+    {
+      "submission": "GEMSDOE30:docs/downloads/gemsdoe30-sgmc-hedge-d10-85k-20261003-ac08b41e.tif",
+      "their_dots": 85526,
+      "my_dots_within_3px_of_theirs": 0.4846231476071599,
+      "their_dots_within_3px_of_mine": 0.295348782826275,
+      "spearman_full_footprint": 0.008021588595501682,
+      "jaccard_dot_sets": 0.008787375007165846
+    },
+    {
+      "submission": "GEMSDOE24:inputs/calibration/gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
+      "their_dots": 69281,
+      "my_dots_within_3px_of_theirs": 0.4022680193339353,
+      "their_dots_within_3px_of_mine": 0.28823198279470563,
+      "spearman_full_footprint": 0.01444519541588062,
+      "jaccard_dot_sets": 0.011684011352885526
+    },
+    {
+      "submission": "GEMSDOE31:docs/downloads/gemsdoe31-h31n-pseudograv-37654-20261026-70fd6538-nan.tif",
+      "their_dots": 37654,
+      "my_dots_within_3px_of_theirs": 0.4019493280926329,
+      "their_dots_within_3px_of_mine": 0.3925213788707707,
+      "spearman_full_footprint": 0.03848674802810022,
+      "jaccard_dot_sets": 0.02327603777430532
+    },
+    {
+      "submission": "GEMSDOE31:docs/downloads/gemsdoe31-h31n-pseudograv-37654-20261026-70fd6538-zeros.tif",
+      "their_dots": 37654,
+      "my_dots_within_3px_of_theirs": 0.4019493280926329,
+      "their_dots_within_3px_of_mine": 0.3925213788707707,
+      "spearman_full_footprint": 0.03848674802810022,
+      "jaccard_dot_sets": 0.02327603777430532
+    }
+  ],
+  "synthetic_lattice_controls": [
+    {
+      "submission": "GEMSDOE24:inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "forward_overlap": 0.9847559356243692,
+      "their_dots": 206895
+    }
+  ]
+}

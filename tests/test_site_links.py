@@ -9,6 +9,9 @@ PAGES = [
     DOCS / "research.html",
     DOCS / "methodology.html",
     DOCS / "submission-instructions.html",
+    DOCS / "wbg-d1.html",
+    DOCS / "executive-summary.html",
+    DOCS / "how-to-submit.html",
 ]
 
 

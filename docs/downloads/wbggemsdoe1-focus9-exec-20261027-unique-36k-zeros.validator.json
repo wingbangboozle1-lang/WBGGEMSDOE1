@@ -1,0 +1,74 @@
+{
+  "schema": "gemsdoe1-validator-v1",
+  "generated_utc": "2026-10-27T23:43:15.752948+00:00",
+  "artifact": "docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif",
+  "artifact_sha256": "e8c4bf7607cec72c54981b90aa60e7e85163b429b58ebd6f2a7c3126e8c1e351",
+  "raster_metadata": {
+    "driver": "GTiff",
+    "count": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null
+  },
+  "checks": {
+    "one_float32_band": {
+      "pass": true,
+      "detail": "count=1, dtype=float32"
+    },
+    "whole_array_finite": {
+      "pass": true,
+      "detail": "nonfinite=0"
+    },
+    "whole_array_range_0_1": {
+      "pass": true,
+      "detail": "min=0.0, max=1.0"
+    },
+    "no_nan_inside_footprint": {
+      "pass": true,
+      "detail": "0 NaN inside footprint"
+    },
+    "values_in_0_1": {
+      "pass": true,
+      "detail": "all values in [0,1]"
+    },
+    "grid_identity": {
+      "pass": true,
+      "detail": "CRS EPSG:32611 shape [3730,3292] transform [100,0,243350,0,-100,4508550]"
+    },
+    "crs_shape_transform_match": {
+      "pass": true,
+      "detail": "matches sample_submission"
+    },
+    "outside_footprint_zero": {
+      "pass": true,
+      "detail": "zeros mode"
+    },
+    "known_fault_support_zero": {
+      "pass": true,
+      "detail": "0 on catalogue"
+    },
+    "footprint_dot_count": {
+      "pass": true,
+      "detail": "observed=36800, budget=36800"
+    },
+    "positive_pixels": 36800,
+    "on_catalogue_positive_pixels": 0,
+    "all_checks_passed": true
+  },
+  "passed": true,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "note": "Format PASS does not imply leaderboard prediction or uniqueness clearance. See uniqueness JSON."
+}

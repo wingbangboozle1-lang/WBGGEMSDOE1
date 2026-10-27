@@ -45,6 +45,18 @@
     {
       "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
       "verified": "site calls 0.2778 an OWNER-REPORT and says no file-specific organizer receipt is present"
+    },
+    {
+      "url": "https://doi.org/10.5066/P9TWT2LU",
+      "verified": "USGS ScienceBase conductance maps integrate conductivity across 2\u201312, 12\u201320, 20\u201350, 50\u201390 and 90\u2013200 km depth ranges. Listed TIFFs were not downloaded or checked for study-area coverage."
+    },
+    {
+      "url": "https://www.usgs.gov/3d-elevation-program",
+      "verified": "3DEP products are available free of charge and without use restrictions. Raw local tiles and derived owner-cache provenance were not independently reproduced."
+    },
+    {
+      "url": "https://www.usgs.gov/data/shapefile-slip-tendency-and-dilation-tendency-calculated-quaternary-faults-great-basin",
+      "verified": "CC0 slip/dilation attributes are calculated from publicly mapped Quaternary faults; catalogue-derived inputs must be recomputed from visible faults in every holdout fold to avoid leakage."
     }
   ],
   "limits": [

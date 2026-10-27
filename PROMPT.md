@@ -34,7 +34,7 @@ See `docs/wbg2.html` and `evidence/wbg2/safety_audit_20261027.json`.
 ## Submission contract
 
 - Single-band float32 GeoTIFF, EPSG:32611, 3730×3292, 100 m, sample geotransform.
-- Values in [0, 1]. **Zeros-mode** (no NaN anywhere) is the upload file — the portal has rejected NaN with “Predicted values must be in range [0, 1]”.
+- Values in [0, 1]. The reported portal error was “Predicted values must be in range [0, 1]”; its cause is unverified. The local research file uses an all-finite, zero exterior convention, while official instructions say data outside the bounds should be null/NaN. Local validation does not establish organizer acceptance; no current file is approved.
 - Unique name + short note.
 - Homepage must make **OK TO SUBMIT / DO NOT SUBMIT** obvious. Validation is automatic; no human inspector.
 

@@ -204,6 +204,20 @@
    "title": "Nine-champion diagnostics cannot clear the registry",
    "finding": "An earlier parallel review quoted a maximum 18.61% overlap using a private Manhattan diagnostic. The shared Euclidean test against one pinned champion per focus site instead ranges up to 20.05%; neither limited comparison clears the broader registry, and a separate pinned lattice produces a binding 99.8972% STOP.",
    "action": "Use only the shared Euclidean measurements, identify the limited site scope and retain all stopped decisions; do not reinterpret the differences as evidence of new model performance."
+  },
+  {
+   "id": "IR-030",
+   "severity": "high",
+   "title": "MT source and depth descriptions corrected",
+   "finding": "The previously proposed ScienceBase item 5fb70a0ad34eb413d5e14873 and USGS publication 70247315 were not found. The verified Great Basin MT conductance release contains depth-integrated layers at 2\u201312, 12\u201320, 20\u201350, 50\u201390 and 90\u2013200 km, not earlier proposed shallow slices.",
+   "action": "Use DOI 10.5066/P9TWT2LU as official metadata; verify bytes, grid, coverage and label independence before any prospective use."
+  },
+  {
+   "id": "IR-031",
+   "severity": "high",
+   "title": "Legacy WBG-2 private validator retired",
+   "finding": "The private TIFF validator omitted the complete affine transform and used an inferred-mask convention. A format-only local pass also cannot establish organizer acceptance or authorize upload.",
+   "action": "The old private validator now fails closed; use the shared exact-file validator, preserve original code as historical text, and do not claim a competition receipt."
   }
  ]
 }

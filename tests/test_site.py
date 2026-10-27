@@ -159,7 +159,10 @@ def test_github_only_feed_never_requests_the_official_leaderboard(tmp_path, monk
     assert result["network_refresh_attempted"]
     assert not result["official_page_refresh_attempted"]
     assert result["leaderboard_status"] == "retained_observation_not_refreshed"
-    assert result["leaderboard"]["public_dw_tversky"] == .4437
+    source = json.loads((tmp_path / "registry/sources.json").read_text())
+    seed = next(s for s in source["sources"] if s["id"] == "OFFICIAL-LEADERBOARD")
+    assert result["leaderboard"]["public_dw_tversky"] == seed["observation"]["public_dw_tversky"]
+    assert result["leaderboard"]["observed_date_utc"] == seed["observation"]["date_utc"]
     assert result["models_retrained"] is False and result["submission_slots_used"] == 0
 
 
@@ -220,3 +223,31 @@ def test_staged_pages_match_legacy_url_layout_and_preserve_artifact_bytes(tmp_pa
     with pytest.raises(ValueError, match="unmarked"):
         stage.stage()
     assert (target / "docs/downloads/fixture.tif").exists()
+
+
+def test_source_evidence_page_uses_the_dated_registry_seed():
+    sources = json.loads((ROOT / "registry/sources.json").read_text())
+    obs = next(s for s in sources["sources"] if s["id"] == "OFFICIAL-LEADERBOARD")["observation"]
+    html = (DOCS / "evidence.html").read_text()
+    assert f'Directly observed public rank-one value: {obs["public_dw_tversky"]} on {obs["date_utc"]}.' in html
+    assert "Not a project TIFF receipt" in html
+
+
+def test_format_guide_distinguishes_official_and_local_exterior():
+    for name in ("how-to-submit.html", "wbg2.html"):
+        html = (DOCS / name).read_text()
+        assert "null/NaN" in html and "outside" in html
+        assert "organizer acceptance" in html or "portal acceptance" in html
+
+
+def test_feed_parser_handles_split_public_header_and_probe_reports_only_structure():
+    html = '''<html><head><title>Public leaderboard</title></head><body><table>
+    <tr><th>Rank</th><th>Participant</th><th>Best<br>public<br>DW-Tversky</th></tr>
+    <tr><td>#1</td><td>Example</td><td>0.4544</td></tr></table><p>Do not include body text</p></body></html>'''
+    feed = module("refresh_feed")
+    probe = module("probe_leaderboard")
+    assert feed.parse_leaderboard(html)["public_dw_tversky"] == .4544
+    shape = probe.public_shape(html)
+    assert shape["title"] == "Public leaderboard" and shape["table_count"] == 1
+    assert shape["first_headers"] == [["Rank", "Participant", "Best public DW-Tversky"]]
+    assert "Do not include body text" not in json.dumps(shape)

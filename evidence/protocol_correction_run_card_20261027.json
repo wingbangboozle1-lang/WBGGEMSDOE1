@@ -3,7 +3,7 @@
   "schema": "wbg-protocol-correction-run-card-v1",
   "date_utc": "2026-10-27",
   "hypothesis": "WBG-2: off-catalogue fault-density-prior dot field",
-  "mechanism": "Gaussian KDE (1.5 km) of mapped-fault density supplies a placement prior; all cells within 400 m of the catalogue are excluded because the scored target is the faults that are NOT in the catalogue; a 36k-cell scattered field is rendered binary in zeros mode.",
+  "mechanism": "Gaussian KDE (1.5 km) of mapped-fault density supplied a 36,000-cell binary placement prior with a four-step Manhattan catalogue exclusion, not a full 400 m Euclidean disk.",
   "named_non_fault_mimic": "Basin-fill depocentres and range-front alluvial aprons concentrate next to mapped faults, so a density prior partly reproduces the sedimentary basin geometry rather than faulting. The prior is a spatial-distribution model, not a detection.",
   "activity": "Audit-only continuation; frozen candidate; zero new experiments and zero slots used.",
   "holdout_dti": {
@@ -151,5 +151,7 @@
       "pass": 3,
       "result": "149 tests pass; static checks pass; frozen release checks pass. No eligible high-scoring unique file claimed. Remote browser check passes; normalized nested template path after CI reproducibility finding."
     }
-  ]
+  ],
+  "status": "SUPERSEDED \u2014 see evidence/wbg2/run_card.json for the current remeasured forensic card",
+  "superseded_by": "evidence/wbg2/run_card.json"
 }

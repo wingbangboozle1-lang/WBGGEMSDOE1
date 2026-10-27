@@ -100,7 +100,7 @@ def main():
     sources = json.loads((ROOT / "registry/sources.json").read_text())
     seed = next(s for s in sources["sources"] if s["id"] == "OFFICIAL-LEADERBOARD")
     last = previous.get("leaderboard", {**seed["observation"], "evidence_class": seed["evidence_class"],
-        "source": seed["url"], "observed_date_utc": "2026-10-26", "observation_method": "fetch_page direct official page retrieval in research session",
+        "source": seed["url"], "observed_date_utc": seed["observation"]["date_utc"], "observation_method": "fetch_page direct official page retrieval in research session",
         "not_a_project_submission_receipt": True})
     errors, heads = [], []
     leaderboard_status = "retained_observation_not_refreshed"

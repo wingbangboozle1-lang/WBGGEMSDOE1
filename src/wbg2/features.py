@@ -1,4 +1,9 @@
-"""Feature construction for WBG-2 from official external data.
+"""Historical, unused WBG-2 feature proposal — NOT the rendered WBG-2 method.
+
+These functions were not shown to drive the frozen density-prior TIFF and are
+not evidence of a holdout or of causal geological detection. Source products
+exist, but the derived owner-cache provenance, coverage and band semantics
+remain independently unauthenticated. The lane is stopped.
 
 Inputs (all on the exact competition grid: EPSG:32611, 3730x3292, 100 m,
 transform origin 243350/4508550):

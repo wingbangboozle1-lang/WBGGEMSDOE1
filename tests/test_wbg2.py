@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import zipfile
 from pathlib import Path
 
 import numpy as np
@@ -112,57 +111,42 @@ def test_density_prior_is_bounded():
 
 
 # -------------------------------------------------------------------- validator
-def test_validator_rejects_wrong_grid(tmp_path):
+@pytest.mark.parametrize("legacy", [V.validate_tif, V.validate_zip])
+def test_legacy_private_validator_is_disabled(legacy):
+    with pytest.raises(RuntimeError, match="disabled"):
+        legacy("anything")
+
+
+def test_shared_validator_rejects_shift_and_nonfinite_exterior(tmp_path, monkeypatch):
     import rasterio
+    from rasterio.transform import from_origin
+    from gems57 import validate as shared
 
-    p = tmp_path / "bad.tif"
-    with rasterio.open(
-        p, "w", driver="GTiff", height=10, width=10, count=1, dtype="float32",
-        crs="EPSG:32611", transform=rasterio.transform.from_origin(0, 0, 100, 100),
-    ) as dst:
-        dst.write(np.zeros((10, 10), np.float32), 1)
-    rep = V.validate_tif(str(p))
-    assert rep.all_checks_passed is False
-    assert "shape_matches" in rep.errors
+    transform = from_origin(243350, 4508550, 100, 100)
+    monkeypatch.setattr(shared, "HEIGHT", 20)
+    monkeypatch.setattr(shared, "WIDTH", 20)
+    monkeypatch.setattr(shared, "TRANSFORM", transform)
+    path = tmp_path / "test.tif"
+    footprint = np.ones((20, 20), dtype=bool)
+    footprint[0, 0] = False
+    arr = np.zeros((20, 20), np.float32)
 
+    def write(t):
+        with rasterio.open(path, "w", driver="GTiff", height=20, width=20, count=1,
+                           dtype="float32", crs="EPSG:32611", transform=t) as dst:
+            dst.write(arr, 1)
 
-def test_validator_detects_nan_mode(tmp_path):
-    import rasterio
-
-    p = tmp_path / "nan.tif"
-    tr = rasterio.transform.from_origin(243350, 4508550, 100, 100)
-    a = np.zeros((3730, 3292), np.float32)
-    a[0, 0] = np.nan
-    with rasterio.open(
-        p, "w", driver="GTiff", height=3730, width=3292, count=1, dtype="float32",
-        crs="EPSG:32611", transform=tr,
-    ) as dst:
-        dst.write(a, 1)
-    rep = V.validate_tif(str(p))
-    assert rep.mode == "nan"
-    assert rep.all_checks_passed is False
-
-
-def test_zip_validator_requires_single_identical_member(tmp_path):
-    import rasterio
-
-    tr = rasterio.transform.from_origin(243350, 4508550, 100, 100)
-    tif = tmp_path / "x.tif"
-    with rasterio.open(
-        tif, "w", driver="GTiff", height=8, width=8, count=1, dtype="float32",
-        crs="EPSG:32611", transform=tr,
-    ) as dst:
-        dst.write(np.ones((8, 8), np.float32), 1)
-    good = tmp_path / "good.zip"
-    with zipfile.ZipFile(good, "w") as z:
-        z.write(tif, arcname="x.tif")
-    assert V.validate_zip(str(good), str(tif))["all_checks_passed"] is True
-
-    two = tmp_path / "two.zip"
-    with zipfile.ZipFile(two, "w") as z:
-        z.write(tif, arcname="x.tif")
-        z.write(tif, arcname="y.tif")
-    assert V.validate_zip(str(two), str(tif))["all_checks_passed"] is False
+    write(transform)
+    assert shared.validate(path, footprint)["all_checks_passed"]
+    write(from_origin(243450, 4508550, 100, 100))
+    assert not shared.validate(path, footprint)["checks"]["transform_matches_sample_submission"]
+    arr[0, 0] = np.nan
+    write(transform)
+    assert not shared.validate(path, footprint)["checks"]["no_nan_anywhere"]
+    arr[0, 0] = 0
+    arr[5, 5] = 1.01
+    write(transform)
+    assert not shared.validate(path, footprint)["checks"]["range_0_1_guaranteed"]
 
 
 # -------------------------------------------------------- literal uniqueness
@@ -318,3 +302,20 @@ def test_parallel_reviews_and_original_card_are_preserved_but_superseded():
     for path in ("evidence/session_review_20261027.json", "evidence/protocol_correction_run_card_20261027.json",
                  "evidence/wbg2/corrected_preflight.json", "docs/data/wbg2-corrected-preflight.json"):
         assert "superseded" in json.loads((ROOT / path).read_text())["superseded_warning"].lower()
+
+
+def test_parallel_audit_cannot_overwrite_canonical_card():
+    import importlib.util
+    import sys
+    sys.path.insert(0, str(ROOT / "scripts"))
+    spec = importlib.util.spec_from_file_location("review_wbg2", ROOT / "scripts/review_wbg2.py")
+    review = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(review)
+    assert review.CARD != ROOT / "evidence/wbg2/run_card.json"
+    assert review.CARD.read_bytes() == review.MIRROR.read_bytes()
+    parallel = json.loads(review.CARD.read_text())
+    canonical = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
+    assert parallel["verdict"] == canonical["verdict"] == "negative"
+    assert parallel["raster_sha256"] == canonical["raster_sha256"]
+    assert parallel["registry"]["rows"][0]["forward_overlap_within_3px"] == canonical["registry"]["existing_final_dots"]["my_dots_within_3px_of_theirs"]
+    assert parallel["ok_to_submit"] is False and canonical["decision"]["ok_to_submit"] is False

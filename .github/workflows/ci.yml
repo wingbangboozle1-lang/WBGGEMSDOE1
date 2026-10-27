@@ -26,6 +26,8 @@ jobs:
         run: python -m pytest -q
       - name: Static syntax and undefined-name checks
         run: python -m ruff check scripts src tests --select E9,F --exclude test_template_evaluator.py
+      - name: Diagnose public leaderboard feed shape without modifying evidence
+        run: python scripts/probe_leaderboard.py
       - name: Revalidate the actual TIFF and ZIP
         run: |
           python scripts/validate_submission.py docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif
@@ -40,6 +42,7 @@ jobs:
           PYTHONPATH: src:vendor
         run: |
           python scripts/verify_wbg2_download.py --expect-negative --deep --fetch
+          python scripts/review_wbg2.py --check
           python scripts/build_wbg2_site.py
       - name: Recheck inherited frozen TIP1 & WBG-H1 receipts without retraining
         env:

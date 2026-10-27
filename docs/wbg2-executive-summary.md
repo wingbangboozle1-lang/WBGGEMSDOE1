@@ -24,6 +24,6 @@ Only one champion per site was checked. Values are user-reported, with no file-s
 
 **Why B2?** The recorded lineage is D2.8 (44,090 dots) → B1 (40,199) → B2 (37,654) through catalogue-near pruning. Removing redundant low-credit pixels may help the official distance-weighted Tversky metric, but the hidden labels and receipt are unavailable. The claim 0.2778 and its cause remain unverified. Removing mapped-fault-adjacent pixels can also remove genuinely new nearby faults.
 
-The official public leaderboard recorded 0.4544 (2026-10-27); this is not a score for any project file. [Dated provenance feed](data/feed.json) · [three safety-review passes](data/wbg2-review-passes-20261027.json).
+The official public leaderboard recorded 0.4544 (2026-10-27); this is not a score for any project file. [Dated provenance feed](data/feed.json) · [three safety-review passes](data/wbg2-review-passes-20261027.json) · [independent two-witness corroboration](data/wbg2-review.json).
 
 See [official metric and format](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/), [rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf), [research hypotheses](research/future-hypotheses-20261027.md), and [future submission guide](how-to-submit.html).

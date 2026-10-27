@@ -31,9 +31,10 @@
         "The historical catalogue buffer was four-connected Manhattan dilation, not a 400 m Euclidean disc; 813 existing dots are less than 400 m away. Corrected the mechanism, public pages and docstring without changing pixels.",
         "Embedded the full local TIFF and ZIP validator output in the negative run card and added regression tests for range, exact-byte identity, retired generator and inconsistent evidence.",
         "Reverified inherited frozen release receipts without retraining and confirmed scientific readiness remains blocked.",
-        "Integrated three concurrent main-branch reviews without rerunning experiments; preserved their original raw card and labeled older private-distance, buffer and data-availability interpretations as superseded."
+        "Integrated three concurrent main-branch reviews without rerunning experiments; preserved their original raw card and labeled older private-distance, buffer and data-availability interpretations as superseded.",
+        "A later parallel review independently confirmed the same lattice STOP and Manhattan-buffer correction; its separate two-witness card, three-pass record, sources and historical code were preserved. The legacy private validator was disabled and the metric delegates to the pinned shared implementation."
       ],
-      "verification": "159 pytest tests and Ruff E9/F passed after integrating the concurrent reviews; deep literal overlap audit exactly matches its recorded receipt; ten desktop/mobile pages and actual TIFF downloads passed.",
+      "verification": "163 pytest tests and Ruff E9/F passed after integrating concurrent reviews and retiring the private validator; deep shared overlap and independent two-witness audit match their receipts; ten desktop/mobile pages and actual TIFF downloads passed.",
       "limits": "No holdout test for the prospective hypotheses, no proven unique winner, no account-specific allowance, no organizer receipt, and no competition upload. Remote CI, merge and Pages deployment require separate GitHub receipts."
     }
   ],

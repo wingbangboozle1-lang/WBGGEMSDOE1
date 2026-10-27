@@ -36,8 +36,7 @@ jobs:
         env:
           PYTHONPATH: src
         run: |
-          python scripts/build_wbg2_submission.py
-          python scripts/verify_wbg2_download.py
+          python scripts/verify_wbg2_download.py --format-only
           python scripts/build_wbg2_site.py
       - name: Recheck inherited frozen TIP1 & WBG-H1 receipts without retraining
         env:

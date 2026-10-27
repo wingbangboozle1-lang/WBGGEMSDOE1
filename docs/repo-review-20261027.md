@@ -1,5 +1,9 @@
 # Repository review — 2026-10-27
 
+> Preserved parallel review from PR #16. Its historical model estimate and test count
+> are superseded by the [protocol correction](protocol-review-20261027.md): forecast
+> withdrawn, literal overlap STOP, 149 tests. No upload approval.
+
 ## Decision
 
 **No new experiment, TIFF, or competition upload is authorized by this review.** The working tree contains a prior, explicit STOP for the WBG-C1 lane: its surface had 99.87% forward 3-pixel overlap with a registry lattice and paired efficacy did not establish improvement. The standing protocol says stop after a duplicate gate. Starting another method here would violate the lane rule; changing method lanes requires a separately assigned lane and a fresh, complete registry audit. No submission slot has been used.

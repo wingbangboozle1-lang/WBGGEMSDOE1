@@ -16,30 +16,20 @@ def main():
     standing = (ROOT / "docs/standing-prompt.md").read_text()
     w2 = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
     w2tif = Path(w2["artifacts"]["tif"]).name
-    w2est = w2["score_estimate"]["value"]
-    w2lo, w2hi = w2["score_estimate"]["ci95"]
-    w2nine = json.loads((ROOT / "evidence/wbg2/nine_site_uniqueness.json").read_text())
-
     header = f'''# WBG GEMS — evidence-first fault mapping
 
-## DOWNLOAD FOR AUDIT — NOT CLEARED TO SUBMIT: [{w2tif}](docs/downloads/{w2tif})
+## DO NOT SUBMIT — no candidate currently clears all gates
 
-**Status correction:** local format validity and a nine-site uniqueness comparison do not establish full-registry clearance or a same-evaluator holdout win. Do not upload under the current protocol. See [repository review](docs/repo-review-20261027.md).
+**[Executive summary and research download](docs/wbg2.html)** · [Nine-site comparison](docs/executive-summary.html)
 
-**[Executive summary + one-click download](docs/wbg2.html)** · [ZIP](docs/downloads/{w2tif.replace('.tif', '.zip')}) ·
-[markdown summary](docs/wbg2-executive-summary.md) · [run card](evidence/wbg2/run_card.json) ·
-[live site](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/wbg2.html)
+| File | Leaderboard estimate | Literal uniqueness | Submit? |
+|---|---|---|---|
+| [{w2tif}](docs/downloads/{w2tif}) | Unavailable; prior regression forecast withdrawn | FAIL: recorded forward overlap 100% >70%; surface gate absent | **NO — research only** |
 
-| | |
-|---|---|
-| File to submit | `docs/downloads/{w2tif}` (+ identical one-member `.zip`) |
-| Estimated score | **{w2est:.4f}** — MODEL-ESTIMATE, 95% interval {w2lo:.4f}–{w2hi:.4f}, R² {w2["score_estimate"]["r2"]:.3f}, n=9. **Not organizer-confirmed.** |
-| Unique vs GEMSDOE24/25/27/28/30/31/32/33/36 | **YES** — {w2nine["n_audited"]}/9 audited; max {w2nine["max_enrichment_vs_chance"]:.2f}× chance overlap, max \|ρ\| {w2nine["max_abs_spearman"]:.3f} |
-| Format | single-band float32, EPSG:32611, 3730×3292, values in [0,1], no NaN anywhere (zeros mode) |
-| sha256 | `{w2["raster_sha256"]}` |
-| Slots used | 0 |
-
-> **Honest reading.** WBG-2 has a local format pass and was compared with the nine focus-site artifacts, but that is not complete current registry clearance or an efficacy holdout. Its estimate is only **{w2est - 0.2778:+.4f}** above the unverified owner-reported 0.2778 and does not establish a win. **Download for audit; not cleared to upload under the current protocol.** See [the repository review](docs/repo-review-20261027.md) and [executive summary](docs/wbg2.html).
+The WBG-2 approval was revoked on 2026-10-27. Its density-adjusted exemption violated
+this project's literal registry rule. Format-valid does not mean eligible or high scoring.
+No qualifying WBG-2 HOLDOUT-DTI, CI, withheld-positive count or evaluator version exists.
+No weekly competition slot was used. [Correction and next steps](docs/protocol-review-20261027.md).
 
 ## Older file — DOWNLOAD: YES, for research. SUBMIT: **NO**.
 

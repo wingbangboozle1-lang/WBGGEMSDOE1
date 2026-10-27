@@ -145,18 +145,8 @@ def feed_strip(feed):
 
 
 def wbg2_banner():
-    """Prominent audit download; fail closed until global gates and holdout win exist."""
-    try:
-        card = load("evidence/wbg2/run_card.json")
-    except Exception:
-        return ""
-    tif = Path(card["artifacts"]["tif"]).name
-    est = card["score_estimate"]["value"]
-    lo, hi = card["score_estimate"]["ci95"]
-    # A local nine-site check is not the complete registry/literal-dot audit required by
-    # PROMPT.md. The estimator is not a same-evaluator holdout result. Fail closed.
-    tag = pill("Submit: NO", "no")
-    return f'''<div class="alert" role="alert" style="border-color:#e2b9b5;background:#fbefed;color:#783c39"><p><strong>Download for audit: WBG-2. NOT CLEARED TO SUBMIT.</strong> Format-valid GeoTIFF; model estimate <strong>{est:.4f}</strong> (95% calibration interval {lo:.4f}–{hi:.4f}, not organizer-confirmed). Nine-site comparison is not complete registry clearance and no same-evaluator holdout win is established. {tag} &nbsp; <a href="wbg2.html">Executive summary and download →</a> &nbsp;·&nbsp; <a href="repo-review-20261027.md">Review and gates →</a> &nbsp;·&nbsp; <a href="downloads/{tif}" download>Direct TIFF download ↓</a></p></div>'''
+    """Never advertise a stopped candidate as submission-ready."""
+    return '<div class="alert" role="note"><p><strong>WBG-2 approval revoked: DO NOT SUBMIT.</strong> Literal overlap STOP; no qualifying holdout or reliable leaderboard estimate. <a href="wbg2.html">Corrected executive summary and research download</a> · <a href="protocol-review-20261027.md">Protocol review</a></p></div>'
 
 
 def home(card, receipt, audit, feed):

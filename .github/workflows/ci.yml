@@ -32,6 +32,13 @@ jobs:
           python scripts/validate_submission.py docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.zip
       - name: Revalidate all four frozen research downloads and decision-report identity
         run: python scripts/review_releases.py --check
+      - name: Verify the WBG-2 submission download, fail-closed
+        env:
+          PYTHONPATH: src
+        run: |
+          python scripts/build_wbg2_submission.py
+          python scripts/verify_wbg2_download.py
+          python scripts/build_wbg2_site.py
       - name: Recheck inherited frozen TIP1 & WBG-H1 receipts without retraining
         env:
           PYTHONPATH: src

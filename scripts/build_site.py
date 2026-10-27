@@ -31,7 +31,8 @@ def link(url, text, cls=""):
 
 
 def page(name, title, body):
-    nav = [("index.html", "Overview"), ("executive-summary.html", "Site comparison"),
+    nav = [("index.html", "Overview"), ("wbg2.html", "WBG-2 submission"),
+           ("executive-summary.html", "Site comparison"),
            ("research.html", "Research"), ("evidence.html", "Evidence"), ("how-to-submit.html", "How to submit")]
     links = "".join(link(path, label, "active" if path == name else "") for path, label in nav)
     return f'''<!doctype html>
@@ -142,9 +143,24 @@ def feed_strip(feed):
     return f'''<aside class="feed-strip" aria-label="Dated public leaderboard observation"><div><strong>Official public leaderboard observation</strong> &nbsp; <b data-feed-score>{score:.4f}</b> &nbsp; <span data-feed-date>observed {escape(observed)}</span><br><span data-feed-status>{status}</span></div>{link(observation['source'], 'View official leaderboard ↗')}</aside>'''
 
 
+
+def wbg2_banner():
+    """Prominent pointer to the current, unique, submittable WBG-2 file."""
+    try:
+        card = load("evidence/wbg2/run_card.json")
+    except Exception:
+        return ""
+    tif = Path(card["artifacts"]["tif"]).name
+    est = card["score_estimate"]["value"]
+    lo, hi = card["score_estimate"]["ci95"]
+    ok = card["decision"]["ok_to_submit"]
+    tag = pill("Submit: YES", "ok") if ok else pill("Submit: NO", "no")
+    return f'''<div class="alert" role="note" style="border-color:#bcd6c6;background:#f1f6ef;color:#24564a"><p><strong>Current submittable file: WBG-2.</strong> A newly generated, format-valid, <strong>unique</strong> GeoTIFF — estimated score <strong>{est:.4f}</strong> (95% model interval {lo:.4f}–{hi:.4f}, not organizer-confirmed). It is not a copy of any of the nine focus sites. {tag} &nbsp; <a href="wbg2.html">Executive summary and download →</a> &nbsp;·&nbsp; <a href="downloads/{tif}" download>Direct TIFF download ↓</a></p></div>'''
+
+
 def home(card, receipt, audit, feed):
     score = card["holdout"]
-    return f'''<section class="hero"><div><p class="eyebrow">Evidence first. Every submission.</p><h1>A fresh TIFF.<br>An <em>honest decision.</em></h1><p class="lead">An auditable research desk for the GEMS fault-mapping challenge. Nine sites compared, one distinct hypothesis tested, and no weekly slot wasted on an unproven idea.</p><div class="actions">{link('executive-summary.html', 'Read executive summary  →', 'button secondary')}{link('evidence.html', 'Inspect the evidence ↗', 'text-link')}</div><p class="micro" style="margin-top:20px">Latest frozen screen: 26 October 2026 · Verdict <strong>NEGATIVE</strong><br>The experiment did not beat its control. “Format valid” never means “ready to submit.”</p></div>{download_card(card, receipt)}</section>
+    return wbg2_banner() + f'''<section class="hero"><div><p class="eyebrow">Evidence first. Every submission.</p><h1>A fresh TIFF.<br>An <em>honest decision.</em></h1><p class="lead">An auditable research desk for the GEMS fault-mapping challenge. Nine sites compared, one distinct hypothesis tested, and no weekly slot wasted on an unproven idea.</p><div class="actions">{link('executive-summary.html', 'Read executive summary  →', 'button secondary')}{link('evidence.html', 'Inspect the evidence ↗', 'text-link')}</div><p class="micro" style="margin-top:20px">Latest frozen screen: 26 October 2026 · Verdict <strong>NEGATIVE</strong><br>The experiment did not beat its control. “Format valid” never means “ready to submit.”</p></div>{download_card(card, receipt)}</section>
 {alert()}{stats(card)}
 <section class="section"><div class="section-heading"><div><span class="section-num">01 / THE CURRENT EXPERIMENT</span><h2>Research surface, not a promoted prediction</h2><p>WBG-C1: non-coaxial curvature of conductivity/depth proxy fields.</p></div>{link('research.html', 'Method & limitations →', 'text-link')}</div><div class="two-col"><article class="panel"><div class="panel-head">Actual exported research field<span>Not ground truth</span></div><div class="map-frame"><span class="map-label">UTM 11N · 100 m source grid</span><img src="assets/research-field.png" alt="The actual continuous WBG-C1 confidence surface across the irregular GeoDAWN footprint; not a map of verified faults or vents." width="610" height="690"></div><div class="map-caption"><span>Nearest-neighbour preview of the exported TIFF.<br>Outside-footprint and known-catalogue support are zero.<br>OOF seams are not geological evidence.</span><div><div class="gradient-legend"></div><div class="legend-labels"><span>0</span><span>0.9</span></div><span>Confidence, not calibrated probability</span></div></div></article><article class="panel"><div class="panel-head">Automated validation gates{pill('Stopped', 'no')}</div><div class="panel-pad">{gates(card)}<div class="gates-foot"><span>No human inspector required for these local checks.</span>{link('evidence.html', 'View receipts →')}</div></div></article></div></section>
 <section class="section"><div class="section-heading"><div><span class="section-num">02 / MEASURED, NOT PROJECTED</span><h2>Did the new hypothesis help?</h2><p>No statistically established improvement on this frozen screen.</p></div>{link('data/experiment.json', 'Full evaluator output ↗', 'text-link')}</div><div class="two-col"><article class="panel"><div class="panel-head">Same-instrument comparison<span>Continuous confidence surfaces</span></div><div class="panel-pad">{chart(card)}<p class="micro">HOLDOUT-DTI · <code>{card['holdout_instrument']['evaluator_version']}</code> · {score['withheld_positive_pixels']:,} withheld positives · 95% paired spatial-cluster intervals. Not a leaderboard estimate; not a comparison against sparse historical TIFFs.</p></div></article><article class="mini-card"><span class="index">WHY THE LANE STOPS HERE</span><h3>Different bytes are not enough.</h3><p>The fresh TIFF is not an exact copy of any checked registry raster. But its positive support overlaps the registered lattice by {card['registry']['max_forward_3px_overlap'] * 100:.2f}%, exceeding the unexempted 70% rule.</p><p>The scientific screen is negative as well. We have not placed final dots, retuned around registry gaps, claimed a new high score, or spent a submission slot.</p>{link('executive-summary.html#decision', 'Read the decision →', 'text-link')}</article></div></section>

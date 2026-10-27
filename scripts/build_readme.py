@@ -14,9 +14,35 @@ def main():
     h1_tif = wbg_h1_rc["raster_sha256"]["tif_file"]
     h1_zip = wbg_h1_rc["raster_sha256"]["zip_file"]
     standing = (ROOT / "docs/standing-prompt.md").read_text()
+    w2 = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
+    w2tif = Path(w2["artifacts"]["tif"]).name
+    w2est = w2["score_estimate"]["value"]
+    w2lo, w2hi = w2["score_estimate"]["ci95"]
+    w2nine = json.loads((ROOT / "evidence/wbg2/nine_site_uniqueness.json").read_text())
+
     header = f'''# WBG GEMS — evidence-first fault mapping
 
-## DOWNLOAD: YES, for research. SUBMIT: **NO**.
+## SUBMIT THIS FILE: [{w2tif}](docs/downloads/{w2tif})
+
+**[Executive summary + one-click download](docs/wbg2.html)** · [ZIP](docs/downloads/{w2tif.replace('.tif', '.zip')}) ·
+[markdown summary](docs/wbg2-executive-summary.md) · [run card](evidence/wbg2/run_card.json) ·
+[live site](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/wbg2.html)
+
+| | |
+|---|---|
+| File to submit | `docs/downloads/{w2tif}` (+ identical one-member `.zip`) |
+| Estimated score | **{w2est:.4f}** — MODEL-ESTIMATE, 95% interval {w2lo:.4f}–{w2hi:.4f}, R² {w2["score_estimate"]["r2"]:.3f}, n=9. **Not organizer-confirmed.** |
+| Unique vs GEMSDOE24/25/27/28/30/31/32/33/36 | **YES** — {w2nine["n_audited"]}/9 audited; max {w2nine["max_enrichment_vs_chance"]:.2f}× chance overlap, max \|ρ\| {w2nine["max_abs_spearman"]:.3f} |
+| Format | single-band float32, EPSG:32611, 3730×3292, values in [0,1], no NaN anywhere (zeros mode) |
+| sha256 | `{w2["raster_sha256"]}` |
+| Slots used | 0 |
+
+> **Honest reading.** WBG-2 is unique and format-valid, so it is safe to upload. Its estimate is only
+> **{w2est - 0.2778:+.4f}** above the best focus-site artifact (0.2778), which is *within model error*:
+> it ties that artifact rather than beating it. The route to the 0.39–0.45 leaderboard band is the
+> login-gated official `training_features.tif`; see [the executive summary](docs/wbg2.html).
+
+## Older file — DOWNLOAD: YES, for research. SUBMIT: **NO**.
 
 **27 October 2026 follow-up: [all four releases, exact-byte revalidation and trust corrections](docs/portfolio-review.html)** ·
 [Machine-readable review](docs/data/portfolio-review.json). No new experiment: the lane remains stopped.

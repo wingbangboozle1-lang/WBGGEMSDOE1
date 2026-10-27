@@ -1,104 +1,28 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>How to submit · WBG GEMS research desk</title>
-<meta name="description" content="Step-by-step DrivenData submission: which file to download, how to validate it passes the [0,1] portal check, and what to paste into the submission form.">
+<meta name="description" content="An auditable GEMS fault-mapping research desk: nine-site comparison, measured holdout results, unique-byte research TIFF and explicit no-go submission status.">
 <meta name="theme-color" content="#173b42"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/style.css"><script defer src="assets/app.js"></script></head>
 <body><a class="skip" href="#main">Skip to content</a>
 <header class="masthead"><div class="wrap"><nav class="nav" aria-label="Main navigation">
 <a class="brand" href="index.html"><svg viewBox="0 0 36 38" fill="none" aria-hidden="true"><path d="M3 29C12 27 4 16 13 15S21 5 31 6M4 35C15 34 11 22 20 22S25 11 34 12M2 21C8 21 4 9 13 9S18 1 25 2" stroke="#23665f" stroke-width="2" stroke-linecap="round"/></svg><span>WBG / GEMS<small>FAULT MAPPING · RESEARCH DESK</small></span></a>
 <div class="navlinks"><a class="" href="index.html">Overview</a><a class="" href="executive-summary.html">Site comparison</a><a class="" href="research.html">Research</a><a class="" href="evidence.html">Evidence</a><a class="active" href="how-to-submit.html">How to submit</a><a class="repo" href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Repository ↗</a></div></nav></div></header>
-<main id="main" class="wrap"><div class="breadcrumb">GEMS prize challenge <span>/</span> How to submit <span>/</span> 26 OCT 2026 — step-by-step</div>
-
-<section class="subhero"><div><p class="eyebrow">Submission guide · step-by-step, verified line-by-line</p><h1>How to make a submission<br><em>without the “[0,1]” error.</em></h1><p class="lead">Follow these five steps exactly. The portal validates automatically — <strong>no human inspector is needed or allowed to bypass it</strong>. Download the green-rated file, verify it locally, and upload it; do not re-encode, crop, or rename a historical file.</p></div><span class="pill" style="background:#ecfdf5;color:#065f46;border:1px solid #10b981"><span class="dot" style="background:#10b981"></span>WBG-H1 PASS</span></section>
-
-<div class="alert" role="note" style="border-color:#10b981;background:#ecfdf5"><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M11 3 21 20H1L11 3Z" stroke="#10b981" stroke-width="1.4"/><path d="M11 8v5m0 3h.01" stroke="#10b981" stroke-width="1.7" stroke-linecap="round"/></svg><p style="color:#065f46"><strong>Which file to submit:</strong> <a href="downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif" style="color:#065f46;text-decoration:underline"><strong>wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif</strong></a> (or the <a href="downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.zip" style="color:#065f46;text-decoration:underline">ZIP</a>) — 37,654 dots, [0,1], no NaN. <strong>Do NOT submit WBG-C1</strong> (dense surface, 99.87% overlap) or any nine-site historical file (violates uniqueness &amp; many have exterior NaN that triggers the “[0,1]” error).</p></div>
-
-<section class="content-section"><h2>Step 0 — Understand the two generated files</h2>
-<div class="two-col">
-<aside class="download-card" style="border:2px solid #10b981;background:rgba(16,185,129,0.06)"><div class="card-top"><div class="file-icon" style="background:#10b981;color:white">.TIF</div><div class="file-label">WBG-H1 EXP-3 · DO THIS ONE<small>Portal-valid &amp; unique · 37,654 dots</small></div><span class="pill" style="background:#ecfdf5;color:#065f46;border:1px solid #10b981"><span class="dot" style="background:#10b981"></span>PASS</span></div><div class="card-body">
-<div class="status-line"><span>Portal format</span><b style="color:#065f46">PASS · 10/10</b></div>
-<div class="status-line"><span>Uniqueness (70% gate)</span><b style="color:#065f46">PASS · 64.49%</b></div>
-<div class="status-line"><span>Holdout vs baseline</span><b style="color:#065f46">0.1233 vs 0.1039 — wins 4/4 folds</b></div>
-<div class="filename">wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif</div>
-<a class="button" href="downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif" download style="background:#10b981"><span>Download WBG-H1 TIFF ↓</span><span aria-hidden="true">↓</span></a>
-<div class="under-download"><span>0.79 MiB · EPSG:32611 · SHA e46e4c17…</span><a href="downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.zip">One-TIFF ZIP ↓</a></div>
-<p class="micro" style="margin:12px 0 0;color:#065f46"><strong>This is the easy download.</strong> It will not trigger “Predicted values must be in range [0,1]”.</p>
-</div></aside>
-<aside class="download-card" style="opacity:0.9"><div class="card-top"><div class="file-icon" aria-hidden="true">.TIF</div><div class="file-label">WBG-C1 · DO NOT SUBMIT<small>Research surface only</small></div><span class="pill no"><span class="dot"></span>No-go</span></div><div class="card-body">
-<div class="status-line"><span>Portal format</span><b style="color:var(--teal)">PASS · format only</b></div>
-<div class="status-line"><span>Uniqueness</span><b style="color:var(--red)">FAIL · 99.87%</b></div>
-<div class="status-line"><span>Holdout</span><b style="color:var(--red)">0.0140 — no gain</b></div>
+<main id="main" class="wrap"><div class="breadcrumb">GEMS prize challenge <span>/</span> How to submit <span>/</span> 26 OCT 2026 audit</div><section class="subhero"><div><p class="eyebrow">Submission guide · for a future promoted file</p><h1>Validate the exact file.<br><em>Then earn the slot.</em></h1><p class="lead">The current download is a negative research result. These instructions explain the future submission process; they do not authorize uploading this file.</p></div><span class="pill no"><span class="dot" aria-hidden="true"></span>Current file: do not submit</span></section><div class="alert" role="note"><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M11 3 21 20H1L11 3Z" stroke="currentColor" stroke-width="1.4"/><path d="M11 8v5m0 3h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p><strong>Download: YES, for research. Submit: NO.</strong> <strong>DO NOT SUBMIT this research surface.</strong> The new file passes local GeoTIFF checks but fails the efficacy and literal uniqueness gates. The lane is stopped. No final dots were placed and no competition slot was used. <a href="release-review.html">2026-10-27 review: all four downloads remain SUBMIT: NO</a>.</p></div>
+<section class="content-section"><h2>The current file is safe to inspect, not approved to upload</h2><div class="two-col"><aside class="download-card" aria-label="Current research file and submission decision"><div class="card-top"><div class="file-icon" aria-hidden="true">.TIF</div><div class="file-label">WBG-C1 · Curvature commutator<small>Freshly generated · continuous research surface</small></div><span class="pill no"><span class="dot" aria-hidden="true"></span>No-go</span></div><div class="card-body">
+<div class="status-line"><span>Local file format</span><b style="color:var(--teal)">PASS · 15 checks</b></div>
+<div class="status-line"><span>Exact-copy check</span><b>Distinct in checked inventory</b></div>
+<div class="status-line"><span>Eligible to submit</span><b style="color:var(--red)">NO · stopped</b></div>
 <div class="filename">wbg-c1-commutator-research-surface-20261026-acea88448272.tif</div>
-<a class="button secondary" href="downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif" download><span>Download WBG-C1 (research) ↓</span><span aria-hidden="true">↓</span></a>
-<div class="under-download"><span>13.8 MiB · 5.1M px dense</span><a href="downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.zip">ZIP ↓</a></div>
-<p class="micro" style="margin:12px 0 0">Continuous confidence field, not a dotted submission. Submitting wastes a weekly slot.</p>
-</div></aside>
-</div>
-<div class="prose" style="margin-top:14px">
-<p><strong>Why WBG-H1 avoids the “[0,1]” error you saw:</strong> The competition portal runs a strict whole-array check: every pixel in the 3,730×3,292 raster must be finite and ∈[0,1]. Many historical files (GEMSDOE25, G28, G30, G31, G24, G27) store <code>NaN</code> outside the GeoDAWN footprint to save bytes; the portal rejects those as “not in [0,1]” because <code>NaN</code> fails the range test. WBG-H1 is exported with <code>outside="zero" · nodata=None</code> — strictly <code>0.0</code> outside, <code>1.0</code> on dots, <code>0</code> elsewhere — so <strong>0 NaN / 0 Inf across all 12,279,160 cells</strong>. This was verified by reopening the exact bytes on disk (see <a href="data/run-card.json">validator receipt</a>).</p>
-</div>
-</section>
-
-<section class="content-section prose"><h2>Five steps to a valid submission (automated checks — no human inspector)</h2>
-
-<h3><span class="step-number">1</span> Confirm the master table decision</h3>
-<p>Open <a href="executive-summary.html#master-decision-table">Executive summary → Master decision table</a>. Only the <strong>green PASS row (WBG-H1 EXP-3)</strong> is both portal-valid and unique. Every other generated or historical file is marked <strong>NO — do not submit</strong> with a measured reason (overlap FAIL, NaN exterior, family duplicate, etc.). Do not select a file solely by its old leaderboard claim.</p>
-
-<h3><span class="step-number">2</span> Check your weekly allowance (do not store credentials)</h3>
-<p>The <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">official rules PDF §3.4</a> states <em>up to three entries per week as specified on the website</em>. The <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">submissions page (login required)</a> shows your actual remaining allowance. It currently redirects to login, so remaining allowance is reported as <strong>unknown</strong> in this static site. Never paste a password, API key, or token into chat or a git commit.</p>
-
-<h3><span class="step-number">3</span> Download the exact bytes — do not re-encode</h3>
-<p>Use the link above (TIF or one-TIFF ZIP — both are accepted per the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem specification</a>). Save it locally exactly as downloaded. <strong>Do not open and re-save in QGIS/GDAL/Python with default compression or nodata changes</strong> unless you re-validate afterwards; re-encoding can introduce NaN or alter the transform.</p>
-<pre><code># Inspect what you downloaded (optional — no upload happens here)
-sha256sum wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif
-# expected: e46e4c175c5afceac148d0475a23808c3ae8bf6e5edad8faea919ed847b0d7dd
-unzip -l wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.zip
-# expected: exactly one .tif inside, same name and SHA-256 as above</code></pre>
-
-<h3><span class="step-number">4</span> Validate locally — the same gate the portal uses</h3>
-<p>Reopen the exact TIFF and confirm it passes the DrivenData format contract. This is automated and replaces “a human inspector.”</p>
-<pre><code>python -m venv .venv
+<a class="button" href="downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif" download><span>Download research TIFF</span><span aria-hidden="true">↓</span></a>
+<div class="under-download"><span>13.8 MiB · float32 · EPSG:32611</span><a class="" href="downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.zip">One-TIFF ZIP ↓</a></div>
+<p class="micro" style="margin:15px 0 0">Not a final dotted submission. A different filename, checksum or pixel field does not override the overlap STOP.</p></div></aside><article class="panel"><div class="panel-pad prose"><h3>What automated preflight checks</h3><ul><li>One float32 raster band, values in [0,1] and no NaN/inf anywhere under our conservative export policy.</li><li>CRS EPSG:32611, shape 3,730 rows × 3,292 columns, 100 m pixel grid and exact reference geotransform/bounds.</li><li>Zero support outside the mirrored footprint and on mapped catalogue pixels.</li><li>On-disk roundtrip plus a ZIP containing exactly one identical GeoTIFF.</li><li>Separate scientific, leakage and registry gates; no “human inspection only” escape hatch.</li></ul><p>All-finite zeros outside the footprint are a conservative project choice. This is not a claim that the organizer rejects all nodata encodings. We cannot prove the cause of the old rejected upload without its actual bytes and receipt.</p></div></article></div></section>
+<section class="content-section prose"><h2>For a future candidate that passes every gate</h2><h3><span class="step-number">1</span> Read the decision, not just the filename</h3><p>Only a candidate that passes surface novelty, fixed-policy holdout efficacy, untouched confirmation and final-dot novelty may reach a separate selector. Local format validity alone never authorizes upload. This run is <strong>negative</strong>, with <strong>zero slots used</strong>.</p><h3><span class="step-number">2</span> Confirm current account allowance</h3><p>The official September rules PDF, section 3.4, states up to three entries per week as specified on the website. The logged-in submission page is the source for actual remaining allowance. This session redirects to login, so remaining allowance is <strong>unknown</strong>. No password or token should be put into chat or the repository.</p><h3><span class="step-number">3</span> Download and verify a promoted artifact</h3><p>Use the exact file linked in its approved manifest; do not rename an old artifact to create “uniqueness.” Run the project validator against the reference grid and verify its SHA-256. Do not open/resave the TIFF in software that changes pixel values, shape or metadata before upload.</p><pre><code>python -m venv .venv
 .venv/bin/pip install -e '.[test]'
-.venv/bin/python scripts/validate_submission.py docs/downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif
-# Expected JSON: "all_checks_passed": true, "no_nan_anywhere": true,
-# "values_in_0_1": true, "crs_shape_transform_match": true,
-# "outside_footprint_zero": true, "known_fault_support_zero": true
-# File check is format-only; "ok_to_submit": false in our static site means
-# selector verdict negative (trails DPRF1), NOT a format failure.
-# It will still pass DrivenData's format gate.
-
-# For the ZIP variant:
-.venv/bin/python scripts/validate_submission.py docs/downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.zip
-</code></pre>
-<p>If you downloaded WBG-C1 or a historical <code>-nan.tif</code>, the validator will report <code>nan_cells &gt;0</code> or <code>outside_footprint_zero: false</code> — that file would trigger the “[0,1]” error on the portal even though it looks fine in a viewer. That is why we mark those files <strong>NO</strong>.</p>
-
-<h3><span class="step-number">5</span> Upload on DrivenData and retain the receipt</h3>
-<p>Go to the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">New submission</a> form:</p>
-<ol>
-<li><strong>File to submit:</strong> choose <code>wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif</code> (or the ZIP). The form accepts <code>.tif</code> or <code>.zip</code> containing one GeoTIFF with the submission CRS/shape/transform.</li>
-<li><strong>Note (optional) — paste exactly:</strong>
-<pre><code>WBGGEMSDOE1 WBG-H1 (EXP-3): DipShift+TFSDI+DualLiDAR+CELF300m; HOLDOUT-DTI=0.1233 vs B0=0.1039; 37654 zero-ext dots</code></pre>
-This ≤140-character note identifies hypothesis, holdout result, and dot budget for your records.</li>
-<li><strong>Submission name:</strong> <code>wbggems1-dpgf1-exp-3-20261026-0749b3c8195f</code> (auto-derived; do not invent a new one).</li>
-<li>Click <strong>Create</strong> and wait for organizer processing (no instant score; leaderboard updates after evaluation).</li>
-<li><strong>Store the receipt:</strong> submission ID, SHA-256, timestamp, note, and the copied result from the submission page. <em>Only then</em> may you label that result <strong>ORGANIZER-CONFIRMED</strong>. The public leaderboard alone does not identify your file. The rules require one final selected submission across both prize rounds.</li>
-</ol>
-<p><strong>After upload, document the outcome:</strong> Copy the result text back into this repository’s evidence (do not alter the TIFF bytes) so future sessions can distinguish HOLDOUT-DTI from ORGANIZER-CONFIRMED without confusion.</p>
-
-<p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official format and metric ↗</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules PDF ↗</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">Official submissions page (login required) ↗</a> · <a href="https://epsg.io/32611">EPSG:32611 ↗</a></p>
-</section>
-
-<section class="content-section"><h2>Current identifiers — copy/paste ready</h2><p class="micro">Names/notes meet the ≤140-character policy. For audit trail; copying ≠ permission to submit a different file.</p>
-<div class="copy-box"><code id="copy-name">wbggems1-dpgf1-exp-3-20261026-0749b3c8195f</code><button type="button" data-copy="copy-name">Copy name</button></div>
-<div class="copy-box"><code id="copy-note">WBGGEMSDOE1 WBG-H1 (EXP-3): DipShift+TFSDI+DualLiDAR+CELF300m; HOLDOUT-DTI=0.1233 vs B0=0.1039; 37654 zero-ext dots</code><button type="button" data-copy="copy-note">Copy note</button></div>
-<div class="copy-box"><code id="copy-hash">e46e4c175c5afceac148d0475a23808c3ae8bf6e5edad8faea919ed847b0d7dd</code><button type="button" data-copy="copy-hash">Copy SHA-256</button></div>
-<p class="micro" style="margin-top:10px">WBG-C1 research identifiers: <code>wbg-c1-commutator-research-surface-20261026-acea88448272</code> · <code>8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875</code> — research reference only, not for upload.</p>
-</section>
-
-<p class="micro" style="opacity:0.9">Download: YES, for research. Submit: NO — No final dots were placed; no competition slot was used.</p>
-<section class="content-section prose"><h2>What “validated without human intervention” means here</h2><p>Every file on this site was validated by code that reopens the exact on-disk bytes and checks: one float32 band, EPSG:32611, 3,730×3,292, 100 m grid, exact geotransform, no NaN/Inf anywhere under our conservative <code>outside="zero"</code> policy, values ∈[0,1], zero support outside the footprint and on the catalogue. A human inspector is not required — and cannot waive — these gates. A “format PASS” is not a scientific win, a uniqueness pass, or organizer acceptance; it simply means the portal’s first-line check will not reject the file with “[0,1]”. Our selector verdict (<code>negative</code> for both lanes) is a <em>separate</em> scientific/uniqueness gate: we do not spend a weekly slot on a file that trails the current best holdout (DPRF1 0.1638_holdout) or that is a near-duplicate of a known lattice, even if it is technically uploadable.</p>
-<p><a href="evidence.html">Evidence &amp; sources ↗</a> · <a href="data/run-card.json">Exact current decision JSON ↗</a> · <a href="wbg-h1-dpgf1/index.html">WBG-H1 interactive dashboard ↗</a></p></section>
-</main>
+.venv/bin/python scripts/validate_submission.py   docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif
+# This file currently returns format PASS and promotion NO.
+# This command never uploads anything.</code></pre><h3><span class="step-number">4</span> Use the contest's “New submission” form</h3><p>For an actually approved future file, choose the single-band <code>.tif</code>, or its ZIP containing only that TIFF. Paste the short approved note, respect the remaining weekly limit, and wait for organizer processing. Do not upload a report, a training raster, a multi-band TIFF, or this research-only negative surface.</p><h3><span class="step-number">5</span> Retain the organizer receipt</h3><p>Store the submission identifier, exact artifact SHA-256, time, note and copied result from the submission page. Only then label that result <strong>ORGANIZER-CONFIRMED</strong>. The public leaderboard alone does not identify this particular file. The rules require one final selected submission across both prize rounds.</p><p><a class="" href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official format and metric ↗</a> · <a class="" href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules PDF ↗</a> · <a class="" href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">Official submissions page (login required) ↗</a></p></section>
+<section class="content-section"><h2>Current research identifier — not an upload recommendation</h2><p class="micro">Both name and comment meet the ≤140-character project policy. Copy controls are for the audit trail, not permission to submit.</p><div class="copy-box"><code id="copy-name">wbg-c1-commutator-research-surface-20261026-acea88448272</code><button type="button" data-copy="copy-name">Copy name</button></div><div class="copy-box"><code id="copy-note">WBG-C1 curvature non-coaxiality; spatial OOF research surface; no dot placement; NOT approved for submission.</code><button type="button" data-copy="copy-note">Copy note</button></div><div class="copy-box"><code id="copy-hash">8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875</code><button type="button" data-copy="copy-hash">Copy SHA-256</button></div></section>
+<section class="content-section prose"><h2>Autonomous pipeline, not a browser simulation</h2><p>This static site serves the pre-generated artifact and its exact automated receipts. It does not pretend a browser click can train on hundreds of megabytes of geophysical rasters. The Python pipeline restores hashes, reuses the shared cache, tests features, fits spatially held-out models, measures pooled DTI, writes the validated TIFF/ZIP and applies the literal registry STOP. Its ledger blocks rerunning or retuning this stopped experiment. New work belongs to a separately assigned, preregistered future session.</p><p><a class="" href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/main/README.md">Reproducible commands and full standing request ↗</a> · <a class="" href="data/run-card.json">Exact current decision JSON ↗</a></p></section></main>
 <footer class="footer"><div class="wrap footer-inner"><p><strong>WBG / GEMS</strong> &nbsp; Evidence before a weekly slot.<br>Fault predictions are not verified geothermal vents. Local validation is not organizer acceptance.</p><div><a class="" href="data/run-card.json">Run card JSON</a><a class="" href="standing-prompt.md">Standing brief</a><a class="" href="parallel/main-b9a2d53/index.html">Parallel negative archives</a><a class="" href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Source code ↗</a></div></div></footer>
 <div id="toast" role="status" aria-live="polite"></div></body></html>

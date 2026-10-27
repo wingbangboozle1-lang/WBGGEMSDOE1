@@ -45,6 +45,15 @@ def main():
 - Name: `{card['submission_name']}`.
 - Note (≤140 characters): `{card['submission_note']}`.
 
+## 2026-10-27 follow-up: all download decisions
+
+**[Which file is safe to submit? None currently — see all four exact-file checks](docs/release-review.html)** ·
+[Machine-readable report](evidence/release_review_20261027.json) · [Review and next steps](docs/review-20261027.md).
+All four frozen research TIFFs pass local format revalidation. None is approved for submission.
+No new experiment or TIFF was generated in this follow-up: the existing STOP remains binding.
+The current sandbox permits GitHub and package registries, not live DrivenData/USGS/GDR/Dropbox/PDF retrieval.
+The last official-page leaderboard observation below is historical, not today's verified ranking.
+
 ## Review outcome and historical learning
 
 The starting checkout at `5d2236b` contained only `README.md` with a one-line title: no existing
@@ -80,15 +89,18 @@ Different evaluator/split/representation results must not be pooled or ranked as
 - [Original main README](research/inherited-main-README-b9a2d53.md) (historical commands/paths)
 - [Byte-preservation/integration receipt](evidence/parallel_main_integration.json)
 - [Frozen TIP1 card](evidence/tip1_run_card_20261026.json) and [MVGZ card](evidence/run_card.json)
-- **[Parallel WBG-H1 (DPGF-1 / EXP-3) Interactive Dashboard & 9-Site Audit](docs/wbg-h1-dpgf1/index.html)** ·
-  [Step-by-step DrivenData upload guide](docs/wbg-h1-dpgf1/executive-summary.html) ·
-  [1-Click Validated `[0,1]` GeoTIFF (`{Path(h1_tif).name}`)]({h1_tif}) (`SHA-256: {wbg_h1_rc['raster_sha256']['tif_sha256']}`) ·
-  [ZIP archive]({h1_zip}) ·
-  [WBG-H1 Run Card (`evidence/wbg_h1/run_card.json`)](evidence/wbg_h1/run_card.json)
-  - **Method (`WBG-H1 / DPGF-1`, pre-registered in [`knowledge/01_preregistration_wbg_hypotheses_2026-10-26.md`](knowledge/01_preregistration_wbg_hypotheses_2026-10-26.md)):** 66-channel label-free feature stack (`DipShift` 500 m / 1,000 m updip subsurface-to-surface projection, `TFSDI` tectonic-vs-fluvial scarp index, E–W notched GeoDAWN magnetics, MT/GDR 1391 perimeter, 3DEP LiDAR completeness dual `HGB+ET` ensemble + two-regime `300 m` CELF submodular emitter, `37,654` zero-exterior binary dots).
-  - **Canary & Holdout (`gems-segment-pooled-v1`, `n=60,988` withheld positives):** `66/66` single-feature canaries PASS (`max_symmetric_auc = 0.68971 <= 0.90`). `EXP-3` achieves **`HOLDOUT-DTI = {wbg_h1_rc['holdout_dti']['dti']:.6f}`** (`95% CI [{wbg_h1_rc['holdout_dti']['ci95'][0]:.6f}, {wbg_h1_rc['holdout_dti']['ci95'][1]:.6f}]`), beating matched 31-ch tree baseline `B0 = {wbg_h1_rc['holdout_dti']['baseline_b0_dti']:.6f}` across **4/4 spatial folds** (`paired Δ = +{wbg_h1_rc['holdout_dti']['paired_delta_vs_b0']:.6f}`, `95% CI [+{wbg_h1_rc['holdout_dti']['paired_delta_vs_b0_ci95'][0]:.6f}, +{wbg_h1_rc['holdout_dti']['paired_delta_vs_b0_ci95'][1]:.6f}]`, surging `+34.9%` to `0.17974` in `NE_LidarGapHeavy`).
-  - **Automated `[0,1]` Portal & Uniqueness Gates:** `10/10` portal checks PASS (`0` NaN, `0` Inf across all `12,279,160` cells, `outside="zero"`, `nodata=None`); pre-placement surface `|ρ| = 0.2404 <= 0.90`; sparse/Focus-9 3 px dot overlap `64.49% <= 70%`, `|ρ| = 0.0347 <= 0.90`; symmetric 3 px overlap across all 206 non-lattice rasters `56.05% <= 70%`. Submission name `{wbg_h1_rc['submission_name']}`, note `{wbg_h1_rc['submission_note']}` (`{wbg_h1_rc['submission_note_length']}` chars).
-  - **Selector Verdict (`verdict: "{wbg_h1_rc['verdict']}"`):** Hold live 3/week DrivenData slot standalone because `0.123310` trails analytical scarp-ridge reference `GEMSDOE24 DPRF1` (`HOLDOUT-DTI = 0.163792`); see [`evidence/wbg_h1/focus9_executive_audit.json`](evidence/wbg_h1/focus9_executive_audit.json) (catching `GEMSDOE30`'s `7,111,787` exterior `NaN` `[0,1]` portal failure and `GEMSDOE28/31` `>90%` peer duplicates) and [`evidence/wbg_h1/forensic_proof_02778.json`](evidence/wbg_h1/forensic_proof_02778.json) (`0`-XOR proof + `r13-lattice-s5 = 0.0904 -> |G_private| = 12,366` px inversion).
+- **[WBG-H1 corrected negative-result summary](docs/wbg-h1-dpgf1/index.html)** ·
+  [Research-only GeoTIFF (`{Path(h1_tif).name}`)]({h1_tif}) · [ZIP archive]({h1_zip}).
+  - SHA-256: `{wbg_h1_rc['raster_sha256']['tif_sha256']}`.
+  - Recorded name: `{wbg_h1_rc['submission_name']}`. **DO NOT SUBMIT.**
+  - Inherited **HOLDOUT-DTI {wbg_h1_rc['holdout_dti']['dti']:.6f}**,
+    95% CI [{wbg_h1_rc['holdout_dti']['ci95'][0]:.6f}, {wbg_h1_rc['holdout_dti']['ci95'][1]:.6f}],
+    evaluator `{wbg_h1_rc['holdout_dti']['evaluator_version']}`, {wbg_h1_rc['holdout_dti']['n_withheld_positives']:,} withheld positives.
+    Not rerun in the 2026-10-27 review; not a leaderboard forecast.
+  - The recorded literal lattice overlap is **{wbg_h1_rc['registry_correlation_and_overlap']['literal_oneway_vs_r13_space_filling_lattice_ir_wbg1_01']*100:.4f}% >70%**.
+    Sparse-only and symmetric diagnostics cannot override the protocol. Local format PASS is not portal acceptance.
+  - Original receipts remain unchanged for audit. Their organizer-confirmed labels, private-label inversion,
+    forecast and optional-upload advice are **not accepted conclusions**. See the [dated corrections](docs/review-20261027.md).
 - Older two-argument `validate_submission.py candidate.tif reference.tif` callers retain their
   supplied-reference format API; this is compatibility only and never confers slot approval.
   WBG-C1 still uses the unchanged, pinned `gems57` all-finite validator/writer.

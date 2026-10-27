@@ -16,6 +16,8 @@
 [ZIP for research](docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip) ·
 [run card](evidence/wbg2/run_card.json) · [shared-gate audit](evidence/wbg2/safety_audit_20261027.json)
 
+**[Current repository review (2026-10-27)](docs/repo-review-current-20261027.md)** · [Review-only run card](evidence/current_review_card_20261027.json). No new raster, experiment, or slot; the lane remains stopped.
+
 | Artifact | Local format | Score estimate / holdout | Literal registry decision |
 |---|---|---|---|
 | `wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif` | One float32 band, zeros mode `[0, 1]`, 0 NaN/Inf, 36,800 binary dots; 15/15 checks PASS | **HOLDOUT-DTI 0.118180** (`gems-segment-pooled-v1`, n=60,988, 95% CI [0.103658, 0.132432], 4/4 fold wins vs 0.090781 ctrl); **HOLDOUT-DTI 0.121862** (`gems57-pooled-hide-v2`, n=11,330). Leaderboard est.: **Unavailable**. | **DO NOT SUBMIT**. Competing sparse (206 rasters): **PASS 59.38% <= 70%** (27.55% vs GEMSDOE32 B2; 43.40% vs WBG-S2). Literal overlap: **99.9946%** vs `r13-lattice-s5` & **100%** vs `WBG-C1` (>70% STOP). |

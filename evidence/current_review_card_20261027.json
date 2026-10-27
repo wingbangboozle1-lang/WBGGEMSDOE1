@@ -1,0 +1,56 @@
+{
+  "schema": "wbg-repository-review-run-card-v1",
+  "review_date_utc": "2026-10-27",
+  "activity": "Repository/evidence review only; no scientific experiment, dot placement, candidate generation, slot selection, or upload.",
+  "hypothesis": "No new geological hypothesis was tested. The review confirms that existing negative artifacts do not meet the promotion gates.",
+  "mechanism": "Not applicable to a review-only session; four untested proposals are documented at docs/research/future-hypotheses-20261027.md.",
+  "named_non_fault_process": "Not applicable because no new geological signal was evaluated.",
+  "holdout_dti": {
+    "evidence_class": "NOT MEASURED THIS SESSION",
+    "evaluator_version": null,
+    "value": null,
+    "ci95": null,
+    "withheld_positive_pixels": null,
+    "note": "Existing historic results are not new measurements. Existing run cards retain their own evaluator/split labels and are not combined or converted into a leaderboard estimate."
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "FROZEN PRIOR AUDIT; NOT RECOMPUTED THIS SESSION",
+    "scope": "No current full-registry scan performed. Existing WBG-3 evidence reports literal 3-pixel overlap 99.9946% with r13-lattice-s5 and 100% with WBG-C1, both above the 70% STOP threshold.",
+    "surface_rank_correlation": null,
+    "final_dots_overlap": null,
+    "decision": "No candidate generated; existing STOP records remain binding."
+  },
+  "raster_sha256": null,
+  "raster_generated": false,
+  "artifact_under_review": "docs/downloads/wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif",
+  "artifact_under_review_sha256": "f158a890dcb5f897ef35282ed05d291e54c4df9b83cf891870193d329b160fb4",
+  "validator_output": {
+    "evidence_class": "LOCAL FORMAT PREFLIGHT ONLY",
+    "exact_existing_artifact_reopened": true,
+    "single_band_float32": true,
+    "crs": "EPSG:32611",
+    "shape_rows_columns": [3730, 3292],
+    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "no_nan_inside_footprint": true,
+    "all_finite": true,
+    "min_max_inclusive_0_1": true,
+    "shared_validator_passed": true,
+    "promotion_status": "negative; strict submit-ready validation exits 2",
+    "warning": "Does not establish scientific efficacy, global uniqueness, organizer acceptance, or authorization."
+  },
+  "readiness": {
+    "status": "BLOCKED_INPUTS",
+    "missing": ["data/training_features.tif", "data/labels.tif", "data/sample_submission.tif", "19-band cached feature stack"],
+    "organizer_origin_authenticated": false
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "leaderboard_estimate": null,
+  "organizer_confirmed_score": null,
+  "experiments_started": 0,
+  "submission_slots_used": 0,
+  "verdict": "negative",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "reason": "No newly generated candidate; active scientific lane is stopped and existing candidate artifacts fail the binding novelty/evidence gates."
+}

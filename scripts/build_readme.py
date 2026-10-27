@@ -45,6 +45,8 @@ def main():
 [ZIP for research](docs/downloads/{w2tif.replace('.tif', '.zip')}) ·
 [run card](evidence/wbg2/run_card.json) · [shared-gate audit](evidence/wbg2/safety_audit_20261027.json)
 
+**[Current repository review (2026-10-27)](docs/repo-review-current-20261027.md)** · [Review-only run card](evidence/current_review_card_20261027.json). No new raster, experiment, or slot; the lane remains stopped.
+
 | Artifact | Local format | Score estimate / holdout | Literal registry decision |
 |---|---|---|---|
 | `{w3_tif}` | One float32 band, zeros mode `[0, 1]`, 0 NaN/Inf, 36,800 binary dots; 15/15 checks PASS | **HOLDOUT-DTI {w3_seg['dti']:.6f}** (`{w3_seg['evaluator_version']}`, n={w3_seg['withheld_positive_pixels']:,}, 95% CI [{w3_seg['ci95'][0]:.6f}, {w3_seg['ci95'][1]:.6f}], 4/4 fold wins vs 0.090781 ctrl); **HOLDOUT-DTI {w3_in['dti']:.6f}** (`{w3_in['evaluator_version']}`, n={w3_in['withheld_positive_pixels']:,}). Leaderboard est.: **Unavailable**. | **DO NOT SUBMIT**. Competing sparse (206 rasters): **PASS {w3_comp['max_forward_3px_overlap']*100:.2f}% <= 70%** (27.55% vs GEMSDOE32 B2; 43.40% vs WBG-S2). Literal overlap: **99.9946%** vs `r13-lattice-s5` & **100%** vs `WBG-C1` (>70% STOP). |

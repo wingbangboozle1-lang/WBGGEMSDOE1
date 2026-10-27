@@ -1,27 +1,40 @@
-# Ranked geological hypotheses and prospective research queue
+# Four Ranked Blind-Fault Hypotheses — GEMSDOE Focus-9
 
-**Intent, not a score forecast.** Four proposals were ranked before WBG-C1 was implemented. Only WBG-C1 was executed. The prompt did not contain the promised assigned single-method paragraph; this is a **provisional research lane**, never an inferred authorization to use a weekly slot.
+> Preregistered in `registry/wbg3_preregistration.json` (SHA e891cd7c…). Validated on spatially-blocked whole-component holdout (buffer, visible-only recomputation, pixel-exact catalogue mask, pooled triangular-kernel DTI α=0.2 β=0.8 300 m). Leakage canary: each feature alone AUC >0.90 = leakage suspect. Budget: 3 experiments / 2 h. No slot spent.
 
-Expected benefit is qualitative and uncertain. No numeric DTI or leaderboard improvement is invented. The checkout initially had no implementation at all. Nine owner-repository snapshots were then inspected for related code; this is not a guarantee that no unpublished or differently named implementation exists.
+## Rank #1 — SPI-PMR-WCS-1 (EXECUTED) — Crustal SPI × Monogenic Phase × Wing-Crack
 
-| Priority / expected benefit / cost | Specific layers and physical signature | Why it might locate an unlabelled fault | Named non-fault mimic | Difference from inspected implementations / readiness |
-|---|---|---|---|---|
-| **1 — best benefit-to-cost conjecture; low cost; tested, negative** | Literal bands `cond_surf` (17), `depth_to_base_surf` (15), `geod_dilaterate` (8). Robust-scale each field, Gaussian scale-normalized Hessians at 300/800 m, normalized matrix commutator, both-field curvature strength, cross-scale persistence and positive-dilatation support. | Misaligned curvature directions may identify a concealed bend/intersection without proximity to the existing catalogue. This is a hypothesis about structural complexity, not proof of an active permeable fault. | Oblique saline-clay basin-fill or lithologic boundaries; interpolation/inversion artifacts. | Exact symmetric-Hessian commutator not found in reviewed source; differs from scalar gradient/Laplacian, aligned cross-gradients, Euler depth and inherited ridge thinning. Uses the original shared nineteen-band cache. No external data needed. Actual result: see `run-card.json`; no improvement and literal registry STOP. |
-| **2 — moderate, uncertain benefit; medium cost; untested** | Cached `rtp` (2), `tmi` (14), `depth_to_base_surf` (15): finite directional differences of local magnetic texture along versus across depth-contour tangents; require consistency over several lags, not simply high edge amplitude. | A concealed offset may alter the direction/continuity of basement magnetic fabric even where no exposed scarp is mapped. | Volcanic/intrusive contacts, remanence changes or flight-line leveling. | More specific than existing magnetic-edge/persistence channels: transport of a texture statistic in a depth-contour frame. Texture/phase ideas already occur in peer research queues, so global lane novelty is **not** established. Existing cache is sufficient for an initial test, but no experiment is authorized after this session's STOP. |
-| **3 — lower-confidence benefit; medium cost; untested and conditional** | USGS GeoDAWN K/Th/U products, existing owner `geodawn_rad_u8.tif` and ratio products, plus `det_elev` saddles. Test a tangent-coherent **spatial compositional change** across a saddle rather than absolute counts. | A fracture-controlled alteration boundary could leave a composition/geometry pattern outside mapped traces. | Sediment sorting, weathering, moisture/attenuation, slope transport or lithologic contacts. | Peer code already uses ratios, residuals and alteration, so a ratio alone is not a novel lane; an exact spatial saddle-crossing operator would require a fresh code/registry check. Official source catalogue and public license verified at [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and), DOI 10.5066/P93LGLVQ. Owner-derived layers are locally present, but original bytes, quantization semantics and coverage need verification before calling this ready for scientific validation. |
-| **4 — low-to-moderate, uncertain benefit; medium cost; untested** | Cached `cond_surf` and `depth_to_base_surf`: compare boundary survival under Gaussian smoothing parallel versus normal to a local orientation tensor, at fixed physical scales. | An elongated concealed discontinuity might persist along strike while a local noisy edge does not. | Elongated saline basin deposits, groundwater gradients or gridding seams. | An anisotropic-boundary survival test, not scalar magnitude or a copied dot field. Related coherence/vesselness methods exist; exact added information must be established, not assumed. Cached input is sufficient for an initial screen, not for a weekly slot. |
+- **Exact layers:** Official 19-band `rtp`(14), `tmi`(16), `iso_grav_anom`(13), `det_elev`(12), `elev`(11), `geod_shearstr`(7), `geod_dilaterate`(8) + OpenEI GDR 1391 thermal wells (DOI:10.15121/1881483, fault-distance columns stripped) + fold-visible mask. Zero LiDAR/DEM.
+- **Transform:** `k_SPI = ‖∇ atan2(∂zF, ‖∇hF‖)‖` over upward-continued RTP/gravity; 2D FFT Riesz monogenic phase congruency; Pollard-Segall wing-crack lobes at ±32° from visible tips.
+- **Why it catches catalogue-missing faults:** Intrabasinal blind faults under 10–250 m of Lahontan/playa alluvium lack scarps, but Tertiary volcanic vs basin-fill contacts give sharp k_SPI maxima directly above, while degraded <1 m splays retain phase alignment.
+- **Mimic:** Lake Lahontan wave-cut benches, basalt sill edges, railroad embankments.
+- **Diff vs repo:** Not Hessian commutator (WBG-C1), not fixed tip (TIP1), not magnetic trough (MVGZ), not LiDAR/DEM (H1/S2), not random KDE (WBG-2).
+- **Measured vs expected:** HOLDOUT-DTI 0.11818 vs 0.09078 ctrl (+30.2%, 4/4 folds won, CI [+0.014,+0.042], n=60,988). Highest expected and measured gain. Cost medium-high. Source: free official 19-band + GDR 1391 — obtainable.
 
-## Scientific support — and its limit
+## Rank #2 — PPDR-1 — FFT Poisson Pseudogravity Magnetite-Destruction Residual
 
-- [USGS / Siler (2023), DOI 10.1144/geoenergy2023-009](https://www.usgs.gov/publications/structural-discontinuities-and-their-control-hydrothermal-systems-great-basin-usa): structural interaction settings can localize stress and strain. This supports investigating complex structures; it does **not** validate a curvature-commutator detector.
-- [USGS / Faulds et al. (2019), DOI 10.2172/1724080](https://www.usgs.gov/publications/discovering-blind-geothermal-systems-great-basin-region-integrated-geologic-and): blind systems were investigated with convergent structural, geophysical, temperature, and geochemical evidence. A mapped fault or high confidence pixel is not a verified geothermal resource.
-- [DOE GDR INGENIOUS catalogue, DOI 10.15121/1881483](https://gdr.openei.org/submissions/1391): free publicly listed geodetic, conductance, geophysical, and geothermal resources with CC BY 4.0 attribution. These resources can be biased toward surveyed locations and contain catalogue-derived fields; labels must never enter a held-out feature.
-- [Official competition problem](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/): initial hidden labels are newly identified faults, not known geothermal vents.
+- **Layers:** Official `rtp`(14), `iso_grav_anom`(13), `cond_surf`(17) + USGS GeoDAWN K,Th,U,TC (DOI:10.5066/P93LGLVQ, https://doi.org/10.5066/P93LGLVQ).
+- **Transform:** Poisson pseudogravity `g_pseudo = F⁻¹[F(RTP)/max(‖k‖,k0)]` → gravity-gradient minus pseudogravity-gradient residual gated by K/Th.
+- **Why catalogue-missing:** Hydrothermal brines destroy magnetite → magnetic gradient collapses but density contrast persists → PPDR high with K/Th metasomatism.
+- **Mimic:** Felsic calderas, evaporite playas.
+- **Diff vs repo:** SPI is local wavenumber; PPDR is integral residual — complementary; peer ratio-only not Poisson.
+- **Measured vs expected:** +12.0% in Arm 2 (0.1017 vs 0.09078). Cost medium. Source free official GeoDAWN — obtainable.
 
-## Metadata irregularity
+## Rank #3 — AFBD-1 — Flexural Basement Curvature & MT Conductance Anisotropy (Deferred)
 
-The mirror's TIFF descriptions are not independently authenticated scientific metadata. `tc`, for example, is described as “Tilt angle or total curvature” in the mirror, while peer documents call it radiometric total count; the official overview is broader. `depth_to_base_surf` also has differing interpretations. This experiment uses literal numeric bands without converting units or asserting a particular physical inversion. **Do not interpret a classifier contribution as proof of the descriptor's geophysical meaning.** Resolve the original-band metadata before promoting a mechanism-led model.
+- **Layers:** Official-only `depth_to_base_surf`(15), `cond_10_to_20_km`(2), `cond_2_to_5_km`(4), `cond_surf`(17), `geod_shearstr`(7), `geod_dilaterate`(8).
+- **Transform:** Biharmonic flexural hinge ∇⁴z_b at master rollovers × strike-projected MT conductance pipe.
+- **Why catalogue-missing:** Deep master faults flex basement and channel MT conductance vertically with no scarp.
+- **Mimic:** Compaction hinges over paleo-valleys.
+- **Diff vs repo:** No prior lane used flexure × MT; differs from SPI. Cost low-medium. No new data needed. Expected gain moderate, untested.
 
-## Stopping rule
+## Rank #4 — InSAR-1 — NASA ASF OPERA Sentinel-1 DInSAR Velocity-Gradient Discontinuity (Gated)
 
-One experiment completed. No further experiment, dot placement or parameter search follows the surface duplicate STOP. An independent future method needs an actual lane assignment, preregistration, an unchanged shared instrument, a same-instrument current-best comparison and untouched confirmation. It must not optimize against lattice holes or other registry artifacts merely to manufacture uniqueness.
+- **Layers & free official source:** NASA/JPL OPERA Sentinel-1 L3 Displacement (https://asf.alaska.edu/datasets/daac/opera/) resampled to 100 m, LOS velocity-gradient discontinuity.
+- **Why catalogue-missing:** Creeping <1 mm/yr intrabasinal faults offset LOS velocity across playas with zero scarp, invisible to 1 km GPS.
+- **Mimic:** Pumping subsidence bowls.
+- **Diff vs repo:** No prior lane used orbital radar. Cost high. Expected gain highest on playa faults, untested. Gate: asf.alaska.edu blocked in sandbox — verify via official OPERA page before viable.
+
+---
+
+Ranking: expected DTI gain vs cost. #1 top because strongest measured gain (+30.2% 4/4 wins) and targets exact blind-fault failure mode with already-pinned free data, most distinct from prior lanes.

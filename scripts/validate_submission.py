@@ -128,13 +128,16 @@ def main():
     # a known negative: even inconsistent/fabricated future card flags must not
     # unlock those exact bytes without changing this code and its safety review.
     known_negative = "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3"
-    paths = ("registry/run_card.json", "evidence/wbg2/run_card.json")
+    s2_negative = "6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880"
+    paths = ("registry/run_card.json", "evidence/wbg2/run_card.json", "evidence/wbg_s2/run_card.json")
     matches = []
     for name in paths:
         card_path = ROOT / name
         if card_path.exists():
             candidate = json.loads(card_path.read_text())
-            if candidate.get("raster_sha256") == report["sha256"]:
+            artifact = candidate.get("artifact")
+            nested_sha = artifact.get("tif_sha256") if isinstance(artifact, dict) else None
+            if candidate.get("raster_sha256") == report["sha256"] or nested_sha == report["sha256"]:
                 matches.append((name, candidate))
     if len(matches) > 1:
         raise ValueError("multiple decision cards claim these exact TIFF bytes")
@@ -155,6 +158,26 @@ def main():
             raise ValueError("WBG-2 known-negative registry witness missing or inconsistent")
         report["ok_to_submit"] = False
         report["known_negative_registry_overlap"] = witness["my_dots_within_3px_of_theirs"]
+    if report["sha256"] == s2_negative:
+        decision = card.get("strict_governance_decision", {}) if card else {}
+        if (not identity_matches or card_name != "evidence/wbg_s2/run_card.json"
+                or card.get("verdict") != "negative" or decision.get("ok_to_submit") is not False
+                or decision.get("eligible_for_separate_selector") is not False):
+            raise ValueError("WBG-S2 known-negative decision missing or inconsistent")
+        safety = json.loads((ROOT / "evidence/wbg_s2/safety_review_20261027.json").read_text())
+        rows = safety["witnesses"]
+        if (safety["existing_tiff_sha256"] != s2_negative or safety["ok_to_submit"] is not False
+                or safety["eligible_for_separate_selector"] is not False or len(rows) != 2
+                or [row["sha256"] for row in rows] != [
+                    "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+                    "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875"]
+                or any(row["duplicate_by_overlap"] is not True
+                       or not math.isfinite(row["my_dots_within_3px_of_theirs"])
+                       or not .70 < row["my_dots_within_3px_of_theirs"] <= 1 for row in rows)):
+            raise ValueError("WBG-S2 known-negative registry witnesses missing or inconsistent")
+        report["ok_to_submit"] = False
+        report["known_negative_registry_overlap"] = max(row["my_dots_within_3px_of_theirs"] for row in rows)
+        report["known_negative_lattice_overlap"] = rows[0]["my_dots_within_3px_of_theirs"]
     report["warning"] = "FORMAT PASS is not uniqueness, scientific efficacy, organizer acceptance or slot approval."
     print(json.dumps(report, indent=2, allow_nan=False))
     if not report["all_checks_passed"]:

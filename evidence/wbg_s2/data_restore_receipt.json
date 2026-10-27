@@ -1,0 +1,339 @@
+{
+  "scope_warning": "Parallel restoration receipt and source hashes; this review did not independently authenticate organizer origin or verify all external binary coverage and licenses.",
+  "schema_version": 1,
+  "generated_utc": "2026-10-27T17:38:30+00:00",
+  "core_files": [
+    {
+      "id": "labels",
+      "dest": "labels.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830
+    },
+    {
+      "id": "sample_submission",
+      "dest": "sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597
+    },
+    {
+      "id": "training_features",
+      "dest": "training_features.tif",
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844
+    }
+  ],
+  "external_files": [
+    {
+      "dest": "data/external/2m_temperature_probe_INGENIOUS_regional_data.zip",
+      "status": "downloaded",
+      "sha256": "1301f70d230058e616ea5d34d1c7a32fabf7d49198172f376c59c89bd652eca3",
+      "bytes": 1080530
+    },
+    {
+      "dest": "data/external/derived_sgmc_faults_100m_u8.tif",
+      "status": "downloaded",
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "bytes": 198602
+    },
+    {
+      "dest": "data/external/gdr_qfaults_traces.csv",
+      "status": "downloaded",
+      "sha256": "9702f2e5c382a4f472ae834d22b94990983b059677a37adfafd51c50f75e643c",
+      "bytes": 126177
+    },
+    {
+      "dest": "data/external/gdr_volcanic_vents_in_footprint.csv",
+      "status": "downloaded",
+      "sha256": "f91bafbaccaaf2754e71d60434fc0f9eb2c7b880c6e714883f4974542ff6a0bf",
+      "bytes": 672
+    },
+    {
+      "dest": "data/external/gdr_wellspring_in_footprint.csv",
+      "status": "downloaded",
+      "sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+      "bytes": 2146771
+    },
+    {
+      "dest": "data/external/geodawn_extensions.json",
+      "status": "downloaded",
+      "sha256": "56556f24c051043fd7a85587786118f8064624f2ad0604aaa3e6614f1a9f6d2f",
+      "bytes": 8927
+    },
+    {
+      "dest": "data/external/geodawn_extensions_u8.tif",
+      "status": "downloaded",
+      "sha256": "a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b",
+      "bytes": 27132925
+    },
+    {
+      "dest": "data/external/geodawn_rad.json",
+      "status": "downloaded",
+      "sha256": "d917fd08f89c160d2a0ba91af9c3321c8c8b5677fcdba39b10e684384cbc7488",
+      "bytes": 7985
+    },
+    {
+      "dest": "data/external/geodawn_rad_u8.tif",
+      "status": "downloaded",
+      "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+      "bytes": 26612970
+    },
+    {
+      "dest": "data/external/lidar_scarp_features.json",
+      "status": "cached",
+      "sha256": "9ef0df6e87598a8b0cd52fe821661e5fdb3a00568c5d9b1c5d61fd6b242dcd41",
+      "bytes": 3531
+    },
+    {
+      "dest": "data/external/lidar_scarp_features_u8.tif",
+      "status": "downloaded",
+      "sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+      "bytes": 36943606
+    },
+    {
+      "dest": "data/external/paleo_geothermal_regional.zip",
+      "status": "downloaded",
+      "sha256": "faffcf697f32dbbf6cbb317cd1effb3e305538ce38eb239d72d0c6fa071e91ca",
+      "bytes": 84008
+    },
+    {
+      "dest": "data/external/tiger_road_distance_m.tif",
+      "status": "downloaded",
+      "sha256": "e5350423508968fa2d32b0a6ae0d3fb4ae3ea645e3b8736f0c8e7ad9ff2f2988",
+      "bytes": 10492276
+    }
+  ],
+  "dem10_files": [
+    {
+      "dest": "data/dem10/dem10_curv_absmax.f32.npy",
+      "status": "downloaded",
+      "sha256": "58e82f1301032b46b10344b9299b83e6ce5bed1ca83e320f078fa57321bff632",
+      "bytes": 20669620
+    },
+    {
+      "dest": "data/dem10/dem10_hgm200_mean.f32.npy",
+      "status": "downloaded",
+      "sha256": "9328f889f4d607f8530840da138741b7431da49d2432b0ab2da110a82984102b",
+      "bytes": 20669620
+    },
+    {
+      "dest": "data/dem10/dem10_hgm20_max.f32.npy",
+      "status": "downloaded",
+      "sha256": "f58df86b0be3b3dc54affc60dc7d77a95db3dafb9c1267eac4912c5d8e57526b",
+      "bytes": 20669620
+    },
+    {
+      "dest": "data/dem10/dem10_hgm50_max.f32.npy",
+      "status": "downloaded",
+      "sha256": "1cca42538ec0c91951b578136893eb5d90cd1414c45257d2a72ebe80b29f0f40",
+      "bytes": 20669620
+    },
+    {
+      "dest": "data/dem10/dem10_onesided.f32.npy",
+      "status": "downloaded",
+      "sha256": "02d1d241de9534d307f314d0b2f8a857ceb1ce0d099fd7dee8872a83bd0271f8",
+      "bytes": 20669620
+    },
+    {
+      "dest": "data/dem10/dem10_onesided3.f32.npy",
+      "status": "downloaded",
+      "sha256": "bca9faf8e0c572ecb1e77b6c94b0cb96c41e824873cb7747e0ece28b531598d2",
+      "bytes": 20669620
+    },
+    {
+      "dest": "data/dem10/dem10_resid_range.f32.npy",
+      "status": "downloaded",
+      "sha256": "bbcf8a462ace31a80964ba8a7ab76fcbcb347deb4f4d2919166b3eda5c721b0c",
+      "bytes": 20669620
+    },
+    {
+      "dest": "data/dem10/dem10_resid_std.f32.npy",
+      "status": "downloaded",
+      "sha256": "50db8caa815cb09cc695ec230f15f41e8e04cd9bef5fc09b07b06aeadd44a86e",
+      "bytes": 20669620
+    },
+    {
+      "dest": "data/dem10/dem10_slope_max.f32.npy",
+      "status": "downloaded",
+      "sha256": "fd46738e9a58a6f40c130c3c70f645525dbfc12d27b6ed149e596e6a379cbfaa",
+      "bytes": 20669620
+    },
+    {
+      "dest": "data/dem10/dem10_slope_mean.f32.npy",
+      "status": "downloaded",
+      "sha256": "338b443c441db61120faf36437ec61dfcccaa569c41aa3099ed3accef5a35f95",
+      "bytes": 20669620
+    },
+    {
+      "dest": "data/dem10/dem10_slope_std.f32.npy",
+      "status": "downloaded",
+      "sha256": "9c15e0e760d8255eb0473821a07cc09e4fe4b40746e6e37278e691f615c0f642",
+      "bytes": 20669620
+    },
+    {
+      "dest": "data/dem10/dem10_steep_ratio_max.f32.npy",
+      "status": "downloaded",
+      "sha256": "eaf3d5e24c6769ffb98665e75c9665dbaa16bdb79708900217dca955031e6828",
+      "bytes": 20669620
+    },
+    {
+      "dest": "data/dem10/dem10_valid_frac.f32.npy",
+      "status": "downloaded",
+      "sha256": "35d7ef0719bfed93f9aed927afd8c51882283fc7316cab0f8c219c9302b92122",
+      "bytes": 20669620
+    },
+    {
+      "dest": "data/dem10/manifest.json",
+      "status": "downloaded",
+      "sha256": "bfb79f39be0737b448b1a3bf5432db168a77d6786240eafdca352e7a87400f0d",
+      "bytes": 13194
+    }
+  ],
+  "frozen_snapshot_repos": [
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "7ab1c8f77f0b4b8644e3929403a0dab65838b008",
+      "status": "restored",
+      "archive_sha256": "0b12a41bfca2a6d4b03a29b0a84b86d40b7e7bed80bc4bd98ef8a907c5122bab"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE25",
+      "ref": "af2b6f2543e5422a7e917638b70e038e6fd91cad",
+      "status": "restored",
+      "archive_sha256": "9d974333ff7ede6fc181e92f3ce3dc1079ae232ecda7c7a7cb4805f4be7ac080"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE27",
+      "ref": "bef7ae8e8f63b69d299c9214c75988c8f5055f9c",
+      "status": "restored",
+      "archive_sha256": "fac5b149a0870c9ae51c4e6f8449b5b81dbe68eb57e44f7008ef98d35616dce2"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE28",
+      "ref": "2c839d10f57ec9b074829e93c84bc39935f52896",
+      "status": "restored",
+      "archive_sha256": "3616749f03535c83303a0e379b2d78b3f5872da6458919fc3fa97b4b504f2627"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE30",
+      "ref": "9c0d637c0171407196b61b780444bc772ce75438",
+      "status": "restored",
+      "archive_sha256": "17416b16957d4f1ec8d69001b26b9ff6ad6e6d480b5391b1f5d6b2b0ea956843"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE31",
+      "ref": "776bf4668a8c10631908c9bba9443a8f11ce5036",
+      "status": "restored",
+      "archive_sha256": "aa54be29bd66df23dfc1786c53c799a7aeae24920b280b2e1a120d502ff4b6fe"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE32",
+      "ref": "07806249f4ed3efe70b4fbf866183c32392b7853",
+      "status": "restored",
+      "archive_sha256": "74421783a733593d61893de323c3dfd6f4a2cf4a2af2d07bdd872e17bc3df12d"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE33",
+      "ref": "1d99d73fe14d9a87126ffca2db52c69336d6099b",
+      "status": "restored",
+      "archive_sha256": "ebf8dc06f3c9ead45e1e53baff063d512a8ec222962b7b2826a50df073de1c85"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE36",
+      "ref": "05979971df4775aadad34ae6749b0a7ac56d7832",
+      "status": "restored",
+      "archive_sha256": "b4fb2f35ab8c8e8aa96c2f9f88d7088d075af1fe701fda136063a518b0e6c44a"
+    }
+  ],
+  "latest_peer_files": [
+    {
+      "dest": "data/wbg_s2_peers/GEMSDOE24_DPRF1__gems24-dprf1-stitched-oof-tworegime-20261026-81849d67c8bf-zeros.tif",
+      "status": "downloaded",
+      "sha256": "c1257c1d4b5ac9cc0a8e29b0120c614fcaa1f38474bc1f6de98c0a1afb0567f1",
+      "bytes": 825872
+    },
+    {
+      "dest": "data/wbg_s2_peers/GEMSDOE24_S3DEP1__gems24-s3dep1-negative-10m-monoclinal-20261026-464fa34b4091-zeros.tif",
+      "status": "downloaded",
+      "sha256": "86516533fb525ebce792152ae4ed852e88ae4feda0bd596710c7319a238b8071",
+      "bytes": 823378
+    },
+    {
+      "dest": "data/wbg_s2_peers/GEMSDOE25_H73_PM__gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif",
+      "status": "downloaded",
+      "sha256": "35e1b1400a5a2057b8ae4acaab43ad7d9d165532f9a43709cf0d1eb4f2247595",
+      "bytes": 835916
+    },
+    {
+      "dest": "data/wbg_s2_peers/GEMSDOE25_H74_SUBSURF__gems25-h74-rmps-subsurf-catfree-b2-37654-20261026-3751606e1ce5-zeros.tif",
+      "status": "downloaded",
+      "sha256": "9e0200dc3b1597c7cfc94b1a39938da3e7e61cac52f89a1249992eaccf23b9ed",
+      "bytes": 826738
+    },
+    {
+      "dest": "data/wbg_s2_peers/GEMSDOE27_H31_1_DRCG_WL__gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite.tif",
+      "status": "downloaded",
+      "sha256": "2c002b02792419864bd3b29a218e543cb41e3f07b3b57c29ef35c6e39e184bfe",
+      "bytes": 825820
+    },
+    {
+      "dest": "data/wbg_s2_peers/GEMSDOE28_S21_PUHGB__gems28-s21-puhgb-20261026-16bbf281ba9b-allfinite.tif",
+      "status": "downloaded",
+      "sha256": "2bf4737ae0a3b844a160d4041d435e5a7daf92c6ec92f128a0c2c596ba23787c",
+      "bytes": 826602
+    },
+    {
+      "dest": "data/wbg_s2_peers/GEMSDOE30_CSR1__gems30-CSR1-44090-20261026-502fb5948335-zeros.tif",
+      "status": "downloaded",
+      "sha256": "0fbf3b4a47c2229b68de59e174617f3b47973613ff57950712d25b9166c1d900",
+      "bytes": 415760
+    },
+    {
+      "dest": "data/wbg_s2_peers/GEMSDOE31_H31X_JUNCTION__gemsdoe31-h31x-piedmont-junction-37654-20261026-5a956da9-zeros.tif",
+      "status": "downloaded",
+      "sha256": "eff2b18e37378d0f0a2f5c8e22fc68e7c359ee161114502a985135e03dd217f9",
+      "bytes": 147703
+    },
+    {
+      "dest": "data/wbg_s2_peers/GEMSDOE31_H31YM_MOSAIC__gemsdoe31-h31y-regime-mosaic-37654-20261026-66162f1f-zeros.tif",
+      "status": "downloaded",
+      "sha256": "41f1e63a803950db1f621321d5a26c5d3fbbfcc3999923035f0de8a253f7901e",
+      "bytes": 148173
+    },
+    {
+      "dest": "data/wbg_s2_peers/GEMSDOE32_H33_B2_HIST__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "status": "downloaded",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "bytes": 219065
+    },
+    {
+      "dest": "data/wbg_s2_peers/GEMSDOE32_H47_LDGI__gemsdoe32-h47-ldgi-dualhorizon-corridor-37654-20261026T230609Z-0eb8a25c-zeros.tif",
+      "status": "downloaded",
+      "sha256": "d82d63ab9c935b4eb6d8886129a7820da4642d20c3304c57364c55380438f27a",
+      "bytes": 211243
+    },
+    {
+      "dest": "data/wbg_s2_peers/GEMSDOE33_G33_COHERENCE__gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-zeros.tif",
+      "status": "downloaded",
+      "sha256": "f20c547f20a022863a4ba56e3a165a95fb819ecdadb4c04c89fe0db6630ced96",
+      "bytes": 237594
+    },
+    {
+      "dest": "data/wbg_s2_peers/GEMSDOE33_S33_SEISDIL__gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif",
+      "status": "downloaded",
+      "sha256": "5eb9572946fa62356ebc0cbfef22bb54aa2ef094cb8b4a84b52e6b80e120db96",
+      "bytes": 825868
+    },
+    {
+      "dest": "data/wbg_s2_peers/GEMSDOE36_KPL36_EXP3__gemsdoe36-kpl36-exp3-20261026-fc869911e88c-zeros.tif",
+      "status": "downloaded",
+      "sha256": "86fc8243ad573bcdbfac8b432daf0ec5b6800b991b2c3278706358be7eb9922d",
+      "bytes": 827142
+    },
+    {
+      "dest": "data/wbg_s2_peers/KANLERGEMSDOE2_KG2_MGHV__kanlergemsdoe2-kg2-mghv-exp-1-37654-20261026-f5a469e94b14-zeros.tif",
+      "status": "downloaded",
+      "sha256": "cf1d07726f5fb838dc75d9ffa00d5d6b6da7d5120f0362026ca241d454ce3c6e",
+      "bytes": 825198
+    }
+  ]
+}

@@ -8,6 +8,14 @@
    Read `docs/wbg2.html`, `evidence/wbg2/run_card.json` and
    `evidence/wbg2/safety_audit_20261027.json` first. No organizer receipt exists.
 
+0a. **WBG-S2 is also NEGATIVE / DO NOT SUBMIT (2026-10-27).** Its parallel
+   experiment is preserved, not restarted here. Final dots overlap the pinned
+   r13 lattice by 99.5538% and WBG-C1 by 100%; the sampled pre-placement rho
+   screen did not test the complete literal overlap rule. No private waiver or
+   selector can override STOP. See `evidence/wbg_s2/safety_review_20261027.json`;
+   do not rerun or retune this stopped lane. Report its holdouts as parallel-run
+   records, with selected-arm and unverified input/confirmation limitations.
+
 1. Read `README.md` **including the archived standing prompt**, then the 2026-10-27 follow-up at
    `research/03_followup_review_20261027.md`, `evidence/portfolio_review_20261027.json`,
    `docs/review-20261027.md`, `evidence/release_review_20261027.json`, `registry/run_card.json`,

@@ -218,6 +218,20 @@
    "title": "Legacy WBG-2 private validator retired",
    "finding": "The private TIFF validator omitted the complete affine transform and used an inferred-mask convention. A format-only local pass also cannot establish organizer acceptance or authorize upload.",
    "action": "The old private validator now fails closed; use the shared exact-file validator, preserve original code as historical text, and do not claim a competition receipt."
+  },
+  {
+   "id": "IR-032",
+   "severity": "blocking",
+   "title": "WBG-S2 literal registry STOP and mislabeled witness",
+   "finding": "The parallel WBG-S2 final dots overlap the pinned r13 lattice by 99.5538% and WBG-C1 by 100%. Its earlier audit paired the lattice value with the C1 name. Both exceed the literal 70% threshold.",
+   "action": "Do not upload or offer this stopped file to a selector. Preserve its exact bytes and initial card, publish independent witness checks, and never exempt dense references."
+  },
+  {
+   "id": "IR-033",
+   "severity": "high",
+   "title": "WBG-S2 pre-placement screen and selected-holdout limits",
+   "finding": "The original pre-placement report sampled Spearman and computed full-footprint ranks only for a shortlist; it did not establish full all-registry pre-placement overlap. Candidate arms were selected on the reported holdouts, without an untouched confirmation in this review.",
+   "action": "Treat the reported local HOLDOUT-DTI and confidence intervals as parallel-run records, not a validated leaderboard forecast or a complete uniqueness clearance."
   }
  ]
 }

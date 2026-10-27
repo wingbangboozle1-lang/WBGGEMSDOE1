@@ -125,3 +125,24 @@ def test_legacy_supplied_reference_cli_is_preserved_but_never_approves(tmp_path)
     assert report["reference_report"]["ok"] and report["all_checks_passed"]
     assert report["ok_to_submit"] is False
     assert "compatibility" in report["compatibility_mode"] or "inherited" in report["compatibility_mode"]
+
+
+@pytest.mark.parametrize("suffix,flags,code", [(".tif", (), 0), (".zip", (), 0),
+    (".tif", ("--require-submit-ready",), 2), (".zip", ("--require-submit-ready",), 2)])
+def test_wbg_s2_exact_bytes_are_locked_negative(suffix, flags, code):
+    card = json.loads((ROOT / "evidence/wbg_s2/run_card.json").read_text())
+    result = cli((ROOT / card["artifact"]["tif_path"]).with_suffix(suffix), *flags)
+    assert result.returncode == code, result.stderr
+    report = json.loads(result.stdout)
+    assert report["all_checks_passed"] and report["run_card_matches_exact_tiff"]
+    assert report["run_card_path"] == "evidence/wbg_s2/run_card.json"
+    assert report["promotion_verdict"] == "negative" and not report["ok_to_submit"]
+    assert report["known_negative_registry_overlap"] == 1.0
+    assert report["known_negative_lattice_overlap"] == pytest.approx(.9955383226217666)
+
+
+def test_wbg_s2_stopped_runner_is_disabled_before_any_data_work():
+    result = subprocess.run([sys.executable, str(ROOT / "scripts/wbg_s2_run_experiments.py")],
+                            cwd=ROOT, text=True, capture_output=True, timeout=30)
+    assert result.returncode != 0
+    assert "WBG-S2 is stopped" in result.stderr

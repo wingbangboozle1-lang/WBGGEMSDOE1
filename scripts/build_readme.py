@@ -16,6 +16,8 @@ def main():
     standing = (ROOT / "docs/standing-prompt.md").read_text()
     w2 = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
     w2tif = Path(w2["artifacts"]["tif"]).name
+    s2 = json.loads((ROOT / "evidence/wbg_s2/run_card.json").read_text())
+    s2_tif = Path(s2["artifact"]["tif_path"]).name
     w2audit = json.loads((ROOT / "evidence/wbg2/safety_audit_20261027.json").read_text())
     w2overlap = w2audit["already_placed_final_dots_witness"]["my_dots_within_3px_of_theirs"] * 100
 
@@ -35,7 +37,7 @@ def main():
 The previous WBG-2 "safe to upload" claim and numerical projection are **withdrawn**. The old
 code applied a private enrichment exception, checked eight local references and a separate nine-champion
 diagnostic rather than the full registry. The shared literal rule has no such exception. A retrospective surface check also fails and cannot establish that
-pre-placement checks happened. No new training, final placement, or competition slot was used.
+pre-placement checks happened. This safety integration did no new training or placement and used no competition slot.
 The historic catalogue buffer was Manhattan, not a 400 m Euclidean disc: 813 existing dots are
 closer than 400 m Euclidean. The owner-mirror 19-band stack was restored and hash-checked, not
 authenticated by DrivenData.
@@ -105,10 +107,24 @@ was not obtained or credibly projected in this session.
 
 ## Parallel work preserved during integration
 
+- **[WBG-S2 / MKSF-1 result](docs/wbg-s2-mksf1/index.html): DO NOT SUBMIT; no selector eligibility.**
+  [Research TIFF](docs/downloads/{s2_tif}) · [ZIP](docs/downloads/{s2_tif.replace('.tif', '.zip')}) ·
+  [run card](evidence/wbg_s2/run_card.json) · [independent two-witness safety audit](evidence/wbg_s2/safety_review_20261027.json) ·
+  [three safety-review passes](evidence/wbg_s2/safety_review_passes_20261027.json).
+  TIFF SHA-256 `{s2['artifact']['tif_sha256']}`. Local format checks pass, but final dots overlap pinned
+  r13 by **99.5538%** and WBG-C1 by **100%**; both exceed 70%. The sampled pre-placement
+  Spearman screen is not full literal clearance. Three arms were run in the parallel session;
+  this integration did not retrain or place new dots. Parallel-reported selected-arm
+  **HOLDOUT-DTI 0.183594**, 95% CI [0.170313, 0.196956], `gems-segment-pooled-v1`, n=60,988;
+  **HOLDOUT-DTI 0.147773**, 95% CI [0.128077, 0.167791], `gems57-pooled-hide-v2`, n=11,330.
+  Arms were selected on these splits, not independently replayed here or confirmed on untouched data.
+  They are not a verified fleet ranking, organizer score or leaderboard forecast.
+
 While this branch was working from the one-line initial checkout, other sessions merged TIP1 and
 MVGZ negative results into `main` (integrated snapshot `b9a2d5301c0c971dcc1219f9ad6b29c68f68ee21`).
 Their frozen scientific modules, receipts and artifacts are retained; they were **not rerun**.
-The current **one-experiment count is WBG-C1 only**, not a sum or reset of the inherited lane budgets.
+The earlier WBG-C1 screen used one experiment; the parallel WBG-S2 run used three separate arms.
+This safety integration started no experiment and did not reset any inherited budget.
 Different evaluator/split/representation results must not be pooled or ranked as comparable scores.
 
 - [Original parallel site, with its own frozen assets and data](docs/parallel/main-b9a2d53/index.html)

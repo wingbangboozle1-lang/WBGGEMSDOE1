@@ -205,8 +205,17 @@ def test_staged_pages_match_legacy_url_layout_and_preserve_artifact_bytes(tmp_pa
     safety = {"passed_literal_gate": False, "existing_tiff_sha256": card["raster_sha256"]}
     (tmp_path / "evidence/wbg2/run_card.json").write_text(json.dumps(w2))
     (tmp_path / "evidence/wbg2/safety_audit_20261027.json").write_text(json.dumps(safety))
+    (tmp_path / "evidence/wbg_s2").mkdir()
+    s2 = {"verdict": "negative", "artifact": {"tif_path": "docs/downloads/fixture.tif", "tif_sha256": card["raster_sha256"]},
+          "strict_governance_decision": {"ok_to_submit": False, "eligible_for_separate_selector": False}}
+    s2_safety = {"existing_tiff_sha256": card["raster_sha256"], "ok_to_submit": False, "eligible_for_separate_selector": False,
+                 "witnesses": [{"duplicate_by_overlap": True, "my_dots_within_3px_of_theirs": .8},
+                               {"duplicate_by_overlap": True, "my_dots_within_3px_of_theirs": 1.0}]}
+    (tmp_path / "evidence/wbg_s2/run_card.json").write_text(json.dumps(s2))
+    (tmp_path / "evidence/wbg_s2/safety_review_20261027.json").write_text(json.dumps(s2_safety))
     (tmp_path / "index.html").write_text('<meta http-equiv="refresh" content="0; url=docs/">')
     monkeypatch.setattr(stage, "ROOT", tmp_path)
+    monkeypatch.setattr(stage, "S2_SHA", card["raster_sha256"])
     target = stage.stage()
     assert (target / "docs/downloads/fixture.tif").read_bytes() == raw
     assert (target / "index.html").read_bytes() == (tmp_path / "index.html").read_bytes()
@@ -218,6 +227,13 @@ def test_staged_pages_match_legacy_url_layout_and_preserve_artifact_bytes(tmp_pa
         stage.stage()
     w2["decision"]["ok_to_submit"] = False
     (tmp_path / "evidence/wbg2/run_card.json").write_text(json.dumps(w2))
+    assert stage.stage() == target
+    s2["strict_governance_decision"]["ok_to_submit"] = True
+    (tmp_path / "evidence/wbg_s2/run_card.json").write_text(json.dumps(s2))
+    with pytest.raises(ValueError, match="negative decision"):
+        stage.stage()
+    s2["strict_governance_decision"]["ok_to_submit"] = False
+    (tmp_path / "evidence/wbg_s2/run_card.json").write_text(json.dumps(s2))
     assert stage.stage() == target
     (target / ".wbg-pages-stage").unlink()
     with pytest.raises(ValueError, match="unmarked"):

@@ -3,7 +3,7 @@ name: Verify research evidence
 on:
   pull_request:
   push:
-    branches: [main, arena/71614a0a-wbggemsdoe1, arena/09489235-wbggemsdoe1]
+    branches: [main, 'arena/**']
   workflow_dispatch:
 
 permissions:

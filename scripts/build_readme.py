@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Keep the README decision current and embed the complete supplied standing brief."""
-from pathlib import Path
 import json
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -14,15 +14,20 @@ def main():
     h1_tif = wbg_h1_rc["raster_sha256"]["tif_file"]
     h1_zip = wbg_h1_rc["raster_sha256"]["zip_file"]
     standing = (ROOT / "docs/standing-prompt.md").read_text()
+    feed = json.loads((ROOT / "docs/data/feed.json").read_text())
+    observation = feed["leaderboard"]
+    heads = feed.get("repository_heads", [])
+    changed_heads = sum(bool(row.get("changed_since_audit")) for row in heads)
     header = f'''# WBG GEMS — evidence-first fault mapping
 
 ## DOWNLOAD: YES, for research. SUBMIT: **NO**.
 
 **[Open the research desk](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/)** ·
 [Executive summary](docs/executive-summary.md) · [Submission guide](docs/how-to-submit.html) ·
-[Exact JSON run card](registry/run_card.json)
+[Exact historical scientific run card](registry/run_card.json) ·
+[2026-10-27 review decision JSON — no new experiment](evidence/review_run_card_20261027_followup.json)
 
-**[Download the newly generated research TIFF](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/downloads/{tif})** ·
+**[Download the last generated research TIFF](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/downloads/{tif})** ·
 [One-TIFF ZIP](docs/downloads/{tif.replace('.tif', '.zip')}) ·
 [TIFF in repository](docs/downloads/{tif}) · [Validation receipt](docs/downloads/{tif.replace('.tif', '.json')})
 
@@ -64,9 +69,9 @@ credit and avoiding low-marginal-credit predictions are plausible reasons for th
 ordering, not a causal proof from unavailable hidden labels. A 200 m exclusion is **not** an
 organizer rule. No historical file should be copied into a new "unique" entry.
 
-The direct **official public-leaderboard observation on 2026-10-26 was 0.4437**, not the prompt's
-older targets. That is **not** an organizer result for any project TIFF. A higher project score
-was not obtained or credibly projected in this session.
+The directly retrieved [official public leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) on **{observation['observed_date_utc']}** had rank one **{observation['public_dw_tversky']:.4f}** (dated observation, not a live guarantee), different from both prompt targets 0.3195 and 0.4413. This is **not** an organizer result for any project TIFF. [Exact observation record](evidence/official_leaderboard_observation_20261027.json). A higher project score was not obtained or credibly projected.
+
+**Audit freshness:** {changed_heads}/9 focus-site GitHub heads differed from the frozen byte audit at the last check. The nine-site table identifies the highest *supplied historical* values at the pinned commits, not current per-site winners; no fresh unique submission is certified merely by tracking a head. [Dated feed](docs/data/feed.json).
 
 ## Parallel work preserved during integration
 
@@ -76,24 +81,28 @@ Their frozen scientific modules, receipts and artifacts are retained; they were 
 The current **one-experiment count is WBG-C1 only**, not a sum or reset of the inherited lane budgets.
 Different evaluator/split/representation results must not be pooled or ranked as comparable scores.
 
-- [Original parallel site, with its own frozen assets and data](docs/parallel/main-b9a2d53/index.html)
+- [Frozen original parallel site](docs/parallel/main-b9a2d53/index.html) — archival evidence only; **contains unverified claims and outdated upload advice. Do not follow it.**
 - [Original main README](research/inherited-main-README-b9a2d53.md) (historical commands/paths)
 - [Byte-preservation/integration receipt](evidence/parallel_main_integration.json)
 - [Frozen TIP1 card](evidence/tip1_run_card_20261026.json) and [MVGZ card](evidence/run_card.json)
-- **[Parallel WBG-H1 (DPGF-1 / EXP-3) Interactive Dashboard & 9-Site Audit](docs/wbg-h1-dpgf1/index.html)** ·
-  [Step-by-step DrivenData upload guide](docs/wbg-h1-dpgf1/executive-summary.html) ·
-  [1-Click Validated `[0,1]` GeoTIFF (`{Path(h1_tif).name}`)]({h1_tif}) (`SHA-256: {wbg_h1_rc['raster_sha256']['tif_sha256']}`) ·
-  [ZIP archive]({h1_zip}) ·
-  [WBG-H1 Run Card (`evidence/wbg_h1/run_card.json`)](evidence/wbg_h1/run_card.json)
-  - **Method (`WBG-H1 / DPGF-1`, pre-registered in [`knowledge/01_preregistration_wbg_hypotheses_2026-10-26.md`](knowledge/01_preregistration_wbg_hypotheses_2026-10-26.md)):** 66-channel label-free feature stack (`DipShift` 500 m / 1,000 m updip subsurface-to-surface projection, `TFSDI` tectonic-vs-fluvial scarp index, E–W notched GeoDAWN magnetics, MT/GDR 1391 perimeter, 3DEP LiDAR completeness dual `HGB+ET` ensemble + two-regime `300 m` CELF submodular emitter, `37,654` zero-exterior binary dots).
-  - **Canary & Holdout (`gems-segment-pooled-v1`, `n=60,988` withheld positives):** `66/66` single-feature canaries PASS (`max_symmetric_auc = 0.68971 <= 0.90`). `EXP-3` achieves **`HOLDOUT-DTI = {wbg_h1_rc['holdout_dti']['dti']:.6f}`** (`95% CI [{wbg_h1_rc['holdout_dti']['ci95'][0]:.6f}, {wbg_h1_rc['holdout_dti']['ci95'][1]:.6f}]`), beating matched 31-ch tree baseline `B0 = {wbg_h1_rc['holdout_dti']['baseline_b0_dti']:.6f}` across **4/4 spatial folds** (`paired Δ = +{wbg_h1_rc['holdout_dti']['paired_delta_vs_b0']:.6f}`, `95% CI [+{wbg_h1_rc['holdout_dti']['paired_delta_vs_b0_ci95'][0]:.6f}, +{wbg_h1_rc['holdout_dti']['paired_delta_vs_b0_ci95'][1]:.6f}]`, surging `+34.9%` to `0.17974` in `NE_LidarGapHeavy`).
-  - **Automated `[0,1]` Portal & Uniqueness Gates:** `10/10` portal checks PASS (`0` NaN, `0` Inf across all `12,279,160` cells, `outside="zero"`, `nodata=None`); pre-placement surface `|ρ| = 0.2404 <= 0.90`; sparse/Focus-9 3 px dot overlap `64.49% <= 70%`, `|ρ| = 0.0347 <= 0.90`; symmetric 3 px overlap across all 206 non-lattice rasters `56.05% <= 70%`. Submission name `{wbg_h1_rc['submission_name']}`, note `{wbg_h1_rc['submission_note']}` (`{wbg_h1_rc['submission_note_length']}` chars).
-  - **Selector Verdict (`verdict: "{wbg_h1_rc['verdict']}"`):** Hold live 3/week DrivenData slot standalone because `0.123310` trails analytical scarp-ridge reference `GEMSDOE24 DPRF1` (`HOLDOUT-DTI = 0.163792`); see [`evidence/wbg_h1/focus9_executive_audit.json`](evidence/wbg_h1/focus9_executive_audit.json) (catching `GEMSDOE30`'s `7,111,787` exterior `NaN` `[0,1]` portal failure and `GEMSDOE28/31` `>90%` peer duplicates) and [`evidence/wbg_h1/forensic_proof_02778.json`](evidence/wbg_h1/forensic_proof_02778.json) (`0`-XOR proof + `r13-lattice-s5 = 0.0904 -> |G_private| = 12,366` px inversion).
+- **[Parallel WBG-H1 (DPGF-1 / EXP-3): read-only, negative research notes](docs/wbg-h1-dpgf1/index.html)** ·
+  [Safety-corrected submission guide](docs/wbg-h1-dpgf1/executive-summary.html) ·
+  [Research-only all-finite GeoTIFF (`{Path(h1_tif).name}`)]({h1_tif}) (research identifier `{wbg_h1_rc['submission_name']}`; `SHA-256: {wbg_h1_rc['raster_sha256']['tif_sha256']}`) ·
+  [ZIP archive]({h1_zip}) · [Frozen WBG-H1 run card](evidence/wbg_h1/run_card.json).
+  - Inherited EXP-3 records **HOLDOUT-DTI {wbg_h1_rc['holdout_dti']['dti']:.6f}**, 95% CI [{wbg_h1_rc['holdout_dti']['ci95'][0]:.6f}, {wbg_h1_rc['holdout_dti']['ci95'][1]:.6f}], evaluator `{wbg_h1_rc['holdout_dti']['evaluator_version']}`, {wbg_h1_rc['holdout_dti']['n_withheld_positives']:,} withheld positives. Its matched B0 control has HOLDOUT-DTI {wbg_h1_rc['holdout_dti']['baseline_b0_dti']:.6f} on that instrument and count, but this is not a leaderboard score.
+  - Format validation passes; **literal final-dot overlap 99.80%** with a registered calibration lattice (limit 70%). Sparse-only overlap is not a protocol clearance. Frozen verdict **{wbg_h1_rc['verdict']} / DO NOT SUBMIT**; no weekly slot is authorized.
+  - The previous generated WBG-H1 subsite contained unqualified “ORGANIZER-CONFIRMED” owner claims, unsafe backup/upload advice, and a speculative inversion of hidden labels. The current subsite **replaces that advice without changing the archived scientific card/TIFF**. Such inversions are not verified private truth; no exact-artifact organizer receipts are available.
 - Older two-argument `validate_submission.py candidate.tif reference.tif` callers retain their
   supplied-reference format API; this is compatibility only and never confers slot approval.
   WBG-C1 still uses the unchanged, pinned `gems57` all-finite validator/writer.
 - The older bridge-specific restore entry point is retained as `scripts/download_bridge_legacy.sh`
   with `scripts/prepare_bridge_legacy.py`; current WBG-C1 commands below are unchanged.
+
+## Current 2026-10-27 review and next actions
+
+- Restored the three hash-pinned **owner-mirror core rasters** (~419 MB feature stack + grid/labels) in this sandbox and independently rehashed all 19 cached bands with the unmodified shared template. This resolves local *placement*, not organizer-origin authentication; large inputs are ignored by Git and new clones must run the restore commands below. The optional organizer `1m_DEM_links.csv` is absent here because the data tab redirects to login; it is **not** required for the cached 19-band experiment. No stopped lane was retrained.
+- [Five newly ranked *prospective* geological hypotheses](research/2026-10-27-prospective-hypotheses.md) give named layers, signatures, missing-catalogue rationales, non-fault mimics, costs, and official-data availability. The first untested proposal is cross-contact magnetic fabric displacement (MFO1); **zero new experiments** were run because no assigned method paragraph was supplied and the previous lane is STOPPED. It is not a projected score or an upload-ready file. The [dated review decision JSON](evidence/review_run_card_20261027_followup.json) records NULL new-hypothesis metrics beside the unchanged prior negative; no historic DTI is relabelled a fresh trial.
+- The submission guide now cites the official [rules §3.2](https://docs.nlr.gov/docs/fy26osti/96647.pdf): if applicable, disclose generative-AI use in the prize narrative; a short file note is not that disclosure. The original upload range-error cause remains unproved without the rejected bytes.
 
 ## What is implemented
 
@@ -196,7 +205,7 @@ not falsely claim that a browser button trains the model.
    configuration change. Only actual GitHub run/deployment receipts establish publication.
 
 [Official-source claim register](registry/sources.json) · [Irregularities](registry/irregularities.json)
-· [Frozen preregistration](registry/preregistration.json) · [Review passes](evidence/review_passes.json)
+· [Frozen preregistration](registry/preregistration.json) · [27 October three review passes](evidence/review_passes_20261027_followup.json) · [Original review passes](evidence/review_passes.json)
 
 ## Project principles
 

@@ -1,8 +1,8 @@
-from html.parser import HTMLParser
 import importlib.util
 import json
-from pathlib import Path
 import re
+from html.parser import HTMLParser
+from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 import pytest
@@ -132,7 +132,8 @@ def test_github_only_feed_never_requests_the_official_leaderboard(tmp_path, monk
     assert result["network_refresh_attempted"]
     assert not result["official_page_refresh_attempted"]
     assert result["leaderboard_status"] == "retained_observation_not_refreshed"
-    assert result["leaderboard"]["public_dw_tversky"] == .4437
+    assert result["leaderboard"]["public_dw_tversky"] == .4544
+    assert result["leaderboard"]["observed_date_utc"] == "2026-10-27"
     assert result["models_retrained"] is False and result["submission_slots_used"] == 0
 
 

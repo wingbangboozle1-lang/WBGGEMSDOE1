@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "reviewed_date_utc": "2026-10-27",
+  "scope": "Three local evidence/safety/reproducibility review passes on the active branch. These are not three experiments, three competition uploads, an independent organizer-origin data audit, or a fresh nine-site raster re-audit. The frozen 2026-10-26 scientific record and archived parallel-site bytes are unchanged.",
+  "passes": [
+    {
+      "pass": 1,
+      "focus": "Scientific provenance, data availability and claims",
+      "actions": [
+        "Re-read the owner request, immutable run/STOP cards, existing nine-site snapshots, shared numerical instruments and site claims; found no assigned single-method paragraph. Refused to restart the stopped WBG-C1 lane.",
+        "Retrieved official DrivenData task/leaderboard/rules, USGS GeoDAWN and 3DEP, and GDR listings. Recorded a direct 2026-10-27 public top 0.4544 separately from all project metrics and noted the login-gated organizer data page.",
+        "Restored and SHA-checked three owner-mirror rasters, all 19 cached bands and 24 shared-template files; original organizer-origin bytes, original radiometric grids and 1 m tiles were not authenticated.",
+        "Ranked five untested distinct geological proposals; explicitly disqualified any projected score or radiometric core-cache assumption. Flagged changed upstream heads, missing receipts and inaccessible account allowance."
+      ],
+      "receipts": [
+        "research/2026-10-27-prospective-hypotheses.md",
+        "evidence/official_leaderboard_observation_20261027.json",
+        "registry/irregularities.json",
+        "registry/data_manifest.json"
+      ],
+      "outcome": "No authorized next experiment. Public best is not a project score. Previous duplicate STOP remains binding."
+    },
+    {
+      "pass": 2,
+      "focus": "Implementation and publication-safety corrections",
+      "actions": [
+        "Replaced only inherited WBG-H1 generated pages with a guarded read-only negative report, quarantining owner-reported leaderboard values, 99.80% literal lattice overlap and unsafe backup/upload advice; left scientific bytes/cards and the frozen parallel archive untouched.",
+        "Reworked readiness to verify actual mirror hashes, cache band order/hashes, every pinned shared file and exact saved TIFF/ZIP; absent optional DEM links no longer block the cached 19-band input readiness, while scientific and slot gates remain NO.",
+        "Updated main site, README, errata, source audit and submission guidance with dated public observation, all-nine-head freshness warning, unsafe-archive warnings, provenance qualification, five-lane queue and AI-use disclosure; added a JSON review decision with null untested metrics.",
+        "Added source-freshness, readiness-tamper, publication-integrity, archived-site/link, negative-review-card and visible decision regressions. Expanded CI branch matching to active and future arena/* branches without adding training or upload automation."
+      ],
+      "receipts": [
+        "evidence/review_run_card_20261027_followup.json",
+        "scripts/check_readiness.py",
+        "scripts/wbg_h1_build_pages.py",
+        "tests/test_current_review.py",
+        "docs/how-to-submit.html",
+        ".github/workflows/ci.yml"
+      ],
+      "outcome": "The current site unambiguously says research download YES and competition submission NO; the CLI reports INPUTS_READY_LANE_STOPPED, not scientific promotion."
+    },
+    {
+      "pass": 3,
+      "focus": "Independent exact-byte, regression and rendered-site verification",
+      "actions": [
+        "Reopened the exact saved WBG-C1 TIFF and ZIP with the strict validator: SHA-256 8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875, one float32 band, EPSG:32611, 3730×3292, 100 m, min 0, max 0.8809285163879395, all finite and aligned. --require-submit-ready deliberately exited 2.",
+        "Ran full pytest (105 passed; 8 third-party Rasterio/Affine PendingDeprecationWarnings), targeted Ruff (pass) and git diff --check (pass); replayed frozen TIP1/WBG-H1 verify-recorded checks and TIP1 release validation without training.",
+        "Staged only the public /docs/ bundle, checksum-checked the primary TIFF, ran headless Chromium on all five current pages at 1440px and 390px with no JavaScript errors or horizontal overflow; tested nine-to-one site filter and SHA-256 of a real browser-downloaded TIFF. Inspected rendered desktop/mobile screenshots."
+      ],
+      "receipts": [
+        "evidence/browser_checks.json",
+        "evidence/review_run_card_20261027_followup.json",
+        "docs/data/review-run-card-20261027.json",
+        "tests/test_site.py"
+      ],
+      "outcome": "Publication is locally sound; no new experiment, final dots, promotion, organizer receipt or weekly slot. Remote CI/Pages and merge require separate actual GitHub receipts."
+    }
+  ],
+  "new_scientific_experiments": 0,
+  "competition_slots_used": 0,
+  "ok_to_download_existing_negative_for_research": true,
+  "ok_to_submit_any_current_raster": false,
+  "remaining_blockers": [
+    "Assigned method paragraph was not provided.",
+    "Frozen WBG-C1 literal directed overlap exceeds 70%, and paired efficacy CI includes zero.",
+    "Five future candidates untested; no fresh unique promoted GeoTIFF, same-instrument current-best victory or untouched confirmation.",
+    "Organizer data origin, full/current 92-site registry and authenticated remaining account allowance not independently verified.",
+    "No exact-file organizer submission-page receipt; public top 0.4544 is not a project TIFF result."
+  ]
+}

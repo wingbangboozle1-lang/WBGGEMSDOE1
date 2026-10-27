@@ -1,0 +1,15 @@
+{
+  "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-OBSERVATION",
+  "observed_date_utc": "2026-10-27",
+  "retrieval_method": "Direct fetch_page of the public DrivenData leaderboard; read rank-one row, not a team submission receipt",
+  "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "rank_one": {
+    "rank": 1,
+    "participant_display": "xiaofanhu",
+    "public_dw_tversky": 0.4544
+  },
+  "not_a_project_submission_receipt": true,
+  "current_score_claim_limitations": "A public leaderboard row does not identify which GeoTIFF produced the value, provide private or final score, prove any 0.2778 project claim, or specify this account's remaining weekly slots. This is a dated observation and can change.",
+  "user_prompt_contradiction": "The owner prompt supplies both 0.3195 and 0.4413 as highest score; neither equals the directly retrieved rank-one public value at the time of this check.",
+  "unauthenticated_data_tab": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/ redirected to /accounts/login/?next=/competitions/306/competition-doe-gems/data/ on the same date; no password/token was requested."
+}

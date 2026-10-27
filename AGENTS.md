@@ -1,7 +1,8 @@
 # Starting point for every session
 
 1. Read `README.md` **including the archived standing prompt**, then `registry/run_card.json`,
-   `registry/irregularities.json`, `registry/experiment_ledger.json`, and `registry/preregistration.json`.
+   `registry/irregularities.json`, `registry/experiment_ledger.json`, `registry/preregistration.json`,
+   and the dated `research/2026-10-27-prospective-hypotheses.md`.
    The prompt is intent, not evidence. The current measured status is **NEGATIVE / DO NOT SUBMIT**.
 2. The original checkout contained only a title. Do not invent prior local training, pending tasks,
    organizer receipts, lane assignments, scores, GPU requirements or authenticated data access.
@@ -13,6 +14,14 @@
 
 ## Shared tools and numerical claims
 
+- Run `.venv/bin/python scripts/check_readiness.py` to distinguish restored pinned inputs, optional
+  1 m DEM index, exact research TIFF format, scientific STOP, and account-slot unavailability.
+  A new clone must re-restore ignored raw inputs; this is not license to rerun a stopped lane.
+- The current generated WBG-H1 subsite is read-only safety guidance. Frozen inherited cards and
+  the byte-preserved parallel archive contain unverified organizer-score labels/speculative
+  hidden-label inversions and unsafe upload/backup advice: **do not follow them**. No current
+  artifact is submit-approved. The 27 October official public top is a dated public observation,
+  not a file-linked receipt or leaderboard estimate for this repo. All nine audited heads moved.
 - `vendor/gems57/` and `vendor/template57/prepare_data.py` are pinned **unchanged** owner-template
   files. Verify `registry/shared_template.json` / `evidence/template_integrity.json` before use.
   Do not keep a private evaluator, writer, metric or novelty-threshold fork. An upstream defect

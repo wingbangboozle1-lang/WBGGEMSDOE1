@@ -41,9 +41,9 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           PYTHONPATH: src:vendor
         run: |
-          python scripts/verify_wbg2_download.py --expect-negative --deep --fetch
-          python scripts/review_wbg2.py --check
-          python scripts/build_wbg2_site.py
+          python scripts/ci_checked.py python scripts/verify_wbg2_download.py --expect-negative --deep --fetch
+          python scripts/ci_checked.py python scripts/review_wbg2.py --check
+          python scripts/ci_checked.py python scripts/build_wbg2_site.py
       - name: Recheck inherited frozen TIP1 & WBG-H1 receipts without retraining
         env:
           PYTHONPATH: src

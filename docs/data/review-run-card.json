@@ -1,0 +1,151 @@
+{
+  "review_date_utc": "2026-10-27",
+  "run_type": "reporting-and-exact-file-review; no scientific experiment",
+  "hypothesis": "WBG-C1: conductance-depth curvature non-coaxiality",
+  "mechanism": "Scale-normalized Hessian commutator at 300/800 m, curvature strength, cross-scale persistence and dilatation support; 19-band spatial OOF HGB plus four new channels.",
+  "non_fault_mimic": "Oblique saline-clay basin-fill/lithologic contacts or shared inversion/interpolation artifacts.",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.01404466519440323,
+    "ci95": [
+      0.01183137469362976,
+      0.01639563940835171
+    ],
+    "withheld_positive_pixels": 11330,
+    "tpw": 4835.375915678135,
+    "fpw": 1671272.600026754,
+    "fnw": 6494.624084321865,
+    "measurement_status": "prior 2026-10-26 measurement, not rerun"
+  },
+  "correlation_overlap_vs_registry": {
+    "phase": "surface-before-placement",
+    "checked_unique_file_hashes": 360,
+    "source_paths": 377,
+    "scope": "All tracked aligned single-band TIFFs outside data/ and vendor/ in nine frozen owner snapshots. Includes archives, research artifacts and calibration priors. Not all 92 user-listed sites, hidden/private rasters, releases or later commits.",
+    "max_spearman_rho": 0.15233060870020235,
+    "max_forward_3px_overlap": 0.9987243421716145,
+    "byte_unique_among_checked": true,
+    "decoded_pixel_unique_among_checked": true,
+    "passes_literal_uniqueness": false,
+    "complete_all_user_listed_sites": false,
+    "final_dots": "NOT GENERATED: surface duplicate STOP; no final-dot clearance claimed"
+  },
+  "raster_sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+  "validator_output": {
+    "file": "docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+    "bytes": 14506361,
+    "sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 0.8809285163879395,
+    "mean": 0.1453765481710434,
+    "emitted_positive_pixels": 5106385,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 5106385,
+    "footprint_fraction": 0.9881974844858307,
+    "template_report": {
+      "path": "docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+      "bytes": 14506361,
+      "sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "width": 3292,
+      "height": 3730,
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "ref_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "blocksize": [
+        256,
+        256
+      ],
+      "fixture_grid": false,
+      "has_validity_mask": false,
+      "nan_pixels": 0,
+      "infinity_pixels": 0,
+      "n_nan": 0,
+      "min": 0.0,
+      "max": 0.8809285163879395,
+      "mean": 0.1453765481710434,
+      "n_nonzero": 5106385,
+      "mass": 1785101.8773902538,
+      "mass_outside_footprint": 0,
+      "problems": [],
+      "ok": true,
+      "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+    },
+    "mirrored_reference_available": true,
+    "catalogue_reference_available": true,
+    "independent_organizer_origin_authenticated": false
+  },
+  "submission_name": "wbg-c1-commutator-research-surface-20261026-acea88448272",
+  "submission_note": "WBG-C1 curvature non-coaxiality; spatial OOF research surface; no dot placement; NOT approved for submission.",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "new_experiments": 0,
+  "new_tiffs_generated": 0,
+  "submission_slots_used": 0,
+  "reason": "Existing duplicate STOP and negative efficacy retained. Corrected inherited publication; four research TIFFs revalidated, none approved."
+}

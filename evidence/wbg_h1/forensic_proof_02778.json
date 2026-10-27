@@ -4,7 +4,7 @@
   "organizer_confirmed_score": 0.2778,
   "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
   "zero_xor_proof": {
-    "parent_artifact": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif (0.2600 ORGANIZER-CONFIRMED)",
+    "parent_artifact": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif (0.2600 USER-REPORTED / NOT ORGANIZER-CONFIRMED)",
     "parent_dots": 44090,
     "child_dots": 37654,
     "removed_le_200m_collar_dots": 6436,
@@ -15,7 +15,7 @@
     "live_score_gain_from_collar_amputation": 0.0178
   },
   "private_test_set_inversion": {
-    "calibration_artifact_s5": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif (0.0904 ORGANIZER-CONFIRMED)",
+    "calibration_artifact_s5": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif (0.0904 USER-REPORTED / NOT ORGANIZER-CONFIRMED)",
     "s5_dots": 206895,
     "s5_footprint_3px_coverage_pixels": 5160724,
     "s5_footprint_uncovered_pixels": 6649,

@@ -91,6 +91,8 @@ def main():
     parser.add_argument("file", type=Path)
     parser.add_argument("reference", type=Path, nargs="?", help="inherited supplied-reference compatibility mode; format only, never approval")
     parser.add_argument("--require-submit-ready", action="store_true")
+    parser.add_argument("--card", type=Path, default=None,
+                        help="run card whose raster_sha256 must match this exact artifact")
     args = parser.parse_args()
     if args.reference is not None:
         legacy = validate(args.file, args.reference)
@@ -124,7 +126,7 @@ def main():
         report = check_tiff(source)
     else:
         raise ValueError("expected a .tif/.tiff or a ZIP with exactly one TIFF")
-    card_path = ROOT / "registry/run_card.json"
+    card_path = args.card if args.card is not None else ROOT / "registry/run_card.json"
     card = json.loads(card_path.read_text()) if card_path.exists() else None
     identity_matches = bool(card and report["sha256"] == card["raster_sha256"])
     report["run_card_matches_exact_tiff"] = identity_matches

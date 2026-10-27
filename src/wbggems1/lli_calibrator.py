@@ -1,8 +1,8 @@
-"""Empirical Live-Ledger Inversion (LLI) Calibrator over all 118 ORGANIZER-CONFIRMED rasters.
+"""Empirical Live-Ledger Inversion (LLI) Calibrator over 118 USER-REPORTED historical rasters.
 
 Protocol Rule 3 Compliance:
 Every output of this module is strictly labeled `LLI-PROJECTION (empirical LOO-calibrated
-projection on n=118 ORGANIZER-CONFIRMED rasters, NOT an organizer-confirmed score)`.
+projection on n=118 USER-REPORTED / NOT ORGANIZER-CONFIRMED rasters, NOT an organizer score)`.
 It is NEVER used to alter model training or override `SegmentHoldout` (`HOLDOUT-DTI`);
 it serves solely as a forensic diagnostic explaining why sparse, collar-clean ridges
 survived DrivenData's global `FP_w` denominator while dense continuous surfaces collapsed.
@@ -96,7 +96,7 @@ class LLICalibrator:
         pred = float(np.clip(xz @ self.coef + self.intercept, 0.0, 1.0))
         return {
             "label": (
-                f"LLI-PROJECTION (empirical Ridge on n={self.n_scored} ORGANIZER-CONFIRMED rasters; "
+                f"LLI-PROJECTION (empirical Ridge on n={self.n_scored} USER-REPORTED / NOT ORGANIZER-CONFIRMED rasters; "
                 f"LOO MAE={self.loo_mae:.4f}, LOO Spearman={self.loo_spearman:.3f}; NOT an organizer score)"
             ),
             "projected_value": round(pred, 4),
@@ -220,7 +220,10 @@ def fit_lli_calibrator() -> tuple[LLICalibrator, dict[str, Any]]:
         n_scored=n,
     )
     report = {
+        # Legacy key retained for existing callers; the value is NOT organizer-confirmed.
         "n_organizer_scored_rasters": n,
+        "n_user_reported_scored_rasters": n,
+        "historical_value_evidence_class": "USER-REPORTED; NOT ORGANIZER-CONFIRMED",
         "loo_mae": round(loo_mae, 5),
         "loo_rmse": round(loo_rmse, 5),
         "loo_spearman_rho": round(loo_rho, 5),

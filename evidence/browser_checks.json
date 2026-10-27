@@ -1,9 +1,14 @@
 {
-  "generated_utc": "2026-10-26T23:00:54.704Z",
+  "generated_utc": "2026-10-27T18:43:27.872Z",
   "browser": "153.0.8010.0",
   "checked": [
     {
       "file": "index.html",
+      "desktop": "passed",
+      "mobile": "passed"
+    },
+    {
+      "file": "submission-decision.html",
       "desktop": "passed",
       "mobile": "passed"
     },

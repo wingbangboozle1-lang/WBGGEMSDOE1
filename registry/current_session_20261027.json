@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "session_date_utc": "2026-10-27",
+  "status": "NEGATIVE / DO NOT SUBMIT",
+  "read_first": [
+    "README.md",
+    "AGENTS.md",
+    "PROMPT.md",
+    "docs/standing-prompt.md",
+    "registry/run_card.json",
+    "registry/irregularities.json",
+    "registry/experiment_ledger.json",
+    "registry/preregistration.json",
+    "docs/data/current_decision_20261027.json"
+  ],
+  "lane": {
+    "id": "TASC",
+    "status": "PROVISIONAL_RESEARCH_ONLY",
+    "preregistration": "registry/preregistration_tasc_20261027.json",
+    "ranked_hypotheses": "research/03_ranked_hypotheses_2026-10-27.md",
+    "ledger": "registry/experiment_ledger_tasc_20261027.json",
+    "experiments_completed": 3,
+    "slots_used": 0
+  },
+  "new_artifacts": [
+    {
+      "role": "preregistered primary candidate",
+      "file": "docs/downloads/wbggemsdoe1-tasc-tip-strain-corridor-20261027-f3270cad4a7f-zeros.tif",
+      "card": "evidence/tasc_run_card_20261027.json",
+      "holdout_dti": 0.0018247541592896015,
+      "ok_to_submit": false
+    },
+    {
+      "role": "best-scoring newly generated unique TIFF",
+      "file": "docs/downloads/wbggemsdoe1-tasc-label-free-physical-response-20261027-c3464cfa30d0-zeros.tif",
+      "card": "evidence/tasc_best_arm_run_card_20261027.json",
+      "holdout_dti": 0.06152769946996544,
+      "estimate_label": "LLI-PROJECTION; NOT an organizer score",
+      "ok_to_submit": false
+    }
+  ],
+  "blocking_irregularities": ["IR-001", "IR-002", "IR-004", "IR-005", "IR-007", "IR-010", "IR-020", "IR-021", "IR-022", "IR-024"],
+  "next_viable_hypothesis": "PCE1 potential-field phase congruency (label-free, local 19-band cache)",
+  "weekly_slot_authorization": false
+}

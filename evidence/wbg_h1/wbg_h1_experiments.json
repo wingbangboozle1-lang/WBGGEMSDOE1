@@ -1449,7 +1449,7 @@
     }
   },
   "lli_empirical_projection": {
-    "label": "LLI-PROJECTION (empirical Ridge on n=118 ORGANIZER-CONFIRMED rasters; LOO MAE=0.0353, LOO Spearman=0.824; NOT an organizer score)",
+    "label": "LLI-PROJECTION (empirical Ridge on n=118 USER-REPORTED / NOT ORGANIZER-CONFIRMED rasters; LOO MAE=0.0353, LOO Spearman=0.824; NOT an organizer score)",
     "projected_value": 0.1898,
     "loo_mae": 0.0353,
     "approx_interval_pm_1mae": [

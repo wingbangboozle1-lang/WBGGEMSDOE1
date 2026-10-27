@@ -39,3 +39,17 @@ Question this repo must answer: why that file scored 0.2778, and whether a *uniq
 ## Core values
 
 Maximize P(Win). Own the Outcome. A negative unique result that prevents a wasted slot is a win relative to a duplicate upload.
+
+## 2026-10-27 session addendum (current measured status)
+
+- Data placement blocker resolved: `bash scripts/download_competition_data.sh` and
+  `python scripts/prepare_data.py` completed; all 19 shared-cache band hashes match. Inputs remain
+  owner mirrors, not organizer-authenticated downloads.
+- Five new ranked hypotheses were preregistered in
+  `research/03_ranked_hypotheses_2026-10-27.md`; top candidate TASC was executed in three arms and
+  is negative. Two new unique TIFFs were generated and validated.
+- Current decision: **DOWNLOAD: YES (research/audit). SUBMIT: NO.** No file beat HOLDOUT-DTI
+  0.166060; the literal lattice overlap gate remains mathematically unsatisfiable. Zero slots used.
+- All historical values are USER-REPORTED / NOT ORGANIZER-CONFIRMED. LLI numbers are projections,
+  never scores. Official public leaderboard observed 0.4544; prompt targets 0.4413/0.3195 are stale.
+- See `docs/data/current_decision_20261027.json` and `registry/current_session_20261027.json`.

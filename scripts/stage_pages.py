@@ -34,9 +34,20 @@ def stage():
         digest = hashlib.file_digest(stream, "sha256").hexdigest()
     if digest != card["raster_sha256"]:
         raise ValueError("staged research TIFF checksum differs from the frozen run card")
+    tasc_card_path = ROOT / "evidence/tasc_best_arm_run_card_20261027.json"
+    tasc_ok = None
+    if tasc_card_path.exists():
+        tasc_card = json.loads(tasc_card_path.read_text())
+        tasc_copy = target / tasc_card["artifact"]
+        with tasc_copy.open("rb") as stream:
+            tasc_digest = hashlib.file_digest(stream, "sha256").hexdigest()
+        tasc_ok = bool(tasc_digest == tasc_card["raster_sha256"])
+        if not tasc_ok:
+            raise ValueError("staged TASC TIFF checksum differs from its run card")
     print(json.dumps({"staged_site": str(target.relative_to(ROOT)),
         "canonical_path": "/WBGGEMSDOE1/docs/", "root_redirect": "docs/",
-        "artifact_sha256": digest, "ok_to_submit": False}))
+        "artifact_sha256": digest, "tasc_best_arm_sha256_verified": tasc_ok,
+        "ok_to_submit": False}))
     return target
 
 

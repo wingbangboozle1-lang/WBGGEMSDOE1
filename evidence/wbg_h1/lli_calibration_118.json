@@ -1,5 +1,7 @@
 {
   "n_organizer_scored_rasters": 118,
+  "n_user_reported_scored_rasters": 118,
+  "historical_value_evidence_class": "USER-REPORTED; NOT ORGANIZER-CONFIRMED",
   "loo_mae": 0.0353,
   "loo_rmse": 0.04473,
   "loo_spearman_rho": 0.82417,

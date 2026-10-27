@@ -16,6 +16,56 @@
 > No final dots were placed, no real submission was selected, and **zero competition slots were used**.
 > “Different bytes” is not “lane unique”; “local format pass” is not organizer acceptance.
 
+## 2026-10-27 session — new unique TIFF, fail-closed decision
+
+**[Open the submission decision page](docs/submission-decision.html)** ·
+**[Download the best newly generated unique TIFF](docs/downloads/wbggemsdoe1-tasc-label-free-physical-response-20261027-c3464cfa30d0-zeros.tif)** ·
+[One-TIFF ZIP](docs/downloads/wbggemsdoe1-tasc-label-free-physical-response-20261027-c3464cfa30d0-zeros.zip) ·
+[Decision JSON](docs/data/current_decision_20261027.json) ·
+[Ranked hypotheses](research/03_ranked_hypotheses_2026-10-27.md) ·
+[Next work and limitations](research/04_next_steps_20261027.md)
+
+> **DOWNLOAD: YES, for research/audit. SUBMIT: NO.** Two new, single-band, all-finite `[0,1]`
+> GeoTIFFs were generated from a preregistered three-arm lane. No file beat the frozen
+> **HOLDOUT-DTI 0.166060** current-best point estimate, no file passed the literal all-entry
+> 3 px registry gate, and **zero weekly slots were used**. A projection is not a leaderboard score.
+
+| File to download | Measured evidence | Estimate (explicitly not a score) | Unique? | OK to submit? |
+|---|---|---|---|---|
+| [wbggemsdoe1-tasc-label-free-physical-response-20261027-c3464cfa30d0-zeros.tif](docs/downloads/wbggemsdoe1-tasc-label-free-physical-response-20261027-c3464cfa30d0-zeros.tif) — NEW 2026-10-27 · best-scoring arm of the frozen TASC screen | HOLDOUT-DTI 0.061528, 95% CI [0.049811, 0.073808] | **0.0716** (LLI projection ±0.0353; **not a score**) | competing-method unique: yes; literal lattice gate: FAIL | **NO** |
+| [wbggemsdoe1-tasc-tip-strain-corridor-20261027-f3270cad4a7f-zeros.tif](docs/downloads/wbggemsdoe1-tasc-tip-strain-corridor-20261027-f3270cad4a7f-zeros.tif) — NEW 2026-10-27 · preregistered primary TASC candidate | HOLDOUT-DTI 0.001825, 95% CI [0.000431, 0.003717] | **0.0000** (LLI projection ±0.0353; **not a score**) | competing-method unique: yes; literal lattice gate: FAIL | **NO** |
+| [wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif](docs/downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif) — INHERITED 2026-10-26 · strongest unique research TIFF in this repository | HOLDOUT-DTI 0.123310, 95% CI [0.108921, 0.137557] | **0.1898** (LLI projection ±0.0353; **not a score**) | competing-method unique: yes; literal lattice gate: FAIL | **NO** |
+
+The inherited WBG-H1 EXP-3 TIFF remains the strongest unique research file in this repository
+(HOLDOUT-DTI 0.123310; LLI projection 0.1898), but it is also **negative** and not a newly
+generated 2026-10-27 file. The new TASC primary arm failed for a structural reason: the
+hide-and-recover holdout removes all visible catalogue faults from each test quadrant, so a
+visible-tip-derived corridor has almost no support there. That negative result is retained.
+
+### Nine focus sites — best file, estimate and uniqueness
+
+Historical values are **USER-REPORTED / NOT ORGANIZER-CONFIRMED**. LLI numbers are empirical
+projections on 118 user-reported historical rasters (LOO MAE 0.0353), **not organizer scores**.
+
+| Site | File to download (latest unique candidate; audit only) | Estimate | Unique vs other GEMSDOE sites? | OK to submit? |
+|---|---|---|---|---|
+| GEMSDOE32 | [gemsdoe32-h47-lli-unique-coupling-49231-20261026T230000Z-33464ce2-zeros.tif](https://github.com/buffedlizard55-lab/GEMSDOE32/blob/400b60d4a6d99f425ee90504e6c4552227556dd1/docs/downloads/gemsdoe32-h47-lli-unique-coupling-49231-20261026T230000Z-33464ce2-zeros.tif) | USER-REPORTED 0.2778 (historical champion) / **0.1328** LLI projection ±0.0353 (latest candidate) | yes vs sparse peers; max 3 px overlap 65.0% | **NO** |
+| GEMSDOE36 | [gemsdoe36-gvsc36-exp3-20261026-5fb822bdfb60-zeros.tif](https://github.com/buffedlizard55-lab/GEMSDOE36/blob/79ddf4aa6fd5fa93887345f4bffeb6edd9d76401/docs/downloads/gemsdoe36-gvsc36-exp3-20261026-5fb822bdfb60-zeros.tif) | USER-REPORTED 0.2750 (historical champion) / **0.1905** LLI projection ±0.0353 (latest candidate) | yes vs sparse peers; max 3 px overlap 69.3% | **NO** |
+| GEMSDOE28 | [gems28-s21-puhgb-20261026-16bbf281ba9b-allfinite.tif](https://github.com/buffedlizard55-lab/GEMSDOE28/blob/2c839d10f57ec9b074829e93c84bc39935f52896/docs/downloads/gems28-s21-puhgb-20261026-16bbf281ba9b-allfinite.tif) | USER-REPORTED 0.2710 (historical champion) / **0.0407** LLI projection ±0.0353 (latest candidate) | no vs sparse peers; max 3 px overlap 90.4% | **NO** |
+| GEMSDOE31 | [gemsdoe31-h31y-kinpied-37654-20261026-46a5b6c3-zeros.tif](https://github.com/buffedlizard55-lab/GEMSDOE31/blob/e14b466b88601149e30ed8decb2fa753ca040beb/docs/downloads/gemsdoe31-h31y-kinpied-37654-20261026-46a5b6c3-zeros.tif) | USER-REPORTED 0.2708 (historical champion) / **0.0738** LLI projection ±0.0353 (latest candidate) | no vs sparse peers; max 3 px overlap 91.3% | **NO** |
+| GEMSDOE33 | [gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif](https://github.com/buffedlizard55-lab/GEMSDOE33/blob/efa438d3104893c3e8aedf3817ac22167b1c681a/docs/downloads/gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif) | USER-REPORTED 0.2632 (historical champion) / **0.1582** LLI projection ±0.0353 (latest candidate) | yes vs sparse peers; max 3 px overlap 69.2% | **NO** |
+| GEMSDOE25 | [gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif](https://github.com/buffedlizard55-lab/GEMSDOE25/blob/b9dc627b767b052ca6963e175ef43ad2d0831ebd/docs/downloads/gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif) | USER-REPORTED 0.2600 (historical champion) / **0.1437** LLI projection ±0.0353 (latest candidate) | yes vs sparse peers; max 3 px overlap 67.7% | **NO** |
+| GEMSDOE30 | [gems30-GDX1-44090-20261026-2992ee3619f5.tif](https://github.com/buffedlizard55-lab/GEMSDOE30/blob/9c0d637c0171407196b61b780444bc772ce75438/docs/research/2026-10-26-gdx/gems30-GDX1-44090-20261026-2992ee3619f5.tif) | USER-REPORTED 0.2600 (historical champion) / **0.1368** LLI projection ±0.0353 (latest candidate) | yes vs sparse peers; max 3 px overlap 57.0% | **NO** |
+| GEMSDOE24 | [gems24-dprf1-stitched-oof-tworegime-20261026-81849d67c8bf-zeros.tif](https://github.com/buffedlizard55-lab/GEMSDOE24/blob/a433b430b74b813a9118ebd4ec438b12cbc69f46/docs/downloads/gems24-dprf1-stitched-oof-tworegime-20261026-81849d67c8bf-zeros.tif) | USER-REPORTED 0.2477 (historical champion) / **0.1866** LLI projection ±0.0353 (latest candidate) | yes vs sparse peers; max 3 px overlap 62.9% | **NO** |
+| GEMSDOE27 | [gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite.tif](https://github.com/buffedlizard55-lab/GEMSDOE27/blob/21687996529d4e3bcb83e7d8ac56fa29864acf97/docs/downloads/gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite.tif) | USER-REPORTED 0.2449 (historical champion) / **0.1778** LLI projection ±0.0353 (latest candidate) | yes vs sparse peers; max 3 px overlap 69.0% | **NO** |
+
+The highest supplied historical value remains **GEMSDOE32 B2, USER-REPORTED 0.2778**, already
+submitted and not a new unique entry. The official public leaderboard was observed at
+**0.4544** on 2026-10-27; the prompt's 0.4413 and 0.3195
+targets are stale/inconsistent. No project file has an organizer receipt linking it to a score.
+
+
+
 | Artifact / decision | Measured evidence | Estimated leaderboard result | Exact-copy / literal uniqueness |
 |---|---|---|---|
 | [wbg-c1-commutator-research-surface-20261026-acea88448272.tif](docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif) — **research download only** | **HOLDOUT-DTI 0.014045**, 95% CI [0.011831, 0.016396], `gems57-pooled-hide-v2`, 11,330 withheld positives | **Unavailable**. Not inferred from holdout. Organizer-confirmed artifact result: **none**. | Byte- and normalized-pixel distinct from all 360 checked hashes; **FAIL** literal forward overlap 99.87% >70%. |
@@ -48,9 +98,9 @@ credit and avoiding low-marginal-credit predictions are plausible reasons for th
 ordering, not a causal proof from unavailable hidden labels. A 200 m exclusion is **not** an
 organizer rule. No historical file should be copied into a new "unique" entry.
 
-The direct **official public-leaderboard observation on 2026-10-26 was 0.4437**, not the prompt's
-older targets. That is **not** an organizer result for any project TIFF. A higher project score
-was not obtained or credibly projected in this session.
+The direct **official public-leaderboard observation on 2026-10-27 was 0.4544**,
+not the prompt's older 0.4413 / 0.3195 targets. That is **not** an organizer result for any project
+TIFF. A higher project score was not obtained or credibly projected in this session.
 
 ## Parallel work preserved during integration
 
@@ -108,8 +158,13 @@ GitHub access is needed for the hash-pinned public bridges; no DrivenData creden
 python -m venv .venv
 .venv/bin/pip install -e '.[test]'
 # For exact research dependency versions, use requirements-lock.txt.
-bash scripts/download_competition_data.sh
-.venv/bin/python scripts/prepare_data.py
+bash scripts/download_competition_data.sh   # 2026-10-27: completed; all core pins verified
+.venv/bin/python scripts/prepare_data.py      # 2026-10-27: 19/19 shared cache bands verified
+.venv/bin/python scripts/restore_registry.py  # 231 sources -> 179 unique comparators
+.venv/bin/python scripts/run_tasc_lane.py --build-features
+.venv/bin/python scripts/run_tasc_lane.py --execute
+.venv/bin/python scripts/package_tasc_best_arm.py
+.venv/bin/python scripts/build_current_decision.py
 .venv/bin/pytest -q
 
 # Reopen the actual downloadable bytes. Exit 0 means FORMAT pass only.
@@ -125,6 +180,7 @@ bash scripts/download_competition_data.sh
 
 # Rebuild report pages from persisted measured JSON (no modelling):
 python scripts/refresh_feed.py --offline
+python scripts/build_current_decision.py
 python scripts/build_site.py
 python scripts/build_readme.py
 # Preview, not for production deployment:
@@ -178,6 +234,15 @@ not falsely claim that a browser button trains the model.
    The existing main/root publisher is retained; `scripts/stage_pages.py` gives workflow deploys
    the same root-to-`/docs/` layout. This avoids incompatible download paths without a manual
    configuration change. Only actual GitHub run/deployment receipts establish publication.
+9. **Unsatisfiable literal lattice gate:** the retained spacing-5 calibration lattice covers at
+   least 70% of the footprint within 3 px, so by the pigeonhole principle every substantial new
+   dot set has >70% directional overlap with it. The shared tool reports a competing-method
+   diagnostic, but this session keeps the literal unseparated gate binding. A protocol owner must
+   decide how space-filling calibration controls should be handled; we did not waive them privately.
+10. **Inherited mislabeling corrected:** WBG-H1 peer pages previously called owner-reported values
+   “ORGANIZER-CONFIRMED”. The generator, frozen cards and this session's pages now label them
+   **USER-REPORTED / NOT ORGANIZER-CONFIRMED**. Two inherited official links were dead and were
+   replaced with verified USGS/Copernicus-era official URLs.
 
 [Official-source claim register](registry/sources.json) · [Irregularities](registry/irregularities.json)
 · [Frozen preregistration](registry/preregistration.json) · [Review passes](evidence/review_passes.json)

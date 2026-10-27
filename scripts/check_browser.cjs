@@ -38,7 +38,7 @@ const chromium = importedChromium.default || importedChromium;
     const context = await browser.newContext({ viewport: { width: 1440, height: 1100 }, acceptDownloads: true });
     const page = await context.newPage();
     page.on("pageerror", error => errors.push(String(error)));
-    for (const file of ["index.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"]) {
+    for (const file of ["index.html", "submission-decision.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"]) {
       const response = await page.goto(new URL(file, base).href, { waitUntil: "networkidle" });
       assert.equal(response.status(), 200);
       const text = await page.locator("main").innerText();
@@ -54,7 +54,7 @@ const chromium = importedChromium.default || importedChromium;
     assert.equal(await page.locator("#site-table tbody tr:visible").count(), 1);
     await page.locator("#site-filter").fill("");
     const downloadPromise = page.waitForEvent("download");
-    await page.locator("a[download]").first().click();
+    await page.locator(`a[download][href="downloads/${path.basename(card.artifact)}"]`).first().click();
     const download = await downloadPromise;
     assert.equal(download.suggestedFilename(), path.basename(card.artifact));
     const downloaded = fs.readFileSync(await download.path());
@@ -62,7 +62,7 @@ const chromium = importedChromium.default || importedChromium;
     await page.goto(new URL("index.html", base).href, { waitUntil: "networkidle" });
     await page.screenshot({ path: path.join(artifacts, "desktop.png"), fullPage: true });
     await page.setViewportSize({ width: 390, height: 844 });
-    for (const file of ["index.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"]) {
+    for (const file of ["index.html", "submission-decision.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"]) {
       await page.goto(new URL(file, base).href, { waitUntil: "networkidle" });
       const overflow = await page.evaluate(() => document.body.scrollWidth > window.innerWidth);
       assert.equal(overflow, false, `mobile body overflow: ${file}`);

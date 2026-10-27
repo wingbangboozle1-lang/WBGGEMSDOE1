@@ -1,0 +1,422 @@
+{
+  "schema": "gemsdoe1-current-decision-2026-10-27-v1",
+  "generated_utc": "2026-10-27T18:42:41.362970+00:00",
+  "decision": {
+    "status": "NEGATIVE",
+    "download": "YES \u2014 for research/audit only",
+    "submit": "NO \u2014 no file is cleared for a weekly DrivenData slot",
+    "headline": "A new unique TIFF was generated, but no new file beat the frozen holdout benchmark or passed the literal registry gate.",
+    "best_download": "wbggemsdoe1-tasc-label-free-physical-response-20261027-c3464cfa30d0-zeros.tif",
+    "best_download_url": "downloads/wbggemsdoe1-tasc-label-free-physical-response-20261027-c3464cfa30d0-zeros.tif",
+    "best_estimate": 0.0716,
+    "best_estimate_label": "LLI-PROJECTION, NOT a leaderboard score",
+    "highest_repository_unique_estimate": 0.1898,
+    "highest_repository_unique_file": "wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif",
+    "slots_used": 0
+  },
+  "target_context": {
+    "prompt_claims": [
+      0.4413,
+      0.3195
+    ],
+    "observed_official_leaderboard": 0.4544,
+    "observed_utc": "2026-10-27",
+    "observed_source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "note": "The official leaderboard observation is not a score for any project file. Prompt values are stale/inconsistent."
+  },
+  "new_files": [
+    {
+      "id": "TASC-A",
+      "label": "NEW 2026-10-27 \u00b7 best-scoring arm of the frozen TASC screen",
+      "method": "Label-free 300 m geophysical edge/strain response",
+      "why": "Highest HOLDOUT-DTI of the three newly generated arms; still below the 0.166060 current-best benchmark.",
+      "file": "wbggemsdoe1-tasc-label-free-physical-response-20261027-c3464cfa30d0-zeros.tif",
+      "url": "downloads/wbggemsdoe1-tasc-label-free-physical-response-20261027-c3464cfa30d0-zeros.tif",
+      "sha256": "13d646677adc82aeaff41925fa5ae2c11a116c2e06a70e1a2269b28629ba3ad1",
+      "holdout_dti": 0.06152769946996544,
+      "holdout_ci95": [
+        0.049810534425649665,
+        0.0738076149453345
+      ],
+      "estimate_value": 0.0716,
+      "estimate_interval_pm_1mae": [
+        0.0363,
+        0.1069
+      ],
+      "literal_gate_passed": false,
+      "competing_method_gate_passed": true,
+      "max_literal_overlap": 0.9698584380467632,
+      "max_competing_overlap": 0.44448862732622874,
+      "ok_to_download": true,
+      "ok_to_submit": false,
+      "verdict": "negative"
+    },
+    {
+      "id": "TASC-B",
+      "label": "NEW 2026-10-27 \u00b7 preregistered primary TASC candidate",
+      "method": "Visible-tip-aligned strain-transfer corridor",
+      "why": "Primary hypothesis failed: hide-and-recover removes visible faults from the test quadrant, so tip corridors have almost no support there.",
+      "file": "wbggemsdoe1-tasc-tip-strain-corridor-20261027-f3270cad4a7f-zeros.tif",
+      "url": "downloads/wbggemsdoe1-tasc-tip-strain-corridor-20261027-f3270cad4a7f-zeros.tif",
+      "sha256": "23c42569bfff2db7e322ba5dbdb5981e1da8c86c24c35772c6d66bccebdf0dd5",
+      "holdout_dti": 0.0018247541592896015,
+      "holdout_ci95": [
+        0.0004309702613016131,
+        0.003717190249698861
+      ],
+      "estimate_value": 0.0,
+      "estimate_interval_pm_1mae": [
+        0.0,
+        0.0353
+      ],
+      "literal_gate_passed": false,
+      "competing_method_gate_passed": true,
+      "max_literal_overlap": 1.0,
+      "max_competing_overlap": 0.6510721247563352,
+      "ok_to_download": true,
+      "ok_to_submit": false,
+      "verdict": "negative"
+    },
+    {
+      "id": "WBG-H1",
+      "label": "INHERITED 2026-10-26 \u00b7 strongest unique research TIFF in this repository",
+      "method": "66-channel dip-projected basement coupling + two-regime 300 m CELF",
+      "why": "Higher holdout DTI and LLI projection than either new TASC file, but still below the 0.166060 benchmark and negative under the frozen protocol.",
+      "file": "wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif",
+      "url": "downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif",
+      "sha256": "e46e4c175c5afceac148d0475a23808c3ae8bf6e5edad8faea919ed847b0d7dd",
+      "holdout_dti": 0.12331,
+      "holdout_ci95": [
+        0.108921,
+        0.137557
+      ],
+      "estimate_value": 0.1898,
+      "estimate_interval_pm_1mae": [
+        0.1545,
+        0.2251
+      ],
+      "literal_gate_passed": false,
+      "competing_method_gate_passed": true,
+      "max_literal_overlap": null,
+      "max_competing_overlap": 0.644898,
+      "ok_to_download": true,
+      "ok_to_submit": false,
+      "verdict": "negative"
+    }
+  ],
+  "sites": [
+    {
+      "site": "GEMSDOE32",
+      "lineage": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "historical_best_file": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "historical_best_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "historical_value": 0.2778,
+      "historical_value_label": "USER-REPORTED / NOT ORGANIZER-CONFIRMED",
+      "latest_candidate_file": "gemsdoe32-h47-lli-unique-coupling-49231-20261026T230000Z-33464ce2-zeros.tif",
+      "latest_candidate_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/400b60d4a6d99f425ee90504e6c4552227556dd1/docs/downloads/gemsdoe32-h47-lli-unique-coupling-49231-20261026T230000Z-33464ce2-zeros.tif",
+      "latest_candidate_sha256": "d8da7e947db3ed03a3d7064c02b523c254bcb3ae1c5115b7e59b4b436f80fea1",
+      "latest_holdout_dti": 0.0784,
+      "estimate_label": "LLI-PROJECTION (NOT a score)",
+      "estimate_value": 0.1328,
+      "estimate_interval_pm_1mae": [
+        0.0975,
+        0.1681
+      ],
+      "estimate_loo_mae": 0.0353,
+      "estimate_calibration_label": "calibrated on 118 USER-REPORTED / NOT ORGANIZER-CONFIRMED historical values",
+      "unique_vs_sparse_peers": true,
+      "max_sparse_peer_3px_overlap": 0.65,
+      "max_abs_spearman": 0.423,
+      "peer_technical_safe_claim": false,
+      "ok_to_download": true,
+      "ok_to_submit": false,
+      "recommendation": "Audit / research only. Already-submitted historical champion or failed frozen gates; do not spend a weekly slot."
+    },
+    {
+      "site": "GEMSDOE36",
+      "lineage": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "historical_best_file": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "historical_best_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/05979971df4775aadad34ae6749b0a7ac56d7832/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "historical_value": 0.275,
+      "historical_value_label": "USER-REPORTED / NOT ORGANIZER-CONFIRMED",
+      "latest_candidate_file": "gemsdoe36-gvsc36-exp3-20261026-5fb822bdfb60-zeros.tif",
+      "latest_candidate_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/79ddf4aa6fd5fa93887345f4bffeb6edd9d76401/docs/downloads/gemsdoe36-gvsc36-exp3-20261026-5fb822bdfb60-zeros.tif",
+      "latest_candidate_sha256": "ad809c2b0919d4b71afee80f0b4827aa9ad4ecd8c66507109a3d3f7292cac1a1",
+      "latest_holdout_dti": 0.15886,
+      "estimate_label": "LLI-PROJECTION (NOT a score)",
+      "estimate_value": 0.1905,
+      "estimate_interval_pm_1mae": [
+        0.1552,
+        0.2258
+      ],
+      "estimate_loo_mae": 0.0353,
+      "estimate_calibration_label": "calibrated on 118 USER-REPORTED / NOT ORGANIZER-CONFIRMED historical values",
+      "unique_vs_sparse_peers": true,
+      "max_sparse_peer_3px_overlap": 0.6932,
+      "max_abs_spearman": 0.0616,
+      "peer_technical_safe_claim": true,
+      "ok_to_download": true,
+      "ok_to_submit": false,
+      "recommendation": "Audit / research only. Already-submitted historical champion or failed frozen gates; do not spend a weekly slot."
+    },
+    {
+      "site": "GEMSDOE28",
+      "lineage": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "historical_best_file": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "historical_best_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/2c839d10f57ec9b074829e93c84bc39935f52896/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "historical_value": 0.271,
+      "historical_value_label": "USER-REPORTED / NOT ORGANIZER-CONFIRMED",
+      "latest_candidate_file": "gems28-s21-puhgb-20261026-16bbf281ba9b-allfinite.tif",
+      "latest_candidate_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/2c839d10f57ec9b074829e93c84bc39935f52896/docs/downloads/gems28-s21-puhgb-20261026-16bbf281ba9b-allfinite.tif",
+      "latest_candidate_sha256": "2bf4737ae0a3b844a160d4041d435e5a7daf92c6ec92f128a0c2c596ba23787c",
+      "latest_holdout_dti": 0.0839,
+      "estimate_label": "LLI-PROJECTION (NOT a score)",
+      "estimate_value": 0.0407,
+      "estimate_interval_pm_1mae": [
+        0.0054,
+        0.076
+      ],
+      "estimate_loo_mae": 0.0353,
+      "estimate_calibration_label": "calibrated on 118 USER-REPORTED / NOT ORGANIZER-CONFIRMED historical values",
+      "unique_vs_sparse_peers": false,
+      "max_sparse_peer_3px_overlap": 0.9037,
+      "max_abs_spearman": 0.1344,
+      "peer_technical_safe_claim": false,
+      "ok_to_download": true,
+      "ok_to_submit": false,
+      "recommendation": "Audit / research only. Already-submitted historical champion or failed frozen gates; do not spend a weekly slot."
+    },
+    {
+      "site": "GEMSDOE31",
+      "lineage": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "historical_best_file": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "historical_best_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/776bf4668a8c10631908c9bba9443a8f11ce5036/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "historical_value": 0.2708,
+      "historical_value_label": "USER-REPORTED / NOT ORGANIZER-CONFIRMED",
+      "latest_candidate_file": "gemsdoe31-h31y-kinpied-37654-20261026-46a5b6c3-zeros.tif",
+      "latest_candidate_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/e14b466b88601149e30ed8decb2fa753ca040beb/docs/downloads/gemsdoe31-h31y-kinpied-37654-20261026-46a5b6c3-zeros.tif",
+      "latest_candidate_sha256": "6b06127f405eb6fb279e69bfc1645d01ab037d8b2f369933db0e06fa36199aa8",
+      "latest_holdout_dti": 0.0973,
+      "estimate_label": "LLI-PROJECTION (NOT a score)",
+      "estimate_value": 0.0738,
+      "estimate_interval_pm_1mae": [
+        0.0385,
+        0.1091
+      ],
+      "estimate_loo_mae": 0.0353,
+      "estimate_calibration_label": "calibrated on 118 USER-REPORTED / NOT ORGANIZER-CONFIRMED historical values",
+      "unique_vs_sparse_peers": false,
+      "max_sparse_peer_3px_overlap": 0.9134,
+      "max_abs_spearman": 0.1051,
+      "peer_technical_safe_claim": false,
+      "ok_to_download": true,
+      "ok_to_submit": false,
+      "recommendation": "Audit / research only. Already-submitted historical champion or failed frozen gates; do not spend a weekly slot."
+    },
+    {
+      "site": "GEMSDOE33",
+      "lineage": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "historical_best_file": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "historical_best_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/1d99d73fe14d9a87126ffca2db52c69336d6099b/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "historical_value": 0.2632,
+      "historical_value_label": "USER-REPORTED / NOT ORGANIZER-CONFIRMED",
+      "latest_candidate_file": "gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif",
+      "latest_candidate_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/efa438d3104893c3e8aedf3817ac22167b1c681a/docs/downloads/gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif",
+      "latest_candidate_sha256": "5eb9572946fa62356ebc0cbfef22bb54aa2ef094cb8b4a84b52e6b80e120db96",
+      "latest_holdout_dti": 0.11415,
+      "estimate_label": "LLI-PROJECTION (NOT a score)",
+      "estimate_value": 0.1582,
+      "estimate_interval_pm_1mae": [
+        0.1229,
+        0.1935
+      ],
+      "estimate_loo_mae": 0.0353,
+      "estimate_calibration_label": "calibrated on 118 USER-REPORTED / NOT ORGANIZER-CONFIRMED historical values",
+      "unique_vs_sparse_peers": true,
+      "max_sparse_peer_3px_overlap": 0.6915,
+      "max_abs_spearman": 0.0393,
+      "peer_technical_safe_claim": false,
+      "ok_to_download": true,
+      "ok_to_submit": false,
+      "recommendation": "Audit / research only. Already-submitted historical champion or failed frozen gates; do not spend a weekly slot."
+    },
+    {
+      "site": "GEMSDOE25",
+      "lineage": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "historical_best_file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "historical_best_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/af2b6f2543e5422a7e917638b70e038e6fd91cad/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "historical_value": 0.26,
+      "historical_value_label": "USER-REPORTED / NOT ORGANIZER-CONFIRMED",
+      "latest_candidate_file": "gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif",
+      "latest_candidate_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/b9dc627b767b052ca6963e175ef43ad2d0831ebd/docs/downloads/gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif",
+      "latest_candidate_sha256": "35e1b1400a5a2057b8ae4acaab43ad7d9d165532f9a43709cf0d1eb4f2247595",
+      "latest_holdout_dti": 0.11343,
+      "estimate_label": "LLI-PROJECTION (NOT a score)",
+      "estimate_value": 0.1437,
+      "estimate_interval_pm_1mae": [
+        0.1084,
+        0.179
+      ],
+      "estimate_loo_mae": 0.0353,
+      "estimate_calibration_label": "calibrated on 118 USER-REPORTED / NOT ORGANIZER-CONFIRMED historical values",
+      "unique_vs_sparse_peers": true,
+      "max_sparse_peer_3px_overlap": 0.6774,
+      "max_abs_spearman": 0.1075,
+      "peer_technical_safe_claim": false,
+      "ok_to_download": true,
+      "ok_to_submit": false,
+      "recommendation": "Audit / research only. Already-submitted historical champion or failed frozen gates; do not spend a weekly slot."
+    },
+    {
+      "site": "GEMSDOE30",
+      "lineage": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "historical_best_file": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "historical_best_url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/9c0d637c0171407196b61b780444bc772ce75438/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "historical_value": 0.26,
+      "historical_value_label": "USER-REPORTED / NOT ORGANIZER-CONFIRMED",
+      "latest_candidate_file": "gems30-GDX1-44090-20261026-2992ee3619f5.tif",
+      "latest_candidate_url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/9c0d637c0171407196b61b780444bc772ce75438/docs/research/2026-10-26-gdx/gems30-GDX1-44090-20261026-2992ee3619f5.tif",
+      "latest_candidate_sha256": "3d569d47f5e62e6e62586ddf940140b113d826ab85a5dc4a1642cb8f882c26ac",
+      "latest_holdout_dti": 0.11965,
+      "estimate_label": "LLI-PROJECTION (NOT a score)",
+      "estimate_value": 0.1368,
+      "estimate_interval_pm_1mae": [
+        0.1015,
+        0.1721
+      ],
+      "estimate_loo_mae": 0.0353,
+      "estimate_calibration_label": "calibrated on 118 USER-REPORTED / NOT ORGANIZER-CONFIRMED historical values",
+      "unique_vs_sparse_peers": true,
+      "max_sparse_peer_3px_overlap": 0.5704,
+      "max_abs_spearman": 0.0715,
+      "peer_technical_safe_claim": false,
+      "ok_to_download": true,
+      "ok_to_submit": false,
+      "recommendation": "Audit / research only. Already-submitted historical champion or failed frozen gates; do not spend a weekly slot."
+    },
+    {
+      "site": "GEMSDOE24",
+      "lineage": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "historical_best_file": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "historical_best_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "historical_value": 0.2477,
+      "historical_value_label": "USER-REPORTED / NOT ORGANIZER-CONFIRMED",
+      "latest_candidate_file": "gems24-dprf1-stitched-oof-tworegime-20261026-81849d67c8bf-zeros.tif",
+      "latest_candidate_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/a433b430b74b813a9118ebd4ec438b12cbc69f46/docs/downloads/gems24-dprf1-stitched-oof-tworegime-20261026-81849d67c8bf-zeros.tif",
+      "latest_candidate_sha256": "c1257c1d4b5ac9cc0a8e29b0120c614fcaa1f38474bc1f6de98c0a1afb0567f1",
+      "latest_holdout_dti": 0.163792,
+      "estimate_label": "LLI-PROJECTION (NOT a score)",
+      "estimate_value": 0.1866,
+      "estimate_interval_pm_1mae": [
+        0.1513,
+        0.2219
+      ],
+      "estimate_loo_mae": 0.0353,
+      "estimate_calibration_label": "calibrated on 118 USER-REPORTED / NOT ORGANIZER-CONFIRMED historical values",
+      "unique_vs_sparse_peers": true,
+      "max_sparse_peer_3px_overlap": 0.6295,
+      "max_abs_spearman": 0.0706,
+      "peer_technical_safe_claim": true,
+      "ok_to_download": true,
+      "ok_to_submit": false,
+      "recommendation": "Audit / research only. Already-submitted historical champion or failed frozen gates; do not spend a weekly slot."
+    },
+    {
+      "site": "GEMSDOE27",
+      "lineage": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "historical_best_file": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "historical_best_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/bef7ae8e8f63b69d299c9214c75988c8f5055f9c/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "historical_value": 0.2449,
+      "historical_value_label": "USER-REPORTED / NOT ORGANIZER-CONFIRMED",
+      "latest_candidate_file": "gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite.tif",
+      "latest_candidate_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/21687996529d4e3bcb83e7d8ac56fa29864acf97/docs/downloads/gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite.tif",
+      "latest_candidate_sha256": "2c002b02792419864bd3b29a218e543cb41e3f07b3b57c29ef35c6e39e184bfe",
+      "latest_holdout_dti": 0.1604,
+      "estimate_label": "LLI-PROJECTION (NOT a score)",
+      "estimate_value": 0.1778,
+      "estimate_interval_pm_1mae": [
+        0.1425,
+        0.2131
+      ],
+      "estimate_loo_mae": 0.0353,
+      "estimate_calibration_label": "calibrated on 118 USER-REPORTED / NOT ORGANIZER-CONFIRMED historical values",
+      "unique_vs_sparse_peers": true,
+      "max_sparse_peer_3px_overlap": 0.6896,
+      "max_abs_spearman": 0.1383,
+      "peer_technical_safe_claim": true,
+      "ok_to_download": true,
+      "ok_to_submit": false,
+      "recommendation": "Audit / research only. Already-submitted historical champion or failed frozen gates; do not spend a weekly slot."
+    }
+  ],
+  "why_02778": {
+    "finding": "GEMSDOE32 B2 is an exact 37,654-dot subset of the GEMSDOE25/GEMSDOE30 D2.8 field: 6,436 dots at catalogue distance <= 200 m were removed, zero added. GEMSDOE36 is a 1,200-dot superset of B2.",
+    "interpretation": "Distance-weighted Tversky gives each truth pixel the maximum nearby prediction credit. Redundant near-catalogue dots add false-positive mass with little new coverage, so sparse pruning can improve DTI. This is a metric/geometry explanation, not proof about hidden labels.",
+    "can_we_beat_it": "Not in this session. No newly generated or inherited unique file cleared the frozen promotion gates; an organizer receipt for 0.2778 was never supplied.",
+    "evidence": [
+      "evidence/h33_b2_forensics.json",
+      "evidence/nine_site_audit.json",
+      "docs/research/why-02778.md"
+    ]
+  },
+  "hypotheses": {
+    "document": "research/03_ranked_hypotheses_2026-10-27.md",
+    "count": 5,
+    "top": "TASC (executed, negative)",
+    "next": "PCE1 potential-field phase congruency (label-free; viable with the local 19-band cache)",
+    "not_viable_here": [
+      "DIFF1 raw 3DEP 1 m/10 m DEM profiles",
+      "MT3D USGS 3-D MT conductance slices"
+    ]
+  },
+  "official_sources": [
+    {
+      "name": "DrivenData problem / metric / submission format",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+    },
+    {
+      "name": "DrivenData public leaderboard",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
+    },
+    {
+      "name": "GEMS Prize Official Rules (3/week, AI disclosure)",
+      "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf"
+    },
+    {
+      "name": "USGS GeoDAWN data release",
+      "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and"
+    },
+    {
+      "name": "DOE GDR INGENIOUS submission 1391",
+      "url": "https://gdr.openei.org/submissions/1391"
+    },
+    {
+      "name": "USGS Siler (2023) structural discontinuities",
+      "url": "https://www.usgs.gov/publications/structural-discontinuities-and-their-control-hydrothermal-systems-great-basin-usa"
+    },
+    {
+      "name": "USGS 3DEP 1/3 arc-second DEM collection",
+      "url": "https://www.sciencebase.gov/catalog/item/4f70aa9fe4b058caae3f8de5"
+    },
+    {
+      "name": "USGS Great Basin 3-D MT conductance maps",
+      "url": "https://doi.org/10.5066/P9TWT2LU"
+    },
+    {
+      "name": "USGS EROS Sentinel-2 decommission notice",
+      "url": "https://www.usgs.gov/centers/eros/science/usgs-eros-archive-sentinel-2"
+    },
+    {
+      "name": "DrivenData reference solution",
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution"
+    }
+  ],
+  "irregularities": [
+    "No assigned single-method lane paragraph was supplied; the TASC lane is provisional research.",
+    "The retained spacing-5 calibration lattice covers >=70% of the footprint within 3 px, making the literal final-dot overlap gate unsatisfiable for any substantial new dot set. The shared tool reports a competing-method diagnostic, but the frozen literal gate remains binding.",
+    "All historical values are USER-REPORTED / NOT ORGANIZER-CONFIRMED; peer pages that label them ORGANIZER-CONFIRMED are corrected in this session's pages.",
+    "No authenticated submission page or artifact-linked receipt was available; the rules PDF's three-per-week limit is not proof of current allowance.",
+    "Some inherited official links were dead (USGS Sentinel-2 landsat-missions page and an obsolete ScienceBase MT item); they are replaced with verified official URLs.",
+    "The prompt's leaderboard targets 0.4413 and 0.3195 conflict; the official page was observed at 0.4544 on 2026-10-27."
+  ]
+}

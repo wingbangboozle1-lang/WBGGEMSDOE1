@@ -1,8 +1,10 @@
 # Starting point for every session
 
 1. Read `README.md` **including the archived standing prompt**, then `registry/run_card.json`,
-   `registry/irregularities.json`, `registry/experiment_ledger.json`, and `registry/preregistration.json`.
-   The prompt is intent, not evidence. The current measured status is **NEGATIVE / DO NOT SUBMIT**.
+   `registry/irregularities.json`, `registry/experiment_ledger.json`, `registry/preregistration.json`,
+   and the newest session record `docs/data/current_decision_20261027.json` plus
+   `evidence/tasc_best_arm_run_card_20261027.json`. The prompt is intent, not evidence.
+   The current measured status is **NEGATIVE / DO NOT SUBMIT**.
 2. The original checkout contained only a title. Do not invent prior local training, pending tasks,
    organizer receipts, lane assignments, scores, GPU requirements or authenticated data access.
 3. No assigned single-method paragraph was supplied. WBG-C1 is provisional research only. Its
@@ -53,3 +55,17 @@
   last verified observation and explicitly show the failure.
 - Resolve all unknowns honestly. Do not claim every line of all linked sources, every PDF page,
   all 92 sites, hidden labels or private data were verified. A fault map is not a vent discovery.
+
+## 2026-10-27 session additions
+
+- Historical values in inherited WBG-H1 pages were corrected from `ORGANIZER-CONFIRMED` to
+  `USER-REPORTED / NOT ORGANIZER-CONFIRMED`. Never reintroduce receipt language without a real
+  submission-page receipt identifying the artifact hash.
+- The retained spacing-5 calibration lattice makes the literal all-entry 3 px overlap gate
+  unsatisfiable for any substantial new dot set (pigeonhole lower bound). Report both
+  `separate_calibration_controls` diagnostics and the literal unseparated result; keep the literal
+  gate binding until a protocol owner resolves it. Do not target lattice holes.
+- The 2026-10-27 TASC lane generated two new unique TIFFs and one best-arm packaging; all are
+  `DOWNLOAD: YES (research)` / `SUBMIT: NO`. Do not rerun frozen lanes or reset their ledgers.
+- Core data placement and the 19-band cache were restored and hash-verified; inputs remain owner
+  mirrors, not independently authenticated organizer-origin downloads.

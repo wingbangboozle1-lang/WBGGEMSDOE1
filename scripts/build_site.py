@@ -31,8 +31,9 @@ def link(url, text, cls=""):
 
 
 def page(name, title, body):
-    nav = [("index.html", "Overview"), ("executive-summary.html", "Site comparison"),
-           ("research.html", "Research"), ("evidence.html", "Evidence"), ("how-to-submit.html", "How to submit")]
+    nav = [("index.html", "Overview"), ("submission-decision.html", "Submission decision"),
+           ("executive-summary.html", "Site comparison"), ("research.html", "Research"),
+           ("evidence.html", "Evidence"), ("how-to-submit.html", "How to submit")]
     links = "".join(link(path, label, "active" if path == name else "") for path, label in nav)
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -117,15 +118,24 @@ HISTORY = {
 
 
 def comparison_table(audit, *, compact=False):
+    current = load("docs/data/current_decision_20261027.json")
+    by_site = {r["site"]: r for r in current["sites"]}
     body = []
     for n, row in enumerate(audit["rows"]):
         site = row["site"]
+        s = by_site[site]
         description = HISTORY[site][0]
         duplicate = row["exact_dot_duplicates_at_other_focus_champions"]
         exact_note = "Same pixels as " + ", ".join(duplicate) if duplicate else "Pixel-distinct from other eight listed champions"
-        file_cell = f'{link(row["immutable_file_url"] + "?raw=1", row["file"])}<div class="cell-note">Original, historical file · audit / education only</div>'
-        body.append(f'''<tr class="{'featured' if n == 0 else ''}" data-site="{site}"><td class="site-cell">{site}<small>{escape(description)}</small>{'<small>HIGHEST SUPPLIED HISTORICAL CLAIM</small>' if n == 0 else ''}</td><td><span class="score">{row['reported_historical_value']:.4f}</span><div class="cell-note">USER-REPORTED<br>Not organizer-confirmed</div></td><td class="file-cell">{file_cell}</td><td><span class="cell-note">Unavailable<br>Not inferred from a proxy</span></td><td>{pill('No new-slot clearance', 'warn')}<div class="cell-note">{escape(exact_note)}. Family overlap exceeds the literal gate.</div></td></tr>''')
-    return f'''<div class="table-wrap"><table id="site-table"><caption>Nine focus sites — best values in the supplied historical records, NOT measured new-submission forecasts</caption><thead><tr><th scope="col">Site / lineage</th><th scope="col">Historical claim</th><th scope="col">Original file to inspect</th><th scope="col">Estimated leaderboard score</th><th scope="col">Unique new submission?</th></tr></thead><tbody>{''.join(body)}</tbody></table></div>'''
+        file_cell = (f'{link(row["immutable_file_url"] + "?raw=1", row["file"])}'
+                     f'<div class="cell-note">Historical champion · audit only<br>'
+                     f'{link(s["latest_candidate_url"], "Latest candidate ↗")}</div>')
+        estimate_cell = (f'<span class="score">{s["estimate_value"]:.4f}</span>'
+                         f'<div class="cell-note">LLI projection ±{s["estimate_loo_mae"]:.4f}<br>'
+                         f'NOT an organizer score</div>')
+        uniq = "yes" if s["unique_vs_sparse_peers"] else "no"
+        body.append(f'''<tr class="{'featured' if n == 0 else ''}" data-site="{site}"><td class="site-cell">{site}<small>{escape(description)}</small>{'<small>HIGHEST SUPPLIED HISTORICAL CLAIM</small>' if n == 0 else ''}</td><td><span class="score">{row['reported_historical_value']:.4f}</span><div class="cell-note">USER-REPORTED<br>Not organizer-confirmed</div></td><td class="file-cell">{file_cell}</td><td>{estimate_cell}</td><td>{pill('No new-slot clearance', 'warn')}<div class="cell-note">{escape(exact_note)}. Sparse-peer unique: <b>{uniq}</b>; max 3 px overlap {s['max_sparse_peer_3px_overlap']*100:.1f}%. Literal lattice gate FAILS.</div></td></tr>''')
+    return f'''<div class="table-wrap"><table id="site-table"><caption>Nine focus sites — historical claims and clearly labelled LLI projections; neither is an organizer score</caption><thead><tr><th scope="col">Site / lineage</th><th scope="col">Historical claim</th><th scope="col">File to download / inspect</th><th scope="col">Estimated score (projection)</th><th scope="col">Unique? / submit?</th></tr></thead><tbody>{''.join(body)}</tbody></table></div>'''
 
 
 def parallel_section():
@@ -137,14 +147,47 @@ def feed_strip(feed):
     score = observation["public_dw_tversky"]
     observed = observation.get("observed_utc") or observation.get("observed_date_utc") or observation.get("date_utc") or "unknown date"
     status = ("Official public-page refresh succeeded; not a score for our file."
-              if feed["leaderboard_status"] == "network_verified" else
+              if feed["leaderboard_status"] in {"network_verified", "fetch_page_direct_observation_2026-10-27"} else
               "Retained dated observation, not a fresh page check or a score for our file.")
     return f'''<aside class="feed-strip" aria-label="Dated public leaderboard observation"><div><strong>Official public leaderboard observation</strong> &nbsp; <b data-feed-score>{score:.4f}</b> &nbsp; <span data-feed-date>observed {escape(observed)}</span><br><span data-feed-status>{status}</span></div>{link(observation['source'], 'View official leaderboard ↗')}</aside>'''
 
 
+def decision_banner():
+    d = load("docs/data/current_decision_20261027.json")
+    decision = d["decision"]
+    best = d["new_files"][0]
+    return f'''<section class="content-section" id="current-decision" style="margin-top:26px;border:2px solid #b4443a;border-radius:14px;padding:22px 24px;background:#fff8f5">
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between"><div><p class="eyebrow" style="margin:0 0 6px">2026-10-27 · automated decision</p><h2 style="margin:0 0 8px">DOWNLOAD: <span style="color:#23665f">YES</span> (research) &nbsp;·&nbsp; SUBMIT: <span style="color:#b4443a">NO</span></h2><p style="margin:0;max-width:820px">{escape(decision['headline'])}</p></div><div style="min-width:260px"><a class="button" href="{escape(best['url'])}" download>Download unique TIFF ↓</a><div class="micro" style="margin-top:8px">{escape(best['file'])}<br>Estimate {best['estimate_value']:.4f} (LLI projection, NOT a score)</div></div></div>
+<p class="micro" style="margin:14px 0 0"><strong>DO NOT SUBMIT.</strong> Two newly generated unique TIFFs are format-valid, but both fail the frozen scientific and literal registry gates. Zero weekly slots used. <a href="submission-decision.html">Full decision table &amp; nine-site executive summary →</a></p></section>'''
+
+
+def decision_page():
+    d = load("docs/data/current_decision_20261027.json")
+    decision, new_files, sites = d["decision"], d["new_files"], d["sites"]
+    rows = []
+    for r in new_files:
+        rows.append(f'''<tr><td><a href="{escape(r['url'])}" download>{escape(r['file'])}</a><div class="cell-note">{escape(r['label'])}<br>{escape(r['method'])}</div></td><td>HOLDOUT-DTI {r['holdout_dti']:.6f}<div class="cell-note">95% CI [{r['holdout_ci95'][0]:.6f}, {r['holdout_ci95'][1]:.6f}]<br>{escape(r['why'])}</div></td><td><span class="score">{r['estimate_value']:.4f}</span><div class="cell-note">LLI projection ±0.0353<br>NOT an organizer score</div></td><td>{'PASS' if r['competing_method_gate_passed'] else 'FAIL'} competing-method uniqueness<div class="cell-note">literal lattice gate {'PASS' if r['literal_gate_passed'] else 'FAIL'}; decoded pixels unique in checked registry</div></td><td>{pill('DO NOT SUBMIT', 'no')}</td></tr>''')
+    site_rows = []
+    for s in sites:
+        site_rows.append(f'''<tr data-site="{s['site']}"><td class="site-cell">{s['site']}<small>{escape(s['lineage'])}</small></td><td><a href="{escape(s['latest_candidate_url'])}">{escape(s['latest_candidate_file'])}</a><div class="cell-note">{link(s['historical_best_url'], 'Historical champion ↗')}</div></td><td>USER-REPORTED {s['historical_value']:.4f}<div class="cell-note">LLI projection {s['estimate_value']:.4f} ±{s['estimate_loo_mae']:.4f}<br>NOT a score</div></td><td>{'yes' if s['unique_vs_sparse_peers'] else 'no'} vs sparse peers<div class="cell-note">max 3 px overlap {s['max_sparse_peer_3px_overlap']*100:.1f}% · |ρ| {s['max_abs_spearman']:.4f}</div></td><td>{pill('DO NOT SUBMIT', 'no')}</td></tr>''')
+    sources = "".join(f'<li>{link(x["url"], x["name"])}</li>' for x in d["official_sources"])
+    issues = "".join(f'<li>{escape(x)}</li>' for x in d["irregularities"])
+    w = d["why_02778"]
+    return f'''<section class="subhero"><div><p class="eyebrow">Executive submission decision · 27 October 2026</p><h1>Download the unique TIFF.<br><em>Do not submit it.</em></h1><p class="lead">{escape(decision['headline'])}</p></div>{pill('Negative · zero slots used', 'no')}</section>
+<section class="alert" role="note"><p><strong>Download: YES, for research. Submit: NO.</strong> No file in this repository is cleared for a weekly DrivenData slot. A format pass is not scientific efficacy, organizer acceptance or slot approval. No human inspector is required for these automated checks. No final dots were placed for a promoted submission and no competition slot was used.</p></section>
+<section class="content-section"><div class="section-heading"><div><h2>One-click download</h2><p>The best newly generated unique TIFF from this session, with its exact SHA-256 and validator receipt.</p></div></div><div class="panel"><div class="panel-pad"><div class="filename">{escape(new_files[0]['file'])}</div><div class="actions"><a class="button" href="{escape(new_files[0]['url'])}" download>Download TIFF ↓</a>{link('downloads/' + new_files[0]['file'].replace('.tif', '.zip'), 'One-TIFF ZIP ↓', 'button secondary')}{link('data/run-card-tasc-best-arm-20261027.json', 'Run card JSON ↗', 'text-link')}</div><p class="micro">SHA-256 <span class="mono">{new_files[0]['sha256']}</span><br>Single-band float32 · EPSG:32611 · 3730×3292 · 100 m · all values finite in [0,1] · zeros outside footprint · known catalogue excluded. This directly addresses the “Predicted values must be in range [0, 1]” rejection.</p><p class="micro"><strong>Submission name:</strong> <span class="mono">{escape(new_files[0]['file'].replace('.tif',''))}</span><br><strong>Short note (≤140 chars):</strong> <span class="mono">TASC Arm A label-free physical response | best arm of frozen screen | DO NOT SUBMIT | id c3464cfa30d0</span></p></div></div></section>
+<section class="content-section"><h2>New unique files, estimates and uniqueness</h2><p class="note">HOLDOUT-DTI is a local hide-and-recover measurement. LLI projection is an empirical estimate on 118 <strong>USER-REPORTED / NOT ORGANIZER-CONFIRMED</strong> historical rasters (LOO MAE 0.0353). Neither is an organizer score. The official public leaderboard was observed at {d['target_context']['observed_official_leaderboard']:.4f}; that is not a score for any project file.</p><div class="table-wrap"><table><caption>Which file to download, what the estimate is, and whether it is unique</caption><thead><tr><th>File to download</th><th>HOLDOUT-DTI measurement</th><th>Estimate (projection)</th><th>Unique?</th><th>OK to submit?</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div></section>
+<section class="content-section" id="comparison"><h2>Nine focus sites — executive summary</h2><p class="note">Historical champion values are USER-REPORTED. The estimate column is the LLI projection for each site's latest candidate, not a score. “Unique” means the candidate's maximum 3 px overlap against sparse peer submissions is ≤70% and |ρ| ≤ 0.90; the literal lattice gate still fails.</p><div class="table-wrap"><table id="site-table"><thead><tr><th>Site / lineage</th><th>File to download (audit only)</th><th>Estimate</th><th>Unique vs GEMSDOE sites?</th><th>OK to submit?</th></tr></thead><tbody>{''.join(site_rows)}</tbody></table></div></section>
+<section class="content-section prose"><h2>Why GEMSDOE32's 0.2778 led the supplied group</h2><p>{escape(w['finding'])}</p><p>{escape(w['interpretation'])}</p><p><strong>Can we beat it?</strong> {escape(w['can_we_beat_it'])}</p><p>{link('research/why-02778.md', 'Full forensic explanation ↗')} · {link('data/nine-site-audit.json', 'Exact lineage measurements ↗')}</p></section>
+<section class="content-section prose"><h2>Five preregistered geological hypotheses</h2><p>{link('data/ranked-hypotheses-20261027.md', 'Read the full ranked hypotheses with layers, physical signatures, missing-catalogue rationale, non-fault mimics, costs and official-source obtainability ↗')}. Also available in the <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/arena/f2cb386e-wbggemsdoe1/research/03_ranked_hypotheses_2026-10-27.md">repository ↗</a>. Top candidate <strong>{escape(d['hypotheses']['top'])}</strong> was executed and is negative. Next viable candidate: <strong>{escape(d['hypotheses']['next'])}</strong>. Not viable in this sandbox: {escape(', '.join(d['hypotheses']['not_viable_here']))}. {link('data/next-steps-20261027.md', 'Next work and limitations →')}</p></section>
+<section class="content-section prose"><h2>Exactly how to submit (only after a future PASS)</h2><ol><li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">official New submission page</a> (login required).</li><li>Choose the single-band <code>.tif</code> or the one-TIFF <code>.zip</code>; never upload a report, training raster or multi-band TIFF.</li><li>Paste the short unique name/note shown above. The portal's optional note field accepts ≤140 characters.</li><li>Confirm your account still has an allowance: the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">official rules</a> allow three submissions per week; the current remaining allowance is not authenticated here.</li><li>Retain the submission identifier, exact artifact SHA-256, time, note and copied result. Only then can a value be labelled ORGANIZER-CONFIRMED.</li></ol><p><strong>Today's decision is NO.</strong> {link('how-to-submit.html', 'Detailed automated preflight and submission guide →')}</p></section>
+<section class="content-section"><h2>Official sources (verified 2026-10-27)</h2><ul>{sources}</ul></section>
+<section class="content-section"><h2>Irregularities flagged for review</h2><ul>{issues}</ul></section>'''
+
+
 def home(card, receipt, audit, feed):
     score = card["holdout"]
-    return f'''<section class="hero"><div><p class="eyebrow">Evidence first. Every submission.</p><h1>A fresh TIFF.<br>An <em>honest decision.</em></h1><p class="lead">An auditable research desk for the GEMS fault-mapping challenge. Nine sites compared, one distinct hypothesis tested, and no weekly slot wasted on an unproven idea.</p><div class="actions">{link('executive-summary.html', 'Read executive summary  →', 'button secondary')}{link('evidence.html', 'Inspect the evidence ↗', 'text-link')}</div><p class="micro" style="margin-top:20px">Latest frozen screen: 26 October 2026 · Verdict <strong>NEGATIVE</strong><br>The experiment did not beat its control. “Format valid” never means “ready to submit.”</p></div>{download_card(card, receipt)}</section>
+    return f'''{decision_banner()}<section class="hero"><div><p class="eyebrow">Evidence first. Every submission.</p><h1>A fresh TIFF.<br>An <em>honest decision.</em></h1><p class="lead">An auditable research desk for the GEMS fault-mapping challenge. Nine sites compared, two new unique TIFFs generated on 27 October 2026, and no weekly slot wasted on an unproven idea.</p><div class="actions">{link('submission-decision.html', 'Open submission decision →', 'button secondary')}{link('executive-summary.html', 'Read executive summary →', 'button secondary')}{link('evidence.html', 'Inspect the evidence ↗', 'text-link')}</div><p class="micro" style="margin-top:20px">Latest screen: 27 October 2026 · Verdict <strong>NEGATIVE</strong><br>The new files are format-valid but did not beat the frozen benchmark. “Format valid” never means “ready to submit.”</p></div>{download_card(card, receipt)}</section>
 {alert()}{stats(card)}
 <section class="section"><div class="section-heading"><div><span class="section-num">01 / THE CURRENT EXPERIMENT</span><h2>Research surface, not a promoted prediction</h2><p>WBG-C1: non-coaxial curvature of conductivity/depth proxy fields.</p></div>{link('research.html', 'Method & limitations →', 'text-link')}</div><div class="two-col"><article class="panel"><div class="panel-head">Actual exported research field<span>Not ground truth</span></div><div class="map-frame"><span class="map-label">UTM 11N · 100 m source grid</span><img src="assets/research-field.png" alt="The actual continuous WBG-C1 confidence surface across the irregular GeoDAWN footprint; not a map of verified faults or vents." width="610" height="690"></div><div class="map-caption"><span>Nearest-neighbour preview of the exported TIFF.<br>Outside-footprint and known-catalogue support are zero.<br>OOF seams are not geological evidence.</span><div><div class="gradient-legend"></div><div class="legend-labels"><span>0</span><span>0.9</span></div><span>Confidence, not calibrated probability</span></div></div></article><article class="panel"><div class="panel-head">Automated validation gates{pill('Stopped', 'no')}</div><div class="panel-pad">{gates(card)}<div class="gates-foot"><span>No human inspector required for these local checks.</span>{link('evidence.html', 'View receipts →')}</div></div></article></div></section>
 <section class="section"><div class="section-heading"><div><span class="section-num">02 / MEASURED, NOT PROJECTED</span><h2>Did the new hypothesis help?</h2><p>No statistically established improvement on this frozen screen.</p></div>{link('data/experiment.json', 'Full evaluator output ↗', 'text-link')}</div><div class="two-col"><article class="panel"><div class="panel-head">Same-instrument comparison<span>Continuous confidence surfaces</span></div><div class="panel-pad">{chart(card)}<p class="micro">HOLDOUT-DTI · <code>{card['holdout_instrument']['evaluator_version']}</code> · {score['withheld_positive_pixels']:,} withheld positives · 95% paired spatial-cluster intervals. Not a leaderboard estimate; not a comparison against sparse historical TIFFs.</p></div></article><article class="mini-card"><span class="index">WHY THE LANE STOPS HERE</span><h3>Different bytes are not enough.</h3><p>The fresh TIFF is not an exact copy of any checked registry raster. But its positive support overlaps the registered lattice by {card['registry']['max_forward_3px_overlap'] * 100:.2f}%, exceeding the unexempted 70% rule.</p><p>The scientific screen is negative as well. We have not placed final dots, retuned around registry gaps, claimed a new high score, or spent a submission slot.</p>{link('executive-summary.html#decision', 'Read the decision →', 'text-link')}</article></div></section>
@@ -158,10 +201,14 @@ def executive(card, receipt, audit, feed):
     for row in audit["rows"]:
         name, text = HISTORY[row["site"]]
         details.append(f'''<details><summary>{row['site']} — {escape(name)} <span class="mono">{row['dots']:,} positive pixels</span></summary><div class="detail-body"><p>{escape(text)}</p><p><strong>Submission decision:</strong> historical learning reference only; not a unique new-slot recommendation. Supplied historical value <strong>{row['reported_historical_value']:.4f}</strong> is USER-REPORTED / NOT ORGANIZER-CONFIRMED. A leaderboard estimate for a new file is unavailable.</p><p>{link(row['snapshot_url'], 'Pinned source snapshot ↗')} · {link(row['immutable_file_url'], 'Original TIFF ↗')}</p><div class="mono">SHA-256 of inspected bytes: {row['sha256']}</div></div></details>''')
-    return f'''<section class="subhero"><div><p class="eyebrow">Executive summary · decision memo</p><h1>What should you submit?<br><em>Nothing from this run.</em></h1><p class="lead">A new, format-valid TIFF is available, but it does not clear the scientific or literal uniqueness gates. The highest supplied historical value belongs to GEMSDOE32; copying it would violate the unique-submission requirement.</p></div>{pill('Negative · no real slot', 'no')}</section>{alert()}
-<div class="two-col content-section"><div class="panel"><div class="panel-head">Current deliverable{pill('Research only', 'warn')}</div><div class="panel-pad"><div class="filename">{escape(tif)}</div><div class="actions"><a class="button" href="downloads/{tif}" download>Download research TIFF ↓</a>{link('downloads/' + tif.replace('.tif', '.zip'), 'One-TIFF ZIP ↓', 'button secondary')}</div><p class="micro" style="margin-top:15px">DOWNLOAD: YES · SUBMIT: NO. This is a continuous unplaced surface, not a final dotted submission. Organizer-confirmed score and leaderboard estimate are both <strong>unavailable</strong>.</p></div></div><div class="panel"><div class="panel-head">Measured screen<span>HOLDOUT-DTI, not forecast</span></div><div class="panel-pad"><p><strong>Candidate {h['dti']:.6f}</strong> · 95% CI [{h['ci95'][0]:.6f}, {h['ci95'][1]:.6f}]<br><strong>Control {c['dti']:.6f}</strong> · 95% CI [{c['ci95'][0]:.6f}, {c['ci95'][1]:.6f}]</p><p class="micro">Paired delta {d['delta']:+.6f}; 95% CI [{d['ci95'][0]:+.6f}, {d['ci95'][1]:+.6f}]. Evaluator <code>{card['holdout_instrument']['evaluator_version']}</code>; {h['withheld_positive_pixels']:,} withheld positives; {card['holdout_instrument']['physical_bootstrap_clusters']} physical bootstrap clusters.</p></div></div></div>
+    current = load("docs/data/current_decision_20261027.json")
+    best = current["new_files"][0]
+    new_rows = "".join(f'''<tr><td>{link("downloads/" + r["file"], r["file"])}<div class="cell-note">{escape(r["label"])}</div></td><td>HOLDOUT-DTI {r["holdout_dti"]:.6f}<div class="cell-note">95% CI [{r["holdout_ci95"][0]:.6f}, {r["holdout_ci95"][1]:.6f}]</div></td><td><span class="score">{r["estimate_value"]:.4f}</span><div class="cell-note">LLI projection ±0.0353; NOT a score</div></td><td>{'PASS' if r["competing_method_gate_passed"] else 'FAIL'} competing methods<div class="cell-note">literal lattice {'PASS' if r["literal_gate_passed"] else 'FAIL'}</div></td><td>{pill('DO NOT SUBMIT', 'no')}</td></tr>''' for r in current["new_files"])
+    return f'''<section class="subhero"><div><p class="eyebrow">Executive summary · decision memo</p><h1>What should you submit?<br><em>Nothing from this run.</em></h1><p class="lead">A new, format-valid TIFF is available, but it does not clear the scientific or literal uniqueness gates. The highest supplied historical value belongs to GEMSDOE32; copying it would violate the unique-submission requirement.</p></div>{pill('Negative · no real slot', 'no')}</section>{alert()}{decision_banner()}
+<section class="content-section" id="current-files"><h2>New unique files, estimates and uniqueness</h2><p class="note">HOLDOUT-DTI is measured on a spatially blocked hide-and-recover split. LLI projection is an empirical estimate on 118 USER-REPORTED / NOT ORGANIZER-CONFIRMED historical rasters (LOO MAE 0.0353). Neither is an organizer score.</p><div class="table-wrap"><table><caption>Which file to download, what the estimate is, and whether it is unique</caption><thead><tr><th>File to download</th><th>Measured HOLDOUT-DTI</th><th>Estimate (projection)</th><th>Unique?</th><th>OK to submit?</th></tr></thead><tbody>{new_rows}</tbody></table></div><div class="actions" style="margin-top:18px"><a class="button" href="{escape(best['url'])}" download>Download best new TIFF ↓</a>{link('submission-decision.html', 'Full decision page →', 'button secondary')}</div></section>
+<div class="two-col content-section"><div class="panel"><div class="panel-head">Frozen 26 Oct deliverable{pill('Research only', 'warn')}</div><div class="panel-pad"><div class="filename">{escape(tif)}</div><div class="actions"><a class="button" href="downloads/{tif}" download>Download research TIFF ↓</a>{link('downloads/' + tif.replace('.tif', '.zip'), 'One-TIFF ZIP ↓', 'button secondary')}</div><p class="micro" style="margin-top:15px">DOWNLOAD: YES · SUBMIT: NO. This is a continuous unplaced surface, not a final dotted submission. Organizer-confirmed score is <strong>unavailable</strong>; the LLI projection is shown in the table above, clearly labelled.</p></div></div><div class="panel"><div class="panel-head">Measured screen<span>HOLDOUT-DTI, not forecast</span></div><div class="panel-pad"><p><strong>Candidate {h['dti']:.6f}</strong> · 95% CI [{h['ci95'][0]:.6f}, {h['ci95'][1]:.6f}]<br><strong>Control {c['dti']:.6f}</strong> · 95% CI [{c['ci95'][0]:.6f}, {c['ci95'][1]:.6f}]</p><p class="micro">Paired delta {d['delta']:+.6f}; 95% CI [{d['ci95'][0]:+.6f}, {d['ci95'][1]:+.6f}]. Evaluator <code>{card['holdout_instrument']['evaluator_version']}</code>; {h['withheld_positive_pixels']:,} withheld positives; {card['holdout_instrument']['physical_bootstrap_clusters']} physical bootstrap clusters.</p></div></div></div>
 <section class="content-section" id="decision"><h2>The decision in plain English</h2><div class="prose"><ol><li><strong>The TIFF is genuinely generated here.</strong> Its bytes and normalized decoded pixels differ from all {card['registry']['checked_unique_file_hashes']} checked prior file hashes. Previous predictions were used only for audit and historical learning, never as model features, labels or output pixels.</li><li><strong>It is locally format-valid, not cleared to submit.</strong> The reopened float32 single band matches CRS/shape/transform and has no NaN/inf, no out-of-range values, zero outside the footprint and zero support on known catalogue faults.</li><li><strong>It does not improve the clean control.</strong> The paired screen is negative and no identically rerun cross-repository current-best benchmark or untouched confirmation was established. We do not compare a dense confidence-surface DTI to a sparse historical leaderboard claim.</li><li><strong>The surface fails the required literal registry overlap gate.</strong> Maximum forward overlap is {card['registry']['max_forward_3px_overlap'] * 100:.2f}% versus a 70% ceiling; maximum signed Spearman ρ is {card['registry']['max_spearman_rho']:.6f}. The lattice is retained, not exempted. No final dots were placed or tested after STOP.</li><li><strong>No real slot is selected.</strong> The lane paragraph is missing and the submissions page requires login. The rules PDF states up to three entries weekly, but the actual remaining account allowance is unknown. No credential was requested and no upload occurred.</li></ol></div></section>
-<section class="content-section" id="comparison"><div class="section-heading"><div><h2>Which original file performed best at each site?</h2><p>Ranked by the user-supplied historical claims, not by invented estimates.</p></div></div><div class="row-buttons"><span class="micro">File links point to immutable owner snapshots, for learning / audit only.</span><label><span class="micro">Filter sites &nbsp;</span><input class="search" id="site-filter" type="search" placeholder="e.g. GEMSDOE32" aria-label="Filter site comparison"></label></div>{comparison_table(audit)}<p class="note">“Historical claim” is deliberately not labelled ORGANIZER-CONFIRMED: there is no submission-page receipt binding those exact bytes to the supplied values. No defensible leaderboard projection is available. A different pixel set is not equivalent to passing the literal lane gate.</p></section>
+<section class="content-section" id="comparison"><div class="section-heading"><div><h2>Which original file performed best at each site?</h2><p>Ranked by the user-supplied historical claims, not by invented estimates.</p></div></div><div class="row-buttons"><span class="micro">File links point to immutable owner snapshots, for learning / audit only.</span><label><span class="micro">Filter sites &nbsp;</span><input class="search" id="site-filter" type="search" placeholder="e.g. GEMSDOE32" aria-label="Filter site comparison"></label></div>{comparison_table(audit)}<p class="note">“Historical claim” is deliberately not labelled ORGANIZER-CONFIRMED: there is no submission-page receipt binding those exact bytes to the supplied values. LLI values are empirical projections on 118 user-reported rasters (LOO MAE 0.0353), <strong>not</strong> organizer scores or guarantees. A different pixel set is not equivalent to passing the literal lane gate.</p></section>
 <section class="content-section" id="lineage"><h2>Why did the GEMSDOE32 file lead the supplied group?</h2><div class="prose"><p><strong>What the bytes establish:</strong> D2.8 has 44,090 dots. The GEMSDOE31 B1 field removes 3,891 dots at catalogue distance ≤100 m, leaving 40,199. GEMSDOE32 B2 removes another 2,545 at distance ≤200 m, leaving 37,654. These are exact set identities on the recovered grid. GEMSDOE36 preserves all of B2 and adds 1,200 dots.</p><p><strong>The metric mechanism is plausible, not proven from hidden labels:</strong> distance-weighted true-positive credit saturates at the maximum contributing confidence for each truth cell. Redundant predictions can add false-positive mass with little new coverage. Sparse placement and pruning low-marginal-credit dots can therefore improve DTI. The supplied historical values are consistent with that explanation, but they do not prove where hidden faults were or establish a universal 200 m exclusion rule.</p><p><strong>Can it be beaten?</strong> In principle yes: the directly observed official public leaderboard is higher. But no experiment here establishes a higher project leaderboard result, and this negative screen is not a contender. A defensible replacement must beat a clean, identically evaluated current best, pass final-dot novelty after surface clearance, and survive untouched confirmation.</p><p>{link(PROBLEM, 'Official metric and submission requirements ↗')} · {link('data/nine-site-audit.json', 'Exact lineage measurements ↗')}</p></div></section>
 <section class="content-section"><h2>Site-by-site executive notes</h2><div class="details-list">{''.join(details)}</div></section>
 <section class="content-section"><h2>Next actions, in priority order</h2><div class="three-col"><article class="mini-card"><span class="index">01 / TRUST THE INPUTS</span><h3>Resolve metadata and provenance</h3><p>Obtain a legitimate organizer-origin data manifest/download, establish what each literal band means, and verify the current remaining allowance without storing credentials in chat or Git.</p></article><article class="mini-card"><span class="index">02 / RESPECT THE LANE</span><h3>Resolve protocol scope</h3><p>A separate selector must establish an actual assigned method and registry policy. Do not waive dense/lattice priors privately, use lattice holes as a target, or reset the stopped run.</p></article><article class="mini-card"><span class="index">03 / EARN THE SLOT</span><h3>Freeze a stronger benchmark</h3><p>Use an identically refitted current-best model, a fixed physically meaningful emission policy, untouched component-level confirmation and a fresh registry audit before any future promotion.</p></article></div></section>{feed_strip(feed)}<div class="actions">{link('how-to-submit.html', 'Submission instructions & preflight →', 'button secondary')}{link('data/run-card.json', 'Full JSON run card ↗', 'text-link')}{link('executive-summary.md', 'Download summary as Markdown ↓', 'text-link')}</div>'''
@@ -210,21 +257,100 @@ def howto(card, receipt):
 def markdown_summary(card, audit):
     h, d = card["holdout"], card["paired_delta_holdout"]
     tif = Path(card["artifact"]).name
-    lines = ["# Executive summary — 26 October 2026", "", "## DOWNLOAD: YES (research only). SUBMIT: NO.", "",
-        f"[Download the newly generated research TIFF](downloads/{tif}) · [one-TIFF ZIP](downloads/{tif.replace('.tif', '.zip')}) · [machine-readable run card](data/run-card.json)", "",
-        "No final dotted or high-scoring promoted competition submission was produced. The literal surface overlap STOP and negative efficacy screen prohibit promotion. No weekly slot was used.", "",
-        f"**HOLDOUT-DTI {h['dti']:.6f}**, 95% CI [{h['ci95'][0]:.6f}, {h['ci95'][1]:.6f}], evaluator `{card['holdout_instrument']['evaluator_version']}`, {h['withheld_positive_pixels']:,} withheld positives. Continuous confidence surface, not a matched-budget dotted submission or leaderboard estimate.", "",
-        f"Paired delta versus refitted 19-band control: **{d['delta']:+.6f}** (HOLDOUT-DTI), 95% CI [{d['ci95'][0]:+.6f}, {d['ci95'][1]:+.6f}]; same evaluator and positives. No improvement established.", "",
-        "| File / site | Observed local result or historical claim | Estimated leaderboard result | Uniqueness / submit decision |", "|---|---|---|---|",
-        f"| [{tif}](downloads/{tif}) | HOLDOUT-DTI {h['dti']:.6f}; see CI/version/n above | **Unavailable**; not inferred from proxy | New bytes/pixels among 360 checked hashes, but literal overlap {card['registry']['max_forward_3px_overlap']*100:.2f}% >70%. **DO NOT SUBMIT**. |"]
+    current = load("docs/data/current_decision_20261027.json")
+    feed = load("docs/data/feed.json")
+    site_by_name = {r["site"]: r for r in current["sites"]}
+    best = current["new_files"][0]
+    lines = [
+        "# Executive summary — updated 27 October 2026", "",
+        "## DOWNLOAD: YES (research/audit only). SUBMIT: NO.", "",
+        f"[Download the best newly generated unique TIFF](downloads/{best['file']}) · "
+        f"[one-TIFF ZIP](downloads/{best['file'].replace('.tif', '.zip')}) · "
+        f"[submission decision page](submission-decision.html) · "
+        f"[new run card](data/run-card-tasc-best-arm-20261027.json)", "",
+        "> A new single-band float32 GeoTIFF was generated and reopened: values are finite in [0,1], "
+        "CRS/shape/transform match, outside-footprint values are zero, and known catalogue faults are excluded. "
+        "It is **NOT** cleared for a weekly DrivenData slot. Two new files were produced; neither beat the "
+        "frozen HOLDOUT-DTI 0.166060 current-best point estimate, neither passed the literal all-entry "
+        "3 px registry gate, and zero competition slots were used.", "",
+        "## The decision table", "",
+        "| File to download | Measured evidence | Estimate (NOT a score) | Unique? | OK to submit? |",
+        "|---|---|---|---|---|",
+    ]
+    for r in current["new_files"]:
+        lines.append(
+            f"| [{r['file']}](downloads/{r['file']}) — {r['label']} | "
+            f"HOLDOUT-DTI {r['holdout_dti']:.6f}, 95% CI [{r['holdout_ci95'][0]:.6f}, {r['holdout_ci95'][1]:.6f}] | "
+            f"**{r['estimate_value']:.4f}** LLI projection ±0.0353; not an organizer score | "
+            f"competing-method unique {'yes' if r['competing_method_gate_passed'] else 'no'}; "
+            f"literal lattice gate {'pass' if r['literal_gate_passed'] else 'FAIL'} | **NO** |"
+        )
+    lines += [
+        "",
+        "The inherited WBG-H1 EXP-3 TIFF remains the strongest unique research file in this repository "
+        "(HOLDOUT-DTI 0.123310, LLI projection 0.1898), but it is also negative and was not generated in this session. "
+        "The new TASC primary arm failed because hide-and-recover removes visible catalogue faults from each test "
+        "quadrant, leaving a visible-tip-derived corridor with almost no support there.", "",
+        "## Nine focus sites — best file, estimate and uniqueness", "",
+        "Historical values are **USER-REPORTED / NOT ORGANIZER-CONFIRMED**. LLI numbers are empirical projections "
+        "on 118 user-reported historical rasters (LOO MAE 0.0353), **not organizer scores**.", "",
+        "| Site / lineage | File to download (audit only) | Estimate | Unique? | OK to submit? |",
+        "|---|---|---|---|---|",
+    ]
     for row in audit["rows"]:
-        lines.append(f"| {row['site']}: [{row['file']}]({row['immutable_file_url']}?raw=1) | USER-REPORTED historical {row['reported_historical_value']:.4f}; **NOT ORGANIZER-CONFIRMED** | Unavailable for a new file | Historical learning reference; family overlap fails. Do not copy as a unique submission. |")
-    lines += ["", "## Why GEMSDOE32 leads the supplied historical records", "",
-        "Exact raster identities: D2.8 44,090 dots → remove 3,891 within 100 m of the catalogue → B1 40,199 → remove 2,545 more within 200 m → B2 37,654. GEMSDOE25 and GEMSDOE30 have identical decoded predictions. GEMSDOE36 contains all B2 pixels plus 1,200 additions. Sparse support and low-marginal-credit pruning can reduce redundant false-positive cost under the official max-cover metric. Hidden labels are unavailable, so that mechanism is plausible, not a proved causal account of each historical result. A 200 m exclusion is not an organizer rule.", "",
-        "GEMSDOE32's supplied 0.2778 is USER-REPORTED, not a verified file receipt. The direct official public leaderboard observation on 2026-10-26 was 0.4437; it is not a result for any project TIFF. No leaderboard projection is justified for the new surface.", "", "## Site-by-site findings", ""]
+        s = site_by_name[row["site"]]
+        lines.append(
+            f"| {row['site']} — {HISTORY[row['site']][0]} | "
+            f"[latest candidate]({s['latest_candidate_url']}) · [historical champion]({row['immutable_file_url']}?raw=1) | "
+            f"USER-REPORTED {row['reported_historical_value']:.4f} historical / "
+            f"**{s['estimate_value']:.4f}** LLI projection ±{s['estimate_loo_mae']:.4f} latest | "
+            f"{'yes' if s['unique_vs_sparse_peers'] else 'no'} vs sparse peers; "
+            f"max 3 px overlap {s['max_sparse_peer_3px_overlap']*100:.1f}% | **NO** |"
+        )
+    lines += [
+        "", "## Why GEMSDOE32 leads the supplied historical records", "",
+        "Exact raster identities: D2.8 44,090 dots → remove 3,891 within 100 m of the catalogue → B1 40,199 → "
+        "remove 2,545 more within 200 m → B2 37,654. GEMSDOE25 and GEMSDOE30 have identical decoded predictions. "
+        "GEMSDOE36 contains all B2 pixels plus 1,200 additions. Sparse support and low-marginal-credit pruning can "
+        "reduce redundant false-positive cost under the official max-cover metric. Hidden labels are unavailable, so "
+        "that mechanism is plausible, not a proved causal account. A 200 m exclusion is not an organizer rule.", "",
+        f"GEMSDOE32's supplied 0.2778 is USER-REPORTED, not a verified file receipt. The direct official public "
+        f"leaderboard observation on 2026-10-27 was {feed['leaderboard']['public_dw_tversky']:.4f}; it is not a result "
+        "for any project TIFF. The prompt's 0.4413 and 0.3195 targets are stale/inconsistent.", "",
+        "## Frozen 26 October 2026 WBG-C1 control (kept for audit)", "",
+        f"{tif}: HOLDOUT-DTI {h['dti']:.6f}, 95% CI [{h['ci95'][0]:.6f}, {h['ci95'][1]:.6f}], "
+        f"paired delta {d['delta']:+.6f} (95% CI [{d['ci95'][0]:+.6f}, {d['ci95'][1]:+.6f}]). "
+        "Continuous unplaced confidence surface, not a matched-budget dotted submission. Verdict: negative.", "",
+        "## Five preregistered 2026-10-27 hypotheses", "",
+        "1. TASC tip-aligned strain-transfer corridor — executed, negative (visible-tip support collapses under hide-and-recover).",
+        "2. PCE1 potential-field phase congruency — label-free, viable with the local 19-band cache; next candidate.",
+        "3. CLR1 radiometric compositional closure residual — viable with restored GeoDAWN-derived bands.",
+        "4. DIFF1 diffusion-degraded scarp shape invariant — needs raw 3DEP 1 m/10 m DEM profiles; not bulk-obtainable in this sandbox.",
+        "5. MT3D depth-persistent conductivity edge — needs USGS 3-D MT conductance slices; official source verified, bulk host outside allowlist.",
+        "", "[Full ranked hypotheses, official sources and data obtainability](research/03_ranked_hypotheses_2026-10-27.md). "
+        "No numerical improvement was forecast.", "",
+        "## Site-by-site findings", "",
+    ]
     for row in audit["rows"]:
-        lines += [f"### {row['site']} — {HISTORY[row['site']][0]}", HISTORY[row['site']][1], f"Inspected SHA-256: `{row['sha256']}`. [Pinned source]({row['snapshot_url']}).", ""]
-    lines += ["## Four pre-implementation hypotheses", "", "1. Conductivity/depth Hessian non-coaxiality: lowest cost, highest-priority uncertain benefit; executed once, negative.", "2. Magnetic texture transport in a depth-contour frame: medium cost, untested, related peer ideas exist.", "3. Radiometric compositional changes across terrain saddles: medium cost, conditional on original-layer semantics/coverage verification.", "4. Anisotropic conductivity-boundary persistence: medium cost, untested; related coherence operators already exist.", "", "[Specific layers, signatures, missing-catalogue rationale, non-fault mimics, novelty caveats and data readiness](hypotheses.md). No numerical improvement was forecast.", "", "## Limitations and next actions", "", "- No assigned lane paragraph was supplied. The screen is provisional research, not an authorized promotion lane.", "- Core data and all 19 band-cache hashes match public owner mirrors, not an independently authenticated organizer-origin manifest.", "- Literal band metadata are ambiguous across documents. Do not claim physical units, heat, permeability or geothermal vent discovery from these numbers.", "- The historical file scores lack organizer submission-page receipts. No hidden test labels or private-score access exists.", "- The nine frozen snapshots are not the entire 92-site/competition registry. No global uniqueness is claimed. The measured duplicate is enough for STOP.", "- The current account allowance is unknown because the submissions page redirects to login. The rules PDF's three-per-week limit is not proof of remaining allowance.", "- An independent future authorized lane needs a clean same-instrument current-best comparator, untouched confirmation, surface and final-dot uniqueness and exact-artifact format validation before a separate selector considers a real slot.", "", "[How to submit a future promoted file](how-to-submit.html) · [official sources and irregularities](evidence.html) · [full prompt](standing-prompt.md)", "", "## Run card", "", "[Download the complete JSON run card](data/run-card.json). Verdict: **negative**.", ""]
+        lines += [f"### {row['site']} — {HISTORY[row['site']][0]}", HISTORY[row['site']][1],
+                  f"Inspected SHA-256: `{row['sha256']}`. [Pinned source]({row['snapshot_url']}).", ""]
+    lines += [
+        "## Limitations and next actions", "",
+        "- No assigned single-method lane paragraph was supplied; TASC is provisional research.",
+        "- The retained spacing-5 calibration lattice makes the literal final-dot overlap gate unsatisfiable for any substantial new dot set; a protocol owner must resolve this.",
+        "- Core data and all 19 band-cache hashes match public owner mirrors, not an independently authenticated organizer-origin manifest.",
+        "- Literal band metadata are ambiguous. Do not claim physical units, heat, permeability or geothermal vent discovery from these numbers.",
+        "- Historical file scores lack organizer submission-page receipts. No hidden test labels or private-score access exists.",
+        "- The nine frozen snapshots are not the entire 92-site/competition registry. No global uniqueness is claimed.",
+        "- The current account allowance is unknown; the rules PDF's three-per-week limit is not proof of remaining allowance.",
+        "- Inherited WBG-H1 pages that mislabelled owner-reported values as ORGANIZER-CONFIRMED were corrected in this session.",
+        "- A future authorized lane needs a clean same-instrument current-best comparator, untouched confirmation, resolved registry policy and exact-artifact validation before a separate selector considers a slot.", "",
+        "[How to submit a future promoted file](how-to-submit.html) · [official sources and irregularities](evidence.html) · [full prompt](standing-prompt.md)", "",
+        "## Run cards", "",
+        "[2026-10-27 TASC primary](data/run-card-tasc-20261027.json) · "
+        "[2026-10-27 best new arm](data/run-card-tasc-best-arm-20261027.json) · "
+        "[frozen WBG-C1](data/run-card.json). All verdicts: **negative**.", "",
+    ]
     return "\n".join(lines)
 
 
@@ -243,11 +369,19 @@ def main():
         "upstream-template-verification.json": "evidence/upstream_template_verification.json",
         "snapshot-commit-verification.json": "evidence/snapshot_commit_verification.json",
         "review-passes.json": "evidence/review_passes.json", "browser-checks.json": "evidence/browser_checks.json",
-        "parallel-main-integration.json": "evidence/parallel_main_integration.json"}
+        "parallel-main-integration.json": "evidence/parallel_main_integration.json",
+        "tasc-features-20261027.json": "evidence/tasc_features_20261027.json",
+        "tasc-canary-20261027.json": "evidence/tasc_canary_20261027.json",
+        "tasc-experiment-20261027.json": "evidence/tasc_experiment_20261027.json",
+        "run-card-tasc-20261027.json": "evidence/tasc_run_card_20261027.json",
+        "run-card-tasc-best-arm-20261027.json": "evidence/tasc_best_arm_run_card_20261027.json",
+        "ranked-hypotheses-20261027.md": "research/03_ranked_hypotheses_2026-10-27.md",
+        "next-steps-20261027.md": "research/04_next_steps_20261027.md"}
     for dest, source in copies.items():
         shutil.copyfile(ROOT / source, DOCS / "data" / dest)
     dump_json(DOCS / "data/run-card.json", card)
     pages = {"index.html": ("Overview", home(card, receipt, audit, feed)),
+        "submission-decision.html": ("Submission decision", decision_page()),
         "executive-summary.html": ("Executive summary", executive(card, receipt, audit, feed)),
         "research.html": ("Research", research(card)),
         "evidence.html": ("Evidence & sources", evidence(card, sources, issues, feed)),
@@ -269,6 +403,21 @@ def main():
                 "zip_file": receipt["zip_file"], "zip_sha256": receipt["zip_sha256"],
                 "warning": "Research surface only. No final dots or promoted competition submission. No organizer score receipt."}
     dump_json(DOCS / "downloads/manifest.json", manifest)
+    current = load("docs/data/current_decision_20261027.json")
+    tasc_manifest = {
+        "schema_version": 2,
+        "generated_utc": current["generated_utc"],
+        "decision": current["decision"],
+        "new_files": [
+            {"file": r["file"], "url": r["url"], "sha256": r["sha256"],
+             "holdout_dti": r["holdout_dti"], "estimate": r["estimate_value"],
+             "estimate_label": "LLI-PROJECTION; NOT an organizer score",
+             "ok_to_download": True, "ok_to_submit": False, "verdict": r["verdict"]}
+            for r in current["new_files"]
+        ],
+        "warning": "All new files are unique research artifacts. DOWNLOAD: YES. SUBMIT: NO. No weekly slot was used.",
+    }
+    dump_json(DOCS / "downloads/tasc_manifest_20261027.json", tasc_manifest)
     import importlib.util
 
     spec = importlib.util.spec_from_file_location("wbg_h1_build_pages", ROOT / "scripts" / "wbg_h1_build_pages.py")

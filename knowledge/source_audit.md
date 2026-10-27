@@ -27,3 +27,23 @@ The sandbox's outbound allowlist did not permit direct retrieval from USGS Scien
 ## USGS acknowledgement
 
 Map services and data available from U.S. Geological Survey, National Geospatial Program. The project transformed only a precomputed 100 m aggregate stack and did not redistribute raw 1 m DEM tiles.
+
+## 2026-10-27 incremental official-source verification
+
+| Claim | Official source checked this session | Result |
+|---|---|---|
+| Metric α=0.2, β=0.8, 300 m triangular kernel and one float32 GeoTIFF in `[0,1]` | [DrivenData problem description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#performance-metric) | Page retrieved; metric and submission-format text match this repository's shared implementation. |
+| Up to three submissions/week; single GeoTIFF selected for both rounds; generative-AI disclosure required | [GEMS Prize Official Rules §3.2](https://docs.nlr.gov/docs/fy26osti/96647.pdf) | PDF retrieved; the three-per-week limit is a rule, **not** proof of this account's current remaining allowance. |
+| Public leaderboard observation | [DrivenData leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) | Rank 1 = **0.4544** (xiaofanhu) observed 2026-10-27. Not a project-file score. Prompt values 0.4413 / 0.3195 are stale. |
+| Fault stepovers/terminations localize stress and strain relevant to Great Basin hydrothermal systems | [USGS / Siler (2023)](https://www.usgs.gov/publications/structural-discontinuities-and-their-control-hydrothermal-systems-great-basin-usa) | Official abstract supports the TASC physical motivation, **not** the detector's validity. |
+| GeoDAWN magnetic/radiometric source (CC0) | [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) | Page retrieved; confirms 3DEP lidar coordination and CC0 release. |
+| INGENIOUS resources (CC BY 4.0) | [GDR 1391](https://gdr.openei.org/submissions/1391) | Page retrieved; confirms geodetic, conductance, geophysical and geothermal resources. |
+| 3DEP DEM official collection | [ScienceBase `4f70aa9fe4b058caae3f8de5`](https://www.sciencebase.gov/catalog/item/4f70aa9fe4b058caae3f8de5) | Page retrieved; public-domain 1/3″ and 1 m DEM products. Raw tiles not bulk-downloaded in this sandbox. |
+| Great Basin 3-D MT conductance slices | [DOI 10.5066/P9TWT2LU](https://doi.org/10.5066/P9TWT2LU) | Official page retrieved; five depth ranges listed. Bulk host outside sandbox allowlist. |
+| Sentinel-2 availability | [USGS EROS notice](https://www.usgs.gov/centers/eros/science/usgs-eros-archive-sentinel-2) | USGS archive decommissioned; Copernicus Data Space is the current source. Replaces a dead `landsat-missions/sentinel-2` link inherited in older docs. |
+
+**Dead-link irregularities.** Two inherited official links returned 404 on 2026-10-27:
+`https://www.usgs.gov/landsat-missions/sentinel-2` and
+`https://www.sciencebase.gov/catalog/item/5fb70a0ad34eb413d5e14873`. They are replaced in the
+2026-10-27 ranked-hypotheses document by the USGS EROS notice and DOI 10.5066/P9TWT2LU above.
+No claim is made that every line of every linked page or PDF was verified.

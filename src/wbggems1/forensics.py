@@ -37,7 +37,7 @@ FOCUS9_UPSTREAM_METADATA: dict[str, dict[str, Any]] = {
     "GEMSDOE24": {
         "historical_live_file": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
         "historical_live_score": 0.2477,
-        "historical_score_label": "ORGANIZER-CONFIRMED (owner-reported receipt)",
+        "historical_score_label": "USER-REPORTED / NOT ORGANIZER-CONFIRMED (owner-reported receipt)",
         "latest_method_id": "DPRF1 (Dip-Consistent Piedmont Ridge Field, Stitched-OOF Two-Regime)",
         "latest_holdout_label": "HOLDOUT-DTI = 0.16379 (gems-segment-pooled-v1, n=60,988 withheld px, 95% CI [0.1494, 0.1782])",
         "latest_holdout_dti": 0.163792,
@@ -46,7 +46,7 @@ FOCUS9_UPSTREAM_METADATA: dict[str, dict[str, Any]] = {
     "GEMSDOE25": {
         "historical_live_file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
         "historical_live_score": 0.2600,
-        "historical_score_label": "ORGANIZER-CONFIRMED (owner-reported receipt; 44,090-dot H19-5 d=2.8 parent)",
+        "historical_score_label": "USER-REPORTED / NOT ORGANIZER-CONFIRMED (owner-reported receipt; 44,090-dot H19-5 d=2.8 parent)",
         "latest_method_id": "H73-PM (De-Aproned Piedmont Morphology SAPD d=2.8)",
         "latest_holdout_label": "HOLDOUT-DTI = 0.11343 (gems25-segment-v1, n=60,988 withheld px, 95% CI [0.0981, 0.1292])",
         "latest_holdout_dti": 0.11343,
@@ -55,7 +55,7 @@ FOCUS9_UPSTREAM_METADATA: dict[str, dict[str, Any]] = {
     "GEMSDOE27": {
         "historical_live_file": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
         "historical_live_score": 0.2449,
-        "historical_score_label": "ORGANIZER-CONFIRMED (owner-reported receipt)",
+        "historical_score_label": "USER-REPORTED / NOT ORGANIZER-CONFIRMED (owner-reported receipt)",
         "latest_method_id": "H31-DRCG-WL-CELF28 (Walker Lane De-Confounded Ridge + CELF Submodular)",
         "latest_holdout_label": "HOLDOUT-DTI = 0.1604 (gems-segment-pooled-v1, n=60,988 withheld px, 95% CI [0.1458, 0.1751])",
         "latest_holdout_dti": 0.1604,
@@ -64,7 +64,7 @@ FOCUS9_UPSTREAM_METADATA: dict[str, dict[str, Any]] = {
     "GEMSDOE28": {
         "historical_live_file": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
         "historical_live_score": 0.2710,
-        "historical_score_label": "ORGANIZER-CONFIRMED (owner-reported receipt; also h27-4-r1-solo-d2-8 = 0.2708)",
+        "historical_score_label": "USER-REPORTED / NOT ORGANIZER-CONFIRMED (owner-reported receipt; also h27-4-r1-solo-d2-8 = 0.2708)",
         "latest_method_id": "S21-PUHGB (Positive-Unlabeled HistGradientBoosting)",
         "latest_holdout_label": "HOLDOUT-DTI = 0.0839 (gems-segment-pooled-v1, n=60,988 withheld px, 95% CI [0.0712, 0.0968])",
         "latest_holdout_dti": 0.0839,
@@ -73,7 +73,7 @@ FOCUS9_UPSTREAM_METADATA: dict[str, dict[str, Any]] = {
     "GEMSDOE30": {
         "historical_live_file": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
         "historical_live_score": 0.2600,
-        "historical_score_label": "ORGANIZER-CONFIRMED (owner-reported receipt; 44,090-dot H19-5 family)",
+        "historical_score_label": "USER-REPORTED / NOT ORGANIZER-CONFIRMED (owner-reported receipt; 44,090-dot H19-5 family)",
         "latest_method_id": "GDX1 (GeoDAWN Extensions Radiometric/Magnetic Lineament)",
         "latest_holdout_label": "HOLDOUT-DTI = 0.11965 (gems-segment-pooled-v1, n=60,988 withheld px, 95% CI [0.1045, 0.1350])",
         "latest_holdout_dti": 0.11965,
@@ -82,7 +82,7 @@ FOCUS9_UPSTREAM_METADATA: dict[str, dict[str, Any]] = {
     "GEMSDOE31": {
         "historical_live_file": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
         "historical_live_score": 0.2708,
-        "historical_score_label": "ORGANIZER-CONFIRMED (owner-reported receipt)",
+        "historical_score_label": "USER-REPORTED / NOT ORGANIZER-CONFIRMED (owner-reported receipt)",
         "latest_method_id": "H31Y-KINPIED (Kinematic Geodetic Piedmont Coupling)",
         "latest_holdout_label": "HOLDOUT-DTI = 0.0973 (gems-segment-pooled-v1, n=60,988 withheld px, 95% CI [0.0834, 0.1118])",
         "latest_holdout_dti": 0.0973,
@@ -91,7 +91,7 @@ FOCUS9_UPSTREAM_METADATA: dict[str, dict[str, Any]] = {
     "GEMSDOE32": {
         "historical_live_file": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
         "historical_live_score": 0.2778,
-        "historical_score_label": "ORGANIZER-CONFIRMED (portfolio high across all 118 scored rasters)",
+        "historical_score_label": "USER-REPORTED / NOT ORGANIZER-CONFIRMED (portfolio high across all 118 scored rasters)",
         "latest_method_id": "H47-LLI-Unique-Coupling (49,231-dot Structural Coupling)",
         "latest_holdout_label": "HOLDOUT-DTI = 0.0784 (gems-segment-pooled-v1, n=60,988 withheld px, 95% CI [0.0661, 0.0912])",
         "latest_holdout_dti": 0.0784,
@@ -100,7 +100,7 @@ FOCUS9_UPSTREAM_METADATA: dict[str, dict[str, Any]] = {
     "GEMSDOE33": {
         "historical_live_file": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
         "historical_live_score": 0.2632,
-        "historical_score_label": "ORGANIZER-CONFIRMED (owner-reported receipt)",
+        "historical_score_label": "USER-REPORTED / NOT ORGANIZER-CONFIRMED (owner-reported receipt)",
         "latest_method_id": "S33-SEISDIL (Seismicity + Geodetic Dilation Strain)",
         "latest_holdout_label": "HOLDOUT-DTI = 0.11415 (gems-segment-pooled-v1, n=60,988 withheld px, 95% CI [0.0998, 0.1290])",
         "latest_holdout_dti": 0.11415,
@@ -109,7 +109,7 @@ FOCUS9_UPSTREAM_METADATA: dict[str, dict[str, Any]] = {
     "GEMSDOE36": {
         "historical_live_file": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
         "historical_live_score": 0.2750,
-        "historical_score_label": "ORGANIZER-CONFIRMED (owner-reported receipt; 38,854-dot off-collar variant)",
+        "historical_score_label": "USER-REPORTED / NOT ORGANIZER-CONFIRMED (owner-reported receipt; 38,854-dot off-collar variant)",
         "latest_method_id": "GVSC-36 EXP-3 (Geothermal Upslope Advection + Scarp Ridge)",
         "latest_holdout_label": "HOLDOUT-DTI = 0.15886 (gems36-segment-v1, n=60,988 withheld px, 95% CI [0.1439, 0.1741])",
         "latest_holdout_dti": 0.15886,
@@ -193,7 +193,7 @@ def prove_02778_and_private_inventory() -> dict[str, Any]:
         "organizer_confirmed_score": 0.2778,
         "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
         "zero_xor_proof": {
-            "parent_artifact": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif (0.2600 ORGANIZER-CONFIRMED)",
+            "parent_artifact": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif (0.2600 USER-REPORTED / NOT ORGANIZER-CONFIRMED)",
             "parent_dots": int(np.count_nonzero(g25_pos)),
             "child_dots": int(np.count_nonzero(g32_pos)),
             "removed_le_200m_collar_dots": removed_collar_dots,
@@ -204,7 +204,7 @@ def prove_02778_and_private_inventory() -> dict[str, Any]:
             "live_score_gain_from_collar_amputation": round(0.2778 - 0.2600, 4),
         },
         "private_test_set_inversion": {
-            "calibration_artifact_s5": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif (0.0904 ORGANIZER-CONFIRMED)",
+            "calibration_artifact_s5": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif (0.0904 USER-REPORTED / NOT ORGANIZER-CONFIRMED)",
             "s5_dots": n_s5_dots,
             "s5_footprint_3px_coverage_pixels": n_lat_cov,
             "s5_footprint_uncovered_pixels": n_lat_uncov,

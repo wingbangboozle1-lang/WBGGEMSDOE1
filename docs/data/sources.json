@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_date_utc": "2026-10-26",
+  "reviewed_date_utc": "2026-10-27",
   "method": "Official pages retrieved with fetch_page during this session; short excerpts below (formatting normalized). Repository mirrors are separately pinned and are not official organizer downloads.",
   "sources": [
     {
@@ -37,13 +37,14 @@
       "id": "OFFICIAL-LEADERBOARD",
       "title": "DrivenData public leaderboard",
       "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-      "access": "retrieved, first chunk",
+      "access": "retrieved, first chunk, 2026-10-27",
       "authority": "competition organizer public leaderboard; not a receipt for any project TIFF",
       "observation": {
-        "date_utc": "2026-10-26",
+        "date_utc": "2026-10-27",
         "rank": 1,
         "participant": "xiaofanhu",
-        "public_dw_tversky": 0.4437
+        "public_dw_tversky": 0.4544,
+        "observation_method": "fetch_page direct official page retrieval"
       },
       "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-OBSERVATION",
       "limitations": "Not a project submission-page receipt; cannot verify the user-reported historical artifact scores or private/final standings."
@@ -167,6 +168,38 @@
       "authority": "organizer-maintained baseline repository",
       "verified_claims": [
         "The baseline asks users to place competition data in data/ and supports CPU-only and GPU environments. A GPU is not a universal prerequisite for all valid modeling approaches."
+      ]
+    },
+    {
+      "id": "USGS-3DEP-DEM",
+      "title": "USGS 3DEP 1/3 arc-second DEM collection",
+      "url": "https://www.sciencebase.gov/catalog/item/4f70aa9fe4b058caae3f8de5",
+      "access": "official page retrieved 2026-10-27",
+      "authority": "USGS ScienceBase public-domain DEM collection",
+      "verified_claims": [
+        "3DEP 1/3 arc-second (~10 m) DEMs and 1 m lidar-derived DEMs are official USGS public-domain elevation products."
+      ]
+    },
+    {
+      "id": "USGS-MT-CONDUCTANCE",
+      "title": "USGS Electrical Conductance Maps of the Great Basin (Peacock & Bedrosian 2022)",
+      "url": "https://doi.org/10.5066/P9TWT2LU",
+      "doi": "10.5066/P9TWT2LU",
+      "access": "official ScienceBase page retrieved 2026-10-27",
+      "authority": "USGS data release",
+      "verified_claims": [
+        "Five conductance layers from a 3-D MT inversion at 2-200 km depth are freely listed."
+      ],
+      "limitations": "Bulk file hosts are outside this sandbox egress allowlist; official page verified but raw grids not downloaded here."
+    },
+    {
+      "id": "USGS-EROS-SENTINEL2",
+      "title": "USGS EROS Sentinel-2 archive decommission notice",
+      "url": "https://www.usgs.gov/centers/eros/science/usgs-eros-archive-sentinel-2",
+      "access": "official page retrieved 2026-10-27",
+      "authority": "USGS EROS",
+      "verified_claims": [
+        "USGS no longer distributes Sentinel-2; data are available through Copernicus Data Space Environment."
       ]
     }
   ],

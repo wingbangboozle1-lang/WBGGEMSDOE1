@@ -1,0 +1,179 @@
+{
+  "schema": "gemsdoe1-tasc-best-arm-card-v1",
+  "generated_utc": "2026-10-27T18:08:04.121205+00:00",
+  "hypothesis": "Arm A control of the TASC lane: label-free multiscale geophysical edge/strain response.",
+  "mechanism": "300 m Gaussian gradient response of geodetic shear/dilatation, gravity, magnetic and basement-depth fields; no catalogue geometry, prior prediction or registry raster.",
+  "named_non_fault_mimic": "Lithologic/volcanic contact, flight-line leveling seam, basin-fill edge.",
+  "lane": "preregistered control inside the provisional TASC research lane",
+  "selection_status": "post-hoc best of three frozen arms; NOT a promotion gate",
+  "preregistration": "registry/preregistration_tasc_20261027.json",
+  "preregistration_sha256": "ea761c071c41ea63b0438b24ea047068ccaaddae0f5ba1992d621796a48ebeb0",
+  "holdout": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "dti": 0.06152769946996544,
+    "ci95": [
+      0.049810534425649665,
+      0.0738076149453345
+    ],
+    "withheld_positive_pixels": 60988,
+    "representation": "binary 0/1 dots, 3 px minimum spacing, 0.73% fold budget",
+    "tpw": 3487.19251504586,
+    "fpw": 35944.75854117474,
+    "fnw": 57500.807484954144
+  },
+  "frozen_baseline_point_dti": 0.16606013635163805,
+  "beats_frozen_baseline_point": false,
+  "leaderboard_estimate": {
+    "label": "LLI-PROJECTION (empirical Ridge on n=118 USER-REPORTED / NOT ORGANIZER-CONFIRMED historical rasters; LOO MAE=0.0353, LOO Spearman=0.824; NOT an organizer score, NOT a leaderboard measurement)",
+    "projected_value": 0.0716,
+    "approx_interval_pm_1mae": [
+      0.0363,
+      0.1069
+    ],
+    "evidence_class": "LLI-PROJECTION; USER-REPORTED calibration; NOT an organizer score",
+    "organizer_confirmed_submission_score": null
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_passed": true,
+    "surface_max_abs_rank_correlation": 0.38141590962059263,
+    "final_dots_literal_unseparated_passed": false,
+    "final_dots_competing_method_passed": true,
+    "competing_method_rasters": 178,
+    "calibration_control_rasters": 1,
+    "max_abs_rank_correlation": 0.31211445127707194,
+    "max_literal_dot_overlap_within_3px": 0.9698584380467632,
+    "max_competing_dot_overlap_within_3px": 0.44448862732622874,
+    "calibration_control_summary": [
+      {
+        "registry_id": "registry-001",
+        "file": "inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+        "raw_spearman": 0.000541042050545475,
+        "kernel_spearman": -0.004381524654843962,
+        "candidate_dot_overlap_within_3px": 0.9698584380467632,
+        "footprint_3px_coverage": 0.9987132726822701,
+        "footprint_3px_uncovered_pixels": 6649,
+        "pigeonhole_min_overlap": 0.8237368114097874
+      }
+    ],
+    "rank_limit": 0.9,
+    "overlap_limit": 0.7,
+    "decoded_pixel_sha256_unique_among_checked": true,
+    "decoded_pixel_sha256": "3aa483a7103c4a386ff6742ba6a3e7e87d71449fe41d1eb4e02dff23cf5bf5d4",
+    "scope": "Distinct downloadable TIFF contents from the nine-site portfolio audit, its live 2026-10-26 refresh, and every current GEMSDOE24 published lane. Sources are immutable commits; output restoration deduplicates exact footprint content."
+  },
+  "raster_sha256": "13d646677adc82aeaff41925fa5ae2c11a116c2e06a70e1a2269b28629ba3ad1",
+  "zip_sha256": "6b0067b5cda7967436b1f129758834daf2b6119dee2a821a87d03312f099d1f7",
+  "decoded_pixel_sha256": "3aa483a7103c4a386ff6742ba6a3e7e87d71449fe41d1eb4e02dff23cf5bf5d4",
+  "validator_output": {
+    "file": "wbggemsdoe1-tasc-label-free-physical-response-20261027-c3464cfa30d0-zeros.tif",
+    "bytes": 821144,
+    "sha256": "13d646677adc82aeaff41925fa5ae2c11a116c2e06a70e1a2269b28629ba3ad1",
+    "format_valid": true,
+    "ok_to_upload": false,
+    "upload_authorization": "not evaluated by a format validator; separate scientific selector required",
+    "format_acceptable": true,
+    "submission_authorized": false,
+    "scope": "Format only; this does not certify bias audit, holdout promotion or weekly-slot eligibility",
+    "hard_failures": [],
+    "official_format_compliant": false,
+    "in_footprint_positive_pixels": 37722,
+    "in_footprint_mass": 37722.0,
+    "checks": {
+      "official_template_grid_and_footprint": {
+        "pass": true,
+        "detail": "Template must be the pinned organizer grid, not just a self-consistent arbitrary raster",
+        "hard_requirement": true
+      },
+      "single_band": {
+        "pass": true,
+        "detail": "count=1",
+        "hard_requirement": true
+      },
+      "dtype_float32": {
+        "pass": true,
+        "detail": "dtypes=('float32',)",
+        "hard_requirement": true
+      },
+      "crs_epsg_32611": {
+        "pass": true,
+        "detail": "EPSG:32611",
+        "hard_requirement": true
+      },
+      "shape_matches_template": {
+        "pass": true,
+        "detail": "(3730, 3292) vs (3730, 3292)",
+        "hard_requirement": true
+      },
+      "geotransform_matches_template": {
+        "pass": true,
+        "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+        "hard_requirement": true
+      },
+      "footprint_all_finite": {
+        "pass": true,
+        "detail": "0 NaN/Inf inside the 5,167,373-pixel footprint",
+        "hard_requirement": true
+      },
+      "footprint_range_0_1": {
+        "pass": true,
+        "detail": "finite=5167373/5167373; range=0.0 to 1.0",
+        "hard_requirement": true
+      },
+      "outside_is_nan_official_text": {
+        "pass": false,
+        "detail": "0 of 7,111,787 outside pixels are NaN",
+        "hard_requirement": false
+      },
+      "nodata_tag_is_nan": {
+        "pass": false,
+        "detail": "nodata=None",
+        "hard_requirement": false
+      },
+      "variant_nan_aware_whole_array": {
+        "pass": true,
+        "detail": "np.nanmin/np.nanmax over the whole array",
+        "hard_requirement": true
+      },
+      "variant_masked_read": {
+        "pass": true,
+        "detail": "rasterio read(masked=True).compressed()",
+        "hard_requirement": true
+      },
+      "variant_strict_whole_array_no_nan_allowed": {
+        "pass": true,
+        "detail": "((a>=0)&(a<=1)).all() over the whole array - fails for ANY NaN, including the official sample's NaN outside",
+        "hard_requirement": false
+      },
+      "profile_matches_official_sample": {
+        "pass": false,
+        "detail": "driver/dtype/nodata/size/crs/transform equal to template; compress=lzw (template lzw)",
+        "hard_requirement": false
+      }
+    }
+  },
+  "submission_name": "wbggemsdoe1-tasc-label-free-physical-response-20261027-c3464cfa30d0-zeros.tif",
+  "submission_note": "TASC Arm A label-free physical response | best arm of frozen screen | DO NOT SUBMIT | id c3464cfa30d0",
+  "submission_note_characters": 101,
+  "final_dot_count": 37722,
+  "final_budget": 37722,
+  "artifact": "docs/downloads/wbggemsdoe1-tasc-label-free-physical-response-20261027-c3464cfa30d0-zeros.tif",
+  "zip_artifact": "docs/downloads/wbggemsdoe1-tasc-label-free-physical-response-20261027-c3464cfa30d0-zeros.zip",
+  "artifact_role": "best-scoring newly generated unique research TIFF from the 2026-10-27 frozen screen",
+  "decision": {
+    "verdict": "negative",
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "eligible_for_separate_selector": false,
+    "approved_for_weekly_slot": false,
+    "submission_slots_used": 0,
+    "reasons": [
+      "HOLDOUT-DTI 0.061528 is below the frozen 0.166060 current-best point estimate",
+      "literal all-entry 3 px overlap gate fails against the retained spacing-5 calibration lattice",
+      "best-arm selection is post-hoc and is not a promotion test",
+      "no assigned method lane, authenticated weekly allowance or organizer receipt exists"
+    ]
+  },
+  "verdict": "negative",
+  "submission_slots_used": 0
+}

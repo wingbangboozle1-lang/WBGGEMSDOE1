@@ -1,0 +1,15 @@
+{
+  "started_utc": "2026-10-27T17:52:44.442964+00:00",
+  "hypothesis_id": "TASC",
+  "experiments_started": 3,
+  "maximum_experiments": 3,
+  "maximum_wall_hours": 2,
+  "preregistration_sha256": "ea761c071c41ea63b0438b24ea047068ccaaddae0f5ba1992d621796a48ebeb0",
+  "status": "negative_stopped",
+  "submission_slots_used": 0,
+  "finished_utc": "2026-10-27T17:58:14.405041+00:00",
+  "experiments_completed": 3,
+  "elapsed_seconds": 329.949371572,
+  "raster_sha256": "23c42569bfff2db7e322ba5dbdb5981e1da8c86c24c35772c6d66bccebdf0dd5",
+  "verdict": "negative"
+}

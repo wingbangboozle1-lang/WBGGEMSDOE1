@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_date_utc": "2026-10-26",
+  "reviewed_date_utc": "2026-10-27",
   "items": [
     {
       "id": "IR-001",
@@ -134,6 +134,41 @@
       "title": "First STOP versus later verification timestamps",
       "finding": "The first-STOP receipt retained 22:00:39Z, but a caller stamped the ledger stop_utc again during later diagnostic rechecks. This could misleadingly make the original stop appear later. No model, placement or upload ran after the original STOP.",
       "action": "Set ledger stop_utc from the immutable first-STOP receipt and store last_registry_verification_utc separately. Add a regression test that subsequent diagnostics cannot move the STOP time. This is a metadata-only correction; no TIFF pixels or measured statistics change."
+    },
+    {
+      "id": "IR-020",
+      "severity": "blocking",
+      "title": "Literal lattice overlap gate is mathematically unsatisfiable",
+      "finding": "The retained spacing-5 calibration lattice covers >=70% of the footprint within 3 px. By the pigeonhole principle, every substantial new dot set has >70% directional overlap with it, regardless of scientific independence. The shared tool's separate_calibration_controls diagnostic reports competing-method uniqueness, but the literal unseparated gate remains binding.",
+      "action": "Protocol owner must decide how space-filling calibration controls are handled. This project did not waive them privately; all 2026-10-27 artifacts remain DO NOT SUBMIT."
+    },
+    {
+      "id": "IR-021",
+      "severity": "blocking",
+      "title": "No newly generated file beat the frozen holdout benchmark",
+      "finding": "The 2026-10-27 TASC screen produced three arms with HOLDOUT-DTI 0.061528, 0.001825 and 0.005295 (gems-segment-pooled-v1, n=60,988). None exceeds the frozen 0.166060 current-best point estimate. The primary visible-tip arm collapsed because hide-and-recover removes visible catalogue faults from each test quadrant.",
+      "action": "Retain negative results. Do not spend a weekly slot. Next viable label-free candidate is PCE1 potential-field phase congruency."
+    },
+    {
+      "id": "IR-022",
+      "severity": "high",
+      "title": "Inherited WBG-H1 pages mislabelled owner-reported values",
+      "finding": "Peer pages and frozen cards described historical values as ORGANIZER-CONFIRMED although no artifact-linked submission-page receipt exists. The LLI calibrator also described its 118 calibration rasters as organizer-confirmed.",
+      "action": "Corrected generator strings, frozen cards and regenerated 9-site evidence/pages to USER-REPORTED / NOT ORGANIZER-CONFIRMED. All LLI outputs are labelled projections, never scores."
+    },
+    {
+      "id": "IR-023",
+      "severity": "medium",
+      "title": "Prompt leaderboard targets stale and official links partly dead",
+      "finding": "Prompt contains 0.4413 and 0.3195. Official public leaderboard observed 0.4544 on 2026-10-27. Two inherited official links (USGS landsat-missions/sentinel-2 and ScienceBase item 5fb70a0ad34eb413d5e14873) returned 404; verified replacements are the USGS EROS Sentinel-2 decommission notice and DOI 10.5066/P9TWT2LU.",
+      "action": "Use dated official observation; do not treat it as a project score. Use corrected official links in the new ranked hypotheses and decision page."
+    },
+    {
+      "id": "IR-024",
+      "severity": "medium",
+      "title": "Data placement blocker resolved but origin still owner-mirrored",
+      "finding": "bash scripts/download_competition_data.sh and scripts/prepare_data.py completed on 2026-10-27; core rasters and all 19 cached band hashes match the pinned public GitHub bridge. This proves mirror integrity, not independent organizer-origin authenticity.",
+      "action": "Continue to label inputs as owner mirrors; require an authenticated official manifest/download before promotion."
     }
   ]
 }

@@ -1,0 +1,693 @@
+{
+  "schema": "gemsdoe1-tasc-run-card-v1",
+  "generated_utc": "2026-10-27T17:58:14.378804+00:00",
+  "hypothesis": "TASC: visible-fault-tip-aligned strain-transfer corridors identify concealed continuations absent from the public catalogue.",
+  "mechanism": "Fold-local visible-tip tangent corridor (0-3 km forward, +/-1 km across) multiplied by a 300 m Gaussian gradient response of geodetic shear/dilatation, gravity, magnetic and basement-depth fields; no hidden component, prior prediction or registry raster is an input.",
+  "named_non_fault_mimic": "Alluvial-fan channel avulsion lobe, road/rail cut-and-fill, pluvial shoreline bench, intrusive/lithologic contact.",
+  "lane": "provisional research only; no assigned single-method paragraph supplied",
+  "preregistration": "registry/preregistration_tasc_20261027.json",
+  "preregistration_sha256": "ea761c071c41ea63b0438b24ea047068ccaaddae0f5ba1992d621796a48ebeb0",
+  "hypothesis_document": "research/03_ranked_hypotheses_2026-10-27.md",
+  "inputs": {
+    "shared_cache_bands": 19,
+    "registry_unique_rasters": 179,
+    "registry_rejected": 0
+  },
+  "input_hashes": {
+    "data/bridge/sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "data/bridge/labels.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+  },
+  "code_sha256": {
+    "scripts/run_tasc_lane.py": "9b3a9df8383efd5e9a5f869ba533528ab8b4a3597d8be363339beb8b6d257f26",
+    "src/gems/holdout.py": "34fb7f12e849280c8162d5c433aa972f70746ddecf1a289ce3a9c81144b344dc",
+    "src/gems/metric.py": "c024510de39746c9390e5bbf5c1d1b639a9ee895017a38fab4b609f0f2c33e48",
+    "src/gems/emission.py": "8ef12efc95157108fd37af4e47c4b04dacaedcf0207728ffde310736baf33753",
+    "src/gems/novelty.py": "0c7b98cdeb4f49c2a8cbac3ecc33499218f1233f20573a91a65c8276766ce597",
+    "src/gems/submission.py": "fe26ba1d414bc56053cb04423c200f8bf3121e562361fdfac70f136c5bce4b37",
+    "registry/preregistration_tasc_20261027.json": "ea761c071c41ea63b0438b24ea047068ccaaddae0f5ba1992d621796a48ebeb0"
+  },
+  "leakage_canary": {
+    "diagnostic": "LEAKAGE-CANARY AUC, not a DTI or organizer score",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "threshold": 0.9,
+    "two_polarities_checked": true,
+    "passed": true,
+    "features": {
+      "raw_geod_shearrate": {
+        "pooled_auc": 0.5368311862454755,
+        "leakage_suspected": false,
+        "folds": [
+          {
+            "fold": "NW",
+            "auc": 0.5630294179373668,
+            "positives": 10165,
+            "background": 15000
+          },
+          {
+            "fold": "NE_LidarGapHeavy",
+            "auc": 0.4744278741374258,
+            "positives": 12511,
+            "background": 15000
+          },
+          {
+            "fold": "SW",
+            "auc": 0.5495183066666667,
+            "positives": 15000,
+            "background": 15000
+          },
+          {
+            "fold": "SE",
+            "auc": 0.5294846955555557,
+            "positives": 15000,
+            "background": 15000
+          }
+        ]
+      },
+      "raw_geod_dilaterate": {
+        "pooled_auc": 0.5223412558217532,
+        "leakage_suspected": false,
+        "folds": [
+          {
+            "fold": "NW",
+            "auc": 0.5413819511395311,
+            "positives": 10165,
+            "background": 15000
+          },
+          {
+            "fold": "NE_LidarGapHeavy",
+            "auc": 0.5190931979857725,
+            "positives": 12511,
+            "background": 15000
+          },
+          {
+            "fold": "SW",
+            "auc": 0.5151955399999999,
+            "positives": 15000,
+            "background": 15000
+          },
+          {
+            "fold": "SE",
+            "auc": 0.5572257755555556,
+            "positives": 15000,
+            "background": 15000
+          }
+        ]
+      },
+      "raw_iso_grav_anom": {
+        "pooled_auc": 0.4749842168792872,
+        "leakage_suspected": false,
+        "folds": [
+          {
+            "fold": "NW",
+            "auc": 0.5215872667650434,
+            "positives": 10165,
+            "background": 15000
+          },
+          {
+            "fold": "NE_LidarGapHeavy",
+            "auc": 0.4856186955479178,
+            "positives": 12511,
+            "background": 15000
+          },
+          {
+            "fold": "SW",
+            "auc": 0.47173963777777783,
+            "positives": 15000,
+            "background": 15000
+          },
+          {
+            "fold": "SE",
+            "auc": 0.4744582088888889,
+            "positives": 15000,
+            "background": 15000
+          }
+        ]
+      },
+      "raw_tmi": {
+        "pooled_auc": 0.4938485391829297,
+        "leakage_suspected": false,
+        "folds": [
+          {
+            "fold": "NW",
+            "auc": 0.49208260698475165,
+            "positives": 10165,
+            "background": 15000
+          },
+          {
+            "fold": "NE_LidarGapHeavy",
+            "auc": 0.49564628193856075,
+            "positives": 12511,
+            "background": 15000
+          },
+          {
+            "fold": "SW",
+            "auc": 0.4728340466666666,
+            "positives": 15000,
+            "background": 15000
+          },
+          {
+            "fold": "SE",
+            "auc": 0.49474331777777775,
+            "positives": 15000,
+            "background": 15000
+          }
+        ]
+      },
+      "raw_depth_to_base_surf": {
+        "pooled_auc": 0.5041746707861898,
+        "leakage_suspected": false,
+        "folds": [
+          {
+            "fold": "NW",
+            "auc": 0.4758279914740121,
+            "positives": 10165,
+            "background": 15000
+          },
+          {
+            "fold": "NE_LidarGapHeavy",
+            "auc": 0.5322275757333547,
+            "positives": 12511,
+            "background": 15000
+          },
+          {
+            "fold": "SW",
+            "auc": 0.4884671711111111,
+            "positives": 15000,
+            "background": 15000
+          },
+          {
+            "fold": "SE",
+            "auc": 0.5045975422222222,
+            "positives": 15000,
+            "background": 15000
+          }
+        ]
+      },
+      "raw_det_elev": {
+        "pooled_auc": 0.48705173133875007,
+        "leakage_suspected": false,
+        "folds": [
+          {
+            "fold": "NW",
+            "auc": 0.5817829250696835,
+            "positives": 10165,
+            "background": 15000
+          },
+          {
+            "fold": "NE_LidarGapHeavy",
+            "auc": 0.4405719526816402,
+            "positives": 12511,
+            "background": 15000
+          },
+          {
+            "fold": "SW",
+            "auc": 0.5324620777777778,
+            "positives": 15000,
+            "background": 15000
+          },
+          {
+            "fold": "SE",
+            "auc": 0.4451204266666666,
+            "positives": 15000,
+            "background": 15000
+          }
+        ]
+      },
+      "raw_det_elev_slope": {
+        "pooled_auc": 0.5710937215240337,
+        "leakage_suspected": false,
+        "folds": [
+          {
+            "fold": "NW",
+            "auc": 0.622756166584686,
+            "positives": 10165,
+            "background": 15000
+          },
+          {
+            "fold": "NE_LidarGapHeavy",
+            "auc": 0.5475408307356193,
+            "positives": 12511,
+            "background": 15000
+          },
+          {
+            "fold": "SW",
+            "auc": 0.5530282977777777,
+            "positives": 15000,
+            "background": 15000
+          },
+          {
+            "fold": "SE",
+            "auc": 0.56656648,
+            "positives": 15000,
+            "background": 15000
+          }
+        ]
+      },
+      "response_R": {
+        "pooled_auc": 0.5455711794745235,
+        "leakage_suspected": false,
+        "folds": [
+          {
+            "fold": "NW",
+            "auc": 0.5209773635022135,
+            "positives": 10165,
+            "background": 15000
+          },
+          {
+            "fold": "NE_LidarGapHeavy",
+            "auc": 0.5483273466016572,
+            "positives": 12511,
+            "background": 15000
+          },
+          {
+            "fold": "SW",
+            "auc": 0.49513972444444443,
+            "positives": 15000,
+            "background": 15000
+          },
+          {
+            "fold": "SE",
+            "auc": 0.5844393711111111,
+            "positives": 15000,
+            "background": 15000
+          }
+        ]
+      },
+      "tip_corridor_C": {
+        "pooled_auc": 0.5006374682018376,
+        "leakage_suspected": false,
+        "folds": [
+          {
+            "fold": "NW",
+            "auc": 0.5009903033284144,
+            "positives": 10165,
+            "background": 15000
+          },
+          {
+            "fold": "NE_LidarGapHeavy",
+            "auc": 0.5011656702102151,
+            "positives": 12511,
+            "background": 15000
+          },
+          {
+            "fold": "SW",
+            "auc": 0.5007999222222222,
+            "positives": 15000,
+            "background": 15000
+          },
+          {
+            "fold": "SE",
+            "auc": 0.4998666666666667,
+            "positives": 15000,
+            "background": 15000
+          }
+        ]
+      },
+      "annulus_D": {
+        "pooled_auc": 0.5019836241045891,
+        "leakage_suspected": false,
+        "folds": [
+          {
+            "fold": "NW",
+            "auc": 0.5022086702738154,
+            "positives": 10165,
+            "background": 15000
+          },
+          {
+            "fold": "NE_LidarGapHeavy",
+            "auc": 0.5038042842298777,
+            "positives": 12511,
+            "background": 15000
+          },
+          {
+            "fold": "SW",
+            "auc": 0.5010329800000001,
+            "positives": 15000,
+            "background": 15000
+          },
+          {
+            "fold": "SE",
+            "auc": 0.5012339422222223,
+            "positives": 15000,
+            "background": 15000
+          }
+        ]
+      },
+      "arm_A": {
+        "pooled_auc": 0.5455711794745235,
+        "leakage_suspected": false,
+        "folds": [
+          {
+            "fold": "NW",
+            "auc": 0.5209773635022135,
+            "positives": 10165,
+            "background": 15000
+          },
+          {
+            "fold": "NE_LidarGapHeavy",
+            "auc": 0.5483273466016572,
+            "positives": 12511,
+            "background": 15000
+          },
+          {
+            "fold": "SW",
+            "auc": 0.49513972444444443,
+            "positives": 15000,
+            "background": 15000
+          },
+          {
+            "fold": "SE",
+            "auc": 0.5844393711111111,
+            "positives": 15000,
+            "background": 15000
+          }
+        ]
+      },
+      "arm_B": {
+        "pooled_auc": 0.5006374297592833,
+        "leakage_suspected": false,
+        "folds": [
+          {
+            "fold": "NW",
+            "auc": 0.5009902279062142,
+            "positives": 10165,
+            "background": 15000
+          },
+          {
+            "fold": "NE_LidarGapHeavy",
+            "auc": 0.5011656488956385,
+            "positives": 12511,
+            "background": 15000
+          },
+          {
+            "fold": "SW",
+            "auc": 0.5007998266666667,
+            "positives": 15000,
+            "background": 15000
+          },
+          {
+            "fold": "SE",
+            "auc": 0.4998666666666667,
+            "positives": 15000,
+            "background": 15000
+          }
+        ]
+      },
+      "arm_C": {
+        "pooled_auc": 0.501982037993267,
+        "leakage_suspected": false,
+        "folds": [
+          {
+            "fold": "NW",
+            "auc": 0.5022074471224791,
+            "positives": 10165,
+            "background": 15000
+          },
+          {
+            "fold": "NE_LidarGapHeavy",
+            "auc": 0.5038037993232621,
+            "positives": 12511,
+            "background": 15000
+          },
+          {
+            "fold": "SW",
+            "auc": 0.50103012,
+            "positives": 15000,
+            "background": 15000
+          },
+          {
+            "fold": "SE",
+            "auc": 0.5012338711111112,
+            "positives": 15000,
+            "background": 15000
+          }
+        ]
+      }
+    },
+    "interpretation": "AUC > .90 is leakage until explained; lower AUC does not prove independence or fault discovery."
+  },
+  "holdout": {
+    "A": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "gems-segment-pooled-v1",
+      "dti": 0.06152769946996544,
+      "ci95": [
+        0.049810534425649665,
+        0.0738076149453345
+      ],
+      "withheld_positive_pixels": 60988,
+      "representation": "binary 0/1 dots, 3 px minimum spacing, 0.73% fold budget",
+      "tpw": 3487.19251504586,
+      "fpw": 35944.75854117474,
+      "fnw": 57500.807484954144
+    },
+    "B": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "gems-segment-pooled-v1",
+      "dti": 0.0018247541592896015,
+      "ci95": [
+        0.0004309702613016131,
+        0.003717190249698861
+      ],
+      "withheld_positive_pixels": 60988,
+      "representation": "binary 0/1 dots, 3 px minimum spacing, 0.73% fold budget",
+      "tpw": 89.24212992912142,
+      "fpw": 490.6841972917378,
+      "fnw": 60898.75787007088
+    },
+    "C": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "gems-segment-pooled-v1",
+      "dti": 0.0052952179822590454,
+      "ci95": [
+        0.0026862563281174175,
+        0.008724039832355852
+      ],
+      "withheld_positive_pixels": 60988,
+      "representation": "binary 0/1 dots, 3 px minimum spacing, 0.73% fold budget",
+      "tpw": 260.22951915681375,
+      "fpw": 1509.0231546236905,
+      "fnw": 60727.77048084319
+    }
+  },
+  "efficacy_gate": {
+    "baseline_point_dti": 0.16606013635163805,
+    "baseline_evaluator": "gems-segment-pooled-v1",
+    "baseline_withheld_positives": 60988,
+    "baseline_fold_predictions_available_for_paired_replay": false,
+    "candidate_ci_lower_bound_exceeds_baseline_point": false,
+    "paired_vs_arm_A": {
+      "evaluator_version": "gems-segment-pooled-v1",
+      "candidate_dti": 0.0018247541592896015,
+      "baseline_dti": 0.06152769946996544,
+      "paired_delta_dti": -0.05970294531067584,
+      "paired_delta_ci95": [
+        -0.07186505011729474,
+        -0.04851210994901463
+      ],
+      "ci95_strictly_positive": false,
+      "fold_wins": 0,
+      "n_folds": 4,
+      "min_fold_delta": -0.07382405859302413,
+      "folds": [
+        {
+          "fold": "NW",
+          "candidate_dti": 0.00339308061231731,
+          "baseline_dti": 0.04889373921028329,
+          "delta_dti": -0.04550065859796598,
+          "candidate_wins": false
+        },
+        {
+          "fold": "NE_LidarGapHeavy",
+          "candidate_dti": 0.0025098302158685845,
+          "baseline_dti": 0.051617164291249816,
+          "delta_dti": -0.04910733407538123,
+          "candidate_wins": false
+        },
+        {
+          "fold": "SW",
+          "candidate_dti": 0.002153090162104002,
+          "baseline_dti": 0.06404473736452138,
+          "delta_dti": -0.061891647202417376,
+          "candidate_wins": false
+        },
+        {
+          "fold": "SE",
+          "candidate_dti": 6.057288042168573e-05,
+          "baseline_dti": 0.07388463147344582,
+          "delta_dti": -0.07382405859302413,
+          "candidate_wins": false
+        }
+      ]
+    },
+    "passed": false
+  },
+  "correlation_overlap_vs_registry": {
+    "surface": {
+      "A": {
+        "passed": true,
+        "max_abs_rank_correlation": 0.38141590962059263
+      },
+      "B": {
+        "passed": true,
+        "max_abs_rank_correlation": 0.06177872854553912
+      },
+      "C": {
+        "passed": true,
+        "max_abs_rank_correlation": 0.11496753609494204
+      }
+    },
+    "final_dots_literal_unseparated_passed": false,
+    "final_dots_competing_method_passed": true,
+    "competing_method_rasters": 178,
+    "calibration_control_rasters": 1,
+    "max_abs_rank_correlation": 0.08027274137298385,
+    "max_literal_dot_overlap_within_3px": 1.0,
+    "max_competing_dot_overlap_within_3px": 0.6510721247563352,
+    "calibration_control_summary": [
+      {
+        "registry_id": "registry-001",
+        "file": "inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+        "raw_spearman": 0.00073910783567547,
+        "kernel_spearman": 0.0007920477640226975,
+        "candidate_dot_overlap_within_3px": 1.0,
+        "footprint_3px_coverage": 0.9987132726822701,
+        "footprint_3px_uncovered_pixels": 6649,
+        "pigeonhole_min_overlap": 0.0
+      }
+    ],
+    "rank_limit": 0.9,
+    "overlap_limit": 0.7,
+    "scope": "Distinct downloadable TIFF contents from the nine-site portfolio audit, its live 2026-10-26 refresh, and every current GEMSDOE24 published lane. Sources are immutable commits; output restoration deduplicates exact footprint content.",
+    "decoded_pixel_sha256_unique_among_checked": true,
+    "decoded_pixel_sha256": "6a44ceae5152c5e37da151dfd5f352e86478e64bd6ec2b8d74f4dd82b16e274a"
+  },
+  "leaderboard_estimate": {
+    "label": "LLI-PROJECTION (empirical Ridge on n=118 USER-REPORTED / NOT ORGANIZER-CONFIRMED historical rasters; LOO MAE=0.0353, LOO Spearman=0.824; NOT an organizer score, NOT a leaderboard measurement)",
+    "projected_value": 0.0,
+    "approx_interval_pm_1mae": [
+      0.0,
+      0.0353
+    ],
+    "evidence_class": "LLI-PROJECTION; USER-REPORTED calibration; NOT an organizer score",
+    "organizer_confirmed_submission_score": null
+  },
+  "raster_sha256": "23c42569bfff2db7e322ba5dbdb5981e1da8c86c24c35772c6d66bccebdf0dd5",
+  "zip_sha256": "b0b9b96486ad9ef0e47848f0381030be87a390528458d5382cd77a88114bda09",
+  "decoded_pixel_sha256": "6a44ceae5152c5e37da151dfd5f352e86478e64bd6ec2b8d74f4dd82b16e274a",
+  "validator_output": {
+    "file": "wbggemsdoe1-tasc-tip-strain-corridor-20261027-f3270cad4a7f-zeros.tif",
+    "bytes": 751600,
+    "sha256": "23c42569bfff2db7e322ba5dbdb5981e1da8c86c24c35772c6d66bccebdf0dd5",
+    "format_valid": true,
+    "ok_to_upload": false,
+    "upload_authorization": "not evaluated by a format validator; separate scientific selector required",
+    "format_acceptable": true,
+    "submission_authorized": false,
+    "scope": "Format only; this does not certify bias audit, holdout promotion or weekly-slot eligibility",
+    "hard_failures": [],
+    "official_format_compliant": false,
+    "in_footprint_positive_pixels": 513,
+    "in_footprint_mass": 513.0,
+    "checks": {
+      "official_template_grid_and_footprint": {
+        "pass": true,
+        "detail": "Template must be the pinned organizer grid, not just a self-consistent arbitrary raster",
+        "hard_requirement": true
+      },
+      "single_band": {
+        "pass": true,
+        "detail": "count=1",
+        "hard_requirement": true
+      },
+      "dtype_float32": {
+        "pass": true,
+        "detail": "dtypes=('float32',)",
+        "hard_requirement": true
+      },
+      "crs_epsg_32611": {
+        "pass": true,
+        "detail": "EPSG:32611",
+        "hard_requirement": true
+      },
+      "shape_matches_template": {
+        "pass": true,
+        "detail": "(3730, 3292) vs (3730, 3292)",
+        "hard_requirement": true
+      },
+      "geotransform_matches_template": {
+        "pass": true,
+        "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+        "hard_requirement": true
+      },
+      "footprint_all_finite": {
+        "pass": true,
+        "detail": "0 NaN/Inf inside the 5,167,373-pixel footprint",
+        "hard_requirement": true
+      },
+      "footprint_range_0_1": {
+        "pass": true,
+        "detail": "finite=5167373/5167373; range=0.0 to 1.0",
+        "hard_requirement": true
+      },
+      "outside_is_nan_official_text": {
+        "pass": false,
+        "detail": "0 of 7,111,787 outside pixels are NaN",
+        "hard_requirement": false
+      },
+      "nodata_tag_is_nan": {
+        "pass": false,
+        "detail": "nodata=None",
+        "hard_requirement": false
+      },
+      "variant_nan_aware_whole_array": {
+        "pass": true,
+        "detail": "np.nanmin/np.nanmax over the whole array",
+        "hard_requirement": true
+      },
+      "variant_masked_read": {
+        "pass": true,
+        "detail": "rasterio read(masked=True).compressed()",
+        "hard_requirement": true
+      },
+      "variant_strict_whole_array_no_nan_allowed": {
+        "pass": true,
+        "detail": "((a>=0)&(a<=1)).all() over the whole array - fails for ANY NaN, including the official sample's NaN outside",
+        "hard_requirement": false
+      },
+      "profile_matches_official_sample": {
+        "pass": false,
+        "detail": "driver/dtype/nodata/size/crs/transform equal to template; compress=lzw (template lzw)",
+        "hard_requirement": false
+      }
+    }
+  },
+  "submission_name": "wbggemsdoe1-tasc-tip-strain-corridor-20261027-f3270cad4a7f-zeros.tif",
+  "submission_note": "TASC tip-aligned strain corridor | unique research TIFF | DO NOT SUBMIT | id f3270cad4a7f",
+  "submission_note_characters": 89,
+  "final_dot_count": 513,
+  "final_budget": 37722,
+  "artifact": "docs/downloads/wbggemsdoe1-tasc-tip-strain-corridor-20261027-f3270cad4a7f-zeros.tif",
+  "zip_artifact": "docs/downloads/wbggemsdoe1-tasc-tip-strain-corridor-20261027-f3270cad4a7f-zeros.zip",
+  "artifact_role": "newly generated, format-validated, scientifically distinct research TIFF; not a promoted competition submission",
+  "decision": {
+    "verdict": "negative",
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "eligible_for_separate_selector": false,
+    "approved_for_weekly_slot": false,
+    "submission_slots_used": 0,
+    "reasons": [
+      "candidate did not beat the frozen current-best holdout benchmark with a 95% CI lower bound above it and a positive paired CI",
+      "literal all-entry 3 px overlap gate fails against the retained spacing-5 calibration lattice",
+      "no assigned method lane was supplied",
+      "no authenticated current weekly allowance or organizer receipt exists",
+      "promotion to a real slot is a separate selector step"
+    ]
+  },
+  "verdict": "negative",
+  "experiments_completed": 3,
+  "submission_slots_used": 0,
+  "elapsed_seconds": 329.949371572,
+  "next_action": "Retain the negative result. A future authorized lane needs an independently replayed current-best comparator, a resolved registry policy for space-filling calibration controls, and untouched confirmation before a separate selector considers a slot."
+}

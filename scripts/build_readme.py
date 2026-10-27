@@ -9,11 +9,68 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     card = json.loads((ROOT / "registry/run_card.json").read_text())
     wbg_h1_rc = json.loads((ROOT / "evidence/wbg_h1/run_card.json").read_text())
+    current = json.loads((ROOT / "docs/data/current_decision_20261027.json").read_text())
+    feed = json.loads((ROOT / "docs/data/feed.json").read_text())
     h, c, d = card["holdout"], card["control_holdout"], card["paired_delta_holdout"]
     tif = Path(card["artifact"]).name
     h1_tif = wbg_h1_rc["raster_sha256"]["tif_file"]
     h1_zip = wbg_h1_rc["raster_sha256"]["zip_file"]
     standing = (ROOT / "docs/standing-prompt.md").read_text()
+    new_rows = "\n".join(
+        f"| [{r['file']}](docs/{r['url']}) — {r['label']} | HOLDOUT-DTI {r['holdout_dti']:.6f}, 95% CI "
+        f"[{r['holdout_ci95'][0]:.6f}, {r['holdout_ci95'][1]:.6f}] | **{r['estimate_value']:.4f}** "
+        f"(LLI projection ±0.0353; **not a score**) | competing-method unique: "
+        f"{'yes' if r['competing_method_gate_passed'] else 'no'}; literal lattice gate: "
+        f"{'pass' if r['literal_gate_passed'] else 'FAIL'} | **NO** |"
+        for r in current["new_files"]
+    )
+    site_rows = "\n".join(
+        f"| {s['site']} | [{s['latest_candidate_file']}]({s['latest_candidate_url']}) | "
+        f"USER-REPORTED {s['historical_value']:.4f} (historical champion) / "
+        f"**{s['estimate_value']:.4f}** LLI projection ±{s['estimate_loo_mae']:.4f} (latest candidate) | "
+        f"{'yes' if s['unique_vs_sparse_peers'] else 'no'} vs sparse peers; "
+        f"max 3 px overlap {s['max_sparse_peer_3px_overlap']*100:.1f}% | **NO** |"
+        for s in current["sites"]
+    )
+    session_section = f'''## 2026-10-27 session — new unique TIFF, fail-closed decision
+
+**[Open the submission decision page](docs/submission-decision.html)** ·
+**[Download the best newly generated unique TIFF](docs/{current['decision']['best_download_url']})** ·
+[One-TIFF ZIP](docs/downloads/{current['decision']['best_download'].replace('.tif', '.zip')}) ·
+[Decision JSON](docs/data/current_decision_20261027.json) ·
+[Ranked hypotheses](research/03_ranked_hypotheses_2026-10-27.md) ·
+[Next work and limitations](research/04_next_steps_20261027.md)
+
+> **DOWNLOAD: YES, for research/audit. SUBMIT: NO.** Two new, single-band, all-finite `[0,1]`
+> GeoTIFFs were generated from a preregistered three-arm lane. No file beat the frozen
+> **HOLDOUT-DTI 0.166060** current-best point estimate, no file passed the literal all-entry
+> 3 px registry gate, and **zero weekly slots were used**. A projection is not a leaderboard score.
+
+| File to download | Measured evidence | Estimate (explicitly not a score) | Unique? | OK to submit? |
+|---|---|---|---|---|
+{new_rows}
+
+The inherited WBG-H1 EXP-3 TIFF remains the strongest unique research file in this repository
+(HOLDOUT-DTI 0.123310; LLI projection 0.1898), but it is also **negative** and not a newly
+generated 2026-10-27 file. The new TASC primary arm failed for a structural reason: the
+hide-and-recover holdout removes all visible catalogue faults from each test quadrant, so a
+visible-tip-derived corridor has almost no support there. That negative result is retained.
+
+### Nine focus sites — best file, estimate and uniqueness
+
+Historical values are **USER-REPORTED / NOT ORGANIZER-CONFIRMED**. LLI numbers are empirical
+projections on 118 user-reported historical rasters (LOO MAE 0.0353), **not organizer scores**.
+
+| Site | File to download (latest unique candidate; audit only) | Estimate | Unique vs other GEMSDOE sites? | OK to submit? |
+|---|---|---|---|---|
+{site_rows}
+
+The highest supplied historical value remains **GEMSDOE32 B2, USER-REPORTED 0.2778**, already
+submitted and not a new unique entry. The official public leaderboard was observed at
+**{feed['leaderboard']['public_dw_tversky']:.4f}** on 2026-10-27; the prompt's 0.4413 and 0.3195
+targets are stale/inconsistent. No project file has an organizer receipt linking it to a score.
+
+'''
     header = f'''# WBG GEMS — evidence-first fault mapping
 
 ## DOWNLOAD: YES, for research. SUBMIT: **NO**.
@@ -31,6 +88,8 @@ def main():
 > registry-overlap gate. The method lane was not assigned in the prompt. **Do not upload it.**
 > No final dots were placed, no real submission was selected, and **zero competition slots were used**.
 > “Different bytes” is not “lane unique”; “local format pass” is not organizer acceptance.
+
+{session_section}
 
 | Artifact / decision | Measured evidence | Estimated leaderboard result | Exact-copy / literal uniqueness |
 |---|---|---|---|
@@ -64,9 +123,9 @@ credit and avoiding low-marginal-credit predictions are plausible reasons for th
 ordering, not a causal proof from unavailable hidden labels. A 200 m exclusion is **not** an
 organizer rule. No historical file should be copied into a new "unique" entry.
 
-The direct **official public-leaderboard observation on 2026-10-26 was 0.4437**, not the prompt's
-older targets. That is **not** an organizer result for any project TIFF. A higher project score
-was not obtained or credibly projected in this session.
+The direct **official public-leaderboard observation on 2026-10-27 was {feed['leaderboard']['public_dw_tversky']:.4f}**,
+not the prompt's older 0.4413 / 0.3195 targets. That is **not** an organizer result for any project
+TIFF. A higher project score was not obtained or credibly projected in this session.
 
 ## Parallel work preserved during integration
 
@@ -124,8 +183,13 @@ GitHub access is needed for the hash-pinned public bridges; no DrivenData creden
 python -m venv .venv
 .venv/bin/pip install -e '.[test]'
 # For exact research dependency versions, use requirements-lock.txt.
-bash scripts/download_competition_data.sh
-.venv/bin/python scripts/prepare_data.py
+bash scripts/download_competition_data.sh   # 2026-10-27: completed; all core pins verified
+.venv/bin/python scripts/prepare_data.py      # 2026-10-27: 19/19 shared cache bands verified
+.venv/bin/python scripts/restore_registry.py  # 231 sources -> 179 unique comparators
+.venv/bin/python scripts/run_tasc_lane.py --build-features
+.venv/bin/python scripts/run_tasc_lane.py --execute
+.venv/bin/python scripts/package_tasc_best_arm.py
+.venv/bin/python scripts/build_current_decision.py
 .venv/bin/pytest -q
 
 # Reopen the actual downloadable bytes. Exit 0 means FORMAT pass only.
@@ -141,6 +205,7 @@ bash scripts/download_competition_data.sh
 
 # Rebuild report pages from persisted measured JSON (no modelling):
 python scripts/refresh_feed.py --offline
+python scripts/build_current_decision.py
 python scripts/build_site.py
 python scripts/build_readme.py
 # Preview, not for production deployment:
@@ -194,6 +259,15 @@ not falsely claim that a browser button trains the model.
    The existing main/root publisher is retained; `scripts/stage_pages.py` gives workflow deploys
    the same root-to-`/docs/` layout. This avoids incompatible download paths without a manual
    configuration change. Only actual GitHub run/deployment receipts establish publication.
+9. **Unsatisfiable literal lattice gate:** the retained spacing-5 calibration lattice covers at
+   least 70% of the footprint within 3 px, so by the pigeonhole principle every substantial new
+   dot set has >70% directional overlap with it. The shared tool reports a competing-method
+   diagnostic, but this session keeps the literal unseparated gate binding. A protocol owner must
+   decide how space-filling calibration controls should be handled; we did not waive them privately.
+10. **Inherited mislabeling corrected:** WBG-H1 peer pages previously called owner-reported values
+   “ORGANIZER-CONFIRMED”. The generator, frozen cards and this session's pages now label them
+   **USER-REPORTED / NOT ORGANIZER-CONFIRMED**. Two inherited official links were dead and were
+   replaced with verified USGS/Copernicus-era official URLs.
 
 [Official-source claim register](registry/sources.json) · [Irregularities](registry/irregularities.json)
 · [Frozen preregistration](registry/preregistration.json) · [Review passes](evidence/review_passes.json)

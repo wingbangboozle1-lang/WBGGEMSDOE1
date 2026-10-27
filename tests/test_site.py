@@ -40,7 +40,7 @@ def module(name):
     return result
 
 
-@pytest.mark.parametrize("name", ["index.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"])
+@pytest.mark.parametrize("name", ["index.html", "submission-decision.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"])
 def test_all_site_local_links_resolve_and_decision_is_unmistakable(name):
     file = DOCS / name
     html = file.read_text()
@@ -132,7 +132,7 @@ def test_github_only_feed_never_requests_the_official_leaderboard(tmp_path, monk
     assert result["network_refresh_attempted"]
     assert not result["official_page_refresh_attempted"]
     assert result["leaderboard_status"] == "retained_observation_not_refreshed"
-    assert result["leaderboard"]["public_dw_tversky"] == .4437
+    assert result["leaderboard"]["public_dw_tversky"] == .4544
     assert result["models_retrained"] is False and result["submission_slots_used"] == 0
 
 

@@ -63,7 +63,7 @@
   "verdict": "negative",
   "verdict_rationale": "Beats matched 31-ch tree baseline B0 across 4/4 spatial folds (+0.019455 HOLDOUT-DTI, 95% paired CI [+0.007288, +0.031848]) and passes 10/10 DrivenData [0,1] portal gates + sparse/Focus-9 uniqueness (64.49% <= 70%, |rho|=0.0347 <= 0.90), but trails portfolio analytical scarp-ridge holdout reference DPRF1 (0.163792) and live H19-5 (0.2778). Per Rule 5, marked negative for spending a live 3/week DrivenData slot standalone; unique validated GeoTIFF provided for optional testing or multi-family fusion.",
   "lli_empirical_projection": {
-    "label": "LLI-PROJECTION (empirical Ridge on n=118 ORGANIZER-CONFIRMED rasters; LOO MAE=0.0353, LOO Spearman=0.824; NOT an organizer score)",
+    "label": "LLI-PROJECTION (empirical Ridge on n=118 USER-REPORTED / NOT ORGANIZER-CONFIRMED rasters; LOO MAE=0.0353, LOO Spearman=0.824; NOT an organizer score)",
     "projected_value": 0.1898,
     "approx_interval_pm_1mae": [
       0.1545,

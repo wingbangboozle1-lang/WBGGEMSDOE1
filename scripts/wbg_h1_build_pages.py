@@ -222,7 +222,7 @@ def _build_figures(exp: dict[str, Any], proof: dict[str, Any], scored_entries: l
     ax_b.set_ylim(0.05, 0.50)
     ax_b.grid(True, color="#1e293b", linestyle="--", linewidth=0.8)
     ax_b.set_xlabel("Implied Kernel-Weighted Recall of Hidden Faults G_private (%)", color="#cbd5e1", fontsize=9)
-    ax_b.set_ylabel("ORGANIZER-CONFIRMED Live DTI", color="#cbd5e1", fontsize=9)
+    ax_b.set_ylabel("USER-REPORTED / NOT ORGANIZER-CONFIRMED Live DTI", color="#cbd5e1", fontsize=9)
     ax_b.set_title("Forensic Inversion of 0.2778 & Recall Needed for 0.3195 / 0.4437", color="#f8fafc", fontsize=10.5, fontweight="bold")
     leg2 = ax_b.legend(loc="upper left", facecolor="#0f172a", edgecolor="#334155", fontsize=8)
     for t in leg2.get_texts():
@@ -435,14 +435,14 @@ def _render_focus9_rows(focus9: list[dict[str, Any]], rc: dict[str, Any], exp: d
 def _site_narrative_cards(focus9: list[dict[str, Any]]) -> str:
     prose = {
         "GEMSDOE24": "Strongest analytical holdout among the 9 prior sites (`DPRF1`: Dip-Consistent Piedmont Ridge Field, `HOLDOUT-DTI = 0.16379`). Passes all 10 portal `[0,1]` checks (`0` NaNs) and sparse-peer uniqueness (`62.9% <= 70%`). Upstream marked `negative` only because its literal unseparated check included the 99.87%-covering `r13-lattice-s5` grid (`IR-WBG1-01`). Best existing backup raster if testing an analytical ridge lane, though LLI-PROJECTION (`0.1866`) remains below `0.2778`.",
-        "GEMSDOE25": "Historical parent of the `H19-5` `d=2.8` family (`0.2600` ORGANIZER-CONFIRMED, byte-identical 0-XOR clone with `GEMSDOE30`, carrying `6,436` zero-credit `<=200 m` collar dots and exterior NaNs). Its latest `2026-10-26` candidate (`H73-PM`, `42,997` dots) regressed to `HOLDOUT-DTI = 0.11343`. Strict **DO NOT SUBMIT**.",
-        "GEMSDOE27": "Historically weakest live `H19-5` variant (`d=3.5`, `0.2190` ORGANIZER-CONFIRMED). Latest `2026-10-26` candidate (`H31-DRCG-WL-CELF28`) reaches `HOLDOUT-DTI = 0.16040`, passes `[0,1]` portal checks (`0` NaNs), and clears sparse-peer overlap (`69.0% <= 70%`), though it sits right on the 69% edge (`92.1%` one-way inside 516k-px continuous `H23-B-10pct`, `IR-WBG1-03`). Secondary backup behind `GEMSDOE24`.",
-        "GEMSDOE28": "Historical `0.2708` ORGANIZER-CONFIRMED (`b=5` 500 m collar variant of `H19-5`, 0-XOR clone with `GEMSDOE31`). Latest `2026-10-26` candidate (`S21-PUHGB`) suffered severe holdout collapse (`HOLDOUT-DTI = 0.08390`) and fails sparse-peer uniqueness (`90.4%` overlap vs `GEMSDOE37`). Strict **DO NOT SUBMIT**.",
-        "GEMSDOE30": "Historical `0.2600` ORGANIZER-CONFIRMED (0-XOR clone of `GEMSDOE25`). Latest `2026-10-26` candidate (`GDX1`, `44,090` dots, `HOLDOUT-DTI = 0.11965`) contains **`7,111,787` exterior `NaN` cells** and **FAILS DrivenData's whole-array `[0, 1]` portal check** (would trigger the exact `Predicted values must be in range [0, 1]` rejection!). Strict **DO NOT SUBMIT**.",
-        "GEMSDOE31": "Historical `0.2708` ORGANIZER-CONFIRMED (0-XOR clone of `GEMSDOE28`). Latest `2026-10-26` candidate (`H31Y-KINPIED`) scored `HOLDOUT-DTI = 0.09730` and fails sparse-peer uniqueness (`91.3%` 3-px overlap vs `GEMSDOE23` `H30`). Strict **DO NOT SUBMIT**.",
-        "GEMSDOE32": "Portfolio historical live champion (`h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`, `0.2778` ORGANIZER-CONFIRMED), proven via 0-pixel XOR to be `GEMSDOE25` (`0.2600`) with `6,436` `<=200 m` known-fault collar pixels stripped and exterior NaNs zero-filled. Its latest `2026-10-26` candidate (`H47`, `49,231` dots) chased novelty at the expense of fault precision (`HOLDOUT-DTI = 0.07840`). Keep `0.2778` as benchmark; **DO NOT SUBMIT** `H47`.",
-        "GEMSDOE33": "Historical `0.2778` ORGANIZER-CONFIRMED (exact 0-XOR duplicate of `GEMSDOE32`). Latest `2026-10-26` candidate (`S33-SEISDIL` seismicity + geodetic dilation) lacks 100 m scarp localization (`HOLDOUT-DTI = 0.11415`, `69.2%` sparse overlap). Strict **DO NOT SUBMIT**.",
-        "GEMSDOE36": "Historical `0.2750` ORGANIZER-CONFIRMED (`b=3` 300 m collar variant of `H19-5`, slightly over-trimming junction tips relative to `b=2`'s `0.2778`). Latest `2026-10-26` candidate (`GVSC-36 EXP-3`, upslope spring/probe advection + scarp ridge) achieved `HOLDOUT-DTI = 0.15886`, passes `[0,1]` portal gates, and clears sparse-peer overlap (`69.3%`), while upstream halted on `94.6%` one-way containment inside `516k`-px `H23-B-10pct` (`IR-WBG1-03`).",
+        "GEMSDOE25": "Historical parent of the `H19-5` `d=2.8` family (`0.2600` USER-REPORTED / NOT ORGANIZER-CONFIRMED, byte-identical 0-XOR clone with `GEMSDOE30`, carrying `6,436` zero-credit `<=200 m` collar dots and exterior NaNs). Its latest `2026-10-26` candidate (`H73-PM`, `42,997` dots) regressed to `HOLDOUT-DTI = 0.11343`. Strict **DO NOT SUBMIT**.",
+        "GEMSDOE27": "Historically weakest live `H19-5` variant (`d=3.5`, `0.2190` USER-REPORTED / NOT ORGANIZER-CONFIRMED). Latest `2026-10-26` candidate (`H31-DRCG-WL-CELF28`) reaches `HOLDOUT-DTI = 0.16040`, passes `[0,1]` portal checks (`0` NaNs), and clears sparse-peer overlap (`69.0% <= 70%`), though it sits right on the 69% edge (`92.1%` one-way inside 516k-px continuous `H23-B-10pct`, `IR-WBG1-03`). Secondary backup behind `GEMSDOE24`.",
+        "GEMSDOE28": "Historical `0.2708` USER-REPORTED / NOT ORGANIZER-CONFIRMED (`b=5` 500 m collar variant of `H19-5`, 0-XOR clone with `GEMSDOE31`). Latest `2026-10-26` candidate (`S21-PUHGB`) suffered severe holdout collapse (`HOLDOUT-DTI = 0.08390`) and fails sparse-peer uniqueness (`90.4%` overlap vs `GEMSDOE37`). Strict **DO NOT SUBMIT**.",
+        "GEMSDOE30": "Historical `0.2600` USER-REPORTED / NOT ORGANIZER-CONFIRMED (0-XOR clone of `GEMSDOE25`). Latest `2026-10-26` candidate (`GDX1`, `44,090` dots, `HOLDOUT-DTI = 0.11965`) contains **`7,111,787` exterior `NaN` cells** and **FAILS DrivenData's whole-array `[0, 1]` portal check** (would trigger the exact `Predicted values must be in range [0, 1]` rejection!). Strict **DO NOT SUBMIT**.",
+        "GEMSDOE31": "Historical `0.2708` USER-REPORTED / NOT ORGANIZER-CONFIRMED (0-XOR clone of `GEMSDOE28`). Latest `2026-10-26` candidate (`H31Y-KINPIED`) scored `HOLDOUT-DTI = 0.09730` and fails sparse-peer uniqueness (`91.3%` 3-px overlap vs `GEMSDOE23` `H30`). Strict **DO NOT SUBMIT**.",
+        "GEMSDOE32": "Portfolio historical live champion (`h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`, `0.2778` USER-REPORTED / NOT ORGANIZER-CONFIRMED), proven via 0-pixel XOR to be `GEMSDOE25` (`0.2600`) with `6,436` `<=200 m` known-fault collar pixels stripped and exterior NaNs zero-filled. Its latest `2026-10-26` candidate (`H47`, `49,231` dots) chased novelty at the expense of fault precision (`HOLDOUT-DTI = 0.07840`). Keep `0.2778` as benchmark; **DO NOT SUBMIT** `H47`.",
+        "GEMSDOE33": "Historical `0.2778` USER-REPORTED / NOT ORGANIZER-CONFIRMED (exact 0-XOR duplicate of `GEMSDOE32`). Latest `2026-10-26` candidate (`S33-SEISDIL` seismicity + geodetic dilation) lacks 100 m scarp localization (`HOLDOUT-DTI = 0.11415`, `69.2%` sparse overlap). Strict **DO NOT SUBMIT**.",
+        "GEMSDOE36": "Historical `0.2750` USER-REPORTED / NOT ORGANIZER-CONFIRMED (`b=3` 300 m collar variant of `H19-5`, slightly over-trimming junction tips relative to `b=2`'s `0.2778`). Latest `2026-10-26` candidate (`GVSC-36 EXP-3`, upslope spring/probe advection + scarp ridge) achieved `HOLDOUT-DTI = 0.15886`, passes `[0,1]` portal gates, and clears sparse-peer overlap (`69.3%`), while upstream halted on `94.6%` one-way containment inside `516k`-px `H23-B-10pct` (`IR-WBG1-03`).",
     }
     cards = []
     for r in focus9:
@@ -543,7 +543,7 @@ def main() -> None:
       </div>
       <h1>WBGGEMSDOE1 — Dip-Projected Basement-to-Surface Coupling (<code>WBG-H1 / DPGF-1</code>)</h1>
       <p style="margin:6px 0 0;color:#cbd5e1;max-width:1040px;">
-        Autonomous multi-sensor geophysical fault detector, 9-site portfolio audit (<code>GEMSDOE24–36</code>), and exact mathematical inversion of the <code>0.2778</code> <code>ORGANIZER-CONFIRMED</code> benchmark for the
+        Autonomous multi-sensor geophysical fault detector, 9-site portfolio audit (<code>GEMSDOE24–36</code>), and exact mathematical inversion of the <code>0.2778</code> <code>USER-REPORTED / NOT ORGANIZER-CONFIRMED</code> benchmark for the
         <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/" target="_blank" rel="noopener">U.S. DOE GEMS Prize ($300,000)</a>.
         Generated GeoTIFF uses strict all-finite <code>outside="zero"</code> (<code>nodata=None</code>) encoding across all <code>12,279,160</code> cells, permanently eliminating the DrivenData <code>"Predicted values must be in range [0, 1]"</code> validation error.
       </p>
@@ -585,7 +585,7 @@ def main() -> None:
         <strong>Scientific Slot-Preservation Disclosure (Arena Core Values: <em>Maximize P(Win)</em> &amp; <em>Own the Outcome</em>):</strong>
         <code>WBG-H1 (EXP-3)</code> decisively beats our matched 31-channel tree baseline <code>B0</code> across <strong>4/4 spatial folds</strong>
         (<code>HOLDOUT-DTI = 0.123310</code> vs <code>0.103855</code>, paired Δ = <code>+0.019455</code>, 95% CI <code>[+0.007288, +0.031848]</code>, surging <code>+34.9%</code> to <code>0.1797</code> in the <code>NE_LidarGapHeavy</code> quadrant) and beats 6 of the 9 focus sites.
-        However, because pure axis-aligned pixel trees remain below the portfolio's analytical ridge reference <code>GEMSDOE24 DPRF1</code> (<code>HOLDOUT-DTI = 0.163792</code>) and live <code>GEMSDOE32</code> (<code>0.2778</code> <code>ORGANIZER-CONFIRMED</code>), Protocol Rule 5 sets <code>verdict: "negative"</code> for spending one of your <strong>3/week</strong> live DrivenData slots standalone. Use the 1-click <code>.tif</code> above if you specifically wish to benchmark this unique dip-projected ensemble on DrivenData, or fuse its NE LiDAR-gap specialist with a cartographic-jitter-tolerant 2D U-Net/steerable ridge backbone to target <code>&gt; 0.32</code>.
+        However, because pure axis-aligned pixel trees remain below the portfolio's analytical ridge reference <code>GEMSDOE24 DPRF1</code> (<code>HOLDOUT-DTI = 0.163792</code>) and live <code>GEMSDOE32</code> (<code>0.2778</code> <code>USER-REPORTED / NOT ORGANIZER-CONFIRMED</code>), Protocol Rule 5 sets <code>verdict: "negative"</code> for spending one of your <strong>3/week</strong> live DrivenData slots standalone. Use the 1-click <code>.tif</code> above if you specifically wish to benchmark this unique dip-projected ensemble on DrivenData, or fuse its NE LiDAR-gap specialist with a cartographic-jitter-tolerant 2D U-Net/steerable ridge backbone to target <code>&gt; 0.32</code>.
       </div>
     </section>
 
@@ -608,7 +608,7 @@ def main() -> None:
       <div class="card">
         <div class="kpi-label">Live Leaderboard Ceiling (2026-10-26)</div>
         <div class="kpi-val" style="color:#fbbf24;">0.4437 (#1)</div>
-        <div class="kpi-sub"><code>xiaofanhu = 0.4437</code> · Portfolio best = <code>0.2778</code> (<code>GEMSDOE32</code>, <code>ORGANIZER-CONFIRMED</code>)</div>
+        <div class="kpi-sub"><code>xiaofanhu = 0.4437</code> · Portfolio best = <code>0.2778</code> (<code>GEMSDOE32</code>, <code>USER-REPORTED / NOT ORGANIZER-CONFIRMED</code>)</div>
       </div>
     </div>
 
@@ -660,7 +660,7 @@ def main() -> None:
         <div class="card">
           <h3 style="margin-top:0;color:#34d399;">Exact 0-Pixel XOR Theorem (Verified on Raw Rasters)</h3>
           <p style="font-size:0.89rem;">
-            Direct pixelwise comparison of <code>GEMSDOE32</code>'s <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code> (<code>0.2778</code> <code>ORGANIZER-CONFIRMED</code>, <code>37,654</code> dots) against <code>GEMSDOE25</code>'s <code>gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</code> (<code>0.2600</code> <code>ORGANIZER-CONFIRMED</code>, <code>44,090</code> dots) proves:
+            Direct pixelwise comparison of <code>GEMSDOE32</code>'s <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code> (<code>0.2778</code> <code>USER-REPORTED / NOT ORGANIZER-CONFIRMED</code>, <code>37,654</code> dots) against <code>GEMSDOE25</code>'s <code>gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</code> (<code>0.2600</code> <code>USER-REPORTED / NOT ORGANIZER-CONFIRMED</code>, <code>44,090</code> dots) proves:
           </p>
           <pre>GEMSDOE32_pos == GEMSDOE25_pos &amp; (EDT(~existing_faults) &gt; 2.0)
 XOR differing pixels across all 5,167,373 footprint cells = 0</pre>
@@ -674,11 +674,11 @@ XOR differing pixels across all 5,167,373 footprint cells = 0</pre>
         <div class="card">
           <h3 style="margin-top:0;color:#38bdf8;">Exact Inversion of Private Hidden Fault Inventory |G_private|</h3>
           <p style="font-size:0.89rem;">
-            Because <code>13GEMSDOE</code> submitted a blind space-filling spacing-5 lattice — <code>20261001_r13-lattice-s5_v2_nan-outside</code> (<code>206,895</code> dots → <code>0.0904</code> <code>ORGANIZER-CONFIRMED</code> in <code>registry/scored_registry.json</code>) — whose mean <code>300 m</code> kernel height outside the 200 m collar is known analytically (<code>E[k] = 0.37482</code>), the official DTI equation solves directly for DrivenData's hidden Round-1 fault count:
+            Because <code>13GEMSDOE</code> submitted a blind space-filling spacing-5 lattice — <code>20261001_r13-lattice-s5_v2_nan-outside</code> (<code>206,895</code> dots → <code>0.0904</code> <code>USER-REPORTED / NOT ORGANIZER-CONFIRMED</code> in <code>registry/scored_registry.json</code>) — whose mean <code>300 m</code> kernel height outside the 200 m collar is known analytically (<code>E[k] = 0.37482</code>), the official DTI equation solves directly for DrivenData's hidden Round-1 fault count:
           </p>
           <pre>|G_private| = (0.2 · N_s5 · DTI_s5) / (E[k_s5] - 0.8 · DTI_s5)
             = {int(proof['private_test_set_inversion']['inferred_private_fault_pixels_G_private']):,} hidden fault pixels (~{proof['private_test_set_inversion']['inferred_private_fault_length_km_approx']:,.1f} km of unmapped trace, 0.239% of footprint)
-Zero-parameter cross-check on GEMSDOE25 (44,090 dots): predicted {proof['private_test_set_inversion']['zero_parameter_crosscheck_gemsdoe25_predicted_dti']:.4f} vs 0.2600 actual ORGANIZER-CONFIRMED</pre>
+Zero-parameter cross-check on GEMSDOE25 (44,090 dots): predicted {proof['private_test_set_inversion']['zero_parameter_crosscheck_gemsdoe25_predicted_dti']:.4f} vs 0.2600 actual USER-REPORTED / NOT ORGANIZER-CONFIRMED</pre>
           <ul style="font-size:0.86rem;color:#cbd5e1;padding-left:18px;">
             <li><strong><code>0.2778</code> (<code>GEMSDOE32</code>):</strong> Captures <code>TP_w ≈ {proof['milestone_recall_requirements_at_37654_dots']['gemsdoe32_portfolio_best_02778']['implied_TP_w']:,.0f}</code> (<strong>{proof['milestone_recall_requirements_at_37654_dots']['gemsdoe32_portfolio_best_02778']['implied_weighted_recall_pct']:.1f}%</strong> weighted recall of <code>G_private</code>; <code>{proof['milestone_recall_requirements_at_37654_dots']['gemsdoe32_portfolio_best_02778']['implied_TP_w_per_placed_dot']:.3f} TP_w/dot</code>).</li>
             <li><strong><code>0.3195</code> (Prompt Benchmark):</strong> Requires <code>TP_w ≈ {proof['milestone_recall_requirements_at_37654_dots']['prompt_benchmark_target_03195']['implied_TP_w']:,.0f}</code> (<strong>{proof['milestone_recall_requirements_at_37654_dots']['prompt_benchmark_target_03195']['implied_weighted_recall_pct']:.1f}%</strong> weighted recall — just <code>+{proof['milestone_recall_requirements_at_37654_dots']['prompt_benchmark_target_03195']['implied_TP_w'] - proof['milestone_recall_requirements_at_37654_dots']['gemsdoe32_portfolio_best_02778']['implied_TP_w']:,.0f}</code> extra weighted fault pixels at fixed <code>37,654</code> dot budget!).</li>
@@ -695,7 +695,7 @@ Zero-parameter cross-check on GEMSDOE25 (44,090 dots): predicted {proof['private
               <tr>
                 <th>Mechanism Family</th>
                 <th>Verified Submission IDs (<code>registry/scored_registry.json</code>)</th>
-                <th>ORGANIZER-CONFIRMED DTI Range</th>
+                <th>USER-REPORTED / NOT ORGANIZER-CONFIRMED DTI Range</th>
                 <th>Forensic Takeaway</th>
               </tr>
             </thead>
@@ -1011,7 +1011,7 @@ Zero-parameter cross-check on GEMSDOE25 (44,090 dots): predicted {proof['private
     <section id="slot-strategy" class="callout callout-info">
       <h3 style="margin-top:0;">Honest Portfolio Slot Strategy (Should You Spend a 3/Week Slot Right Now?)</h3>
       <ol style="font-size:0.9rem;margin-bottom:0;padding-left:20px;">
-        <li><strong>Best existing live score on the board:</strong> <code>GEMSDOE32</code> / <code>GEMSDOE33</code> historical <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code> is already scored at <strong><code>0.2778</code> (<code>ORGANIZER-CONFIRMED</code>)</strong> — never re-upload any historical clone.</li>
+        <li><strong>Best existing live score on the board:</strong> <code>GEMSDOE32</code> / <code>GEMSDOE33</code> historical <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code> is already scored at <strong><code>0.2778</code> (<code>USER-REPORTED / NOT ORGANIZER-CONFIRMED</code>)</strong> — never re-upload any historical clone.</li>
         <li><strong>Among the 9 reviewed sites' latest <code>2026-10-26</code> files:</strong> <strong>6 of 9 must NOT be submitted</strong> (<code>GEMSDOE30</code> fails <code>[0,1]</code> with 7.11M NaNs; <code>GEMSDOE28</code> &amp; <code>31</code> fail uniqueness &gt;90% and collapse on holdout; <code>GEMSDOE25, 32, 33</code> regressed to <code>0.078–0.114</code> holdout). Only <code>GEMSDOE24</code> (<code>DPRF1</code>, <code>HOLDOUT-DTI = 0.16379</code>, <code>62.9%</code> sparse overlap) and <code>GEMSDOE27</code> (<code>H31-DRCG</code>, <code>HOLDOUT-DTI = 0.16040</code>, <code>69.0%</code> sparse overlap) pass all technical &amp; sparse-novelty gates as conditional backups.</li>
         <li><strong><code>WBGGEMSDOE1</code> (<code>WBG-H1 EXP-3</code>):</strong> Validated 100% portal-safe (<code>[0.0, 1.0]</code>, <code>0</code> NaNs) and genuinely unique (<code>64.49% &lt;= 70%</code> sparse/Focus-9 overlap, <code>|ρ| = 0.0347</code>), achieving a <strong>+18.7% pooled lift (<code>0.1039 → 0.1233</code>, 4/4 folds)</strong> and <strong>+34.9% NE LiDAR-gap surge (<code>0.1797</code>)</strong> over matched tree baseline <code>B0</code>. Because <code>0.1233</code> still trails analytical ridge <code>DPRF1</code> (<code>0.1638</code>) and live <code>0.2778</code>, we mark <code>verdict: "negative"</code> for standalone slot expenditure and recommend reserving live slots until our 66-channel <code>DipShift + TFSDI + LiDAR-Gap</code> stack is trained with a 2D soft-DTI U-Net backbone (<code>WBGGEMSDOE2/3</code>) exceeding <code>0.18+</code> on <code>SegmentHoldout</code>.</li>
       </ol>

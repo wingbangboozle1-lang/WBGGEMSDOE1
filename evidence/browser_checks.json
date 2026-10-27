@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-27T19:57:39.007Z",
+  "generated_utc": "2026-10-27T20:32:48.290Z",
   "browser": "153.0.8010.0",
   "checked": [
     {
@@ -76,6 +76,21 @@
       "file": "wbg-s2-mksf1/how-to-submit.html",
       "desktop": "passed",
       "mobile": "passed"
+    },
+    {
+      "file": "wbg3/index.html",
+      "desktop": "passed",
+      "mobile": "passed"
+    },
+    {
+      "file": "wbg3/how-to-submit.html",
+      "desktop": "passed",
+      "mobile": "passed"
+    },
+    {
+      "file": "wbg3/forensics-and-hypotheses.html",
+      "desktop": "passed",
+      "mobile": "passed"
     }
   ],
   "desktop_viewport": [
@@ -93,6 +108,8 @@
   "primary_download_identity": "passed",
   "wbg_s2_download_sha256": "6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880",
   "wbg_s2_download_identity": "passed",
+  "wbg3_download_sha256": "f158a890dcb5f897ef35282ed05d291e54c4df9b83cf891870193d329b160fb4",
+  "wbg3_download_identity": "passed",
   "body_overflow": false,
   "all_passed": true,
   "no_model_training_or_slot_use": true

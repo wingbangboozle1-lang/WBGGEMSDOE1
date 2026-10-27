@@ -121,7 +121,7 @@ def main() -> int:
 
     # uniqueness: nine focus artifacts (/tmp/reg9) + every aligned tif in docs/
     with rasterio.open(tif_path) as s:
-        surface = s.read(1); transform = s.transform; crs = s.crs
+        surface = s.read(1)
     sys.path.insert(0, str(ROOT / "vendor"))
     from gems57.uniqueness import dot_overlap
     from scipy.stats import spearmanr

@@ -65,9 +65,20 @@ def stage():
                 or not math.isfinite(row["my_dots_within_3px_of_theirs"])
                 or not .70 < row["my_dots_within_3px_of_theirs"] <= 1 for row in witnesses)):
         raise ValueError("staged WBG-S2 bytes or negative decision changed")
+    w3_digest = None
+    w3_card_path = ROOT / "evidence/wbg3_spipmr/run_card.json"
+    if w3_card_path.is_file():
+        w3 = json.loads(w3_card_path.read_text())
+        w3_path = Path(w3["artifact"])
+        if w3_path.is_absolute() or ".." in w3_path.parts or w3_path.parts[:2] != ("docs", "downloads"):
+            raise ValueError("invalid staged WBG-3 research path")
+        with (target / w3_path).open("rb") as stream:
+            w3_digest = hashlib.file_digest(stream, "sha256").hexdigest()
+        if w3_digest != w3["raster_sha256"] or w3["verdict"] != "negative" or w3["decision"]["ok_to_submit"] is not False:
+            raise ValueError("staged WBG-3 bytes or negative decision changed")
     print(json.dumps({"staged_site": str(target.relative_to(ROOT)),
         "canonical_path": "/WBGGEMSDOE1/docs/", "root_redirect": "docs/",
-        "artifact_sha256": digest, "wbg2_sha256": wbg2_digest, "wbg_s2_sha256": s2_digest, "ok_to_submit": False}))
+        "artifact_sha256": digest, "wbg2_sha256": wbg2_digest, "wbg_s2_sha256": s2_digest, "wbg3_sha256": w3_digest, "ok_to_submit": False}))
     return target
 
 

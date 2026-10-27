@@ -1,0 +1,88 @@
+{
+  "file": "wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif",
+  "bytes": 824722,
+  "sha256": "f158a890dcb5f897ef35282ed05d291e54c4df9b83cf891870193d329b160fb4",
+  "format_valid": true,
+  "ok_to_upload": false,
+  "upload_authorization": "not evaluated by a format validator; separate scientific selector required",
+  "format_acceptable": true,
+  "submission_authorized": false,
+  "scope": "Format only; this does not certify bias audit, holdout promotion or weekly-slot eligibility",
+  "hard_failures": [],
+  "official_format_compliant": false,
+  "in_footprint_positive_pixels": 36800,
+  "in_footprint_mass": 36800.0,
+  "checks": {
+    "official_template_grid_and_footprint": {
+      "pass": true,
+      "detail": "Template must be the pinned organizer grid, not just a self-consistent arbitrary raster",
+      "hard_requirement": true
+    },
+    "single_band": {
+      "pass": true,
+      "detail": "count=1",
+      "hard_requirement": true
+    },
+    "dtype_float32": {
+      "pass": true,
+      "detail": "dtypes=('float32',)",
+      "hard_requirement": true
+    },
+    "crs_epsg_32611": {
+      "pass": true,
+      "detail": "EPSG:32611",
+      "hard_requirement": true
+    },
+    "shape_matches_template": {
+      "pass": true,
+      "detail": "(3730, 3292) vs (3730, 3292)",
+      "hard_requirement": true
+    },
+    "geotransform_matches_template": {
+      "pass": true,
+      "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+      "hard_requirement": true
+    },
+    "footprint_all_finite": {
+      "pass": true,
+      "detail": "0 NaN/Inf inside the 5,167,373-pixel footprint",
+      "hard_requirement": true
+    },
+    "footprint_range_0_1": {
+      "pass": true,
+      "detail": "finite=5167373/5167373; range=0.0 to 1.0",
+      "hard_requirement": true
+    },
+    "outside_is_nan_official_text": {
+      "pass": false,
+      "detail": "0 of 7,111,787 outside pixels are NaN",
+      "hard_requirement": false
+    },
+    "nodata_tag_is_nan": {
+      "pass": false,
+      "detail": "nodata=None",
+      "hard_requirement": false
+    },
+    "variant_nan_aware_whole_array": {
+      "pass": true,
+      "detail": "np.nanmin/np.nanmax over the whole array",
+      "hard_requirement": true
+    },
+    "variant_masked_read": {
+      "pass": true,
+      "detail": "rasterio read(masked=True).compressed()",
+      "hard_requirement": true
+    },
+    "variant_strict_whole_array_no_nan_allowed": {
+      "pass": true,
+      "detail": "((a>=0)&(a<=1)).all() over the whole array - fails for ANY NaN, including the official sample's NaN outside",
+      "hard_requirement": false
+    },
+    "profile_matches_official_sample": {
+      "pass": false,
+      "detail": "driver/dtype/nodata/size/crs/transform equal to template; compress=lzw (template lzw)",
+      "hard_requirement": false
+    }
+  },
+  "portal_safe_local_policy": true
+}

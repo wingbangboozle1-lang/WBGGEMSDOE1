@@ -1,5 +1,8 @@
 # Source and claim audit — 2026-10-26
 
+**Update 2026-10-27:** The official [GeoDAWN USGS release](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and), [competition problem](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/), [GDR INGENIOUS listing](https://gdr.openei.org/submissions/1391), [NLR official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf) and [public leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) were directly retrieved through the web page reader. See `evidence/official_leaderboard_observation_20261027.json` (public top 0.4544; no file receipt). The raw 19-band organizer download and the original K/Th/U/1 m DEM bytes were **not** independently retrieved; all restored training bytes remain owner mirrors. Statements below saying "not fetched here" describe the **frozen 2026-10-26 TIP1 session**, not the 27 October page-level review.
+
+
 This record separates **official scientific provenance** from **the exact bytes used here**. A link is not a receipt, and a GitHub mirror is not converted into an organizer-authenticated source by hashing it.
 
 | Claim/layer | Official source for manual review | Exact local byte evidence | Verification status | Use in TIP1 |

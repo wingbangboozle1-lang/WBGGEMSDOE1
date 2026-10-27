@@ -1,5 +1,7 @@
 # Follow-up review — 27 October 2026
 
+**Same-day later access note:** The GitHub-only source refresh described below belongs to this earlier review. A separate later direct official-page reader check on 27 October retrieved the [public leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) (rank one **0.4544**) along with the official task, rules, USGS GeoDAWN and GDR listing pages. See [dated observation and scope limits](../evidence/official_leaderboard_observation_20261027.json) and [five untested prospective hypotheses](2026-10-27-prospective-hypotheses.md). The source-access paragraph below is historical to that earlier sandbox session; it does not contradict the later page-level check. Neither session authenticated original organizer raster downloads, a current account allowance or a file-linked project score, and no new experiment was started.
+
 ## Decision: no eligible contest file
 
 This is a continuation of the frozen WBG-C1 lane, not a new experiment allowance.

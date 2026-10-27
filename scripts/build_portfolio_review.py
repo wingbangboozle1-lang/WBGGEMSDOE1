@@ -7,11 +7,11 @@ Only artifact integrity/format/ZIP checks are recomputed by this review.
 from __future__ import annotations
 
 import hashlib
-from html import escape
 import json
-from pathlib import Path
 import sys
 import zipfile
+from html import escape
+from pathlib import Path
 
 import numpy as np
 import rasterio
@@ -128,7 +128,7 @@ def build_review():
                     "A mean lattice-kernel assumption cannot identify hidden fault count or weighted recall from one rounded reported score. Private-count inversion is not verified evidence.",
                     "Sparse-only or symmetric overlap does not satisfy the literal one-way all-registry threshold; no density exemption is authorized.",
                     "Mirrored data integrity is not independent organizer provenance. Core data and all nineteen shared cache bands were restored and hash-checked in this follow-up; that still does not authorize resuming a stopped lane.",
-                    "The official leaderboard cannot be refreshed on this sandbox's outbound allowlist. Retain the dated observation; do not label it current.",
+                    "This review's GitHub-only feed did not refresh the official page. A separate direct official-page reader observed public rank one 0.4544 on 2026-10-27; it is not a project TIFF score, file receipt or live guarantee.",
                 ])
 
 
@@ -149,7 +149,7 @@ def render(review):
 <h2>Trust corrections</h2><ul>{issues}</ul><p>The original cards remain unchanged as historical records. This review overrides unsupported interpretations, not their frozen measurements. No training, tuning, final-dot placement, new raster, or submission slot was used.</p>
 <p>The highest supplied historical nine-site claim remains GEMSDOE32 B2 at USER-REPORTED 0.2778, not an organizer receipt. Pruning catalogue-near redundant dots is a plausible metric explanation, not proof of hidden-label locations.</p>
 <h2>Next steps in order</h2><ol><li>Resolve the missing lane assignment and literal registry saturation conflict centrally. Do not exempt dense priors privately or move dots around registry holes.</li><li>Restore the pinned feature cache, verify band semantics/provenance, and lock an untouched same-instrument current-best comparator.</li><li>Preregister an authorized method, run each feature canary and buffered segment holdout, then both literal novelty gates and exact saved-file validation.</li><li>Only a separate selector may approve a weekly slot after all gates pass; current account allowance and receipts remain unavailable.</li></ol>
-<p><a href="data/portfolio-review.json">Full machine-readable review, hashes, validators and registry measurements</a> · <a href="data/followup-run-card.json">Follow-up run card</a> · <a href="standing-prompt.md">Standing brief</a></p></main></body></html>'''
+<p><a href="data/portfolio-review.json">Full machine-readable review, hashes, validators and registry measurements</a> · <a href="data/followup-run-card.json">Follow-up run card</a> · <a href="data/official-leaderboard-observation-20261027.json">Dated official public-page observation, not a file score</a> · <a href="standing-prompt.md">Standing brief</a></p></main></body></html>'''
 
 
 def main():

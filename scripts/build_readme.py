@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Keep the README decision current and embed the complete supplied standing brief."""
-from pathlib import Path
 import json
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -14,20 +14,25 @@ def main():
     h1_tif = wbg_h1_rc["raster_sha256"]["tif_file"]
     h1_zip = wbg_h1_rc["raster_sha256"]["zip_file"]
     standing = (ROOT / "docs/standing-prompt.md").read_text()
+    feed = json.loads((ROOT / "docs/data/feed.json").read_text())
+    observation = feed["leaderboard"]
+    heads = feed.get("repository_heads", [])
+    changed_heads = sum(bool(row.get("changed_since_audit")) for row in heads)
     header = f'''# WBG GEMS — evidence-first fault mapping
 
 ## DOWNLOAD: YES, for research. SUBMIT: **NO**.
 
-**27 October 2026 follow-up: [all four releases, exact-byte revalidation and trust corrections](docs/portfolio-review.html)** ·
-[Machine-readable review](docs/data/portfolio-review.json). No new experiment: the lane remains stopped.
-All four are negative research downloads, not recommended contest submissions. Leaderboard estimates remain unavailable.
-The [parallel exact-reference audit](docs/release-review.html) and its [review notes](docs/review-20261027.md) are also preserved; both reviews reach the same negative decision.
+**[All four frozen TIFFs: exact-byte review and trust corrections](docs/portfolio-review.html)** ·
+[Machine-readable four-artifact review](docs/data/portfolio-review.json) ·
+[Independent exact-reference review](docs/release-review.html). Neither review generated a new
+TIFF or authorized a competition slot; their historical holdouts are not a common leaderboard ranking.
 
 **[Open the research desk](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/)** ·
 [Executive summary](docs/executive-summary.md) · [Submission guide](docs/how-to-submit.html) ·
-[Exact JSON run card](registry/run_card.json)
+[Exact historical scientific run card](registry/run_card.json) ·
+[2026-10-27 review decision JSON — no new experiment](evidence/review_run_card_20261027_followup.json)
 
-**[Download the frozen research TIFF](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/downloads/{tif})** ·
+**[Download the last generated research TIFF](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/downloads/{tif})** ·
 [One-TIFF ZIP](docs/downloads/{tif.replace('.tif', '.zip')}) ·
 [TIFF in repository](docs/downloads/{tif}) · [Validation receipt](docs/downloads/{tif.replace('.tif', '.json')})
 
@@ -50,6 +55,17 @@ The [parallel exact-reference audit](docs/release-review.html) and its [review n
 - Name: `{card['submission_name']}`.
 - Note (≤140 characters): `{card['submission_note']}`.
 
+## 2026-10-27 follow-up: all download decisions
+
+**[Which file is safe to submit? None currently — see all four exact-file checks](docs/release-review.html)** ·
+[Machine-readable report](evidence/release_review_20261027.json) · [Review and next steps](docs/review-20261027.md).
+All four frozen research TIFFs pass local format revalidation. None is approved for submission.
+No new experiment or TIFF was generated in either review: the existing STOP remains binding.
+The earlier release review could not fetch non-GitHub pages through its sandbox; a separate later
+27 October direct page-reader check retrieved the official public leaderboard and official source
+pages, recorded below. Neither review authenticated organizer-origin raster downloads or an
+artifact-linked score. Public rank one is a dated observation, **not a live guarantee**.
+
 ## Review outcome and historical learning
 
 The starting checkout at `5d2236b` contained only `README.md` with a one-line title: no existing
@@ -69,9 +85,9 @@ credit and avoiding low-marginal-credit predictions are plausible reasons for th
 ordering, not a causal proof from unavailable hidden labels. A 200 m exclusion is **not** an
 organizer rule. No historical file should be copied into a new "unique" entry.
 
-The direct **official public-leaderboard observation on 2026-10-26 was 0.4437**, not the prompt's
-older targets. That is **not** an organizer result for any project TIFF. A higher project score
-was not obtained or credibly projected in this session.
+The directly retrieved [official public leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) on **{observation['observed_date_utc']}** had rank one **{observation['public_dw_tversky']:.4f}** (dated observation, not a live guarantee), different from both prompt targets 0.3195 and 0.4413. This is **not** an organizer result for any project TIFF. [Exact observation record](evidence/official_leaderboard_observation_20261027.json). A higher project score was not obtained or credibly projected.
+
+**Audit freshness:** {changed_heads}/9 focus-site GitHub heads differed from the frozen byte audit at the last check. The nine-site table identifies the highest *supplied historical* values at the pinned commits, not current per-site winners; no fresh unique submission is certified merely by tracking a head. [Dated feed](docs/data/feed.json).
 
 ## Parallel work preserved during integration
 
@@ -81,18 +97,17 @@ Their frozen scientific modules, receipts and artifacts are retained; they were 
 The current **one-experiment count is WBG-C1 only**, not a sum or reset of the inherited lane budgets.
 Different evaluator/split/representation results must not be pooled or ranked as comparable scores.
 
-- [Original parallel site, with its own frozen assets and data](docs/parallel/main-b9a2d53/index.html)
+- [Frozen original parallel site](docs/parallel/main-b9a2d53/index.html) — archival evidence only; **contains unverified claims and outdated upload advice. Do not follow it.**
 - [Original main README](research/inherited-main-README-b9a2d53.md) (historical commands/paths)
 - [Byte-preservation/integration receipt](evidence/parallel_main_integration.json)
 - [Frozen TIP1 card](evidence/tip1_run_card_20261026.json) and [MVGZ card](evidence/run_card.json)
-- **[WBG-H1 / DPGF-1 corrected result page](docs/wbg-h1-dpgf1/index.html)** — research only, **DO NOT SUBMIT**.
-  [TIFF]({h1_tif}) · [ZIP]({h1_zip}) · SHA-256 `{wbg_h1_rc['raster_sha256']['tif_sha256']}`.
-  Name `{wbg_h1_rc['submission_name']}`. Frozen **HOLDOUT-DTI {wbg_h1_rc['holdout_dti']['dti']:.6f}**,
-  95% CI [{wbg_h1_rc['holdout_dti']['ci95'][0]:.6f}, {wbg_h1_rc['holdout_dti']['ci95'][1]:.6f}],
-  `{wbg_h1_rc['holdout_dti']['evaluator_version']}`, {wbg_h1_rc['holdout_dti']['n_withheld_positives']:,} withheld positives.
-  Literal lattice overlap **99.8035%** exceeds 70%; sparse/symmetric checks do not authorize an exemption.
-  The inherited LLI forecast, claims of organizer-confirmed scores, and private-count inversion are
-  **not verified evidence**. Original cards remain frozen with explicit corrections on the live page.
+- **[WBG-H1 corrected negative-result summary](docs/wbg-h1-dpgf1/index.html)** ·
+  [Safety-corrected guidance](docs/wbg-h1-dpgf1/executive-summary.html) ·
+  [Research-only all-finite GeoTIFF (`{Path(h1_tif).name}`)]({h1_tif}) (research identifier `{wbg_h1_rc['submission_name']}`; `SHA-256: {wbg_h1_rc['raster_sha256']['tif_sha256']}`) ·
+  [ZIP archive]({h1_zip}) · [Frozen WBG-H1 run card](evidence/wbg_h1/run_card.json).
+  - Inherited EXP-3 records **HOLDOUT-DTI {wbg_h1_rc['holdout_dti']['dti']:.6f}**, 95% CI [{wbg_h1_rc['holdout_dti']['ci95'][0]:.6f}, {wbg_h1_rc['holdout_dti']['ci95'][1]:.6f}], evaluator `{wbg_h1_rc['holdout_dti']['evaluator_version']}`, {wbg_h1_rc['holdout_dti']['n_withheld_positives']:,} withheld positives. Its matched B0 control has HOLDOUT-DTI {wbg_h1_rc['holdout_dti']['baseline_b0_dti']:.6f} on that instrument and count, not a leaderboard score; it was not rerun on 27 October.
+  - Format validation passes; **literal final-dot overlap {wbg_h1_rc['registry_correlation_and_overlap']['literal_oneway_vs_r13_space_filling_lattice_ir_wbg1_01']*100:.4f}% >70%** with the registered calibration lattice. Sparse-only and symmetric checks do not clear this gate. Frozen verdict **{wbg_h1_rc['verdict']} / DO NOT SUBMIT**; no weekly slot was authorized.
+  - The previous generated WBG-H1 subsite contained unqualified “ORGANIZER-CONFIRMED” owner claims, unsafe backup/upload advice, and speculative inversion of hidden labels. Its published correction does **not** rewrite the frozen card or TIFF. The implied private-count/recall inversion equates different metric sums and is mathematically unsupported without hidden geometry. No file-linked organizer receipt is available; see the [dated correction](docs/review-20261027.md).
 - Older two-argument `validate_submission.py candidate.tif reference.tif` callers retain their
   supplied-reference format API; this is compatibility only and never confers slot approval.
   WBG-C1 still uses the unchanged, pinned `gems57` all-finite validator/writer.
@@ -101,6 +116,12 @@ Different evaluator/split/representation results must not be pooled or ranked as
   preserves its prior hash/archive. No metric, evaluator or pinned-template fork was introduced.
 - The older bridge-specific restore entry point is retained as `scripts/download_bridge_legacy.sh`
   with `scripts/prepare_bridge_legacy.py`; current WBG-C1 commands below are unchanged.
+
+## Current 2026-10-27 review and next actions
+
+- Restored the three hash-pinned **owner-mirror core rasters** (~419 MB feature stack + grid/labels) in this sandbox and independently rehashed all 19 cached bands with the unmodified shared template. This resolves local *placement*, not organizer-origin authentication; large inputs are ignored by Git and new clones must run the restore commands below. The optional organizer `1m_DEM_links.csv` is absent here because the data tab redirects to login; it is **not** required for the cached 19-band experiment. No stopped lane was retrained.
+- [Five newly ranked *prospective* geological hypotheses](research/2026-10-27-prospective-hypotheses.md) give named layers, signatures, missing-catalogue rationales, non-fault mimics, costs, and official-data availability. The first untested proposal is cross-contact magnetic fabric displacement (MFO1); **zero new experiments** were run because no assigned method paragraph was supplied and the previous lane is STOPPED. It is not a projected score or an upload-ready file. The [dated review decision JSON](evidence/review_run_card_20261027_followup.json) records NULL new-hypothesis metrics beside the unchanged prior negative; no historic DTI is relabelled a fresh trial.
+- The submission guide now cites the official [rules §3.2](https://docs.nlr.gov/docs/fy26osti/96647.pdf): if applicable, disclose generative-AI use in the prize narrative; a short file note is not that disclosure. The original upload range-error cause remains unproved without the rejected bytes.
 
 ## What is implemented
 
@@ -139,15 +160,18 @@ bash scripts/download_competition_data.sh
 .venv/bin/python scripts/validate_submission.py docs/downloads/{tif}
 # Deliberately exits 2 for this locally valid but unapproved artifact:
 .venv/bin/python scripts/validate_submission.py --require-submit-ready docs/downloads/{tif}
+# Reopen and compare all four exact negative downloads with committed evidence:
+.venv/bin/python scripts/review_releases.py --check
+# Independently rebuild the additional four-artifact/ZIP portfolio report:
+.venv/bin/python scripts/build_portfolio_review.py
+# Three-way input/cache/artifact report; INPUTS_READY_LANE_STOPPED exits 2, not slot approval:
+.venv/bin/python scripts/check_readiness.py
 
 # Restore frozen peer corpus only for audit, never model inputs:
 .venv/bin/python scripts/fetch_repositories.py
 .venv/bin/python scripts/audit_repositories.py
 # The next command audits the unchanged surface; it does NOT retrain/place dots:
 .venv/bin/python scripts/audit_registry.py
-
-# Reopen all four local releases (no modelling, no slot):
-.venv/bin/python scripts/build_portfolio_review.py
 
 # Rebuild report pages from persisted measured JSON (no modelling):
 python scripts/refresh_feed.py --offline
@@ -166,7 +190,7 @@ BASE_URL=http://127.0.0.1:8000/ npm run test:browser
 # Minimal containers without NSS/NSPR may also need BROWSER_COMPAT_LIBS=1.
 ```
 
-The browser check visits all nine current pages at desktop/mobile sizes, rejects body overflow and
+The browser check visits all nine main and corrected decision pages at desktop/mobile sizes, rejects body overflow and
 JavaScript page errors, tests the site filter, and hashes all four actual downloaded TIFFs.
 Screenshots stay in ignored `.cache/browser-review/`; the JSON receipt is inspectable in
 [evidence/browser_checks.json](evidence/browser_checks.json). These are site checks, not evidence
@@ -206,7 +230,7 @@ not falsely claim that a browser button trains the model.
    configuration change. Only actual GitHub run/deployment receipts establish publication.
 
 [Official-source claim register](registry/sources.json) · [Irregularities](registry/irregularities.json)
-· [Frozen preregistration](registry/preregistration.json) · [Review passes](evidence/review_passes.json)
+· [Frozen preregistration](registry/preregistration.json) · [27 October three review passes](evidence/review_passes_20261027_followup.json) · [Original review passes](evidence/review_passes.json)
 
 ## Project principles
 

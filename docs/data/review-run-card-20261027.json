@@ -1,0 +1,139 @@
+{
+  "record_type": "2026-10-27 evidence-and-decision review; NO NEW SCIENTIFIC RUN",
+  "recorded_utc": "2026-10-27T17:36:54+00:00",
+  "prospective_hypothesis": {
+    "id": "MFO1",
+    "status": "UNTESTED; NOT AUTHORIZED",
+    "mechanism": "Cross-contact magnetic fabric displacement; along-strike coherent nonzero offset with independent gravity-gradient corroboration.",
+    "named_non_fault_mimic": "Intrusive/dike magnetic contact or flight-line leveling seam",
+    "inputs": "owner-mirror cached 19-band feature stack; original organizer origin unverified",
+    "source": "research/2026-10-27-prospective-hypotheses.md",
+    "holdout_dti": null,
+    "holdout_ci95": null,
+    "withheld_positives": null,
+    "registry_max_spearman_rho": null,
+    "registry_max_forward_3px_overlap": null,
+    "generated_new_raster_sha256": null,
+    "verdict": "NOT RUN / NO PROMOTION"
+  },
+  "frozen_existing_negative_reference": {
+    "source_card": "registry/run_card.json",
+    "hypothesis": "WBG-C1: conductance-depth curvature non-coaxiality",
+    "mechanism": "Scale-normalized Hessian commutator at 300/800 m, curvature strength, cross-scale persistence and dilatation support; 19-band spatial OOF HGB plus four new channels.",
+    "named_non_fault_mimic": "Oblique saline-clay basin-fill/lithologic contacts or shared inversion/interpolation artifacts.",
+    "holdout": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.01404466519440323,
+      "ci95": [
+        0.01183137469362976,
+        0.01639563940835171
+      ],
+      "withheld_positive_pixels": 11330,
+      "tpw": 4835.375915678135,
+      "fpw": 1671272.600026754,
+      "fnw": 6494.624084321865
+    },
+    "same_instrument_control": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.014145537328473203,
+      "ci95": [
+        0.011931414421377988,
+        0.016499752722619405
+      ],
+      "withheld_positive_pixels": 11330,
+      "tpw": 4868.066530878377,
+      "fpw": 1670519.46752637,
+      "fnw": 6461.933469121621
+    },
+    "paired_delta_holdout": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": -0.00010087213406997399,
+      "ci95": [
+        -0.00023195991478308924,
+        3.0453847645656673e-05
+      ],
+      "withheld_positive_pixels": 11330
+    },
+    "registry_surface_before_dots": {
+      "phase": "surface-before-placement",
+      "checked_unique_file_hashes": 360,
+      "source_paths": 377,
+      "scope": "All tracked aligned single-band TIFFs outside data/ and vendor/ in nine frozen owner snapshots. Includes archives, research artifacts and calibration priors. Not all 92 user-listed sites, hidden/private rasters, releases or later commits.",
+      "max_spearman_rho": 0.15233060870020235,
+      "max_forward_3px_overlap": 0.9987243421716145,
+      "byte_unique_among_checked": true,
+      "decoded_pixel_unique_among_checked": true,
+      "passes_literal_uniqueness": false,
+      "complete_all_user_listed_sites": false,
+      "final_dots": "NOT GENERATED: surface duplicate STOP; no final-dot clearance claimed"
+    },
+    "raster_path": "docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+    "tiff_sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+    "zip_sha256": "325750e6d03066d47dc9a4401217cd1870fe49f7d004a087b126ba61d2f9c6d9",
+    "exact_validator": {
+      "all_checks_passed": true,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "range_min": 0.0,
+      "range_max": 0.8809285163879395,
+      "grid": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "zip_all_checks_passed": true,
+      "require_submit_ready_exit_code": 2,
+      "require_submit_ready_ok_to_submit": false
+    },
+    "proposed_name_never_uploaded": "wbg-c1-commutator-research-surface-20261026-acea88448272",
+    "proposed_note_never_uploaded": "WBG-C1 curvature non-coaxiality; spatial OOF research surface; no dot placement; NOT approved for submission.",
+    "verdict": "negative",
+    "ok_to_download_for_research": true,
+    "ok_to_submit": false
+  },
+  "experiment_budget": {
+    "new_experiments_this_review": 0,
+    "weekly_slots_used_this_review": 0,
+    "historical_experiments_completed_in_frozen_lane": 1
+  },
+  "decision": {
+    "promote_new_hypothesis": false,
+    "select_for_competition_slot": false,
+    "ok_to_download_existing_negative_for_research": true,
+    "ok_to_submit_any_current_raster": false,
+    "reason": "Assigned method paragraph absent; frozen WBG-C1 duplicate STOP and negative paired efficacy; all new geological candidates untested. No organizer-confirmed receipt."
+  },
+  "scope_limit": "No new raster, holdout, final dots, organizer score, or account allowance measured by this review; values for WBG-C1 are historical and have not been recomputed here."
+}

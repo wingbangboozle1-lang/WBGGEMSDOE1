@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_date_utc": "2026-10-26",
+  "reviewed_date_utc": "2026-10-27",
   "items": [
     {
       "id": "IR-001",
@@ -134,6 +134,41 @@
       "title": "First STOP versus later verification timestamps",
       "finding": "The first-STOP receipt retained 22:00:39Z, but a caller stamped the ledger stop_utc again during later diagnostic rechecks. This could misleadingly make the original stop appear later. No model, placement or upload ran after the original STOP.",
       "action": "Set ledger stop_utc from the immutable first-STOP receipt and store last_registry_verification_utc separately. Add a regression test that subsequent diagnostics cannot move the STOP time. This is a metadata-only correction; no TIFF pixels or measured statistics change."
+    },
+    {
+      "id": "IR-020",
+      "severity": "fixed",
+      "title": "Inherited WBG-H1 Pages recommended negative uploads and upgraded owner claims to organizer receipts",
+      "finding": "The inherited rendered WBG-H1 subsite called some owner-reported historical values ORGANIZER-CONFIRMED, described conditional backups as safe, linked a negative research TIFF to an upload walkthrough and offered an unproven inversion of hidden test size. No artifact-linked DrivenData receipt exists. Its own run card records negative verdict and 99.8035% literal directed overlap with a retained lattice.",
+      "action": "Replaced only the generated WBG-H1 subsite with a read-only DO NOT SUBMIT report; preserved frozen TIFF, run card, original archived parallel site and measured hashes. Current site quarantines historical scores and links current submission guide."
+    },
+    {
+      "id": "IR-021",
+      "severity": "fixed",
+      "title": "Readiness script misclassified the optional DEM index and existing artifact",
+      "finding": "The earlier CLI said no submission TIFF exists and blocked the cached 19-band method solely because 1m_DEM_links.csv is absent. The TIFF and pinned inputs/cache are available (or restorable); the DEM URL index is required for raw 1m work, not for the 19-band cached method.",
+      "action": "Reopen/validate exact TIFF and ZIP, hash all three owner-mirror core inputs, all 19 cache bands and all 24 shared files; report optional DEM index separately. This environment now has restored pinned mirror bytes, no organizer-origin authentication. Negative science remains negative."
+    },
+    {
+      "id": "IR-022",
+      "severity": "blocking",
+      "title": "All nine historical site snapshots have changed since the frozen audit",
+      "finding": "GitHub-only public-head check on 2026-10-27 saw nine main heads differing from the nine pinned audit commits. The historical table does not establish the newest best file or global uniqueness at those later commits.",
+      "action": "Show per-site changed-head links and dated feed, retain pinned hash/audit scope. Do not automatically upgrade an upstream README value to an ORGANIZER-CONFIRMED score or release clearance."
+    },
+    {
+      "id": "IR-023",
+      "severity": "fixed",
+      "title": "Prior radiometric proposal mislabeled external K/Th/U as core-cached",
+      "finding": "The pinned 19-band training_features.tif list has only the aggregate tc descriptor; separate K, Th and U layers are optional external owner-derived grids in registry/data_manifest.json, not the 19-band cache. Original radiometric bytes/scale and coverage were not reverified in this lane.",
+      "action": "Correct the prospective hypothesis queue and add a dated erratum in the prior research notes; defer that candidate until official-source bytes and quantization/provenance are checked."
+    },
+    {
+      "id": "IR-024",
+      "severity": "medium",
+      "title": "Conflicting public leaderboard targets became stale",
+      "finding": "The prompt names 0.3195 and 0.4413 as current highs. A direct official public-page fetch on 2026-10-27 instead showed rank-one xiaofanhu 0.4544. This observation is not a file-specific submission receipt or private score.",
+      "action": "Persist a dated public observation with URL and methodology; display a stale/fetch-failure warning, never infer a project score. The scheduled Pages refresh can update it if the public page remains accessible."
     }
   ]
 }

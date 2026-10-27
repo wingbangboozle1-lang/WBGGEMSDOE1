@@ -7,10 +7,12 @@ this entry point never alters a model, measurement, artifact or slot decision.
 """
 from __future__ import annotations
 
-from html import escape
+import hashlib
 import json
-from pathlib import Path
 import shutil
+import zipfile
+from html import escape
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -25,6 +27,22 @@ def main():
         if source.exists():
             shutil.copyfile(source, out / "data" / name)
     card = json.loads((ROOT / "evidence/wbg_h1/run_card.json").read_text())
+    overlap_witness = card["registry_correlation_and_overlap"]["literal_oneway_vs_r13_space_filling_lattice_ir_wbg1_01"]
+    if card["verdict"] != "negative" or overlap_witness <= .70:
+        raise ValueError("frozen WBG-H1 negative/literal-overlap decision changed; review before publishing")
+    paths = card["raster_sha256"]
+    for kind in ("tif", "zip"):
+        path = (ROOT / paths[f"{kind}_file"]).resolve()
+        if not path.is_relative_to((ROOT / "docs/downloads").resolve()) or not path.is_file():
+            raise ValueError(f"frozen WBG-H1 {kind} download missing or outside public downloads")
+        with path.open("rb") as file:
+            if hashlib.file_digest(file, "sha256").hexdigest() != paths[f"{kind}_sha256"]:
+                raise ValueError(f"frozen WBG-H1 {kind} bytes differ from source run card")
+    with zipfile.ZipFile(ROOT / paths["zip_file"]) as bundle:
+        if bundle.namelist() != [Path(paths["tif_file"]).name]:
+            raise ValueError("frozen WBG-H1 ZIP must contain exactly its TIFF")
+        if hashlib.sha256(bundle.read(bundle.namelist()[0])).hexdigest() != paths["tif_sha256"]:
+            raise ValueError("frozen WBG-H1 ZIP payload differs from exact TIFF")
     h = card["holdout_dti"]
     registry = card["registry_correlation_and_overlap"]
     tif = Path(card["raster_sha256"]["tif_file"]).name

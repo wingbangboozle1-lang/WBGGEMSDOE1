@@ -8,13 +8,13 @@ runs on scheduled GitHub Pages builds; no git commit/push or upload is performed
 from __future__ import annotations
 
 import argparse
-from html.parser import HTMLParser
 import json
 import os
-from pathlib import Path
 import re
 import sys
 import urllib.request
+from html.parser import HTMLParser
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
@@ -100,7 +100,8 @@ def main():
     sources = json.loads((ROOT / "registry/sources.json").read_text())
     seed = next(s for s in sources["sources"] if s["id"] == "OFFICIAL-LEADERBOARD")
     last = previous.get("leaderboard", {**seed["observation"], "evidence_class": seed["evidence_class"],
-        "source": seed["url"], "observed_date_utc": "2026-10-26", "observation_method": "fetch_page direct official page retrieval in research session",
+        "source": seed["url"], "observed_date_utc": seed["observation"]["date_utc"],
+        "observation_method": "dated direct official-page observation in the source register",
         "not_a_project_submission_receipt": True})
     errors, heads = [], []
     leaderboard_status = "retained_observation_not_refreshed"
@@ -110,8 +111,8 @@ def main():
                 last = {**parse_leaderboard(fetch(LEADERBOARD)), "observed_utc": utc_now(),
                         "observation_method": "strict official HTML leaderboard table parse"}
                 leaderboard_status = "network_verified"
-            except Exception as e:
-                errors.append({"source": LEADERBOARD, "error": str(e)[:220]})
+            except (OSError, UnicodeError, ValueError, KeyError, TypeError, IndexError) as exc:
+                errors.append({"source": LEADERBOARD, "error": str(exc)[:220]})
                 leaderboard_status = "refresh_unavailable_last_observation_retained"
         pins = json.loads((ROOT / "registry/repository_snapshots.json").read_text())["repositories"]
         for pin in pins:
@@ -119,8 +120,8 @@ def main():
                 data = json.loads(fetch(f"https://api.github.com/repos/{pin['repo']}/commits/main", github=True))
                 heads.append({"repo": pin["repo"], "audited_commit": pin["ref"], "observed_head": data["sha"],
                               "changed_since_audit": data["sha"] != pin["ref"], "checked_utc": utc_now()})
-            except Exception as e:
-                errors.append({"source": pin["repo"], "error": str(e)[:220]})
+            except (OSError, UnicodeError, ValueError, KeyError, TypeError, IndexError) as exc:
+                errors.append({"source": pin["repo"], "error": str(exc)[:220]})
     else:
         heads = previous.get("repository_heads", [])
     feed = {"generated_utc": utc_now(), "network_refresh_attempted": not args.offline,

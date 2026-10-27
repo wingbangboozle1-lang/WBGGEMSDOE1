@@ -1,8 +1,8 @@
-# Executive summary — 26 October 2026
+# Executive summary — frozen 26 October 2026 experiment; public feed dated separately
 
 ## DOWNLOAD: YES (research only). SUBMIT: NO.
 
-[27 October follow-up: all four releases and trust corrections](portfolio-review.html). No new experiment; the existing lane remains stopped. All leaderboard estimates remain unavailable.
+[27 October follow-up: all four releases and trust corrections](portfolio-review.html). No new experiment; the stopped lane remains stopped.
 
 [Download the frozen research TIFF](downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif) · [one-TIFF ZIP](downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.zip) · [machine-readable run card](data/run-card.json)
 
@@ -33,7 +33,9 @@ Paired delta versus refitted 19-band control: **-0.000101** (HOLDOUT-DTI), 95% C
 
 Exact raster identities: D2.8 44,090 dots → remove 3,891 within 100 m of the catalogue → B1 40,199 → remove 2,545 more within 200 m → B2 37,654. GEMSDOE25 and GEMSDOE30 have identical decoded predictions. GEMSDOE36 contains all B2 pixels plus 1,200 additions. Sparse support and low-marginal-credit pruning can reduce redundant false-positive cost under the official max-cover metric. Hidden labels are unavailable, so that mechanism is plausible, not a proved causal account of each historical result. A 200 m exclusion is not an organizer rule.
 
-GEMSDOE32's supplied 0.2778 is USER-REPORTED, not a verified file receipt. The direct official public leaderboard observation on 2026-10-26 was 0.4437; it is not a result for any project TIFF. No leaderboard projection is justified for the new surface.
+GEMSDOE32's supplied 0.2778 is USER-REPORTED, not a verified file receipt. The direct official public leaderboard observation dated 2026-10-27 was 0.4544; it is not a result for any project TIFF. No leaderboard projection is justified for the new surface.
+
+**Audit freshness:** 9/9 site heads changed at the last GitHub check. Historical files are pinned to old commits, not a claim about the current best at any site. [See the dated public feed](data/feed.json).
 
 ## Site-by-site findings
 
@@ -97,3 +99,9 @@ Inspected SHA-256: `33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41
 ## Run card
 
 [Download the complete JSON run card](data/run-card.json). Verdict: **negative**.
+
+## Dated 27 October review (no new experiment)
+
+[Five prospective and *untested* geological lanes](https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/main/research/2026-10-27-prospective-hypotheses.md) are ranked for future authorized work. MFO1 is first, not tested and not a leaderboard forecast; the WBG-C1 duplicate STOP remains binding.
+
+[2026-10-27 review-only decision JSON](data/review-run-card-20261027.json) records null new-hypothesis metrics and the exact previously generated negative TIFF/ZIP validator result. No competition slot was used.

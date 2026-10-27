@@ -1,12 +1,13 @@
 # WBG GEMS — evidence-first fault mapping
 
-## ★ FOCUS-9 27 OCT 2026 — NEW EXECUTIVE SUMMARY + UNIQUE RESEARCH TIFF
+## FOCUS-9 EXECUTIVE SUMMARY — DOWNLOAD: RESEARCH ONLY · SUBMIT: NO
 
-**[★ Focus-9 Executive Summary — GEMSDOE24,25,27,28,30,31,32,33,36 master table + 0.2778 forensics + 4 ranked hypotheses](docs/focus9-executive-summary.html)** · **[How to Submit subpage (exact steps, preflight, [0,1] fix)](docs/how-to-submit.html)** · **[Four ranked hypotheses — SPI-PMR-WCS, PPDR, flexural-MT, InSAR](docs/hypotheses.html)**
+[Focus-9 site table, forensics and hypotheses](docs/focus9-executive-summary.html) ·
+[How to submit](docs/how-to-submit.html) · [Hypotheses](docs/hypotheses.html)
 
-**EASY DOWNLOAD — ONE-CLICK RESEARCH TIFF (27 Oct 2026 synthetic demo, 36,800 dots, zeros mode, 15/15 PASS, byte-unique, 775 KiB):** [Download TIFF](docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif) · [ZIP](docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.zip) · [Validator receipt](docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.validator.json) · [Uniqueness audit](docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.uniqueness.json) · [Run card](evidence/focus9_exec/run_card.json) · **DOWNLOAD: YES · SUBMIT: NO — 0 weekly slots used** (pigeonhole ≥81.94% literal lattice STOP >70%; competing-sparse PASS expected but unmeasured; synthetic null → not a leaderboard forecast).
+**Research TIFF (synthetic random null; not a geological model):** [wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif](docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif) · [ZIP](docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.zip) · [Run card](evidence/focus9_exec/run_card.json). Format checks pass; no holdout score was measured. The output is byte-unique only within the checked snapshot inventory; the fixed-36,800-dot literal 3-pixel lattice-overlap lower bound is **81.932% (>70%)**; the full competing-sparse overlap is unmeasured. **DOWNLOAD: YES for research · SUBMIT: NO.**
 
-**Why GEMSDOE32 B2 (“h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros: 0.2778, USER-REPORTED”) is the highest supplied historical claim and how to beat it:** D2.8 44,090 dots → B1 40,199 (remove 3,891 ≤100 m from catalogue) → B2 37,654 (remove 2,545 more ≤200 m; 6,436 total deletions) — verified byte lineage; GEMSDOE25≡GEMSDOE30 identical pixels; GEMSDOE36 = B2+1,200. Metric DTI = TPw/(TPw+0.2·FPw+0.8·FNw) with 300 m triangular kernel: catalogue-near dots add mainly 0.2·FPw with no hidden TPw, so pruning them raises DTI by +0.0178 (0.2600→0.2778) without finding hidden faults. Beating 0.2778 needs genuine hidden-fault recall (+22% TPw for 0.3195, +110% for 0.44+) via geophysical discovery (SPI k_SPI + monogenic phase + wing-crack), not more pruning. Full forensics in [Focus-9 executive summary](docs/focus9-executive-summary.html#why2778) and [WBG-3 forensics](docs/wbg3/forensics-and-hypotheses.html). Official leaderboard observed **0.4544 on 27 Oct 2026** (rank-1 xiaofanhu) — not a project-file receipt — proving ceiling >0.2778 but not a score for our TIFF.
+GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplied history suggests D2.8 → B1 → B2 pruning removed catalogue-near dots; this is a plausible precision/false-positive mechanism, not proof of new-fault discovery. Leaderboard score estimates for a new file are unavailable.
 
 ## NO FILE APPROVED FOR SUBMISSION
 

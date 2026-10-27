@@ -14,37 +14,57 @@
     "note": "Existing historic results are not new measurements. Existing run cards retain their own evaluator/split labels and are not combined or converted into a leaderboard estimate."
   },
   "correlation_overlap_vs_registry": {
-    "evidence_class": "FROZEN PRIOR AUDIT; NOT RECOMPUTED THIS SESSION",
-    "scope": "No current full-registry scan performed. Existing WBG-3 evidence reports literal 3-pixel overlap 99.9946% with r13-lattice-s5 and 100% with WBG-C1, both above the 70% STOP threshold.",
+    "evidence_class": "FROZEN GEOMETRIC BOUND; NOT A FRESH FULL-REGISTRY MEASUREMENT",
+    "scope": "Focus-9 synthetic 36,800-dot TIFF; r13 lattice coverage certificate; competing-sparse max overlap unmeasured.",
     "surface_rank_correlation": null,
-    "final_dots_overlap": null,
-    "decision": "No candidate generated; existing STOP records remain binding."
+    "measured_candidate_overlap": null,
+    "pigeonhole_minimum_overlap_fraction": 0.819320652173913,
+    "pigeonhole_lower_bound_percent": 81.9320652173913,
+    "threshold": 0.7,
+    "decision": "FAIL literal 3-pixel gate by fixed-budget lower bound; not eligible for submission."
   },
-  "raster_sha256": null,
+  "raster_sha256": "e8c4bf7607cec72c54981b90aa60e7e85163b429b58ebd6f2a7c3126e8c1e351",
   "raster_generated": false,
-  "artifact_under_review": "docs/downloads/wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif",
-  "artifact_under_review_sha256": "f158a890dcb5f897ef35282ed05d291e54c4df9b83cf891870193d329b160fb4",
+  "artifact_under_review": "docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif",
+  "artifact_under_review_sha256": "e8c4bf7607cec72c54981b90aa60e7e85163b429b58ebd6f2a7c3126e8c1e351",
   "validator_output": {
     "evidence_class": "LOCAL FORMAT PREFLIGHT ONLY",
     "exact_existing_artifact_reopened": true,
+    "shared_validator_passed": true,
     "single_band_float32": true,
     "crs": "EPSG:32611",
-    "shape_rows_columns": [3730, 3292],
-    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "shape_rows_columns": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
     "no_nan_inside_footprint": true,
     "all_finite": true,
-    "min_max_inclusive_0_1": true,
-    "shared_validator_passed": true,
+    "min": 0.0,
+    "max": 1.0,
+    "positive_pixels": 36800,
     "promotion_status": "negative; strict submit-ready validation exits 2",
-    "warning": "Does not establish scientific efficacy, global uniqueness, organizer acceptance, or authorization."
+    "warning": "Format pass does not establish scientific efficacy, global uniqueness, organizer acceptance, or authorization."
   },
   "readiness": {
     "status": "BLOCKED_INPUTS",
-    "missing": ["data/training_features.tif", "data/labels.tif", "data/sample_submission.tif", "19-band cached feature stack"],
+    "missing": [
+      "data/training_features.tif",
+      "data/labels.tif",
+      "data/sample_submission.tif",
+      "19-band cached feature stack"
+    ],
     "organizer_origin_authenticated": false
   },
-  "submission_name": null,
-  "submission_note": null,
+  "submission_name": "wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros",
+  "submission_note": "Focus-9 exec synthetic 36k off-cat random; format PASS but literal lattice STOP; research DL only; NOT for submission.",
   "leaderboard_estimate": null,
   "organizer_confirmed_score": null,
   "experiments_started": 0,
@@ -52,5 +72,6 @@
   "verdict": "negative",
   "ok_to_download": true,
   "ok_to_submit": false,
-  "reason": "No newly generated candidate; active scientific lane is stopped and existing candidate artifacts fail the binding novelty/evidence gates."
+  "reason": "The reviewed research TIFF is a synthetic null, not a geological model; no holdout is measured and the fixed-budget literal lattice lower bound exceeds 70%.",
+  "raster_generated_this_session": false
 }

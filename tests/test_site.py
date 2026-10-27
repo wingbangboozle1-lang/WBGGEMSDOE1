@@ -293,3 +293,14 @@ def test_feed_refuses_cross_origin_or_insecure_redirects():
     for target in ("https://elsewhere.example/path", "http://api.github.com/path"):
         with pytest.raises(ValueError, match="refusing cross-host"):
             handler.redirect_request(request, None, 302, "Found", {}, target)
+
+
+def test_feed_parser_repairs_the_official_unwrapped_thead_cells():
+    feed = module("refresh_feed")
+    html = '''<table><thead>
+      <th>Rank</th><th>Team members</th><th>Participant</th>
+      <th>Best<br>public<br>DW-Tversky (in descending order)</th><th>Shared work</th>
+      </thead><tbody><tr><td>#1</td><td></td><td>Example</td><td>0.4544</td><td></td></tr></tbody></table>'''
+    result = feed.parse_leaderboard(html)
+    assert result["rank"] == 1 and result["public_dw_tversky"] == .4544
+    assert result["source"] == feed.LEADERBOARD and result["not_a_project_submission_receipt"]

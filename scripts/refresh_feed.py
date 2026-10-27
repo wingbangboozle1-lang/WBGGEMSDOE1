@@ -29,14 +29,29 @@ class Tables(HTMLParser):
     def __init__(self):
         super().__init__()
         self.tables, self.table, self.row, self.cell = [], None, None, None
+        self.orphan_headers = []
+        self.orphan_cell = False
+
+    def flush_orphan_headers(self):
+        if self.orphan_headers and self.table is not None:
+            self.table.append(self.orphan_headers)
+            self.orphan_headers = []
 
     def handle_starttag(self, tag, attrs):
         if tag == "table":
             self.table = []
+            self.orphan_headers = []
         elif tag == "tr" and self.table is not None:
+            self.flush_orphan_headers()
             self.row = []
         elif tag in ("td", "th") and self.row is not None:
             self.cell = []
+            self.orphan_cell = False
+        elif tag == "th" and self.table is not None:
+            # The official HTMX fragment currently puts <th> directly under
+            # <thead>, without a <tr>; browsers repair this automatically.
+            self.cell = []
+            self.orphan_cell = True
 
     def handle_data(self, data):
         if self.cell is not None:
@@ -44,12 +59,20 @@ class Tables(HTMLParser):
 
     def handle_endtag(self, tag):
         if tag in ("td", "th") and self.cell is not None:
-            self.row.append(" ".join(" ".join(self.cell).split()))
+            text = " ".join(" ".join(self.cell).split())
+            if self.orphan_cell:
+                self.orphan_headers.append(text)
+            else:
+                self.row.append(text)
             self.cell = None
+            self.orphan_cell = False
         elif tag == "tr" and self.row is not None:
             self.table.append(self.row)
             self.row = None
+        elif tag == "thead":
+            self.flush_orphan_headers()
         elif tag == "table" and self.table is not None:
+            self.flush_orphan_headers()
             self.tables.append(self.table)
             self.table = None
 

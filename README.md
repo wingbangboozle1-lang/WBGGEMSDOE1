@@ -1,24 +1,20 @@
 # WBG GEMS — evidence-first fault mapping
 
-## SUBMIT THIS FILE: [wbg2-offcatalogue-density-36k-20261027.tif](docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif)
+## DO NOT SUBMIT YET — WBG-3 (2026-10-27, this session)
 
-**[Executive summary + one-click download](docs/wbg2.html)** · [ZIP](docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip) ·
-[markdown summary](docs/wbg2-executive-summary.md) · [run card](evidence/wbg2/run_card.json) ·
-[live site](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/wbg2.html)
+**Download:** [wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif](docs/downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif) · [ZIP](docs/downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.zip) · [executive summary](docs/wbg3.html) · [run card](evidence/wbg3/run_card.json)
 
 | | |
 |---|---|
-| File to submit | `docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif` (+ identical one-member `.zip`) |
-| Estimated score | **0.2824** — MODEL-ESTIMATE, 95% interval 0.2795–0.2853, R² 0.988, n=9. **Not organizer-confirmed.** |
-| Unique vs GEMSDOE24/25/27/28/30/31/32/33/36 | **YES** — 9/9 audited; max 1.18× chance overlap, max \|ρ\| 0.009 |
-| Format | single-band float32, EPSG:32611, 3730×3292, values in [0,1], no NaN anywhere (zeros mode) |
-| sha256 | `f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3` |
+| Estimated score | **0.21 [0.17–0.26]** MODEL-ESTIMATE — below champion OWNER-REPORTED 0.2778; beating it is **not** claimed |
+| Holdout | HOLDOUT-DTI **0.1382** [0.1257, 0.1520], `gems-segment-pooled-v1`, 60,988 withheld — best reproducible detector here, but does **not** beat the 0.1661 S3DEP1 benchmark |
+| Unique vs GEMSDOE24/25/27/28/30/31/32/33/36 | **YES** — max 43.1% 3-px dot overlap (limit 70%), max \|ρ\| 0.036 (limit 0.90) |
+| Format | single-band float32, EPSG:32611, 3730×3292, [0,1], **no NaN** (zeros mode), validator PASS |
+| sha256 | `30901f894a84f6150a65a86e6556d3b4d3b3f5054dd4f8f3b597d754115447c1` |
 | Slots used | 0 |
 
-> **Honest reading.** WBG-2 is unique and format-valid, so it is safe to upload. Its estimate is only
-> **+0.0046** above the best focus-site artifact (0.2778), which is *within model error*:
-> it ties that artifact rather than beating it. The route to the 0.39–0.45 leaderboard band is the
-> login-gated official `training_features.tif`; see [the executive summary](docs/wbg2.html).
+**WBG-2 below is demoted:** its 0.2824 estimate came from an estimator fitted to one nested
+deletion family and is retracted (IR-WBG2-EST). WBG-2 = research download only, DO NOT SUBMIT.
 
 ## Older file — DOWNLOAD: YES, for research. SUBMIT: **NO**.
 

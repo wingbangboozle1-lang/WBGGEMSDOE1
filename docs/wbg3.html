@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WBG-3 Executive Summary · WBG GEMS</title>
+<link rel="stylesheet" href="assets/style.css"></head>
+<body><main class="wrap" style="max-width:900px;margin:2rem auto;padding:0 1rem">
+<p><a href="index.html">← Research desk</a></p>
+<h1>WBG-3 Executive Summary</h1>
+<div style="border:3px solid #b00020;background:#fff3f3;padding:1rem 1.2rem;border-radius:8px">
+<p style="font-size:1.3rem;margin:.2rem 0"><strong>⛔ DO NOT SUBMIT YET</strong></p>
+<p>The new unique file below is <strong>safe to download</strong> and format-valid, but it has
+<strong>not beaten the holdout benchmark</strong> (0.1382 vs 0.1661). Estimated leaderboard
+score <strong>0.21 [0.17–0.26]</strong> (MODEL-ESTIMATE), below the champion's reported 0.2778.
+Do not spend a weekly slot on it unless you, as selector, accept that estimate.</p>
+</div>
+<h2>Download</h2>
+<p><a href="downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif" download style="font-size:1.15rem">
+⬇ wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif</a>
+· <a href="downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.zip" download>one-TIFF ZIP ↓</a></p>
+<p>sha256 <code>30901f894a84f6150a65a86e6556d3b4d3b3f5054dd4f8f3b597d754115447c1</code> ·
+single-band float32 · EPSG:32611 · 3730×3292 · values in [0,1] · <strong>no NaN</strong> ·
+37,654 dots · automated validator: PASS (no human inspector needed).</p>
+<p><strong>Portal note:</strong> <code>WBG-3 supervised multi-physics detector, dotted clear2 37654, zeros no NaN</code></p>
+<h2>Decision table</h2>
+<table border="1" cellspacing="0" cellpadding="6">
+<tr><th>File</th><th>Estimated score</th><th>Unique vs 9 focus sites?</th><th>Submit?</th></tr>
+<tr><td><strong>WBG-3 (this session)</strong></td><td>0.21 [0.17–0.26] MODEL-ESTIMATE</td><td>YES — max overlap 43.1%, max |ρ| 0.036</td><td><strong>NO — not yet</strong></td></tr>
+<tr><td>WBG-2 (previous)</td><td>retracted (estimator invalid)</td><td>Yes</td><td>NO</td></tr>
+<tr><td>GEMSDOE32 champion</td><td>0.2778 OWNER-REPORTED</td><td>is a focus site</td><td>NO — already submitted; copying = duplicate</td></tr>
+<tr><td>GEMSDOE36 / 28 / 31 / 33 / 25 / 30 / 24 / 27</td><td>0.2750 / 0.2710 / 0.2708 / 0.2632 / 0.2600 / 0.2600 / 0.2477 / 0.2449 OWNER-REPORTED</td><td>focus sites (25≡30 identical dots)</td><td>NO — historical</td></tr>
+</table>
+<p>Official leaderboard observed 2026-10-27: rank 1 = 0.4544 —
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a>.</p>
+<h2>Why 0.2778 won</h2>
+<p>The scored truth is expert-mapped faults <em>not</em> in the USGS catalogue
+(<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem page</a>).
+The champion is a strict deletion subset of the 44,090-dot D2.8 field: exactly 6,436 dots
+removed, all within 200 m of the catalogue, zero added. The gain was precision pruning of
+catalogue-tracing dots, not new detection. All nine focus artifacts are one nested family
+(98–100% overlaps), so none is unique for us.</p>
+<h2>Map</h2><p><img src="assets/wbg3-preview.png" style="max-width:100%" alt="WBG-3 dots (teal) vs champion dots (orange) vs catalogue (grey)"></p><p>Teal: WBG-3 (this session). Orange: GEMSDOE32 champion. Grey: mapped catalogue. Downsampled 4x, max-pooled.</p><h2>Evidence</h2>
+<ul>
+<li>HOLDOUT-DTI 0.1382 [0.1257, 0.1520], evaluator <code>gems-segment-pooled-v1</code>, 60,988 withheld positives — best reproducible detector here (Exp2 0.1320, B0 0.1039, TIP1 0.0824); benchmark S3DEP1 0.1661 not beaten, paired replay unavailable.</li>
+<li>Leakage canary: max feature AUC 0.598 (&lt; 0.90). A catalogue-distance leakage bug (IR-WBG3-01) was found, fixed, and rerun.</li>
+<li>Full run card: <a href="../evidence/wbg3/run_card.json">evidence/wbg3/run_card.json</a> · Markdown summary: <a href="wbg3-executive-summary.md">wbg3-executive-summary.md</a> · Hypotheses: <a href="../research/04_wbg3_hypotheses_20261027.md">research/04</a></li>
+<li>Competition slots used: <strong>0</strong>. Organizer-confirmed scores: none.</li>
+</ul>
+</main></body></html>

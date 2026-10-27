@@ -94,7 +94,10 @@ def compare(ours: np.ndarray, theirs: np.ndarray, evaluated: np.ndarray | None =
 def scan_registry(ours: np.ndarray, shape, transform, crs, roots: list[str],
                   exclude: set[str] | None = None, extra_paths: list[str] | None = None) -> dict:
     entries = []
-    seen = set(exclude or set())
+    # Normalise exclusions to absolute paths: callers pass repo-relative paths
+    # while the scan compares abspath(); without this the candidate compared
+    # against itself (forward=1.0, rho=1.0) and false-STOPped.
+    seen = {os.path.abspath(p) for p in (exclude or set())}
     for root in roots:
         for path in sorted(glob.glob(os.path.join(root, "**", "*.tif"), recursive=True)):
             if os.path.abspath(path) in seen:
@@ -125,9 +128,22 @@ def scan_registry(ours: np.ndarray, shape, transform, crs, roots: list[str],
         "stop_enrichment_threshold": STOP_ENRICHMENT,
         "stop_overlap_threshold": STOP_OVERLAP,
         "stop_rho_threshold": STOP_RHO,
+        # Per-raster gate (fixed 2026-10-27): the previous implementation
+        # combined worst_enrichment from one raster with worst_overlap from a
+        # different raster, which false-STOPs every sparse field whenever the
+        # registry contains both a dense surface and a sparse dot field.
         "passes_final_dot_gate": bool(
-            worst_rho <= STOP_RHO and not (worst_enrich >= STOP_ENRICHMENT and worst_overlap > STOP_OVERLAP)
+            all(
+                abs(e["rho"]) <= STOP_RHO
+                and not (e["enrichment"] >= STOP_ENRICHMENT and e["forward_overlap"] > STOP_OVERLAP)
+                for e in entries
+            )
         ),
+        "per_raster_gate_failures": [
+            e["path"] for e in entries
+            if abs(e["rho"]) > STOP_RHO
+            or (e["enrichment"] >= STOP_ENRICHMENT and e["forward_overlap"] > STOP_OVERLAP)
+        ],
         "gate_rule": (
             "STOP if |signed Spearman rho| > 0.90, or if forward 3 px overlap > 0.70 "
             "AND that overlap is at least 3x chance (enrichment >= 3). The "

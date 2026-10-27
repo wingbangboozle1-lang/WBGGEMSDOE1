@@ -1,0 +1,291 @@
+{
+ "schema": "wbg3-run-card-v1",
+ "generated_utc": "2026-10-27T20:07:13+00:00",
+ "submission_name": "wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros",
+ "submission_note": "WBG-3 supervised multi-physics detector, dotted clear2 37654, zeros no NaN",
+ "mode": "exp3",
+ "budget_pixels": 37654,
+ "catalogue_clearance_px": 2,
+ "seed": 20261027,
+ "raster_sha256": "30901f894a84f6150a65a86e6556d3b4d3b3f5054dd4f8f3b597d754115447c1",
+ "zip_sha256": "7f4a582e5cd6e0dddda022da23a6b507c5e05cc76842ae1635d7da068842ad3f",
+ "validator": {
+  "tif": {
+   "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif",
+   "sha256": "30901f894a84f6150a65a86e6556d3b4d3b3f5054dd4f8f3b597d754115447c1",
+   "shape": [
+    3730,
+    3292
+   ],
+   "dtype": "float32",
+   "band_count": 1,
+   "crs": "EPSG:32611",
+   "pixel_size": [
+    100.0,
+    100.0
+   ],
+   "origin": [
+    243350.0,
+    4508550.0
+   ],
+   "nodata": null,
+   "mode": "zeros",
+   "in_footprint_pixels": 5167373,
+   "positive_pixels": 37654,
+   "value_min": 0.0,
+   "value_max": 1.0,
+   "checks": {
+    "single_band": true,
+    "dtype_float32": true,
+    "shape_matches": true,
+    "crs_epsg_32611": true,
+    "pixel_size_100m": true,
+    "in_footprint_all_finite": true,
+    "values_in_0_1": true,
+    "outside_footprint_zero": true,
+    "has_predictions": true,
+    "no_nan_anywhere": true
+   },
+   "all_checks_passed": true,
+   "errors": []
+  },
+  "zip": {
+   "zip": "/home/user/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.zip",
+   "members": [
+    "wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif"
+   ],
+   "tif_members": [
+    "wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif"
+   ],
+   "exactly_one_tif": true,
+   "byte_identical": true,
+   "all_checks_passed": true
+  }
+ },
+ "registry": {
+  "rasters_compared": 18,
+  "max_forward_3px_overlap": 1.0,
+  "max_enrichment_vs_chance": 6.002568065131461,
+  "max_abs_spearman": 0.0802457527431,
+  "stop_enrichment_threshold": 3.0,
+  "stop_overlap_threshold": 0.7,
+  "stop_rho_threshold": 0.9,
+  "passes_final_dot_gate": true,
+  "per_raster_gate_failures": [],
+  "gate_rule": "STOP if |signed Spearman rho| > 0.90, or if forward 3 px overlap > 0.70 AND that overlap is at least 3x chance (enrichment >= 3). The enrichment requirement exists because raw forward overlap is 1.0 for any sparse field compared against a dense continuous surface.",
+  "top_matches": [
+   {
+    "forward_overlap": 0.3946459871461199,
+    "rho": 0.02693434210721711,
+    "enrichment": 6.002568065131461,
+    "chance_overlap": 0.06574619110753505,
+    "their_positive": 44090,
+    "ours_positive": 37654,
+    "their_density": 0.003590636493050013,
+    "path": "/tmp/reg9/GEMSDOE25.tif"
+   },
+   {
+    "forward_overlap": 0.3946459871461199,
+    "rho": 0.02693434210721711,
+    "enrichment": 6.002568065131461,
+    "chance_overlap": 0.06574619110753505,
+    "their_positive": 44090,
+    "ours_positive": 37654,
+    "their_density": 0.003590636493050013,
+    "path": "/tmp/reg9/GEMSDOE30.tif"
+   },
+   {
+    "forward_overlap": 0.3596165082062995,
+    "rho": 0.027838204019410374,
+    "enrichment": 5.973214805119226,
+    "chance_overlap": 0.06020485114616961,
+    "their_positive": 37660,
+    "ours_positive": 37654,
+    "their_density": 0.003066985038064493,
+    "path": "/tmp/reg9/GEMSDOE28.tif"
+   },
+   {
+    "forward_overlap": 0.3641578583948584,
+    "rho": 0.02857918900587621,
+    "enrichment": 5.969655587016315,
+    "chance_overlap": 0.0610014854436297,
+    "their_positive": 40199,
+    "ours_positive": 37654,
+    "their_density": 0.003273758139807609,
+    "path": "/tmp/reg9/GEMSDOE31.tif"
+   },
+   {
+    "forward_overlap": 0.3777022361502098,
+    "rho": 0.033407840910818935,
+    "enrichment": 5.946775198290811,
+    "chance_overlap": 0.06351379084562787,
+    "their_positive": 41865,
+    "ours_positive": 37654,
+    "their_density": 0.003409435173090016,
+    "path": "/tmp/reg9/GEMSDOE33.tif"
+   },
+   {
+    "forward_overlap": 0.4311626918786849,
+    "rho": 0.03594503114122188,
+    "enrichment": 5.916428093657118,
+    "chance_overlap": 0.07287550614211395,
+    "their_positive": 61328,
+    "ours_positive": 37654,
+    "their_density": 0.004994478449665938,
+    "path": "/tmp/reg9/GEMSDOE27.tif"
+   },
+   {
+    "forward_overlap": 0.41883996388165934,
+    "rho": 0.03576710022961979,
+    "enrichment": 5.886341967198931,
+    "chance_overlap": 0.07115454151586917,
+    "their_positive": 60069,
+    "ours_positive": 37654,
+    "their_density": 0.004891947006147,
+    "path": "/tmp/reg9/GEMSDOE24.tif"
+   },
+   {
+    "forward_overlap": 0.3310405269028523,
+    "rho": 0.030116900070779086,
+    "enrichment": 5.764253367278408,
+    "chance_overlap": 0.05742990562872379,
+    "their_positive": 37654,
+    "ours_positive": 37654,
+    "their_density": 0.0030664964052915674,
+    "path": "docs/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+   },
+   {
+    "forward_overlap": 0.3310405269028523,
+    "rho": 0.030116900070779086,
+    "enrichment": 5.764253367278408,
+    "chance_overlap": 0.05742990562872379,
+    "their_positive": 37654,
+    "ours_positive": 37654,
+    "their_density": 0.0030664964052915674,
+    "path": "docs/parallel/main-b9a2d53/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+   },
+   {
+    "forward_overlap": 0.3310405269028523,
+    "rho": 0.030116900070779086,
+    "enrichment": 5.764253367278408,
+    "chance_overlap": 0.05742990562872379,
+    "their_positive": 37654,
+    "ours_positive": 37654,
+    "their_density": 0.0030664964052915674,
+    "path": "/tmp/reg9/GEMSDOE32.tif"
+   },
+   {
+    "forward_overlap": 0.33513039783289955,
+    "rho": 0.029625694097612364,
+    "enrichment": 5.6875592938148065,
+    "chance_overlap": 0.058923411699171604,
+    "their_positive": 38854,
+    "ours_positive": 37654,
+    "their_density": 0.003164222959876734,
+    "path": "/tmp/reg9/GEMSDOE36.tif"
+   },
+   {
+    "forward_overlap": 0.3160620385616402,
+    "rho": 0.011029312794506689,
+    "enrichment": 5.35029604153508,
+    "chance_overlap": 0.059073747715641785,
+    "their_positive": 36000,
+    "ours_positive": 37654,
+    "their_density": 0.002931796637555012,
+    "path": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif"
+   }
+  ]
+ },
+ "elapsed_s": 350.9411256313324,
+ "hypothesis": "WBG-3: supervised multi-physics fault detector (official 19-band GeoDAWN stack + 3DEP LiDAR scarp + GeoDAWN radiometrics + local lineament texture) with catalogue-clearance dotted emission",
+ "mechanism": "HGB trained on visible catalogue pixels learns the joint geophysical expression of mapped faults; dotted emission (>=3 px spacing, >2 px from catalogue, 37,654 dots) converts the surface to a max-cover-style field that does not retrace known faults, which earn no credit against expert-mapped new-fault truth.",
+ "named_non_fault_mimic": "Range-front alluvial aprons and lithologic contacts produce coincident gravity/magnetic/basement steps without faulting; pluvial shoreline benches mimic scarps in the LiDAR stack.",
+ "holdout": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems-segment-pooled-v1",
+  "dti": 0.13823302967086964,
+  "ci95": [
+   0.12570057571548604,
+   0.1519562135793138
+  ],
+  "withheld_positive_pixels": 60988,
+  "folds": [
+   {
+    "fold": "NW",
+    "dti": 0.14527150854395698
+   },
+   {
+    "fold": "NE_LidarGapHeavy",
+    "dti": 0.16705869711484223
+   },
+   {
+    "fold": "SW",
+    "dti": 0.09052578676688543
+   },
+   {
+    "fold": "SE",
+    "dti": 0.16700762106519557
+   }
+  ],
+  "exp2_dti": 0.13196340844667295,
+  "paired_delta_exp3_vs_exp2": 0.006269621224196692,
+  "paired_delta_ci95": [
+   -0.0006387755240589363,
+   0.012935292728426093
+  ],
+  "benchmark_s3dep1_dti": 0.16606013635163805,
+  "benchmark_note": "GEMSDOE24 S3DEP1, same evaluator, from evidence/benchmarks/gemsdoe24_s3dep1_run_card_20261026.json; its fold masks are not published, so paired replay is unavailable and the promotion gate fails closed."
+ },
+ "leakage_canary": {
+  "passed": true,
+  "static42_max_symmetric_auc": 0.5978573681640625,
+  "local10": "see canary_local10.json",
+  "ir_wbg3_01": "v1 catalogue-distance leakage found, fixed, and rerun; see research/04_wbg3_hypotheses_20261027.md"
+ },
+ "score_estimate": {
+  "evidence_class": "MODEL-ESTIMATE",
+  "value": 0.2108,
+  "interval": [
+   0.1694,
+   0.2557
+  ],
+  "method": "cross-fitted HOLDOUT-DTI 0.13823 x live/holdout ratios of the only two detector-family artifacts with both numbers (GEMSDOE24: 0.2477/0.17183=1.442; GEMSDOE25: 0.2600/0.16163=1.609), interval widened +-15%",
+  "anchors": [
+   [
+    "GEMSDOE24",
+    0.1718253926823608,
+    0.2477
+   ],
+   [
+    "GEMSDOE25",
+    0.16163037136893005,
+    0.26
+   ]
+  ],
+  "caveats": [
+   "n=2 anchors, both OWNER-REPORTED live values without organizer receipts",
+   "live truth is expert-mapped new faults, not withheld catalogue faults; the ratio is a ranking device, not a forecast",
+   "point estimate is BELOW the champion OWNER-REPORTED 0.2778; beating it is not claimed"
+  ]
+ },
+ "organizer_confirmed_score": null,
+ "final_dots": {
+  "positive_pixels": 37654,
+  "fraction_within_2px_of_catalogue": 0.0,
+  "fraction_within_3px_of_catalogue": 0.3435491581239709,
+  "median_distance_to_catalogue_px": 5.0
+ },
+ "dti_vs_champion_as_proxy_truth": 0.1637694861440999,
+ "decision": {
+  "verdict": "negative",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "slots_used": 0,
+  "reasons": [
+   "HOLDOUT-DTI 0.1382 does not beat the 0.1661 S3DEP1 benchmark (paired replay unavailable, gate fails closed)",
+   "MODEL-ESTIMATE 0.21 [0.17-0.26] is below champion OWNER-REPORTED 0.2778; beating 0.2778 is not claimed",
+   "It IS the best reproducible unique detector in this repo (Exp2 0.1320, B0 0.1039, TIP1 0.0824 on the same evaluator) and the designated file if the owner, as separate selector, chooses to spend a slot"
+  ]
+ },
+ "verdict": "negative"
+}

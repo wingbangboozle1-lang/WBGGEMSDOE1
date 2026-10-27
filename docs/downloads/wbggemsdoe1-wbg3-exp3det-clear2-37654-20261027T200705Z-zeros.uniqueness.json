@@ -1,0 +1,134 @@
+{
+ "rasters_compared": 18,
+ "max_forward_3px_overlap": 1.0,
+ "max_enrichment_vs_chance": 6.002568065131461,
+ "max_abs_spearman": 0.0802457527431,
+ "stop_enrichment_threshold": 3.0,
+ "stop_overlap_threshold": 0.7,
+ "stop_rho_threshold": 0.9,
+ "passes_final_dot_gate": true,
+ "per_raster_gate_failures": [],
+ "gate_rule": "STOP if |signed Spearman rho| > 0.90, or if forward 3 px overlap > 0.70 AND that overlap is at least 3x chance (enrichment >= 3). The enrichment requirement exists because raw forward overlap is 1.0 for any sparse field compared against a dense continuous surface.",
+ "top_matches": [
+  {
+   "forward_overlap": 0.3946459871461199,
+   "rho": 0.02693434210721711,
+   "enrichment": 6.002568065131461,
+   "chance_overlap": 0.06574619110753505,
+   "their_positive": 44090,
+   "ours_positive": 37654,
+   "their_density": 0.003590636493050013,
+   "path": "/tmp/reg9/GEMSDOE25.tif"
+  },
+  {
+   "forward_overlap": 0.3946459871461199,
+   "rho": 0.02693434210721711,
+   "enrichment": 6.002568065131461,
+   "chance_overlap": 0.06574619110753505,
+   "their_positive": 44090,
+   "ours_positive": 37654,
+   "their_density": 0.003590636493050013,
+   "path": "/tmp/reg9/GEMSDOE30.tif"
+  },
+  {
+   "forward_overlap": 0.3596165082062995,
+   "rho": 0.027838204019410374,
+   "enrichment": 5.973214805119226,
+   "chance_overlap": 0.06020485114616961,
+   "their_positive": 37660,
+   "ours_positive": 37654,
+   "their_density": 0.003066985038064493,
+   "path": "/tmp/reg9/GEMSDOE28.tif"
+  },
+  {
+   "forward_overlap": 0.3641578583948584,
+   "rho": 0.02857918900587621,
+   "enrichment": 5.969655587016315,
+   "chance_overlap": 0.0610014854436297,
+   "their_positive": 40199,
+   "ours_positive": 37654,
+   "their_density": 0.003273758139807609,
+   "path": "/tmp/reg9/GEMSDOE31.tif"
+  },
+  {
+   "forward_overlap": 0.3777022361502098,
+   "rho": 0.033407840910818935,
+   "enrichment": 5.946775198290811,
+   "chance_overlap": 0.06351379084562787,
+   "their_positive": 41865,
+   "ours_positive": 37654,
+   "their_density": 0.003409435173090016,
+   "path": "/tmp/reg9/GEMSDOE33.tif"
+  },
+  {
+   "forward_overlap": 0.4311626918786849,
+   "rho": 0.03594503114122188,
+   "enrichment": 5.916428093657118,
+   "chance_overlap": 0.07287550614211395,
+   "their_positive": 61328,
+   "ours_positive": 37654,
+   "their_density": 0.004994478449665938,
+   "path": "/tmp/reg9/GEMSDOE27.tif"
+  },
+  {
+   "forward_overlap": 0.41883996388165934,
+   "rho": 0.03576710022961979,
+   "enrichment": 5.886341967198931,
+   "chance_overlap": 0.07115454151586917,
+   "their_positive": 60069,
+   "ours_positive": 37654,
+   "their_density": 0.004891947006147,
+   "path": "/tmp/reg9/GEMSDOE24.tif"
+  },
+  {
+   "forward_overlap": 0.3310405269028523,
+   "rho": 0.030116900070779086,
+   "enrichment": 5.764253367278408,
+   "chance_overlap": 0.05742990562872379,
+   "their_positive": 37654,
+   "ours_positive": 37654,
+   "their_density": 0.0030664964052915674,
+   "path": "docs/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+  },
+  {
+   "forward_overlap": 0.3310405269028523,
+   "rho": 0.030116900070779086,
+   "enrichment": 5.764253367278408,
+   "chance_overlap": 0.05742990562872379,
+   "their_positive": 37654,
+   "ours_positive": 37654,
+   "their_density": 0.0030664964052915674,
+   "path": "docs/parallel/main-b9a2d53/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+  },
+  {
+   "forward_overlap": 0.3310405269028523,
+   "rho": 0.030116900070779086,
+   "enrichment": 5.764253367278408,
+   "chance_overlap": 0.05742990562872379,
+   "their_positive": 37654,
+   "ours_positive": 37654,
+   "their_density": 0.0030664964052915674,
+   "path": "/tmp/reg9/GEMSDOE32.tif"
+  },
+  {
+   "forward_overlap": 0.33513039783289955,
+   "rho": 0.029625694097612364,
+   "enrichment": 5.6875592938148065,
+   "chance_overlap": 0.058923411699171604,
+   "their_positive": 38854,
+   "ours_positive": 37654,
+   "their_density": 0.003164222959876734,
+   "path": "/tmp/reg9/GEMSDOE36.tif"
+  },
+  {
+   "forward_overlap": 0.3160620385616402,
+   "rho": 0.011029312794506689,
+   "enrichment": 5.35029604153508,
+   "chance_overlap": 0.059073747715641785,
+   "their_positive": 36000,
+   "ours_positive": 37654,
+   "their_density": 0.002931796637555012,
+   "path": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif"
+  }
+ ]
+}

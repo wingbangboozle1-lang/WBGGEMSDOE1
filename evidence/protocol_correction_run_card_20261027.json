@@ -77,7 +77,7 @@
     "in_footprint_positive_pixels": 36000,
     "footprint_fraction": 0.006966789507937592,
     "template_report": {
-      "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+      "path": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
       "bytes": 215799,
       "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
       "bands": 1,
@@ -148,7 +148,7 @@
     },
     {
       "pass": 3,
-      "result": "148 tests pass; static checks pass; frozen release checks pass. No eligible high-scoring unique file claimed."
+      "result": "148 tests pass; static checks pass; frozen release checks pass. No eligible high-scoring unique file claimed. Remote browser check passes; normalized nested template path after CI reproducibility finding."
     }
   ]
 }

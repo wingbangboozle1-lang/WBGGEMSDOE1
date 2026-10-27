@@ -251,3 +251,9 @@ def test_current_pages_do_not_reapprove_wbg2():
         assert 'safe to upload' not in text
         assert 'Submit: YES' not in text
         assert 'SUBMIT THIS FILE' not in text
+
+
+def test_wbg2_published_preflight_has_no_machine_specific_paths():
+    text = (ROOT / 'docs/data/wbg2-corrected-preflight.json').read_text()
+    assert str(ROOT) not in text
+    assert '/home/' not in text

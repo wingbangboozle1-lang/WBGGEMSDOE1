@@ -25,6 +25,8 @@ def review():
     digest = hashlib.sha256(tif.read_bytes()).hexdigest()
     validation = check_tiff(tif)
     validation['file'] = str(tif.relative_to(ROOT))
+    if 'template_report' in validation:
+        validation['template_report']['path'] = str(tif.relative_to(ROOT))
     with zipfile.ZipFile(archive) as z:
         names = z.namelist()
         zip_ok = names == [tif.name] and z.read(names[0]) == tif.read_bytes()

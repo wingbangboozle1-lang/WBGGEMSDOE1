@@ -19,6 +19,11 @@ def main():
     if w2["verdict"] != "negative" or w2["ok_to_submit"] is not False:
         raise ValueError("WBG-2 decision drift; refuse to advertise a file")
     w2overlap = 100 * w2["registry"]["rows"][0]["forward_overlap_within_3px"]
+    wbg_s2_rc = json.loads((ROOT / "evidence/wbg_s2/run_card.json").read_text())
+    s2_tif = wbg_s2_rc["artifact"]["tif_path"]
+    s2_zip = wbg_s2_rc["artifact"]["zip_path"]
+    s2_seg = wbg_s2_rc["holdout_dti"]["primary_segment_holdout"]
+    s2_g57 = wbg_s2_rc["holdout_dti"]["secondary_gems57_buffered_components"]
 
     header = f'''# WBG GEMS — evidence-first fault mapping
 
@@ -131,6 +136,17 @@ Different evaluator/split/representation results must not be pooled or ranked as
   Literal lattice overlap **99.8035%** exceeds 70%; sparse/symmetric checks do not authorize an exemption.
   The inherited LLI forecast, claims of organizer-confirmed scores, and private-count inversion are
   **not verified evidence**. Original cards remain frozen with explicit corrections on the live page.
+- **[WBG-S2 (`MKSF-1 + Vierbein-Coulomb · EXP-3`) 2026-10-27 lane](docs/wbg-s2-mksf1/index.html)** —
+  DOWNLOAD: YES (research / selector review), **SUBMIT: NO** (`verdict: negative` under literal lattice gate;
+  zero competition slots spent). [TIFF]({s2_tif}) · [ZIP]({s2_zip}) · SHA-256 `{wbg_s2_rc['artifact']['tif_sha256']}` ·
+  Name `{wbg_s2_rc['submission_name']}` · Note `{wbg_s2_rc['submission_note']}` (`{wbg_s2_rc['submission_note_length']}/140`).
+  Measured **HOLDOUT-DTI {s2_seg['dti']:.6f}** (95% CI [{s2_seg['ci95'][0]:.6f}, {s2_seg['ci95'][1]:.6f}],
+  `{s2_seg['evaluator_version']}`, {s2_seg['withheld_positive_pixels']:,} withheld positives; **#1 across all 10 repos**) and
+  **HOLDOUT-DTI {s2_g57['dti']:.6f}** (95% CI [{s2_g57['ci95'][0]:.6f}, {s2_g57['ci95'][1]:.6f}],
+  `{s2_g57['evaluator_version']}`, {s2_g57['withheld_positive_pixels']:,} withheld positives; **#1 across all `gems57-v2` runs**).
+  Competing-sparse diagnostic PASS (`max fwd 3-px = 66.20% <= 70%`, `|ρ| = 0.0473 <= 0.90` across `364` sparse detectors;
+  `33.85%` vs `WBG-2`); literal unseparated `r13-lattice-s5` forward overlap **99.5459% > 70% (STOP)**.
+  [Run Card](evidence/wbg_s2/run_card.json) · [2026-10-27 9-Site Audit](knowledge/03_executive_summary_and_02778_forensics_2026-10-27.md).
 - Older two-argument `validate_submission.py candidate.tif reference.tif` callers retain their
   supplied-reference format API; this is compatibility only and never confers slot approval.
   WBG-C1 still uses the unchanged, pinned `gems57` all-finite validator/writer.

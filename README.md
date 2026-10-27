@@ -109,6 +109,17 @@ Different evaluator/split/representation results must not be pooled or ranked as
   Literal lattice overlap **99.8035%** exceeds 70%; sparse/symmetric checks do not authorize an exemption.
   The inherited LLI forecast, claims of organizer-confirmed scores, and private-count inversion are
   **not verified evidence**. Original cards remain frozen with explicit corrections on the live page.
+- **[WBG-S2 (`MKSF-1 + Vierbein-Coulomb · EXP-3`) 2026-10-27 lane](docs/wbg-s2-mksf1/index.html)** —
+  DOWNLOAD: YES (research / selector review), **SUBMIT: NO** (`verdict: negative` under literal lattice gate;
+  zero competition slots spent). [TIFF](docs/downloads/wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.tif) · [ZIP](docs/downloads/wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.zip) · SHA-256 `6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880` ·
+  Name `wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros` · Note `WBG-S2 MKSF1 10m+1m+CGMD+CELF2.8 37654d | SegDTI 0.1836 g57DTI 0.1478 | e9b4a3c09065` (`84/140`).
+  Measured **HOLDOUT-DTI 0.183594** (95% CI [0.170313, 0.196956],
+  `gems-segment-pooled-v1`, 60,988 withheld positives; **#1 across all 10 repos**) and
+  **HOLDOUT-DTI 0.147773** (95% CI [0.128077, 0.167791],
+  `gems57-pooled-hide-v2`, 11,330 withheld positives; **#1 across all `gems57-v2` runs**).
+  Competing-sparse diagnostic PASS (`max fwd 3-px = 66.20% <= 70%`, `|ρ| = 0.0473 <= 0.90` across `364` sparse detectors;
+  `33.85%` vs `WBG-2`); literal unseparated `r13-lattice-s5` forward overlap **99.5459% > 70% (STOP)**.
+  [Run Card](evidence/wbg_s2/run_card.json) · [2026-10-27 9-Site Audit](knowledge/03_executive_summary_and_02778_forensics_2026-10-27.md).
 - Older two-argument `validate_submission.py candidate.tif reference.tif` callers retain their
   supplied-reference format API; this is compatibility only and never confers slot approval.
   WBG-C1 still uses the unchanged, pinned `gems57` all-finite validator/writer.

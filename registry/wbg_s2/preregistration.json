@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "lane_id": "WBG-S2",
+  "preregistered_utc": "2026-10-27T17:35:00+00:00",
+  "branch": "arena/7dce52ff-wbggemsdoe1",
+  "max_experiments": 3,
+  "max_wall_hours": 2.0,
+  "canary_auc_ceiling": 0.90,
+  "spearman_ceiling": 0.90,
+  "dot_overlap_3px_ceiling": 0.70,
+  "target_dot_budget": 37654,
+  "min_separation_px": 2.8,
+  "catalogue_collar_px": 2.0,
+  "ranked_hypotheses": [
+    {
+      "rank": 1,
+      "id": "WBG-S2-H1",
+      "short_name": "MKSF-1",
+      "title": "Seamless 10m/1m Transgressive Piedmont-Flexure, Gallardo-Meju Cross-Gradient & Expected 300m Kernel-Credit Submodular Field",
+      "selected_for_execution": true,
+      "experiment_arm": "EXP-1"
+    },
+    {
+      "rank": 2,
+      "id": "WBG-S2-H2",
+      "short_name": "Vierbein-Coulomb",
+      "title": "Fold-Visible Elastic Crack-Tip & En-Echelon Relay-Ramp Stress-Transfer Corroboration",
+      "selected_for_execution": true,
+      "experiment_arm": "EXP-3"
+    },
+    {
+      "rank": 3,
+      "id": "WBG-S2-H3",
+      "short_name": "SGMC-DualPop",
+      "title": "Held-In Pre-2022 Bedrock Fault Reactivation Dual-Population Transfer",
+      "selected_for_execution": true,
+      "experiment_arm": "EXP-2"
+    },
+    {
+      "rank": 4,
+      "id": "WBG-S2-H4",
+      "short_name": "Chi-Knick",
+      "title": "D8 Fluvial Hack-Chi Steepness & Cross-Divide Disequilibrium",
+      "selected_for_execution": false,
+      "experiment_arm": null
+    },
+    {
+      "rank": 5,
+      "id": "WBG-S2-H5",
+      "short_name": "Biharmonic-Flexure",
+      "title": "Thin-Plate Elastic Hanging-Wall Subsidence & Gravity Flexural Deconvolution",
+      "selected_for_execution": false,
+      "experiment_arm": null
+    }
+  ],
+  "external_official_sources": [
+    {
+      "id": "USGS-3DEP-10M",
+      "title": "USGS 3DEP 1/3 arc-second (~10 m) Seamless DEM",
+      "official_url": "https://www.sciencebase.gov/catalog/item/4f70aa9fe4b058caae3f8de5",
+      "license": "U.S. Public Domain",
+      "mirror_pin": "buffedlizard55-lab/GEMSDOE10@91d6566ecc86141eca9e81c259057678930e596f"
+    },
+    {
+      "id": "USGS-3DEP-1M",
+      "title": "USGS 3DEP 1 m LiDAR DEM Scarp Derivatives",
+      "official_url": "https://www.usgs.gov/3d-elevation-program",
+      "license": "U.S. Public Domain",
+      "mirror_pin": "buffedlizard55-lab/GEMSDOE24@07345ea0604953d7efb858d9cfbc21e20c7aca0b"
+    },
+    {
+      "id": "USGS-GEODAWN",
+      "title": "USGS GeoDAWN Airborne Magnetic and Radiometric Surveys (NW Great Basin)",
+      "official_url": "https://doi.org/10.5066/P93LGLVQ",
+      "license": "U.S. Public Domain",
+      "mirror_pin": "buffedlizard55-lab/GEMSDOE24@07345ea0604953d7efb858d9cfbc21e20c7aca0b"
+    },
+    {
+      "id": "DOE-GDR-1391",
+      "title": "UNR/GBCGE INGENIOUS Great Basin Geothermal Play Fairway & Regional Compilation (GDR #1391)",
+      "official_url": "https://gdr.openei.org/submissions/1391",
+      "doi": "https://doi.org/10.15121/1881483",
+      "license": "CC BY 4.0",
+      "mirror_pin": "buffedlizard55-lab/GEMSDOE24@9da8a18381e179530c3b878d073314feaa26a20c"
+    },
+    {
+      "id": "USCENSUS-TIGER-2024",
+      "title": "U.S. Census Bureau TIGER/Line 2024 Roads & Rails",
+      "official_url": "https://www2.census.gov/geo/tiger/TIGER2024/ROADS/",
+      "license": "U.S. Public Domain",
+      "mirror_pin": "buffedlizard55-lab/GEMSDOE24@9da8a18381e179530c3b878d073314feaa26a20c"
+    },
+    {
+      "id": "USGS-SGMC-DS1052",
+      "title": "USGS State Geologic Map Compilation (SGMC) Geodatabase of the Conterminous United States",
+      "official_url": "https://doi.org/10.3133/ds1052",
+      "license": "U.S. Public Domain",
+      "mirror_pin": "buffedlizard55-lab/GEMSDOE24@07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "usage_constraint": "Strictly training-fold auxiliary positive target in EXP-2 ablation only; NEVER used as an input feature."
+    }
+  ]
+}

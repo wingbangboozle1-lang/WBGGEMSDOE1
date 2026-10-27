@@ -3,7 +3,9 @@
 1. Read `README.md` **including the archived standing prompt**, the 2026-10-27 follow-up at
    `research/03_followup_review_20261027.md` and `evidence/portfolio_review_20261027.json`, then `registry/run_card.json`,
    `registry/irregularities.json`, `registry/experiment_ledger.json`, and `registry/preregistration.json`.
-   The prompt is intent, not evidence. The current measured status is **NEGATIVE / DO NOT SUBMIT**.
+   Also read `docs/review-20261027.md` and `evidence/release_review_20261027.json` for
+   the corrected all-download decisions. The prompt is intent, not evidence. The current
+   measured status is **NEGATIVE / DO NOT SUBMIT**. The 2026-10-27 follow-up added zero experiments.
 2. The original checkout contained only a title. Do not invent prior local training, pending tasks,
    organizer receipts, lane assignments, scores, GPU requirements or authenticated data access.
 3. No assigned single-method paragraph was supplied. WBG-C1 is provisional research only. Its

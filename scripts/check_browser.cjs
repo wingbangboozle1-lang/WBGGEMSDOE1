@@ -70,7 +70,7 @@ const chromium = importedChromium.default || importedChromium;
     }
     await page.goto(new URL("index.html", base).href, { waitUntil: "networkidle" });
     await page.screenshot({ path: path.join(artifacts, "mobile.png"), fullPage: true });
-    for (const file of ["portfolio-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html"]) {
+    for (const file of ["portfolio-review.html", "release-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html"]) {
       const result = { file };
       for (const [label, width, height] of [["desktop", 1440, 1100], ["mobile", 390, 844]]) {
         await page.setViewportSize({ width, height });

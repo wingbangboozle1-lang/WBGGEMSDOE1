@@ -31,7 +31,7 @@ def main():
     zipname = Path(card["raster_sha256"]["zip_file"]).name
     html = f'''<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"><title>DPGF-1 frozen negative result · WBG GEMS</title>
-<link rel="stylesheet" href="../assets/style.css"></head><body><header class="wrap"><nav>
+<link rel="stylesheet" href="../assets/style.css"></head><body><a class="skip" href="#main">Skip to content</a><header class="wrap"><nav>
 <a href="../index.html">Research desk</a> · <a href="../portfolio-review.html">All-release review</a> · <a href="../executive-summary.html">Nine-site summary</a></nav></header>
 <main class="wrap" id="main"><h1>WBG-H1 / DPGF-1 — frozen negative result</h1>
 <div class="alert"><p><strong>DOWNLOAD: YES, research only. SUBMIT: NO. DO NOT SUBMIT.</strong>
@@ -47,7 +47,7 @@ Format-valid does not mean scientifically promoted, lane-unique or organizer-acc
 same evaluator/positives. Paired difference: HOLDOUT-DTI +{h['paired_delta_vs_b0']:.6f},
 95% CI [{h['paired_delta_vs_b0_ci95'][0]:.6f}, {h['paired_delta_vs_b0_ci95'][1]:.6f}].
 A positive matched-baseline difference is not a verified win over the current same-instrument portfolio best.</p>
-<h2>Literal uniqueness: FAIL</h2><p>Recorded one-way 3 px overlap with the registered lattice:
+<h2>Literal uniqueness: FAILED</h2><p>Recorded one-way 3 px overlap with the registered lattice:
 <strong>{registry['literal_oneway_vs_r13_space_filling_lattice_ir_wbg1_01']*100:.4f}%</strong>.
 Recorded one-way overlap with a dense slab: {registry['literal_oneway_vs_516k_continuous_slabs_ir_wbg1_03']*100:.2f}%.
 Both exceed 70%. Sparse-only and symmetric overlap do not replace the user's all-registry forward-overlap gate.
@@ -58,7 +58,7 @@ No lattice or density exemption was authorized. These are frozen registry measur
 <li>One rounded lattice result plus an assumed average kernel response does not identify the private fault count, private recall, or locations of hidden faults. The inherited private-count inversion is not verified evidence.</li>
 <li>Catalogue-distance pruning offers a plausible efficiency explanation; private-label causality cannot be proved from these files.</li>
 <li>All local format checks passing is not a guarantee about the live portal. The cause of the original range rejection cannot be reconstructed without its exact bytes.</li></ul>
-<h2>How a future approved submission would work</h2><p>There is no eligible file now. Do not upload this negative result for optional testing.
+<h2>How a future approved submission would work</h2><p>There is no eligible file now. Do not upload this negative result for optional testing or as an optional benchmark. No competition slot was used.
 Follow the <a href="../how-to-submit.html">future submission guide</a> only after same-instrument efficacy,
 canaries, literal surface and final-dot uniqueness, provenance, and saved-file checks pass, and a separate selector approves a slot.</p>
 <p><a href="../portfolio-review.html">All four reopened files and current blockers</a> ·

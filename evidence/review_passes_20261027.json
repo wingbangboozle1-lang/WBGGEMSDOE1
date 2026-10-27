@@ -25,5 +25,12 @@
     "initial_remote_verification": "All tests, lint and validators passed; static rebuild check failed because new validator receipts persisted absolute checkout paths.",
     "fix": "Normalize only the validator file metadata to the repository-relative artifact identity. Numerical results and exact TIFF bytes unchanged. Regression assertion added.",
     "remote_browser": "Passed all eight pages and four downloaded TIFF hashes."
+  },
+  "parallel_integration": {
+    "upstream_main": "59aa07a",
+    "retained": "Parallel exact-reference audit, review notes, source receipts, negative card, 13 additional tests and formula-identifiability regression. Separate review-pass record retained at evidence/review_passes_parallel_20261027.json.",
+    "verification": "123 tests passed, Ruff passed, both artifact-review builders passed, fresh checkout regeneration previously clean; nine pages and all four HTTP TIFF hashes pass browser checks.",
+    "science_rerun": false,
+    "submission_slots_used": 0
   }
 }

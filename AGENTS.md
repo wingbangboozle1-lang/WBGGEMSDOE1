@@ -1,8 +1,16 @@
 # Starting point for every session
 
+0. **Current submittable artifact (2026-10-27): `docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif`.**
+   Unique against all nine focus sites (max 1.18x chance overlap, max |rho| 0.009), format-valid,
+   zeros-mode, sha256 `f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3`.
+   Estimated score **0.2824** (MODEL-ESTIMATE; 95% 0.2795-0.2853) - **not** organizer-confirmed and
+   only +0.0046 over the best focus-site artifact, i.e. a tie within model error. Read
+   `docs/wbg2.html` and `evidence/wbg2/run_card.json` first. The WBG-C1/TIP1/MVGZ/WBG-H1 artifacts
+   remain NEGATIVE; nothing else here is cleared to upload.
+
 1. Read `README.md` **including the archived standing prompt**, then `registry/run_card.json`,
    `registry/irregularities.json`, `registry/experiment_ledger.json`, and `registry/preregistration.json`.
-   The prompt is intent, not evidence. The current measured status is **NEGATIVE / DO NOT SUBMIT**.
+   The prompt is intent, not evidence. The WBG-C1 lane status is **NEGATIVE / DO NOT SUBMIT**.
 2. The original checkout contained only a title. Do not invent prior local training, pending tasks,
    organizer receipts, lane assignments, scores, GPU requirements or authenticated data access.
 3. No assigned single-method paragraph was supplied. WBG-C1 is provisional research only. Its

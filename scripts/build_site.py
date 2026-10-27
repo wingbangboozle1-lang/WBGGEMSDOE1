@@ -170,15 +170,15 @@ def wbg_s2_banner():
 
 
 def wbg3_banner():
-    """Show the binding negative result and competing-sparse uniqueness audit from WBG-3."""
-    card = load("evidence/wbg3/run_card.json")
+    """Show the binding negative result and competing-sparse uniqueness audit from WBG-3 SPI-PMR-WCS-1 and parallel EXP3DET."""
+    card = load("evidence/wbg3_spipmr/run_card.json")
     if card["verdict"] != "negative" or card["decision"]["ok_to_submit"] is not False:
         raise ValueError("WBG-3 is stopped; refusing to publish an approval")
     tif = Path(card["artifact"]).name
     seg = card["holdout_dti"]["primary_segment_holdout"]["dti"]
     intra = card["holdout_dti"]["secondary_intrabasin_holdout"]["dti"]
     comp_ov = card["correlation_overlap_vs_registry"]["final_dots_competing_sparse"]["max_forward_3px_overlap"] * 100
-    return f'''<div class="alert" role="note"><p><strong>WBG-3 (1m-LiDAR-free SPI-PMR-WCS-1): DO NOT SUBMIT; no selector eligibility.</strong> 36,800 zeros-mode dots beat 19-band control across 4/4 spatial folds (<code>HOLDOUT-DTI {seg:.6f}</code> on <code>gems-segment-pooled-v1</code>; <code>{intra:.6f}</code> on <code>gems57-pooled-hide-v2</code>) and pass all 206 competing sparse rasters (max 3 px overlap <strong>{comp_ov:.2f}% ≤ 70%</strong>; 27.55% vs GEMSDOE32 B2), but literal overlap hits <strong>99.9946%</strong> vs <code>r13-lattice-s5</code> and <strong>100%</strong> vs <code>WBG-C1</code>. <a href="wbg3/index.html">WBG-3 executive summary →</a> · <a href="wbg3/how-to-submit.html">How to submit →</a> · <a href="wbg3/forensics-and-hypotheses.html">0.2778 PhD forensics →</a> · <a href="downloads/{tif}" download>Research-only WBG-3 TIFF ↓</a></p></div>'''
+    return f'''<div class="alert" role="note"><p><strong>WBG-3 (1m-LiDAR-free SPI-PMR-WCS-1): DO NOT SUBMIT; no selector eligibility.</strong> 36,800 zeros-mode dots beat 19-band control across 4/4 spatial folds (<code>HOLDOUT-DTI {seg:.6f}</code> on <code>gems-segment-pooled-v1</code>; <code>{intra:.6f}</code> on <code>gems57-pooled-hide-v2</code>) and pass all 207 competing sparse rasters (max 3 px overlap <strong>{comp_ov:.2f}% ≤ 70%</strong>; 27.55% vs GEMSDOE32 B2), but literal overlap hits <strong>99.9946%</strong> vs <code>r13-lattice-s5</code> and <strong>100%</strong> vs <code>WBG-C1</code>. <a href="wbg3/index.html">WBG-3 SPI-PMR executive summary →</a> · <a href="wbg3/how-to-submit.html">How to submit →</a> · <a href="wbg3/forensics-and-hypotheses.html">0.2778 PhD forensics →</a> · <a href="wbg3.html">Parallel EXP3DET summary →</a> · <a href="downloads/{tif}" download>Research-only WBG-3 TIFF ↓</a></p></div>'''
 
 
 def home(card, receipt, audit, feed):
@@ -289,9 +289,9 @@ def main():
         "official-source-audit-20261027.json": "evidence/official_source_audit_20261027.json",
         "wbg2-review-passes-20261027.json": "evidence/wbg2/review_passes_20261027.json",
         "wbg-s2-safety-20261027.json": "evidence/wbg_s2/safety_review_20261027.json",
-        "wbg3-run-card.json": "evidence/wbg3/run_card.json",
-        "wbg3-uniqueness.json": "evidence/wbg3/uniqueness_audit.json",
-        "wbg3-canaries.json": "evidence/wbg3/leakage_canary.json",
+        "wbg3-run-card.json": "evidence/wbg3_spipmr/run_card.json",
+        "wbg3-uniqueness.json": "evidence/wbg3_spipmr/uniqueness_audit.json",
+        "wbg3-canaries.json": "evidence/wbg3_spipmr/leakage_canary.json",
         "wbg3-preregistration.json": "registry/wbg3_preregistration.json",
         "wbg2-followup-audit.json": "evidence/wbg2_followup_audit_20261027.json"}
     for dest, source in copies.items():

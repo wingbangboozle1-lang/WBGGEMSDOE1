@@ -1,0 +1,220 @@
+{
+ "schema": "wbg3-run-card-v1",
+ "generated_utc": "2026-10-27T20:07:13+00:00",
+ "submission_name": "wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros",
+ "submission_note": "WBG-3 supervised multi-physics detector, dotted clear2 37654, zeros no NaN",
+ "mode": "exp3",
+ "budget_pixels": 37654,
+ "catalogue_clearance_px": 2,
+ "seed": 20261027,
+ "raster_sha256": "30901f894a84f6150a65a86e6556d3b4d3b3f5054dd4f8f3b597d754115447c1",
+ "zip_sha256": "7f4a582e5cd6e0dddda022da23a6b507c5e05cc76842ae1635d7da068842ad3f",
+ "validator": {
+  "tif": {
+   "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif",
+   "sha256": "30901f894a84f6150a65a86e6556d3b4d3b3f5054dd4f8f3b597d754115447c1",
+   "shape": [
+    3730,
+    3292
+   ],
+   "dtype": "float32",
+   "band_count": 1,
+   "crs": "EPSG:32611",
+   "pixel_size": [
+    100.0,
+    100.0
+   ],
+   "origin": [
+    243350.0,
+    4508550.0
+   ],
+   "nodata": null,
+   "mode": "zeros",
+   "in_footprint_pixels": 5167373,
+   "positive_pixels": 37654,
+   "value_min": 0.0,
+   "value_max": 1.0,
+   "checks": {
+    "single_band": true,
+    "dtype_float32": true,
+    "shape_matches": true,
+    "crs_epsg_32611": true,
+    "pixel_size_100m": true,
+    "in_footprint_all_finite": true,
+    "values_in_0_1": true,
+    "outside_footprint_zero": true,
+    "has_predictions": true,
+    "no_nan_anywhere": true
+   },
+   "all_checks_passed": true,
+   "errors": []
+  },
+  "zip": {
+   "zip": "/home/user/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.zip",
+   "members": [
+    "wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif"
+   ],
+   "tif_members": [
+    "wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif"
+   ],
+   "exactly_one_tif": true,
+   "byte_identical": true,
+   "all_checks_passed": true
+  }
+ },
+ "registry": {
+  "gate": "gems57 literal per-raster (Euclidean 3px dot overlap <=0.70 and |Spearman| <=0.90), no density exemption",
+  "scope": "nine focus-site champion artifacts only (fetched from pinned GitHub commits, decoded positives verified vs registry/wbg2_calibration.json). A full-registry literal scan including registered dense continuous surfaces blocks any sparse field by construction (vendor/gems57/uniqueness.py docstring); that is reported, not exempted.",
+  "rows": [
+   {
+    "site": "GEMSDOE24",
+    "forward_3px_overlap_euclidean": 0.43708503744622085,
+    "spearman_rho_subsample400k": 0.03576710022961979,
+    "their_positive": 60069
+   },
+   {
+    "site": "GEMSDOE25",
+    "forward_3px_overlap_euclidean": 0.41987571041589206,
+    "spearman_rho_subsample400k": 0.02693434210721711,
+    "their_positive": 44090
+   },
+   {
+    "site": "GEMSDOE27",
+    "forward_3px_overlap_euclidean": 0.45060285759813035,
+    "spearman_rho_subsample400k": 0.03594503114122188,
+    "their_positive": 61328
+   },
+   {
+    "site": "GEMSDOE28",
+    "forward_3px_overlap_euclidean": 0.3818717798905827,
+    "spearman_rho_subsample400k": 0.027838204019410374,
+    "their_positive": 37660
+   },
+   {
+    "site": "GEMSDOE30",
+    "forward_3px_overlap_euclidean": 0.41987571041589206,
+    "spearman_rho_subsample400k": 0.02693434210721711,
+    "their_positive": 44090
+   },
+   {
+    "site": "GEMSDOE31",
+    "forward_3px_overlap_euclidean": 0.38598820842407183,
+    "spearman_rho_subsample400k": 0.02857918900587621,
+    "their_positive": 40199
+   },
+   {
+    "site": "GEMSDOE32",
+    "forward_3px_overlap_euclidean": 0.3513570935358793,
+    "spearman_rho_subsample400k": 0.030116900070779086,
+    "their_positive": 37654
+   },
+   {
+    "site": "GEMSDOE33",
+    "forward_3px_overlap_euclidean": 0.4011791575928188,
+    "spearman_rho_subsample400k": 0.033407840910818935,
+    "their_positive": 41865
+   },
+   {
+    "site": "GEMSDOE36",
+    "forward_3px_overlap_euclidean": 0.3554204068624847,
+    "spearman_rho_subsample400k": 0.029625694097612364,
+    "their_positive": 38854
+   }
+  ],
+  "max_forward_3px_overlap_euclidean": 0.45060285759813035,
+  "max_abs_spearman": 0.03594503114122188,
+  "unique_vs_nine_focus_sites": true
+ },
+ "elapsed_s": 350.9411256313324,
+ "hypothesis": "WBG-3: supervised multi-physics fault detector (official 19-band GeoDAWN stack + 3DEP LiDAR scarp + GeoDAWN radiometrics + local lineament texture) with catalogue-clearance dotted emission",
+ "mechanism": "HGB trained on visible catalogue pixels learns the joint geophysical expression of mapped faults; dotted emission (>=3 px spacing, >2 px from catalogue, 37,654 dots) converts the surface to a max-cover-style field that does not retrace known faults, which earn no credit against expert-mapped new-fault truth.",
+ "named_non_fault_mimic": "Range-front alluvial aprons and lithologic contacts produce coincident gravity/magnetic/basement steps without faulting; pluvial shoreline benches mimic scarps in the LiDAR stack.",
+ "holdout": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems-segment-pooled-v1",
+  "dti": 0.13823302967086964,
+  "ci95": [
+   0.12570057571548604,
+   0.1519562135793138
+  ],
+  "withheld_positive_pixels": 60988,
+  "folds": [
+   {
+    "fold": "NW",
+    "dti": 0.14527150854395698
+   },
+   {
+    "fold": "NE_LidarGapHeavy",
+    "dti": 0.16705869711484223
+   },
+   {
+    "fold": "SW",
+    "dti": 0.09052578676688543
+   },
+   {
+    "fold": "SE",
+    "dti": 0.16700762106519557
+   }
+  ],
+  "exp2_dti": 0.13196340844667295,
+  "paired_delta_exp3_vs_exp2": 0.006269621224196692,
+  "paired_delta_ci95": [
+   -0.0006387755240589363,
+   0.012935292728426093
+  ],
+  "benchmark_s3dep1_dti": 0.16606013635163805,
+  "benchmark_note": "GEMSDOE24 S3DEP1, same evaluator, from evidence/benchmarks/gemsdoe24_s3dep1_run_card_20261026.json; its fold masks are not published, so paired replay is unavailable and the promotion gate fails closed."
+ },
+ "leakage_canary": {
+  "passed": true,
+  "static42_max_symmetric_auc": 0.5978573681640625,
+  "local10": "see canary_local10.json",
+  "ir_wbg3_01": "v1 catalogue-distance leakage found, fixed, and rerun; see research/04_wbg3_hypotheses_20261027.md"
+ },
+ "score_estimate": {
+  "evidence_class": "MODEL-ESTIMATE",
+  "value": 0.2108,
+  "interval": [
+   0.1694,
+   0.2557
+  ],
+  "method": "cross-fitted HOLDOUT-DTI 0.13823 x live/holdout ratios of the only two detector-family artifacts with both numbers (GEMSDOE24: 0.2477/0.17183=1.442; GEMSDOE25: 0.2600/0.16163=1.609), interval widened +-15%",
+  "anchors": [
+   [
+    "GEMSDOE24",
+    0.1718253926823608,
+    0.2477
+   ],
+   [
+    "GEMSDOE25",
+    0.16163037136893005,
+    0.26
+   ]
+  ],
+  "caveats": [
+   "n=2 anchors, both OWNER-REPORTED live values without organizer receipts",
+   "live truth is expert-mapped new faults, not withheld catalogue faults; the ratio is a ranking device, not a forecast",
+   "point estimate is BELOW the champion OWNER-REPORTED 0.2778; beating it is not claimed"
+  ]
+ },
+ "organizer_confirmed_score": null,
+ "final_dots": {
+  "positive_pixels": 37654,
+  "fraction_within_2px_of_catalogue": 0.0,
+  "fraction_within_3px_of_catalogue": 0.3435491581239709,
+  "median_distance_to_catalogue_px": 5.0
+ },
+ "dti_vs_champion_as_proxy_truth": 0.1637694861440999,
+ "decision": {
+  "verdict": "negative",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "slots_used": 0,
+  "reasons": [
+   "HOLDOUT-DTI 0.1382 does not beat the 0.1661 S3DEP1 benchmark (paired replay unavailable, gate fails closed)",
+   "MODEL-ESTIMATE 0.21 [0.17-0.26] is below champion OWNER-REPORTED 0.2778; beating 0.2778 is not claimed",
+   "It IS the best reproducible unique detector in this repo (Exp2 0.1320, B0 0.1039, TIP1 0.0824 on the same evaluator) and the designated file if the owner, as separate selector, chooses to spend a slot"
+  ]
+ },
+ "verdict": "negative"
+}

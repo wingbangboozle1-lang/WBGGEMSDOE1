@@ -115,7 +115,7 @@ def test_visible_wcs_channels_never_leak_withheld_segments():
 
 
 def test_wbg3_run_card_protocol_and_holdout_contracts():
-    card = json.loads((ROOT / "evidence/wbg3/run_card.json").read_text())
+    card = json.loads((ROOT / "evidence/wbg3_spipmr/run_card.json").read_text())
     assert _sha256(ROOT / card["preregistration_path"]) == card["preregistration_sha256"]
     assert card["experiments_executed"] == 3 <= card["experiment_budget_limit"]
     assert card["elapsed_seconds"] <= card["wall_budget_seconds"] == 7200
@@ -152,7 +152,7 @@ def test_wbg3_run_card_protocol_and_holdout_contracts():
 
 
 def test_wbg3_shipped_geotiff_and_zip_roundtrip():
-    card = json.loads((ROOT / "evidence/wbg3/run_card.json").read_text())
+    card = json.loads((ROOT / "evidence/wbg3_spipmr/run_card.json").read_text())
     tif_path = ROOT / card["artifact"]
     zip_path = ROOT / card["zip_artifact"]
     assert tif_path.exists() and zip_path.exists()
@@ -188,14 +188,14 @@ def test_wbg3_shipped_geotiff_and_zip_roundtrip():
 
 
 def test_wbg3_static_pages_and_no_raw_latex():
-    card = json.loads((ROOT / "evidence/wbg3/run_card.json").read_text())
+    card = json.loads((ROOT / "evidence/wbg3_spipmr/run_card.json").read_text())
     comp = card["correlation_overlap_vs_registry"]["final_dots_competing_sparse"]
-    assert card["correlation_overlap_vs_registry"]["total_unique_rasters_checked"] == 208
-    assert card["correlation_overlap_vs_registry"]["competing_sparse_rasters_checked"] == 206
+    assert card["correlation_overlap_vs_registry"]["total_unique_rasters_checked"] == 209
+    assert card["correlation_overlap_vs_registry"]["competing_sparse_rasters_checked"] == 207
     assert comp["vs_wbg_s2"]["forward_3px_overlap"] <= 0.70
+    assert comp["vs_wbg3_exp3det"]["forward_3px_overlap"] <= 0.70
 
     for rel in (
-        "docs/wbg3.html",
         "docs/wbg3/index.html",
         "docs/wbg3/how-to-submit.html",
         "docs/wbg3/forensics-and-hypotheses.html",

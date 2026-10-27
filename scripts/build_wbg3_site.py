@@ -268,7 +268,7 @@ def _index_body(w3, s2, h1, w2, c1, audit, *, prefix: str) -> str:
 {_stop_banner(w3)}{_stats(w3)}
 <section class="section"><div class="section-heading"><div><span class="section-num">01 / EXECUTIVE SUBMISSION &amp; NINE-SITE DECISION TABLE</span><h2>File to download, estimated/measured score, uniqueness &amp; submit verdict</h2><p>Every score carries its mandatory protocol label; projections are never presented as leaderboard scores.</p></div>{_link(f'{sub_prefix}how-to-submit.html', 'Submission instructions →', 'text-link')}</div>{_master_table(w3, s2, h1, w2, c1, audit, prefix=prefix)}</section>
 <section class="section"><div class="section-heading"><div><span class="section-num">02 / 3-ARM PREREGISTERED ABLATION &amp; SPATIAL PREVIEW</span><h2>4/4 spatial-fold victory over 19-band control and WBG-2</h2><p>Evaluated via unchanged shared <code>SegmentHoldout</code> and <code>gems57.holdout</code>.</p></div>{_link(f'{prefix}data/wbg3-run-card.json', 'WBG-3 JSON Run Card ↗', 'text-link')}</div>
-<div class="two-col"><article class="panel"><div class="panel-head">WBG-3 emitted 36,800-dot field<span>zeros mode · 0 NaN</span></div><div class="map-frame"><span class="map-label">UTM 11N · EPSG:32611 · 3730×3292</span><img src="{prefix}assets/wbg3-preview.png" alt="Spatial map of the 36,800 WBG-3 off-catalogue binary fault predictions in teal alongside grey mapped USGS and INGENIOUS catalogue traces across the Great Basin footprint." width="610" height="690"></div><div class="map-caption"><span>Teal: 36,800 WBG-3 off-catalogue dots (≥200 m collar). Grey: mapped catalogue.<br>Single-band float32 in [0, 1] · 0 NaN/Inf across all 12,279,160 pixels.</span><div><span>SHA-256: <code>{w3['raster_sha256'][:16]}…</code></span></div></div></article>
+<div class="two-col"><article class="panel"><div class="panel-head">WBG-3 emitted 36,800-dot field<span>zeros mode · 0 NaN</span></div><div class="map-frame"><span class="map-label">UTM 11N · EPSG:32611 · 3730×3292</span><img src="{prefix}assets/wbg3-spipmr-preview.png" alt="Spatial map of the 36,800 WBG-3 off-catalogue binary fault predictions in teal alongside grey mapped USGS and INGENIOUS catalogue traces across the Great Basin footprint." width="610" height="690"></div><div class="map-caption"><span>Teal: 36,800 WBG-3 off-catalogue dots (≥200 m collar). Grey: mapped catalogue.<br>Single-band float32 in [0, 1] · 0 NaN/Inf across all 12,279,160 pixels.</span><div><span>SHA-256: <code>{w3['raster_sha256'][:16]}…</code></span></div></div></article>
 <article class="panel"><div class="panel-head">SegmentHoldout 4-arm comparison<span>n = 60,988 withheld positives</span></div><div class="panel-pad">{_chart(w3)}<p class="micro">Paired ΔDTI vs 19-band control: <strong>+0.027399</strong>, 95% CI [+0.014361, +0.041700] (4/4 folds won). Intra-basin <code>gems57-pooled-hide-v2</code> (n=11,330): WBG-3 <strong>{intra['dti']:.6f}</strong> vs 19-band ctrl 0.076470 (+0.045392) and WBG-2 0.097610 (+0.024252). Off-catalogue USGS SGMC blind fault proxy: <strong>{sgmc['wbg3_arm3_proxy_dti']:.6f}</strong> vs WBG-2 {sgmc['wbg2_pr13_proxy_dti']:.6f} (+25.2%).</p></div></article></div></section>
 <section class="content-section"><h2>Per-Fold SegmentHoldout &amp; 208-Raster Uniqueness Summary</h2>
 <div class="table-wrap" style="margin-bottom:22px"><table><caption>Per-fold SegmentHoldout breakdown for WBG-3 Arm 3 (gems-segment-pooled-v1 · n=60,988)</caption>
@@ -331,7 +331,7 @@ def _forensics_body(w3: dict, *, prefix: str) -> str:
 
 
 def build() -> None:
-    w3 = _load("evidence/wbg3/run_card.json")
+    w3 = _load("evidence/wbg3_spipmr/run_card.json")
     if w3["verdict"] != "negative" or w3["decision"]["ok_to_submit"] is not False:
         raise ValueError("WBG-3 must remain fail-closed (verdict='negative', ok_to_submit=False)")
     s2 = _load("evidence/wbg_s2/run_card.json")
@@ -342,18 +342,13 @@ def build() -> None:
 
     SUBDIR.mkdir(parents=True, exist_ok=True)
     (SUBDIR / "data").mkdir(parents=True, exist_ok=True)
-    shutil.copyfile(ROOT / "evidence/wbg3/run_card.json", SUBDIR / "data/run_card.json")
-    shutil.copyfile(ROOT / "evidence/wbg3/uniqueness_audit.json", SUBDIR / "data/uniqueness_audit.json")
-    shutil.copyfile(ROOT / "evidence/wbg3/leakage_canary.json", SUBDIR / "data/leakage_canary.json")
+    shutil.copyfile(ROOT / "evidence/wbg3_spipmr/run_card.json", SUBDIR / "data/run_card.json")
+    shutil.copyfile(ROOT / "evidence/wbg3_spipmr/uniqueness_audit.json", SUBDIR / "data/uniqueness_audit.json")
+    shutil.copyfile(ROOT / "evidence/wbg3_spipmr/leakage_canary.json", SUBDIR / "data/leakage_canary.json")
     if (DOCS / "data/feed.json").exists():
         shutil.copyfile(DOCS / "data/feed.json", SUBDIR / "data/feed.json")
 
-    # Top-level entry page docs/wbg3.html
-    (DOCS / "wbg3.html").write_text(
-        _shell("wbg3/index.html", "WBG-3 executive summary", _index_body(w3, s2, h1, w2, c1, audit, prefix=""), prefix=""),
-        encoding="utf-8",
-    )
-    # Dedicated subsite pages docs/wbg3/*.html
+    # Dedicated subsite pages docs/wbg3/*.html (leaving docs/wbg3.html intact for parallel EXP3DET lane)
     (SUBDIR / "index.html").write_text(
         _shell("index.html", "WBG-3 executive summary", _index_body(w3, s2, h1, w2, c1, audit, prefix="../"), prefix="../"),
         encoding="utf-8",

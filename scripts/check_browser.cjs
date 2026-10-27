@@ -21,7 +21,7 @@ const chromium = importedChromium.default || importedChromium;
   fs.mkdirSync(artifacts, { recursive: true });
   const wbg2 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg2/run_card.json")));
   const s2 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg_s2/run_card.json")));
-  const wbg3 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg3/run_card.json")));
+  const wbg3 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg3_spipmr/run_card.json")));
   if (process.env.BROWSER_COMPAT_LIBS === "1") {
     // Minimal Linux containers may lack NSS/NSPR. Use the dependency's own
     // bundled compatibility libraries instead of downloading system packages.
@@ -110,7 +110,7 @@ const chromium = importedChromium.default || importedChromium;
     await page.screenshot({ path: path.join(artifacts, "wbg-s2-desktop.png"), fullPage: true });
     await page.setViewportSize({ width: 390, height: 844 });
     await page.screenshot({ path: path.join(artifacts, "wbg-s2-mobile.png"), fullPage: true });
-    for (const file of ["wbg3.html", "wbg3/index.html", "wbg3/how-to-submit.html", "wbg3/forensics-and-hypotheses.html"]) {
+    for (const file of ["wbg3/index.html", "wbg3/how-to-submit.html", "wbg3/forensics-and-hypotheses.html"]) {
       const result = { file };
       for (const [label, width, height] of [["desktop", 1440, 1100], ["mobile", 390, 844]]) {
         await page.setViewportSize({ width, height });

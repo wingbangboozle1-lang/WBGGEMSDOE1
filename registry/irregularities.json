@@ -236,8 +236,8 @@
   {
    "id": "IR-034",
    "severity": "high",
-   "title": "WBG-3 (SPI-PMR-WCS-1) 208-raster audit and fold-safe WBG-2 holdout measurement",
-   "finding": "WBG-3 (wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif, 100% 1m-LiDAR-free and 10m-DEM-free) passes competing-sparse uniqueness across all 206 sparse rasters (max 3-px overlap 59.38% <= 70%; 27.55% vs GEMSDOE32 B2; 43.40% vs WBG-S2; 33.80% vs WBG-2; full-footprint pre-placement max |Spearman rho| = 0.6449 <= 0.90), and beats 19-band control across 4/4 folds (HOLDOUT-DTI = 0.118180 vs 0.090781 on gems-segment-pooled-v1; 0.121862 vs 0.076470 on gems57-pooled-hide-v2), while fold-safe replay of WBG-2 scores 0.000341 on gems-segment-pooled-v1 and 0.097610 on gems57-pooled-hide-v2. However, WBG-3 overlaps GEMSDOE24's 206,895-dot synthetic lattice r13-lattice-s5 by 99.9946% and continuous WBG-C1 by 100.00%, and trails S3DEP1 (0.166060).",
+   "title": "WBG-3 (SPI-PMR-WCS-1) 209-raster audit and fold-safe WBG-2 holdout measurement",
+   "finding": "WBG-3 SPI-PMR-WCS-1 (wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif, 100% 1m-LiDAR-free and 10m-DEM-free) passes competing-sparse uniqueness across all 207 sparse rasters (max 3-px overlap 59.38% <= 70%; 27.55% vs GEMSDOE32 B2; 43.40% vs WBG-S2; 38.96% vs WBG-3 EXP3DET; 33.80% vs WBG-2; full-footprint pre-placement max |Spearman rho| = 0.6449 <= 0.90), and beats 19-band control across 4/4 folds (HOLDOUT-DTI = 0.118180 vs 0.090781 on gems-segment-pooled-v1; 0.121862 vs 0.076470 on gems57-pooled-hide-v2), while fold-safe replay of WBG-2 scores 0.000341 on gems-segment-pooled-v1 and 0.097610 on gems57-pooled-hide-v2. However, WBG-3 overlaps GEMSDOE24's 206,895-dot synthetic lattice r13-lattice-s5 by 99.9946% and continuous WBG-C1 by 100.00%, and trails S3DEP1 (0.166060).",
    "action": "Keep WBG-3 verdict 'negative' (DOWNLOAD: YES, SUBMIT: NO, zero selector eligibility), report both competing-sparse and literal all-entry measurements without exemption, and spend zero competition slots."
   },
   {

@@ -66,7 +66,7 @@ def stage():
                 or not .70 < row["my_dots_within_3px_of_theirs"] <= 1 for row in witnesses)):
         raise ValueError("staged WBG-S2 bytes or negative decision changed")
     w3_digest = None
-    w3_card_path = ROOT / "evidence/wbg3/run_card.json"
+    w3_card_path = ROOT / "evidence/wbg3_spipmr/run_card.json"
     if w3_card_path.is_file():
         w3 = json.loads(w3_card_path.read_text())
         w3_path = Path(w3["artifact"])

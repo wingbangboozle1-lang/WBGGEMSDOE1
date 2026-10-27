@@ -18,7 +18,7 @@ def main():
     w2tif = Path(w2["artifacts"]["tif"]).name
     s2 = json.loads((ROOT / "evidence/wbg_s2/run_card.json").read_text())
     s2_tif = Path(s2["artifact"]["tif_path"]).name
-    w3 = json.loads((ROOT / "evidence/wbg3/run_card.json").read_text())
+    w3 = json.loads((ROOT / "evidence/wbg3_spipmr/run_card.json").read_text())
     w3_tif = Path(w3["artifact"]).name
     w3_zip = Path(w3["zip_artifact"]).name
     w3_seg = w3["holdout_dti"]["primary_segment_holdout"]
@@ -36,7 +36,9 @@ def main():
 **[0.2778 PhD Forensics & 4 Hypotheses](docs/wbg3/forensics-and-hypotheses.html)** ·
 [Download WBG-3 TIFF (research only)](docs/downloads/{w3_tif}) ·
 [WBG-3 ZIP](docs/downloads/{w3_zip}) ·
-[WBG-3 Run Card JSON](evidence/wbg3/run_card.json)
+[WBG-3 Run Card JSON](evidence/wbg3_spipmr/run_card.json) ·
+[Parallel EXP3DET Summary](docs/wbg3.html) ·
+[Parallel EXP3DET Run Card](evidence/wbg3/run_card.json)
 
 **[Executive audit and nine-site table](docs/wbg2.html)** ·
 [Download WBG-2 TIFF for research only](docs/downloads/{w2tif}) ·
@@ -124,8 +126,8 @@ was not obtained or credibly projected in this session.
 - **[WBG-3 / SPI-PMR-WCS-1 (100% 1m-LiDAR-free & 10m-DEM-free)](docs/wbg3/index.html): DO NOT SUBMIT; no selector eligibility.**
   [How-to-submit subpage](docs/wbg3/how-to-submit.html) · [0.2778 PhD forensics & 4 hypotheses](docs/wbg3/forensics-and-hypotheses.html) ·
   [Research TIFF](docs/downloads/{w3_tif}) · [ZIP](docs/downloads/{w3_zip}) ·
-  [run card](evidence/wbg3/run_card.json) · [208-raster uniqueness audit](evidence/wbg3/uniqueness_audit.json) ·
-  [40-feature leakage canary](evidence/wbg3/leakage_canary.json) · [preregistration](registry/wbg3_preregistration.json).
+  [run card](evidence/wbg3_spipmr/run_card.json) · [209-raster uniqueness audit](evidence/wbg3_spipmr/uniqueness_audit.json) ·
+  [40-feature leakage canary](evidence/wbg3_spipmr/leakage_canary.json) · [preregistration](registry/wbg3_preregistration.json).
   TIFF SHA-256 `{w3['raster_sha256']}`; ZIP SHA-256 `{w3['zip_sha256']}`; name `{w3['submission_name']}`; note `{w3['submission_note']}` ({w3['submission_note_length']} chars).
   3/3 preregistered arms executed on 100 m competition geophysics + label-free SGMC/GDR (`444.3s`, 0 slots used).
   Beats 19-band control across 4/4 spatial folds: **HOLDOUT-DTI {w3_seg['dti']:.6f}** vs **0.090781** (`{w3_seg['evaluator_version']}`, paired ΔDTI `+0.027399`, 95% CI `[+0.014361, +0.041700]`) and **HOLDOUT-DTI {w3_in['dti']:.6f}** vs **0.076470** (`{w3_in['evaluator_version']}`).

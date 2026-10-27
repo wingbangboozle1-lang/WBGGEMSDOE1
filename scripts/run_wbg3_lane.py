@@ -914,7 +914,7 @@ def main() -> int:
     shared_val_report = json.loads(val_proc.stdout)
     writer_receipt = json.loads(writer_receipt_path.read_text())
 
-    preview_path = ROOT / "docs/assets/wbg3-preview.png"
+    preview_path = ROOT / "docs/assets/wbg3-spipmr-preview.png"
     write_preview_png(prod_dots, cat, fp, preview_path)
 
     tif_sha = sha256_file(out_tif)

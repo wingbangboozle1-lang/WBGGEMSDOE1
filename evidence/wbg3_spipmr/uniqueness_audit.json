@@ -1,6 +1,6 @@
 {
-  "total_unique_rasters_checked": 208,
-  "competing_sparse_rasters_checked": 206,
+  "total_unique_rasters_checked": 209,
+  "competing_sparse_rasters_checked": 207,
   "pre_placement_surface": {
     "max_abs_spearman_all_entries": 0.644883,
     "worst_comparator": "WBGGEMSDOE1:wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
@@ -165,6 +165,17 @@
       "dots_spearman": 0.022725,
       "forward_3px_overlap": 0.433995,
       "reverse_3px_overlap": 0.479763
+    },
+    "vs_wbg3_exp3det": {
+      "source_group": "local_wbggemsdoe1",
+      "id": "WBGGEMSDOE1:wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif",
+      "sha256": "30901f894a84f6150a65a86e6556d3b4d3b3f5054dd4f8f3b597d754115447c1",
+      "positive_pixels": 37654,
+      "comparator_class": "competing_sparse",
+      "surface_spearman": 0.018802,
+      "dots_spearman": 0.018802,
+      "forward_3px_overlap": 0.389647,
+      "reverse_3px_overlap": 0.472911
     }
   },
   "final_dots_literal_all_entries": {

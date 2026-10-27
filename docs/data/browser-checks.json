@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-27T20:25:52.487Z",
+  "generated_utc": "2026-10-27T20:32:48.290Z",
   "browser": "153.0.8010.0",
   "checked": [
     {
@@ -74,11 +74,6 @@
     },
     {
       "file": "wbg-s2-mksf1/how-to-submit.html",
-      "desktop": "passed",
-      "mobile": "passed"
-    },
-    {
-      "file": "wbg3.html",
       "desktop": "passed",
       "mobile": "passed"
     },

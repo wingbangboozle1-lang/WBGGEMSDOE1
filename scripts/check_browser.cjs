@@ -70,6 +70,24 @@ const chromium = importedChromium.default || importedChromium;
     }
     await page.goto(new URL("index.html", base).href, { waitUntil: "networkidle" });
     await page.screenshot({ path: path.join(artifacts, "mobile.png"), fullPage: true });
+    for (const file of ["portfolio-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html"]) {
+      const result = { file };
+      for (const [label, width, height] of [["desktop", 1440, 1100], ["mobile", 390, 844]]) {
+        await page.setViewportSize({ width, height });
+        const response = await page.goto(new URL(file, base).href, { waitUntil: "networkidle" });
+        assert.equal(response.status(), 200);
+        assert.match(await page.locator("main").innerText(), /SUBMIT: NO/);
+        assert.equal(await page.evaluate(() => document.body.scrollWidth > window.innerWidth), false, `${label} overflow: ${file}`);
+        result[label] = "passed";
+      }
+      checked.push(result);
+    }
+    const portfolio = JSON.parse(fs.readFileSync(path.join(root, "docs/data/portfolio-review.json")));
+    for (const row of portfolio.rows) {
+      const response = await page.request.get(new URL(row.artifact.replace(/^docs\//, ""), base).href);
+      assert.equal(response.status(), 200);
+      assert.equal(crypto.createHash("sha256").update(await response.body()).digest("hex"), row.expected_sha256);
+    }
     assert.deepEqual(errors, []);
     const report = { generated_utc: new Date().toISOString(), browser: browser.version(), checked,
       desktop_viewport: [1440, 1100], mobile_viewport: [390, 844],

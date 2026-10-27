@@ -171,8 +171,18 @@ def test_concurrent_main_archive_and_frozen_science_are_byte_preserved():
     assert receipt["no_score_pooling_or_cross_instrument_ranking"]
     for row in receipt["archived_site_files"]:
         assert sha256(ROOT / row["archived"]) == row["sha256"]
+    amendments = load("evidence/integration_amendments_20261027.json")
+    assert amendments["upstream_template_modified"] is False
+    assert {r["path"] for r in amendments["amendments"]} == {"scripts/submission_writer.py"}
+    by_path = {r["path"]: r for r in amendments["amendments"]}
     for row in receipt["inherited_shared_sources"] + receipt["frozen_artifacts_and_cards"]:
-        assert sha256(ROOT / row["path"]) == row["sha256"]
+        if row["path"] in by_path:
+            amendment = by_path[row["path"]]
+            assert amendment["original_sha256"] == row["sha256"]
+            assert sha256(ROOT / amendment["original_archive"]) == row["sha256"]
+            assert sha256(ROOT / row["path"]) == amendment["replacement_sha256"]
+        else:
+            assert sha256(ROOT / row["path"]) == row["sha256"]
     legacy = receipt["legacy_reference_validator"]
     assert legacy["byte_identical"]
     assert sha256(ROOT / legacy["preserved_path"]) == legacy["original_sha256"]

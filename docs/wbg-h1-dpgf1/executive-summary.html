@@ -1,277 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DrivenData Submission Walkthrough & 9-Site Executive Summary · WBGGEMSDOE1</title>
-  <style>
-:root {
-  --bg: #070d19;
-  --panel: #0f172a;
-  --panel-alt: #131f37;
-  --border: #1e293b;
-  --border-hi: #334155;
-  --text: #e2e8f0;
-  --muted: #94a3b8;
-  --emerald: #10b981;
-  --emerald-bg: rgba(16, 185, 129, 0.13);
-  --amber: #f59e0b;
-  --amber-bg: rgba(245, 158, 11, 0.14);
-  --rose: #f43f5e;
-  --rose-bg: rgba(244, 63, 94, 0.14);
-  --sky: #38bdf8;
-  --sky-bg: rgba(56, 189, 248, 0.13);
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.58;
-}
-a { color: var(--sky); text-decoration: none; }
-a:hover { text-decoration: underline; }
-code, pre {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-}
-.wrap { max-width: 1280px; margin: 0 auto; padding: 24px 20px 72px; }
-.topnav {
-  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
-  gap: 14px; padding: 14px 20px; background: rgba(15, 23, 42, 0.92);
-  border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 50;
-  backdrop-filter: blur(8px);
-}
-.topnav .brand { font-weight: 800; letter-spacing: 0.02em; color: #f8fafc; font-size: 1.02rem; }
-.topnav .navlinks { display: flex; flex-wrap: wrap; gap: 16px; font-size: 0.9rem; }
-.hero {
-  background: linear-gradient(145deg, #0f172a 0%, #111c35 60%, #0d2429 100%);
-  border: 1px solid var(--border-hi); border-radius: 14px; padding: 26px; margin-bottom: 24px;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.38);
-}
-.badge-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
-.badge {
-  display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px;
-  border-radius: 999px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.02em;
-}
-.b-pass { background: var(--emerald-bg); color: #34d399; border: 1px solid rgba(52,211,153,0.35); }
-.b-warn { background: var(--amber-bg); color: #fbbf24; border: 1px solid rgba(251,191,36,0.35); }
-.b-fail { background: var(--rose-bg); color: #fb7185; border: 1px solid rgba(251,113,133,0.35); }
-.b-info { background: var(--sky-bg); color: #7dd3fc; border: 1px solid rgba(125,211,252,0.35); }
-h1 { margin: 0 0 10px; font-size: 1.82rem; color: #f8fafc; line-height: 1.25; }
-h2 {
-  margin: 34px 0 14px; font-size: 1.32rem; color: #f8fafc;
-  border-bottom: 1px solid var(--border); padding-bottom: 8px;
-}
-h3 { margin: 20px 0 10px; font-size: 1.06rem; color: #f1f5f9; }
-.dl-bar {
-  display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 18px;
-  padding: 16px; background: rgba(7, 13, 25, 0.72); border: 1px solid rgba(16,185,129,0.45);
-  border-radius: 10px;
-}
-.btn {
-  display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px;
-  border-radius: 8px; font-weight: 700; font-size: 0.92rem; cursor: pointer;
-  border: none; transition: transform 0.08s ease, opacity 0.15s ease;
-}
-.btn:hover { opacity: 0.93; text-decoration: none; transform: translateY(-1px); }
-.btn-primary { background: #10b981; color: #042f2e; }
-.btn-secondary { background: #1e293b; color: #e2e8f0; border: 1px solid #475569; }
-.btn-accent { background: #0284c7; color: #f8fafc; }
-.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(235px, 1fr)); gap: 14px; margin: 18px 0; }
-.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 18px; margin: 18px 0; }
-.card {
-  background: var(--panel); border: 1px solid var(--border); border-radius: 11px; padding: 18px;
-}
-.kpi-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
-.kpi-val { font-size: 1.45rem; font-weight: 800; color: #f8fafc; margin: 4px 0; }
-.kpi-sub { font-size: 0.82rem; color: var(--muted); }
-.gate-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-top: 12px;
-}
-.gate-item {
-  padding: 10px 12px; border-radius: 8px; background: var(--panel-alt);
-  border: 1px solid rgba(16,185,129,0.3); font-size: 0.84rem;
-}
-.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; margin: 14px 0; }
-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; background: var(--panel); }
-th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
-th { background: #0b1324; color: #cbd5e1; font-weight: 700; position: sticky; top: 0; }
-tr:hover td { background: rgba(30, 41, 59, 0.45); }
-pre {
-  background: #050a14; border: 1px solid var(--border); border-radius: 10px;
-  padding: 15px; overflow-x: auto; font-size: 0.81rem; color: #cbd5e1;
-}
-.copy-box {
-  display: flex; align-items: center; justify-content: space-between; gap: 10px;
-  background: #050a14; border: 1px solid var(--border-hi); border-radius: 8px;
-  padding: 9px 12px; margin: 6px 0; font-family: ui-monospace, monospace; font-size: 0.84rem;
-}
-.callout {
-  padding: 15px 18px; border-radius: 10px; margin: 16px 0; font-size: 0.9rem;
-}
-.callout-warn { background: var(--amber-bg); border-left: 4px solid var(--amber); }
-.callout-pass { background: var(--emerald-bg); border-left: 4px solid var(--emerald); }
-.callout-info { background: var(--sky-bg); border-left: 4px solid var(--sky); }
-figure { margin: 18px 0; background: var(--panel); border: 1px solid var(--border); border-radius: 11px; padding: 12px; }
-figure img { width: 100%; height: auto; border-radius: 7px; display: block; }
-figcaption { font-size: 0.83rem; color: var(--muted); margin-top: 8px; }
-input[type="search"] {
-  background: #050a14; color: var(--text); border: 1px solid var(--border-hi);
-  border-radius: 7px; padding: 8px 12px; width: 100%; max-width: 380px; font-size: 0.88rem;
-}
-</style>
-</head>
-<body>
-  <nav class="topnav">
-    <div class="brand">WBGGEMSDOE1 · Executive Summary &amp; DrivenData Upload Subpage</div>
-    <div class="navlinks">
-      <a href="../index.html">← All WBGGEMSDOE1 Lanes</a>
-      <a href="index.html"><strong>← Back to WBG-H1 Dashboard</strong></a>
-      <a href="#upload-steps">Step-by-Step DrivenData Upload</a>
-      <a href="#range-fix">Why [0, 1] Failed Previously &amp; Fix</a>
-      <a href="#slot-strategy">3/Week Slot Strategy Across All 10 Repos</a>
-      <a href="#nine-sites">9-Site Table</a>
-    </div>
-  </nav>
-
-  <main class="wrap">
-    <section class="hero" id="upload-steps">
-      <div class="badge-row">
-        <span class="badge b-pass">✓ AUTOMATED PORTAL PREFLIGHT: 10 / 10 PASSED</span>
-        <span class="badge b-info">ZERO NaN · ZERO Inf · STRICT [0.0, 1.0] FLOAT32</span>
-        <span class="badge b-warn">WEEKLY QUOTA AWARE: 3 SUBMISSIONS / 7 DAYS</span>
-      </div>
-      <h1>Executive Summary &amp; Step-by-Step DrivenData Submission Guide</h1>
-      <p style="color:#cbd5e1;max-width:980px;">
-        Everything needed to download, verify, and upload a guaranteed format-valid GeoTIFF on DrivenData without encountering the
-        <code>"Predicted values must be in range [0, 1]"</code> rejection — plus frank scientific slot-allocation advice across <code>WBGGEMSDOE1</code> and all 9 reviewed sites (<code>GEMSDOE24–36</code>).
-      </p>
-
-      <div class="dl-bar">
-        <a class="btn btn-primary" href="../downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif" download>
-          ⬇ Download Validated .TIF (807.4 KB)
-        </a>
-        <a class="btn btn-secondary" href="../downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.zip" download>
-          ⬇ Download .ZIP (161.3 KB)
-        </a>
-        <a class="btn btn-accent" href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/" target="_blank" rel="noopener">
-          ↗ Open DrivenData GEMS Submission Portal
-        </a>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2 style="margin-top:0;">Step-by-Step Instructions: How to Submit on DrivenData</h2>
-      <ol style="font-size:0.93rem;color:#e2e8f0;padding-left:22px;">
-        <li style="margin-bottom:12px;">
-          <strong>Download the raw single-band <code>.tif</code> file (recommended)</strong> using the green button above:<br>
-          <code>wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif</code> (<code>826,804</code> bytes, SHA-256: <code>e46e4c175c5afceac148d0475a23808c3ae8bf6e5edad8faea919ed847b0d7dd</code>).<br>
-          <span style="color:#94a3b8;font-size:0.85rem;">Note: DrivenData's GEMS upload form expects the uncompressed/DEFLATE single-band <code>.tif</code> GeoTIFF directly (do not upload the <code>.zip</code> unless an archive is explicitly requested).</span>
-        </li>
-        <li style="margin-bottom:12px;">
-          <strong>Verify automated preflight status (already 10/10 green above, or optional 2-second CLI check):</strong>
-          <pre style="margin:6px 0;">.venv/bin/python scripts/validate_submission.py docs/downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif --check-uniqueness</pre>
-        </li>
-        <li style="margin-bottom:12px;">
-          <strong>Open the DrivenData GEMS Submissions page:</strong>
-          <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/" target="_blank" rel="noopener">https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/</a>
-          and select <code>wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif</code>.
-        </li>
-        <li style="margin-bottom:12px;">
-          <strong>Paste a unique traceability name &amp; ≤ 140-character note</strong> (so every organizer receipt maps 1-to-1 to its exact SHA-256 and holdout record):
-          <div class="copy-box">
-            <span id="pSubName">wbggems1-dpgf1-exp-3-20261026-0749b3c8195f</span>
-            <button class="btn btn-secondary" style="padding:5px 10px;font-size:0.78rem;" onclick="copyText('pSubName', this)">Copy Name</button>
-          </div>
-          <div class="copy-box">
-            <span id="pSubNote">WBGGEMSDOE1 WBG-H1 (EXP-3): DipShift+TFSDI+DualLiDAR+CELF300m; HOLDOUT-DTI=0.1233 vs B0=0.1039; 37654 zero-ext dots</span>
-            <button class="btn btn-secondary" style="padding:5px 10px;font-size:0.78rem;" onclick="copyText('pSubNote', this)">Copy Note (115 chars)</button>
-          </div>
-        </li>
-        <li>
-          <strong>Confirm prize-round selection awareness:</strong> Per the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf" target="_blank" rel="noopener">Official DOE GEMS Rules</a>, DrivenData enforces a rolling limit of <strong>3 submissions per week</strong>, and a <strong>single selected GeoTIFF</strong> enters both the Initial ($50K) and Final ($250K) Prize Rounds (with generative-AI usage disclosed in Winning Model Documentation if selected as finalist).
-        </li>
-      </ol>
-    </section>
-
-    <section id="range-fix" class="grid-2">
-      <div class="card">
-        <h3 style="margin-top:0;color:#fb7185;">Why Your Previous Upload Failed with <code>"Predicted values must be in range [0, 1]"</code></h3>
-        <p style="font-size:0.89rem;color:#cbd5e1;">
-          Although DrivenData's problem description text states exterior pixels outside the irregular <code>5,167,373</code>-cell Nevada polygon are ignored, the live portal validator evaluates <code>((arr &gt;= 0.0) &amp; (arr &lt;= 1.0)).all()</code> across the <strong>entire <code>3730 × 3292 = 12,279,160</code> raster array</strong>.
-        </p>
-        <ul style="font-size:0.86rem;color:#cbd5e1;padding-left:18px;">
-          <li>In IEEE-754 floating point, <code>NaN &gt;= 0.0</code> is <code>False</code>, so <em>even a single <code>NaN</code> exterior cell</em> (such as <code>sample_submission.tif</code>'s <code>7,111,787</code> exterior <code>NaN</code>s or <code>GEMSDOE30</code>'s latest <code>GDX1</code> file!) triggers <code>Predicted values must be in range [0, 1]</code>.</li>
-          <li>Similarly, unmasked <code>-3.4028235e+38</code> <code>float32</code> nodata sentinels inside <code>training_features.tif</code> produce <code>-Inf</code>/<code>NaN</code> or out-of-range predictions if not sanitized.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3 style="margin-top:0;color:#34d399;">How <code>WBGGEMSDOE1</code> Guarantees Zero Format Rejections</h3>
-        <ul style="font-size:0.86rem;color:#cbd5e1;padding-left:18px;">
-          <li><strong>All-Finite Exterior Zero Fill:</strong> Written exclusively through shared <code>gems.submission.write_submission(..., outside="zero")</code> with <code>nodata=None</code>.</li>
-          <li><strong>Whole-Array Invariant Verified:</strong> <code>nan_cells = 0</code>, <code>inf_cells = 0</code>, <code>min = 0.0</code>, <code>max = 1.0</code> across all <code>12,279,160</code> cells.</li>
-          <li><strong>Exact Grid Lock:</strong> <code>EPSG:32611</code>, <code>(3730, 3292)</code>, <code>(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)</code>, <code>37,654</code> binary <code>{0.0, 1.0}</code> dots inside footprint, <code>0</code> waste dots inside the <code>&lt;= 200 m</code> known-fault collar.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="slot-strategy" class="callout callout-info">
-      <h3 style="margin-top:0;">Honest Portfolio Slot Strategy (Should You Spend a 3/Week Slot Right Now?)</h3>
-      <ol style="font-size:0.9rem;margin-bottom:0;padding-left:20px;">
-        <li><strong>Best existing live score on the board:</strong> <code>GEMSDOE32</code> / <code>GEMSDOE33</code> historical <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code> is already scored at <strong><code>0.2778</code> (<code>ORGANIZER-CONFIRMED</code>)</strong> — never re-upload any historical clone.</li>
-        <li><strong>Among the 9 reviewed sites' latest <code>2026-10-26</code> files:</strong> <strong>6 of 9 must NOT be submitted</strong> (<code>GEMSDOE30</code> fails <code>[0,1]</code> with 7.11M NaNs; <code>GEMSDOE28</code> &amp; <code>31</code> fail uniqueness &gt;90% and collapse on holdout; <code>GEMSDOE25, 32, 33</code> regressed to <code>0.078–0.114</code> holdout). Only <code>GEMSDOE24</code> (<code>DPRF1</code>, <code>HOLDOUT-DTI = 0.16379</code>, <code>62.9%</code> sparse overlap) and <code>GEMSDOE27</code> (<code>H31-DRCG</code>, <code>HOLDOUT-DTI = 0.16040</code>, <code>69.0%</code> sparse overlap) pass all technical &amp; sparse-novelty gates as conditional backups.</li>
-        <li><strong><code>WBGGEMSDOE1</code> (<code>WBG-H1 EXP-3</code>):</strong> Validated 100% portal-safe (<code>[0.0, 1.0]</code>, <code>0</code> NaNs) and genuinely unique (<code>64.49% &lt;= 70%</code> sparse/Focus-9 overlap, <code>|ρ| = 0.0347</code>), achieving a <strong>+18.7% pooled lift (<code>0.1039 → 0.1233</code>, 4/4 folds)</strong> and <strong>+34.9% NE LiDAR-gap surge (<code>0.1797</code>)</strong> over matched tree baseline <code>B0</code>. Because <code>0.1233</code> still trails analytical ridge <code>DPRF1</code> (<code>0.1638</code>) and live <code>0.2778</code>, we mark <code>verdict: "negative"</code> for standalone slot expenditure and recommend reserving live slots until our 66-channel <code>DipShift + TFSDI + LiDAR-Gap</code> stack is trained with a 2D soft-DTI U-Net backbone (<code>WBGGEMSDOE2/3</code>) exceeding <code>0.18+</code> on <code>SegmentHoldout</code>.</li>
-      </ol>
-    </section>
-
-    <section id="nine-sites">
-      <h2>Complete 9-Site + WBGGEMSDOE1 Comparison Table</h2>
-      <div style="margin:10px 0;">
-        <input type="search" id="siteSearch" placeholder="Filter sites, filenames, methods, or verdicts…" oninput="filterSites()">
-      </div>
-      <div class="table-wrap">
-        <table id="focus9Table">
-          <thead>
-            <tr>
-              <th>Site</th>
-              <th>Exact File to Download &amp; SHA-256</th>
-              <th>Properly Labeled Holdout, Live Receipt &amp; LLI Projection</th>
-              <th>Uniqueness vs All GEMSDOE Sites</th>
-              <th>Portal Gate &amp; Submit Recommendation</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style='background:rgba(16,185,129,0.08);'><td><strong>WBGGEMSDOE1</strong><br><span class='badge b-info'>THIS REPO</span></td><td><code><a href='../downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif' download>wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif</a></code><br><small style='color:#94a3b8'>SHA256: <code>e46e4c175c5afcea…</code> · 826,804 B</small></td><td><strong>HOLDOUT-DTI = 0.123310 (gems-segment-pooled-v1, n=60,988 withheld positives, 95% CI [0.108921, 0.137557])</strong><br><small style='color:#94a3b8'>vs B0=0.103855 (<strong>+0.019455</strong>, 4/4 folds) · LLI-PROJECTION=0.1898 (±0.0353)</small></td><td><span class='badge b-pass'>PASS (64.5% ≤ 70%)</span><br><small style='color:#94a3b8'>Sparse 3px=64.49% · Sym=56.05% · |ρ|=0.0347</small></td><td><span class='badge b-pass'>10/10 PORTAL PASS</span><br><span class='badge b-warn' style='margin-top:4px;'>SLOT HOLD (verdict: negative vs 0.1638 ridge ref)</span><br><small style='color:#cbd5e1'>100% portal-safe `[0,1]` (`0` NaNs) & unique; beats matched B0 + 6/9 focus sites, trails analytical ridge DPRF1 (0.1638) & live 0.2778.</small></td></tr>
-<tr><td><strong>GEMSDOE24</strong><br><small style='color:#94a3b8'><code>@a433b430b74b</code></small></td><td><code><a href='https://github.com/buffedlizard55-lab/GEMSDOE24/blob/a433b430b74b813a9118ebd4ec438b12cbc69f46/docs/downloads/gems24-dprf1-stitched-oof-tworegime-20261026-81849d67c8bf-zeros.tif' target='_blank' rel='noopener'>gems24-dprf1-stitched-oof-tworegime-20261026-81849d67c8bf-zeros.tif</a></code><br><small style='color:#94a3b8'>SHA256: <code>c1257c1d4b5ac9cc…</code> · 37,654 dots</small><br><small style='color:#64748b'>Prior live best: <code>gems24-h25-1-dotted-h19-5-d1-5-2026100…</code></small></td><td><strong>HOLDOUT-DTI = 0.16379 (gems-segment-pooled-v1, n=60,988 withheld px, 95% CI [0.1494, 0.1782])</strong><br><small style='color:#34d399'>Prior Live: 0.2477 (ORGANIZER-CONFIRMED (owner-reported receipt))</small><br><small style='color:#94a3b8'>Latest LLI-PROJECTION: 0.1866 (±0.0353, not organizer score)</small></td><td><span class='badge b-pass'>SPARSE PASS (62.9%)</span><br><small style='color:#94a3b8'>vs <code>GEMSDOE23::gemsdoe23-h30-arran</code><br>Sym=61.3% · 516k-slab=87.3% · |ρ|=0.0706</small></td><td><span class='badge b-pass'>PORTAL [0,1] PASS</span> <span class='badge b-warn'>CONDITIONAL BACKUP</span><br><small style='color:#cbd5e1'>CONDITIONAL BACKUP (passes [0,1] portal gates + sparse-peer uniqueness [62.9% &lt;= 70%]; note 87.3% one-way containment inside 516k-px continuous slab GEMSDOE22::gems22-h23-b-dt [IR-WBG1-03]; superseded if WBGGEMSDOE1 WBG-H1 beats 0.1638 HOLDOUT-DTI)</small></td></tr>
-<tr><td><strong>GEMSDOE25</strong><br><small style='color:#94a3b8'><code>@b9dc627b767b</code></small></td><td><code><a href='https://github.com/buffedlizard55-lab/GEMSDOE25/blob/b9dc627b767b052ca6963e175ef43ad2d0831ebd/docs/downloads/gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif' target='_blank' rel='noopener'>gems25-h73-pm-deapron-sapd2-8-k3p0-20261026-1b7533ebb62b-zeros.tif</a></code><br><small style='color:#94a3b8'>SHA256: <code>35e1b1400a5a2057…</code> · 42,997 dots</small><br><small style='color:#64748b'>Prior live best: <code>gems25-dotted-h19-5-d2-8-20261002-e56e…</code></small></td><td><strong>HOLDOUT-DTI = 0.11343 (gems25-segment-v1, n=60,988 withheld px, 95% CI [0.0981, 0.1292])</strong><br><small style='color:#34d399'>Prior Live: 0.2600 (ORGANIZER-CONFIRMED (owner-reported receipt; 44,090-dot H19-5 d=2.8 parent))</small><br><small style='color:#94a3b8'>Latest LLI-PROJECTION: 0.1437 (±0.0353, not organizer score)</small></td><td><span class='badge b-pass'>SPARSE PASS (67.7%)</span><br><small style='color:#94a3b8'>vs <code>GEMSDOE23::gemsdoe23-h30-arran</code><br>Sym=58.5% · 516k-slab=86.2% · |ρ|=0.1075</small></td><td><span class='badge b-pass'>PORTAL [0,1] PASS</span> <span class='badge b-fail'>DO NOT SUBMIT</span><br><small style='color:#cbd5e1'>DO NOT SUBMIT — LOW HOLDOUT-DTI (0.1134 &lt; baseline)</small></td></tr>
-<tr><td><strong>GEMSDOE27</strong><br><small style='color:#94a3b8'><code>@21687996529d</code></small></td><td><code><a href='https://github.com/buffedlizard55-lab/GEMSDOE27/blob/21687996529d4e3bcb83e7d8ac56fa29864acf97/docs/downloads/gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite.tif' target='_blank' rel='noopener'>gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite.tif</a></code><br><small style='color:#94a3b8'>SHA256: <code>2c002b0279241986…</code> · 37,654 dots</small><br><small style='color:#64748b'>Prior live best: <code>gems27-topo-gap-closure-t-v2-on-d1-5-2…</code></small></td><td><strong>HOLDOUT-DTI = 0.1604 (gems-segment-pooled-v1, n=60,988 withheld px, 95% CI [0.1458, 0.1751])</strong><br><small style='color:#34d399'>Prior Live: 0.2449 (ORGANIZER-CONFIRMED (owner-reported receipt))</small><br><small style='color:#94a3b8'>Latest LLI-PROJECTION: 0.1778 (±0.0353, not organizer score)</small></td><td><span class='badge b-pass'>SPARSE PASS (69.0%)</span><br><small style='color:#94a3b8'>vs <code>GEMSDOE23::gemsdoe23-h30-arran</code><br>Sym=75.8% · 516k-slab=92.1% · |ρ|=0.1383</small></td><td><span class='badge b-pass'>PORTAL [0,1] PASS</span> <span class='badge b-warn'>CONDITIONAL BACKUP</span><br><small style='color:#cbd5e1'>CONDITIONAL BACKUP (passes [0,1] portal gates + sparse-peer uniqueness [69.0% &lt;= 70%]; note 92.1% one-way containment inside 516k-px continuous slab GEMSDOE22::gems22-h23-b-dt [IR-WBG1-03]; superseded if WBGGEMSDOE1 WBG-H1 beats 0.1604 HOLDOUT-DTI)</small></td></tr>
-<tr><td><strong>GEMSDOE28</strong><br><small style='color:#94a3b8'><code>@2c839d10f57e</code></small></td><td><code><a href='https://github.com/buffedlizard55-lab/GEMSDOE28/blob/2c839d10f57ec9b074829e93c84bc39935f52896/docs/downloads/gems28-s21-puhgb-20261026-16bbf281ba9b-allfinite.tif' target='_blank' rel='noopener'>gems28-s21-puhgb-20261026-16bbf281ba9b-allfinite.tif</a></code><br><small style='color:#94a3b8'>SHA256: <code>2bf4737ae0a3b844…</code> · 37,654 dots</small><br><small style='color:#64748b'>Prior live best: <code>gems28-h36-1-rung30-blind-r1-20261003-…</code></small></td><td><strong>HOLDOUT-DTI = 0.0839 (gems-segment-pooled-v1, n=60,988 withheld px, 95% CI [0.0712, 0.0968])</strong><br><small style='color:#34d399'>Prior Live: 0.2710 (ORGANIZER-CONFIRMED (owner-reported receipt; also h27-4-r1-solo-d2-8 = 0.2708))</small><br><small style='color:#94a3b8'>Latest LLI-PROJECTION: 0.0407 (±0.0353, not organizer score)</small></td><td><span class='badge b-fail'>DUPLICATE (90.4%)</span><br><small style='color:#94a3b8'>vs <code>GEMSDOE37::gemsdoe37-h6-physic</code><br>Sym=79.4% · 516k-slab=90.4% · |ρ|=0.1344</small></td><td><span class='badge b-pass'>PORTAL [0,1] PASS</span> <span class='badge b-fail'>DO NOT SUBMIT</span><br><small style='color:#cbd5e1'>DO NOT SUBMIT — FAILS sparse-peer uniqueness (3px overlap=90.4% vs GEMSDOE37::gemsdoe37-h6-physics-dotted-80k-20261005T055000Z-0bef9211631c.tif); LOW HOLDOUT-DTI (0.0839 &lt; baseline)</small></td></tr>
-<tr><td><strong>GEMSDOE30</strong><br><small style='color:#94a3b8'><code>@9c0d637c0171</code></small></td><td><code><a href='https://github.com/buffedlizard55-lab/GEMSDOE30/blob/9c0d637c0171407196b61b780444bc772ce75438/docs/research/2026-10-26-gdx/gems30-GDX1-44090-20261026-2992ee3619f5.tif' target='_blank' rel='noopener'>gems30-GDX1-44090-20261026-2992ee3619f5.tif</a></code><br><small style='color:#94a3b8'>SHA256: <code>3d569d47f5e62e6e…</code> · 44,090 dots</small><br><small style='color:#64748b'>Prior live best: <code>gemsdoe30-d28-poisson300m-offcat-44090…</code></small></td><td><strong>HOLDOUT-DTI = 0.11965 (gems-segment-pooled-v1, n=60,988 withheld px, 95% CI [0.1045, 0.1350])</strong><br><small style='color:#34d399'>Prior Live: 0.2600 (ORGANIZER-CONFIRMED (owner-reported receipt; 44,090-dot H19-5 family))</small><br><small style='color:#94a3b8'>Latest LLI-PROJECTION: 0.1368 (±0.0353, not organizer score)</small></td><td><span class='badge b-pass'>SPARSE PASS (57.0%)</span><br><small style='color:#94a3b8'>vs <code>GEMSDOE23::gemsdoe23-h30-arran</code><br>Sym=55.4% · 516k-slab=84.3% · |ρ|=0.0715</small></td><td><span class='badge b-fail'>PORTAL FAIL (7,111,787 NaNs)</span> <span class='badge b-fail'>DO NOT SUBMIT</span><br><small style='color:#cbd5e1'>DO NOT SUBMIT — FAILS DrivenData [0,1]/NaN/collar portal preflight; LOW HOLDOUT-DTI (0.1197 &lt; baseline)</small></td></tr>
-<tr><td><strong>GEMSDOE31</strong><br><small style='color:#94a3b8'><code>@e14b466b8860</code></small></td><td><code><a href='https://github.com/buffedlizard55-lab/GEMSDOE31/blob/e14b466b88601149e30ed8decb2fa753ca040beb/docs/downloads/gemsdoe31-h31y-kinpied-37654-20261026-46a5b6c3-zeros.tif' target='_blank' rel='noopener'>gemsdoe31-h31y-kinpied-37654-20261026-46a5b6c3-zeros.tif</a></code><br><small style='color:#94a3b8'>SHA256: <code>6b06127f405eb6fb…</code> · 37,654 dots</small><br><small style='color:#64748b'>Prior live best: <code>gemsdoe31-h27-4-solo-d28-20261004-8acb…</code></small></td><td><strong>HOLDOUT-DTI = 0.0973 (gems-segment-pooled-v1, n=60,988 withheld px, 95% CI [0.0834, 0.1118])</strong><br><small style='color:#34d399'>Prior Live: 0.2708 (ORGANIZER-CONFIRMED (owner-reported receipt))</small><br><small style='color:#94a3b8'>Latest LLI-PROJECTION: 0.0738 (±0.0353, not organizer score)</small></td><td><span class='badge b-fail'>DUPLICATE (91.3%)</span><br><small style='color:#94a3b8'>vs <code>GEMSDOE23::gemsdoe23-h30-arran</code><br>Sym=61.5% · 516k-slab=91.3% · |ρ|=0.1051</small></td><td><span class='badge b-pass'>PORTAL [0,1] PASS</span> <span class='badge b-fail'>DO NOT SUBMIT</span><br><small style='color:#cbd5e1'>DO NOT SUBMIT — FAILS sparse-peer uniqueness (3px overlap=91.3% vs GEMSDOE23::gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif); LOW HOLDOUT-DTI (0.0973 &lt; baseline)</small></td></tr>
-<tr><td><strong>GEMSDOE32</strong><br><small style='color:#94a3b8'><code>@400b60d4a6d9</code></small></td><td><code><a href='https://github.com/buffedlizard55-lab/GEMSDOE32/blob/400b60d4a6d99f425ee90504e6c4552227556dd1/docs/downloads/gemsdoe32-h47-lli-unique-coupling-49231-20261026T230000Z-33464ce2-zeros.tif' target='_blank' rel='noopener'>gemsdoe32-h47-lli-unique-coupling-49231-20261026T230000Z-33464ce2-zeros.tif</a></code><br><small style='color:#94a3b8'>SHA256: <code>d8da7e947db3ed03…</code> · 49,231 dots</small><br><small style='color:#64748b'>Prior live best: <code>gemsdoe32-h33-h33-2-b2-20261004T220000…</code></small></td><td><strong>HOLDOUT-DTI = 0.0784 (gems-segment-pooled-v1, n=60,988 withheld px, 95% CI [0.0661, 0.0912])</strong><br><small style='color:#34d399'>Prior Live: 0.2778 (ORGANIZER-CONFIRMED (portfolio high across all 118 scored rasters))</small><br><small style='color:#94a3b8'>Latest LLI-PROJECTION: 0.1328 (±0.0353, not organizer score)</small></td><td><span class='badge b-pass'>SPARSE PASS (65.0%)</span><br><small style='color:#94a3b8'>vs <code>GEMSDOE28::gems28-h32-1-prethi</code><br>Sym=80.2% · 516k-slab=80.5% · |ρ|=0.4230</small></td><td><span class='badge b-pass'>PORTAL [0,1] PASS</span> <span class='badge b-fail'>DO NOT SUBMIT</span><br><small style='color:#cbd5e1'>DO NOT SUBMIT — LOW HOLDOUT-DTI (0.0784 &lt; baseline)</small></td></tr>
-<tr><td><strong>GEMSDOE33</strong><br><small style='color:#94a3b8'><code>@efa438d31048</code></small></td><td><code><a href='https://github.com/buffedlizard55-lab/GEMSDOE33/blob/efa438d3104893c3e8aedf3817ac22167b1c681a/docs/downloads/gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif' target='_blank' rel='noopener'>gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif</a></code><br><small style='color:#94a3b8'>SHA256: <code>5eb9572946fa6235…</code> · 37,654 dots</small><br><small style='color:#64748b'>Prior live best: <code>GEMSDOE33-h33d-analog-tip-stepover-r30…</code></small></td><td><strong>HOLDOUT-DTI = 0.11415 (gems-segment-pooled-v1, n=60,988 withheld px, 95% CI [0.0998, 0.1290])</strong><br><small style='color:#34d399'>Prior Live: 0.2632 (ORGANIZER-CONFIRMED (owner-reported receipt))</small><br><small style='color:#94a3b8'>Latest LLI-PROJECTION: 0.1582 (±0.0353, not organizer score)</small></td><td><span class='badge b-pass'>SPARSE PASS (69.2%)</span><br><small style='color:#94a3b8'>vs <code>GEMSDOE23::gemsdoe23-h30-arran</code><br>Sym=58.6% · 516k-slab=92.1% · |ρ|=0.0393</small></td><td><span class='badge b-pass'>PORTAL [0,1] PASS</span> <span class='badge b-fail'>DO NOT SUBMIT</span><br><small style='color:#cbd5e1'>DO NOT SUBMIT — LOW HOLDOUT-DTI (0.1142 &lt; baseline)</small></td></tr>
-<tr><td><strong>GEMSDOE36</strong><br><small style='color:#94a3b8'><code>@79ddf4aa6fd5</code></small></td><td><code><a href='https://github.com/buffedlizard55-lab/GEMSDOE36/blob/79ddf4aa6fd5fa93887345f4bffeb6edd9d76401/docs/downloads/gemsdoe36-gvsc36-exp3-20261026-5fb822bdfb60-zeros.tif' target='_blank' rel='noopener'>gemsdoe36-gvsc36-exp3-20261026-5fb822bdfb60-zeros.tif</a></code><br><small style='color:#94a3b8'>SHA256: <code>ad809c2b0919d4b7…</code> · 37,654 dots</small><br><small style='color:#64748b'>Prior live best: <code>gemsdoe36-anderson-geothermal-pinn-388…</code></small></td><td><strong>HOLDOUT-DTI = 0.15886 (gems36-segment-v1, n=60,988 withheld px, 95% CI [0.1439, 0.1741])</strong><br><small style='color:#34d399'>Prior Live: 0.2750 (ORGANIZER-CONFIRMED (owner-reported receipt; 38,854-dot off-collar variant))</small><br><small style='color:#94a3b8'>Latest LLI-PROJECTION: 0.1905 (±0.0353, not organizer score)</small></td><td><span class='badge b-pass'>SPARSE PASS (69.3%)</span><br><small style='color:#94a3b8'>vs <code>GEMSDOE37::gemsdoe37-h6-physic</code><br>Sym=56.6% · 516k-slab=94.6% · |ρ|=0.0616</small></td><td><span class='badge b-pass'>PORTAL [0,1] PASS</span> <span class='badge b-warn'>CONDITIONAL BACKUP</span><br><small style='color:#cbd5e1'>CONDITIONAL BACKUP (passes [0,1] portal gates + sparse-peer uniqueness [69.3% &lt;= 70%]; note 94.6% one-way containment inside 516k-px continuous slab GEMSDOE22::gems22-h23-b-dt [IR-WBG1-03]; superseded if WBGGEMSDOE1 WBG-H1 beats 0.1589 HOLDOUT-DTI)</small></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-  </main>
-  <script>
-function copyText(id, btn) {
-  const txt = document.getElementById(id).innerText.trim();
-  navigator.clipboard.writeText(txt).then(() => {
-    const old = btn.innerText;
-    btn.innerText = "Copied!";
-    setTimeout(() => { btn.innerText = old; }, 1400);
-  });
-}
-function filterSites() {
-  const q = document.getElementById("siteSearch").value.toLowerCase();
-  document.querySelectorAll("#focus9Table tbody tr").forEach(tr => {
-    tr.style.display = tr.innerText.toLowerCase().includes(q) ? "" : "none";
-  });
-}
-</script>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>DPGF-1 frozen negative result · WBG GEMS</title>
+<link rel="stylesheet" href="../assets/style.css"></head><body><header class="wrap"><nav>
+<a href="../index.html">Research desk</a> · <a href="../portfolio-review.html">All-release review</a> · <a href="../executive-summary.html">Nine-site summary</a></nav></header>
+<main class="wrap" id="main"><h1>WBG-H1 / DPGF-1 — frozen negative result</h1>
+<div class="alert"><p><strong>DOWNLOAD: YES, research only. SUBMIT: NO. DO NOT SUBMIT.</strong>
+Format-valid does not mean scientifically promoted, lane-unique or organizer-accepted.</p></div>
+<h2>Exact research artifact</h2><p><a class="button" href="../downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif" download>Download research TIFF</a> ·
+<a href="../downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.zip" download>One-TIFF ZIP</a></p>
+<p class="filename">wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif<br>SHA-256: e46e4c175c5afceac148d0475a23808c3ae8bf6e5edad8faea919ed847b0d7dd</p>
+<p>Name: <code>wbggems1-dpgf1-exp-3-20261026-0749b3c8195f</code><br>Original note (historical, not approval): WBGGEMSDOE1 WBG-H1 (EXP-3): DipShift+TFSDI+DualLiDAR+CELF300m; HOLDOUT-DTI=0.1233 vs B0=0.1039; 37654 zero-ext dots</p>
+<h2>Recorded holdout, not a leaderboard forecast</h2><p><strong>HOLDOUT-DTI 0.123310</strong>,
+95% CI [0.108921, 0.137557], evaluator <code>gems-segment-pooled-v1</code>,
+60,988 withheld positives. This is a frozen measurement, not a new experiment.</p>
+<p>Matched B0: HOLDOUT-DTI 0.103855, 95% CI [0.090213, 0.117398],
+same evaluator/positives. Paired difference: HOLDOUT-DTI +0.019455,
+95% CI [0.007288, 0.031848].
+A positive matched-baseline difference is not a verified win over the current same-instrument portfolio best.</p>
+<h2>Literal uniqueness: FAIL</h2><p>Recorded one-way 3 px overlap with the registered lattice:
+<strong>99.8035%</strong>.
+Recorded one-way overlap with a dense slab: 88.32%.
+Both exceed 70%. Sparse-only and symmetric overlap do not replace the user's all-registry forward-overlap gate.
+No lattice or density exemption was authorized. These are frozen registry measurements; no fresh full-registry clearance is claimed.</p>
+<h2>Corrections to inherited interpretation</h2><ul>
+<li>GEMSDOE32's historical 0.2778 and other supplied artifact values are USER-REPORTED / NOT ORGANIZER-CONFIRMED. No receipt identifies these exact bytes and a result.</li>
+<li>No verified leaderboard estimate exists for this TIFF. The inherited LLI regression used unverified historical claims; its projection is not a validated forecast.</li>
+<li>One rounded lattice result plus an assumed average kernel response does not identify the private fault count, private recall, or locations of hidden faults. The inherited private-count inversion is not verified evidence.</li>
+<li>Catalogue-distance pruning offers a plausible efficiency explanation; private-label causality cannot be proved from these files.</li>
+<li>All local format checks passing is not a guarantee about the live portal. The cause of the original range rejection cannot be reconstructed without its exact bytes.</li></ul>
+<h2>How a future approved submission would work</h2><p>There is no eligible file now. Do not upload this negative result for optional testing.
+Follow the <a href="../how-to-submit.html">future submission guide</a> only after same-instrument efficacy,
+canaries, literal surface and final-dot uniqueness, provenance, and saved-file checks pass, and a separate selector approves a slot.</p>
+<p><a href="../portfolio-review.html">All four reopened files and current blockers</a> ·
+<a href="data/run_card.json">Frozen original card (contains superseded interpretation; read corrections above)</a> ·
+<a href="../data/portfolio-review.json">Current review JSON</a></p>
+</main></body></html>

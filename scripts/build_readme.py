@@ -18,11 +18,15 @@ def main():
 
 ## DOWNLOAD: YES, for research. SUBMIT: **NO**.
 
+**27 October 2026 follow-up: [all four releases, exact-byte revalidation and trust corrections](docs/portfolio-review.html)** ·
+[Machine-readable review](docs/data/portfolio-review.json). No new experiment: the lane remains stopped.
+All four are negative research downloads, not recommended contest submissions. Leaderboard estimates remain unavailable.
+
 **[Open the research desk](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/)** ·
 [Executive summary](docs/executive-summary.md) · [Submission guide](docs/how-to-submit.html) ·
 [Exact JSON run card](registry/run_card.json)
 
-**[Download the newly generated research TIFF](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/downloads/{tif})** ·
+**[Download the frozen research TIFF](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/downloads/{tif})** ·
 [One-TIFF ZIP](docs/downloads/{tif.replace('.tif', '.zip')}) ·
 [TIFF in repository](docs/downloads/{tif}) · [Validation receipt](docs/downloads/{tif.replace('.tif', '.json')})
 
@@ -80,18 +84,20 @@ Different evaluator/split/representation results must not be pooled or ranked as
 - [Original main README](research/inherited-main-README-b9a2d53.md) (historical commands/paths)
 - [Byte-preservation/integration receipt](evidence/parallel_main_integration.json)
 - [Frozen TIP1 card](evidence/tip1_run_card_20261026.json) and [MVGZ card](evidence/run_card.json)
-- **[Parallel WBG-H1 (DPGF-1 / EXP-3) Interactive Dashboard & 9-Site Audit](docs/wbg-h1-dpgf1/index.html)** ·
-  [Step-by-step DrivenData upload guide](docs/wbg-h1-dpgf1/executive-summary.html) ·
-  [1-Click Validated `[0,1]` GeoTIFF (`{Path(h1_tif).name}`)]({h1_tif}) (`SHA-256: {wbg_h1_rc['raster_sha256']['tif_sha256']}`) ·
-  [ZIP archive]({h1_zip}) ·
-  [WBG-H1 Run Card (`evidence/wbg_h1/run_card.json`)](evidence/wbg_h1/run_card.json)
-  - **Method (`WBG-H1 / DPGF-1`, pre-registered in [`knowledge/01_preregistration_wbg_hypotheses_2026-10-26.md`](knowledge/01_preregistration_wbg_hypotheses_2026-10-26.md)):** 66-channel label-free feature stack (`DipShift` 500 m / 1,000 m updip subsurface-to-surface projection, `TFSDI` tectonic-vs-fluvial scarp index, E–W notched GeoDAWN magnetics, MT/GDR 1391 perimeter, 3DEP LiDAR completeness dual `HGB+ET` ensemble + two-regime `300 m` CELF submodular emitter, `37,654` zero-exterior binary dots).
-  - **Canary & Holdout (`gems-segment-pooled-v1`, `n=60,988` withheld positives):** `66/66` single-feature canaries PASS (`max_symmetric_auc = 0.68971 <= 0.90`). `EXP-3` achieves **`HOLDOUT-DTI = {wbg_h1_rc['holdout_dti']['dti']:.6f}`** (`95% CI [{wbg_h1_rc['holdout_dti']['ci95'][0]:.6f}, {wbg_h1_rc['holdout_dti']['ci95'][1]:.6f}]`), beating matched 31-ch tree baseline `B0 = {wbg_h1_rc['holdout_dti']['baseline_b0_dti']:.6f}` across **4/4 spatial folds** (`paired Δ = +{wbg_h1_rc['holdout_dti']['paired_delta_vs_b0']:.6f}`, `95% CI [+{wbg_h1_rc['holdout_dti']['paired_delta_vs_b0_ci95'][0]:.6f}, +{wbg_h1_rc['holdout_dti']['paired_delta_vs_b0_ci95'][1]:.6f}]`, surging `+34.9%` to `0.17974` in `NE_LidarGapHeavy`).
-  - **Automated `[0,1]` Portal & Uniqueness Gates:** `10/10` portal checks PASS (`0` NaN, `0` Inf across all `12,279,160` cells, `outside="zero"`, `nodata=None`); pre-placement surface `|ρ| = 0.2404 <= 0.90`; sparse/Focus-9 3 px dot overlap `64.49% <= 70%`, `|ρ| = 0.0347 <= 0.90`; symmetric 3 px overlap across all 206 non-lattice rasters `56.05% <= 70%`. Submission name `{wbg_h1_rc['submission_name']}`, note `{wbg_h1_rc['submission_note']}` (`{wbg_h1_rc['submission_note_length']}` chars).
-  - **Selector Verdict (`verdict: "{wbg_h1_rc['verdict']}"`):** Hold live 3/week DrivenData slot standalone because `0.123310` trails analytical scarp-ridge reference `GEMSDOE24 DPRF1` (`HOLDOUT-DTI = 0.163792`); see [`evidence/wbg_h1/focus9_executive_audit.json`](evidence/wbg_h1/focus9_executive_audit.json) (catching `GEMSDOE30`'s `7,111,787` exterior `NaN` `[0,1]` portal failure and `GEMSDOE28/31` `>90%` peer duplicates) and [`evidence/wbg_h1/forensic_proof_02778.json`](evidence/wbg_h1/forensic_proof_02778.json) (`0`-XOR proof + `r13-lattice-s5 = 0.0904 -> |G_private| = 12,366` px inversion).
+- **[WBG-H1 / DPGF-1 corrected result page](docs/wbg-h1-dpgf1/index.html)** — research only, **DO NOT SUBMIT**.
+  [TIFF]({h1_tif}) · [ZIP]({h1_zip}) · SHA-256 `{wbg_h1_rc['raster_sha256']['tif_sha256']}`.
+  Name `{wbg_h1_rc['submission_name']}`. Frozen **HOLDOUT-DTI {wbg_h1_rc['holdout_dti']['dti']:.6f}**,
+  95% CI [{wbg_h1_rc['holdout_dti']['ci95'][0]:.6f}, {wbg_h1_rc['holdout_dti']['ci95'][1]:.6f}],
+  `{wbg_h1_rc['holdout_dti']['evaluator_version']}`, {wbg_h1_rc['holdout_dti']['n_withheld_positives']:,} withheld positives.
+  Literal lattice overlap **99.8035%** exceeds 70%; sparse/symmetric checks do not authorize an exemption.
+  The inherited LLI forecast, claims of organizer-confirmed scores, and private-count inversion are
+  **not verified evidence**. Original cards remain frozen with explicit corrections on the live page.
 - Older two-argument `validate_submission.py candidate.tif reference.tif` callers retain their
   supplied-reference format API; this is compatibility only and never confers slot approval.
   WBG-C1 still uses the unchanged, pinned `gems57` all-finite validator/writer.
+  The separate integration CLI now rejects mismatched source grids, input overwrite aliases and
+  portal-unsafe NaN twins; [explicit source amendment](evidence/integration_amendments_20261027.json)
+  preserves its prior hash/archive. No metric, evaluator or pinned-template fork was introduced.
 - The older bridge-specific restore entry point is retained as `scripts/download_bridge_legacy.sh`
   with `scripts/prepare_bridge_legacy.py`; current WBG-C1 commands below are unchanged.
 
@@ -138,6 +144,9 @@ bash scripts/download_competition_data.sh
 .venv/bin/python scripts/audit_repositories.py
 # The next command audits the unchanged surface; it does NOT retrain/place dots:
 .venv/bin/python scripts/audit_registry.py
+
+# Reopen all four local releases (no modelling, no slot):
+.venv/bin/python scripts/build_portfolio_review.py
 
 # Rebuild report pages from persisted measured JSON (no modelling):
 python scripts/refresh_feed.py --offline

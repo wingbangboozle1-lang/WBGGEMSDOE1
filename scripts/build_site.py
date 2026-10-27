@@ -44,7 +44,7 @@ def page(name, title, body):
 <header class="masthead"><div class="wrap"><nav class="nav" aria-label="Main navigation">
 <a class="brand" href="index.html"><svg viewBox="0 0 36 38" fill="none" aria-hidden="true"><path d="M3 29C12 27 4 16 13 15S21 5 31 6M4 35C15 34 11 22 20 22S25 11 34 12M2 21C8 21 4 9 13 9S18 1 25 2" stroke="#23665f" stroke-width="2" stroke-linecap="round"/></svg><span>WBG / GEMS<small>FAULT MAPPING · RESEARCH DESK</small></span></a>
 <div class="navlinks">{links}{link(REPO, 'Repository ↗', 'repo')}</div></nav></div></header>
-<main id="main" class="wrap"><div class="breadcrumb">GEMS prize challenge <span>/</span> {escape(title)} <span>/</span> 26 OCT 2026 audit</div>{body}</main>
+<main id="main" class="wrap"><div class="breadcrumb">GEMS prize challenge <span>/</span> {escape(title)} <span>/</span> 26 OCT 2026 frozen experiment</div><p class="micro"><a href="portfolio-review.html">27 October follow-up: all four releases, revalidated bytes and trust corrections →</a></p>{body}</main>
 <footer class="footer"><div class="wrap footer-inner"><p><strong>WBG / GEMS</strong> &nbsp; Evidence before a weekly slot.<br>Fault predictions are not verified geothermal vents. Local validation is not organizer acceptance.</p><div>{link('data/run-card.json', 'Run card JSON')}{link('standing-prompt.md', 'Standing brief')}{link('parallel/main-b9a2d53/index.html', 'Parallel negative archives')}{link(REPO, 'Source code ↗')}</div></div></footer>
 <div id="toast" role="status" aria-live="polite"></div></body></html>'''
 
@@ -56,7 +56,7 @@ def alert():
 def download_card(card, receipt):
     tif = Path(card["artifact"]).name
     size = (ROOT / card["artifact"]).stat().st_size / (1024 ** 2)
-    return f'''<aside class="download-card" aria-label="Current research file and submission decision"><div class="card-top"><div class="file-icon" aria-hidden="true">.TIF</div><div class="file-label">WBG-C1 · Curvature commutator<small>Freshly generated · continuous research surface</small></div>{pill('No-go', 'no')}</div><div class="card-body">
+    return f'''<aside class="download-card" aria-label="Current research file and submission decision"><div class="card-top"><div class="file-icon" aria-hidden="true">.TIF</div><div class="file-label">WBG-C1 · Curvature commutator<small>Frozen 26 Oct result · continuous research surface</small></div>{pill('No-go', 'no')}</div><div class="card-body">
 <div class="status-line"><span>Local file format</span><b style="color:var(--teal)">PASS · {len(receipt['validator']['checks'])} checks</b></div>
 <div class="status-line"><span>Exact-copy check</span><b>Distinct in checked inventory</b></div>
 <div class="status-line"><span>Eligible to submit</span><b style="color:var(--red)">NO · stopped</b></div>
@@ -210,8 +210,8 @@ def howto(card, receipt):
 def markdown_summary(card, audit):
     h, d = card["holdout"], card["paired_delta_holdout"]
     tif = Path(card["artifact"]).name
-    lines = ["# Executive summary — 26 October 2026", "", "## DOWNLOAD: YES (research only). SUBMIT: NO.", "",
-        f"[Download the newly generated research TIFF](downloads/{tif}) · [one-TIFF ZIP](downloads/{tif.replace('.tif', '.zip')}) · [machine-readable run card](data/run-card.json)", "",
+    lines = ["# Executive summary — 26 October 2026", "", "## DOWNLOAD: YES (research only). SUBMIT: NO.", "", "[27 October follow-up: all four releases and trust corrections](portfolio-review.html). No new experiment; the existing lane remains stopped. All leaderboard estimates remain unavailable.", "",
+        f"[Download the frozen research TIFF](downloads/{tif}) · [one-TIFF ZIP](downloads/{tif.replace('.tif', '.zip')}) · [machine-readable run card](data/run-card.json)", "",
         "No final dotted or high-scoring promoted competition submission was produced. The literal surface overlap STOP and negative efficacy screen prohibit promotion. No weekly slot was used.", "",
         f"**HOLDOUT-DTI {h['dti']:.6f}**, 95% CI [{h['ci95'][0]:.6f}, {h['ci95'][1]:.6f}], evaluator `{card['holdout_instrument']['evaluator_version']}`, {h['withheld_positive_pixels']:,} withheld positives. Continuous confidence surface, not a matched-budget dotted submission or leaderboard estimate.", "",
         f"Paired delta versus refitted 19-band control: **{d['delta']:+.6f}** (HOLDOUT-DTI), 95% CI [{d['ci95'][0]:+.6f}, {d['ci95'][1]:+.6f}]; same evaluator and positives. No improvement established.", "",
@@ -271,6 +271,11 @@ def main():
     dump_json(DOCS / "downloads/manifest.json", manifest)
     import importlib.util
 
+    review_spec = importlib.util.spec_from_file_location("build_portfolio_review", ROOT / "scripts/build_portfolio_review.py")
+    review_module = importlib.util.module_from_spec(review_spec)
+    review_spec.loader.exec_module(review_module)
+    if review_module.main() != 0:
+        raise RuntimeError("Portfolio artifact validation failed closed")
     spec = importlib.util.spec_from_file_location("wbg_h1_build_pages", ROOT / "scripts" / "wbg_h1_build_pages.py")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)

@@ -44,6 +44,11 @@ reduce false-positive penalty, but no hidden-truth decomposition or file-linked 
 Do not copy a previous submission. This session revalidated existing files, restored the
 hash-pinned owner mirror and all 19 cached bands, and made no new scientific experiment.
 
+Parallel historical reports are retained: [protocol review](docs/protocol-review-20261027.md),
+[repo review and hypothesis queue](docs/repo-review-20261027.md), and
+[session review](docs/session-review-20261027.md). Their superseded claims are marked and
+the [current source and WBG-2 review](docs/research/source-and-wbg2-review.md) takes precedence.
+
 The README includes the standing user request below. Read `AGENTS.md`, the corrected run card,
 and the full request at the start of every session. Missing lane assignment, complete registry
 scope, same-instrument paired benchmark, independent official-origin verification and current

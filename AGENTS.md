@@ -5,7 +5,7 @@
    enrichment exemption. Shared-template remeasurement found 99.8972% forward
    3-pixel overlap with the GEMSDOE24 lattice, and 100% with WBG-C1. No qualifying
    visible-only holdout or pre-placement audit exists. DOWNLOAD for research only;
-   SUBMIT: NO. See `evidence/wbg2/run_card.json` and `scripts/review_wbg2.py`.
+   SUBMIT: NO. See `evidence/wbg2/run_card.json`, `scripts/review_wbg2.py`, and the preserved parallel `docs/protocol-review-20261027.md`.
    The old regression projection and purported interval are withdrawn.
 
 1. Read `README.md` **including the archived standing prompt**, then the 2026-10-27 follow-up at

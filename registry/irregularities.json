@@ -204,6 +204,13 @@
       "title": "MT source and depth descriptions corrected",
       "finding": "The proposed ScienceBase item 5fb70a0ad34eb413d5e14873 and USGS publication 70247315 were not found. The verified Great Basin MT conductance release contains 2–12, 12–20, 20–50, 50–90 and 90–200 km depth-integrated layers, not the earlier proposed shallow slices.",
       "action": "Use DOI 10.5066/P9TWT2LU as metadata, and verify download, grid, coverage and label independence before any prospective method."
+    },
+    {
+      "id": "IR-030",
+      "severity": "blocking",
+      "title": "Nine-champion diagnostic is not registry-wide clearance",
+      "finding": "The historical nine-site diagnostic compared one artifact per requested site, using a different neighborhood and sampled correlation; it is not a complete registry audit. A second GEMSDOE24 artifact is a decisive 99.8972% forward-overlap STOP.",
+      "action": "Retain the unexempted STOP; never use a partial champion pass as full registry clearance. No upload authorized."
     }
   ]
 }

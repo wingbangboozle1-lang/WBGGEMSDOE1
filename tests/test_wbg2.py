@@ -225,3 +225,25 @@ def test_full_audit_card_comparison_rejects_semantic_drift():
         compare_documents(baseline, {"verdict": "negative", "registry": {"overlap": 0.998972222222, "pass": True}})
     with pytest.raises(ValueError, match="drift"):
         compare_documents(baseline, {"verdict": "negative", "registry": {"overlap": 0.998972222222}})
+
+
+def test_literal_overlap_uses_euclidean_not_manhattan_neighborhood():
+    from gems57 import uniqueness as shared
+    mine = np.zeros((10, 10), bool)
+    prior = mine.copy()
+    mine[5, 5] = True
+    prior[3, 3] = True  # sqrt(8) < 3, although Manhattan distance is 4
+    assert shared.dot_overlap(mine, prior) == 1.0
+
+
+def test_published_pages_do_not_reapprove_wbg2():
+    for relative in ("README.md", "docs/index.html", "docs/wbg2.html", "PROMPT.md"):
+        text = (ROOT / relative).read_text()
+        assert "SUBMIT: NO" in text or "NO CURRENT TIFF" in text
+        assert "safe to upload" not in text.lower()
+        assert "Submit: YES" not in text and "SUBMIT THIS FILE" not in text
+
+
+def test_public_corrected_preflight_is_path_portable():
+    text = (ROOT / "docs/data/wbg2-corrected-preflight.json").read_text()
+    assert str(ROOT) not in text and "/home/" not in text

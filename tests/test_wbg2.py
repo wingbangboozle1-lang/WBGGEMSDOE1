@@ -305,3 +305,16 @@ def test_site_builder_rejects_inconsistent_evidence_before_writing(tmp_path, mon
     with pytest.raises(ValueError):
         builder.build()
     assert not list(tmp_path.iterdir())
+
+
+def test_parallel_reviews_and_original_card_are_preserved_but_superseded():
+    import hashlib
+    original = ROOT / "evidence/wbg2/run_card_before_protocol_correction.json"
+    assert hashlib.sha256(original.read_bytes()).hexdigest() == "0bc7972d92dac230e9da8e9ae284d67b276e3fc4bd6f45e9eca849d1efdf6927"
+    for name in ("protocol-review-20261027.md", "repo-review-20261027.md", "session-review-20261027.md"):
+        header = (ROOT / "docs" / name).read_text().splitlines()[:12]
+        assert "superseded" in " ".join(header).lower()
+        assert "99.8972%" in " ".join(header)
+    for path in ("evidence/session_review_20261027.json", "evidence/protocol_correction_run_card_20261027.json",
+                 "evidence/wbg2/corrected_preflight.json", "docs/data/wbg2-corrected-preflight.json"):
+        assert "superseded" in json.loads((ROOT / path).read_text())["superseded_warning"].lower()

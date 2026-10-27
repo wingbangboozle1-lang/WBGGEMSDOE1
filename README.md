@@ -21,6 +21,10 @@ authenticated by DrivenData.
 See [four untested research hypotheses](docs/research/future-hypotheses-20261027.md) and
 [the 27 October source audit](evidence/official_source_audit_20261027.json) and
 [three safety-review passes](evidence/wbg2/review_passes_20261027.json).
+Concurrent reviews are preserved as historical context: [protocol](docs/protocol-review-20261027.md),
+[repository](docs/repo-review-20261027.md), and [session](docs/session-review-20261027.md).
+Their older private-distance metrics and 400 m buffer interpretation are superseded by the
+shared-Euclidean safety audit above. The earlier raw approval remains archived, never authorized.
 
 ## Earlier file — DOWNLOAD: YES, for research. SUBMIT: **NO**.
 

@@ -89,3 +89,8 @@
   `--expect-negative --deep --fetch` only to verify that the STOP remains intact.
 - The four prospective hypotheses in `docs/research/future-hypotheses-20261027.md`
   are untested; the public data pages are not authenticated contest downloads.
+
+- Parallel reviews from PRs #16–18 are preserved in `docs/protocol-review-20261027.md`,
+  `docs/repo-review-20261027.md` and `docs/session-review-20261027.md`; their earlier
+  private-distance figures and 400 m Euclidean-buffer interpretation are superseded by
+  the shared-Euclidean safety audit. The old raw approval is retained for provenance only.

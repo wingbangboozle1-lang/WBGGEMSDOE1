@@ -197,6 +197,13 @@
    "title": "WBG-2 catalogue buffer was Manhattan, not 400 m Euclidean",
    "finding": "Four iterations of 4-connected dilation exclude cells within four Manhattan steps, not all cells within a 400 m Euclidean disc. In the exact existing TIFF, 813 of 36,000 dots are closer than 400 m Euclidean to the mapped catalogue; the minimum is about 360.56 m. Zero lie within 300 m.",
    "action": "Correct the mechanism and never treat the previous 400 m Euclidean claim as evidence. This diagnostic does not change any TIFF pixels or the literal STOP."
+  },
+  {
+   "id": "IR-029",
+   "severity": "blocking",
+   "title": "Nine-champion diagnostics cannot clear the registry",
+   "finding": "An earlier parallel review quoted a maximum 18.61% overlap using a private Manhattan diagnostic. The shared Euclidean test against one pinned champion per focus site instead ranges up to 20.05%; neither limited comparison clears the broader registry, and a separate pinned lattice produces a binding 99.8972% STOP.",
+   "action": "Use only the shared Euclidean measurements, identify the limited site scope and retain all stopped decisions; do not reinterpret the differences as evidence of new model performance."
   }
  ]
 }

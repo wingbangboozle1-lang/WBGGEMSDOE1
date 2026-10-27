@@ -1,4 +1,6 @@
 {
+  "status": "WITHDRAWN \u2014 historical analysis only",
+  "valid_for_submission_decision": false,
   "superseded_warning": "INVALID AS A SCORE ESTIMATE OR RANKING DEVICE. Non-independent owner-reported observations, extrapolation and an unjustified residual interval; retained as historical analysis only.",
   "historical_fit": {
     "schema": "wbg2-calibration-v1",

@@ -77,6 +77,10 @@ def validate_artifact(spec, template):
     """Call the pinned shared validator, then verify identity and ZIP bytes."""
     path = ROOT / spec["artifact"]
     report = validate(path)
+    # Metadata only: the shared validator reports an absolute invocation path.
+    # Persist a repository-relative artifact identity so CI/fresh clones rebuild
+    # the same report without changing any numerical checks or source bytes.
+    report["file"] = spec["artifact"]
     with rasterio.open(template) as ref, rasterio.open(path) as ds:
         a = ds.read(1)
         checks = dict(sha256_matches_card=sha(path) == spec["expected_sha256"],

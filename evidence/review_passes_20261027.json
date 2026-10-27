@@ -20,5 +20,10 @@
   "experiments_started": 0,
   "submission_slots_used": 0,
   "verdict": "negative",
-  "unsatisfied_goal": "No new unique high-scoring submission; stopped lane/missing assignment, incomplete authorized registry clearance, same-instrument current-best confirmation and organizer-origin provenance remain unresolved."
+  "unsatisfied_goal": "No new unique high-scoring submission; stopped lane/missing assignment, incomplete authorized registry clearance, same-instrument current-best confirmation and organizer-origin provenance remain unresolved.",
+  "ci_followup": {
+    "initial_remote_verification": "All tests, lint and validators passed; static rebuild check failed because new validator receipts persisted absolute checkout paths.",
+    "fix": "Normalize only the validator file metadata to the repository-relative artifact identity. Numerical results and exact TIFF bytes unchanged. Regression assertion added.",
+    "remote_browser": "Passed all eight pages and four downloaded TIFF hashes."
+  }
 }

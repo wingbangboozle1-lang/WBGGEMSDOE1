@@ -84,6 +84,7 @@ def test_all_four_current_releases_reopen_but_none_is_submission_ready():
     assert not review["ok_to_submit"]
     for row in review["rows"]:
         assert row["validation"]["passed"]
+        assert row["validation"]["shared_validator"]["file"] == row["artifact"]
         assert all(row["validation"]["checks"].values())
         assert row["decoded_distinct_among_four_releases"]
         assert row["leaderboard_estimate"] is row["organizer_confirmed_score"] is None

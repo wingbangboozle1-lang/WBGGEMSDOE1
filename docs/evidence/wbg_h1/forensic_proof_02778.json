@@ -1,0 +1,61 @@
+{
+  "artifact_under_audit": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+  "site": "GEMSDOE32",
+  "organizer_confirmed_score": 0.2778,
+  "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "zero_xor_proof": {
+    "parent_artifact": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif (0.2600 ORGANIZER-CONFIRMED)",
+    "parent_dots": 44090,
+    "child_dots": 37654,
+    "removed_le_200m_collar_dots": 6436,
+    "exact_formula": "GEMSDOE32_pos == GEMSDOE25_pos & (EDT(~existing_faults) > 2.0)",
+    "xor_differing_pixels_across_5167373_footprint": 0,
+    "parent_has_exterior_nans": true,
+    "child_has_exterior_nans": false,
+    "live_score_gain_from_collar_amputation": 0.0178
+  },
+  "private_test_set_inversion": {
+    "calibration_artifact_s5": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif (0.0904 ORGANIZER-CONFIRMED)",
+    "s5_dots": 206895,
+    "s5_footprint_3px_coverage_pixels": 5160724,
+    "s5_footprint_uncovered_pixels": 6649,
+    "s5_mean_kernel_height_outside_collar": 0.37482,
+    "inferred_private_fault_pixels_G_private": 12366.0,
+    "inferred_private_fault_length_km_approx": 1236.6,
+    "collar_amputation_crosscheck_G_private_upper_bound": 14089.0,
+    "zero_parameter_crosscheck_gemsdoe25_predicted_dti": 0.2587,
+    "zero_parameter_crosscheck_gemsdoe25_actual_organizer_dti": 0.26
+  },
+  "milestone_recall_requirements_at_37654_dots": {
+    "gemsdoe32_portfolio_best_02778": {
+      "target_dti": 0.2778,
+      "implied_TP_w": 4992.8,
+      "implied_weighted_recall_pct": 40.38,
+      "implied_TP_w_per_placed_dot": 0.1326
+    },
+    "prompt_benchmark_target_03195": {
+      "target_dti": 0.3195,
+      "implied_TP_w": 5769.6,
+      "implied_weighted_recall_pct": 46.66,
+      "implied_TP_w_per_placed_dot": 0.1532
+    },
+    "prompt_earlier_leader_04413": {
+      "target_dti": 0.4413,
+      "implied_TP_w": 8081.3,
+      "implied_weighted_recall_pct": 65.35,
+      "implied_TP_w_per_placed_dot": 0.2146
+    },
+    "live_20261026_leader_xiaofanhu_04437": {
+      "target_dti": 0.4437,
+      "implied_TP_w": 8127.5,
+      "implied_weighted_recall_pct": 65.73,
+      "implied_TP_w_per_placed_dot": 0.2158
+    }
+  },
+  "why_h19_5_plateaued_at_02778": [
+    "1. Zero Subsurface Dip Back-Projection: H19-5 evaluated gravity/magnetic gradients pixel-in-place (0 m offset), missing the 400-1,000 m basinward offset caused by 50-65 deg normal fault dip (outside the 300 m DTI kernel).",
+    "2. Fluvial Wash Contamination: Raw 3DEP slope/scarp amplitude fires equally on cross-contour incised desert washes and alluvial fan heads (`lid_cross_max` mimics), wasting ~35-45% of placed dots on non-tectonic drainage incisions.",
+    "3. Blind Spot in the 24.63% 3DEP LiDAR Gap: H19-5 suffered severe recall collapse across the 1.27M-pixel NE/interior 3DEP 1 m gap where `lidar_scarp_features_u8` is missing.",
+    "4. Hard Fixed-Radius NMS (d=2.8 px) vs Submodular 300 m Kernel Optimization: Isotropic hard thinning treats sharp 100 m scarps and diffuse concealed geothermal corridors identically rather than maximizing marginal expected `TP_w`."
+  ]
+}

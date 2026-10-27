@@ -1,0 +1,28 @@
+{
+  "schema": "wbg-d1-review-passes-v1",
+  "review_date_utc": "2026-10-27",
+  "lane": "WBG-D1 radiometric alteration",
+  "passes": [
+    {
+      "pass": 1,
+      "work": "Read the standing request, AGENTS.md stops, every prior run card and the nine-site executive summary. Verified the seven new GeoDAWN radiometric channels against their pinned mirror hashes and coverage, froze the preregistration before any fit, and confirmed shared vendor/gems57 evaluator/writer/validator were reused unchanged.",
+      "verification": "EXP-1 deterministic composite and random-dot baseline run on gems57-pooled-hide-v2 (n=11,330); composite HOLDOUT-DTI 0.0283 underperforms random 0.0345. New src/wbggemsd1 unit tests pass."
+    },
+    {
+      "pass": 2,
+      "work": "Reviewed EXP-2 control/candidate symmetry, per-channel leakage canaries and EXP-3 dotted emission math. Audited export edge cases: zeros outside footprint, no NaN/Inf, strict [0,1], EPSG:32611 exact grid, G10 200 m dead collar, name and <=140-char note. Checked every dashboard/run-card number against the raw evidence JSONs; no projection is presented as a score.",
+      "verification": "19-band control 0.014146 reproduces the prior session's control to full precision; candidate 0.014072 paired CI spans zero; max canary AUC 0.56 < 0.90. Shared validator reports 10/10 portal gates PASS, ok_to_submit=false. Full suite green, ruff E9/F clean."
+    },
+    {
+      "pass": 3,
+      "work": "Integrated concurrently advanced main (WBG-2 lane, PR #13). Resolved conflicts by keeping both lanes' builders, nav and banners, and regenerating every generated page from audited evidence. Re-ran the full WBG-D1 uniqueness audit with the WBG-2 TIF added (364 -> 365 rasters) without re-emitting or retuning any dots; confirmed the packaged TIF bytes are unchanged.",
+      "verification": "WBG-D1 vs WBG-2: 3 px forward overlap 0.1799, reverse 0.2214, Spearman 0.0002, Jaccard 0.0037 - distinct lanes, no STOP. Worst geological-peer overlap stays 0.4846 <= 0.70; worst Spearman 0.106 <= 0.90; byte/pixel unique. 153 tests pass; deterministic rebuilds (empty worktree diff); ruff E9/F clean; zero slots used."
+    }
+  ],
+  "experiments_started": 3,
+  "experiments_completed": 3,
+  "submission_slots_used": 0,
+  "verdict": "negative",
+  "frozen_artifact_sha256": "e6deaa8375f93318c1e3ebefda903d92336e5ebba71c4ed88795a7bb77183a22",
+  "unsatisfied_goal": "No radiometric feature set produced a paired HOLDOUT-DTI improvement over the 19-band control, so no file is promoted to a competition slot; the literal lattice/dense-surface STOP remains and no leaderboard projection is made from a local proxy."
+}

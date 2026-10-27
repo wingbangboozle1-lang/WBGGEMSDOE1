@@ -1,0 +1,581 @@
+{
+  "schema_version": 1,
+  "review_date_utc": "2026-10-27",
+  "scope": "Four local frozen research TIFFs; not a new scientific experiment or current external registry audit.",
+  "shared_validator": "vendor/gems57/validate.py; unchanged pinned owner template",
+  "all_exact_artifacts_format_valid": true,
+  "any_ok_to_submit": false,
+  "new_experiments": 0,
+  "submission_slots_used": 0,
+  "rows": [
+    {
+      "lane": "WBG-C1",
+      "artifact": "docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+      "source_card": "registry/run_card.json",
+      "source_card_sha256": "d7902519e0f9cb7e720e95390af780b7abd8096ec9061de2f58f38d6f5aa4816",
+      "expected_raster_sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+      "exact_identity_matches": true,
+      "validator": {
+        "file": "docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+        "bytes": 14506361,
+        "sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+        "meta": {
+          "crs": "EPSG:32611",
+          "shape": [
+            3730,
+            3292
+          ],
+          "dtype": "float32",
+          "count": 1,
+          "nodata": null,
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "profile_compress": "deflate"
+        },
+        "band_description": [
+          null
+        ],
+        "n_finite": 12279160,
+        "n_nan": 0,
+        "n_infinite": 0,
+        "min": 0.0,
+        "max": 0.8809285163879395,
+        "mean": 0.1453765481710434,
+        "emitted_positive_pixels": 5106385,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "all_checks_passed": true,
+        "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_positive_pixels": 5106385,
+        "footprint_fraction": 0.9881974844858307,
+        "template_report": {
+          "path": "docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+          "bytes": 14506361,
+          "sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+          "bands": 1,
+          "dtype": "float32",
+          "crs": "EPSG:32611",
+          "width": 3292,
+          "height": 3730,
+          "bounds": [
+            243350.0,
+            4135550.0,
+            572550.0,
+            4508550.0
+          ],
+          "ref_bounds": [
+            243350.0,
+            4135550.0,
+            572550.0,
+            4508550.0
+          ],
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "nodata": null,
+          "blocksize": [
+            256,
+            256
+          ],
+          "fixture_grid": false,
+          "has_validity_mask": false,
+          "nan_pixels": 0,
+          "infinity_pixels": 0,
+          "n_nan": 0,
+          "min": 0.0,
+          "max": 0.8809285163879395,
+          "mean": 0.1453765481710434,
+          "n_nonzero": 5106385,
+          "mass": 1785101.8773902538,
+          "mass_outside_footprint": 0,
+          "problems": [],
+          "ok": true,
+          "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+        },
+        "mirrored_reference_available": true,
+        "catalogue_reference_available": true,
+        "independent_organizer_origin_authenticated": false
+      },
+      "error": null,
+      "holdout": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.01404466519440323,
+        "ci95": [
+          0.01183137469362976,
+          0.01639563940835171
+        ],
+        "withheld_positive_pixels": 11330,
+        "tpw": 4835.375915678135,
+        "fpw": 1671272.600026754,
+        "fnw": 6494.624084321865,
+        "status": "recorded prior measurement; NOT rerun in this review"
+      },
+      "recorded_forward_3px_overlap": 0.9987243421716145,
+      "registry_scope": "surface-before-placement; 360 frozen file hashes",
+      "literal_overlap_exceeds_limit": true,
+      "uniqueness_cleared": false,
+      "leaderboard_estimate": null,
+      "organizer_confirmed_score": null,
+      "ok_to_download": true,
+      "ok_to_submit": false,
+      "verdict": "negative",
+      "reason": "Negative paired efficacy; literal surface duplicate STOP; final dots not generated."
+    },
+    {
+      "lane": "TIP1",
+      "artifact": "docs/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif",
+      "source_card": "evidence/tip1_run_card_20261026.json",
+      "source_card_sha256": "742c2d4d2c21253e28c17a1817d2e2ec8dd9a6693b3844acf2431015ca212a51",
+      "expected_raster_sha256": "148718d31ea75cfa3b7c643dfa25643cb0353483b2fa0e2696a62af2a107dca8",
+      "exact_identity_matches": true,
+      "validator": {
+        "file": "docs/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif",
+        "bytes": 825918,
+        "sha256": "148718d31ea75cfa3b7c643dfa25643cb0353483b2fa0e2696a62af2a107dca8",
+        "meta": {
+          "crs": "EPSG:32611",
+          "shape": [
+            3730,
+            3292
+          ],
+          "dtype": "float32",
+          "count": 1,
+          "nodata": null,
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "profile_compress": "lzw"
+        },
+        "band_description": [
+          null
+        ],
+        "n_finite": 12279160,
+        "n_nan": 0,
+        "n_infinite": 0,
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.0030720343347638845,
+        "emitted_positive_pixels": 37722,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "all_checks_passed": true,
+        "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_positive_pixels": 37722,
+        "footprint_fraction": 0.007300034272733941,
+        "template_report": {
+          "path": "docs/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif",
+          "bytes": 825918,
+          "sha256": "148718d31ea75cfa3b7c643dfa25643cb0353483b2fa0e2696a62af2a107dca8",
+          "bands": 1,
+          "dtype": "float32",
+          "crs": "EPSG:32611",
+          "width": 3292,
+          "height": 3730,
+          "bounds": [
+            243350.0,
+            4135550.0,
+            572550.0,
+            4508550.0
+          ],
+          "ref_bounds": [
+            243350.0,
+            4135550.0,
+            572550.0,
+            4508550.0
+          ],
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "nodata": null,
+          "blocksize": [
+            1,
+            3292
+          ],
+          "fixture_grid": false,
+          "has_validity_mask": false,
+          "nan_pixels": 0,
+          "infinity_pixels": 0,
+          "n_nan": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.0030720343347638845,
+          "n_nonzero": 37722,
+          "mass": 37722.0,
+          "mass_outside_footprint": 0,
+          "problems": [],
+          "ok": true,
+          "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+        },
+        "mirrored_reference_available": true,
+        "catalogue_reference_available": true,
+        "independent_organizer_origin_authenticated": false
+      },
+      "error": null,
+      "holdout": {
+        "evidence_class": "HOLDOUT-DTI",
+        "dti": 0.08243410429527415,
+        "ci95": [
+          0.07287200123415499,
+          0.09173273826900923
+        ],
+        "evaluator_version": "gems-segment-pooled-v1",
+        "withheld_positive_pixels": 60988,
+        "status": "recorded prior measurement; NOT rerun in this review"
+      },
+      "recorded_forward_3px_overlap": 0.9995228248767297,
+      "registry_scope": "final dots; recorded 179-raster audit",
+      "literal_overlap_exceeds_limit": true,
+      "uniqueness_cleared": false,
+      "leaderboard_estimate": null,
+      "organizer_confirmed_score": null,
+      "ok_to_download": true,
+      "ok_to_submit": false,
+      "verdict": "negative",
+      "reason": "Literal final-dot duplicate STOP; current-best paired replay unavailable."
+    },
+    {
+      "lane": "MVGZ",
+      "artifact": "docs/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif",
+      "source_card": "evidence/run_card.json",
+      "source_card_sha256": "d5a0311dcd7cde487d4d6b088722bf9d37ba48972cbab854293b90ccaf4da191",
+      "expected_raster_sha256": "0c2516fa5e5727eab1150750b72c189a454968aba4f9afbc5e2aac84dcc8faba",
+      "exact_identity_matches": true,
+      "validator": {
+        "file": "docs/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif",
+        "bytes": 150278,
+        "sha256": "0c2516fa5e5727eab1150750b72c189a454968aba4f9afbc5e2aac84dcc8faba",
+        "meta": {
+          "crs": "EPSG:32611",
+          "shape": [
+            3730,
+            3292
+          ],
+          "dtype": "float32",
+          "count": 1,
+          "nodata": null,
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "profile_compress": "deflate"
+        },
+        "band_description": [
+          null
+        ],
+        "n_finite": 12279160,
+        "n_nan": 0,
+        "n_infinite": 0,
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.0019058306934311986,
+        "emitted_positive_pixels": 23402,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "all_checks_passed": true,
+        "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_positive_pixels": 23402,
+        "footprint_fraction": 0.004528800224020987,
+        "template_report": {
+          "path": "docs/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif",
+          "bytes": 150278,
+          "sha256": "0c2516fa5e5727eab1150750b72c189a454968aba4f9afbc5e2aac84dcc8faba",
+          "bands": 1,
+          "dtype": "float32",
+          "crs": "EPSG:32611",
+          "width": 3292,
+          "height": 3730,
+          "bounds": [
+            243350.0,
+            4135550.0,
+            572550.0,
+            4508550.0
+          ],
+          "ref_bounds": [
+            243350.0,
+            4135550.0,
+            572550.0,
+            4508550.0
+          ],
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "nodata": null,
+          "blocksize": [
+            256,
+            256
+          ],
+          "fixture_grid": false,
+          "has_validity_mask": false,
+          "nan_pixels": 0,
+          "infinity_pixels": 0,
+          "n_nan": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.0019058306934311986,
+          "n_nonzero": 23402,
+          "mass": 23402.0,
+          "mass_outside_footprint": 0,
+          "problems": [],
+          "ok": true,
+          "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+        },
+        "mirrored_reference_available": true,
+        "catalogue_reference_available": true,
+        "independent_organizer_origin_authenticated": false
+      },
+      "error": null,
+      "holdout": {
+        "evidence_class": "HOLDOUT-DTI",
+        "dti": 0.0031780925326267894,
+        "ci95": [
+          0.0024219548077875114,
+          0.003971193371259351
+        ],
+        "evaluator_version": "WBGGEMSDOE1-HIDE-RECOVER-v1.0",
+        "withheld_positive_pixels": 60161,
+        "status": "recorded prior measurement; NOT rerun in this review"
+      },
+      "recorded_forward_3px_overlap": 0.45897786513973166,
+      "registry_scope": "only 37 registry entries; not the complete 360-file scope",
+      "literal_overlap_exceeds_limit": false,
+      "uniqueness_cleared": false,
+      "leaderboard_estimate": null,
+      "organizer_confirmed_score": null,
+      "ok_to_download": true,
+      "ok_to_submit": false,
+      "verdict": "negative",
+      "reason": "Negative recorded efficacy; limited registry scope is not global uniqueness clearance."
+    },
+    {
+      "lane": "WBG-H1",
+      "artifact": "docs/downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif",
+      "source_card": "evidence/wbg_h1/run_card.json",
+      "source_card_sha256": "e32136916a2a8842e6aa8a61b3cdfa888b46a090e77e243c23b54faa43378676",
+      "expected_raster_sha256": "e46e4c175c5afceac148d0475a23808c3ae8bf6e5edad8faea919ed847b0d7dd",
+      "exact_identity_matches": true,
+      "validator": {
+        "file": "docs/downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif",
+        "bytes": 826804,
+        "sha256": "e46e4c175c5afceac148d0475a23808c3ae8bf6e5edad8faea919ed847b0d7dd",
+        "meta": {
+          "crs": "EPSG:32611",
+          "shape": [
+            3730,
+            3292
+          ],
+          "dtype": "float32",
+          "count": 1,
+          "nodata": null,
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "profile_compress": "lzw"
+        },
+        "band_description": [
+          null
+        ],
+        "n_finite": 12279160,
+        "n_nan": 0,
+        "n_infinite": 0,
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.0030664964579045773,
+        "emitted_positive_pixels": 37654,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "all_checks_passed": true,
+        "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_positive_pixels": 37654,
+        "footprint_fraction": 0.007286874781441169,
+        "template_report": {
+          "path": "docs/downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif",
+          "bytes": 826804,
+          "sha256": "e46e4c175c5afceac148d0475a23808c3ae8bf6e5edad8faea919ed847b0d7dd",
+          "bands": 1,
+          "dtype": "float32",
+          "crs": "EPSG:32611",
+          "width": 3292,
+          "height": 3730,
+          "bounds": [
+            243350.0,
+            4135550.0,
+            572550.0,
+            4508550.0
+          ],
+          "ref_bounds": [
+            243350.0,
+            4135550.0,
+            572550.0,
+            4508550.0
+          ],
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "nodata": null,
+          "blocksize": [
+            1,
+            3292
+          ],
+          "fixture_grid": false,
+          "has_validity_mask": false,
+          "nan_pixels": 0,
+          "infinity_pixels": 0,
+          "n_nan": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.0030664964579045773,
+          "n_nonzero": 37654,
+          "mass": 37654.0,
+          "mass_outside_footprint": 0,
+          "problems": [],
+          "ok": true,
+          "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+        },
+        "mirrored_reference_available": true,
+        "catalogue_reference_available": true,
+        "independent_organizer_origin_authenticated": false
+      },
+      "error": null,
+      "holdout": {
+        "evidence_class": "HOLDOUT-DTI",
+        "dti": 0.12331,
+        "ci95": [
+          0.108921,
+          0.137557
+        ],
+        "evaluator_version": "gems-segment-pooled-v1",
+        "withheld_positive_pixels": 60988,
+        "status": "recorded prior measurement; NOT rerun in this review"
+      },
+      "recorded_forward_3px_overlap": 0.998035,
+      "registry_scope": "recorded lattice witness; filtered sparse/symmetric results do not override literal gate",
+      "literal_overlap_exceeds_limit": true,
+      "uniqueness_cleared": false,
+      "leaderboard_estimate": null,
+      "organizer_confirmed_score": null,
+      "ok_to_download": true,
+      "ok_to_submit": false,
+      "verdict": "negative",
+      "reason": "Literal overlap exceeds 70%; inherited negative verdict. No optional benchmark upload authorized."
+    }
+  ],
+  "reporting_corrections": [
+    "Historical 0.2778 and other supplied artifact values lack submission-page receipts: USER-REPORTED, not ORGANIZER-CONFIRMED.",
+    "Literal overlap has no authorized lattice/density exclusion. A sparse or symmetric PASS cannot replace it.",
+    "Private fault count, private recall, exact portal implementation and score-gain causes are not established by these files.",
+    "For binary dots DTI = T / [0.2*(T+N-M) + 0.8*K], where T sums coverage over truth and M over dots. T and M are distinct unknowns.",
+    "A lattice-wide mean kernel value need not equal the unknown truth-conditioned mean. Score inversion and LLI forecasts are not validated evidence.",
+    "Different evaluators/splits/representations are not a common ranking or a leaderboard forecast."
+  ],
+  "next_actions": [
+    "Do not restart WBG-C1, TIP1 or another stopped lane, move dots into registry holes, or relax thresholds.",
+    "Obtain an assigned distinct method lane, authenticated layer metadata, and a clean paired same-instrument benchmark before new promotion research.",
+    "Any future independently authorized lane must pass canaries, buffered holdout improvement, untouched confirmation, literal surface/final-dot gates and exact-file validation.",
+    "A separate selector needs authenticated current weekly allowance; this repository has no uploader."
+  ]
+}

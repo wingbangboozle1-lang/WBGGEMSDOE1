@@ -154,6 +154,6 @@
   "shared_template_repository": "buffedlizard55-lab/57GEMSDOE",
   "shared_template_ref": "822a0ce5546c7b6749cdd82eb145b6b3e616603d",
   "all_19_template_band_hashes_match": true,
-  "cache_reused": true,
+  "cache_reused": false,
   "organizer_origin_authenticated": false
 }

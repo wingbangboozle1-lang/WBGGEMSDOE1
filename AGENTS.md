@@ -1,13 +1,26 @@
 # Starting point for every session
 
-1. Read `README.md` **including the archived standing prompt**, then `registry/run_card.json`,
-   `registry/run_card_wbg_d1.json`, `registry/irregularities.json`,
-   `registry/experiment_ledger.json`, and `registry/preregistration.json`.
-   The prompt is intent, not evidence. The current measured status is **NEGATIVE / DO NOT SUBMIT**.
-   WBG-D1 (2026-10-27, radiometric alteration lane) is also negative: seven GeoDAWN radiometric
-   channels added no holdout DTI (paired CI spans zero); its portal-valid unique dotted TIF
-   (`docs/downloads/wbggemsdoe1-wbg-d1-*.tif`) passes the geological-peer uniqueness gates but the
-   literal lattice/dense-surface STOP remains, so it stays research-only. Do not rerun or tune it.
+0. **Current submittable artifact (2026-10-27): `docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif`.**
+   Unique against all nine focus sites (max 1.18x chance overlap, max |rho| 0.009), format-valid,
+   zeros-mode, sha256 `f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3`.
+   Estimated score **0.2824** (MODEL-ESTIMATE; 95% 0.2795-0.2853) - **not** organizer-confirmed and
+   only +0.0046 over the best focus-site artifact, i.e. a tie within model error. Read
+   `docs/wbg2.html` and `evidence/wbg2/run_card.json` first. The WBG-C1/TIP1/MVGZ/WBG-H1 artifacts
+   remain NEGATIVE; nothing else here is cleared to upload.
+
+1. Read `README.md` **including the archived standing prompt**, then the 2026-10-27 follow-up at
+   `research/03_followup_review_20261027.md`, `evidence/portfolio_review_20261027.json`,
+   `docs/review-20261027.md`, `evidence/release_review_20261027.json`, `registry/run_card.json`,
+   `registry/irregularities.json`, `registry/experiment_ledger.json`, `registry/preregistration.json`
+   and, for the newest lane, `registry/run_card_wbg_d1.json` plus `registry/preregistration_wbg_d1.json`.
+   WBG-D1 (2026-10-27, radiometric alteration lane) is negative: seven GeoDAWN radiometric channels
+   added no holdout DTI (paired CI spans zero). Its portal-valid unique dotted TIF
+   (`docs/downloads/wbggemsdoe1-wbg-d1-*.tif`) is distinct from every geological prior and from the
+   WBG-2 file (3 px overlap 0.180, Spearman ~0.000), but the literal lattice/dense-surface STOP
+   remains, so it stays research-only. Do not rerun or tune it.
+   The prompt is intent, not evidence. **Only the WBG-2 file in item 0 is cleared to upload.**
+   WBG-C1, TIP1, MVGZ and WBG-H1 remain **NEGATIVE / DO NOT SUBMIT**. The 2026-10-27 follow-up added
+   zero experiments.
 2. The original checkout contained only a title. Do not invent prior local training, pending tasks,
    organizer receipts, lane assignments, scores, GPU requirements or authenticated data access.
 3. No assigned single-method paragraph was supplied. WBG-C1 is provisional research only. Its
@@ -58,3 +71,16 @@
   last verified observation and explicitly show the failure.
 - Resolve all unknowns honestly. Do not claim every line of all linked sources, every PDF page,
   all 92 sites, hidden labels or private data were verified. A fault map is not a vent discovery.
+
+## 2026-10-27 follow-up corrections
+
+- DPGF-1 also fails the literal one-way gate (99.8035% lattice overlap); sparse/symmetric
+  diagnostics are not authorized substitutes. No optional negative-result upload recommendation.
+- Inherited LLI forecasts, private-fault-count inversion and ORGANIZER-CONFIRMED labels are not
+  verified evidence. Preserve cards as historical records but publish their corrections.
+- `scripts/check_readiness.py` hashes current inputs/cache independently of the stopped scientific
+  lane. Exit 2 is expected even after successful data restoration.
+- The integration writer's input-grid/clobber/NaN-exit fixes are explicitly recorded in
+  `evidence/integration_amendments_20261027.json`; the old wrapper is historical only. Neither
+  the pinned template nor numerical evaluator/writer is changed. Do not use archived code as a fork.
+- `python scripts/build_site.py` now reopens all four artifacts and builds the all-release review.

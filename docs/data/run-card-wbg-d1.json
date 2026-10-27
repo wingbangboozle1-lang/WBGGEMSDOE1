@@ -37,7 +37,7 @@
   },
   "registry": {
     "phase": "surface-before-placement then final dots",
-    "rasters_checked": 364,
+    "rasters_checked": 365,
     "scope": "Checked against every registry raster whose bytes are present locally (plus any explicitly fetched witnesses). Un-fetched registry entries are a stated scope limitation, never a claim of absence.",
     "surface_worst_spearman": 0.9760515354975291,
     "dots_worst_spearman": 0.1059524822839613,
@@ -46,7 +46,7 @@
     "literal_worst_overlap_submission": "WBGGEMSDOE1:docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
     "dotfield_worst_forward_overlap": 0.9847559356243692,
     "dotfield_worst_submission": "GEMSDOE24:inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
-    "dotfield_rasters": 363,
+    "dotfield_rasters": 364,
     "continuous_surface_rasters": 1,
     "geological_peer_worst_forward_overlap": 0.4846231476071599,
     "geological_peer_worst_submission": "GEMSDOE30:docs/downloads/gemsdoe30-sgmc-hedge-d10-85k-20261003-ac08b41e-zeros.tif",
@@ -102,7 +102,19 @@
     "lattice_note": "The r13-lattice rasters are uniform synthetic calibration grids; pigeonhole overlap with any sparse dot field is structural (IR-WBG1-01), not geological duplication.",
     "byte_unique": true,
     "pixel_unique": true,
-    "geological_peer_note": "Against real geological dot-field priors the worst forward 3 px overlap is 0.4846 <= 0.70 and worst Spearman 0.106 <= 0.90. Literal STOPs come only from (a) the synthetic r13 space-filling calibration lattice (pigeonhole artifact IR-WBG1-01) and (b) the project-owned continuous WBG-C1 surface whose dense support is a universal overlap blocker."
+    "geological_peer_note": "Against real geological dot-field priors the worst forward 3 px overlap is 0.4846 <= 0.70 and worst Spearman 0.106 <= 0.90. Literal STOPs come only from (a) the synthetic r13 space-filling calibration lattice (pigeonhole artifact IR-WBG1-01) and (b) the project-owned continuous WBG-C1 surface whose dense support is a universal overlap blocker. The parallel WBG-2 lane (added 2026-10-27) is a distinct dot field: 3 px forward overlap 0.1799, Spearman 0.0002, Jaccard 0.0037.",
+    "scope_extension_20261027": {
+      "extended_utc": "2026-10-27T19:08:11+00:00",
+      "reason": "WBG-2 parallel lane (PR #13) merged to main; added as a project prior.",
+      "added_raster": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+      "rasters_checked_previous": 364,
+      "rasters_checked_current": 365,
+      "wbg2_forward_overlap_mine_within_3px": 0.17987464811175438,
+      "wbg2_reverse_overlap": 0.22136111111111112,
+      "wbg2_spearman": 0.00015517599147083676,
+      "wbg2_jaccard": 0.0036519227100536887,
+      "wbg2_literal_stop_triggered": false
+    }
   },
   "raster_sha256": "e6deaa8375f93318c1e3ebefda903d92336e5ebba71c4ed88795a7bb77183a22",
   "raster_decoded_sha256": "93a82d4bc1167391f1c68d2701abb08c103e7099e52473cdb099d3b2a77c6a92",
@@ -228,5 +240,6 @@
       "forward_overlap": 0.9847559356243692,
       "their_dots": 206895
     }
-  ]
+  ],
+  "registry_reevaluated_utc": "2026-10-27T19:08:11+00:00"
 }

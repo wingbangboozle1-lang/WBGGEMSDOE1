@@ -137,6 +137,7 @@ def main():
         ("evidence/wbg_d1/exp3_gates.json", "wbg-d1-exp3.json"),
         ("evidence/wbg_d1/exp2_canaries.json", "wbg-d1-canaries.json"),
         ("registry/preregistration_wbg_d1.json", "preregistration-wbg-d1.json"),
+        ("evidence/wbg_d1/review_passes.json", "wbg-d1-review-passes.json"),
     ]:
         shutil.copyfile(ROOT / src, DOCS / "data" / dest)
 
@@ -183,9 +184,10 @@ def main():
 {pill('No-go', 'no')}</div>
 <div class="card-body">
 <div class="status-line"><span>Portal format gates (10/10)</span><b style="color:var(--teal)">PASS · 0 NaN/inf · strict [0,1] · G10 collar clean</b></div>
-<div class="status-line"><span>Byte / pixel uniqueness (364 rasters)</span><b>Unique bytes and decoded pixels</b></div>
+<div class="status-line"><span>Byte / pixel uniqueness ({rc['registry']['rasters_checked']} rasters)</span><b>Unique bytes and decoded pixels</b></div>
 <div class="status-line"><span>Real geological-peer 3 px overlap</span><b>0.4846 ≤ 0.70 PASS</b></div>
 <div class="status-line"><span>Worst Spearman vs any raster (dots)</span><b>0.106 ≤ 0.90 PASS</b></div>
+<div class="status-line"><span>Parallel WBG-2 lane check (3 px overlap / Spearman)</span><b>{rc['registry']['scope_extension_20261027']['wbg2_forward_overlap_mine_within_3px']:.4f} / {rc['registry']['scope_extension_20261027']['wbg2_spearman']:.4f} — distinct lanes</b></div>
 <div class="status-line"><span>Literal gate (synthetic lattice + dense surface)</span><b style="color:var(--red)">STOP</b></div>
 <div class="status-line"><span>Efficacy vs same-instrument control</span><b style="color:var(--red)">FAILED · paired CI spans zero</b></div>
 <div class="filename">{escape(tif)}</div>
@@ -224,7 +226,7 @@ def main():
 </section>
 
 <section class="content-section">
-<h2>3. Uniqueness audit — 364 aligned rasters (nine frozen snapshots + project priors)</h2>
+<h2>3. Uniqueness audit — {rc['registry']['rasters_checked']} aligned rasters (nine frozen snapshots + project priors, including the parallel WBG-2 lane)</h2>
 <div class="table-wrap"><table><thead><tr><th>Closest real geological dot-field prior</th><th>Forward 3 px overlap</th><th>Reverse overlap</th><th>Spearman ρ</th><th>Jaccard</th></tr></thead><tbody>{peer_rows}</tbody></table></div>
 <p class="micro">Binding gate limits: forward overlap ≤ 0.70 and |Spearman| ≤ 0.90. Every real geological peer passes. The remaining literal STOPs are non-geological controls:</p>
 <ul>{lattice_rows}</ul>
@@ -244,6 +246,7 @@ def main():
 <h2>5. Hypotheses, limitations and next lane</h2>
 <p>Five ranked geological hypotheses, including the one executed here, are documented in <a href="wbg-d1-hypotheses.md">the WBG-D1 hypotheses register</a>. The four queued ideas (isostatic gravity edges under basin fill, anisotropic conductivity-boundary persistence, shallow magnetic residuals with cultural screening, and dilatation-jog texture transport) use only the existing hash-pinned cache and await a separately preregistered lane.</p>
 <p>Limitations: hidden organizer labels are unavailable, so local HOLDOUT-DTI is a catalogue hide-and-recover proxy, not a leaderboard estimate; the nine-snapshot registry is not the full competition universe; radiometric band semantics rely on owner-mirror metadata whose organizer origin is not independently authenticated; no authenticated uploader or remaining weekly allowance exists in this environment. The actual DrivenData upload remains a manual form action described in <a href="how-to-submit.html">How to submit</a>.</p>
+<p>Three independent review passes (preregistration/integrity, export-and-numbering discipline, parallel-lane merge and 365-raster re-audit) are recorded in the <a href="data/wbg-d1-review-passes.json">machine-readable review-passes file</a>; zero submission slots were used.</p>
 <p>Machine-readable evidence: <a href="data/run-card-wbg-d1.json">run card</a> · <a href="data/wbg-d1-exp1.json">EXP-1</a> · <a href="data/wbg-d1-exp2.json">EXP-2</a> · <a href="data/wbg-d1-exp3.json">EXP-3 gates</a> · <a href="data/preregistration-wbg-d1.json">preregistration</a> · <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">source repository ↗</a></p>
 </section>
 """

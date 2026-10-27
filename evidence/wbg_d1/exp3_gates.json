@@ -50,7 +50,7 @@
     "worst_rho_submission": "WBGGEMSDOE1:docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
     "worst_dot_overlap": 1.0,
     "worst_overlap_submission": "WBGGEMSDOE1:docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
-    "registry_rasters_checked": 364,
+    "registry_rasters_checked": 365,
     "stop_required": true
   },
   "dots_audit_worst": {
@@ -58,13 +58,13 @@
     "worst_rho_submission": "WBGGEMSDOE1:docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
     "worst_dot_overlap": 1.0,
     "worst_overlap_submission": "WBGGEMSDOE1:docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
-    "registry_rasters_checked": 364,
+    "registry_rasters_checked": 365,
     "stop_required": true
   },
   "two_phase": {
     "evidence_class": "REGISTRY-MEASUREMENT",
-    "rasters_checked": 364,
-    "rasters_expected": 364,
+    "rasters_checked": 365,
+    "rasters_expected": 365,
     "scope_note": "Checked against every registry raster whose bytes are present locally (plus any explicitly fetched witnesses). Un-fetched registry entries are a stated scope limitation, never a claim of absence.",
     "footprint_cells": 5167373,
     "dense_support_fraction": 0.2,
@@ -84,7 +84,7 @@
       "note": "Keeps the inherited literal support definition. A continuous-surface prior fires on every nonempty candidate, so a firing here is not evidence of duplication; it is reported for completeness."
     },
     "like_for_like_reading": {
-      "dot_field_rasters": 363,
+      "dot_field_rasters": 364,
       "continuous_surface_rasters": 1,
       "worst_forward_overlap_dot_fields": 0.9847559356243692,
       "worst_forward_overlap_dot_field_submission": "GEMSDOE24:inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
@@ -202,5 +202,17 @@
       "their_dots": 206895
     }
   ],
-  "collar_rule": "dots restricted to catalogue distance > 2 px (200 m); project portal gate G10, not an organizer rule"
+  "collar_rule": "dots restricted to catalogue distance > 2 px (200 m); project portal gate G10, not an organizer rule",
+  "registry_scope_extension": {
+    "extended_utc": "2026-10-27T19:08:11+00:00",
+    "reason": "WBG-2 parallel lane (PR #13) merged to main; added as a project prior.",
+    "added_raster": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+    "rasters_checked_previous": 364,
+    "rasters_checked_current": 365,
+    "wbg2_forward_overlap_mine_within_3px": 0.17987464811175438,
+    "wbg2_reverse_overlap": 0.22136111111111112,
+    "wbg2_spearman": 0.00015517599147083676,
+    "wbg2_jaccard": 0.0036519227100536887,
+    "wbg2_literal_stop_triggered": false
+  }
 }

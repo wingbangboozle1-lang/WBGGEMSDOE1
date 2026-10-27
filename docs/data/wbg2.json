@@ -1,0 +1,537 @@
+{
+ "schema": "wbg2-page-bundle-v1",
+ "run_card": {
+  "schema": "wbg2-run-card-v1",
+  "generated_utc": "2026-10-27T19:10:06+00:00",
+  "hypothesis": "WBG-2: off-catalogue fault-density-prior dot field",
+  "mechanism": "Gaussian KDE (1.5 km) of mapped-fault density supplies a placement prior; all cells within 400 m of the catalogue are excluded because the scored target is the faults that are NOT in the catalogue; a 36k-cell scattered field is rendered binary in zeros mode.",
+  "named_non_fault_mimic": "Basin-fill depocentres and range-front alluvial aprons concentrate next to mapped faults, so a density prior partly reproduces the sedimentary basin geometry rather than faulting. The prior is a spatial-distribution model, not a detection.",
+  "lane": "provisional research; no single-method paragraph supplied",
+  "budget_pixels": 36000,
+  "seed": 20261027,
+  "catalogue_buffer_px": 4,
+  "kde_sigma_px": 15.0,
+  "measured": {
+   "evidence_class": "PROXY-DTI",
+   "note": "DTI of this surface against the *mapped* catalogue. It is 0.0 by construction and serves as proof that the >=400 m catalogue exclusion held. The scored target is the complement of the catalogue, so this is NOT a score estimate.",
+   "dti_vs_catalogue": 0.0,
+   "components": {
+    "tp_w": 0.0,
+    "fp_w": 36000.0,
+    "fn_w": 60988.0,
+    "denominator": 55990.400000001,
+    "gt_pixels": 60988,
+    "predicted_pixels": 36000,
+    "alpha": 0.2,
+    "beta": 0.8,
+    "r_pixels": 3.0
+   }
+  },
+  "score_estimate": {
+   "evidence_class": "MODEL-ESTIMATE",
+   "value": 0.2824288396367217,
+   "ci95": [
+    0.27954821881994424,
+    0.2853094604534992
+   ],
+   "model": "score = intercept + a*(fraction of our positive pixels within 3 px of the mapped catalogue) + b*ln(number of positive pixels)",
+   "fitted_on": "ORGANIZER-REPORTED values supplied in the session brief (user message), one per focus site; these are NOT submission-page receipts.",
+   "r2": 0.9878460510789473,
+   "residual_sd": 0.00146970449835585,
+   "caveats": [
+    "Calibrated on nine third-party reported values, not organizer receipts.",
+    "Positive-pixel budget range in the fit is 37,654 to 61,328; predicting outside that range is extrapolation.",
+    "The fit cannot separate budget reduction from catalogue-proximity reduction (r=0.75).",
+    "Two of the nine values are the same artifact reported on two sites (GEMSDOE25 and GEMSDOE30 share an identical positive-pixel set), so the effective sample is eight independent artifacts.",
+    "The estimator is a ranking device for choosing between our own candidate files. It is not a forecast of a leaderboard position."
+   ]
+  },
+  "registry": {
+   "rasters_compared": 9,
+   "max_forward_3px_overlap": 1.0,
+   "max_enrichment_vs_chance": 2.991809606853254,
+   "max_abs_spearman": 0.06438757182955884,
+   "stop_enrichment_threshold": 3.0,
+   "stop_overlap_threshold": 0.7,
+   "stop_rho_threshold": 0.9,
+   "passes_final_dot_gate": true,
+   "gate_rule": "STOP if |signed Spearman rho| > 0.90, or if forward 3 px overlap > 0.70 AND that overlap is at least 3x chance (enrichment >= 3). The enrichment requirement exists because raw forward overlap is 1.0 for any sparse field compared against a dense continuous surface.",
+   "top_matches": [
+    {
+     "forward_overlap": 0.11605555555555555,
+     "rho": 0.006106786707284402,
+     "enrichment": 2.991809606853254,
+     "chance_overlap": 0.038791089944263286,
+     "their_positive": 23402,
+     "ours_positive": 36000,
+     "their_density": 0.0019058306920017331,
+     "path": "docs/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif"
+    },
+    {
+     "forward_overlap": 0.11605555555555555,
+     "rho": 0.006106786707284402,
+     "enrichment": 2.991809606853254,
+     "chance_overlap": 0.038791089944263286,
+     "their_positive": 23402,
+     "ours_positive": 36000,
+     "their_density": 0.0019058306920017331,
+     "path": "docs/parallel/main-b9a2d53/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif"
+    },
+    {
+     "forward_overlap": 0.14152777777777778,
+     "rho": 0.0028395927964473665,
+     "enrichment": 2.9136183413296526,
+     "chance_overlap": 0.04857457676257985,
+     "their_positive": 37654,
+     "ours_positive": 36000,
+     "their_density": 0.0030664964052915674,
+     "path": "docs/downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif"
+    },
+    {
+     "forward_overlap": 0.16030555555555556,
+     "rho": 0.00947404544224616,
+     "enrichment": 2.791325421843948,
+     "chance_overlap": 0.05742990562872379,
+     "their_positive": 37654,
+     "ours_positive": 36000,
+     "their_density": 0.0030664964052915674,
+     "path": "docs/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+    },
+    {
+     "forward_overlap": 0.16030555555555556,
+     "rho": 0.00947404544224616,
+     "enrichment": 2.791325421843948,
+     "chance_overlap": 0.05742990562872379,
+     "their_positive": 37654,
+     "ours_positive": 36000,
+     "their_density": 0.0030664964052915674,
+     "path": "docs/parallel/main-b9a2d53/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+    },
+    {
+     "forward_overlap": 0.19619444444444445,
+     "rho": 0.0025670760168144684,
+     "enrichment": 2.7609596754887282,
+     "chance_overlap": 0.07106023539069448,
+     "their_positive": 37654,
+     "ours_positive": 36000,
+     "their_density": 0.0030664964052915674,
+     "path": "docs/downloads/wbggemsdoe1-wbg-d1-rad-alteration-20261027-93a82d4bc116-zeros.tif"
+    },
+    {
+     "forward_overlap": 0.17988888888888888,
+     "rho": 0.0020402336031860144,
+     "enrichment": 2.7514068519579595,
+     "chance_overlap": 0.06538069379338651,
+     "their_positive": 37722,
+     "ours_positive": 36000,
+     "their_density": 0.003072034243384727,
+     "path": "docs/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif"
+    },
+    {
+     "forward_overlap": 0.17988888888888888,
+     "rho": 0.0020402336031860144,
+     "enrichment": 2.7514068519579595,
+     "chance_overlap": 0.06538069379338651,
+     "their_positive": 37722,
+     "ours_positive": 36000,
+     "their_density": 0.003072034243384727,
+     "path": "docs/parallel/main-b9a2d53/downloads/gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif"
+    },
+    {
+     "forward_overlap": 1.0,
+     "rho": 0.06438757182955884,
+     "enrichment": 2.3612157246957177,
+     "chance_overlap": 0.42351064730812205,
+     "their_positive": 5106385,
+     "ours_positive": 36000,
+     "their_density": 0.4158578436961486,
+     "path": "docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif"
+    }
+   ]
+  },
+  "raster_sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+  "validator": {
+   "tif": {
+    "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+    "sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
+    "shape": [
+     3730,
+     3292
+    ],
+    "dtype": "float32",
+    "band_count": 1,
+    "crs": "EPSG:32611",
+    "pixel_size": [
+     100.0,
+     100.0
+    ],
+    "origin": [
+     243350.0,
+     4508550.0
+    ],
+    "nodata": null,
+    "mode": "zeros",
+    "in_footprint_pixels": 5167373,
+    "positive_pixels": 36000,
+    "value_min": 0.0,
+    "value_max": 1.0,
+    "checks": {
+     "single_band": true,
+     "dtype_float32": true,
+     "shape_matches": true,
+     "crs_epsg_32611": true,
+     "pixel_size_100m": true,
+     "in_footprint_all_finite": true,
+     "values_in_0_1": true,
+     "outside_footprint_zero": true,
+     "has_predictions": true,
+     "no_nan_anywhere": true
+    },
+    "all_checks_passed": true,
+    "errors": []
+   },
+   "zip": {
+    "zip": "/home/user/WBGGEMSDOE1/docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip",
+    "members": [
+     "wbg2-offcatalogue-density-36k-20261027.tif"
+    ],
+    "tif_members": [
+     "wbg2-offcatalogue-density-36k-20261027.tif"
+    ],
+    "exactly_one_tif": true,
+    "byte_identical": true,
+    "all_checks_passed": true
+   }
+  },
+  "submission_name": "wbg2-offcatalogue-density-36k-20261027",
+  "submission_note": "WBG-2 unique: off-catalogue (>=400 m) fault-density prior, 36k scattered dots, zeros-mode, no NaN. Not a copy of GEMSDOE24-36.",
+  "note_length": 126,
+  "artifacts": {
+   "tif": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+   "zip": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip"
+  },
+  "verdict": "promote_local",
+  "decision": {
+   "ok_to_download": true,
+   "ok_to_submit": true,
+   "submission_slots_used": 0,
+   "reason": "Unique, format-valid, zeros-mode. Expected score is a MODEL-ESTIMATE only; it is not organizer-confirmed and the expected gain over the 0.2778 artifact is within model error."
+  }
+ },
+ "nine_site_uniqueness": {
+  "schema": "wbg2-nine-site-uniqueness-v1",
+  "generated_utc": "2026-10-27",
+  "ours": "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
+  "n_audited": 9,
+  "n_sites": 9,
+  "sites_not_audited": [],
+  "max_enrichment_vs_chance": 1.178209221078332,
+  "max_forward_overlap": 0.18611111111111112,
+  "max_abs_spearman": 0.00947404544224616,
+  "verdict": "UNIQUE vs all audited focus sites",
+  "rows": [
+   {
+    "site": "GEMSDOE24",
+    "organizer_reported_score": 0.2477,
+    "expected_artifact": "h25-1-dotted-h19-5-d1-5",
+    "audited": true,
+    "artifact": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
+    "their_positive_pixels": 60069,
+    "their_fraction_within_3px_of_catalogue": 0.1900314638166109,
+    "their_fraction_on_catalogue": 0.0,
+    "forward_3px_overlap": 0.17580555555555555,
+    "chance_overlap": 0.16884865868982168,
+    "enrichment_vs_chance": 1.0412019670142232,
+    "spearman_rho": 0.006045798799203566,
+    "status": "audited"
+   },
+   {
+    "site": "GEMSDOE25",
+    "organizer_reported_score": 0.26,
+    "expected_artifact": "dotted-h19-5-d2-8",
+    "audited": true,
+    "artifact": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+    "their_positive_pixels": 44090,
+    "their_fraction_within_3px_of_catalogue": 0.18748015422998413,
+    "their_fraction_on_catalogue": 0.0,
+    "forward_3px_overlap": 0.1622222222222222,
+    "chance_overlap": 0.15604428014002472,
+    "enrichment_vs_chance": 1.039590955058742,
+    "spearman_rho": 0.008099765968284645,
+    "status": "audited"
+   },
+   {
+    "site": "GEMSDOE27",
+    "organizer_reported_score": 0.2449,
+    "expected_artifact": "topo-gap-closure-t-v2-on-d1-5",
+    "audited": true,
+    "artifact": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+    "their_positive_pixels": 61328,
+    "their_fraction_within_3px_of_catalogue": 0.18984803026350117,
+    "their_fraction_on_catalogue": 0.0,
+    "forward_3px_overlap": 0.18611111111111112,
+    "chance_overlap": 0.17293448721429633,
+    "enrichment_vs_chance": 1.0761943098167956,
+    "spearman_rho": 0.0065535282920180325,
+    "status": "audited"
+   },
+   {
+    "site": "GEMSDOE28",
+    "organizer_reported_score": 0.271,
+    "expected_artifact": "h36-1-rung30-blind-r1",
+    "audited": true,
+    "artifact": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
+    "their_positive_pixels": 37660,
+    "their_fraction_within_3px_of_catalogue": 0.10754115772703134,
+    "their_fraction_on_catalogue": 0.0,
+    "forward_3px_overlap": 0.16066666666666668,
+    "chance_overlap": 0.14289581959730796,
+    "enrichment_vs_chance": 1.1243622599977972,
+    "spearman_rho": 0.008707038165629174,
+    "status": "audited"
+   },
+   {
+    "site": "GEMSDOE30",
+    "organizer_reported_score": 0.26,
+    "expected_artifact": "d28-poisson300m-offcat-44090",
+    "audited": true,
+    "artifact": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside.tif",
+    "their_positive_pixels": 44090,
+    "their_fraction_within_3px_of_catalogue": 0.18748015422998413,
+    "their_fraction_on_catalogue": 0.0,
+    "forward_3px_overlap": 0.1622222222222222,
+    "chance_overlap": 0.15604428014002472,
+    "enrichment_vs_chance": 1.039590955058742,
+    "spearman_rho": 0.008099765968284645,
+    "status": "audited"
+   },
+   {
+    "site": "GEMSDOE31",
+    "organizer_reported_score": 0.2708,
+    "expected_artifact": "h27-4-solo-d28",
+    "audited": true,
+    "artifact": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif",
+    "their_positive_pixels": 40199,
+    "their_fraction_within_3px_of_catalogue": 0.10883355307345954,
+    "their_fraction_on_catalogue": 0.0,
+    "forward_3px_overlap": 0.1622222222222222,
+    "chance_overlap": 0.14478381955395905,
+    "enrichment_vs_chance": 1.120444416523796,
+    "spearman_rho": 0.00881371659423551,
+    "status": "audited"
+   },
+   {
+    "site": "GEMSDOE32",
+    "organizer_reported_score": 0.2778,
+    "expected_artifact": "h33-h33-2-b2",
+    "audited": true,
+    "artifact": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+    "their_positive_pixels": 37654,
+    "their_fraction_within_3px_of_catalogue": 0.04860041429861369,
+    "their_fraction_on_catalogue": 0.0,
+    "forward_3px_overlap": 0.16030555555555556,
+    "chance_overlap": 0.13630543024472977,
+    "enrichment_vs_chance": 1.1760760761162248,
+    "spearman_rho": 0.00947404544224616,
+    "status": "audited"
+   },
+   {
+    "site": "GEMSDOE33",
+    "organizer_reported_score": 0.2632,
+    "expected_artifact": "h33d-analog-tip-stepover-r30",
+    "audited": true,
+    "artifact": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
+    "their_positive_pixels": 41865,
+    "their_fraction_within_3px_of_catalogue": 0.13553087304430908,
+    "their_fraction_on_catalogue": 0.0,
+    "forward_3px_overlap": 0.16422222222222221,
+    "chance_overlap": 0.15074255332448422,
+    "enrichment_vs_chance": 1.089421789670247,
+    "spearman_rho": 0.0078015367481063065,
+    "status": "audited"
+   },
+   {
+    "site": "GEMSDOE36",
+    "organizer_reported_score": 0.275,
+    "expected_artifact": "anderson-geothermal-pinn-38854",
+    "audited": true,
+    "artifact": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+    "their_positive_pixels": 38854,
+    "their_fraction_within_3px_of_catalogue": 0.049595923199670565,
+    "their_fraction_on_catalogue": 0.0,
+    "forward_3px_overlap": 0.16477777777777777,
+    "chance_overlap": 0.13985442893323163,
+    "enrichment_vs_chance": 1.178209221078332,
+    "spearman_rho": 0.00926381165965857,
+    "status": "audited"
+   }
+  ]
+ },
+ "calibration": {
+  "schema": "wbg2-calibration-v1",
+  "generated_utc": "2026-10-27",
+  "purpose": "Empirical estimator for the DrivenData DW-Tversky public score, used only to rank candidate files before spending a weekly slot.",
+  "evidence_class": "MODEL-ESTIMATE",
+  "model": "score = intercept + a*(fraction of our positive pixels within 3 px of the mapped catalogue) + b*ln(number of positive pixels)",
+  "coefficients": {
+   "intercept": 0.7031664016158927,
+   "near3cat": -0.07980336590180548,
+   "log_budget": -0.040103571144850546
+  },
+  "r2": 0.9878460510789473,
+  "residual_sd": 0.00146970449835585,
+  "n_observations": 9,
+  "dof": 6,
+  "fitted_on": "ORGANIZER-REPORTED values supplied in the session brief (user message), one per focus site; these are NOT submission-page receipts.",
+  "observations": [
+   {
+    "site": "GEMSDOE32",
+    "artifact": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+    "organizer_reported_score": 0.2778,
+    "positive_pixels": 37654,
+    "fraction_positive_within_3px_of_catalogue": 0.04860041429861369,
+    "fraction_positive_on_catalogue": 0.0,
+    "binary": true,
+    "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+   },
+   {
+    "site": "GEMSDOE36",
+    "artifact": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+    "organizer_reported_score": 0.275,
+    "positive_pixels": 38854,
+    "fraction_positive_within_3px_of_catalogue": 0.049595923199670565,
+    "fraction_positive_on_catalogue": 0.0,
+    "binary": true,
+    "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a"
+   },
+   {
+    "site": "GEMSDOE28",
+    "artifact": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
+    "organizer_reported_score": 0.271,
+    "positive_pixels": 37660,
+    "fraction_positive_within_3px_of_catalogue": 0.10754115772703134,
+    "fraction_positive_on_catalogue": 0.0,
+    "binary": true,
+    "sha256": "7c74270ad48fa0b865163853046a6d3815967c5bf37bbda5b74ca7fa22583a32"
+   },
+   {
+    "site": "GEMSDOE31",
+    "artifact": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif",
+    "organizer_reported_score": 0.2708,
+    "positive_pixels": 40199,
+    "fraction_positive_within_3px_of_catalogue": 0.10883355307345954,
+    "fraction_positive_on_catalogue": 0.0,
+    "binary": true,
+    "sha256": "acd853936e5a7170b207f23411b1844caa0e7cfdfc303c600e520ccfe75159e6"
+   },
+   {
+    "site": "GEMSDOE33",
+    "artifact": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
+    "organizer_reported_score": 0.2632,
+    "positive_pixels": 41865,
+    "fraction_positive_within_3px_of_catalogue": 0.13553087304430908,
+    "fraction_positive_on_catalogue": 0.0,
+    "binary": true,
+    "sha256": "bc3af2a5fcb4b49bc5845a2d7dc3da23daf41ce75e4c64da3337c0c8c93cc12c"
+   },
+   {
+    "site": "GEMSDOE25",
+    "artifact": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+    "organizer_reported_score": 0.26,
+    "positive_pixels": 44090,
+    "fraction_positive_within_3px_of_catalogue": 0.18748015422998413,
+    "fraction_positive_on_catalogue": 0.0,
+    "binary": true,
+    "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8"
+   },
+   {
+    "site": "GEMSDOE30",
+    "artifact": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside.tif",
+    "organizer_reported_score": 0.26,
+    "positive_pixels": 44090,
+    "fraction_positive_within_3px_of_catalogue": 0.18748015422998413,
+    "fraction_positive_on_catalogue": 0.0,
+    "binary": true,
+    "sha256": "5f963b8bca5ec226ddc7caaadec239c6be6d28aa567f890033be04d04bfd5e32"
+   },
+   {
+    "site": "GEMSDOE24",
+    "artifact": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
+    "organizer_reported_score": 0.2477,
+    "positive_pixels": 60069,
+    "fraction_positive_within_3px_of_catalogue": 0.1900314638166109,
+    "fraction_positive_on_catalogue": 0.0,
+    "binary": true,
+    "sha256": "3e0730e8d4f7db095dd80246a98cba3bc0fc9a28f436b91db27ca34df4d0d1ce"
+   },
+   {
+    "site": "GEMSDOE27",
+    "artifact": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+    "organizer_reported_score": 0.2449,
+    "positive_pixels": 61328,
+    "fraction_positive_within_3px_of_catalogue": 0.18984803026350117,
+    "fraction_positive_on_catalogue": 0.0,
+    "binary": true,
+    "sha256": "a9bf76b57453a5b3af74c8eef837df53c29a0931162aa540b8763220b36ba3bb"
+   }
+  ],
+  "fitted_values": [
+   {
+    "site": "GEMSDOE32",
+    "reported": 0.2778,
+    "fitted": 0.276748900475703
+   },
+   {
+    "site": "GEMSDOE36",
+    "reported": 0.275,
+    "fitted": 0.27541133264452977
+   },
+   {
+    "site": "GEMSDOE28",
+    "reported": 0.271,
+    "fitted": 0.2720388409420075
+   },
+   {
+    "site": "GEMSDOE31",
+    "reported": 0.2708,
+    "fitted": 0.2693192022307197
+   },
+   {
+    "site": "GEMSDOE33",
+    "reported": 0.2632,
+    "fitted": 0.26556013897720515
+   },
+   {
+    "site": "GEMSDOE25",
+    "reported": 0.26,
+    "fitted": 0.25933773452546377
+   },
+   {
+    "site": "GEMSDOE30",
+    "reported": 0.26,
+    "fitted": 0.25933773452546377
+   },
+   {
+    "site": "GEMSDOE24",
+    "reported": 0.2477,
+    "fitted": 0.2467316648429535
+   },
+   {
+    "site": "GEMSDOE27",
+    "reported": 0.2449,
+    "fitted": 0.24591445083595717
+   }
+  ],
+  "collinearity": {
+   "corr_near3cat_logbudget": 0.751131187480828,
+   "warning": "The two regressors are collinear (r=0.75), because every site obtained its low near-catalogue fraction by deleting dots, which also lowered the budget. The two effects cannot be separated from these nine points alone."
+  },
+  "caveats": [
+   "Calibrated on nine third-party reported values, not organizer receipts.",
+   "Positive-pixel budget range in the fit is 37,654 to 61,328; predicting outside that range is extrapolation.",
+   "The fit cannot separate budget reduction from catalogue-proximity reduction (r=0.75).",
+   "Two of the nine values are the same artifact reported on two sites (GEMSDOE25 and GEMSDOE30 share an identical positive-pixel set), so the effective sample is eight independent artifacts.",
+   "The estimator is a ranking device for choosing between our own candidate files. It is not a forecast of a leaderboard position."
+  ]
+ }
+}

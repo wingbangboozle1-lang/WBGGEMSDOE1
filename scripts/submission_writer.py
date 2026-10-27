@@ -23,13 +23,18 @@ sys.path.insert(0, str(ROOT / "src"))
 from gems import submission  # noqa: E402
 
 
-def read_prediction(path: Path) -> np.ndarray:
+def read_prediction(path: Path, template: Path | None = None) -> np.ndarray:
     if path.suffix.lower() == ".npy":
         return np.load(path, allow_pickle=False)
     if path.suffix.lower() in {".tif", ".tiff"}:
         with rasterio.open(path) as dataset:
             if dataset.count != 1:
                 raise ValueError("Prediction GeoTIFF must have one band")
+            if template is None:
+                raise ValueError("A reference template is required for GeoTIFF prediction input")
+            with rasterio.open(template) as ref:
+                if (dataset.shape, dataset.crs, dataset.transform) != (ref.shape, ref.crs, ref.transform):
+                    raise ValueError("Prediction GeoTIFF CRS/shape/transform must match the template; metadata cannot be discarded")
             return dataset.read(1)
     raise ValueError("Prediction must be an aligned .npy, .tif or .tiff")
 
@@ -45,17 +50,26 @@ def main() -> int:
     parser.add_argument("--receipt", type=Path, default=None)
     args = parser.parse_args()
     outside = "zero" if args.outside in {"zero", "zeros"} else "nan"
-    prediction = read_prediction(args.prediction)
+    protected = {args.prediction.resolve(), args.template.resolve()}
+    if args.output.resolve() in protected:
+        raise ValueError("Output must not overwrite the prediction or reference template")
+    if args.receipt and args.receipt.resolve() in protected | {args.output.resolve()}:
+        raise ValueError("Receipt must not overwrite a raster input or output")
+    prediction = read_prediction(args.prediction, args.template)
     submission.write_submission(
         prediction, args.template, args.output, outside=outside
     )
     receipt = submission.check_variants(args.output, args.template)
+    strict = receipt["checks"]["variant_strict_whole_array_no_nan_allowed"]["pass"]
+    receipt["portal_safe_local_policy"] = bool(receipt["format_valid"] and strict)
+    receipt["submission_authorized"] = False
     text = json.dumps(receipt, indent=2, allow_nan=False) + "\n"
     print(text, end="")
     if args.receipt:
         args.receipt.parent.mkdir(parents=True, exist_ok=True)
         args.receipt.write_text(text)
-    return 0 if receipt["format_valid"] else 2
+    # NaN compatibility exports are explicit research twins, never portal-safe successes.
+    return 0 if receipt["portal_safe_local_policy"] else 2
 
 
 if __name__ == "__main__":

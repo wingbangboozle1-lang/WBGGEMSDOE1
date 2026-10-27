@@ -1,0 +1,19 @@
+{
+  "review_date_utc": "2026-10-27",
+  "source": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/unet-mc-cv-reference-solution.ipynb",
+  "authority": "organizer-owned reference repository",
+  "commit": "aebe92f7c8a990f0e3443451b7a825d9afd6336b",
+  "git_blob_sha1": "d45bf7bdb1d31a22caa38371ad195c2f6eb965ae",
+  "download_sha256": "1a7622732ba00f67237058bc0efe79b45ba4e87c449fc9c1e5d6ea659de92ca0",
+  "git_blob_identity_verified": true,
+  "claims_checked": [
+    "Notebook uses a U-Net with ResNet18 encoder and MC=5 random patch train/test splits.",
+    "Training uses segmentation_models_pytorch TverskyLoss with alpha=0.2 and beta=0.8.",
+    "README offers CPU-only as well as GPU environments; a GPU is faster, not a universal prerequisite."
+  ],
+  "limitations": [
+    "The notebook training loss is not an independent implementation/verification of the organizer distance-weighted evaluation service.",
+    "It does not authenticate our mirrored inputs, organizer receipts, current leaderboard or weekly allowance.",
+    "DrivenData, USGS, GDR, Dropbox and NLR PDF hosts are outside the sandbox outbound allowlist. Those sources were not freshly fetched in this review."
+  ]
+}

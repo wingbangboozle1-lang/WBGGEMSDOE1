@@ -233,6 +233,8 @@ def _merged_registry_index(g):
         "docs/downloads/wbggemsdoe1-h1-mvgz-20261026T215656Z-ac61afda-zeros.tif",
         "docs/downloads/wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif",
         "docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+        # Parallel lane merged to main on 2026-10-27; must be audited as a project prior.
+        "docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif",
     ]
     extra = []
     for rel in local_priors:

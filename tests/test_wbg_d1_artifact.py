@@ -69,6 +69,15 @@ def test_zip_contains_exactly_the_same_tif(card):
         assert z.read(tif.name) == tif.read_bytes()
 
 
+def test_three_review_passes_recorded():
+    review = json.loads((ROOT / "evidence/wbg_d1/review_passes.json").read_text())
+    assert len(review["passes"]) == 3
+    assert [p["pass"] for p in review["passes"]] == [1, 2, 3]
+    assert review["submission_slots_used"] == 0
+    assert review["verdict"] == "negative"
+    assert (ROOT / "docs/data/wbg-d1-review-passes.json").exists()
+
+
 def test_geological_peer_uniqueness_but_literal_stop(card):
     reg = card["registry"]
     # real geological dot-field priors clear the binding 0.70 / 0.90 gates

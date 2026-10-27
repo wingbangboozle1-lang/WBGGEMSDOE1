@@ -1,0 +1,117 @@
+{
+  "schema": "wbg-followup-review-run-card-v1",
+  "review_date_utc": "2026-10-27",
+  "hypothesis": "WBG-C1: conductance-depth curvature non-coaxiality",
+  "mechanism": "Scale-normalized Hessian commutator at 300/800 m, curvature strength, cross-scale persistence and dilatation support; 19-band spatial OOF HGB plus four new channels.",
+  "named_non_fault_mimic": "Oblique saline-clay basin-fill/lithologic contacts or shared inversion/interpolation artifacts.",
+  "experiment_status": "No new experiment; continuing existing duplicate STOP without resetting lane budget",
+  "experiments_started_this_session": 0,
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.01404466519440323,
+    "ci95": [
+      0.01183137469362976,
+      0.01639563940835171
+    ],
+    "withheld_positive_pixels": 11330,
+    "tpw": 4835.375915678135,
+    "fpw": 1671272.600026754,
+    "fnw": 6494.624084321865,
+    "measurement_status": "Frozen 2026-10-26 result, not new measurement"
+  },
+  "registry": {
+    "phase": "surface-before-placement",
+    "checked_unique_file_hashes": 360,
+    "source_paths": 377,
+    "scope": "All tracked aligned single-band TIFFs outside data/ and vendor/ in nine frozen owner snapshots. Includes archives, research artifacts and calibration priors. Not all 92 user-listed sites, hidden/private rasters, releases or later commits.",
+    "max_spearman_rho": 0.15233060870020235,
+    "max_forward_3px_overlap": 0.9987243421716145,
+    "byte_unique_among_checked": true,
+    "decoded_pixel_unique_among_checked": true,
+    "passes_literal_uniqueness": false,
+    "complete_all_user_listed_sites": false,
+    "final_dots": "NOT GENERATED: surface duplicate STOP; no final-dot clearance claimed",
+    "measurement_status": "Frozen audit, no fresh global clearance"
+  },
+  "raster_sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+  "artifact": "docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+  "new_raster_generated_this_session": false,
+  "validator_output": {
+    "checks": {
+      "sha256_matches_card": true,
+      "shared_validator_passed": true,
+      "crs_shape_transform_match": true,
+      "all_finite": true,
+      "whole_array_in_0_1": true,
+      "note_at_most_140_chars": true,
+      "zip_exact_single_tiff": true
+    },
+    "passed": true,
+    "sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+    "decoded_sha256": "acea88448272943f01ac28e2f465e5f6cfd47eee33b1826315cc6c2b2272e04d",
+    "zip": {
+      "present": true,
+      "exact_single_tiff": true,
+      "sha256": "325750e6d03066d47dc9a4401217cd1870fe49f7d004a087b126ba61d2f9c6d9"
+    },
+    "shared_validator": {
+      "file": "docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+      "bytes": 14506361,
+      "sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 0.8809285163879395,
+      "mean": 0.1453765481710434,
+      "emitted_positive_pixels": 5106385,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance"
+    }
+  },
+  "submission_name": "wbg-c1-commutator-research-surface-20261026-acea88448272",
+  "submission_note": "Frozen WBG-C1 negative research surface; literal duplicate STOP; no new experiment or slot approval. DO NOT SUBMIT.",
+  "leaderboard_estimate": null,
+  "organizer_confirmed_score": null,
+  "verdict": "negative",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "submission_slots_used": 0,
+  "review_artifacts": "docs/portfolio-review.html"
+}

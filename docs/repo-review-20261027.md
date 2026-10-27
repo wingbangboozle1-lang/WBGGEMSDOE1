@@ -1,5 +1,7 @@
 # Repository review — 2026-10-27
 
+> **Historical parallel review, superseded where it differs from the [current forensic audit](research/source-and-wbg2-review.md).** The 19-band owner mirror was subsequently restored and hash-verified (not independently authenticated to the organizer). A directly retrieved public leaderboard observation is dated 2026-10-27; it is not an artifact receipt. WBG-2's buffer is a four-step Manhattan diamond, not a complete 400 m Euclidean disk. The nine-champion comparison is a partial diagnostic; the current shared-gate result against the GEMSDOE24 lattice is 99.8972% and **SUBMIT: NO**. No new experiment or slot was used.
+
 > Preserved parallel review from PR #16. Its historical model estimate and test count
 > are superseded by the [protocol correction](protocol-review-20261027.md): forecast
 > withdrawn, literal overlap STOP, 149 tests. No upload approval.

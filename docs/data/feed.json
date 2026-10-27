@@ -1,16 +1,16 @@
 {
-  "generated_utc": "2026-10-27T17:20:58+00:00",
-  "network_refresh_attempted": true,
+  "generated_utc": "2026-10-27T19:09:00+00:00",
+  "network_refresh_attempted": false,
   "official_page_refresh_attempted": false,
   "leaderboard_status": "retained_observation_not_refreshed",
   "leaderboard": {
-    "date_utc": "2026-10-26",
+    "date_utc": "2026-10-27",
     "rank": 1,
-    "participant": "xiaofanhu",
-    "public_dw_tversky": 0.4437,
+    "participant_display": "See official public leaderboard",
+    "public_dw_tversky": 0.4544,
     "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-OBSERVATION",
     "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-    "observed_date_utc": "2026-10-26",
+    "observed_date_utc": "2026-10-27",
     "observation_method": "fetch_page direct official page retrieval in research session",
     "not_a_project_submission_receipt": true
   },

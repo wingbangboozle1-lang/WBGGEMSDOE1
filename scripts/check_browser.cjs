@@ -20,6 +20,7 @@ const chromium = importedChromium.default || importedChromium;
   const artifacts = path.join(root, ".cache/browser-review");
   fs.mkdirSync(artifacts, { recursive: true });
   const card = JSON.parse(fs.readFileSync(path.join(root, "registry/run_card.json")));
+  const wbg2 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg2/run_card.json")));
   if (process.env.BROWSER_COMPAT_LIBS === "1") {
     // Minimal Linux containers may lack NSS/NSPR. Use the dependency's own
     // bundled compatibility libraries instead of downloading system packages.
@@ -54,7 +55,7 @@ const chromium = importedChromium.default || importedChromium;
     assert.equal(await page.locator("#site-table tbody tr:visible").count(), 1);
     await page.locator("#site-filter").fill("");
     const downloadPromise = page.waitForEvent("download");
-    await page.locator("a[download]").first().click();
+    await page.locator(`a[download][href="downloads/${path.basename(card.artifact)}"]`).first().click();
     const download = await downloadPromise;
     assert.equal(download.suggestedFilename(), path.basename(card.artifact));
     const downloaded = fs.readFileSync(await download.path());
@@ -82,6 +83,23 @@ const chromium = importedChromium.default || importedChromium;
       }
       checked.push(result);
     }
+    const wbg2Result = { file: "wbg2.html" };
+    for (const [label, width, height] of [["desktop", 1440, 1100], ["mobile", 390, 844]]) {
+      await page.setViewportSize({ width, height });
+      const response = await page.goto(new URL("wbg2.html", base).href, { waitUntil: "networkidle" });
+      assert.equal(response.status(), 200);
+      const text = await page.locator("main").innerText();
+      assert.match(text, /SUBMIT: NO/);
+      assert.match(text, /99\.8972%/);
+      assert.doesNotMatch(text, /safe to upload|submit: yes/i);
+      assert.equal(await page.locator("table tbody tr").count(), 10);
+      assert.equal(await page.evaluate(() => document.body.scrollWidth > window.innerWidth), false, `${label} overflow: WBG-2`);
+      wbg2Result[label] = "passed";
+    }
+    checked.push(wbg2Result);
+    const wbg2Response = await page.request.get(new URL(wbg2.artifact.replace(/^docs\//, ""), base).href);
+    assert.equal(wbg2Response.status(), 200);
+    assert.equal(crypto.createHash("sha256").update(await wbg2Response.body()).digest("hex"), wbg2.raster_sha256);
     const portfolio = JSON.parse(fs.readFileSync(path.join(root, "docs/data/portfolio-review.json")));
     for (const row of portfolio.rows) {
       const response = await page.request.get(new URL(row.artifact.replace(/^docs\//, ""), base).href);
@@ -92,7 +110,8 @@ const chromium = importedChromium.default || importedChromium;
     const report = { generated_utc: new Date().toISOString(), browser: browser.version(), checked,
       desktop_viewport: [1440, 1100], mobile_viewport: [390, 844],
       javascript_page_errors: errors, site_filter: "passed", primary_download_sha256: card.raster_sha256,
-      primary_download_identity: "passed", body_overflow: false, all_passed: true,
+      primary_download_identity: "passed", wbg2_download_sha256: wbg2.raster_sha256,
+      wbg2_download_identity: "passed", wbg2_literal_stop_page: "passed", body_overflow: false, all_passed: true,
       no_model_training_or_slot_use: true };
     fs.writeFileSync(path.join(root, "evidence/browser_checks.json"), JSON.stringify(report, null, 2) + "\n");
     console.log(JSON.stringify(report, null, 2));

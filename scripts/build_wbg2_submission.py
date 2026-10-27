@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
-"""Stopped WBG-2 generator: preserve the research raster, never rerun placement.
+"""Blocked historical entry point: WBG-2 failed the literal registry gate.
 
-The former builder used private metric/writer modules, omitted a pre-placement
-surface gate and approved without qualifying holdout efficacy. Its exact source
-remains in git history. Use the shared template only in an authorized future lane.
+This command cannot regenerate, overwrite, promote or authorize the frozen
+artifact. For a reproducible forensic recheck run `python scripts/review_wbg2.py
+--check`. The superseded code is preserved as non-executable audit text under
+`research/history/wbg2_20261027/`; it is not a supported alternative pipeline.
 """
+import sys
 
 
-def main():
-    print('STOP: WBG-2 literal registry duplicate; no surface gate or qualifying holdout. Research artifact frozen.')
+def main() -> int:
+    print("STOP: WBG-2 is a negative, duplicate-gate research result; no placement or submission is authorized.", file=sys.stderr)
     return 2
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     raise SystemExit(main())

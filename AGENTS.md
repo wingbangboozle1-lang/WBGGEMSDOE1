@@ -1,15 +1,18 @@
 # Starting point for every session
 
-0. **No artifact is currently approved for upload.** WBG-2's inherited approval is revoked.
-   Read `docs/protocol-review-20261027.md` and `evidence/wbg2/run_card.json` first.
-   Its recorded literal overlap is 100%, no pre-placement measurement or qualifying
-   holdout exists, and its regression forecast is withdrawn. TIFF remains research-only.
+0. **NO CURRENT SUBMIT-READY TIFF (2026-10-27).** WBG-2 is a stopped research
+   artifact, not an approved submission. Its own old gate applied an unauthorized
+   enrichment exemption. Shared-template remeasurement found 99.8972% forward
+   3-pixel overlap with the GEMSDOE24 lattice, and 100% with WBG-C1. No qualifying
+   visible-only holdout or pre-placement audit exists. DOWNLOAD for research only;
+   SUBMIT: NO. See `evidence/wbg2/run_card.json`, `scripts/review_wbg2.py`, and the preserved parallel `docs/protocol-review-20261027.md`.
+   The old regression projection and purported interval are withdrawn.
 
 1. Read `README.md` **including the archived standing prompt**, then the 2026-10-27 follow-up at
    `research/03_followup_review_20261027.md`, `evidence/portfolio_review_20261027.json`,
    `docs/review-20261027.md`, `evidence/release_review_20261027.json`, `registry/run_card.json`,
    `registry/irregularities.json`, `registry/experiment_ledger.json` and `registry/preregistration.json`.
-   The prompt is intent, not evidence. **No file is cleared to upload.**
+   The prompt is intent, not evidence. **No current local file is cleared to upload.**
    WBG-C1, TIP1, MVGZ and WBG-H1 remain **NEGATIVE / DO NOT SUBMIT**. The 2026-10-27 follow-up added
    zero experiments.
 2. The original checkout contained only a title. Do not invent prior local training, pending tasks,

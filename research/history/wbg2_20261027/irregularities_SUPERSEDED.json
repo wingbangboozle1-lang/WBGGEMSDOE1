@@ -1,0 +1,188 @@
+{
+ "schema_version": 1,
+ "reviewed_date_utc": "2026-10-27",
+ "items": [
+  {
+   "id": "IR-001",
+   "severity": "blocking",
+   "title": "No method lane paragraph supplied",
+   "finding": "The prompt says the lane is a single method paragraph below, but supplies no such paragraph. WBG-C1 is labelled provisional research only, not an authorized promotion lane.",
+   "action": "Keep promotion false; do not invent user authorization."
+  },
+  {
+   "id": "IR-002",
+   "severity": "blocking",
+   "title": "Literal registry overlap STOP",
+   "finding": "The new unplaced research surface is distinct in bytes and decoded pixels, but more than 70% of its positive support is within 3 px of the registered spacing-5 lattice. Exact measurements are in the run card and surface registry audit.",
+   "action": "Stop after one experiment; no final dots, threshold/budget tuning, lattice-hole targeting, selector promotion or upload."
+  },
+  {
+   "id": "IR-003",
+   "severity": "blocking",
+   "title": "No measured improvement over the same-instrument control",
+   "finding": "The paired HOLDOUT-DTI confidence interval includes zero and the candidate point estimate is below the refitted control. Continuous confidence surfaces are not a matched-budget sparse submission comparison.",
+   "action": "Negative efficacy verdict; retain evidence, do not claim a higher leaderboard score."
+  },
+  {
+   "id": "IR-004",
+   "severity": "blocking",
+   "title": "Authenticated allowance and receipts unavailable",
+   "finding": "The official submissions endpoint redirects to login. The rule PDF states up to three submissions weekly, but the current account's remaining allowance is unknown. No receipt links a project TIFF hash to an organizer score.",
+   "action": "No credentials requested or stored; no real slot selected or spent. No user-reported value is relabelled ORGANIZER-CONFIRMED."
+  },
+  {
+   "id": "IR-005",
+   "severity": "high",
+   "title": "Core data are integrity-verified owner mirrors",
+   "finding": "Core file hashes and all nineteen cached band hashes match the pinned public mirrors. This is not independent organizer-origin authentication.",
+   "action": "Record hashes/provenance; require an independently authenticated official manifest/download for stronger provenance before promotion."
+  },
+  {
+   "id": "IR-006",
+   "severity": "high",
+   "title": "Band metadata ambiguity",
+   "finding": "The mirror describes tc as Tilt angle or total curvature, while peer documents call it radiometric total count. depth_to_base_surf is also described differently across materials. Physical units and original band meanings are not independently authenticated.",
+   "action": "Use literal numeric band indices/descriptors; do not infer unit conversions or assert that the detector proves basement geometry, conductivity, heat or permeability."
+  },
+  {
+   "id": "IR-007",
+   "severity": "high",
+   "title": "Historical values are claims, not receipts",
+   "finding": "The user supplies per-artifact historical values and peer repositories repeat them. No independently authenticated submission-page receipt is supplied. Some peer prose improperly labels owner reports as organizer-confirmed.",
+   "action": "Quarantine all such values as USER-REPORTED / NOT ORGANIZER-CONFIRMED; expose null leaderboard estimates and null organizer scores."
+  },
+  {
+   "id": "IR-008",
+   "severity": "medium",
+   "title": "Prompt leaderboard targets are stale and inconsistent",
+   "finding": "The prompt contains both 0.4413 and 0.3195 as current targets. Direct official public-page retrieval during this session shows xiaofanhu at 0.4437. This observation is not a score for any project artifact.",
+   "action": "Show source/date and a refresh feed; do not transform public ranking into a project score or private-score prediction."
+  },
+  {
+   "id": "IR-009",
+   "severity": "medium",
+   "title": "Prior family is not nine independent methods",
+   "finding": "Byte-level audits confirm identical D2.8 prediction pixels at GEMSDOE25 and GEMSDOE30, exact nested catalogue-distance pruning to GEMSDOE31/GEMSDOE32, and an Anderson-labelled superset of GEMSDOE32. File names or different ZIP/TIFF encodings do not prove a new scientific method.",
+   "action": "Publish decoded identity/overlap, not just filename/file-hash uniqueness. Learn from prior files but never copy their predictions into the new model."
+  },
+  {
+   "id": "IR-010",
+   "severity": "high",
+   "title": "Hide-and-recover is not the leaderboard",
+   "finding": "The local instrument recovers hidden public-catalogue components. Organizer test faults were not in that public catalogue. Negative/background labels and mapping effort are imperfect, and bootstrap intervals are conditional on the fitted folds.",
+   "action": "No leaderboard projection or guarantee. Do not compare incompatible evaluator versions, static previously catalogue-derived rasters, or continuous-versus-sparse artifacts as a valid promotion test."
+  },
+  {
+   "id": "IR-011",
+   "severity": "medium",
+   "title": "Range-error cause cannot be reconstructed",
+   "finding": "The originally rejected file and organizer error receipt were not supplied. NaNs, infinities, sentinels and values outside [0,1] are plausible hazards, not a proved cause of that historical rejection.",
+   "action": "The shared writer rejects malformed predictions without silent clipping, reopens the exact TIFF and validates it plus a one-TIFF ZIP. Our all-finite zero-outside policy is a conservative project choice, not a claim about portal nodata handling."
+  },
+  {
+   "id": "IR-012",
+   "severity": "medium",
+   "title": "Registry scope is frozen and limited",
+   "finding": "The audit covers tracked aligned single-band TIFFs outside data/ and vendor/ in nine pinned repository snapshots, including archives and calibration priors. It does not cover all 92 named sites, private/unlinked files, all release assets, or later commits.",
+   "action": "Publish scope and pins, monitor upstream heads, and never claim global uniqueness. One measured duplicate is already sufficient for STOP."
+  },
+  {
+   "id": "IR-013",
+   "severity": "fixed",
+   "title": "Reverse-overlap placeholder was not a measurement",
+   "finding": "The unchanged shared registry helper returns a zero placeholder when reverse diagnostics are disabled. The initial caller disabled them; the STOP depends on forward overlap, not that placeholder.",
+   "action": "Enable reverse diagnostics and re-audit the unchanged artifact. Remove the unmeasured placeholder from the preserved first-STOP record. No shared evaluator, writer, threshold or model was forked or changed."
+  },
+  {
+   "id": "IR-014",
+   "severity": "medium",
+   "title": "Prompt archive is not verified evidence",
+   "finding": "The complete standing request contains repeated scores, old assumptions about missing data/GPU requirements, links not accessed here, and assertions about other sessions. The starting repository contained only a one-line README.",
+   "action": "Archive it visibly as user intent, not findings. Current measured status and the run card take precedence over stale factual assumptions."
+  },
+  {
+   "id": "IR-015",
+   "severity": "medium",
+   "title": "No direct vent discovery established",
+   "finding": "Competition labels are faults. Neither the continuous confidence surface, the scientific hypothesis nor a future leaderboard improvement would establish a working geothermal vent, temperature, permeability or economic resource.",
+   "action": "Keep fault-prediction evaluation separate from independently verified geothermal-resource discovery."
+  },
+  {
+   "id": "IR-016",
+   "severity": "medium",
+   "title": "OOF seams are not geological structure",
+   "finding": "The research TIFF stitches four separately fitted spatial-fold models. Confidence discontinuities can occur at those boundaries without any fault; known-catalogue masking and the irregular input footprint also introduce geometric patterns.",
+   "action": "Label the actual thumbnail as uncalibrated OOF confidence, not verified geology. No post-STOP seam smoothing, feature retuning or candidate-pixel changes are allowed. The artifact and measured evidence remain unchanged."
+  },
+  {
+   "id": "IR-017",
+   "severity": "medium",
+   "title": "Parallel main advanced during this session",
+   "finding": "TIP1/MVGZ work merged into main at b9a2d5301c0c971dcc1219f9ad6b29c68f68ee21 after this branch began. Their scientific instruments, experiment counts and registry scope differ from WBG-C1.",
+   "action": "Preserve their exact artifacts, cards, shared source pins and a byte-identical old-site bundle. Do not rerun inherited experiments, combine incompatible scores, reset budgets or claim the frozen nine-snapshot audit covers every newly merged artifact. STOP remains binding."
+  },
+  {
+   "id": "IR-018",
+   "severity": "medium",
+   "title": "Pages administration permission is not available",
+   "finding": "The GitHub integration can read the existing Pages site and Actions runs, but changing build_type via the Pages administration API returned HTTP 403 (Resource not accessible by integration). Existing Pages workflows previously deployed successfully.",
+   "action": "Do not request credentials or bypass permissions. Keep the configured main/root publisher and stage the workflow artifact with the same root-to-/docs/ layout. Use /docs/ canonical page/download URLs and verify actual remote deployment. This is a publishing-scope limitation, not a scientific approval."
+  },
+  {
+   "id": "IR-019",
+   "severity": "fixed",
+   "title": "First STOP versus later verification timestamps",
+   "finding": "The first-STOP receipt retained 22:00:39Z, but a caller stamped the ledger stop_utc again during later diagnostic rechecks. This could misleadingly make the original stop appear later. No model, placement or upload ran after the original STOP.",
+   "action": "Set ledger stop_utc from the immutable first-STOP receipt and store last_registry_verification_utc separately. Add a regression test that subsequent diagnostics cannot move the STOP time. This is a metadata-only correction; no TIFF pixels or measured statistics change."
+  },
+  {
+   "id": "IR-020",
+   "severity": "high",
+   "title": "Public leaderboard has moved again",
+   "finding": "Direct retrieval of https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ on 2026-10-27 shows rank 1 at 0.4544 (xiaofanhu). Earlier briefs quoted 0.4437 and 0.4413. This observation is not a score for any artifact in this repository.",
+   "action": "Record the dated observation; never convert a public ranking into a project score."
+  },
+  {
+   "id": "IR-021",
+   "severity": "high",
+   "title": "All nine focus-site top artifacts are binary dot fields",
+   "finding": "Measured on the original .tif files: each contains exactly two distinct values, 0.0 and 1.0, with 37,654-61,328 positive pixels out of 5,167,373 scored cells. None is a probability surface. Zero positive pixels sit on catalogue pixels in any of the nine.",
+   "action": "Treat the reported 0.2449-0.2778 band as a dot-field regime, not evidence about probability-surface submissions. Do not assume the leaderboard band is reachable by rendering choices."
+  },
+  {
+   "id": "IR-022",
+   "severity": "medium",
+   "title": "GEMSDOE25 and GEMSDOE30 publish the same prediction set",
+   "finding": "Their files differ in bytes and encoding but their 44,090 positive pixels are the identical set, and both are reported at 0.2600. The 'nine sites' therefore contain at most eight independent fields.",
+   "action": "Count eight independent artifacts when reasoning about sample size; the calibration records this."
+  },
+  {
+   "id": "IR-023",
+   "severity": "medium",
+   "title": "Score is rank-ordered by catalogue distance, and this is confounded with budget",
+   "finding": "Across the nine artifacts the reported score is perfectly rank-ordered by the fraction of positive pixels within 300 m of the mapped catalogue (0.190->0.2477 ... 0.049->0.2778). The same sites also vary in budget, and the two regressors are collinear at r=0.751, so the two effects cannot be separated from nine points.",
+   "action": "Report the calibration as a ranking device with an explicit collinearity caveat; do not claim a causal effect of either lever alone."
+  },
+  {
+   "id": "IR-024",
+   "severity": "high",
+   "title": "Official feature stack still absent; detector attempts are negative",
+   "finding": "training_features.tif (418 MB, 19 bands) is login-gated and absent, so no feature-based model was trained. A detector built from peer-restored official GeoDAWN radiometrics and 3DEP terrain descriptors scored AUC 0.549 against mapped faults and 0.0303 at the real budget versus 0.0695 for a uniform random draw.",
+   "action": "Do not use those layers in a submission. Record the negative result. Reaching the 0.39-0.45 band requires the official stack."
+  },
+  {
+   "id": "IR-025",
+   "severity": "medium",
+   "title": "External geophysical layers are peer re-distributions",
+   "finding": "The GeoDAWN radiometric and 3DEP terrain rasters used in the rejected experiment were read from a peer repository, not re-downloaded from USGS. Their sidecars cite DOI 10.5066/P93LGLVQ and ScienceBase 657e1d85d34e23d3533209f7 but the bytes were not independently authenticated.",
+   "action": "WBG-2 does not use them. Any future use requires a primary download and hash pin."
+  },
+  {
+   "id": "IR-026",
+   "severity": "low",
+   "title": "WBG-2 estimate is a near-tie, not an improvement",
+   "finding": "WBG-2's MODEL-ESTIMATE is 0.2824 against 0.2778 reported for the best focus-site artifact: a difference of +0.0046, smaller than the calibration's own residual SD (0.00147 x 1.96) plus extrapolation risk, because near3cat=0 lies below the fitted range [0.049, 0.190].",
+   "action": "Present the file as unique and valid, not as a proven score improvement. No organizer receipt exists."
+  }
+ ]
+}

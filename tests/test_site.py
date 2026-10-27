@@ -135,7 +135,8 @@ def test_github_only_feed_never_requests_the_official_leaderboard(tmp_path, monk
     assert result["network_refresh_attempted"]
     assert not result["official_page_refresh_attempted"]
     assert result["leaderboard_status"] == "retained_observation_not_refreshed"
-    assert result["leaderboard"]["public_dw_tversky"] == .4437
+    assert result["leaderboard"]["public_dw_tversky"] == .4544
+    assert result["leaderboard"]["observed_date_utc"] == "2026-10-27"
     assert result["models_retrained"] is False and result["submission_slots_used"] == 0
 
 
@@ -172,6 +173,9 @@ def test_staged_pages_match_legacy_url_layout_and_preserve_artifact_bytes(tmp_pa
     (tmp_path / "docs/downloads/fixture.tif").write_bytes(raw)
     card = {"artifact": "docs/downloads/fixture.tif", "raster_sha256": hashlib.sha256(raw).hexdigest()}
     (tmp_path / "registry/run_card.json").write_text(json.dumps(card))
+    (tmp_path / "evidence/wbg2").mkdir(parents=True)
+    negative = {**card, "verdict": "negative", "ok_to_submit": False, "leaderboard_estimate": None}
+    (tmp_path / "evidence/wbg2/run_card.json").write_text(json.dumps(negative))
     (tmp_path / "index.html").write_text('<meta http-equiv="refresh" content="0; url=docs/">')
     monkeypatch.setattr(stage, "ROOT", tmp_path)
     target = stage.stage()
@@ -179,6 +183,13 @@ def test_staged_pages_match_legacy_url_layout_and_preserve_artifact_bytes(tmp_pa
     assert (target / "index.html").read_bytes() == (tmp_path / "index.html").read_bytes()
     assert (target / ".nojekyll").is_file()
     assert stage.stage() == target  # Marked generated bundles may be rebuilt.
+    negative["ok_to_submit"] = True
+    (tmp_path / "evidence/wbg2/run_card.json").write_text(json.dumps(negative))
+    with pytest.raises(ValueError, match="negative decision"):
+        stage.stage()
+    negative["ok_to_submit"] = False
+    (tmp_path / "evidence/wbg2/run_card.json").write_text(json.dumps(negative))
+    assert stage.stage() == target
     (target / ".wbg-pages-stage").unlink()
     with pytest.raises(ValueError, match="unmarked"):
         stage.stage()

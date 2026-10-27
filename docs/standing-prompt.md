@@ -1,10 +1,22 @@
 # Standing user prompt — supplied 2026-10-26
 
-> **CURRENT STATE — 2026-10-27 protocol correction.** No TIFF is approved for upload.
-> WBG-2's approval and regression forecast are withdrawn: literal overlap STOP,
-> no measured pre-placement surface gate, no qualifying hide-and-recover.
-> Read `protocol-review-20261027.md` and the corrected `evidence/wbg2/run_card.json`.
-> Research downloads remain available; no competition slots were used.
+> **CURRENT STATE — read this first (corrected 2026-10-27).**
+> No local TIFF is approved for submission. WBG-2 is format-valid for local
+> research but fails the literal registry overlap gate and has no qualifying
+> holdout. DOWNLOAD: research only; SUBMIT: NO. The old regression projection
+> and its claimed interval are withdrawn. See `evidence/wbg2/run_card.json`.
+> The rest of this document preserves the owner's request as historical intent,
+> not independently verified facts or a replacement for the current run card.
+
+## Active follow-up instructions (2026-10-27 summary, not a verbatim transcript)
+
+- Compare GEMSDOE24, 25, 27, 28, 30, 31, 32, 33 and 36, give an obvious research download and honest submission decision, explain the reported GEMSDOE32 0.2778, and never turn an unreceipted score or model projection into organizer confirmation. Public leaderboards are dated observations, not project receipts.
+- The user requests a high-scoring genuinely unique GeoTIFF and automated checks without human inspection. If literal novelty, leakage, holdout, format or authorization gates fail, publish a negative card instead of a false success. A local no-human preflight does not replace the organizer's expert review.
+- For a future specifically assigned single-method lane, rank 3–5 physical hypotheses first, state data, transforms, off-catalogue rationale, named non-fault mimics, distinctions, costs and source availability. The referenced assigned method paragraph was not present here. Do not reset stopped lanes.
+- Use the shared cached stack, holdout evaluator and submission writer. Withhold whole fault components with buffer, recompute catalogue-derived features from visible faults in each fold, mask visible faults pixel-exactly, and test every feature separately for leakage (AUC >0.90 is suspect). Report pooled triangular-kernel DTI at α=0.2, β=0.8, 300 m with evaluator version, withheld count and 95% CI.
+- Before placement compare the surface against every registry raster and stop for Spearman >0.90 or forward 3-pixel overlap >70%; check final dots again. Do not exempt dense/lattice fields, silently skip registry entries, copy past predictions or tune around gaps. At most three experiments or two hours. A real slot requires an independently validated current-best comparison and a separate selector step; do not spend it implicitly.
+- Each session ends with one JSON card containing hypothesis, mechanism, mimic, HOLDOUT-DTI/CI, registry correlation and overlap, raster SHA-256, exact validator results, submission name and ≤140-character note, and promote/negative verdict. The portal error “Predicted values must be in range [0, 1]” must be addressed with finite/range checks without inventing its cause.
+- Link trusted official sources and flag access or provenance limits. Use eligible free sources only when needed; external data must be shareable and appropriately licensed. Record the standing request, conduct three review/fix passes, and create/merge a PR when authorized by repository permissions.
 
 This is the user's request, retained as project intent, **not verified factual findings**. Historical scores, blocker claims, dates, source availability, and proposed capabilities below must be checked against current evidence. Read it together with the current README status, `registry/run_card.json`, and `registry/irregularities.json` before each session. The requested single-method lane paragraph was not supplied. The original request follows (trailing whitespace normalized; wording retained).
 

@@ -33,7 +33,7 @@ Paired delta versus refitted 19-band control: **-0.000101** (HOLDOUT-DTI), 95% C
 
 Exact raster identities: D2.8 44,090 dots → remove 3,891 within 100 m of the catalogue → B1 40,199 → remove 2,545 more within 200 m → B2 37,654. GEMSDOE25 and GEMSDOE30 have identical decoded predictions. GEMSDOE36 contains all B2 pixels plus 1,200 additions. Sparse support and low-marginal-credit pruning can reduce redundant false-positive cost under the official max-cover metric. Hidden labels are unavailable, so that mechanism is plausible, not a proved causal account of each historical result. A 200 m exclusion is not an organizer rule.
 
-GEMSDOE32's supplied 0.2778 is USER-REPORTED, not a verified file receipt. Leaderboard observations conflict: the repository retains 0.4437 (2026-10-26) and 0.4544 (2026-10-27), while the latest user brief reports 0.3195. Current value is unresolved; none is a result for any project TIFF. No leaderboard projection is justified for the research surface.
+GEMSDOE32's supplied 0.2778 is USER-REPORTED, not a verified file receipt. The direct official public leaderboard observation on 2026-10-26 was 0.4437; it is not a result for any project TIFF. No leaderboard projection is justified for the new surface.
 
 ## Site-by-site findings
 

@@ -1,5 +1,23 @@
-# WBG-2 — DO NOT SUBMIT
+# WBG-2 executive audit — 27 October 2026
 
-Research download only. Literal overlap STOP; no qualifying holdout or leaderboard estimate.
+**DOWNLOAD: YES for research only. SUBMIT: NO.** No new experiment or competition slot was used.
 
-[Download TIFF](downloads/wbg2-offcatalogue-density-36k-20261027.tif) · [Full executive summary](wbg2.html) · [Nine-site table](executive-summary.md)
+[Research TIFF](downloads/wbg2-offcatalogue-density-36k-20261027.tif) · [identical ZIP](downloads/wbg2-offcatalogue-density-36k-20261027.zip) · [corrected run card](data/wbg2-review.json)
+
+Local format pass. Literal GEMSDOE24 lattice overlap **99.8972%** (>70%); no qualifying visible-only HOLDOUT-DTI or credible leaderboard estimate. This protocol failure is not proof of copied geology.
+
+| Site | Historical file | Score evidence | Uniqueness and decision |
+|---|---|---|---|
+| GEMSDOE32 | [gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif](https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif) | USER-REPORTED 0.2778; no receipt | Historical; do not resubmit. B2 removes catalogue-adjacent dots from the D2.8 parent; it adds none. |
+| GEMSDOE36 | [gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif](https://github.com/buffedlizard55-lab/GEMSDOE36/blob/05979971df4775aadad34ae6749b0a7ac56d7832/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif) | USER-REPORTED 0.2750; no receipt | Historical; do not resubmit. Contains B2 plus additional support; not an independent clean benchmark. |
+| GEMSDOE28 | [gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE28/blob/2c839d10f57ec9b074829e93c84bc39935f52896/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif) | USER-REPORTED 0.2710; no receipt | Historical; do not resubmit. Rung30 is the highest supplied historical value among its listed variants. |
+| GEMSDOE31 | [gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE31/blob/776bf4668a8c10631908c9bba9443a8f11ce5036/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif) | USER-REPORTED 0.2708; no receipt | Historical; do not resubmit. SOLO D2.8 family; related to the GEMSDOE28 variant. |
+| GEMSDOE33 | [GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif](https://github.com/buffedlizard55-lab/GEMSDOE33/blob/1d99d73fe14d9a87126ffca2db52c69336d6099b/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif) | USER-REPORTED 0.2632; no receipt | Historical; do not resubmit. A tip/stepover variant in the same inherited field family. |
+| GEMSDOE25 | [gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE25/blob/af2b6f2543e5422a7e917638b70e038e6fd91cad/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif) | USER-REPORTED 0.2600; no receipt | Historical; do not resubmit. D2.8 parent; its positive-pixel set matches the GEMSDOE30 file. |
+| GEMSDOE30 | [gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif](https://github.com/buffedlizard55-lab/GEMSDOE30/blob/9c0d637c0171407196b61b780444bc772ce75438/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif) | USER-REPORTED 0.2600; no receipt | Historical; do not resubmit. Re-encodes the same D2.8 positive-pixel set as GEMSDOE25. |
+| GEMSDOE24 | [gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif) | USER-REPORTED 0.2477; no receipt | Historical; do not resubmit. D1.5 ridge-thinning family; its registry includes the lattice that stops WBG-2. |
+| GEMSDOE27 | [gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif](https://github.com/buffedlizard55-lab/GEMSDOE27/blob/bef7ae8e8f63b69d299c9214c75988c8f5055f9c/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif) | USER-REPORTED 0.2449; no receipt | Historical; do not resubmit. Topographic gap-closure variant; no causal advantage is established. |
+
+B2 is a strict subset of D2.8: 6,436 parent dots were removed within 200 m of the public catalogue; none added. Removing low-marginal-credit false positives might improve DTI, but hidden labels and submission receipts are unavailable. The old regression forecast and interval are withdrawn.
+
+[Official problem](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) · [Official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf) · [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) · [DOE INGENIOUS](https://gdr.openei.org/submissions/1391)

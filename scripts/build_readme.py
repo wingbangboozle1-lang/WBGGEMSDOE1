@@ -15,21 +15,44 @@ def main():
     h1_zip = wbg_h1_rc["raster_sha256"]["zip_file"]
     standing = (ROOT / "docs/standing-prompt.md").read_text()
     w2 = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
-    w2tif = Path(w2["artifacts"]["tif"]).name
+    w2tif = Path(w2["artifact"]).name
+    if w2["verdict"] != "negative" or w2["ok_to_submit"] is not False:
+        raise ValueError("WBG-2 decision drift; refuse to advertise a file")
+    w2overlap = 100 * w2["registry"]["rows"][0]["forward_overlap_within_3px"]
+
     header = f'''# WBG GEMS — evidence-first fault mapping
 
-## DO NOT SUBMIT — no candidate currently clears all gates
+## NO CURRENT TIFF IS APPROVED TO SUBMIT
 
-**[Executive summary and research download](docs/wbg2.html)** · [Nine-site comparison](docs/executive-summary.html)
+**DOWNLOAD: YES for research. SUBMIT: NO.** [Corrected executive audit and nine-site table](docs/wbg2.html) ·
+[Research TIFF](docs/downloads/{w2tif}) · [identical ZIP](docs/downloads/{w2tif.replace('.tif', '.zip')}) ·
+[WBG-2 run card](evidence/wbg2/run_card.json) · [future submission guide](docs/how-to-submit.html).
 
-| File | Leaderboard estimate | Literal uniqueness | Submit? |
-|---|---|---|---|
-| [{w2tif}](docs/downloads/{w2tif}) | Unavailable; prior regression forecast withdrawn | FAIL: recorded forward overlap 100% >70%; surface gate absent | **NO — research only** |
+| Decision item | Evidence |
+|---|---|
+| File | `{w2tif}` — existing research artifact, **do not submit** |
+| Local format | PASS: one float32 band, exact mirrored grid, all finite [0,1]; not organizer acceptance |
+| Literal uniqueness | **FAIL**: {w2overlap:.4f}% forward 3-pixel overlap with a registered GEMSDOE24 lattice (limit 70%); no exemption |
+| HOLDOUT-DTI | Unavailable: no qualifying visible-only buffered result or feature canary was established for WBG-2 |
+| Leaderboard estimate | Unavailable; the old regression projection and purported 95% interval are withdrawn |
+| Exact TIFF SHA-256 | `{w2["raster_sha256"]}` |
+| Competition slots used | 0; a real slot is a separate selector decision |
 
-The WBG-2 approval was revoked on 2026-10-27. Its density-adjusted exemption violated
-this project's literal registry rule. Format-valid does not mean eligible or high scoring.
-No qualifying WBG-2 HOLDOUT-DTI, CI, withheld-positive count or evaluator version exists.
-No weekly competition slot was used. [Correction and next steps](docs/protocol-review-20261027.md) · [site-by-site session review](docs/session-review-20261027.md).
+The highest **USER-REPORTED / UNCONFIRMED** focus-site result is GEMSDOE32 B2 at 0.2778.
+B2 is an exact subset of the parent D2.8 predictions; removing catalogue-adjacent dots may
+reduce false-positive penalty, but no hidden-truth decomposition or file-linked receipt proves why.
+Do not copy a previous submission. This session revalidated existing files, restored the
+hash-pinned owner mirror and all 19 cached bands, and made no new scientific experiment.
+
+Parallel historical reports are retained: [protocol review](docs/protocol-review-20261027.md),
+[repo review and hypothesis queue](docs/repo-review-20261027.md), and
+[session review](docs/session-review-20261027.md). Their superseded claims are marked and
+the [current source and WBG-2 review](docs/research/source-and-wbg2-review.md) takes precedence.
+
+The README includes the standing user request below. Read `AGENTS.md`, the corrected run card,
+and the full request at the start of every session. Missing lane assignment, complete registry
+scope, same-instrument paired benchmark, independent official-origin verification and current
+account allowance remain blockers. [Exact remediation and commands](docs/wbg2.html).
 
 ## Older file — DOWNLOAD: YES, for research. SUBMIT: **NO**.
 
@@ -84,10 +107,9 @@ credit and avoiding low-marginal-credit predictions are plausible reasons for th
 ordering, not a causal proof from unavailable hidden labels. A 200 m exclusion is **not** an
 organizer rule. No historical file should be copied into a new "unique" entry.
 
-**Leaderboard status is unresolved.** The repository retains public-page observations of 0.4437
-(2026-10-26) and 0.4544 (2026-10-27); the latest user brief reports 0.3195, and an earlier
-brief reports 0.4413. These were not freshly reconciled because the DrivenData host was not
-available to this review. None is an organizer result for a project TIFF.
+The direct **official public-leaderboard observation on 2026-10-26 was 0.4437**, not the prompt's
+older targets. That is **not** an organizer result for any project TIFF. A higher project score
+was not obtained or credibly projected in this session.
 
 ## Parallel work preserved during integration
 
@@ -97,7 +119,7 @@ Their frozen scientific modules, receipts and artifacts are retained; they were 
 The current **one-experiment count is WBG-C1 only**, not a sum or reset of the inherited lane budgets.
 Different evaluator/split/representation results must not be pooled or ranked as comparable scores.
 
-- [Original parallel site, with its own frozen assets and data](docs/parallel/main-b9a2d53/index.html)
+- [Original frozen parallel site (historical source descriptions; see current source review)](docs/parallel/main-b9a2d53/index.html)
 - [Original main README](research/inherited-main-README-b9a2d53.md) (historical commands/paths)
 - [Byte-preservation/integration receipt](evidence/parallel_main_integration.json)
 - [Frozen TIP1 card](evidence/tip1_run_card_20261026.json) and [MVGZ card](evidence/run_card.json)

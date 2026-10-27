@@ -1,5 +1,7 @@
 # Protocol correction — 27 October 2026
 
+> **Historical parallel review, superseded where it differs from the [current forensic audit](research/source-and-wbg2-review.md).** The 19-band owner mirror was subsequently restored and hash-verified (not independently authenticated to the organizer). A directly retrieved public leaderboard observation is dated 2026-10-27; it is not an artifact receipt. WBG-2's buffer is a four-step Manhattan diamond, not a complete 400 m Euclidean disk. The nine-champion comparison is a partial diagnostic; the current shared-gate result against the GEMSDOE24 lattice is 99.8972% and **SUBMIT: NO**. No new experiment or slot was used.
+
 **DOWNLOAD: YES, research only. SUBMIT: NO. No candidate qualifies for a real slot.**
 
 [Research TIFF](downloads/wbg2-offcatalogue-density-36k-20261027.tif) ·
@@ -39,11 +41,8 @@ as a score. Fitting historical scores cannot replace spatial holdout validation.
 - Shared validator now reopens the exact WBG-2 TIFF and compares to hash-pinned
   mirror references, including the full transform; ZIP must contain exactly one
   byte-identical TIFF. Format-only success cannot imply upload clearance.
-- The preflight's default exit is non-success for this stopped lane, even if an
-  approval flag is edited. `--format-only` explicitly limits successful checks.
-- The legacy diagnostic now rejects shifted grids, does not waive dense overlap,
-  uses Euclidean 3-pixel distance, and cannot clear an empty registry or undefined
-  correlation. It is not a replacement for the shared scientific registry tool.
+- The preflight default exits non-success for this stopped lane. `--format-only` explicitly limits successful checks and does not authorize an upload.
+- The legacy private diagnostic is now disabled. The shared scientific registry tool rejects shifted grids, uses Euclidean 3-pixel distance, does not waive dense overlap, and cannot clear an empty or incomplete registry.
 - A further irregularity: WBG-2's old 400 m exclusion used four Manhattan dilation
   steps, not a Euclidean 400 m disk. Diagonal cells can be closer than 400 m.
   No Euclidean 400 m guarantee is retained and no new raster is built to fix it.

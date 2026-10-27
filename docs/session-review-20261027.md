@@ -1,5 +1,7 @@
 # WBGGEMSDOE1 review — 27 October 2026
 
+> **Historical parallel review, superseded where it differs from the [current forensic audit](research/source-and-wbg2-review.md).** The 19-band owner mirror was subsequently restored and hash-verified (not independently authenticated to the organizer). A directly retrieved public leaderboard observation is dated 2026-10-27; it is not an artifact receipt. WBG-2's buffer is a four-step Manhattan diamond, not a complete 400 m Euclidean disk. The nine-champion comparison is a partial diagnostic; the current shared-gate result against the GEMSDOE24 lattice is 99.8972% and **SUBMIT: NO**. No new experiment or slot was used.
+
 ## Decision at a glance
 
 **No artifact in this repository is currently cleared to submit.** The WBG-2 GeoTIFF remains downloadable as a research artifact. Its single-band/CRS/shape/transform/range/finite-value checks pass, and its recorded *scoped* comparison includes all nine requested focus sites. However, the literal repository-wide registry audit records **100% forward 3 px overlap** with the dense WBG-C1 research surface, exceeding the protocol's 70% stop threshold. There is also no measured pre-placement surface check, no comparable `HOLDOUT-DTI` for WBG-2, no positive paired interval against a same-instrument best, and no separate selector authorization. Do not upload it or any negative research file.

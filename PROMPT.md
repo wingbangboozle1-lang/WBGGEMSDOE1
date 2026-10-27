@@ -23,10 +23,12 @@ Reference: https://github.com/drivendataorg/gems-prize-reference-solution
 
 ## Current artifact (2026-10-27)
 
-**No submittable artifact.** WBG-2 remains available as a research TIFF/ZIP.
-Its approval and regression forecast were withdrawn: recorded literal overlap 100%
-exceeds 70%, no pre-placement measured gate or qualifying hide-and-recover exists.
-See `docs/protocol-review-20261027.md`. All other artifacts remain negative.
+**DOWNLOAD: research only. SUBMIT: NO.** WBG-2 is locally format-valid, but
+fails the literal 3-pixel registry gate against the GEMSDOE24 lattice and lacks
+an eligible holdout. There is no approved current TIFF. Its former model
+projection and claimed interval are withdrawn. See `evidence/wbg2/run_card.json`
+and run `python scripts/review_wbg2.py --check`. No new experiment or slot was
+used in this review.
 
 ## Submission contract
 

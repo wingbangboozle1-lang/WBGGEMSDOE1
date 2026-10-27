@@ -1,17 +1,36 @@
 # WBG GEMS — evidence-first fault mapping
 
-## DO NOT SUBMIT — no candidate currently clears all gates
+## NO CURRENT TIFF IS APPROVED TO SUBMIT
 
-**[Executive summary and research download](docs/wbg2.html)** · [Nine-site comparison](docs/executive-summary.html)
+**DOWNLOAD: YES for research. SUBMIT: NO.** [Corrected executive audit and nine-site table](docs/wbg2.html) ·
+[Research TIFF](docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif) · [identical ZIP](docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip) ·
+[WBG-2 run card](evidence/wbg2/run_card.json) · [future submission guide](docs/how-to-submit.html).
 
-| File | Leaderboard estimate | Literal uniqueness | Submit? |
-|---|---|---|---|
-| [wbg2-offcatalogue-density-36k-20261027.tif](docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif) | Unavailable; prior regression forecast withdrawn | FAIL: recorded forward overlap 100% >70%; surface gate absent | **NO — research only** |
+| Decision item | Evidence |
+|---|---|
+| File | `wbg2-offcatalogue-density-36k-20261027.tif` — existing research artifact, **do not submit** |
+| Local format | PASS: one float32 band, exact mirrored grid, all finite [0,1]; not organizer acceptance |
+| Literal uniqueness | **FAIL**: 99.8972% forward 3-pixel overlap with a registered GEMSDOE24 lattice (limit 70%); no exemption |
+| HOLDOUT-DTI | Unavailable: no qualifying visible-only buffered result or feature canary was established for WBG-2 |
+| Leaderboard estimate | Unavailable; the old regression projection and purported 95% interval are withdrawn |
+| Exact TIFF SHA-256 | `f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3` |
+| Competition slots used | 0; a real slot is a separate selector decision |
 
-The WBG-2 approval was revoked on 2026-10-27. Its density-adjusted exemption violated
-this project's literal registry rule. Format-valid does not mean eligible or high scoring.
-No qualifying WBG-2 HOLDOUT-DTI, CI, withheld-positive count or evaluator version exists.
-No weekly competition slot was used. [Correction and next steps](docs/protocol-review-20261027.md) · [site-by-site session review](docs/session-review-20261027.md).
+The highest **USER-REPORTED / UNCONFIRMED** focus-site result is GEMSDOE32 B2 at 0.2778.
+B2 is an exact subset of the parent D2.8 predictions; removing catalogue-adjacent dots may
+reduce false-positive penalty, but no hidden-truth decomposition or file-linked receipt proves why.
+Do not copy a previous submission. This session revalidated existing files, restored the
+hash-pinned owner mirror and all 19 cached bands, and made no new scientific experiment.
+
+Parallel historical reports are retained: [protocol review](docs/protocol-review-20261027.md),
+[repo review and hypothesis queue](docs/repo-review-20261027.md), and
+[session review](docs/session-review-20261027.md). Their superseded claims are marked and
+the [current source and WBG-2 review](docs/research/source-and-wbg2-review.md) takes precedence.
+
+The README includes the standing user request below. Read `AGENTS.md`, the corrected run card,
+and the full request at the start of every session. Missing lane assignment, complete registry
+scope, same-instrument paired benchmark, independent official-origin verification and current
+account allowance remain blockers. [Exact remediation and commands](docs/wbg2.html).
 
 ## Older file — DOWNLOAD: YES, for research. SUBMIT: **NO**.
 
@@ -66,10 +85,9 @@ credit and avoiding low-marginal-credit predictions are plausible reasons for th
 ordering, not a causal proof from unavailable hidden labels. A 200 m exclusion is **not** an
 organizer rule. No historical file should be copied into a new "unique" entry.
 
-**Leaderboard status is unresolved.** The repository retains public-page observations of 0.4437
-(2026-10-26) and 0.4544 (2026-10-27); the latest user brief reports 0.3195, and an earlier
-brief reports 0.4413. These were not freshly reconciled because the DrivenData host was not
-available to this review. None is an organizer result for a project TIFF.
+The direct **official public-leaderboard observation on 2026-10-26 was 0.4437**, not the prompt's
+older targets. That is **not** an organizer result for any project TIFF. A higher project score
+was not obtained or credibly projected in this session.
 
 ## Parallel work preserved during integration
 
@@ -79,7 +97,7 @@ Their frozen scientific modules, receipts and artifacts are retained; they were 
 The current **one-experiment count is WBG-C1 only**, not a sum or reset of the inherited lane budgets.
 Different evaluator/split/representation results must not be pooled or ranked as comparable scores.
 
-- [Original parallel site, with its own frozen assets and data](docs/parallel/main-b9a2d53/index.html)
+- [Original frozen parallel site (historical source descriptions; see current source review)](docs/parallel/main-b9a2d53/index.html)
 - [Original main README](research/inherited-main-README-b9a2d53.md) (historical commands/paths)
 - [Byte-preservation/integration receipt](evidence/parallel_main_integration.json)
 - [Frozen TIP1 card](evidence/tip1_run_card_20261026.json) and [MVGZ card](evidence/run_card.json)
@@ -224,11 +242,23 @@ not verified facts. The measured run card takes precedence over stale factual as
 
 # Standing user prompt — supplied 2026-10-26
 
-> **CURRENT STATE — 2026-10-27 protocol correction.** No TIFF is approved for upload.
-> WBG-2's approval and regression forecast are withdrawn: literal overlap STOP,
-> no measured pre-placement surface gate, no qualifying hide-and-recover.
-> Read `protocol-review-20261027.md` and the corrected `evidence/wbg2/run_card.json`.
-> Research downloads remain available; no competition slots were used.
+> **CURRENT STATE — read this first (corrected 2026-10-27).**
+> No local TIFF is approved for submission. WBG-2 is format-valid for local
+> research but fails the literal registry overlap gate and has no qualifying
+> holdout. DOWNLOAD: research only; SUBMIT: NO. The old regression projection
+> and its claimed interval are withdrawn. See `evidence/wbg2/run_card.json`.
+> The rest of this document preserves the owner's request as historical intent,
+> not independently verified facts or a replacement for the current run card.
+
+## Active follow-up instructions (2026-10-27 summary, not a verbatim transcript)
+
+- Compare GEMSDOE24, 25, 27, 28, 30, 31, 32, 33 and 36, give an obvious research download and honest submission decision, explain the reported GEMSDOE32 0.2778, and never turn an unreceipted score or model projection into organizer confirmation. Public leaderboards are dated observations, not project receipts.
+- The user requests a high-scoring genuinely unique GeoTIFF and automated checks without human inspection. If literal novelty, leakage, holdout, format or authorization gates fail, publish a negative card instead of a false success. A local no-human preflight does not replace the organizer's expert review.
+- For a future specifically assigned single-method lane, rank 3–5 physical hypotheses first, state data, transforms, off-catalogue rationale, named non-fault mimics, distinctions, costs and source availability. The referenced assigned method paragraph was not present here. Do not reset stopped lanes.
+- Use the shared cached stack, holdout evaluator and submission writer. Withhold whole fault components with buffer, recompute catalogue-derived features from visible faults in each fold, mask visible faults pixel-exactly, and test every feature separately for leakage (AUC >0.90 is suspect). Report pooled triangular-kernel DTI at α=0.2, β=0.8, 300 m with evaluator version, withheld count and 95% CI.
+- Before placement compare the surface against every registry raster and stop for Spearman >0.90 or forward 3-pixel overlap >70%; check final dots again. Do not exempt dense/lattice fields, silently skip registry entries, copy past predictions or tune around gaps. At most three experiments or two hours. A real slot requires an independently validated current-best comparison and a separate selector step; do not spend it implicitly.
+- Each session ends with one JSON card containing hypothesis, mechanism, mimic, HOLDOUT-DTI/CI, registry correlation and overlap, raster SHA-256, exact validator results, submission name and ≤140-character note, and promote/negative verdict. The portal error “Predicted values must be in range [0, 1]” must be addressed with finite/range checks without inventing its cause.
+- Link trusted official sources and flag access or provenance limits. Use eligible free sources only when needed; external data must be shareable and appropriately licensed. Record the standing request, conduct three review/fix passes, and create/merge a PR when authorized by repository permissions.
 
 This is the user's request, retained as project intent, **not verified factual findings**. Historical scores, blocker claims, dates, source availability, and proposed capabilities below must be checked against current evidence. Read it together with the current README status, `registry/run_card.json`, and `registry/irregularities.json` before each session. The requested single-method lane paragraph was not supplied. The original request follows (trailing whitespace normalized; wording retained).
 

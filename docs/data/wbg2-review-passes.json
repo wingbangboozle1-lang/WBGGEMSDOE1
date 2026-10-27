@@ -1,0 +1,51 @@
+{
+  "schema": "wbg2-three-pass-review-v1",
+  "date_utc": "2026-10-27",
+  "scope": "Forensic review of frozen bytes and publishing pipeline, not a new method experiment",
+  "new_experiments": 0,
+  "new_prediction_rasters": 0,
+  "competition_slots_used": 0,
+  "passes": [
+    {
+      "pass": 1,
+      "focus": "Implement and verify evidence-first decision",
+      "findings": [
+        "The inherited local format pass was real, but its enrichment exemption and upload approval violated the literal registry gate.",
+        "The shared validator and shared Euclidean comparison measured 99.8972222222% overlap against the hash-pinned GEMSDOE24 lattice and 100% against WBG-C1.",
+        "No qualifying WBG-2 holdout or pre-placement audit was found; the former forecast and residual interval were withdrawn.",
+        "The 19-band owner-mirror cache was restored and its hashes reproduced; organizer origin and semantics are not independently authenticated."
+      ],
+      "fixes": "Publish a negative exact-byte card; stop the old generator, private validator and private uniqueness path; preserve their prior source and reports as historical text."
+    },
+    {
+      "pass": 2,
+      "focus": "Review correctness, publication consistency, source evidence and edge cases",
+      "findings": [
+        "The four-connected catalogue buffer was incorrectly described as a full 400 m Euclidean disk; 813 dots are inside that radius.",
+        "The old nine-champion audit was partial and used a different neighborhood and sampled correlation; it could not clear every registry raster.",
+        "The MT source link and proposed shallow depth ranges were incorrect; verified USGS integrated-conductance metadata records deeper intervals.",
+        "The irregularities page, source feed, legacy review material and builder could otherwise contradict the stopped decision.",
+        "The Pages workflow lacked the Python dependencies required by its static evidence builder."
+      ],
+      "fixes": "Correct generated pages and source reviews, quarantine the unsafe calibration, repair workflow dependencies, add exact-grid, all-finite, Euclidean-overlap and negative-decision regressions."
+    },
+    {
+      "pass": 3,
+      "focus": "Recheck and integrate concurrent main-branch reviews without discarding historical evidence",
+      "findings": [
+        "Concurrent negative reviews were merged into this working branch; their original cards and prose remain as explicitly superseded historical records.",
+        "A standing-request update initially made the generated README stale; rebuilding it fixed the consistency test.",
+        "The full local CI-equivalent sequence passed: 148 tests, Ruff E9/F, TIFF/ZIP validation, frozen-release checks, WBG-2 literal STOP remeasurement, both inherited receipt checks and all static rebuilds.",
+        "Rendered Chromium checks passed on ten pages at desktop and mobile sizes, with no body overflow or JavaScript page errors; both primary and WBG-2 download hashes matched."
+      ],
+      "fixes": "Preserve the concurrent reviews with dated correction banners, add an explicit active standing-instruction summary, rebuild the README and run the complete validation sequence again."
+    }
+  ],
+  "verdict": "negative",
+  "remaining_blockers": [
+    "No assigned method paragraph or authorized new lane.",
+    "Literal overlap STOP against a registered lattice; no density exemption or registry-hole tuning.",
+    "No compliant WBG-2 HOLDOUT-DTI, feature canaries, current-best paired win or untouched confirmation.",
+    "Official organizer-origin input identity, band meanings, current account allowance and file-linked score receipts remain unverified."
+  ]
+}

@@ -1,5 +1,9 @@
 # Starting point for every session
 
+Read `docs/review-20261028.md` and `docs/data/review-20261028.json` for the
+latest review. The Focus-9 synthetic generator is disabled after a binding STOP;
+its existing TIFF and receipts are frozen and must not be regenerated.
+
 0. **No file is approved for submission.** The previously promoted WBG-2 file
    `docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif` is research-only: its
    final dots overlap the registered lattice by **99.8972%** (>70% STOP) under the

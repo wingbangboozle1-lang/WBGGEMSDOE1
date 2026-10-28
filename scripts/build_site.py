@@ -181,9 +181,34 @@ def wbg3_banner():
     return f'''<div class="alert" role="note"><p><strong>WBG-3 (1m-LiDAR-free SPI-PMR-WCS-1): DO NOT SUBMIT; no selector eligibility.</strong> 36,800 zeros-mode dots beat 19-band control across 4/4 spatial folds (<code>HOLDOUT-DTI {seg:.6f}</code> on <code>gems-segment-pooled-v1</code>; <code>{intra:.6f}</code> on <code>gems57-pooled-hide-v2</code>) and pass all 207 competing sparse rasters (max 3 px overlap <strong>{comp_ov:.2f}% ≤ 70%</strong>; 27.55% vs GEMSDOE32 B2), but literal overlap hits <strong>99.9946%</strong> vs <code>r13-lattice-s5</code> and <strong>100%</strong> vs <code>WBG-C1</code>. <a href="wbg3/index.html">WBG-3 SPI-PMR executive summary →</a> · <a href="wbg3/how-to-submit.html">How to submit →</a> · <a href="wbg3/forensics-and-hypotheses.html">0.2778 PhD forensics →</a> · <a href="wbg3.html">Parallel EXP3DET summary →</a> · <a href="downloads/{tif}" download>Research-only WBG-3 TIFF ↓</a></p></div>'''
 
 
-def home(card, receipt, audit, feed):
+def wbg4_banner(w4: dict) -> str:
+    """Experiment 1 WBG-4 off-catalogue inverse-distance proximity: measured negative, zero slots used."""
+    if w4["verdict"] != "negative" or w4["decision"]["ok_to_submit"] is not False:
+        raise ValueError("WBG-4 is stopped; refusing to publish an approval")
+    tif = Path(w4["artifact"]).name
+    h = w4["holdout"]
+    reg = w4["registry"]
+    return f'''<div class="alert" role="note"><p><strong>WBG-4 (new Experiment 1 · off-catalogue proximity): DOWNLOAD: YES, research only. Submit: NO — DO NOT SUBMIT.</strong> {h["n_emitted"]:,} inverse-distance dots from fold-visible faults, zeros-mode, all local format/range checks PASS (float32, EPSG:32611, 3730×3292, 0 NaN, values in [0,1]). Measured <strong>HOLDOUT-DTI {h["dti"]:.4f}</strong> (95% CI [{h["ci95"][0]:.4f}, {h["ci95"][1]:.4f}], {h["withheld_positive_pixels"]:,} withheld positives; leakage canary max AUC 0.613 &lt; 0.90). Registry: rank correlation ≈ 0 vs r13-lattice and GEMSDOE32 B2, but forward 3 px overlap <strong>{reg["worst_forward_overlap"]:.4f} vs {escape(reg["worst_forward_overlap_submission"])}</strong> (limit 70%) → literal gate STOP, verdict <strong>negative</strong>, <strong>zero submission slots used</strong>. <a href="data/wbg4-run-card.json">WBG-4 run card ↗</a> · <a href="downloads/{escape(tif)}" download>Download WBG-4 TIFF ↓</a></p></div>'''
+
+
+def wbg4_download_card(w4: dict) -> str:
+    tif = Path(w4["artifact"]).name
+    size = (ROOT / w4["artifact"]).stat().st_size / 1024.0
+    h = w4["holdout"]
+    reg = w4["registry"]
+    return f'''<aside class="download-card" aria-label="WBG-4 research file and submission decision"><div class="card-top"><div class="file-icon" aria-hidden="true">.TIF</div><div class="file-label">WBG-4 · Off-catalogue proximity<small>Experiment 1 · {h["n_emitted"]:,} binary dots · zeros mode</small></div>{pill('No-go', 'no')}</div><div class="card-body">
+<div class="status-line"><span>Local file format</span><b style="color:var(--teal)">PASS · 17 checks</b></div>
+<div class="status-line"><span>Zero on mapped catalogue</span><b>PASS · 0 dots on catalogue faults</b></div>
+<div class="status-line"><span>Registry literal gate</span><b style="color:var(--red)">STOP · {reg["worst_forward_overlap"]:.4f} vs r13-lattice (limit 70%)</b></div>
+<div class="filename">{escape(tif)}</div>
+<a class="button" href="downloads/{escape(tif)}" download><span>Download research TIFF</span><span aria-hidden="true">↓</span></a>
+<div class="under-download"><span>{size:.0f} KiB · float32 · EPSG:32611</span>{link('downloads/' + tif.replace('.tif', '.zip'), 'One-TIFF ZIP ↓')}</div>
+<p class="micro" style="margin:15px 0 0">HOLDOUT-DTI {h["dti"]:.4f} (CI [{h["ci95"][0]:.4f}, {h["ci95"][1]:.4f}]) · not a leaderboard estimate · <strong>DO NOT SUBMIT</strong>.</p></div></aside>'''
+
+
+def home(card, receipt, audit, feed, w4=None):
     score = card["holdout"]
-    return wbg2_banner() + wbg_s2_banner() + wbg3_banner() + f'''<section class="hero"><div><p class="eyebrow">Evidence first. Every submission.</p><h1>A fresh TIFF.<br>An <em>honest decision.</em></h1><p class="lead">An auditable research desk for the GEMS fault-mapping challenge. Nine sites compared, separate research lanes recorded, and no weekly slot spent by this integration.</p><div class="actions">{link('executive-summary.html', 'Read executive summary  →', 'button secondary')}{link('evidence.html', 'Inspect the evidence ↗', 'text-link')}</div><p class="micro" style="margin-top:20px">C1 frozen screen: 26 October 2026 · Verdict <strong>NEGATIVE</strong><br>The experiment did not beat its control. “Format valid” never means “ready to submit.”</p></div>{download_card(card, receipt)}</section>
+    return wbg2_banner() + wbg_s2_banner() + wbg3_banner() + (wbg4_banner(w4) if w4 is not None else '') + f'''<section class="hero"><div><p class="eyebrow">Evidence first. Every submission.</p><h1>A fresh TIFF.<br>An <em>honest decision.</em></h1><p class="lead">An auditable research desk for the GEMS fault-mapping challenge. Nine sites compared, separate research lanes recorded, and no weekly slot spent by this integration.</p><div class="actions">{link('executive-summary.html', 'Read executive summary  →', 'button secondary')}{link('evidence.html', 'Inspect the evidence ↗', 'text-link')}</div><p class="micro" style="margin-top:20px">C1 frozen screen: 26 October 2026 · Verdict <strong>NEGATIVE</strong><br>The experiment did not beat its control. “Format valid” never means “ready to submit.”</p></div>{download_card(card, receipt)}{wbg4_download_card(w4) if w4 is not None else ''}</section>
 {alert()}{stats(card)}
 <section class="section"><div class="section-heading"><div><span class="section-num">01 / THE CURRENT EXPERIMENT</span><h2>Research surface, not a promoted prediction</h2><p>WBG-C1: non-coaxial curvature of conductivity/depth proxy fields.</p></div>{link('research.html', 'Method & limitations →', 'text-link')}</div><div class="two-col"><article class="panel"><div class="panel-head">Actual exported research field<span>Not ground truth</span></div><div class="map-frame"><span class="map-label">UTM 11N · 100 m source grid</span><img src="assets/research-field.png" alt="The actual continuous WBG-C1 confidence surface across the irregular GeoDAWN footprint; not a map of verified faults or vents." width="610" height="690"></div><div class="map-caption"><span>Nearest-neighbour preview of the exported TIFF.<br>Outside-footprint and known-catalogue support are zero.<br>OOF seams are not geological evidence.</span><div><div class="gradient-legend"></div><div class="legend-labels"><span>0</span><span>0.9</span></div><span>Confidence, not calibrated probability</span></div></div></article><article class="panel"><div class="panel-head">Automated validation gates{pill('Stopped', 'no')}</div><div class="panel-pad">{gates(card)}<div class="gates-foot"><span>No human inspector required for these local checks.</span>{link('evidence.html', 'View receipts →')}</div></div></article></div></section>
 <section class="section"><div class="section-heading"><div><span class="section-num">02 / MEASURED, NOT PROJECTED</span><h2>Did the new hypothesis help?</h2><p>No statistically established improvement on this frozen screen.</p></div>{link('data/experiment.json', 'Full evaluator output ↗', 'text-link')}</div><div class="two-col"><article class="panel"><div class="panel-head">Same-instrument comparison<span>Continuous confidence surfaces</span></div><div class="panel-pad">{chart(card)}<p class="micro">HOLDOUT-DTI · <code>{card['holdout_instrument']['evaluator_version']}</code> · {score['withheld_positive_pixels']:,} withheld positives · 95% paired spatial-cluster intervals. Not a leaderboard estimate; not a comparison against sparse historical TIFFs.</p></div></article><article class="mini-card"><span class="index">WHY THE LANE STOPS HERE</span><h3>Different bytes are not enough.</h3><p>The fresh TIFF is not an exact copy of any checked registry raster. But its positive support overlaps the registered lattice by {card['registry']['max_forward_3px_overlap'] * 100:.2f}%, exceeding the unexempted 70% rule.</p><p>The C1 scientific screen is negative as well. No C1 final dots were placed; we have not retuned around registry gaps, claimed a new high score, or spent a submission slot.</p>{link('executive-summary.html#decision', 'Read the decision →', 'text-link')}</article></div></section>
@@ -247,7 +272,7 @@ def howto(card, receipt):
 <section class="content-section prose"><h2>Autonomous pipeline, not a browser simulation</h2><p>This static site serves the pre-generated artifact and its exact automated receipts. It does not pretend a browser click can train on hundreds of megabytes of geophysical rasters. The Python pipeline restores hashes, reuses the shared cache, tests features, fits spatially held-out models, measures pooled DTI, writes the validated TIFF/ZIP and applies the literal registry STOP. Its ledger blocks rerunning or retuning this stopped experiment. New work belongs to a separately assigned, preregistered future session.</p><p>{link(REPO + '/blob/main/README.md', 'Reproducible commands and full standing request ↗')} · {link('data/run-card.json', 'Exact current decision JSON ↗')}</p></section>'''
 
 
-def markdown_summary(card, audit):
+def markdown_summary(card, audit, w4=None):
     h, d = card["holdout"], card["paired_delta_holdout"]
     tif = Path(card["artifact"]).name
     lines = ["# Executive summary — 27 October 2026", "", "## DOWNLOAD: YES (research only). SUBMIT: NO.", "", "[WBG-2 decision, nine-site audit and research download](wbg2.html): literal overlap STOP; no verified holdout or leaderboard estimate. [Earlier four-release review](portfolio-review.html). No new experiment or slot was used.", "",
@@ -257,6 +282,11 @@ def markdown_summary(card, audit):
         f"Paired delta versus refitted 19-band control: **{d['delta']:+.6f}** (HOLDOUT-DTI), 95% CI [{d['ci95'][0]:+.6f}, {d['ci95'][1]:+.6f}]; same evaluator and positives. No improvement established.", "",
         "| File / site | Observed local result or historical claim | Estimated leaderboard result | Uniqueness / submit decision |", "|---|---|---|---|",
         f"| [{tif}](downloads/{tif}) | HOLDOUT-DTI {h['dti']:.6f}; see CI/version/n above | **Unavailable**; not inferred from proxy | New bytes/pixels among 360 checked hashes, but literal overlap {card['registry']['max_forward_3px_overlap']*100:.2f}% >70%. **DO NOT SUBMIT**. |"]
+    if w4 is not None:
+        w4_h = w4["holdout"]
+        w4_reg = w4["registry"]
+        wtif = Path(w4["artifact"]).name
+        lines.append(f"| [{wtif}](downloads/{wtif}) · [ZIP](downloads/{wtif.replace('.tif', '.zip')}) · [run card](data/wbg4-run-card.json) | **WBG-4 Experiment 1 (new)**: HOLDOUT-DTI {w4_h['dti']:.6f}, 95% CI [{w4_h['ci95'][0]:.6f}, {w4_h['ci95'][1]:.6f}], {w4_h['evaluator_version']}, {w4_h['withheld_positive_pixels']:,} withheld positives; leakage canary max AUC 0.613 &lt; 0.90 | **Unavailable**; HOLDOUT-DTI only, never projected | Byte- and pixel-distinct vs r13-lattice and GEMSDOE32 B2; rank correlation ≈ 0 vs both, but literal forward 3-px overlap {w4_reg['worst_forward_overlap']:.4f} vs {w4_reg['worst_forward_overlap_submission']} (limit 70%) → gate STOP. **DO NOT SUBMIT**. Zero slots used. |")
     for row in audit["rows"]:
         lines.append(f"| {row['site']}: [{row['file']}]({row['immutable_file_url']}?raw=1) | USER-REPORTED historical {row['reported_historical_value']:.4f}; **NOT ORGANIZER-CONFIRMED** | Unavailable for a new file | Historical learning reference; family overlap fails. Do not copy as a unique submission. |")
     lines += ["", "## Earlier four-release follow-up", "", "[All four local download decisions](release-review.html): exact files revalidated, all research-only. WBG-H1 literal lattice overlap exceeds 70%; filtered diagnostics do not clear uniqueness. No new experiment or slot use. [Review and access limits](review-20261027.md).", "", "## Why GEMSDOE32 leads the supplied historical records", "",
@@ -293,11 +323,14 @@ def main():
         "wbg3-uniqueness.json": "evidence/wbg3_spipmr/uniqueness_audit.json",
         "wbg3-canaries.json": "evidence/wbg3_spipmr/leakage_canary.json",
         "wbg3-preregistration.json": "registry/wbg3_preregistration.json",
+        "wbg4-run-card.json": "evidence/wbg4/run_card.json",
         "wbg2-followup-audit.json": "evidence/wbg2_followup_audit_20261027.json"}
     for dest, source in copies.items():
         shutil.copyfile(ROOT / source, DOCS / "data" / dest)
     dump_json(DOCS / "data/run-card.json", card)
-    pages = {"index.html": ("Overview", home(card, receipt, audit, feed)),
+    w4_path = ROOT / "evidence" / "wbg4" / "run_card.json"
+    w4 = json.loads(w4_path.read_text(encoding="utf-8")) if w4_path.exists() else None
+    pages = {"index.html": ("Overview", home(card, receipt, audit, feed, w4=w4)),
         "executive-summary.html": ("Executive summary", executive(card, receipt, audit, feed)),
         "research.html": ("Research", research(card)),
         "evidence.html": ("Evidence & sources", evidence(card, sources, issues, feed)),
@@ -310,7 +343,7 @@ def main():
     for name, target in legacy.items():
         archived = "parallel/main-b9a2d53/" + name
         (DOCS / name).write_text(f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="refresh" content="0; url={target}"><title>Research page moved</title><link rel="stylesheet" href="assets/style.css"></head><body><main class="wrap"><h1>Research page moved</h1><p><strong>DO NOT SUBMIT the negative research artifacts.</strong></p><p><a href="{target}">Open the current evidence desk</a> · <a href="{archived}">Original frozen parallel page</a></p></main></body></html>''', encoding="utf-8")
-    (DOCS / "executive-summary.md").write_text(markdown_summary(card, audit), encoding="utf-8")
+    (DOCS / "executive-summary.md").write_text(markdown_summary(card, audit, w4=w4), encoding="utf-8")
     (DOCS / ".nojekyll").touch()
     manifest = {"schema_version": 1, "artifact": Path(card["artifact"]).name, "sha256": card["raster_sha256"],
                 "submission_name": card["submission_name"], "note": card["submission_note"],

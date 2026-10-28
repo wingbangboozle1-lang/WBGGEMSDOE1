@@ -1,0 +1,81 @@
+{
+  "schema": "gemsdoe1-wbg4-hypotheses-v1",
+  "generated_utc": "2026-10-27T00:00:00Z",
+  "note": "3-5 candidate geological hypotheses ranked by expected DTI improvement and implementation cost. Rank #1 was executed as Experiment 1 (this session); ranks 2-5 are deferred. No submission slot is spent on any of them.",
+  "candidates": [
+    {
+      "rank": 1,
+      "id": "WBG-4",
+      "status": "TESTED — Experiment 1, verdict negative",
+      "hypothesis": "Off-catalogue geothermal-relevant faults concentrate close to, but not on, USGS/INGENIOUS mapped traces, where blind splays and step-overs lack mapped traces but retain proximity propensity.",
+      "layers": ["data/bridge/labels.tif (USGS/INGENIOUS mapped-fault catalogue)", "data/bridge/sample_submission.tif (competition footprint/grid)"],
+      "physical_signature": "Inverse-distance proximity to fold-visible catalogue faults, binary top-k dots per quadrant, zeros outside the footprint.",
+      "why_it_catches_uncatalogued_faults": "Blind splays, step-overs and geothermal conduits commonly lie adjacent to mapped traces without independent surface expression; a proximity band targets off-catalogue pixels near mapped structures while the pixel-exact catalogue mask avoids crediting the mapped traces themselves.",
+      "named_non_fault_mimic": "Alluvial-fan and playa depositional edges, Pleistocene pluvial Lake Lahontan wave-cut benches, and buried basalt flow margins produce distance-to-fault anomalies without Quaternary throw.",
+      "how_it_differs_from_repo_lanes": "Not a deletion-pruning of the H19-5/D2.8/B1/B2 family (GEMSDOE24/25/27/28/30/31/32/33/36); no prior-prediction pixels are reused. Unlike WBG-C1 it emits off-catalogue dots from a simple geometric rule instead of a continuous Hessian commutator. Unlike WBG-2 it is distance-banded, not random scatter. Unlike WBG-3 it uses no 19-band geophysical stack, no 1 m LiDAR and no 10 m DEM derivatives.",
+      "expected_dti_improvement": "Low-to-moderate; expected below the current local benchmark (10 m-3DEP S3DEP1 HOLDOUT-DTI 0.166060).",
+      "implementation_cost": "Low — shared cached stack, buffered whole-component holdout, pooled DTI (alpha 0.2, beta 0.8, 300 m triangular kernel); runs in minutes on CPU.",
+      "data_readiness": "All inputs present locally (owner mirrors; hash-pinned, not independently organizer-authenticated).",
+      "result": "HOLDOUT-DTI 0.012516, 95% CI [0.009511, 0.015708], n=60,988 withheld positives; leakage canary max AUC 0.613 < 0.90 (pass); registry: Spearman ≈ 0 vs r13-lattice and GEMSDOE32 B2 (passes rho <= 0.90), but forward 3-px overlap 1.0 vs r13-lattice-s5 (>70% STOP) and vs B2 0.159. Verdict negative: DO NOT SUBMIT. File: docs/downloads/wbg4-offcatalogue-proximity-from-visible-faults-zeros.tif (SHA-256 24bc089e…), run card: evidence/wbg4/run_card.json.",
+      "submission_slots_used": 0
+    },
+    {
+      "rank": 2,
+      "id": "WBG-5 (deferred)",
+      "status": "DEFERRED — data-semantics gate",
+      "hypothesis": "Blind, alteration-controlled geothermal faults sit at radiometric clay caps (high K/Th, low magnetite) coincident with planform/strain saddles in the DEM, even where no scarp is mapped.",
+      "layers": ["USGS GeoDAWN radiometrics (K, Th, U, TC; DOI 10.5066/P93LGLVQ)", "19-band numerical features stack (cond_surf, iso_grav_anom, det_elev, elev)", "OpenEI GDR submission 1391 orphan thermal wells/springs/vents (DOI 10.15121/1881483)"],
+      "physical_signature": "Coincident radiometric clay-cap anomaly + DEM curvature/strain saddle; optional thermal-well proximity corroboration.",
+      "why_it_catches_uncatalogued_faults": "Hydrothermal alteration and blind faults need no Quaternary scarp; USGS/INGENIOUS maps subaerial traces and misses covered/alteration-controlled structures.",
+      "named_non_fault_mimic": "Paleo-channel and lacustrine clay caps, sedimentary facies changes, and non-tectonic topography saddles.",
+      "how_it_differs_from_repo_lanes": "WB G-3 PPDR arm already tests magnetite-destruction residuals; this adds radiometric composition + saddle geometry and thermal-well corroboration, not yet implemented in this repo.",
+      "expected_dti_improvement": "Unquantified; medium expectation.",
+      "implementation_cost": "Medium — requires original 19-band layer semantics verification (band `tc` and depth-surface interpretation are ambiguous in mirror materials; do not claim physical units).",
+      "data_readiness": "GeoDAWN radiometrics public (USGS DOI 10.5066/P93LGLVQ); 19-band stack owner mirror present locally but hash-proven only, not organizer-authenticated.",
+      "blocker": "Verify band semantics and coverage before implementing; do not claim heat/permeability/vent discovery from descriptors."
+    },
+    {
+      "rank": 3,
+      "id": "WBG-6 (deferred)",
+      "status": "DEFERRED — data-semantics gate",
+      "hypothesis": "Concealed basin-range fault fronts produce potential-field horizontal-gradient worms aligned with mountain-range fronts, detectable without any surface scarp.",
+      "layers": ["19-band stack: rtp (band 14), tmi (band 16), iso_grav_anom (band 13)"],
+      "physical_signature": "Horizontal-gradient magnitude worms (amplitude-invariant to remanent magnetization/inclination), skeletonized and thresholded off-catalogue.",
+      "why_it_catches_uncatalogued_faults": "Magnetized basement offset across blind faults creates gradient anomalies even where alluvium covers the trace.",
+      "named_non_fault_mimic": "Lithologic contacts, dikes, and intrusive edges produce identical gradient worms.",
+      "how_it_differs_from_repo_lanes": "Related to WBG-3 PPDR magnetite-destruction arm but uses total-field horizontal gradient directly rather than gravity-minus-pseudogravity residuals; not implemented in this repo.",
+      "expected_dti_improvement": "Unquantified; low-medium expectation.",
+      "implementation_cost": "Medium.",
+      "data_readiness": "Owner-mirror bands present locally; semantics unverified."
+    },
+    {
+      "rank": 4,
+      "id": "WBG-7 (deferred)",
+      "status": "DEFERRED — external-data gate (NOT obtainable in this sandbox)",
+      "hypothesis": "Creeping geothermal faults across zero-relief playas produce Sentinel-1 DInSAR line-of-sight velocity-gradient discontinuities invisible to 1 km GPS interpolation.",
+      "layers": ["NASA ASF OPERA L3 Sentinel-1 surface-displacement products, resampled to the 100 m UTM 11N grid"],
+      "physical_signature": "Strain-axis-projected phase-gradient discontinuity (InSAR creep gradient) across playas.",
+      "why_it_catches_uncatalogued_faults": "Aseismic creep on blind faults leaves no mapped trace; InSAR sees mm/yr motion directly.",
+      "named_non_fault_mimic": "Seasonal playa groundwater pumping subsidence bowls.",
+      "how_it_differs_from_repo-lanes": "Not implemented anywhere in this repo; WBG-S2/H1/WBG-3 all use LiDAR/DEM/geophysics, no InSAR.",
+      "expected_dti_improvement": "Unquantified; potentially high for blind creep structures.",
+      "implementation_cost": "High — requires resampling, phase unwrapping quality control, and vel-gradient computation.",
+      "data_readiness": "Official free source: NASA/JPL ASF OPERA (https://asf.alaska.edu/datasets/daac/opera/). NOT obtainable in this sandbox — outbound network allowlist blocks asf.alaska.edu. Check obtainability before proposing as viable.",
+      "source_url": "https://asf.alaska.edu/datasets/daac/opera/"
+    },
+    {
+      "rank": 5,
+      "id": "WBG-8 (deferred)",
+      "status": "DEFERRED — authentication gate",
+      "hypothesis": "Sub-meter LiDAR curvature and 10 m 3DEP scarp/openness catch degraded <1 m range-front splays missed by the Quaternary catalogue.",
+      "layers": ["1 m DEM links (DrivenData data tab, login required); 10 m USGS 3DEP DEM derivatives"],
+      "physical_signature": "Curvature + anti-piedmont topographic openness / LRM scarps.",
+      "why_it_catches_uncatalogued_faults": "Degraded scarps under alluvial veneer may still show sub-meter curvature signatures absent from mapped traces.",
+      "named_non_fault_mimic": "Road cuts, railroad embankments, and agricultural terraces.",
+      "how_it_differs_from_repo_lanes": "WBG-S2 and WBG-H1 already rely on 1 m LiDAR and peer 10 m DEM derivatives; both lanes remain stopped on the literal registry gate, so repeating the same inputs is not a path to a unique submission.",
+      "expected_dti_improvement": "Already reflected in stopped WBG-S2/H1 results (0.1836 / 0.1233 HOLDOUT-DTI); no new upside without new inputs.",
+      "implementation_cost": "Medium-High.",
+      "data_readiness": "1m_DEM_links.csv is behind the DrivenData login redirect; not obtainable without authenticated access. No credentials stored or requested."
+    }
+  ]
+}

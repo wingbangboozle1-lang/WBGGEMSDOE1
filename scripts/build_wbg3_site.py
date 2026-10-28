@@ -139,7 +139,7 @@ def _chart(w3: dict) -> str:
     return "".join(bits)
 
 
-def _master_table(w3: dict, s2: dict, h1: dict, w2: dict, c1: dict, audit: dict, *, prefix: str) -> str:
+def _master_table(w3: dict, s2: dict, h1: dict, w2: dict, c1: dict, audit: dict, *, prefix: str, w4: dict | None = None) -> str:
     w3_tif = Path(w3["artifact"]).name
     w3_zip = Path(w3["zip_artifact"]).name
     w3_seg = w3["holdout_dti"]["primary_segment_holdout"]
@@ -158,6 +158,19 @@ def _master_table(w3: dict, s2: dict, h1: dict, w2: dict, c1: dict, audit: dict,
 <td><span class="score">{w3_seg['dti']:.4f} / {w3_in['dti']:.4f}</span><div class="cell-note"><strong>HOLDOUT-DTI</strong>: <code>{w3_seg['evaluator_version']}</code> {w3_seg['dti']:.6f} CI [{w3_seg['ci95'][0]:.4f}, {w3_seg['ci95'][1]:.4f}] (n={w3_seg['withheld_positive_pixels']:,}, 4/4 fold wins); <code>{w3_in['evaluator_version']}</code> {w3_in['dti']:.6f} CI [{w3_in['ci95'][0]:.4f}, {w3_in['ci95'][1]:.4f}] (n={w3_in['withheld_positive_pixels']:,}).<br>Leaderboard est.: <strong>Unavailable</strong> (never projected).</div></td>
 <td><span class="score">99.9946% / {w3_comp['max_forward_3px_overlap']*100:.2f}%</span><div class="cell-note">Literal STOP: <strong>99.9946%</strong> vs <code>r13-lattice-s5</code> &amp; <strong>100%</strong> vs <code>WBG-C1</code> (&gt;70%).<br>Competing sparse (206): <strong>PASS {w3_comp['max_forward_3px_overlap']*100:.2f}% ≤ 70%</strong> ({b2_ov:.2f}% vs B2; {s2_ov:.2f}% vs WBG-S2).</div></td>
 <td>{_pill('DO NOT SUBMIT', 'no')}<div class="cell-note"><strong>DOWNLOAD: YES · SUBMIT: NO.</strong> No selector eligibility; trails 10m-3DEP S3DEP1 (0.1661) &amp; hits literal lattice STOP.</div></td></tr>''',
+    ]
+    if w4 is not None:
+        w4_tif = Path(w4["artifact"]).name
+        w4_zip = Path(w4["zip"]).name
+        w4_h = w4["holdout"]
+        w4_reg = w4["registry"]
+        w4_dec = w4["decision"]
+        rows.append(f'''<tr class="featured"><td class="site-cell">WBG-4 (Ours · Experiment 1)<small>Off-catalogue inverse-distance proximity · {w4_h["n_emitted"]:,} dots · zeros mode</small></td>
+<td class="file-cell"><a href="{prefix}downloads/{escape(w4_tif)}" download>{escape(w4_tif)}</a><div class="cell-note"><a href="{prefix}downloads/{escape(w4_zip)}" download>One-TIFF ZIP ↓</a> · SHA-256 <code>{w4["raster_sha256"][:16]}…</code></div></td>
+<td><span class="score">{w4_h["dti"]:.4f}</span><div class="cell-note"><strong>HOLDOUT-DTI</strong>: <code>{w4_h["evaluator_version"]}</code> {w4_h["dti"]:.6f} CI [{w4_h["ci95"][0]:.4f}, {w4_h["ci95"][1]:.4f}] (n={w4_h["withheld_positive_pixels"]:,} withheld positives). Leakage canary max AUC 0.613 &lt; 0.90 (pass). Leaderboard est.: <strong>Unavailable</strong> (never projected).</div></td>
+<td><span class="score">{w4_reg["worst_forward_overlap"]:.4f} vs r13-lattice</span><div class="cell-note">Literal STOP: worst 3-px forward overlap <strong>{w4_reg["worst_forward_overlap"]:.4f} vs {escape(w4_reg["worst_forward_overlap_submission"])}</strong> (&gt;70%). Worst Spearman {w4_reg["worst_spearman_full_footprint"]:+.4f} vs r13 and GEMSDOE32 B2 (ρ ≤ 0.90 pass). Byte- and pixel-distinct vs both pinned comparators; comparator scan incomplete (not organizer-complete).</div></td>
+<td>{_pill('DO NOT SUBMIT', 'no')}<div class="cell-note"><strong>DOWNLOAD: YES · SUBMIT: NO.</strong> Negative verdict; {w4_dec["submission_slots_used"]} submission slots used; holdout efficacy not established vs benchmark.</div></td></tr>''')
+    rows.extend([
         f'''<tr><td class="site-cell">WBG-S2 (Ours · Parallel)<small>MKSF-1 · 37,654 dots (10m DEM + 1m LiDAR)</small></td>
 <td class="file-cell"><a href="{prefix}downloads/{escape(s2_tif)}" download>{escape(s2_tif)}</a></td>
 <td><span class="score">{s2['holdout_dti']['primary_segment_holdout']['dti']:.4f}</span><div class="cell-note"><strong>HOLDOUT-DTI</strong> (parallel-reported): <code>gems-segment-pooled-v1</code> {s2['holdout_dti']['primary_segment_holdout']['dti']:.6f} (n=60,988). Est.: <strong>Unavailable</strong>.</div></td>
@@ -178,7 +191,7 @@ def _master_table(w3: dict, s2: dict, h1: dict, w2: dict, c1: dict, audit: dict,
 <td><span class="score">{c1['holdout']['dti']:.4f}</span><div class="cell-note"><strong>HOLDOUT-DTI</strong>: <code>{c1['holdout_instrument']['evaluator_version']}</code> {c1['holdout']['dti']:.6f} (n={c1['holdout']['withheld_positive_pixels']:,}). Est.: <strong>Unavailable</strong>.</div></td>
 <td><span class="score">99.8713%</span><div class="cell-note">Literal STOP: <strong>99.87% &gt; 70%</strong>; continuous surface (no final dots).</div></td>
 <td>{_pill('DO NOT SUBMIT', 'no')}<div class="cell-note"><strong>DOWNLOAD: YES · SUBMIT: NO.</strong> Negative paired efficacy screen.</div></td></tr>''',
-    ]
+    ])
     for idx, row in enumerate(audit["rows"]):
         site = row["site"]
         desc = HISTORY[site][0]
@@ -250,7 +263,7 @@ def _short_id(raw_id: str) -> str:
     return raw_id
 
 
-def _index_body(w3, s2, h1, w2, c1, audit, *, prefix: str) -> str:
+def _index_body(w3, s2, h1, w2, c1, audit, *, prefix: str, w4: dict | None = None) -> str:
     seg = w3["holdout_dti"]["primary_segment_holdout"]
     intra = w3["holdout_dti"]["secondary_intrabasin_holdout"]
     sgmc = w3["holdout_dti"]["external_sgmc_offcatalogue_diagnostic"]
@@ -266,7 +279,7 @@ def _index_body(w3, s2, h1, w2, c1, audit, *, prefix: str) -> str:
     )
     return f'''<section class="hero"><div><p class="eyebrow">Executive Summary · WBG-3 (SPI-PMR-WCS-1)</p><h1>1m-LiDAR-free geophysics.<br><em>Verified, unique vs peers, stopped fairly.</em></h1><p class="lead"><strong>Download: YES. Submit: NO (no competition slot used).</strong> WBG-3 combines crustal Source-Parameter Local Wavenumber, FFT Poisson Magnetite-Destruction Residuals, 2D Riesz Monogenic Phase Congruency, and Fold-Safe Crack-Tip Wing-Crack Synthesis into 36,800 off-catalogue binary dots in portal-safe zeros mode.</p><div class="actions">{_link(f'{sub_prefix}how-to-submit.html', 'Open How-to-Submit subpage →', 'button secondary')}{_link(f'{sub_prefix}forensics-and-hypotheses.html', '0.2778 PhD forensics & 4 hypotheses →', 'text-link')}</div></div>{_download_card(w3, prefix=prefix)}</section>
 {_stop_banner(w3)}{_stats(w3)}
-<section class="section"><div class="section-heading"><div><span class="section-num">01 / EXECUTIVE SUBMISSION &amp; NINE-SITE DECISION TABLE</span><h2>File to download, estimated/measured score, uniqueness &amp; submit verdict</h2><p>Every score carries its mandatory protocol label; projections are never presented as leaderboard scores.</p></div>{_link(f'{sub_prefix}how-to-submit.html', 'Submission instructions →', 'text-link')}</div>{_master_table(w3, s2, h1, w2, c1, audit, prefix=prefix)}</section>
+<section class="section"><div class="section-heading"><div><span class="section-num">01 / EXECUTIVE SUBMISSION &amp; NINE-SITE DECISION TABLE</span><h2>File to download, estimated/measured score, uniqueness &amp; submit verdict</h2><p>Every score carries its mandatory protocol label; projections are never presented as leaderboard scores.</p></div>{_link(f'{sub_prefix}how-to-submit.html', 'Submission instructions →', 'text-link')}</div>{_master_table(w3, s2, h1, w2, c1, audit, prefix=prefix, w4=w4)}</section>
 <section class="section"><div class="section-heading"><div><span class="section-num">02 / 3-ARM PREREGISTERED ABLATION &amp; SPATIAL PREVIEW</span><h2>4/4 spatial-fold victory over 19-band control and WBG-2</h2><p>Evaluated via unchanged shared <code>SegmentHoldout</code> and <code>gems57.holdout</code>.</p></div>{_link(f'{prefix}data/wbg3-run-card.json', 'WBG-3 JSON Run Card ↗', 'text-link')}</div>
 <div class="two-col"><article class="panel"><div class="panel-head">WBG-3 emitted 36,800-dot field<span>zeros mode · 0 NaN</span></div><div class="map-frame"><span class="map-label">UTM 11N · EPSG:32611 · 3730×3292</span><img src="{prefix}assets/wbg3-spipmr-preview.png" alt="Spatial map of the 36,800 WBG-3 off-catalogue binary fault predictions in teal alongside grey mapped USGS and INGENIOUS catalogue traces across the Great Basin footprint." width="610" height="690"></div><div class="map-caption"><span>Teal: 36,800 WBG-3 off-catalogue dots (≥200 m collar). Grey: mapped catalogue.<br>Single-band float32 in [0, 1] · 0 NaN/Inf across all 12,279,160 pixels.</span><div><span>SHA-256: <code>{w3['raster_sha256'][:16]}…</code></span></div></div></article>
 <article class="panel"><div class="panel-head">SegmentHoldout 4-arm comparison<span>n = 60,988 withheld positives</span></div><div class="panel-pad">{_chart(w3)}<p class="micro">Paired ΔDTI vs 19-band control: <strong>+0.027399</strong>, 95% CI [+0.014361, +0.041700] (4/4 folds won). Intra-basin <code>gems57-pooled-hide-v2</code> (n=11,330): WBG-3 <strong>{intra['dti']:.6f}</strong> vs 19-band ctrl 0.076470 (+0.045392) and WBG-2 0.097610 (+0.024252). Off-catalogue USGS SGMC blind fault proxy: <strong>{sgmc['wbg3_arm3_proxy_dti']:.6f}</strong> vs WBG-2 {sgmc['wbg2_pr13_proxy_dti']:.6f} (+25.2%).</p></div></article></div></section>
@@ -290,12 +303,12 @@ def _index_body(w3, s2, h1, w2, c1, audit, *, prefix: str) -> str:
 <div class="copy-box"><code id="copy-w3-hash">{escape(w3['raster_sha256'])}</code><button type="button" data-copy="copy-w3-hash">Copy SHA-256</button></div></section>'''
 
 
-def _howto_body(w3, s2, h1, w2, c1, audit, *, prefix: str) -> str:
+def _howto_body(w3, s2, h1, w2, c1, audit, *, prefix: str, w4: dict | None = None) -> str:
     w3_tif = Path(w3["artifact"]).name
     return f'''<section class="subhero"><div><p class="eyebrow">Executive Summary Subpage · How to Submit</p><h1>Validate automatically.<br><em>Submit only when promoted.</em></h1><p class="lead"><strong>Download: YES. Submit: NO — DO NOT SUBMIT · NO SELECTOR ELIGIBILITY.</strong> This executive subpage provides the complete submission decision table, one-click zeros-mode GeoTIFF downloads, automated local CLI preflight commands, and DrivenData upload steps for any future promoted candidate. No competition slot was used.</p></div>{_pill('All files: DO NOT SUBMIT', 'no')}</section>
 {_stop_banner(w3)}
 <section class="content-section"><h2>1. Submission Decision Table — File to Download, Score, Uniqueness &amp; Submit Verdict</h2>
-{_master_table(w3, s2, h1, w2, c1, audit, prefix=prefix)}</section>
+{_master_table(w3, s2, h1, w2, c1, audit, prefix=prefix, w4=w4)}</section>
 <section class="content-section"><h2>2. Portal-Safe Zeros-Mode Validation (Eliminates DrivenData <code>[0, 1]</code> NaN Error)</h2>
 <div class="two-col">{_download_card(w3, prefix=prefix)}<article class="panel"><div class="panel-pad prose"><h3>Why zeros-mode is mandatory in our automated preflight</h3>
 <ul>
@@ -339,6 +352,8 @@ def build() -> None:
     w2 = _load("evidence/wbg2/run_card.json")
     c1 = _load("registry/run_card.json")
     audit = _load("evidence/nine_site_audit.json")
+    w4_path = ROOT / "evidence" / "wbg4" / "run_card.json"
+    w4 = json.loads(w4_path.read_text(encoding="utf-8")) if w4_path.exists() else None
 
     SUBDIR.mkdir(parents=True, exist_ok=True)
     (SUBDIR / "data").mkdir(parents=True, exist_ok=True)
@@ -350,11 +365,11 @@ def build() -> None:
 
     # Dedicated subsite pages docs/wbg3/*.html (leaving docs/wbg3.html intact for parallel EXP3DET lane)
     (SUBDIR / "index.html").write_text(
-        _shell("index.html", "WBG-3 executive summary", _index_body(w3, s2, h1, w2, c1, audit, prefix="../"), prefix="../"),
+        _shell("index.html", "WBG-3 executive summary", _index_body(w3, s2, h1, w2, c1, audit, prefix="../", w4=w4), prefix="../"),
         encoding="utf-8",
     )
     (SUBDIR / "how-to-submit.html").write_text(
-        _shell("how-to-submit.html", "How to submit", _howto_body(w3, s2, h1, w2, c1, audit, prefix="../"), prefix="../"),
+        _shell("how-to-submit.html", "How to submit", _howto_body(w3, s2, h1, w2, c1, audit, prefix="../", w4=w4), prefix="../"),
         encoding="utf-8",
     )
     (SUBDIR / "forensics-and-hypotheses.html").write_text(

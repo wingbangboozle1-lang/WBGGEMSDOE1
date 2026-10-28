@@ -1,0 +1,128 @@
+{
+  "file": "wbg4-offcatalogue-proximity-from-visible-faults-zeros.tif",
+  "sha256": "24bc089ede986315c850912b173d89a9a11d86540a8324290be6275ae91c441f",
+  "bytes": 75211,
+  "submission_name": "wbg4-offcatalogue-proximity-from-visible-faults-zeros",
+  "note": "WBG-4 off-catalogue inverse-distance proximity from fold-visible faults; holdout dots only; research DO NOT SUBMIT",
+  "note_chars": 114,
+  "validator": {
+    "file": "/home/user/WBGGEMSDOE1/docs/downloads/wbg4-offcatalogue-proximity-from-visible-faults-zeros.tif",
+    "bytes": 75211,
+    "sha256": "24bc089ede986315c850912b173d89a9a11d86540a8324290be6275ae91c441f",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.001744500477798283,
+    "emitted_positive_pixels": 21421,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 21421,
+    "footprint_fraction": 0.004145433279153643
+  },
+  "template_report": {
+    "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbg4-offcatalogue-proximity-from-visible-faults-zeros.tif",
+    "bytes": 75211,
+    "sha256": "24bc089ede986315c850912b173d89a9a11d86540a8324290be6275ae91c441f",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.001744500477798283,
+    "n_nonzero": 21421,
+    "mass": 21421.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "wbg4-offcatalogue-proximity-from-visible-faults-zeros.zip",
+  "zip_sha256": "2b6557678167d02938d5573793e845a48ad78a2481b8ef70f39beb5436482b11",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "method": "WBG-4 proximity propensity",
+    "band_px": [
+      1,
+      null
+    ],
+    "dots": 21421,
+    "budget_frac": 0.025
+  }
+}

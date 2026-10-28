@@ -1,0 +1,260 @@
+{
+  "schema": "gemsdoe1-wbg4-run-card-v1",
+  "generated_utc": "2026-10-27T23:56:00.414859+00:00",
+  "experiment": "1 of 3 (session budget)",
+  "submission_slots_used": 0,
+  "hypothesis": "Off-catalogue geothermal-relevant faults concentrate close to, but not on, USGS/INGENIOUS mapped traces, where blind splays and step-overs lack mapped traces but retain proximity propensity.",
+  "mechanism": "Per holdout fold, distance transform of fold-visible faults only (catalogue masked pixel-exactly); inverse-distance propensity off mapped traces; ridge-nms; top 2.5% of fold pixels per quadrant; binary {0,1} dots, zeros outside footprint; pooled hide-and-recover DTI, alpha 0.2 beta 0.8, 300 m triangular kernel.",
+  "layers": [
+    "data/bridge/labels.tif (USGS/INGENIOUS mapped-fault catalogue)",
+    "data/bridge/sample_submission.tif (competition footprint/grid)"
+  ],
+  "named_non_fault_mimic": "Alluvial-fan and playa depositional edges, Pleistocene pluvial Lake Lahontan wave-cut benches, and buried basalt flow margins produce distance-to-fault anomalies without Quaternary throw.",
+  "difference_from_repo_lanes": "Unlike the H19-5/D2.8/B2 ridge-thinning family (GEMSDOE24/25/27/28/30/31/32/33/36) this derives no pixels from a prior prediction and is not a deletion-pruning of D2.8; unlike WBG-C1 it emits off-catalogue dots from a simple physical rule rather than a continuous Hessian commutator; unlike WBG-2 it is distance-banded, not random scatter.",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "dti": 0.012516254955558437,
+    "ci95": [
+      0.00951116708180849,
+      0.015707864099658134
+    ],
+    "withheld_positive_pixels": 60988,
+    "tp_w": 663.9518343096473,
+    "fp_w": 20619.87016911489,
+    "fn_w": 60324.04816569036,
+    "n_emitted": 21421,
+    "folds": [
+      {
+        "fold": "NW",
+        "TP_w": 124.87707174712968,
+        "FP_w": 5786.990798434172,
+        "FN_w": 10040.122928252871,
+        "n_truth": 10165,
+        "n_emitted": 5930,
+        "dti": 0.01340692111532683,
+        "coverage": 0.012285004598832236
+      },
+      {
+        "fold": "NE_LidarGapHeavy",
+        "TP_w": 61.29608117998457,
+        "FP_w": 3435.151316700045,
+        "FN_w": 12449.703918820016,
+        "n_truth": 12511,
+        "n_emitted": 3503,
+        "dti": 0.005724278013956154,
+        "coverage": 0.004899375044359729
+      },
+      {
+        "fold": "SW",
+        "TP_w": 335.1963314397382,
+        "FP_w": 7560.114216955526,
+        "FN_w": 20198.80366856026,
+        "n_truth": 20534,
+        "n_emitted": 7984,
+        "dti": 0.018615542159507708,
+        "coverage": 0.01632396666210861
+      },
+      {
+        "fold": "SE",
+        "TP_w": 142.58234994279488,
+        "FP_w": 3837.6138370251474,
+        "FN_w": 17635.417650057207,
+        "n_truth": 17778,
+        "n_emitted": 4004,
+        "dti": 0.009493819410131348,
+        "coverage": 0.008020156932320558
+      }
+    ]
+  },
+  "leakage_canary": {
+    "diagnostic": "LEAKAGE-CANARY AUC, not a DTI or organizer score",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "threshold": 0.9,
+    "two_polarities_checked": true,
+    "passed": true,
+    "features": {
+      "annulus_propensity": [
+        {
+          "fold": "NW",
+          "auc": 0.46856174126906047,
+          "positives": 10165,
+          "background": 15000
+        },
+        {
+          "fold": "NE_LidarGapHeavy",
+          "auc": 0.512642165560973,
+          "positives": 12511,
+          "background": 15000
+        },
+        {
+          "fold": "SW",
+          "auc": 0.5340913111111112,
+          "positives": 15000,
+          "background": 15000
+        },
+        {
+          "fold": "SE",
+          "auc": 0.6128992311111111,
+          "positives": 15000,
+          "background": 15000
+        }
+      ]
+    },
+    "interpretation": "AUC > 0.90 is leakage until explained; lower AUC does not prove fault discovery."
+  },
+  "registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "phase": "dots",
+    "scope": "Two pinned public owner-repository comparators only (r13-lattice calibration control and GEMSDOE32 B2); not a complete organizer registry scan.",
+    "comparators": [
+      {
+        "repo": "buffedlizard55-lab/GEMSDOE24",
+        "submission": "retained_spacing_5_calibration_control",
+        "file": "registry/cache/b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2.tif",
+        "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2"
+      },
+      {
+        "repo": "buffedlizard55-lab/GEMSDOE32",
+        "submission": "competing_published_raster",
+        "file": "registry/cache/c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+      }
+    ],
+    "worst_spearman_full_footprint": -0.00014491579045942306,
+    "worst_forward_overlap": 1.0,
+    "worst_forward_overlap_submission": "retained_spacing_5_calibration_control",
+    "forward_overlap_firings": 1,
+    "rho_firings": 0,
+    "byte_unique": true,
+    "pixel_unique": true,
+    "passes_literal_uniqueness": false,
+    "stop_required": true
+  },
+  "raster_sha256": "24bc089ede986315c850912b173d89a9a11d86540a8324290be6275ae91c441f",
+  "raster_decoded_sha256": "5da81f6fe1d49fe31a7159dd370c7af18bd7fe19bac91d5cdef63458f433a93e",
+  "validator": {
+    "file": "/home/user/WBGGEMSDOE1/docs/downloads/wbg4-offcatalogue-proximity-from-visible-faults-zeros.tif",
+    "bytes": 75211,
+    "sha256": "24bc089ede986315c850912b173d89a9a11d86540a8324290be6275ae91c441f",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.001744500477798283,
+    "emitted_positive_pixels": 21421,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 21421,
+    "footprint_fraction": 0.004145433279153643
+  },
+  "template_report": {
+    "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbg4-offcatalogue-proximity-from-visible-faults-zeros.tif",
+    "bytes": 75211,
+    "sha256": "24bc089ede986315c850912b173d89a9a11d86540a8324290be6275ae91c441f",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.001744500477798283,
+    "n_nonzero": 21421,
+    "mass": 21421.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "submission_name": "wbg4-offcatalogue-proximity-from-visible-faults-zeros",
+  "submission_note": "WBG-4 off-catalogue inverse-distance proximity from fold-visible faults; holdout dots only; research DO NOT SUBMIT",
+  "submission_note_chars": 114,
+  "artifact": "docs/downloads/wbg4-offcatalogue-proximity-from-visible-faults-zeros.tif",
+  "zip": "docs/downloads/wbg4-offcatalogue-proximity-from-visible-faults-zeros.zip",
+  "verdict": "negative",
+  "decision": {
+    "verdict": "negative",
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "eligible_for_separate_selector": false,
+    "approved_for_weekly_slot": false,
+    "submission_slots_used": 0,
+    "reasons": [
+      "literal registry gate not cleared (r13-lattice 3 px halo covers the footprint)",
+      "holdout efficacy not established vs current benchmark",
+      "no organizer receipt; score never projected to leaderboard"
+    ]
+  }
+}

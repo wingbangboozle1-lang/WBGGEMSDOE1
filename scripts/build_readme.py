@@ -24,6 +24,20 @@ def main():
     w3_seg = w3["holdout_dti"]["primary_segment_holdout"]
     w3_in = w3["holdout_dti"]["secondary_intrabasin_holdout"]
     w3_comp = w3["correlation_overlap_vs_registry"]["final_dots_competing_sparse"]
+    w4_path = ROOT / "evidence" / "wbg4" / "run_card.json"
+    w4 = json.loads(w4_path.read_text(encoding="utf-8")) if w4_path.exists() else None
+    if w4 is not None:
+        w4h = w4["holdout"]; w4r = w4["registry"]; w4d = w4["decision"]
+        w4tif = Path(w4["artifact"]).name
+        w4slots = w4d["submission_slots_used"]
+        w4dots = w4h["n_emitted"]; w4pos = w4h["withheld_positive_pixels"]
+        w4dti = w4h["dti"]; w4lo = w4h["ci95"][0]; w4hi = w4h["ci95"][1]
+        w4eval = w4h["evaluator_version"]
+        w4auc = max(f["auc"] for feats in w4["leakage_canary"]["features"].values() for f in feats)
+        w4fov = w4r["worst_forward_overlap"]; w4fsub = w4r["worst_forward_overlap_submission"]
+    else:
+        w4tif = w4slots = w4eval = w4fsub = ""
+        w4dots = w4pos = w4dti = w4lo = w4hi = w4auc = w4fov = 0
     w2audit = json.loads((ROOT / "evidence/wbg2/safety_audit_20261027.json").read_text())
     w2overlap = w2audit["already_placed_final_dots_witness"]["my_dots_within_3px_of_theirs"] * 100
 
@@ -132,6 +146,10 @@ was not obtained or credibly projected in this session.
   3/3 preregistered arms executed on 100 m competition geophysics + label-free SGMC/GDR (`444.3s`, 0 slots used).
   Beats 19-band control across 4/4 spatial folds: **HOLDOUT-DTI {w3_seg['dti']:.6f}** vs **0.090781** (`{w3_seg['evaluator_version']}`, paired ΔDTI `+0.027399`, 95% CI `[+0.014361, +0.041700]`) and **HOLDOUT-DTI {w3_in['dti']:.6f}** vs **0.076470** (`{w3_in['evaluator_version']}`).
   Passes full-footprint pre-placement correlation (`max |ρ| = 0.644883 <= 0.90`) and competing-sparse overlap across all 206 sparse rasters (`max 59.38% <= 70%`; `27.55%` vs `GEMSDOE32 B2`; `43.40%` vs `WBG-S2`), while binding literal overlap hits **99.9946%** vs `r13-lattice-s5` and **100%** vs `WBG-C1` and trails 10m-3DEP `S3DEP1` (`0.166060`).
+- **[WBG-4 / Experiment 1 — off-catalogue proximity from fold-visible faults](docs/index.html): DO NOT SUBMIT; {w4slots} submission slots used.**
+  [Research TIFF](docs/downloads/{w4tif}) · [ZIP](docs/downloads/{w4tif.replace('.tif', '.zip')}) · [run card](data/wbg4-run-card.json)
+  {w4dots:,} binary inverse-distance dots from visible faults in portal-safe zeros mode; one float32 band EPSG:32611 3730×3292; all finite, values in [0,1], 0 NaN/Inf; zero dots on the mapped catalogue.
+  Measured **HOLDOUT-DTI {w4dti:.6f}**, 95% CI [{w4lo:.6f}, {w4hi:.6f}], `{w4eval}`, n={w4pos:,} withheld positives. Leakage canary max AUC **{w4auc:.4f} < 0.90** (pass). Rank correlation ≈ 0 vs r13-lattice and GEMSDOE32 B2, but literal forward 3-px overlap **{w4fov:.4f} vs {w4fsub}** (>70% → literal gate STOP). Verdict **negative**; holdout efficacy not established vs current benchmark. Download OK for research; submit blocked.
 - **[WBG-S2 / MKSF-1 result](docs/wbg-s2-mksf1/index.html): DO NOT SUBMIT; no selector eligibility.**
   [Research TIFF](docs/downloads/{s2_tif}) · [ZIP](docs/downloads/{s2_tif.replace('.tif', '.zip')}) ·
   [run card](evidence/wbg_s2/run_card.json) · [independent two-witness safety audit](evidence/wbg_s2/safety_review_20261027.json) ·

@@ -1,0 +1,6 @@
+Name: WBGGEMSDOE1-blind-zone-ring-220-0m-120-0m-20261028-d63a12ef423e-zero
+Note: WBGGEMSDOE1 blind-zone-ring-220.0m-120.0m | unique blind-zone ring emission, catalogue-blind Poisson | id d63a12ef423e | not yet live-scored
+SHA-256: a8f3d754c07f89e40021902f9ab6c21e505e13660829d983c3cfef80b48e8b8f
+Format: single-band float32 GeoTIFF, EPSG:32611, 3730x3292, 100 m
+Values: [0, 1], all finite, zero outside footprint, zero on catalogue
+Dots: 30000

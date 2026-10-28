@@ -1,4 +1,21 @@
-## ✅ DOWNLOAD & SUBMIT: YES — WBG-6 `wbg6-qmh-kdisjoint-30000-20261028`
+# STANDING PROMPT / SESSION BRIEF (read at the start of every session)
+
+**Goal:** Place a unique, portal-valid GeoTIFF on the DrivenData DOE GEMS Prize (competition 306). Focus sites: GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36. Highest owner-reported among them: GEMSDOE32 B2 = 0.2778. Current public leaderboard high: 0.3195.
+
+**Required deliverables:**
+1. **Executive summary** on every focus site — clear which is best submission, table with file to download, estimated score, uniqueness vs other sites.
+2. **Generate a unique TIF submission** — not an exact duplicate of any previous submission. Must be obvious whether OK to download and submit.
+3. **Easy download** — one-click TIF download, obvious on the site.
+4. **Validation through the project** — no human inspector; automated preflight checks.
+5. **How-to-submit subpage** — step-by-step contest submission instructions.
+6. **3–5 candidate geological hypotheses** not yet tried, with layers, physical signature, missing-catalogue rationale, difference from repo, ranked by expected DTI improvement and cost.
+7. **Prompt in README** — this standing brief.
+
+**Parallel-run protocol:** (1) LANE — stay in declared method; stop if drift detected. (2) REUSE — shared evaluate_holdout.py and submission_writer.py. (3) LABEL every number as HOLDOUT-DTI or ORGANIZER-CONFIRMED. (4) LEAKAGE CANARY — AUC > 0.90 = leakage until proven otherwise. (5) RUN CARD — JSON ending each experiment. (6) BUDGET — stop after 3 experiments or 2 hours.
+
+**Core values:** Maximize P(Win). Own the Outcome.
+
+---
 
 **[WBG-6 executive summary](docs/wbg6/index.html)** ·
 **[How to submit, step by step](docs/wbg6/how-to-submit.html)** ·

@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-10-28T03:13:01+00:00",
+  "lane_id": "WBG-4",
+  "method_code": "CSJF-1",
+  "preregistration_path": "registry/wbg4_preregistration.json",
+  "preregistration_sha256": "3c00971e8f6ea9d42ff527021259ec7793dece5230064078a9d24f4672d74100",
+  "experiments_executed": 3,
+  "experiment_budget_max": 3,
+  "wall_clock_seconds": 3026.42,
+  "wall_clock_budget_max_seconds": 7200,
+  "peak_rss_mib": 1809.0,
+  "submission_slots_used": 0,
+  "hypothesis": "blind Great Basin geothermal conduits and unmapped Quaternary fault splays concentrate (a) updip of buried listric basement steps displaced 100-1,200 m basinward in potential/MT fields, and (b) at conjugate NNE x NW structural junctions and horsetail/relay breaches where 1D ridge filters drop out and where diffuse aprons must be penalized by direct expected self-credit 1 - q_self(x).",
+  "mechanism": "78-ch label-free feature stack (2-step midpoint listric hanging-wall back-projection DALBP + Harris-Forstner structure-tensor minor eigenvalue sqrt(lambda_2) CSJT + thin-plate biharmonic rollover BFRC + strike-termination RGFD + seamless 10m 3DEP + boundary-isolated 1m LiDAR + GeoDAWN + GDR #1391 hydrothermal) -> 2-Stage 3-strip hidden-component OOF Spatial Context-Pyramid Meta-Learner + Horvitz-Thompson direct k_self regressor -> Net Expected-DTI Two-Regime 300m CELF.",
+  "named_non_fault_mimic": "Intersecting bajada alluvial-fan distributary channels, buried Tertiary caldera ring-fracture/dike intersections, Pleistocene Lake Lahontan shoreline cusps/spits, and highway/railroad interchanges.",
+  "selected_arm": "arm3_csjf_mscp_stack_tworegime35600",
+  "holdout_dti": {
+    "primary_segment_holdout": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "gems-segment-pooled-v1",
+      "withheld_positives_n": 60988,
+      "dti": 0.165424,
+      "ci95": [
+        0.152338,
+        0.178931
+      ],
+      "delta_vs_19band_control": 0.072464
+    },
+    "secondary_intrabasin_holdout": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "split_seed": 20,
+      "withheld_positives_n": 11321,
+      "dti": 0.094601,
+      "ci95": [
+        0.078685,
+        0.109575
+      ],
+      "delta_vs_19band_control": 0.039643
+    },
+    "untouched_confirmation_holdout": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2-confirm-seed77",
+      "split_seed": 77,
+      "untouched_prior_to_arm_freeze": true,
+      "withheld_positives_n": 11326,
+      "dti": 0.10366,
+      "ci95": [
+        0.086121,
+        0.120534
+      ],
+      "delta_vs_19band_control": 0.052425
+    }
+  },
+  "leaderboard_estimate": null,
+  "organizer_confirmed_score": null,
+  "external_sgmc_off_catalogue_proxy": {
+    "diagnostic_class": "EXTERNAL-GEOLOGIC-PROXY-DIAGNOSTIC (USGS SGMC off-catalogue d>=3px; NOT a leaderboard score)",
+    "sgmc_off_catalogue_positive_pixels": 63121,
+    "wbg4_csjf1_proxy_dti": 0.079967,
+    "prior_lanes_proxy_dti": {
+      "wbg3_exp3det": 0.075387,
+      "wbg3_spipmr": 0.088058,
+      "wbg2_random_kde": 0.070321
+    }
+  },
+  "leakage_canary": {
+    "threshold": 0.9,
+    "n_static_features_tested": 78,
+    "max_effective_auc": 0.653434,
+    "max_feature": "csjt_coh_dem10_400m",
+    "stage2_inner_oof_max_auc": 0.723525,
+    "all_passed": true
+  },
+  "registry_uniqueness": {
+    "total_deduplicated_rasters_checked": 464,
+    "full_footprint_pixels_scored": 5167373,
+    "pre_placement_max_abs_spearman": 0.495172,
+    "pre_placement_pass": true,
+    "competing_sparse_rasters_checked": 460,
+    "competing_sparse_max_forward_3px_overlap": 0.572478,
+    "competing_sparse_worst_comparator": "GEMSDOE30:docs/downloads/gemsdoe30-sgmc-hedge-d10-85k-20261003-ac08b41e-zeros.tif",
+    "competing_sparse_max_reverse_3px_overlap": 0.683441,
+    "competing_sparse_max_abs_spearman": 0.042419,
+    "competing_sparse_pass": true,
+    "literal_all_entry_worst_forward_3px_overlap": 1.0,
+    "literal_all_entry_worst_comparator": "WBGGEMSDOE1:docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+    "literal_all_entry_pass": false
+  },
+  "artifact": {
+    "tif_relpath": "docs/downloads/wbggemsdoe1-wbg4-csjf1-edti-35135-20261027-b3dacd59-zeros.tif",
+    "tif_sha256": "e650894d4d1b39c57b2207561b033c98492085fec21be44615d249d9336745e6",
+    "tif_bytes": 822248,
+    "zip_relpath": "docs/downloads/wbggemsdoe1-wbg4-csjf1-edti-35135-20261027-b3dacd59-zeros.zip",
+    "zip_sha256": "1e44d6c81466e95c009996343d012e604422d2c50012a3a580755d76a4ad8ad4",
+    "zip_bytes": 166788,
+    "preview_png_relpath": "docs/assets/wbg4-csjf1-preview.png",
+    "emitted_dots": 35135,
+    "emission_breakdown": {
+      "target_total": 35600,
+      "regime_a_dots": 21191,
+      "regime_b_dots": 11716,
+      "topup_dots": 2228,
+      "emitted_total": 35135
+    },
+    "outside_footprint_encoding": "zeros",
+    "value_range": [
+      0.0,
+      1.0
+    ]
+  },
+  "validator_output": {
+    "file": "/home/user/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-wbg4-csjf1-edti-35135-20261027-b3dacd59-zeros.tif",
+    "bytes": 822248,
+    "sha256": "e650894d4d1b39c57b2207561b033c98492085fec21be44615d249d9336745e6",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "lzw"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0028613521717488766,
+    "emitted_positive_pixels": 35135,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 35135,
+    "footprint_fraction": 0.006799393037816314,
+    "template_report": {
+      "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-wbg4-csjf1-edti-35135-20261027-b3dacd59-zeros.tif",
+      "bytes": 822248,
+      "sha256": "e650894d4d1b39c57b2207561b033c98492085fec21be44615d249d9336745e6",
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "width": 3292,
+      "height": 3730,
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "ref_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "blocksize": [
+        1,
+        3292
+      ],
+      "fixture_grid": false,
+      "has_validity_mask": false,
+      "nan_pixels": 0,
+      "infinity_pixels": 0,
+      "n_nan": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0028613521717488766,
+      "n_nonzero": 35135,
+      "mass": 35135.0,
+      "mass_outside_footprint": 0,
+      "problems": [],
+      "ok": true,
+      "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+    },
+    "mirrored_reference_available": true,
+    "catalogue_reference_available": true,
+    "independent_organizer_origin_authenticated": false,
+    "run_card_matches_exact_tiff": false,
+    "run_card_path": null,
+    "promotion_verdict": "untracked",
+    "ok_to_submit": false,
+    "warning": "FORMAT PASS is not uniqueness, scientific efficacy, organizer acceptance or slot approval."
+  },
+  "submission_metadata": {
+    "unique_submission_name": "wbggemsdoe1-wbg4-csjf1-edti-35135-b3dacd59-zeros",
+    "portal_note_140char": "WBG-4 CSJF-1: listric DALBP + conjugate lam2 + 2-stage OOF context + k_self CELF (35135 dots, [0,1] zeros).",
+    "portal_note_length": 107,
+    "download_ready": true,
+    "submit_recommendation": "DO NOT SUBMIT WITHOUT HUMAN SELECTOR PROTOCOL RECONCILIATION"
+  },
+  "verdict": "negative",
+  "verdict_rationale": "CSJF-1 (arm3_csjf_mscp_stack_tworegime35600) passes all leakage canaries (max AUC=0.6534 <= 0.90), improves HOLDOUT-DTI across Primary SegmentHoldout (0.165424), Secondary gems57 seed=20 (0.094601), and Untouched Confirmation seed=77 (0.103660), and passes competing-sparse uniqueness across all 460 sparse Focus/Sister/Local rasters (max forward 3-px overlap = 57.25% <= 70%, max |Spearman| = 0.4952 <= 0.90). Under AGENTS.md fail-closed governance, verdict remains 'negative' (DOWNLOAD: YES \u00b7 SUBMIT: NO) because literal unseparated registry entries 13gems_20261001_r13-lattice-s5 (5-px calibration grid covering 99.8713% of footprint within 3 px) and continuous research surfaces (WBG-C1, 17GEMSDOE) exceed 70% literal 3-px overlap."
+}

@@ -1,0 +1,1375 @@
+{
+  "lane_id": "WBG-4",
+  "method_code": "CSJF-1",
+  "core_files_verified": 4,
+  "template57_bands_verified": 19,
+  "external_datasets_verified": 13,
+  "dem10_arrays_verified": 13,
+  "focus_inventory_rasters_verified": 360,
+  "wbg_s2_peer_rasters_verified": 15,
+  "sister_repo_audit_status": [
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE2",
+      "accessible": true,
+      "commit": "fc8e265e6c8925080fc0b802a4151326d52d294d",
+      "tif_count": 10
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE3",
+      "accessible": true,
+      "commit": "364965167f34d5607211b356a95fa6b1fccb3819",
+      "tif_count": 16
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "accessible": true,
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "tif_count": 30
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "accessible": true,
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "tif_count": 26
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE3",
+      "accessible": true,
+      "commit": "4aed222ecbdefae9d3b3b3438f2c2964cb743556",
+      "tif_count": 14
+    },
+    {
+      "repo": "eugboogieman123-ops/EUGGEMSDOE1",
+      "accessible": true,
+      "commit": "81ac8521ea03ac7f25287eb6b5d68ebf1dce23dc",
+      "tif_count": 0
+    },
+    {
+      "repo": "eugboogieman123-ops/EUGGEMSDOE2",
+      "accessible": true,
+      "commit": "3ae1fc951e548fa5d91585c0c9439573c721ff83",
+      "tif_count": 0
+    },
+    {
+      "repo": "eugboogieman123-ops/EUGGEMSDOE3",
+      "accessible": true,
+      "commit": "8fbb61b58ea0804c23eb29f39f7bd6f93aace20f",
+      "tif_count": 0
+    },
+    {
+      "repo": "ginnymcfiner23-ux/GINNYGEMSDOE1",
+      "accessible": true,
+      "commit": "761158ab9f7a069803f326e72ee165f63ca58b50",
+      "tif_count": 0
+    },
+    {
+      "repo": "ginnymcfiner23-ux/GINNYGEMSDOE2",
+      "accessible": true,
+      "commit": "91d564fcda6cd89f0d2ce3b21ab9dea8dd7ec7ad",
+      "tif_count": 0
+    },
+    {
+      "repo": "ginnymcfiner23-ux/GINNYGEMSDOE3",
+      "accessible": true,
+      "commit": "4e00b89ed1225ba4ede53b54c7d011151cd16dc5",
+      "tif_count": 0
+    },
+    {
+      "repo": "karagemop466-tech/GEMSDOEkarage1",
+      "accessible": true,
+      "commit": "65c07db29591228add2a216542607234156aab30",
+      "tif_count": 7
+    },
+    {
+      "repo": "karagemop466-tech/GEMSDOEkarage2",
+      "accessible": true,
+      "commit": "690d7dd51ae458969e82fb62855babcf90a55437",
+      "tif_count": 2
+    },
+    {
+      "repo": "karagemop466-tech/GEMSDOEkarage3",
+      "accessible": true,
+      "commit": "ad17f0a45859a54d261d1246249bb205dfa33f88",
+      "tif_count": 3
+    },
+    {
+      "repo": "apartanish22-droid/ApartGEMSDOE1",
+      "accessible": true,
+      "commit": "43e6cb59ef82f666663cd9bea1be4869c7af870a",
+      "tif_count": 1
+    },
+    {
+      "repo": "apartanish22-droid/ApartGEMSDOE2",
+      "accessible": true,
+      "commit": "e72ec0626ac73b9ee519453f92c1b32a1b903b5b",
+      "tif_count": 5
+    },
+    {
+      "repo": "apartanish22-droid/ApartGEMSDOE3",
+      "accessible": true,
+      "commit": "91461848127acb95208ef595b20e7c0a0ec9625d",
+      "tif_count": 7
+    },
+    {
+      "repo": "sassnarep3-star/GEMSDOESASS1",
+      "accessible": true,
+      "commit": "7f87fc64ddedb259f898eed17daa0bfc11cc0d7b",
+      "tif_count": 5
+    },
+    {
+      "repo": "sassnarep3-star/GEMSDOESASS2",
+      "accessible": true,
+      "commit": "3b21e4e9bf70458c91ae9e6c41dbfb6688f3f957",
+      "tif_count": 8
+    },
+    {
+      "repo": "sassnarep3-star/GEMSDOESASS3",
+      "accessible": true,
+      "commit": "86874b72302197a78eb8ad5edbf413acf1c02efe",
+      "tif_count": 2
+    }
+  ],
+  "sister_peer_rasters_downloaded": 136,
+  "sister_peer_unique_sha256_count": 120,
+  "sister_peer_usage_rule": "READ_ONLY_UNIQUENESS_AUDIT_NEVER_USED_IN_FEATURES_OR_TRAINING",
+  "anti_leakage_column_strips": {
+    "gdr_wellspring_in_footprint.csv": [
+      "dist_known_fault_px"
+    ],
+    "gdr_volcanic_vents_in_footprint.csv": [
+      "dist_known_fault_px"
+    ],
+    "forbidden_catalogue_files_excluded_from_features": [
+      "labels.tif",
+      "existing_faults.tif",
+      "gdr_qfaults_traces.csv",
+      "derived_sgmc_faults_100m_u8.tif"
+    ]
+  },
+  "sister_files": [
+    {
+      "repo": "apartanish22-droid/ApartGEMSDOE1",
+      "commit": "43e6cb59ef82f666663cd9bea1be4869c7af870a",
+      "remote_path": "docs/downloads/apartgems1-udth-submod-e3-20261027-50e7b334-zeros.tif",
+      "blob_sha": "efbae880fa6b64704f16bf5f1b70bcb2f4c2b4d4",
+      "local_relpath": "data/wbg4_sister_peers/ApartGEMSDOE1__docs__downloads__apartgems1-udth-submod-e3-20261027-50e7b334-zeros.tif",
+      "bytes": 93217,
+      "sha256": "16f7101f41dd0331ac6076d6f55c906b7c1aa9fc7180258361450e9ecf87eede"
+    },
+    {
+      "repo": "apartanish22-droid/ApartGEMSDOE2",
+      "commit": "e72ec0626ac73b9ee519453f92c1b32a1b903b5b",
+      "remote_path": "docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-nan.tif",
+      "blob_sha": "a8172fbe6daf3e5ff8239010df1eeabfc722457d",
+      "local_relpath": "data/wbg4_sister_peers/ApartGEMSDOE2__docs__downloads__apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-nan.tif",
+      "bytes": 312222,
+      "sha256": "c12f17f3e7dac14212d3646d7a95fc2a59c962c03363e4836fb3427c291e3682"
+    },
+    {
+      "repo": "apartanish22-droid/ApartGEMSDOE2",
+      "commit": "e72ec0626ac73b9ee519453f92c1b32a1b903b5b",
+      "remote_path": "docs/downloads/apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif",
+      "blob_sha": "5696623e981ba69c3f68ba907863fc936d01f176",
+      "local_relpath": "data/wbg4_sister_peers/ApartGEMSDOE2__docs__downloads__apartgemsdoe2-ap1-dilatcond-37654-20261027-1f26aa05-zeros.tif",
+      "bytes": 258085,
+      "sha256": "973e1615098e5636e9348a3ae1e12d9de392fda2b14f0313c81554cc26274d28"
+    },
+    {
+      "repo": "apartanish22-droid/ApartGEMSDOE2",
+      "commit": "e72ec0626ac73b9ee519453f92c1b32a1b903b5b",
+      "remote_path": "docs/downloads/apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-nan.tif",
+      "blob_sha": "fea1dfabed8d961e26abdeb6bdd511a231b2d375",
+      "local_relpath": "data/wbg4_sister_peers/ApartGEMSDOE2__docs__downloads__apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-nan.tif",
+      "bytes": 366968,
+      "sha256": "f9206a4aab5f7cdec7003689e3ee5c627da542c2c2641ea2227aa71d75086472"
+    },
+    {
+      "repo": "apartanish22-droid/ApartGEMSDOE2",
+      "commit": "e72ec0626ac73b9ee519453f92c1b32a1b903b5b",
+      "remote_path": "docs/downloads/apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif",
+      "blob_sha": "0e3132a02a157f453eecb48fa02f3a57e857465c",
+      "local_relpath": "data/wbg4_sister_peers/ApartGEMSDOE2__docs__downloads__apartgemsdoe2-ap2-oofctrl-44090dots-20261027T220804Z-5e265df9-zeros.tif",
+      "bytes": 231547,
+      "sha256": "edf60fd492cc18b835abee8cb7479825f47cd1077aa8609de37f1d9de5ccf50e"
+    },
+    {
+      "repo": "apartanish22-droid/ApartGEMSDOE2",
+      "commit": "e72ec0626ac73b9ee519453f92c1b32a1b903b5b",
+      "remote_path": "docs/downloads/apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif",
+      "blob_sha": "6db44943c86cbe6ad6c77a7beabdfbf9a8b3fb6e",
+      "local_relpath": "data/wbg4_sister_peers/ApartGEMSDOE2__docs__downloads__apartgemsdoe2-udsr-exp3-strat2reg-26173-20261027T223500Z-017adbb0-zeros.tif",
+      "bytes": 164130,
+      "sha256": "1f2c28e9eba172fe6a4da138b98afa28a43420549e174c801a02af658ef180b9"
+    },
+    {
+      "repo": "apartanish22-droid/ApartGEMSDOE3",
+      "commit": "91461848127acb95208ef595b20e7c0a0ec9625d",
+      "remote_path": "docs/downloads/apartgemsdoe3-h-apart3-1-cfkc-dhc-37654-20261027T215000Z-9dedadfc-zeros.tif",
+      "blob_sha": "db717c21b01726c931c59752c7c591fe141f5e8f",
+      "local_relpath": "data/wbg4_sister_peers/ApartGEMSDOE3__docs__downloads__apartgemsdoe3-h-apart3-1-cfkc-dhc-37654-20261027T215000Z-9dedadfc-zeros.tif",
+      "bytes": 216370,
+      "sha256": "afbfee1f46d6d3ca16297904cadf29d9cf9327d2ec5519e37f472c85bfaec065"
+    },
+    {
+      "repo": "apartanish22-droid/ApartGEMSDOE3",
+      "commit": "91461848127acb95208ef595b20e7c0a0ec9625d",
+      "remote_path": "docs/downloads/apartgemsdoe3-h1-bhgc3-bipop-axial32-37654-20261027T214500Z-ab6646b7-zeros.tif",
+      "blob_sha": "c659ab38a1ededee357623e327a0669a03cccb7f",
+      "local_relpath": "data/wbg4_sister_peers/ApartGEMSDOE3__docs__downloads__apartgemsdoe3-h1-bhgc3-bipop-axial32-37654-20261027T214500Z-ab6646b7-zeros.tif",
+      "bytes": 219077,
+      "sha256": "ba092640a4f776e3a22c8af1a5fe503487d4fa3f2277020a6e8268fd08e0797a"
+    },
+    {
+      "repo": "apartanish22-droid/ApartGEMSDOE3",
+      "commit": "91461848127acb95208ef595b20e7c0a0ec9625d",
+      "remote_path": "docs/downloads/gemsdoe32-apart3-bhgc-bipop-axial32-37654-20261027T214500Z-ab6646b7-nan.tif",
+      "blob_sha": "4d1b57ec1afc7c783042a8318d6f3c3ef222235c",
+      "local_relpath": "data/wbg4_sister_peers/ApartGEMSDOE3__docs__downloads__gemsdoe32-apart3-bhgc-bipop-axial32-37654-20261027T214500Z-ab6646b7-nan.tif",
+      "bytes": 354957,
+      "sha256": "18cc97b46fad63dc292fe0c3d2b3e67cacf95d3df1ebf2929bc47b2574743c8b"
+    },
+    {
+      "repo": "apartanish22-droid/ApartGEMSDOE3",
+      "commit": "91461848127acb95208ef595b20e7c0a0ec9625d",
+      "remote_path": "docs/downloads/gemsdoe32-apart3-bhgc-bipop-axial32-37654-20261027T214500Z-ab6646b7-zeros.tif",
+      "blob_sha": "c659ab38a1ededee357623e327a0669a03cccb7f",
+      "local_relpath": "data/wbg4_sister_peers/ApartGEMSDOE3__docs__downloads__gemsdoe32-apart3-bhgc-bipop-axial32-37654-20261027T214500Z-ab6646b7-zeros.tif",
+      "bytes": 219077,
+      "sha256": "ba092640a4f776e3a22c8af1a5fe503487d4fa3f2277020a6e8268fd08e0797a"
+    },
+    {
+      "repo": "apartanish22-droid/ApartGEMSDOE3",
+      "commit": "91461848127acb95208ef595b20e7c0a0ec9625d",
+      "remote_path": "docs/downloads/gemsdoe32-apart3-h-apart3-1-cfkc-dhc-37654-20261027T215000Z-9dedadfc-nan.tif",
+      "blob_sha": "5de7781a15b6727adc975ece16f43e7bb93da410",
+      "local_relpath": "data/wbg4_sister_peers/ApartGEMSDOE3__docs__downloads__gemsdoe32-apart3-h-apart3-1-cfkc-dhc-37654-20261027T215000Z-9dedadfc-nan.tif",
+      "bytes": 352163,
+      "sha256": "b0855f1a0a8f7da8dc39c076d747e49d0601414e5e6e03fbfbcbc681f5610e88"
+    },
+    {
+      "repo": "apartanish22-droid/ApartGEMSDOE3",
+      "commit": "91461848127acb95208ef595b20e7c0a0ec9625d",
+      "remote_path": "docs/downloads/gemsdoe32-apart3-h-apart3-1-cfkc-dhc-37654-20261027T215000Z-9dedadfc-zeros.tif",
+      "blob_sha": "db717c21b01726c931c59752c7c591fe141f5e8f",
+      "local_relpath": "data/wbg4_sister_peers/ApartGEMSDOE3__docs__downloads__gemsdoe32-apart3-h-apart3-1-cfkc-dhc-37654-20261027T215000Z-9dedadfc-zeros.tif",
+      "bytes": 216370,
+      "sha256": "afbfee1f46d6d3ca16297904cadf29d9cf9327d2ec5519e37f472c85bfaec065"
+    },
+    {
+      "repo": "apartanish22-droid/ApartGEMSDOE3",
+      "commit": "91461848127acb95208ef595b20e7c0a0ec9625d",
+      "remote_path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "blob_sha": "17a76895f68174cc93f3cb1597d25686f6d6bc67",
+      "local_relpath": "data/wbg4_sister_peers/ApartGEMSDOE3__docs__downloads__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "bytes": 219065,
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "data/scored/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "blob_sha": "81c802618e6d46c6d62289d856ae74439439bbc6",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__data__scored__13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "bytes": 1706456,
+      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "data/scored/8GEMSDOE_Hedge-v2_submission.tif",
+      "blob_sha": "a941209b008d507526b11d483a057d9ba66e5343",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__data__scored__8GEMSDOE_Hedge-v2_submission.tif",
+      "bytes": 736494,
+      "sha256": "052688eafbc7a55d90caab72252a50304fe5caa8ecf973f8e791b4ae910f0792"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "data/scored/gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+      "blob_sha": "b4952f0f7fe75127665e24e9cdce01e7a6db6ca0",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__data__scored__gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+      "bytes": 1772935,
+      "sha256": "1381e784fb8b8340beffd0e735ac9eea89ad35d1a807f8a9bab5506e3fc8275e"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "data/scored/gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
+      "blob_sha": "7b158eb8dc03955d27b2c4c14927ca98cfa4b090",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__data__scored__gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
+      "bytes": 1620739,
+      "sha256": "7637b72d4c6c3e10226bf46bd72a20272d62ccbe29743062632d10b158b49c58"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "data/scored/gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+      "blob_sha": "2d4e3ae4ddc590b659f501b94ac7d6516cede538",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__data__scored__gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+      "bytes": 1718028,
+      "sha256": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "data/scored/gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+      "blob_sha": "7765426a0e903152d7bc02edcaf5e3c00351f0f3",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__data__scored__gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+      "bytes": 1716768,
+      "sha256": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "data/scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+      "blob_sha": "5d1a920f40fa3a589e91248c1309761e44d45da8",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__data__scored__gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+      "bytes": 1712322,
+      "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "data/scored/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "blob_sha": "cc1752f2ea48b23bd41232c1fdcdceb5f439e401",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__data__scored__gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "bytes": 1632732,
+      "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "data/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "blob_sha": "c8d3a46481152bbdfd61b113484be979fde9d4c6",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__data__scored__gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "bytes": 1603424,
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "data/scored/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "blob_sha": "c64e48b8bece14391fb59c1969c42c7efd718d39",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__data__scored__gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "bytes": 1635084,
+      "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "data/scored/gemsdoe-ens12-adopted-7f00890a.tif",
+      "blob_sha": "812e61b74050d1350cc2bde1fab0c76ead32e0c4",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__data__scored__gemsdoe-ens12-adopted-7f00890a.tif",
+      "bytes": 570890,
+      "sha256": "7f00890a62878d612fb5eef67a9a364a2df819433dde74b6762ce4fc0fc4fe15"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "data/scored/gemsdoe9-PLACEHOLDER-2314b599.tif",
+      "blob_sha": "8de2e9ba01c7a12e22b936075c83ec1c8aa36eea",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__data__scored__gemsdoe9-PLACEHOLDER-2314b599.tif",
+      "bytes": 439456,
+      "sha256": "2314b59920bfeeaf6a592d4868b25eca62212825620f9945723c2f6d0a2e5b22"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "docs/downloads/gemsdoe32-h-unq1-blind-stepover-radiometric-conduit-dots-20261027T170959Z-339ac2dd-nan.tif",
+      "blob_sha": "16c8ee137f66d97f3688f9d81950f42727dba88a",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__docs__downloads__gemsdoe32-h-unq1-blind-stepover-radiometric-conduit-dots-20261027T170959Z-339ac2dd-nan.tif",
+      "bytes": 569346,
+      "sha256": "f634f30f9a9c7971ee9ceb37dcb56f18300e7f36d1f33338f6fefc9207f3f8a3"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "docs/downloads/gemsdoe32-h-unq1-blind-stepover-radiometric-conduit-dots-20261027T170959Z-339ac2dd-zeros.tif",
+      "blob_sha": "b4dc524a505e2d8e48735da1292aad571f82f81a",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__docs__downloads__gemsdoe32-h-unq1-blind-stepover-radiometric-conduit-dots-20261027T170959Z-339ac2dd-zeros.tif",
+      "bytes": 433656,
+      "sha256": "df92cfc2a5341623ecb1f1a71f21ca77e5754b65391344440e16e62bef5251d0"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "blob_sha": "17a76895f68174cc93f3cb1597d25686f6d6bc67",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__docs__downloads__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "bytes": 219065,
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "docs/downloads/gemsdoe32-kanler1-ocda-mscs-exp3-37654d-20261027T1842Z-1db32b55-nan.tif",
+      "blob_sha": "a3177236a6f76ad5b6a247044824ec58c6987003",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__docs__downloads__gemsdoe32-kanler1-ocda-mscs-exp3-37654d-20261027T1842Z-1db32b55-nan.tif",
+      "bytes": 360003,
+      "sha256": "06ccd852475120cbdff86732252478096c821babe6e608aae9e66945cc7c4bb2"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "docs/downloads/gemsdoe32-kanler1-ocda-mscs-exp3-37654d-20261027T1842Z-1db32b55-zeros.tif",
+      "blob_sha": "ad5033f58649f5409c2d779380d820c37f140a2d",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__docs__downloads__gemsdoe32-kanler1-ocda-mscs-exp3-37654d-20261027T1842Z-1db32b55-zeros.tif",
+      "bytes": 222879,
+      "sha256": "ec9b920ac059518f0a2382f08cbe3bc2b6074d1a302e9f25cd8a79abd97c8564"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "docs/downloads/kanler-mplc-hgb-37654-20261026-0741963ae4e9-zeros.tif",
+      "blob_sha": "973cfc4ef851e284a188eb7ea2cabf99d39c5808",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__docs__downloads__kanler-mplc-hgb-37654-20261026-0741963ae4e9-zeros.tif",
+      "bytes": 128469,
+      "sha256": "fe4b8d742c1b12f60727ae22d4ae2dd96e6bfcb76b7f35e985d0e707bb816db3"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "docs/downloads/kanlergemsdoe1-concord5-b2-37654-research-20261027T171958Z-5dde8074-nan.tif",
+      "blob_sha": "1021d1efb3b29a6b8525c9ab62b4f6b921b7f19b",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__docs__downloads__kanlergemsdoe1-concord5-b2-37654-research-20261027T171958Z-5dde8074-nan.tif",
+      "bytes": 330961,
+      "sha256": "5dbcda95cecc8080de3e751e3b296a38638a1eff3e91406b6e319d55cbc970b1"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "docs/downloads/kanlergemsdoe1-concord5-b2-37654-research-20261027T171958Z-5dde8074-zeros.tif",
+      "blob_sha": "307fb325e78ffca8c07ee5d7a1f7f24a0e47319d",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__docs__downloads__kanlergemsdoe1-concord5-b2-37654-research-20261027T171958Z-5dde8074-zeros.tif",
+      "bytes": 197050,
+      "sha256": "ed4359e4d70e153ac041692a958e6b5acf08111071f43fce0881818b2241f609"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "docs/downloads/kanlergemsdoe1-h1-iedr-s3p17-b2-32000-20261026T214518Z-fe519ae3-nan.tif",
+      "blob_sha": "e3a3cca1121ba8985f17b78db1d981af6165cb93",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__docs__downloads__kanlergemsdoe1-h1-iedr-s3p17-b2-32000-20261026T214518Z-fe519ae3-nan.tif",
+      "bytes": 292782,
+      "sha256": "13ca177a047929e51ea2cbe8aa53290bf5ed696a9141fb5405e93afe4410eea2"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "docs/downloads/kanlergemsdoe1-h1-iedr-s3p17-b2-32000-20261026T214518Z-fe519ae3-zeros.tif",
+      "blob_sha": "f599f8b6522769f54f1ffd0932084cf0cb3fe7b1",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__docs__downloads__kanlergemsdoe1-h1-iedr-s3p17-b2-32000-20261026T214518Z-fe519ae3-zeros.tif",
+      "bytes": 159972,
+      "sha256": "455c3a1780806718c881480228631046cb3090a4734fac54f398c97533a89d39"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "docs/downloads/kanlergemsdoe1-h195field-b2-37654-20261027T171629Z-fc14041c-nan.tif",
+      "blob_sha": "c4784724503e29418e738dc4a2f58e5482a1e456",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__docs__downloads__kanlergemsdoe1-h195field-b2-37654-20261027T171629Z-fc14041c-nan.tif",
+      "bytes": 350786,
+      "sha256": "5a2ebd1e2d7713297c0675c66da5276a1a74e8b08dc41b82a37e05eb292aeae7"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "docs/downloads/kanlergemsdoe1-h195field-b2-37654-20261027T171629Z-fc14041c-zeros.tif",
+      "blob_sha": "e7644da790c411684c81554d877f73bb3784eb3c",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__docs__downloads__kanlergemsdoe1-h195field-b2-37654-20261027T171629Z-fc14041c-zeros.tif",
+      "bytes": 214220,
+      "sha256": "bafc1f55d75ac9cb2dc2cd60f04734fc860f8cc2b151c9ec234914bb75df72f4"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "docs/downloads/kanlergemsdoe1-h2-htsi-s3p17-b2-32000-20261026T214518Z-571145eb-nan.tif",
+      "blob_sha": "c90964003b1ab281fa72f6bc4005472a5875417c",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__docs__downloads__kanlergemsdoe1-h2-htsi-s3p17-b2-32000-20261026T214518Z-571145eb-nan.tif",
+      "bytes": 271960,
+      "sha256": "397e2c9b89edd62ecc2fb38c563317a359b09cdfd3482d131afc0ff9a50483c8"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "docs/downloads/kanlergemsdoe1-h2-htsi-s3p17-b2-32000-20261026T214518Z-571145eb-zeros.tif",
+      "blob_sha": "036dc0d814da8f2af4de707d3b13a6b76d8c7d6e",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__docs__downloads__kanlergemsdoe1-h2-htsi-s3p17-b2-32000-20261026T214518Z-571145eb-zeros.tif",
+      "bytes": 140721,
+      "sha256": "da8d6f42d95ca4a1b525745283f34a47e85d2daf195c08ff8d919003b27522ae"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "docs/downloads/kanlergemsdoe1-h3-condresid-s3p17-b2-32000-20261026T214518Z-42802022-nan.tif",
+      "blob_sha": "3fba2d51e9de0b775560d808deef0821c7a8313c",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__docs__downloads__kanlergemsdoe1-h3-condresid-s3p17-b2-32000-20261026T214518Z-42802022-nan.tif",
+      "bytes": 314803,
+      "sha256": "2737e333ee2fd81f5ceafc5b712f1d26b24b4add7ed1107408c1dd423b999371"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "docs/downloads/kanlergemsdoe1-h3-condresid-s3p17-b2-32000-20261026T214518Z-42802022-zeros.tif",
+      "blob_sha": "c64e487d6480ebd799a2024888fc5d2988f687af",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__docs__downloads__kanlergemsdoe1-h3-condresid-s3p17-b2-32000-20261026T214518Z-42802022-zeros.tif",
+      "bytes": 178610,
+      "sha256": "e5ff0120380fa316ccfa63c27d5383de4d74f963419d41e2ea4418ad73b4c950"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "submissions/cgji_htb_20261027/gemsdoe32-cgji-htb-exp2-oof-hgb-b2-20261027T013000Z-5214b9ec-nan.tif",
+      "blob_sha": "383db64ee1efec43a118b6d67614a20ef444acd3",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__submissions__cgji_htb_20261027__gemsdoe32-cgji-htb-exp2-oof-hgb-b2-20261027T013000Z-5214b9ec-nan.tif",
+      "bytes": 345819,
+      "sha256": "8c5db6b033576adab601393320ab789dbe290490fa67a12efd9d23659655eb11"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE1",
+      "commit": "87d16736aba91cdaf5f9e4e2932335352687e8a6",
+      "remote_path": "submissions/cgji_htb_20261027/gemsdoe32-cgji-htb-exp2-oof-hgb-b2-20261027T013000Z-5214b9ec-zeros.tif",
+      "blob_sha": "112e15cbf9ef994750d6c34a600dd2d6e9da2e1b",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE1__submissions__cgji_htb_20261027__gemsdoe32-cgji-htb-exp2-oof-hgb-b2-20261027T013000Z-5214b9ec-zeros.tif",
+      "bytes": 209216,
+      "sha256": "74035c67056f7727fb16c04b61446f32a2c729fcf5d711a3b666761e56fcbffe"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/36GEMSDOE-off-catalogue-blind-geothermal-targeting-20261027T234345Z-2ecaae7a056e-nan.tif",
+      "blob_sha": "ee95fb5800de43a842256750fdf0376461502b1d",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__36GEMSDOE-off-catalogue-blind-geothermal-targeting-20261027T234345Z-2ecaae7a056e-nan.tif",
+      "bytes": 1541106,
+      "sha256": "cf402e406adcac7f5f430d933f0c4c263976041df297d4a43a0ac89375dfa6c3"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/36GEMSDOE-off-catalogue-blind-geothermal-targeting-20261027T234345Z-2ecaae7a056e-zeros.tif",
+      "blob_sha": "a034fc2da7c6f6be8021dda8e2a9414db3b634b1",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__36GEMSDOE-off-catalogue-blind-geothermal-targeting-20261027T234345Z-2ecaae7a056e-zeros.tif",
+      "bytes": 781400,
+      "sha256": "0e7e1da78fb80ba3ce0849cd32967836d4f3d73206426d43435fbe3958a446c4"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "blob_sha": "901d9db3f008f0f5c3be9c314524ccc8e95fb43e",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "bytes": 917544,
+      "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/gems24-dprf1-stitched-oof-tworegime-20261026-81849d67c8bf-zeros.tif",
+      "blob_sha": "508313d9da99e2035e14918168c8791b7257d865",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__gems24-dprf1-stitched-oof-tworegime-20261026-81849d67c8bf-zeros.tif",
+      "bytes": 825872,
+      "sha256": "c1257c1d4b5ac9cc0a8e29b0120c614fcaa1f38474bc1f6de98c0a1afb0567f1"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
+      "blob_sha": "6b6d31807e501af4749bbaeb43702450893fd720",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
+      "bytes": 863902,
+      "sha256": "3e0730e8d4f7db095dd80246a98cba3bc0fc9a28f436b91db27ca34df4d0d1ce"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "blob_sha": "cc1752f2ea48b23bd41232c1fdcdceb5f439e401",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "bytes": 1632732,
+      "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "blob_sha": "c8d3a46481152bbdfd61b113484be979fde9d4c6",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "bytes": 1603424,
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+      "blob_sha": "bfb7e86d046dd178c3d6ab60522861b5464dd420",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+      "bytes": 836982,
+      "sha256": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite.tif",
+      "blob_sha": "b6d4e55739b982d2a2486b97886637b61b141767",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite.tif",
+      "bytes": 825820,
+      "sha256": "2c002b02792419864bd3b29a218e543cb41e3f07b3b57c29ef35c6e39e184bfe"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+      "blob_sha": "49ad427035b2267dcd3e8acee10bdc85d5dbe322",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+      "bytes": 866160,
+      "sha256": "a9bf76b57453a5b3af74c8eef837df53c29a0931162aa540b8763220b36ba3bb"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "blob_sha": "c64e48b8bece14391fb59c1969c42c7efd718d39",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "bytes": 1635084,
+      "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
+      "blob_sha": "10b2354d4ac8af863419284f1e694a02db180711",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
+      "bytes": 825430,
+      "sha256": "7c74270ad48fa0b865163853046a6d3815967c5bf37bbda5b74ca7fa22583a32"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "blob_sha": "d0fc9ebbda0b15c31208022dbd124d4b9b112108",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "bytes": 1590848,
+      "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "blob_sha": "a59665a7fad659dcc6a45e5e7e71059586c3247a",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "bytes": 806758,
+      "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif",
+      "blob_sha": "40df0d6d854542aefc00f1fed87d4e9c7719fa63",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif",
+      "bytes": 154580,
+      "sha256": "acd853936e5a7170b207f23411b1844caa0e7cfdfc303c600e520ccfe75159e6"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "blob_sha": "36c2aa32e0bba3d976d1ba76f3fb14903199262d",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "bytes": 199214,
+      "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/gemsdoe31-h31x-piedmont-junction-37654-20261026-5a956da9-zeros.tif",
+      "blob_sha": "294621754b91bcf0b59fd0b8709c68d62bbced06",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__gemsdoe31-h31x-piedmont-junction-37654-20261026-5a956da9-zeros.tif",
+      "bytes": 147703,
+      "sha256": "eff2b18e37378d0f0a2f5c8e22fc68e7c359ee161114502a985135e03dd217f9"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "blob_sha": "17a76895f68174cc93f3cb1597d25686f6d6bc67",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "bytes": 219065,
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "blob_sha": "e79b7bdb633369c724628e30efba6de60c1d25d9",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "bytes": 318190,
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/kanlergems2-darp-exp-1-37654dots-20261027T181633Z-4ad35e71-zeros.tif",
+      "blob_sha": "30fe64ad01e1233042632bcec16df29e72af4e49",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__kanlergems2-darp-exp-1-37654dots-20261027T181633Z-4ad35e71-zeros.tif",
+      "bytes": 347068,
+      "sha256": "3525d308f5b06d5cc04859ad115c35f3676b974c2faf850b9829585dbe934fe6"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/kanlergems2-dslup-uniq-q15k-37654dots-20261027T181253Z-c71122d5-zeros.tif",
+      "blob_sha": "6734b8decef70d266b25fd82ea3984ae15f21f28",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__kanlergems2-dslup-uniq-q15k-37654dots-20261027T181253Z-c71122d5-zeros.tif",
+      "bytes": 217858,
+      "sha256": "8f66f32c56482501808977ac504a0abf517ff75db0af2b56774c0f08d476fbe3"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/kanlergems2-ecpu-exp-1-37654dots-20261027T172822Z-cecbdca7-zeros.tif",
+      "blob_sha": "a3ccf388a47690ac9fa1a0864dd2a30e357506e1",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__kanlergems2-ecpu-exp-1-37654dots-20261027T172822Z-cecbdca7-zeros.tif",
+      "bytes": 203158,
+      "sha256": "5c83f85c72825752c6d320152b9d90f7233de2a181a0acd8ef9d6fd7e569d15d"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/kanlergems2-htcads-exp-2-37654dots-20261026T235227Z-11a2f251-zeros.tif",
+      "blob_sha": "d4f38198f7b9897d1ecece8aff69ef710f7b394f",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__kanlergems2-htcads-exp-2-37654dots-20261026T235227Z-11a2f251-zeros.tif",
+      "bytes": 204099,
+      "sha256": "f482d3bad4b390470be06363b60867c8e42942101271caf4fa82ae3c3975abeb"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/kanlergemsdoe2-kg2-mghv-exp-1-37654-20261026-f5a469e94b14-zeros.tif",
+      "blob_sha": "f4faa336704202acfc91df024675e5cac9381776",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__kanlergemsdoe2-kg2-mghv-exp-1-37654-20261026-f5a469e94b14-zeros.tif",
+      "bytes": 825198,
+      "sha256": "cf1d07726f5fb838dc75d9ffa00d5d6b6da7d5120f0362026ca241d454ce3c6e"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/kanlergemsdoe2-kg2h1-fvca-submod-20261026T235000Z-cab53e1b-zeros.tif",
+      "blob_sha": "8fc0dc09fc6546b414c9f20efb5adba7ae8c3d6e",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__kanlergemsdoe2-kg2h1-fvca-submod-20261026T235000Z-cab53e1b-zeros.tif",
+      "bytes": 827922,
+      "sha256": "29128ad7a9290d2afb008e944ea20171d2224ba0b77ec81aadc2ce416a13491f"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE2",
+      "commit": "ddd13c3ca086ba31a2b75041fac1a47b0336aaa5",
+      "remote_path": "docs/downloads/kanlergemsdoe2-unique-hypothesis1-binary-20261027.tif",
+      "blob_sha": "bc97ed6f790bf6ffbc359cf023d83847c8b9ebc3",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE2__docs__downloads__kanlergemsdoe2-unique-hypothesis1-binary-20261027.tif",
+      "bytes": 758631,
+      "sha256": "f0cb191420da26d19ceccfd65f8987537f714d1b28660f8e3690ff2008a2b539"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE3",
+      "commit": "4aed222ecbdefae9d3b3b3438f2c2964cb743556",
+      "remote_path": "docs/cadg-submod/downloads/kanlergemsdoe3-h-k3-1-cadg-submod-exp-k3-3-oof8f-37654-20261026-9a4ecfd71d00-nan.tif",
+      "blob_sha": "f4a7e333409d4d1dd82c1d27f26249448ef8ca1d",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE3__docs__cadg-submod__downloads__kanlergemsdoe3-h-k3-1-cadg-submod-exp-k3-3-oof8f-37654-20261026-9a4ecfd71d00-nan.tif",
+      "bytes": 1592184,
+      "sha256": "c80ad54827bd56029683b903fedaf7efdc675a0992e97179f2120ae02fb24792"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE3",
+      "commit": "4aed222ecbdefae9d3b3b3438f2c2964cb743556",
+      "remote_path": "docs/cadg-submod/downloads/kanlergemsdoe3-h-k3-1-cadg-submod-exp-k3-3-oof8f-37654-20261026-9a4ecfd71d00-zeros.tif",
+      "blob_sha": "2134ae202df0debf830c880e38386e02fd90dcf9",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE3__docs__cadg-submod__downloads__kanlergemsdoe3-h-k3-1-cadg-submod-exp-k3-3-oof8f-37654-20261026-9a4ecfd71d00-zeros.tif",
+      "bytes": 826834,
+      "sha256": "9f4b590d0bd887632c54ec34c114136d4de52d452de052ba105e35ebfeffe8b5"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE3",
+      "commit": "4aed222ecbdefae9d3b3b3438f2c2964cb743556",
+      "remote_path": "docs/cadg-submod/downloads/kanlergemsdoe3-h-k3-1-cadg-submod-exp-k3-3-oof8f-37654-20261026-f0565e6d10f9-nan.tif",
+      "blob_sha": "2aa6dfc8e843ab1dca87b10f47ab4a8102241523",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE3__docs__cadg-submod__downloads__kanlergemsdoe3-h-k3-1-cadg-submod-exp-k3-3-oof8f-37654-20261026-f0565e6d10f9-nan.tif",
+      "bytes": 1592260,
+      "sha256": "0781274598b0e60f665e0a6d02791b8e0bd57f187f3718130ba33afbd462e674"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE3",
+      "commit": "4aed222ecbdefae9d3b3b3438f2c2964cb743556",
+      "remote_path": "docs/cadg-submod/downloads/kanlergemsdoe3-h-k3-1-cadg-submod-exp-k3-3-oof8f-37654-20261026-f0565e6d10f9-zeros.tif",
+      "blob_sha": "6039ebe4f5b0cc8dafa852956aab593be3ecc068",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE3__docs__cadg-submod__downloads__kanlergemsdoe3-h-k3-1-cadg-submod-exp-k3-3-oof8f-37654-20261026-f0565e6d10f9-zeros.tif",
+      "bytes": 826994,
+      "sha256": "bc019ae673a9d5ca1fe40e968759a2af8ae757a110599b66fc949c4f59961fba"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE3",
+      "commit": "4aed222ecbdefae9d3b3b3438f2c2964cb743556",
+      "remote_path": "docs/candidate_downloads/kanlergemsdoe3-poisson-offcat-37654-20261027-260ce28e-zeros.tif",
+      "blob_sha": "db52f5bf50e981b6d011b694464ce0a90be7ecf1",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE3__docs__candidate_downloads__kanlergemsdoe3-poisson-offcat-37654-20261027-260ce28e-zeros.tif",
+      "bytes": 794343,
+      "sha256": "260ce28e856d61e62a6c5ed96303bbaa25e8a298b7d8073d0d1632efd5887e0d"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE3",
+      "commit": "4aed222ecbdefae9d3b3b3438f2c2964cb743556",
+      "remote_path": "docs/candidate_downloads/kanlergemsdoe3-poisson-offcat-37654-20261027-8b1c135f-nan.tif",
+      "blob_sha": "0b6a9b9ac7fee7afb4ec077199ab8555d5c421b8",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE3__docs__candidate_downloads__kanlergemsdoe3-poisson-offcat-37654-20261027-8b1c135f-nan.tif",
+      "bytes": 1559383,
+      "sha256": "8b1c135f155256646d600f89a45ef0c9d99a19a7816f212cf1b6ce55675950ac"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE3",
+      "commit": "4aed222ecbdefae9d3b3b3438f2c2964cb743556",
+      "remote_path": "docs/downloads/kanler3-gpc3-exp-2-20261026T215945Z-84217adc42be-zeros.tif",
+      "blob_sha": "a20846dce0cc7d4bcbe654fb6b71e6f3099a3a88",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE3__docs__downloads__kanler3-gpc3-exp-2-20261026T215945Z-84217adc42be-zeros.tif",
+      "bytes": 826230,
+      "sha256": "16ec0585a884224460f0e5d09e7448a54ab5a3348db92279452a9a4e0453b0f7"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE3",
+      "commit": "4aed222ecbdefae9d3b3b3438f2c2964cb743556",
+      "remote_path": "docs/downloads/kanler3-k3h1-asgt-hybrid-48559-20261026T2226Z-7ecb7b69-zeros.tif",
+      "blob_sha": "b8654cd8cc31adf1f610e693f628b0814fa59490",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE3__docs__downloads__kanler3-k3h1-asgt-hybrid-48559-20261026T2226Z-7ecb7b69-zeros.tif",
+      "bytes": 172965,
+      "sha256": "4a5b0b480be26df52f77b735487cbe5af192262587237b6514d520dc2698b01f"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE3",
+      "commit": "4aed222ecbdefae9d3b3b3438f2c2964cb743556",
+      "remote_path": "docs/downloads/kanlergems3-h1-dcap-lhc-37654-20261026-431237cf-nan.tif",
+      "blob_sha": "9e93ccbb33e0f523e1646637cbbdd12ce2deb08c",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE3__docs__downloads__kanlergems3-h1-dcap-lhc-37654-20261026-431237cf-nan.tif",
+      "bytes": 351761,
+      "sha256": "97279cabe47a7e81eb47dc4caa1cbf0fd3143b451beb3a3440032e504f8a8db5"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE3",
+      "commit": "4aed222ecbdefae9d3b3b3438f2c2964cb743556",
+      "remote_path": "docs/downloads/kanlergems3-h1-dcap-lhc-37654-20261026-431237cf-zeros.tif",
+      "blob_sha": "cb12b8e81f3b187b78face3293fcfb66233985e0",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE3__docs__downloads__kanlergems3-h1-dcap-lhc-37654-20261026-431237cf-zeros.tif",
+      "bytes": 139196,
+      "sha256": "5e5a7b2925876a86473a50d523ee2d31b18da8b17809dcb00fa075cf817ea386"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE3",
+      "commit": "4aed222ecbdefae9d3b3b3438f2c2964cb743556",
+      "remote_path": "docs/ssp1/downloads/gemsdoe32-kanler3-ssp1-e1-RESEARCH-20261026T220043Z-fbab7ef5-nan.tif",
+      "blob_sha": "41ea1ac85052497b1171742557f85fe72840875b",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE3__docs__ssp1__downloads__gemsdoe32-kanler3-ssp1-e1-RESEARCH-20261026T220043Z-fbab7ef5-nan.tif",
+      "bytes": 336301,
+      "sha256": "4be55587f07cdd347860b23c4f4c6f024d698da50d03586df2d0022d8255b67a"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE3",
+      "commit": "4aed222ecbdefae9d3b3b3438f2c2964cb743556",
+      "remote_path": "docs/ssp1/downloads/gemsdoe32-kanler3-ssp1-e1-RESEARCH-20261026T220043Z-fbab7ef5-zeros.tif",
+      "blob_sha": "d0ada26c76e162476a9f4eb5d6c4a94f21d567a4",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE3__docs__ssp1__downloads__gemsdoe32-kanler3-ssp1-e1-RESEARCH-20261026T220043Z-fbab7ef5-zeros.tif",
+      "bytes": 201555,
+      "sha256": "4e88158e8859416b874cc424dc106847f8eaab474794bbb1716e273f57839a27"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE3",
+      "commit": "4aed222ecbdefae9d3b3b3438f2c2964cb743556",
+      "remote_path": "studies/ssp1/docs/downloads/gemsdoe32-kanler3-ssp1-e1-RESEARCH-20261026T220043Z-fbab7ef5-nan.tif",
+      "blob_sha": "41ea1ac85052497b1171742557f85fe72840875b",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE3__studies__ssp1__docs__downloads__gemsdoe32-kanler3-ssp1-e1-RESEARCH-20261026T220043Z-fbab7ef5-nan.tif",
+      "bytes": 336301,
+      "sha256": "4be55587f07cdd347860b23c4f4c6f024d698da50d03586df2d0022d8255b67a"
+    },
+    {
+      "repo": "kanlerxz87-cyber/KANLERGEMSDOE3",
+      "commit": "4aed222ecbdefae9d3b3b3438f2c2964cb743556",
+      "remote_path": "studies/ssp1/docs/downloads/gemsdoe32-kanler3-ssp1-e1-RESEARCH-20261026T220043Z-fbab7ef5-zeros.tif",
+      "blob_sha": "d0ada26c76e162476a9f4eb5d6c4a94f21d567a4",
+      "local_relpath": "data/wbg4_sister_peers/KANLERGEMSDOE3__studies__ssp1__docs__downloads__gemsdoe32-kanler3-ssp1-e1-RESEARCH-20261026T220043Z-fbab7ef5-zeros.tif",
+      "bytes": 201555,
+      "sha256": "4e88158e8859416b874cc424dc106847f8eaab474794bbb1716e273f57839a27"
+    },
+    {
+      "repo": "karagemop466-tech/GEMSDOEkarage1",
+      "commit": "65c07db29591228add2a216542607234156aab30",
+      "remote_path": "archive/cda1-demonstrator/docs/downloads/gemsdoe-karage1-cda1-channel-deflection-knickpoint-37654-20261027-7a3f9c2d1e8b-nan.tif",
+      "blob_sha": "41462517ce50f9fdcc1866112c153e108e7cec89",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOEkarage1__archive__cda1-demonstrator__docs__downloads__gemsdoe-karage1-cda1-channel-deflection-knickpoint-37654-20261027-7a3f9c2d1e8b-nan.tif",
+      "bytes": 177709,
+      "sha256": "f91ffb3f18adf21fee7c033d2841d59027a921d74bc6c13ca7f8a03788c44973"
+    },
+    {
+      "repo": "karagemop466-tech/GEMSDOEkarage1",
+      "commit": "65c07db29591228add2a216542607234156aab30",
+      "remote_path": "archive/cda1-demonstrator/docs/downloads/gemsdoe-karage1-cda1-channel-deflection-knickpoint-37654-20261027-7a3f9c2d1e8b-zeros.tif",
+      "blob_sha": "17df5f4bfda956ea573722b491edc699f34e37ce",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOEkarage1__archive__cda1-demonstrator__docs__downloads__gemsdoe-karage1-cda1-channel-deflection-knickpoint-37654-20261027-7a3f9c2d1e8b-zeros.tif",
+      "bytes": 133661,
+      "sha256": "753b8d47f951894240a80826e8100216c5e84613caf3d2596272d26a1b85c120"
+    },
+    {
+      "repo": "karagemop466-tech/GEMSDOEkarage1",
+      "commit": "65c07db29591228add2a216542607234156aab30",
+      "remote_path": "archive/prototype/docs/downloads/gemsdoe-unique-hunq1-20261027T210333Z-d880eae3246b-dots.tif",
+      "blob_sha": "b4eb5485d5eb8f58dc776b9154c6102cd553d5bb",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOEkarage1__archive__prototype__docs__downloads__gemsdoe-unique-hunq1-20261027T210333Z-d880eae3246b-dots.tif",
+      "bytes": 122032,
+      "sha256": "8fc2f9e1f17f57bf09432433446550a8d02aa2c8ddad35e6db4dd5cf925dd23c"
+    },
+    {
+      "repo": "karagemop466-tech/GEMSDOEkarage1",
+      "commit": "65c07db29591228add2a216542607234156aab30",
+      "remote_path": "archive/prototype/docs/downloads/gemsdoe-unique-hunq1-20261027T210333Z-d880eae3246b-zeros.tif",
+      "blob_sha": "b780167cfc41f7e5c369b9d3877227b295806991",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOEkarage1__archive__prototype__docs__downloads__gemsdoe-unique-hunq1-20261027T210333Z-d880eae3246b-zeros.tif",
+      "bytes": 36133986,
+      "sha256": "642a6369a3a7e9a5c5761983e110c60a6abbc196abd339985e11da351d3e5c4b"
+    },
+    {
+      "repo": "karagemop466-tech/GEMSDOEkarage1",
+      "commit": "65c07db29591228add2a216542607234156aab30",
+      "remote_path": "docs/downloads/gemsk1-gpcz-polarity-damagezone-36000dots-20261027T213002Z-636ed4c9-nan.tif",
+      "blob_sha": "82ec96b7ce5a2a4466a342510bccdd32dc5434fa",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOEkarage1__docs__downloads__gemsk1-gpcz-polarity-damagezone-36000dots-20261027T213002Z-636ed4c9-nan.tif",
+      "bytes": 212775,
+      "sha256": "c08ef4c84f1262fe6d775ee062950bfa7bb34fbca49ce912c08c4103d8e789b9"
+    },
+    {
+      "repo": "karagemop466-tech/GEMSDOEkarage1",
+      "commit": "65c07db29591228add2a216542607234156aab30",
+      "remote_path": "docs/downloads/gemsk1-gpcz-polarity-damagezone-36000dots-20261027T213002Z-636ed4c9-zeros.tif",
+      "blob_sha": "7f4a8d72650c4f685afd9ce34e711225746495dd",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOEkarage1__docs__downloads__gemsk1-gpcz-polarity-damagezone-36000dots-20261027T213002Z-636ed4c9-zeros.tif",
+      "bytes": 141275,
+      "sha256": "75ac577a9131f6837b2de28be8932c326d1083bb46fcaebc1efc28e177526dbd"
+    },
+    {
+      "repo": "karagemop466-tech/GEMSDOEkarage1",
+      "commit": "65c07db29591228add2a216542607234156aab30",
+      "remote_path": "docs/downloads/karage1-hmas-sinter-dualcover-sep29-20261027T220000Z-zeros.tif",
+      "blob_sha": "4b11169126c0450bec3b02bcd7ab0e258414b1cc",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOEkarage1__docs__downloads__karage1-hmas-sinter-dualcover-sep29-20261027T220000Z-zeros.tif",
+      "bytes": 142885,
+      "sha256": "198076f81067353c3ee41d947c7830ef11db2e8128bc5f8c5bd20ef036736f76"
+    },
+    {
+      "repo": "karagemop466-tech/GEMSDOEkarage2",
+      "commit": "690d7dd51ae458969e82fb62855babcf90a55437",
+      "remote_path": "docs/downloads/gemsdoe-karage2-hkarage1-irregular-submodular-15000d-6a3f542a-zeros.tif",
+      "blob_sha": "acce8a1e789ad4f876e240b462a7ae8a68644913",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOEkarage2__docs__downloads__gemsdoe-karage2-hkarage1-irregular-submodular-15000d-6a3f542a-zeros.tif",
+      "bytes": 735586,
+      "sha256": "28451a64b659b4e206bb483140fac169987db2edea7dc6a2cdc54f1c0f5fbfff"
+    },
+    {
+      "repo": "karagemop466-tech/GEMSDOEkarage2",
+      "commit": "690d7dd51ae458969e82fb62855babcf90a55437",
+      "remote_path": "docs/downloads/gemsdoekarage2-h1-parity-1ab65e3fb345-DO-NOT-SUBMIT-surface.tif",
+      "blob_sha": "111fb7b2c41266149b0a3cdc0e95696cb271b968",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOEkarage2__docs__downloads__gemsdoekarage2-h1-parity-1ab65e3fb345-DO-NOT-SUBMIT-surface.tif",
+      "bytes": 7379948,
+      "sha256": "a80d59a671eccfc5d312f98901f6a3d426cd49662f847ff6d4f2375db52a7ede"
+    },
+    {
+      "repo": "karagemop466-tech/GEMSDOEkarage3",
+      "commit": "ad17f0a45859a54d261d1246249bb205dfa33f88",
+      "remote_path": "docs/downloads/gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif",
+      "blob_sha": "f3597b20686132dbbecec91bf31ecd05d699f643",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOEkarage3__docs__downloads__gemskarage3-h-k3-1-crsb-gub-maxenv-d30-20261027T180000Z-1560731a-zeros.tif",
+      "bytes": 212468,
+      "sha256": "2a1fed302d1fe1c556c86467ef687782d30eedf5361eff57a711ae5925a237c3"
+    },
+    {
+      "repo": "karagemop466-tech/GEMSDOEkarage3",
+      "commit": "ad17f0a45859a54d261d1246249bb205dfa33f88",
+      "remote_path": "docs/downloads/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-nan.tif",
+      "blob_sha": "dbbc82ba8a8af097044cd5ad6985ce25c362f9ca",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOEkarage3__docs__downloads__karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-nan.tif",
+      "bytes": 329230,
+      "sha256": "04cdc5fe41fdc5ef1b148cf8352015d25d37763f1f847838f0f96cd0d342a993"
+    },
+    {
+      "repo": "karagemop466-tech/GEMSDOEkarage3",
+      "commit": "ad17f0a45859a54d261d1246249bb205dfa33f88",
+      "remote_path": "docs/downloads/karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros.tif",
+      "blob_sha": "18d7acb990efe059f27563a6b0f13f3b0fc17e87",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOEkarage3__docs__downloads__karage3-k3-fuse-greedy-b2-20261027T212847Z-80117cd2-zeros.tif",
+      "bytes": 196536,
+      "sha256": "9b2656c4a7afb9969df7ee93bbf4e9b4fa8f313465964d79fc9194718f95fafa"
+    },
+    {
+      "repo": "sassnarep3-star/GEMSDOESASS1",
+      "commit": "7f87fc64ddedb259f898eed17daa0bfc11cc0d7b",
+      "remote_path": "archive/parallel-main-2f67fac/original/docs/downloads/gemsdoesass1-hybrid-blindpiedmont-dispersed-37654-20261027T113459Z-cbceb1d0-nan.tif",
+      "blob_sha": "76bf6f72aa7f0bf7fdc258070183fc7bc78dfd6b",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOESASS1__archive__parallel-main-2f67fac__original__docs__downloads__gemsdoesass1-hybrid-blindpiedmont-dispersed-37654-20261027T113459Z-cbceb1d0-nan.tif",
+      "bytes": 1558039,
+      "sha256": "ddd12d0d3e3f94dee8b85a5df3c6bb6509e6a3d7c6ea83e78e8afa293ead1189"
+    },
+    {
+      "repo": "sassnarep3-star/GEMSDOESASS1",
+      "commit": "7f87fc64ddedb259f898eed17daa0bfc11cc0d7b",
+      "remote_path": "archive/parallel-main-2f67fac/original/docs/downloads/gemsdoesass1-hybrid-blindpiedmont-dispersed-37654-20261027T113459Z-cbceb1d0-zeros.tif",
+      "blob_sha": "a8348faa314515d2c279a88716133b7792c2b54e",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOESASS1__archive__parallel-main-2f67fac__original__docs__downloads__gemsdoesass1-hybrid-blindpiedmont-dispersed-37654-20261027T113459Z-cbceb1d0-zeros.tif",
+      "bytes": 793296,
+      "sha256": "50b1350dd92cde3af8bd85f13f39f7feb8c82416f095df281cd8c5291dbb1274"
+    },
+    {
+      "repo": "sassnarep3-star/GEMSDOESASS1",
+      "commit": "7f87fc64ddedb259f898eed17daa0bfc11cc0d7b",
+      "remote_path": "archive/parallel-main-f620a70/original/docs/downloads/gemsdoesass1-hybrid-blindpiedmont-dispersed-37654-20261027T113459Z-cbceb1d0-nan.tif",
+      "blob_sha": "76bf6f72aa7f0bf7fdc258070183fc7bc78dfd6b",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOESASS1__archive__parallel-main-f620a70__original__docs__downloads__gemsdoesass1-hybrid-blindpiedmont-dispersed-37654-20261027T113459Z-cbceb1d0-nan.tif",
+      "bytes": 1558039,
+      "sha256": "ddd12d0d3e3f94dee8b85a5df3c6bb6509e6a3d7c6ea83e78e8afa293ead1189"
+    },
+    {
+      "repo": "sassnarep3-star/GEMSDOESASS1",
+      "commit": "7f87fc64ddedb259f898eed17daa0bfc11cc0d7b",
+      "remote_path": "archive/parallel-main-f620a70/original/docs/downloads/gemsdoesass1-hybrid-blindpiedmont-dispersed-37654-20261027T113459Z-cbceb1d0-zeros.tif",
+      "blob_sha": "a8348faa314515d2c279a88716133b7792c2b54e",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOESASS1__archive__parallel-main-f620a70__original__docs__downloads__gemsdoesass1-hybrid-blindpiedmont-dispersed-37654-20261027T113459Z-cbceb1d0-zeros.tif",
+      "bytes": 793296,
+      "sha256": "50b1350dd92cde3af8bd85f13f39f7feb8c82416f095df281cd8c5291dbb1274"
+    },
+    {
+      "repo": "sassnarep3-star/GEMSDOESASS1",
+      "commit": "7f87fc64ddedb259f898eed17daa0bfc11cc0d7b",
+      "remote_path": "swgb/downloads/gemsass1-swgb-hrv2-44090dots-20261027T122104Z-f9b3f764-zeros.tif",
+      "blob_sha": "a5991ea13915e7b0843c1bff59570bcb16cf2509",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOESASS1__swgb__downloads__gemsass1-swgb-hrv2-44090dots-20261027T122104Z-f9b3f764-zeros.tif",
+      "bytes": 152542,
+      "sha256": "f98c20df5bc67a482de6debd4abef9d3d104498bda0aacf464d693e271287729"
+    },
+    {
+      "repo": "sassnarep3-star/GEMSDOESASS2",
+      "commit": "3b21e4e9bf70458c91ae9e6c41dbfb6688f3f957",
+      "remote_path": "docs/downloads/gemsass2-ass2-altedge-hgb-44090-20261027-cc854482215e-zeros.tif",
+      "blob_sha": "974fd04e4e3bd4d1f83e95db22c7aac0798de95d",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOESASS2__docs__downloads__gemsass2-ass2-altedge-hgb-44090-20261027-cc854482215e-zeros.tif",
+      "bytes": 161119,
+      "sha256": "cc854482215ec665a17175447474066e3418692c9604f150cc4f5459dc459707"
+    },
+    {
+      "repo": "sassnarep3-star/GEMSDOESASS2",
+      "commit": "3b21e4e9bf70458c91ae9e6c41dbfb6688f3f957",
+      "remote_path": "docs/downloads/gemsdoesass2-hvfd-exp3-hydrocollinear-37654-20261027T120000Z-fc98343e-zeros.tif",
+      "blob_sha": "3ef86c3649c6fd58b455f1a8b1f7007f753cedab",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOESASS2__docs__downloads__gemsdoesass2-hvfd-exp3-hydrocollinear-37654-20261027T120000Z-fc98343e-zeros.tif",
+      "bytes": 154994,
+      "sha256": "28bb9419d592797dcac1bfb1eb19fcffa7581a51718230f1f4f957a3e3d610d6"
+    },
+    {
+      "repo": "sassnarep3-star/GEMSDOESASS2",
+      "commit": "3b21e4e9bf70458c91ae9e6c41dbfb6688f3f957",
+      "remote_path": "docs/downloads/gemsdoesass2-scu1-scarpcorridor-uth-37000-20261027T120000Z-nan.tif",
+      "blob_sha": "900e66c7bc7d039c7337a25bf78f06a6963b0906",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOESASS2__docs__downloads__gemsdoesass2-scu1-scarpcorridor-uth-37000-20261027T120000Z-nan.tif",
+      "bytes": 334740,
+      "sha256": "00a357c15a823c06fa9751c29813206a1d4582b1c0b7be1f6d48641e24f38b7d"
+    },
+    {
+      "repo": "sassnarep3-star/GEMSDOESASS2",
+      "commit": "3b21e4e9bf70458c91ae9e6c41dbfb6688f3f957",
+      "remote_path": "docs/downloads/gemsdoesass2-scu1-scarpcorridor-uth-37000-20261027T120000Z-zeros.tif",
+      "blob_sha": "de837f913b9e7dfc0649da48b7e27241fdee05ba",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOESASS2__docs__downloads__gemsdoesass2-scu1-scarpcorridor-uth-37000-20261027T120000Z-zeros.tif",
+      "bytes": 294215,
+      "sha256": "0ab88d8ab85c9bbfc690557bca0e8bf6d92dcd7657825306c9eaf294dab3fe6d"
+    },
+    {
+      "repo": "sassnarep3-star/GEMSDOESASS2",
+      "commit": "3b21e4e9bf70458c91ae9e6c41dbfb6688f3f957",
+      "remote_path": "docs/downloads/gemsdoesass2-thermo-tilt-conduit-37654-20261027T113705Z-d8f85365-nan.tif",
+      "blob_sha": "078658c83c3c42397387a671bbc98eea13db0ef2",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOESASS2__docs__downloads__gemsdoesass2-thermo-tilt-conduit-37654-20261027T113705Z-d8f85365-nan.tif",
+      "bytes": 310549,
+      "sha256": "85851954533959157063991d50b942d9f546d3089ce943e3b10fc7a76a0a9130"
+    },
+    {
+      "repo": "sassnarep3-star/GEMSDOESASS2",
+      "commit": "3b21e4e9bf70458c91ae9e6c41dbfb6688f3f957",
+      "remote_path": "docs/downloads/gemsdoesass2-thermo-tilt-conduit-37654-20261027T113705Z-d8f85365-zeros.tif",
+      "blob_sha": "1ea46cf2d393bf58f4ff8b19e0e872ef910be4f7",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOESASS2__docs__downloads__gemsdoesass2-thermo-tilt-conduit-37654-20261027T113705Z-d8f85365-zeros.tif",
+      "bytes": 257720,
+      "sha256": "b8be5398deea3c71c301fdb0732c234159da78746666e0cdcb51f4df090e6fe8"
+    },
+    {
+      "repo": "sassnarep3-star/GEMSDOESASS2",
+      "commit": "3b21e4e9bf70458c91ae9e6c41dbfb6688f3f957",
+      "remote_path": "docs/downloads/gemsdoesass2-xghf-dualhorizon-aniso-b2-37654-20261027T131341Z-e7996841-nan.tif",
+      "blob_sha": "51741a8ba5b501b0b0464276e4838d9dd03611e9",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOESASS2__docs__downloads__gemsdoesass2-xghf-dualhorizon-aniso-b2-37654-20261027T131341Z-e7996841-nan.tif",
+      "bytes": 195110,
+      "sha256": "6363d02f75fd2c79bbd3422b71db37625d856360d098df2107834aab55775320"
+    },
+    {
+      "repo": "sassnarep3-star/GEMSDOESASS2",
+      "commit": "3b21e4e9bf70458c91ae9e6c41dbfb6688f3f957",
+      "remote_path": "docs/downloads/gemsdoesass2-xghf-dualhorizon-aniso-b2-37654-20261027T131341Z-e7996841-zeros.tif",
+      "blob_sha": "2a4a79d381dacd9538c8a781df45389645686c06",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOESASS2__docs__downloads__gemsdoesass2-xghf-dualhorizon-aniso-b2-37654-20261027T131341Z-e7996841-zeros.tif",
+      "bytes": 165398,
+      "sha256": "2a122a409c7a7d5977a311dce271d6f333f21a697cd9effd59b45c6c0f0e8ec7"
+    },
+    {
+      "repo": "sassnarep3-star/GEMSDOESASS3",
+      "commit": "86874b72302197a78eb8ad5edbf413acf1c02efe",
+      "remote_path": "docs/downloads/gemsdoesass3-gsdhua3-sar-deconf-37654-20261027-74f544e862fd-zeros.tif",
+      "blob_sha": "382c9eafd39b6364a8ff8deffce3d0a797e783ba",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOESASS3__docs__downloads__gemsdoesass3-gsdhua3-sar-deconf-37654-20261027-74f544e862fd-zeros.tif",
+      "bytes": 121706,
+      "sha256": "250b22eaf2411c75c8587ffb8c7747f0f2f942e2c6a4a219b1371b340d4403fb"
+    },
+    {
+      "repo": "sassnarep3-star/GEMSDOESASS3",
+      "commit": "86874b72302197a78eb8ad5edbf413acf1c02efe",
+      "remote_path": "docs/downloads/gemsdoesass3-lwst-geoconduit-dual37654-20261027T120000Z-a9ad3386-zeros.tif",
+      "blob_sha": "8051b5ae278b7f010361c821e2b69146ab9abfca",
+      "local_relpath": "data/wbg4_sister_peers/GEMSDOESASS3__docs__downloads__gemsdoesass3-lwst-geoconduit-dual37654-20261027T120000Z-a9ad3386-zeros.tif",
+      "bytes": 211511,
+      "sha256": "bc9109d9dd22d2f7193bafca7366acdf9432bfda7a393eb96d8fd8b48c0ed84a"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE2",
+      "commit": "fc8e265e6c8925080fc0b802a4151326d52d294d",
+      "remote_path": "docs/downloads/cbs/wbg2-d19dotted-38000dots-20261027T191824Z-cb2f6ff4-zeros.tif",
+      "blob_sha": "37a44368f49500527e6b2561b0477b0b56eee5e6",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE2__docs__downloads__cbs__wbg2-d19dotted-38000dots-20261027T191824Z-cb2f6ff4-zeros.tif",
+      "bytes": 148363,
+      "sha256": "7c9915f6f5c8bb3fa9145b7ca310b3cb778f7d2d8f9bf5ddd412165d20be6a36"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE2",
+      "commit": "fc8e265e6c8925080fc0b802a4151326d52d294d",
+      "remote_path": "docs/downloads/dphs/wbg2-dphs-exp3-submod300m-20261027T194500Z-46a3a89a-zeros.tif",
+      "blob_sha": "5be1467009770141d777ffc59cf5f184dfca177c",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE2__docs__downloads__dphs__wbg2-dphs-exp3-submod300m-20261027T194500Z-46a3a89a-zeros.tif",
+      "bytes": 134493,
+      "sha256": "31f3d8e61d195dd5ac09f380815cd08ea072d8812e2f5021d2c41fa423e6ccd9"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE2",
+      "commit": "fc8e265e6c8925080fc0b802a4151326d52d294d",
+      "remote_path": "docs/downloads/h3-pack/wbg3-h3pack-34k-20261027T174337Z-zeros.tif",
+      "blob_sha": "0b5f3c968981ed11302682bd2af55c96787757ce",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE2__docs__downloads__h3-pack__wbg3-h3pack-34k-20261027T174337Z-zeros.tif",
+      "bytes": 358794,
+      "sha256": "5b32ad6190957ac43b3d9069f99dc0742c776cd0b2f89af63666dd43672d4ac2"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE2",
+      "commit": "fc8e265e6c8925080fc0b802a4151326d52d294d",
+      "remote_path": "docs/downloads/msptcd/wbg2-msptcd-e3-25594dots-20261027T173000Z-2642eedd-zeros.tif",
+      "blob_sha": "9bf7274e485260c89c3f60894b6c487c4add145d",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE2__docs__downloads__msptcd__wbg2-msptcd-e3-25594dots-20261027T173000Z-2642eedd-zeros.tif",
+      "bytes": 71341,
+      "sha256": "fb11891a3a2e6c9400daa7c19f34bbb149f1ef853b3578f457c0efd1cec53614"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE2",
+      "commit": "fc8e265e6c8925080fc0b802a4151326d52d294d",
+      "remote_path": "docs/downloads/wbg2-blind-discontinuity-E3-soft88-20261027T185715Z-606d02c9c1-zeros.tif",
+      "blob_sha": "121f8cf0dda74113098c117fe330b71451509257",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE2__docs__downloads__wbg2-blind-discontinuity-E3-soft88-20261027T185715Z-606d02c9c1-zeros.tif",
+      "bytes": 217821,
+      "sha256": "d75bf8ee99576a80fe26d00c0afca6cc76ad54a4caae196b96bfdb742404b05f"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE2",
+      "commit": "fc8e265e6c8925080fc0b802a4151326d52d294d",
+      "remote_path": "docs/downloads/wbg2-dz16-n34500-20261027T000000Z-8e4646cf-zeros.tif",
+      "blob_sha": "2b696ed9a7cb61107ef6c73a9d68b0b1ff31b5c9",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE2__docs__downloads__wbg2-dz16-n34500-20261027T000000Z-8e4646cf-zeros.tif",
+      "bytes": 243576,
+      "sha256": "a9c46823cd6ef367726c1446581f0ccfc3d92456f8a242e521358ae84bd27912"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE2",
+      "commit": "fc8e265e6c8925080fc0b802a4151326d52d294d",
+      "remote_path": "docs/downloads/wbg2-h1-stepxasym-e2-34564dots-20261026T221541Z-efd46877-zeros.tif",
+      "blob_sha": "92dc887c9f8f9477557bf36d09e2df2f3b6710af",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE2__docs__downloads__wbg2-h1-stepxasym-e2-34564dots-20261026T221541Z-efd46877-zeros.tif",
+      "bytes": 276714,
+      "sha256": "592c74f26212199311d4f70807061a3f28cfe4c925652c0deada936ac925bf33"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE2",
+      "commit": "fc8e265e6c8925080fc0b802a4151326d52d294d",
+      "remote_path": "downloads/h3-pack/wbg3-h3pack-34k-20261027T174337Z-zeros.tif",
+      "blob_sha": "0b5f3c968981ed11302682bd2af55c96787757ce",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE2__downloads__h3-pack__wbg3-h3pack-34k-20261027T174337Z-zeros.tif",
+      "bytes": 358794,
+      "sha256": "5b32ad6190957ac43b3d9069f99dc0742c776cd0b2f89af63666dd43672d4ac2"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE2",
+      "commit": "fc8e265e6c8925080fc0b802a4151326d52d294d",
+      "remote_path": "downloads/wbg-h1-blind-conduit-breach-20261026T220000Z-a1b2c3d4-zeros.tif",
+      "blob_sha": "ea9ce510e62617c8648ed582be475198496e410f",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE2__downloads__wbg-h1-blind-conduit-breach-20261026T220000Z-a1b2c3d4-zeros.tif",
+      "bytes": 17513077,
+      "sha256": "95458ad456a01733d1e95e537557bd410b82543985cb22b9174429cffc2fa9ad"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE2",
+      "commit": "fc8e265e6c8925080fc0b802a4151326d52d294d",
+      "remote_path": "downloads/wbg2-blind-discontinuity-E3-soft88-20261027T185715Z-606d02c9c1-zeros.tif",
+      "blob_sha": "121f8cf0dda74113098c117fe330b71451509257",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE2__downloads__wbg2-blind-discontinuity-E3-soft88-20261027T185715Z-606d02c9c1-zeros.tif",
+      "bytes": 217821,
+      "sha256": "d75bf8ee99576a80fe26d00c0afca6cc76ad54a4caae196b96bfdb742404b05f"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE3",
+      "commit": "364965167f34d5607211b356a95fa6b1fccb3819",
+      "remote_path": "archive/concurrent-8488b95/submissions/unique_submissions/gems-unique-h80-hydrothermal-conduit-20261026-000000Z-unique-sha.tif",
+      "blob_sha": "0ff1fe6e81ab827a44a0f041a9e20d7987fdd35c",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE3__archive__concurrent-8488b95__submissions__unique_submissions__gems-unique-h80-hydrothermal-conduit-20261026-000000Z-unique-sha.tif",
+      "bytes": 506567,
+      "sha256": "a40f70f3d0ceb96d75977a30d66faaa8071c01dd118f2c8c46ef8be2fd718aa1"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE3",
+      "commit": "364965167f34d5607211b356a95fa6b1fccb3819",
+      "remote_path": "archive/site-legacy-2026-10-26/site/assets/downloads/gems-hnew01-stepper-dblind-unique.tif",
+      "blob_sha": "8041d4319f754bde1938dc4778f87804b9be5e94",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE3__archive__site-legacy-2026-10-26__site__assets__downloads__gems-hnew01-stepper-dblind-unique.tif",
+      "bytes": 4765466,
+      "sha256": "0747772166aec53eb11d5f50f5d18d52b28243c18ba57b07645c0cdc5621656d"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE3",
+      "commit": "364965167f34d5607211b356a95fa6b1fccb3819",
+      "remote_path": "docs/downloads/wb-gems-doe-3-latest-submission-zeros.tif",
+      "blob_sha": "ae0aac0ee7643b31149883b7d46b5c2261914f70",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE3__docs__downloads__wb-gems-doe-3-latest-submission-zeros.tif",
+      "bytes": 218882,
+      "sha256": "5d4515665dc8f3f31aa0249a32a56002f86aef199c2033cb39d836bc41adb059"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE3",
+      "commit": "364965167f34d5607211b356a95fa6b1fccb3819",
+      "remote_path": "docs/downloads/wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-nan.tif",
+      "blob_sha": "c2319aec2575a8e0bcda0ff761a3fc2ceb28d06a",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE3__docs__downloads__wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-nan.tif",
+      "bytes": 218894,
+      "sha256": "58b34e2a24df99bc2857df2e6248075d65955592cd838e8e20dad2d1c1cfbd5a"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE3",
+      "commit": "364965167f34d5607211b356a95fa6b1fccb3819",
+      "remote_path": "docs/downloads/wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-zeros.tif",
+      "blob_sha": "ae0aac0ee7643b31149883b7d46b5c2261914f70",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE3__docs__downloads__wb-gems-doe-3-stepover-damagezone-35000d-20261026T215413Z-zeros.tif",
+      "bytes": 218882,
+      "sha256": "5d4515665dc8f3f31aa0249a32a56002f86aef199c2033cb39d836bc41adb059"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE3",
+      "commit": "364965167f34d5607211b356a95fa6b1fccb3819",
+      "remote_path": "docs/downloads/wbggems3-cspes-edgestab-37654d-20261027-9e28c697-zeros.tif",
+      "blob_sha": "0b78cc98eb0ed011ad02adb7c734dadd1399a575",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE3__docs__downloads__wbggems3-cspes-edgestab-37654d-20261027-9e28c697-zeros.tif",
+      "bytes": 120795,
+      "sha256": "05ec516cfc0904ed76e75596285352b91416eb7a8b64a398bebec33e4793cb51"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE3",
+      "commit": "364965167f34d5607211b356a95fa6b1fccb3819",
+      "remote_path": "docs/downloads/wbggems3-sgce-20261027-f52d35d8-nan.tif",
+      "blob_sha": "5ba2911365fe1a0591657e315c57c182e078cc71",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE3__docs__downloads__wbggems3-sgce-20261027-f52d35d8-nan.tif",
+      "bytes": 1678310,
+      "sha256": "6b53c77be55c862828ce079dfa026358c0b051963e27d5e4496acf675c476eb1"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE3",
+      "commit": "364965167f34d5607211b356a95fa6b1fccb3819",
+      "remote_path": "docs/downloads/wbggems3-sgce-20261027-f52d35d8-zeros.tif",
+      "blob_sha": "30dcfb8d90328be716228f74a6a3d69f7f723c7d",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE3__docs__downloads__wbggems3-sgce-20261027-f52d35d8-zeros.tif",
+      "bytes": 905588,
+      "sha256": "0444c37466fb6304e1ddb9f65f693e88ff588b8b3838d9a21b7680aceaefed09"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE3",
+      "commit": "364965167f34d5607211b356a95fa6b1fccb3819",
+      "remote_path": "docs/downloads/wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif",
+      "blob_sha": "c4dfb0011a0e2627d7660c02523261b7eb712e01",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE3__docs__downloads__wbggems3-tde30k-tomography-emission-20261027T1853Z-e756a162-zeros.tif",
+      "bytes": 261125,
+      "sha256": "e756a1621e15ae9675dc146b91a17ac379e8501f4a873e9de1133678a11b3817"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE3",
+      "commit": "364965167f34d5607211b356a95fa6b1fccb3819",
+      "remote_path": "docs/downloads/wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif",
+      "blob_sha": "80452f5337f6e17cba919674c20afc440bbc0177",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE3__docs__downloads__wbggemsdoe3-skarpline-union-20261027-610acf58-zeros.tif",
+      "bytes": 435513,
+      "sha256": "610acf58905f3b461971bd4a5c67ff7c30894cd92dca20f480f27ecc66de5bb2"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE3",
+      "commit": "364965167f34d5607211b356a95fa6b1fccb3819",
+      "remote_path": "docs/hce/downloads/wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros.tif",
+      "blob_sha": "98531359b74a7cc3198f9a479da33c8262feb133",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE3__docs__hce__downloads__wbggems3-hce1-congruence-20261027T182554Z-bc1edfe6-zeros.tif",
+      "bytes": 183134,
+      "sha256": "0b1b6c0641e8e48b25aff127492a160e6d320ced2940d2925cf56f82935db4c2"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE3",
+      "commit": "364965167f34d5607211b356a95fa6b1fccb3819",
+      "remote_path": "docs/hce/downloads/wbggems3-hce1-latest.tif",
+      "blob_sha": "98531359b74a7cc3198f9a479da33c8262feb133",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE3__docs__hce__downloads__wbggems3-hce1-latest.tif",
+      "bytes": 183134,
+      "sha256": "0b1b6c0641e8e48b25aff127492a160e6d320ced2940d2925cf56f82935db4c2"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE3",
+      "commit": "364965167f34d5607211b356a95fa6b1fccb3819",
+      "remote_path": "docs/lbcal/downloads/wbggems3-lbcal-71416d-20261027T194859Z-f9227276-zeros-DO-NOT-SUBMIT.tif",
+      "blob_sha": "6652fee541897dc20ae90e1e807011fcdcb1b4cf",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE3__docs__lbcal__downloads__wbggems3-lbcal-71416d-20261027T194859Z-f9227276-zeros-DO-NOT-SUBMIT.tif",
+      "bytes": 196515,
+      "sha256": "c645e47ef8733680b3ee9b646507b10ac07aa8c076526da65ad889371351d43d"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE3",
+      "commit": "364965167f34d5607211b356a95fa6b1fccb3819",
+      "remote_path": "docs/session-1f0b051d/downloads/wbg3-dipolehybrid-40000d-20261027-e8535621-zeros.tif",
+      "blob_sha": "c027061f38093f36ab1ac1903d8e2869827b4f3e",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE3__docs__session-1f0b051d__downloads__wbg3-dipolehybrid-40000d-20261027-e8535621-zeros.tif",
+      "bytes": 829114,
+      "sha256": "e85356210200a1342445ad6524bffd3f5d41b65ff8ab7fd30d35ceeabb8fcf54"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE3",
+      "commit": "364965167f34d5607211b356a95fa6b1fccb3819",
+      "remote_path": "docs/thcs/downloads/wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.tif",
+      "blob_sha": "e93983fbf201ef0f810397ee7af1c272fd339d56",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE3__docs__thcs__downloads__wbggems3-thcs-oof-celf-46000d-20261027T200639Z-21256a7e-zeros.tif",
+      "bytes": 144713,
+      "sha256": "025cbc8f6790289517a012eb8c526e7cb78382cfb8b7c793687de39ac72bd37c"
+    },
+    {
+      "repo": "wingbangboozle1-lang/WBGGEMSDOE3",
+      "commit": "364965167f34d5607211b356a95fa6b1fccb3819",
+      "remote_path": "docs/thcs/downloads/wbggems3-thcs-oof-latest.tif",
+      "blob_sha": "e93983fbf201ef0f810397ee7af1c272fd339d56",
+      "local_relpath": "data/wbg4_sister_peers/WBGGEMSDOE3__docs__thcs__downloads__wbggems3-thcs-oof-latest.tif",
+      "bytes": 144713,
+      "sha256": "025cbc8f6790289517a012eb8c526e7cb78382cfb8b7c793687de39ac72bd37c"
+    }
+  ]
+}

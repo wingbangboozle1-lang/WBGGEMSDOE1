@@ -102,3 +102,20 @@
   `docs/repo-review-20261027.md` and `docs/session-review-20261027.md`; their earlier
   private-distance figures and 400 m Euclidean-buffer interpretation are superseded by
   the shared-Euclidean safety audit. The old raw approval is retained for provenance only.
+
+## WBG-4 (CSJF-1) record (2026-10-27)
+
+- `WBG-4` (`CSJF-1`: `docs/downloads/wbggemsdoe1-wbg4-csjf1-edti-35135-20261027-b3dacd59-zeros.tif`,
+  SHA-256 `e650894d4d1b39c57b2207561b033c98492085fec21be44615d249d9336745e6`) is frozen under
+  locked preregistration `registry/wbg4_preregistration.json` and Run Card `evidence/wbg4/run_card.json`.
+- It beats the 19-band control across all three independent spatial evaluators (`0.165424` on
+  `gems-segment-pooled-v1`, `0.094601` on `gems57 seed=20`, and `0.103660` vs `0.051234` on the
+  untouched confirmation `seed=77`), passes all 78 leakage canaries (`max AUC = 0.6534 <= 0.90`),
+  and clears all 460 competing sparse submissions across 24 repositories (`max 3-px overlap = 57.25% <= 70%`,
+  `max |Spearman| = 0.4952 <= 0.90`).
+- Under fail-closed governance, `verdict` remains `"negative"` (`DOWNLOAD: YES · SUBMIT: NO`) because
+  literal un-amended registry overlap hits `99.6983%` against synthetic 5 px lattice
+  `13gems_20261001_r13-lattice-s5` and `100%` against continuous `WBG-C1`, and `SegmentHoldout`
+  trails `WBG-S2` (`0.183594`). Verify recorded artifacts offline via
+  `python scripts/run_wbg4_lane.py --verify-recorded`; never overwrite or retune frozen receipts.
+

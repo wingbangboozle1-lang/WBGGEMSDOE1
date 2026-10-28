@@ -1243,5 +1243,5 @@
   }
  ],
  "status": "NEGATIVE - superseded",
- "why_negative": "The radial-ring model cannot represent the false-positive term: the hidden truth is line-clustered, so the global-density Poisson occupancy used for E[FP] under-estimates FP by orders of magnitude once dots sit near a truth-dense line. The fit collapsed (in-sample R2 -0.297) and the optimizer drove K to zero. Superseded by evidence/wbg6_null_calibration.json, which simulates catalogue-like fault segments explicitly and is validated against the uniform-lattice control."
+ "why_negative": "The radial-ring truth model cannot represent the false-positive term: the hidden truth is line-clustered, so the global-density Poisson occupancy used for E[FP] under-estimates FP by orders of magnitude once dots sit near a truth-dense line. The fit collapsed (in-sample R2 -0.297) and the optimizer drove K to zero. Superseded by evidence/wbg6_null_calibration.json, which simulates catalogue-like fault segments explicitly and is validated against the uniform-lattice control."
 }

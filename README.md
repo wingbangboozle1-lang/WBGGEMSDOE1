@@ -1,5 +1,10 @@
 # WBG GEMS — evidence-first fault mapping
 
+**[Latest repository review and ranked future hypotheses](docs/repo-review-20261027-session.md)** ·
+[Session JSON card](evidence/repo_review_session_20261027.json) · [Current provenance feed](docs/data/feed.json)
+
+**Freshness check:** at `2026-10-27T23:47:34+00:00`, 9/9 monitored focus-site GitHub heads differed from the frozen raster audit. This is a head check, not a current raster/score audit. The official leaderboard status is `retained_observation_not_refreshed`; the last retained public observation is 0.4544 (2026-10-27), not a score for any project TIFF.
+
 ## NO FILE APPROVED FOR SUBMISSION
 
 **[WBG-3 Executive Summary & Master Decision Table](docs/wbg3/index.html)** ·

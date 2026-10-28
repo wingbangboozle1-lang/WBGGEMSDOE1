@@ -83,6 +83,17 @@ def test_wbg2_negative_decision_and_download_are_prominent():
     assert "future-hypotheses-20261027.md" in (DOCS / "wbg2.html").read_text()
 
 
+def test_latest_review_is_published_with_separate_audit_card_and_no_go():
+    card = json.loads((ROOT / "evidence/repo_review_session_20261027.json").read_text())
+    published = json.loads((DOCS / "data/session-review-20261027.json").read_text())
+    page = (DOCS / "repo-review-20261027.html").read_text()
+    assert published == card
+    assert card["verdict"] == "negative" and card["decision"]["submit"] is False
+    assert "DO NOT SUBMIT" in page and "0.2778" in page and "0.3195" in page and "0.4413" in page
+    assert "repo-review-20261027.html" in (DOCS / "index.html").read_text()
+    assert "repo-review-20261027-session.md" in page
+
+
 @pytest.mark.parametrize("file", ["wbg2-executive-summary.md", "research/future-hypotheses-20261027.md"])
 def test_current_research_markdown_local_links_resolve(file):
     path = DOCS / file

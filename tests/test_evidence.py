@@ -149,6 +149,30 @@ def test_complete_standing_request_is_embedded_in_readme():
     assert "MUST GENERATE A UNIQUE TIF SUBMISSION" in (ROOT / "README.md").read_text()
 
 
+def test_session_review_card_is_audit_only_and_preserves_negative_decision():
+    session = load("evidence/repo_review_session_20261027.json")
+    prior = load("registry/run_card.json")
+    assert session["review_mode"] == "audit-only; no new geological experiment"
+    assert session["experiments_started_this_session"] == 0
+    assert session["submission_slots_used"] == 0
+    assert len(session["review_passes"]) == 3
+    assert session["holdout_dti"]["evidence_class"].startswith("HOLDOUT-DTI")
+    assert session["holdout_dti"]["measurement_status"].endswith("no holdout evaluator was executed for this review.")
+    assert session["holdout_dti"]["dti"] == prior["holdout"]["dti"]
+    assert session["raster"]["sha256"] == prior["raster_sha256"]
+    assert session["raster"]["generated_this_session"] is False
+    assert session["registry_correlation_overlap"]["current_session_surface_check"] == "NOT RUN"
+    assert session["registry_correlation_overlap"]["frozen_max_forward_3px_overlap"] > 0.70
+    assert session["validator_output"]["local_format_checks_passed"]
+    assert session["validator_output"]["strict_require_submit_ready_exit_code"] == 2
+    assert session["validator_output"]["run_card_matches_exact_tiff"] is True
+    assert session["validator_output"]["ok_to_submit"] is False
+    assert session["submission_name_status"].startswith("EXISTING RESEARCH ARTIFACT")
+    assert session["submission_name"].endswith(".tif")
+    assert len(session["submission_note"]) <= 140
+    assert session["verdict"] == "negative"
+
+
 def test_all_nine_commit_pins_and_inventoried_git_blobs_are_verified():
     pins = load("registry/repository_snapshots.json")["repositories"]
     verification = load("evidence/snapshot_commit_verification.json")

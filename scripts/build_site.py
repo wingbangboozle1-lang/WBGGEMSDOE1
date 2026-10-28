@@ -33,7 +33,8 @@ def link(url, text, cls=""):
 def page(name, title, body):
     nav = [("index.html", "Overview"), ("wbg3/index.html", "WBG-3"), ("wbg2.html", "WBG-2 audit"),
            ("executive-summary.html", "Site comparison"),
-           ("research.html", "Research"), ("evidence.html", "Evidence"), ("how-to-submit.html", "How to submit")]
+           ("research.html", "Research"), ("evidence.html", "Evidence"),
+           ("repo-review-20261027.html", "Latest review"), ("how-to-submit.html", "How to submit")]
     links = "".join(link(path, label, "active" if path == name else "") for path, label in nav)
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,8 +46,8 @@ def page(name, title, body):
 <header class="masthead"><div class="wrap"><nav class="nav" aria-label="Main navigation">
 <a class="brand" href="index.html"><svg viewBox="0 0 36 38" fill="none" aria-hidden="true"><path d="M3 29C12 27 4 16 13 15S21 5 31 6M4 35C15 34 11 22 20 22S25 11 34 12M2 21C8 21 4 9 13 9S18 1 25 2" stroke="#23665f" stroke-width="2" stroke-linecap="round"/></svg><span>WBG / GEMS<small>FAULT MAPPING · RESEARCH DESK</small></span></a>
 <div class="navlinks">{links}{link(REPO, 'Repository ↗', 'repo')}</div></nav></div></header>
-<main id="main" class="wrap"><div class="breadcrumb">GEMS prize challenge <span>/</span> {escape(title)} <span>/</span> 26 OCT 2026 frozen experiment</div><p class="micro"><a href="portfolio-review.html">27 October follow-up: four earlier releases and trust corrections →</a></p>{body}</main>
-<footer class="footer"><div class="wrap footer-inner"><p><strong>WBG / GEMS</strong> &nbsp; Evidence before a weekly slot.<br>Fault predictions are not verified geothermal vents. Local validation is not organizer acceptance.</p><div>{link('data/run-card.json', 'Run card JSON')}{link('standing-prompt.md', 'Standing brief')}{link('parallel/main-b9a2d53/index.html', 'Parallel negative archives')}{link(REPO, 'Source code ↗')}</div></div></footer>
+<main id="main" class="wrap"><div class="breadcrumb">GEMS prize challenge <span>/</span> {escape(title)} <span>/</span> 26 OCT 2026 frozen experiment</div><p class="micro"><a href="portfolio-review.html">27 October follow-up: four earlier releases and trust corrections →</a></p><p class="micro"><a href="repo-review-20261027.html">27 October 2026 review: all 9 monitored heads changed; no file cleared →</a></p>{body}</main>
+<footer class="footer"><div class="wrap footer-inner"><p><strong>WBG / GEMS</strong> &nbsp; Evidence before a weekly slot.<br>Fault predictions are not verified geothermal vents. Local validation is not organizer acceptance.</p><div>{link('data/run-card.json', 'Run card JSON')}{link('repo-review-20261027.html', 'Latest review')}{link('standing-prompt.md', 'Standing brief')}{link('parallel/main-b9a2d53/index.html', 'Parallel negative archives')}{link(REPO, 'Source code ↗')}</div></div></footer>
 <div id="toast" role="status" aria-live="polite"></div></body></html>'''
 
 
@@ -287,6 +288,7 @@ def main():
         "followup-run-card.json": "evidence/followup_run_card_20261027.json",
         "source-review-20261027.json": "evidence/source_review_20261027.json",
         "official-source-audit-20261027.json": "evidence/official_source_audit_20261027.json",
+        "session-review-20261027.json": "evidence/repo_review_session_20261027.json",
         "wbg2-review-passes-20261027.json": "evidence/wbg2/review_passes_20261027.json",
         "wbg-s2-safety-20261027.json": "evidence/wbg_s2/safety_review_20261027.json",
         "wbg3-run-card.json": "evidence/wbg3_spipmr/run_card.json",

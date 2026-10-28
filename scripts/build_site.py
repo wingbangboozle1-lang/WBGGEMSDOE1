@@ -228,30 +228,15 @@ def wbg5_diff1_banner():
 
 
 def wbg6_banner():
-    """Unmistakable WBG-6 decision block: this is the one file cleared to submit.
-
-    Refuses to publish a promotion unless the audit receipts say the gates passed.
-    """
+    # Fail closed: the literal proximity rule supersedes the historic adjusted gate.
     audit = load("evidence/wbg6_submission_audit.json")
-    est = load("evidence/wbg6_score_estimate.json")
-    decisive = ["format_pass", "not_a_byte_copy", "surface_rho_below_0.90",
-                "never_on_catalogue", "not_dense_over_budget"]
-    if not all(audit["gates"][k] for k in decisive):
-        raise ValueError("WBG-6 gate failed; refusing to publish a submit banner")
-    me = est["model_estimate"]
     tif = audit["name"] + ".tif"
-    if audit["duplicate_screen"]["max_abs_surface_spearman"] > 0.90:
-        raise ValueError("WBG-6 surface duplicate; refusing to publish a submit banner")
-    return (f'''<div class="alert" role="note" style="border-left:6px solid var(--teal)">'''
-            f'''<p><strong>WBG-6 — DOWNLOAD: YES · SUBMIT: YES.</strong> Unique, format-valid single-band float32 '''
-            f'''GeoTIFF (EPSG:32611, 3730×3292, values in [0,1], all finite). '''
-            f'''<strong>Estimated score {me["central"]:.3f}</strong> '''
-            f'''(MODEL-ESTIMATE, range {me["low"]:.3f}–{me["high"]:.3f}; no-localisation floor '''
-            f'''{est["null_floor"]["mean"]:.4f}). Not a byte copy of any of the 118 scored rasters; '''
-            f'''max surface |Spearman| {abs(audit["duplicate_screen"]["max_abs_surface_spearman"]):.4f}. '''
-            f'''<a href="wbg6/index.html">Open the WBG-6 executive summary →</a> · '''
-            f'''<a href="downloads/{tif}" download>Download the TIFF to submit ↓</a> · '''
-            f'''<a href="wbg6/how-to-submit.html">How to submit →</a></p></div>''')
+    overlap = audit["duplicate_screen"]["max_forward_overlap_3px"]
+    return (f'''<div class="alert" role="alert" style="border-left:6px solid #a32626">'''
+            f'''<p><strong>NO CURRENT TIFF IS CLEARED TO SUBMIT.</strong> The prior WBG-6 approval is withdrawn under the explicit 70% proximity gate: the archived maximum 3 px registry overlap is {overlap:.4%}. Its 0.247 figure is a MODEL-ESTIMATE, not HOLDOUT-DTI or organizer-confirmed. This TIFF is <strong>research download only — DO NOT UPLOAD</strong>. '''
+            f'''<a href="repo-review-current-20261028.md">Read the current review →</a> · '''
+            f'''<a href="downloads/{tif}" download>Download research artifact →</a> · '''
+            f'''<a href="wbg6/how-to-submit.html">Submission instructions / gates →</a></p></div>''')
 
 
 def wbg7_banner():
@@ -294,7 +279,7 @@ def executive(card, receipt, audit, feed):
     for row in audit["rows"]:
         name, text = HISTORY[row["site"]]
         details.append(f'''<details><summary>{row['site']} — {escape(name)} <span class="mono">{row['dots']:,} positive pixels</span></summary><div class="detail-body"><p>{escape(text)}</p><p><strong>Submission decision:</strong> historical learning reference only; not a unique new-slot recommendation. Supplied historical value <strong>{row['reported_historical_value']:.4f}</strong> is USER-REPORTED / NOT ORGANIZER-CONFIRMED. A leaderboard estimate for a new file is unavailable.</p><p>{link(row['snapshot_url'], 'Pinned source snapshot ↗')} · {link(row['immutable_file_url'], 'Original TIFF ↗')}</p><div class="mono">SHA-256 of inspected bytes: {row['sha256']}</div></div></details>''')
-    return wbg6_banner() + wbg2_banner() + wbg5_diff1_banner() + wbg4_banner() + wbg5_banner() + wbg_s2_banner() + wbg3_banner() + f'''<section class="subhero"><div><p class="eyebrow">Executive summary · decision memo</p><h1>What should you submit?<br><em>WBG-6 — and nothing else.</em></h1><p class="lead">One file here is cleared to submit (banner above). Everything else, including the C1 continuous surface described below, is research-only: format-valid, but not a defensible new-slot entry. The best supplied historical value belongs to GEMSDOE32 at 0.2778; copying it would violate the unique-submission requirement.</p></div>{pill('Negative · no real slot', 'no')}</section>{alert()}
+    return wbg6_banner() + wbg2_banner() + wbg5_diff1_banner() + wbg4_banner() + wbg5_banner() + wbg_s2_banner() + wbg3_banner() + f'''<section class="subhero"><div><p class="eyebrow">Executive summary · decision memo</p><h1>What should you submit?<br><em>No current file is cleared.</em></h1><p class="lead">All available TIFFs are research-only under the active validation protocol. WBG-6 fails the literal registry overlap gate; the best supplied historical value belongs to GEMSDOE32 at 0.2778 and must not be copied.</p></div>{pill('Negative · no real slot', 'no')}</section>{alert()}
 <div class="two-col content-section"><div class="panel"><div class="panel-head">C1 research surface (not the submission){pill('Research only', 'warn')}</div><div class="panel-pad"><div class="filename">{escape(tif)}</div><div class="actions"><a class="button" href="downloads/{tif}" download>Download research TIFF ↓</a>{link('downloads/' + tif.replace('.tif', '.zip'), 'One-TIFF ZIP ↓', 'button secondary')}</div><p class="micro" style="margin-top:15px">DOWNLOAD: YES · SUBMIT: NO. This is a continuous unplaced surface, not a final dotted submission. Organizer-confirmed score and leaderboard estimate are both <strong>unavailable</strong>.</p></div></div><div class="panel"><div class="panel-head">Measured screen<span>HOLDOUT-DTI, not forecast</span></div><div class="panel-pad"><p><strong>Candidate {h['dti']:.6f}</strong> · 95% CI [{h['ci95'][0]:.6f}, {h['ci95'][1]:.6f}]<br><strong>Control {c['dti']:.6f}</strong> · 95% CI [{c['ci95'][0]:.6f}, {c['ci95'][1]:.6f}]</p><p class="micro">Paired delta {d['delta']:+.6f}; 95% CI [{d['ci95'][0]:+.6f}, {d['ci95'][1]:+.6f}]. Evaluator <code>{card['holdout_instrument']['evaluator_version']}</code>; {h['withheld_positive_pixels']:,} withheld positives; {card['holdout_instrument']['physical_bootstrap_clusters']} physical bootstrap clusters.</p></div></div></div>
 <section class="content-section" id="decision"><h2>The decision in plain English</h2><div class="prose"><ol><li><strong>The TIFF is genuinely generated here.</strong> Its bytes and normalized decoded pixels differ from all {card['registry']['checked_unique_file_hashes']} checked prior file hashes. Previous predictions were used only for audit and historical learning, never as model features, labels or output pixels.</li><li><strong>It is locally format-valid, not cleared to submit.</strong> The reopened float32 single band matches CRS/shape/transform and has no NaN/inf, no out-of-range values, zero outside the footprint and zero support on known catalogue faults.</li><li><strong>It does not improve the clean control.</strong> The paired screen is negative and no identically rerun cross-repository current-best benchmark or untouched confirmation was established. We do not compare a dense confidence-surface DTI to a sparse historical leaderboard claim.</li><li><strong>The surface fails the required literal registry overlap gate.</strong> Maximum forward overlap is {card['registry']['max_forward_3px_overlap'] * 100:.2f}% versus a 70% ceiling; maximum signed Spearman ρ is {card['registry']['max_spearman_rho']:.6f}. The lattice is retained, not exempted. No final dots were placed or tested after STOP.</li><li><strong>No real slot is selected.</strong> The lane paragraph is missing and the submissions page requires login. The rules PDF states up to three entries weekly, but the actual remaining account allowance is unknown. No credential was requested and no upload occurred.</li></ol></div></section>
 <section class="content-section" id="comparison"><div class="section-heading"><div><h2>Which original file performed best at each site?</h2><p>Ranked by the user-supplied historical claims, not by invented estimates.</p></div></div><div class="row-buttons"><span class="micro">File links point to immutable owner snapshots, for learning / audit only.</span><label><span class="micro">Filter sites &nbsp;</span><input class="search" id="site-filter" type="search" placeholder="e.g. GEMSDOE32" aria-label="Filter site comparison"></label></div>{comparison_table(audit)}<p class="note">“Historical claim” is deliberately not labelled ORGANIZER-CONFIRMED: there is no submission-page receipt binding those exact bytes to the supplied values. No defensible leaderboard projection is available. A different pixel set is not equivalent to passing the literal lane gate.</p></section>
@@ -404,7 +389,7 @@ def main():
         "how-to-submit.html": ("How to submit", howto(card, receipt))}
     for name, (title, body) in pages.items():
         (DOCS / name).write_text(page(name, title, body), encoding="utf-8")
-    legacy = {"hypotheses.html": "research.html", "methodology.html": "research.html",
+    legacy = {"methodology.html": "research.html",
         "sources.html": "evidence.html", "irregularities.html": "evidence.html",
         "submission-guide.html": "how-to-submit.html", "submission-instructions.html": "how-to-submit.html"}
     for name, target in legacy.items():

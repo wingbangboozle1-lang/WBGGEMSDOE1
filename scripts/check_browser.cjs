@@ -72,7 +72,7 @@ const chromium = importedChromium.default || importedChromium;
     assert.equal(await page.locator("#site-table tbody tr:visible").count(), 1);
     await page.locator("#site-filter").fill("");
     const downloadPromise = page.waitForEvent("download");
-    await page.locator("a[download]").first().click();
+    await page.locator(`a[download][href*="${path.basename(wbg2.artifacts.tif)}"]`).click();
     const download = await downloadPromise;
     assert.equal(download.suggestedFilename(), path.basename(wbg2.artifacts.tif));
     const downloaded = fs.readFileSync(await download.path());

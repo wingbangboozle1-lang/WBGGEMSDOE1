@@ -1,1 +1,181 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="refresh" content="0; url=research.html"><title>Research page moved</title><link rel="stylesheet" href="assets/style.css"></head><body><main class="wrap"><h1>Research page moved</h1><p><strong>DO NOT SUBMIT the negative research artifacts.</strong></p><p><a href="research.html">Open the current evidence desk</a> · <a href="parallel/main-b9a2d53/hypotheses.html">Original frozen parallel page</a></p></main></body></html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ranked geological hypotheses · WBG / GEMS research desk</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.wrap { max-width:1040px; margin:0 auto; padding:24px }
+.small { font-size:12.5px; color:#4b5d59 }
+.h2 { font-size:17px; margin:24px 0 8px; color:#173b42 }
+table.hyp { border-collapse:collapse; width:100%; font-size:13px }
+table.hyp th, table.hyp td { border:1px solid #d7ded9; padding:8px 10px; text-align:left; vertical-align:top }
+table.hyp th { background:#f3f6f4 }
+.ok { color:#0f766e; font-weight:700 }
+.warn { color:#b45309; font-weight:700 }
+.no { color:#b91c1c; font-weight:700 }
+.file { font-family:ui-monospace,monospace; font-size:11.5px }
+.detail { border:1px solid #e3e9e7; border-radius:8px; margin:14px 0; overflow:hidden }
+.detail > summary { padding:10px 14px; background:#f4f7f6; font-weight:600; cursor:pointer; outline:none }
+.detail > summary:hover { background:#e9efee }
+.detail-body { padding:12px 16px; background:#fbfdfc }
+.detail-body p { margin:6px 0 }
+.kv { font-family:ui-monospace,monospace; font-size:11.5px }
+</style></head><body><div class="wrap">
+
+<nav class="small" style="margin-bottom:6px">
+<a href="index.html">← Evidence desk</a> &nbsp;·&nbsp;
+<a href="executive-summary-unique.html">Executive summary</a> &nbsp;·&nbsp;
+<a href="how-to-submit.html">How to submit</a>
+</nav>
+
+<h1>Five ranked geological hypotheses (not yet tried, except H1 implemented)</h1>
+<p class="small">Per the parallel-run protocol: each hypothesis names layers, physical signature, off-catalogue rationale,
+named non-fault mimic, distinction from existing repo work, expected DTI improvement, implementation cost, and
+required data source with availability check. Only H1 has been implemented in this session; H2–H5 are untested
+and require a separately assigned lane.</p>
+
+<table class="hyp">
+<thead><tr>
+<th scope="col" style="width:22%">Hypothesis</th>
+<th scope="col" style="width:16%">Expected DTI</th>
+<th scope="col" style="width:14%">Cost</th>
+<th scope="col">Data required &amp; availability</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><b>H1 — Blind-fault adjacency with distance-decayed emission</b> <span class="small">(implemented this session)</span></td>
+<td><span class="warn">0.4657 HOLDOUT-DTI (may be leaked)</span></td>
+<td><span class="ok">Low</span></td>
+<td>existing_faults.tif + sample_submission.tif (public owner mirrors, local)</td>
+</tr>
+<tr>
+<td><b>H2 — Curvature/dilatation boundary persistence at 300–800 m</b></td>
+<td><span class="small">qualitative, untested</span></td>
+<td><span class="ok">Low</span></td>
+<td>19-band cache (bands 17, 15, 8); local owner mirror</td>
+</tr>
+<tr>
+<td><b>H3 — Depth-conditioned magnetic texture transport</b></td>
+<td><span class="small">untested</span></td>
+<td><span class="ok">Medium</span></td>
+<td>19-band cache (RTP, TMI, depth); local owner mirror</td>
+</tr>
+<tr>
+<td><b>H4 — Radiometric compositional changes across saddles</b></td>
+<td><span class="small">untested</span></td>
+<td><span class="warn">Medium (conditional)</span></td>
+<td>USGS GeoDAWN K/Th/U + DEM saddles; <span class="small">free official source</span></td>
+</tr>
+<tr>
+<td><b>H5 — Anisotropic conductivity-boundary persistence</b></td>
+<td><span class="small">untested</span></td>
+<td><span class="warn">Medium</span></td>
+<td>19-band cache (conductivity, depth); local owner mirror</td>
+</tr>
+</tbody></table>
+
+<div class="h2" style="margin-top:26px">H1 — Blind-fault adjacency with distance-decayed emission (IMPLEMENTED)</div>
+<div class="detail">
+<summary>Layers, signature, rationale, mimic, distinction</summary>
+<div class="detail-body">
+<p><strong>Layers:</strong> <code>existing_faults.tif</code> (USGS/INGENIOUS catalogue) + competition grid.</p>
+<p><strong>Physical signature:</strong> blind faults occur adjacent to — not on — mapped traces (splays,
+stepovers, blind extensions). Smooth Gaussian distance kernel peaking ~150 m from catalogue, decaying toward
+both the catalogue (already mapped) and far background.</p>
+<p><strong>Off-catalogue rationale:</strong> targets faults near but not on mapped traces — precisely the faults
+the catalogue misses. GEMSDOE32 B2 used a hard >200 m cut; this uses a smooth peak at ~150 m, giving higher
+weight to the blind-fault adjacency zone and less to distant background.</p>
+<p><strong>Named non-fault mimic:</strong> linear topography / DEM scarp edges unrelated to faults can produce
+similar distance-from-catalogue structure.</p>
+<p><strong>Distinction from existing repo work:</strong> no existing lane uses a smooth distance-decay emission.
+All historical lanes use hard thresholds (GEMSDOE32 B2's >200 m), unvalidated ML proxies, or ridge-thinning
+families. This is a distinct construction.</p>
+<p><strong>Implementation:</strong>
+<span class="kv">scripts/generate_unique_submission.py → docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif</span></p>
+<p><strong>Measured:</strong> HOLDOUT-DTI 0.4657, 95% CI [0.4563, 0.4748], evaluator
+<code>WBGGEMSDOE1-HIDE-RECOVER-v1.0</code>, 60,161 withheld positives, 129,184 dots, zero dots on catalogue.</p>
+<p class="warn"><strong>Leakage caveat:</strong> dot placement used the full catalogue, not per-fold visible faults
+as the protocol requires. HOLDOUT-DTI may be inflated. Per-fold re-evaluation required before slot promotion.</p>
+</div></div>
+
+<div class="h2">H2 — Curvature/dilatation boundary persistence at 300–800 m (UNTESTED)</div>
+<div class="detail">
+<summary>Layers, signature, rationale, mimic, distinction</summary>
+<div class="detail-body">
+<p><strong>Layers:</strong> cached <code>cond_surf</code> (band 17), <code>depth_to_base_surf</code> (band 15),
+<code>geod_dilaterate</code> (band 8).</p>
+<p><strong>Physical signature:</strong> multiscale non-coaxial curvature — the normalized Hessian commutator
+detects disagreement in principal curvature directions — combined with persistent dilatation boundaries.
+This marks concealed structural complexity without catalogue proximity.</p>
+<p><strong>Off-catalogue rationale:</strong> a fault can be blind even where no mapped trace exists nearby.
+Curvature/dilatation disagreement flags concealed geometry independent of catalogue distance.</p>
+<p><strong>Named non-fault mimic:</strong> oblique saline-clay basin fill, lithologic contacts, shared inversion
+artifacts can produce the same signature.</p>
+<p><strong>Distinction:</strong> tested once as WBG-C1 (negative), but never combined with distance-decay emission.
+The operator itself is not found in inspected shared code, but global/unpublished novelty is not established.</p>
+<p><strong>Expected DTI improvement:</strong> qualitative and uncertain — never a numeric forecast.</p>
+<p><strong>Cost:</strong> low — uses existing 19-band cache; no external data.</p>
+<p><strong>Official references:</strong>
+<a href="https://www.usgs.gov/publications/structural-discontinuities-and-their-control-hydrothermal-systems-great-basin-usa" target="_blank" rel="noopener">Siler (2023), USGS</a> ·
+<a href="https://www.usgs.gov/publications/discovering-blind-geothermal-systems-great-basin-region-integrated-geologic-and" target="_blank" rel="noopener">Faulds et al. (2019), USGS</a>.</p>
+</div></div>
+
+<div class="h2">H3 — Depth-conditioned magnetic texture transport (UNTESTED)</div>
+<div class="detail">
+<summary>Layers, signature, rationale, mimic, distinction</summary>
+<div class="detail-body">
+<p><strong>Layers:</strong> cached RTP, TMI and depth proxy bands.</p>
+<p><strong>Physical signature:</strong> lagged texture changes along vs across depth-contour directions —
+may flag covered offsets without an exposed scarp.</p>
+<p><strong>Off-catalogue rationale:</strong> targets buried structures invisible to surface fault mapping.</p>
+<p><strong>Named non-fault mimic:</strong> volcanic/intrusive contacts, survey leveling artifacts.</p>
+<p><strong>Distinction:</strong> more specific than a scalar magnetic amplitude edge; related texture/phase
+proposals exist in peer code, so exact added information and lane novelty are unknown.</p>
+<p><strong>Expected DTI improvement:</strong> untested.</p>
+<p><strong>Cost:</strong> medium — uses existing cache; no external data needed for initial screen.</p>
+</div></div>
+
+<div class="h2">H4 — Radiometric compositional changes across terrain saddles (CONDITIONAL)</div>
+<div class="detail">
+<summary>Layers, signature, rationale, mimic, distinction</summary>
+<div class="detail-body">
+<p><strong>Layers:</strong> USGS GeoDAWN K/Th/U radiometrics + terrain saddles derived from DEM.</p>
+<p><strong>Physical signature:</strong> tangent-coherent cross-saddle compositional changes — not raw counts —
+suggesting fracture-controlled alteration outside mapped traces.</p>
+<p><strong>Off-catalogue rationale:</strong> hydrothermal alteration can be blind to fault mapping; saddle-focused
+compositional changes target blind convection pathways.</p>
+<p><strong>Named non-fault mimic:</strong> sediment sorting, weathering, lithology.</p>
+<p><strong>Distinction:</strong> ratio features exist in peer code — a ratio alone is not novel. Needs a
+physically motivated tangent-coherent statistic.</p>
+<p><strong>Expected DTI improvement:</strong> untested.</p>
+<p><strong>Cost:</strong> medium — conditional on original-layer semantics and coverage verification.</p>
+<p><strong>Official free source:</strong>
+<a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and" target="_blank" rel="noopener">USGS GeoDAWN airborne magnetic and radiometric surveys (DOI 10.5066/P93LGLVQ)</a> — obtainable before proposing as viable.</p>
+</div></div>
+
+<div class="h2">H5 — Anisotropic conductivity-boundary persistence (UNTESTED)</div>
+<div class="detail">
+<summary>Layers, signature, rationale, mimic, distinction</summary>
+<div class="detail-body">
+<p><strong>Layers:</strong> cached conductivity and depth proxies.</p>
+<p><strong>Physical signature:</strong> boundary survival under smoothing <em>along</em> but not across a local
+orientation tensor — retains elongated concealed discontinuities that scalar edge detection loses.</p>
+<p><strong>Off-catalogue rationale:</strong> targets extended blind structures that surface fault mapping misses.</p>
+<p><strong>Named non-fault mimic:</strong> saline deposits, gridding seams.</p>
+<p><strong>Distinction:</strong> different statistic from a scalar edge; related coherence/vesselness operators
+already exist, so added value is uncertain.</p>
+<p><strong>Expected DTI improvement:</strong> untested.</p>
+<p><strong>Cost:</strong> medium — needs a future assigned lane and frozen validation; not an automatic slot.</p>
+</div></div>
+
+<div class="h2">How to evaluate before spending a slot</div>
+<ol class="small">
+<li>Implement the hypothesis using only the shared cached feature stack (19 bands).</li>
+<li>Run hide-and-recover holdout: withhold whole fault segments with buffer, derive catalogue features from visible faults only, mask visible faults pixel-exactly, score pooled DTI (α=0.2, β=0.8, 300 m triangular kernel).</li>
+<li>Run leakage canary: test each feature alone. AUC > 0.90 means leakage until proven otherwise.</li>
+<li>Check surface novelty: |Spearman| ≤ 0.90 vs every registry raster; final-dot 3-px overlap ≤ 70%.</li>
+<li>If holdout DTI beats the current same-evaluator best with a strictly positive 95% CI, bring to a separate selector for slot consideration.</li>
+</ol>
+
+<p class="small" style="margin-top:20px"><strong>Budget:</strong> stop after 3 experiments or 2 hours. Negative results are deliverables.</p>
+
+</div></body></html>

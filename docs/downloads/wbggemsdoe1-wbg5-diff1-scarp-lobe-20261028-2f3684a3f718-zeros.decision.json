@@ -1,0 +1,22 @@
+{
+  "schema": "gemsdoe1-wbg5-decision-v1",
+  "artifact": "docs/downloads/wbggemsdoe1-wbg5-diff1-scarp-lobe-20261028-2f3684a3f718-zeros.tif",
+  "zip": "docs/downloads/wbggemsdoe1-wbg5-diff1-scarp-lobe-20261028-2f3684a3f718-zeros.zip",
+  "raster_sha256": "2b94cac044b778b569431c16875fcdd82b251af67327d4f936dc55c59923f99e",
+  "format_valid": true,
+  "strict_whole_array_0_1": true,
+  "verdict": "negative",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "submission_note": "WBG-5 DIFF1 LiDAR scarp-lobe morphology | format-valid research; DO NOT SUBMIT | id 2f3684a3f718",
+  "holdout_dti_armB": 0.06775500658525734,
+  "benchmark_dti": 0.16606013635163805,
+  "competing_method_passed": false,
+  "literal_all_entries_passed": false,
+  "reasons": [
+    "arm B HOLDOUT-DTI 0.0678 << 0.1661 promotion benchmark",
+    "fails competing-method 3px overlap gate (max 0.7828 > 0.70)",
+    "fails literal all-entry gate (spacing-5 lattice 0.9979 > 0.70)",
+    "baseline paired replay unavailable -> promotion fails closed"
+  ]
+}

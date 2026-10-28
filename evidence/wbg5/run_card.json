@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-10-28T17:27:55+00:00",
+  "lane_id": "WBG-5",
+  "method_code": "MTA-1",
+  "hypothesis": "Scale-persistent magnetic-texture anisotropy of the RTP field relative to local depth-to-base structural contours identifies concealed displacement that leaves no subaerial trace.",
+  "mechanism": "Directional texture energy of the reduced-to-pole field (band 2) along vs across the local depth-to-base_surf (band 15) contour normal, at sigma 3 px and 8 px; scale-persistent anisotropy channels added to the official 19-band stack and six derivative channels; spatially cross-fitted HGB per SegmentHoldout fold; budget-matched dotted emission with a 2 px catalogue clearance.",
+  "named_non_fault_mimic": "Lithologic contacts, dike swarms, flight-line levelling residuals and Pleistocene shoreline cusps can produce oriented magnetic texture.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "arm": "A2_mta1",
+    "dti": 0.1315855766157561,
+    "ci95": [
+      0.1192062068107686,
+      0.14425867375826004
+    ],
+    "n_withheld_positives": 60988,
+    "control_arm_A1_dti": 0.13084741070100586,
+    "control_arm_A1_ci95": [
+      0.11868158479138761,
+      0.14359358481624715
+    ],
+    "paired_delta": 0.0007381659147502329,
+    "paired_delta_ci95": [
+      -0.00400981921918429,
+      0.00539075264213471
+    ]
+  },
+  "canary": {
+    "all_features_passed": true,
+    "reduced_set_passed": true,
+    "max_sym_auc": 0.6579122968750001,
+    "dropped": [],
+    "note": "AUC > 0.90 in any fold is treated as leakage until proven otherwise."
+  },
+  "registry_uniqueness": {
+    "n_reference_rasters": 20,
+    "comparator_scope": "nine focus-site historical submissions + lane registration artifacts; the project's own research surfaces and the artifact itself are reported, never gating",
+    "max_abs_spearman_all": 0.09566271366090891,
+    "max_overlap_all": 1.0,
+    "sparse_max_abs_spearman": 0.09566271366090891,
+    "sparse_max_overlap": 0.5831784139799224,
+    "max_overlap_vs_nine_historical_masks": 0.47277845647208794,
+    "max_overlap_vs_nine_worst": "GEMSDOE27.tif",
+    "nine_mask_overlaps": [
+      {
+        "name": "GEMSDOE27.tif",
+        "overlap_frac": 0.47277845647208794,
+        "n_other": 61328
+      },
+      {
+        "name": "GEMSDOE24.tif",
+        "overlap_frac": 0.46964465926594784,
+        "n_other": 60069
+      },
+      {
+        "name": "GEMSDOE25.tif",
+        "overlap_frac": 0.45506453497636373,
+        "n_other": 44090
+      },
+      {
+        "name": "GEMSDOE30.tif",
+        "overlap_frac": 0.45506453497636373,
+        "n_other": 44090
+      },
+      {
+        "name": "GEMSDOE33.tif",
+        "overlap_frac": 0.447309714771339,
+        "n_other": 41865
+      },
+      {
+        "name": "GEMSDOE31.tif",
+        "overlap_frac": 0.4404312954798959,
+        "n_other": 40199
+      },
+      {
+        "name": "GEMSDOE28.tif",
+        "overlap_frac": 0.4361555213257556,
+        "n_other": 37660
+      },
+      {
+        "name": "GEMSDOE36.tif",
+        "overlap_frac": 0.42603707441440486,
+        "n_other": 38854
+      },
+      {
+        "name": "GEMSDOE32.tif",
+        "overlap_frac": 0.4243108301906836,
+        "n_other": 37654
+      }
+    ],
+    "sparse_drifted": false,
+    "drifted": false,
+    "drifted_reason": null,
+    "passes_sparse_gate": true,
+    "literal_all_entry_pass": false,
+    "top": [
+      {
+        "name": "wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+        "rho": 0.05559420865922442,
+        "overlap_frac": 1.0,
+        "n_other": 5106385,
+        "space_filling": true
+      },
+      {
+        "name": "wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.tif",
+        "rho": 0.08970284391007888,
+        "overlap_frac": 0.5831784139799224,
+        "n_other": 37654,
+        "space_filling": false
+      },
+      {
+        "name": "wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif",
+        "rho": 0.08635023065202822,
+        "overlap_frac": 0.49779571891432517,
+        "n_other": 37654,
+        "space_filling": false
+      },
+      {
+        "name": "GEMSDOE27.tif",
+        "rho": 0.09521677126858026,
+        "overlap_frac": 0.47277845647208794,
+        "n_other": 61328,
+        "space_filling": false
+      },
+      {
+        "name": "GEMSDOE24.tif",
+        "rho": 0.09566271366090891,
+        "overlap_frac": 0.46964465926594784,
+        "n_other": 60069,
+        "space_filling": false
+      },
+      {
+        "name": "wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif",
+        "rho": 0.06459046358112906,
+        "overlap_frac": 0.4676262814043661,
+        "n_other": 36800,
+        "space_filling": false
+      },
+      {
+        "name": "GEMSDOE25.tif",
+        "rho": 0.0826317918332446,
+        "overlap_frac": 0.45506453497636373,
+        "n_other": 44090,
+        "space_filling": false
+      },
+      {
+        "name": "GEMSDOE30.tif",
+        "rho": 0.0826317918332446,
+        "overlap_frac": 0.45506453497636373,
+        "n_other": 44090,
+        "space_filling": false
+      },
+      {
+        "name": "GEMSDOE33.tif",
+        "rho": 0.07954323030156321,
+        "overlap_frac": 0.447309714771339,
+        "n_other": 41865,
+        "space_filling": false
+      },
+      {
+        "name": "GEMSDOE31.tif",
+        "rho": 0.07686087338663881,
+        "overlap_frac": 0.4404312954798959,
+        "n_other": 40199,
+        "space_filling": false
+      },
+      {
+        "name": "GEMSDOE28.tif",
+        "rho": 0.07482985099421459,
+        "overlap_frac": 0.4361555213257556,
+        "n_other": 37660,
+        "space_filling": false
+      },
+      {
+        "name": "GEMSDOE36.tif",
+        "rho": 0.07223907326350727,
+        "overlap_frac": 0.42603707441440486,
+        "n_other": 38854,
+        "space_filling": false
+      }
+    ]
+  },
+  "artifact": {
+    "tif": "docs/downloads/wbggemsdoe1-wbg5-mta1-magnetic-texture-anisotropy-20261028.tif",
+    "tif_sha256": "89b6e3749854344f441ae27763d570333c3a26c1c8ad9148fe636a7eef806474",
+    "tif_bytes": 826900,
+    "zip": "docs/downloads/wbggemsdoe1-wbg5-mta1-magnetic-texture-anisotropy-20261028.zip",
+    "zip_sha256": "7e052d58027baa725fbb0581d3f19167d971b19cde70565438c1fde4219c8fbe",
+    "emitted_dots": 37654,
+    "outside_encoding": "zeros",
+    "value_range": [
+      0.0,
+      1.0
+    ]
+  },
+  "validator": {
+    "format_valid": true,
+    "hard_failures": [],
+    "in_footprint_positive_pixels": 37654,
+    "official_format_compliant": false
+  },
+  "submission_name": "wbggemsdoe1-wbg5-mta1-magnetic-texture-anisotropy-20261028",
+  "submission_note": "WBG-5 MTA-1 magnetic-texture anisotropy vs depth contours; 19-band + MTA HGB OOF, 37654 dots zeros | research, holdout-only",
+  "submission_slots_used": 0,
+  "elapsed_s": 35.938822507858276,
+  "verdict": "negative",
+  "decision": {
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "reasons": [
+      "paired holdout CI includes zero",
+      "sparse registry gate passed",
+      "literal all-entry gate failed (reported, not waived)",
+      "no organizer receipt; no authenticated weekly allowance"
+    ]
+  }
+}

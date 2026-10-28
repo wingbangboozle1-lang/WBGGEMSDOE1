@@ -1,5 +1,6 @@
 # Starting point for every session
 
+<<<<<<< HEAD
 0. **APPROVED FOR SUBMISSION: WBG-6** — `docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif`
    (SHA-256 `e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9`). Unique, format-valid,
    zero dots on the mapped catalogue, max surface |Spearman| 0.0148 versus all 118 scored rasters.
@@ -19,6 +20,11 @@
    `evidence/holdout_proxy_portfolio.json`, `evidence/wbg6_submission_audit.json`,
    `evidence/wbg6_score_model.json`, `evidence/score_consistency.json`,
    `evidence/wbg6_irregularities.json`.
+=======
+Read `docs/review-20261028.md` and `docs/data/review-20261028.json` for the
+latest review. The Focus-9 synthetic generator is disabled after a binding STOP;
+its existing TIFF and receipts are frozen and must not be regenerated.
+>>>>>>> origin/main
 
 0. **No file is approved for submission.** The previously promoted WBG-2 file
    `docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif` is research-only: its

@@ -1,0 +1,55 @@
+{
+  "schema": "gemsdoe1-review-passes-20261028-v1",
+  "reviewed_date_utc": "2026-10-28",
+  "lane": "WBG-5 / DIFF1 (LiDAR scarp-lobe morphology)",
+  "scope": "Three local review passes over the DIFF1 lane and its 28 Oct 2026 executive summary. This is bounded local review, not an exhaustive audit of every linked source, all 92 sites, private data or hidden labels, and it is not organizer confirmation of any score.",
+  "passes": [
+    {
+      "pass": 1,
+      "status": "complete",
+      "focus": "Implement and measure the bounded research task",
+      "actions": [
+        "Added src/gems/diff1.py: an 8-channel LiDAR-only scarp-lobe morphology operator (step_max, lapneg_max, lappos_max, downface_max, upface_max, cross_max, relief, valid) with lobe_amplitude, arm_surfaces and fixed_support.",
+        "Froze research/06_wbg5_diff1_preregistration_20261028.md (mechanism, named non-fault mimics, three arms, gates, budget, zero slots).",
+        "Implemented scripts/run_wbg5_lane.py mirroring the frozen TIP1 lane: template/inputs verification, leakage canary, pre-placement surface novelty, three-arm holdout, competing-method and literal novelty, fail-closed promotion gate, 37,722-dot priority_poisson placement, write_submission + check_variants, freeze card.",
+        "Executed the lane (281 s, 3 experiments, 0 slots); packaged the TIFF, ZIP and decision JSON into docs/downloads/.",
+        "Added scripts/build_exec_summary_20261028.py emitting the 10-row executive summary (MD/HTML/JSON).",
+        "Wired the WBG-5 alert and a nav link into scripts/build_site.py and the DIFF1 session block into scripts/build_readme.py."
+      ],
+      "result": "artifacts written; all local CI-equivalent steps green (pytest 216 passed, ruff clean, validate_submission OK on all ten TIFF/ZIP pairs, review_releases --check true, inherited lanes --verify-recorded)."
+    },
+    {
+      "pass": 2,
+      "status": "complete",
+      "focus": "Review for bugs and edge cases",
+      "actions": [
+        "diff1.fixed_support: verified it rejects empty, non-boolean and misaligned footprints and non-uint8 channels, and that its support is a subset of >0 valid LiDAR coverage.",
+        "diff1.lobe_amplitude: verified finite output for a flat all-zero DEM, for negative relief (bowl-shaped cells) and for NaN relief, via sqrt(max(x,0)) clamping.",
+        "Budget/identity edge cases: lobe_amplitude divides by maximum(relief, eps) not by a raw max, so all-zero relief cannot produce NaN; the lane's encode/clip/nan_to_num path absorbs any residual NaN/Inf before placement.",
+        "Determinism: the summary builder now derives its timestamp from the frozen evidence card, so regeneration is byte-for-byte reproducible and CI's git diff --exit-code stays clean.",
+        "ruff --select E9,F clean; no unused imports or undefined names in the new module, lane or builder."
+      ],
+      "result": "no open defects; two determinism/lint defects found and fixed during this pass (nondeterministic summary timestamp, unused variable)."
+    },
+    {
+      "pass": 3,
+      "status": "complete",
+      "focus": "Re-check against the original request",
+      "actions": [
+        "Nine focus sites listed with file to download, reported/estimate value, evidence class, uniqueness and decision.",
+        "Best-to-try question answered explicitly: the largest owner-reported value is not organizer-confirmed and not unique; the DIFF1 candidate is a negative result; no file is approved for a weekly slot.",
+        "A unique TIF was generated (SHA-256 2b94cac0..., distinct from the restored registry) and validated for submission automatically with no human step.",
+        "Download / submit decision is obvious at the top of the homepage, the executive summary and the decision JSON (ok_to_download research-only, ok_to_submit false).",
+        "Portal range error mitigated: whole-array [0,1] float32 policy enforced and re-checked (min 0.0, max 1.0, 37,722 nonzero, problems []).",
+        "Unique name plus note (<=140 chars) recorded in the run card and decision JSON.",
+        "GitHub Pages site carries an obvious download TIFF and an executive-summary subpage that links the how-to-submit page."
+      ],
+      "result": "the deliverable matches the requested shape; the honest outcome is that no submission is approved because no candidate clears both the efficacy benchmark and the registry uniqueness gate."
+    }
+  ],
+  "outstanding": [
+    "No dense dotted candidate clears the literal 70% gate against the retained r13 spacing-5 lattice; promotion therefore fails closed.",
+    "training_features.tif / labels.tif / sample_submission.tif are behind a DrivenData login wall, so the 0.1661 benchmark cannot be replayed in this sandbox.",
+    "The remaining ranked hypotheses (CLR1, MT3D, SWIR1) remain untested pending a data placement run on an unrestricted machine."
+  ]
+}

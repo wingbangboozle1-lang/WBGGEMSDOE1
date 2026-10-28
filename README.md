@@ -37,10 +37,12 @@ false-positive candidates at the same distance profile.
 
 # WBG GEMS — evidence-first fault mapping
 
-**[Latest repository review and ranked future hypotheses](docs/repo-review-20261027-session.md)** ·
+**[28 October review of the earlier lanes: no submission approved there](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · **the one file cleared to submit is WBG-6, above**
+
+**[Detailed repository review](docs/repo-review-20261028.md)** · [Earlier repository review and ranked future hypotheses](docs/repo-review-20261027-session.md) ·
 [Session JSON card](evidence/repo_review_session_20261027.json) · [Current provenance feed](docs/data/feed.json)
 
-**Freshness check:** at `2026-10-27T23:47:34+00:00`, 9/9 monitored focus-site GitHub heads differed from the frozen raster audit. This is a head check, not a current raster/score audit. The official leaderboard status is `retained_observation_not_refreshed`; the last retained public observation is 0.4544 (2026-10-27), not a score for any project TIFF.
+**Freshness check:** at `2026-10-28T16:19:05+00:00`, 9/9 monitored focus-site GitHub heads differed from the frozen raster audit. This is a head check, not a current raster/score audit. The official leaderboard status is `retained_observation_not_refreshed`; the last retained public observation is 0.4544 (2026-10-27), not a score for any project TIFF.
 
 ## FOCUS-9 EXECUTIVE SUMMARY — DOWNLOAD: RESEARCH ONLY · SUBMIT: NO
 
@@ -50,6 +52,40 @@ false-positive candidates at the same distance profile.
 **Research TIFF (synthetic random null; not a geological model):** [wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif](docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif) · [ZIP](docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.zip) · [Run card](evidence/focus9_exec/run_card.json). Format checks pass; no holdout score was measured. The output is byte-unique only within the checked snapshot inventory; the fixed-36,800-dot literal 3-pixel lattice-overlap lower bound is **81.932% (>70%)**; the full competing-sparse overlap is unmeasured. **DOWNLOAD: YES for research · SUBMIT: NO.**
 
 GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplied history suggests D2.8 → B1 → B2 pruning removed catalogue-near dots; this is a plausible precision/false-positive mechanism, not proof of new-fault discovery. Leaderboard score estimates for a new file are unavailable.
+
+## 2026-10-28 SESSION — WBG-5 / DIFF1 (LiDAR scarp-lobe morphology) · NEGATIVE
+
+**[Executive summary and decision table (28 Oct 2026)](docs/executive-summary-20261028.md)** ·
+[Machine-readable summary](docs/data/executive_summary_20261028.json) ·
+[DIFF1 run card](evidence/wbg5/diff1_run_card.json) ·
+[Preregistration](research/06_wbg5_diff1_preregistration_20261028.md)
+
+WBG-5 is a 28 October 2026 release carrying **two frozen sub-lanes**, both NEGATIVE and neither
+approved: this **DIFF1** lane and the merged **MTA-1** lane
+([docs/wbg5/index.html](docs/wbg5/index.html), [run card](evidence/wbg5/run_card.json)).
+
+Executed the ranked-#3 untested hypothesis: a **catalogue-free, LiDAR-only diffusion-shape
+scarp-lobe morphology detector** (crest/base curvature-lobe symmetry × scarp-height proxy ×
+face-dominance veto). Three fixed arms, 281 s, **zero slots**.
+
+| Arm | HOLDOUT-DTI (`gems-segment-pooled-v1`, 60,988 withheld positives) | 95% CI | Decision |
+|---|---:|---|---|
+| B — primary (symmetric lobe) | **0.06776** | [0.05891, 0.07675] | fails efficacy gate |
+| A — amplitude control | 0.06774 | [0.05895, 0.07681] | control only |
+| C — asymmetry ablation | 0.07170 | [0.06281, 0.08010] | ablation only |
+
+Benchmark to beat: **HOLDOUT-DTI 0.166060** (GEMSDOE24 S3DEP1). Leakage canary **PASS**
+(25 features, max |AUC| 0.583 ≤ 0.90). Surface novelty **PASS** (max |ρ| 0.564 ≤ 0.90). Final dots
+**FAIL**: competing-method 3 px overlap **78.28% > 70%**
+(vs a published LiDAR-scarp raster) and literal all-entry overlap
+**99.79% > 70%** (vs the retained spacing-5 lattice).
+
+Artifact (research only): `wbggemsdoe1-wbg5-diff1-scarp-lobe-20261028-2f3684a3f718-zeros.tif` (+ `wbggemsdoe1-wbg5-diff1-scarp-lobe-20261028-2f3684a3f718-zeros.zip`, SHA-256 `2b94cac044b778b569431c16875fcdd82b251af67327d4f936dc55c59923f99e`). Format PASS,
+strict whole-array `[0,1]` PASS. **DOWNLOAD: YES · SUBMIT: NO.** A real upload needs a HOLDOUT-DTI
+strictly above 0.1661 with a positive paired 95% CI and full registry uniqueness; neither holds.
+
+Verified public leaderboard #1 on 2026-10-28: **0.4544** (xiaofanhu) — a page observation, not a
+score for any project file. The nine focus-site historical values remain OWNER-REPORTED / UNVERIFIED.
 
 ## NO FILE APPROVED FOR SUBMISSION
 

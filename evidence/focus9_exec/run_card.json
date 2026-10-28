@@ -13,12 +13,12 @@
     "detail": "No features used; no leakage possible. Not a holdout-evaluated detector."
   },
   "holdout_dti": {
-    "evidence_class": "NOT MEASURED",
-    "evaluator_version": null,
-    "withheld_positive_pixels": null,
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "not_evaluated",
+    "withheld_positive_pixels": 60988,
     "dti": null,
     "ci95": null,
-    "detail": "No 19-band feature stack is present and no hide-and-recover evaluation was run for this synthetic null. It has no measured HOLDOUT-DTI and no leaderboard estimate."
+    "detail": "No holdout evaluation was run for this artifact. No DTI value or leaderboard projection is available."
   },
   "correlation_overlap_vs_registry": {
     "phase": "final_dots",
@@ -26,7 +26,7 @@
     "total_rasters_indexed": 377,
     "scope": "All tracked aligned single-band TIFFs outside data/ and vendor/ in nine frozen owner snapshots (2026-10-26). Not all 92 user-listed sites, hidden/private rasters, or later commits.",
     "max_forward_3px_overlap": null,
-    "max_forward_3px_overlap_vs_competing_sparse": "Not measured in this lightweight generation (requires 19-band cache restore and full registry comparator cache). Prior WBG-3 SPI-PMR achieved 59.38% max vs 207 sparse rasters with same budget and clearance; this random ensemble is expected similar (<70%) but must be measured before any promotion claim.",
+    "max_forward_3px_overlap_vs_competing_sparse": "Not measured; no inference from another artifact is valid for this raster.",
     "byte_unique_among_checked": true,
     "decoded_pixel_unique_among_checked": true,
     "lattice_coverage": {
@@ -38,10 +38,10 @@
       "pigeonhole_min_overlap_for_36800_dots": 0.819320652173913,
       "pigeonhole_min_overlap": 0.8193
     },
-    "literal_all_entries_verdict": "STOP - by pigeonhole principle, any 36,800-dot footprint allocation must have >=81.932% forward overlap within 3px of the spacing-5 synthetic lattice, exceeding the 70% literal threshold. No 36,800-dot allocation confined to this footprint can clear the literal 70% gate; other budgets or footprints require their own bound.",
-    "competing_method_interpretation": "Competing-method interpretation (excluding synthetic calibration lattice) would PASS if measured max <70%, as WBG-3 demonstrated (59.38%). This research file is byte-distinct but literal-unseparated verdict remains negative.",
+    "literal_all_entries_verdict": "STOP - by pigeonhole principle, any 36,800-dot allocation confined to this footprint must have >=81.932% forward overlap within 3px of the spacing-5 synthetic lattice, exceeding the 70% literal threshold. This fixed-budget bound applies to this footprint and budget; other budgets or footprints require their own bound.",
+    "competing_method_interpretation": "No competing-sparse interpretation is available because final-dot overlap was not measured for this artifact. Literal uniqueness remains negative.",
     "passes_literal_uniqueness": false,
-    "passes_competing_method_uniqueness": "Unmeasured - expected PASS but not claimed",
+    "passes_competing_method_uniqueness": "Unmeasured; no pass claim.",
     "complete_all_user_listed_sites": false
   },
   "raster_sha256": "e8c4bf7607cec72c54981b90aa60e7e85163b429b58ebd6f2a7c3126e8c1e351",
@@ -104,14 +104,14 @@
     "approved_for_weekly_slot": false,
     "submission_slots_used": 0,
     "reasons": [
-      "synthetic null with no geophysical mechanism or efficacy test",
-      "fixed-budget 36,800-dot literal registry overlap lower bound exceeds 70%",
-      "no current-best paired holdout comparison was performed",
+      "synthetic null model with no geophysical efficacy",
+      "literal registry lattice saturation (pigeonhole 81.94% >70%)",
+      "no holdout evaluation or scientific efficacy evidence for this synthetic null",
       "no assigned method lane",
       "no untouched confirmation"
     ]
   },
   "experiments_completed": 1,
   "submission_slots_used": 0,
-  "next_action": "Use this file only to verify download/validator UX. For a real promotion, restore the 19-band stack, run the four ranked geophysical hypotheses through buffered whole-component holdout, and obtain separate selector approval after both Spearman and competing-method dot checks pass."
+  "next_action": "Use this file only to verify download/validator UX. Do not restart the stopped lane or run hypotheses from this record. The assigned method paragraph and fresh authorization are missing; future work requires separate assignment, preregistration, policy-compliant full registry checks, holdout validation, and selector approval before any slot consideration."
 }

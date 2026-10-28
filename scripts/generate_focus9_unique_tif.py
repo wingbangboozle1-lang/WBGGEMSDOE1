@@ -14,7 +14,7 @@ Properties:
 - 36,800 off-catalogue binary dots at 1.0, selected by reproducible RNG seed
 - Byte-distinct from all 360 checked registry hashes (new SHA256)
 - Literal overlap vs r13 lattice will exceed 70% by pigeonhole principle (coverage 99.87%),
-  so verdict is negative / DO NOT SUBMIT - but competing-sparse uniqueness is PASS.
+  so verdict is negative / DO NOT SUBMIT. Competing-sparse overlap was not measured.
 
 This is a research placeholder that demonstrates format validity and honest labeling.
 A true efficacy claim requires the full 19-band stack and spatially-blocked holdout.
@@ -205,7 +205,7 @@ def main():
             "total_rasters_indexed": 377,
             "scope": "All tracked aligned single-band TIFFs outside data/ and vendor/ in nine frozen owner snapshots (2026-10-26). Not all 92 user-listed sites, hidden/private rasters, or later commits.",
             "max_forward_3px_overlap": None,
-            "max_forward_3px_overlap_vs_competing_sparse": "Not measured in this lightweight generation (requires 19-band cache restore and full registry comparator cache). Prior WBG-3 SPI-PMR achieved 59.38% max vs 207 sparse rasters with same budget and clearance; this random ensemble is expected similar (<70%) but must be measured before any promotion claim.",
+            "max_forward_3px_overlap_vs_competing_sparse": "Not measured; no inference from another artifact is valid for this raster.",
             "byte_unique_among_checked": True,
             "decoded_pixel_unique_among_checked": True,
             "lattice_coverage": {
@@ -218,9 +218,9 @@ def main():
                 "pigeonhole_min_overlap": round(max(0, (BUDGET - 6649) / BUDGET), 4)
             },
             "literal_all_entries_verdict": "STOP - by pigeonhole principle, any 36,800-dot footprint allocation must have >=81.932% forward overlap within 3px of the spacing-5 synthetic lattice, exceeding the 70% literal threshold. No 36,800-dot allocation confined to this footprint can clear the literal 70% gate; other budgets or footprints require their own bound.",
-            "competing_method_interpretation": "Competing-method interpretation (excluding synthetic calibration lattice) would PASS if measured max <70%, as WBG-3 demonstrated (59.38%). This research file is byte-distinct but literal-unseparated verdict remains negative.",
+            "competing_method_interpretation": "No competing-sparse interpretation is available because final-dot overlap was not measured for this artifact. Literal uniqueness remains negative.",
             "passes_literal_uniqueness": False,
-            "passes_competing_method_uniqueness": "Unmeasured - expected PASS but not claimed",
+            "passes_competing_method_uniqueness": "Unmeasured; no pass claim.",
             "complete_all_user_listed_sites": False
         },
         "validator": validator,
@@ -253,7 +253,7 @@ def main():
             "withheld_positive_pixels": 60988,
             "dti": None,
             "ci95": None,
-            "detail": "No 19-band stack present; holdout not run. Previous synthetic scatter measured HOLDOUT-DTI 0.000341 on gems-segment-pooled-v1 and 0.097610 on gems57-pooled-hide-v2 (WBG-2 replay). Leaderboard projection unavailable."
+            "detail": "No holdout evaluation was run for this artifact. No DTI value or leaderboard projection is available."
         },
         "correlation_overlap_vs_registry": uniqueness["registry"],
         "raster_sha256": sha256,
@@ -274,14 +274,14 @@ def main():
             "reasons": [
                 "synthetic null model with no geophysical efficacy",
                 "literal registry lattice saturation (pigeonhole 81.932% >70%)",
-                "no holdout DTI beating current best (S3DEP1 0.1661, WBG-3 0.1182)",
+                "no holdout evaluation or scientific efficacy evidence for this synthetic null",
                 "no assigned method lane",
                 "no untouched confirmation"
             ]
         },
         "experiments_completed": 1,
         "submission_slots_used": 0,
-        "next_action": "Use this file only to verify download/validator UX. For a real promotion, restore the 19-band stack, run the four ranked geophysical hypotheses through buffered whole-component holdout, and obtain separate selector approval after both Spearman and competing-method dot checks pass."
+        "next_action": "Use this file only to verify download/validator UX. Do not restart the stopped lane or run hypotheses from this record. The assigned method paragraph and fresh authorization are missing; future work requires separate assignment, preregistration, policy-compliant full registry checks, holdout validation, and selector approval before any slot consideration."
     }
     OUT_RUN_CARD.parent.mkdir(parents=True, exist_ok=True)
     with open(OUT_RUN_CARD, 'w') as f:

@@ -1,0 +1,40 @@
+{
+  "reviewed_utc": "2026-10-28T16:21:55.570424+00:00",
+  "run_type": "review only; no new scientific experiment",
+  "hypothesis": "Synthetic random off-catalogue null; not a fault detector",
+  "mechanism": "Uniform random dot sampling beyond the catalogue clearance in the frozen artifact; no geological prediction",
+  "named_non_fault_mimic": "random scatter cannot distinguish pluvial shorelines, roads or alluvial fans from faults",
+  "holdout_dti": {
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "status": "not evaluated"
+  },
+  "feature_canaries": {
+    "status": "not evaluated; catalogue was used to exclude pixels; no inference of no leakage"
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_before_placement": "not measured for this review",
+    "final_dots": "not freshly measured",
+    "historical_certificate": "docs/data/lattice-coverage-certificate.json",
+    "fixed_budget_lattice_overlap_lower_bound": 0.819320652173913,
+    "scope": "archived footprint and 36800 dots; not an all-site current scan"
+  },
+  "raster_sha256": "e8c4bf7607cec72c54981b90aa60e7e85163b429b58ebd6f2a7c3126e8c1e351",
+  "validator_output": {
+    "tif_format_pass": true,
+    "zip_format_pass": true,
+    "ok_to_submit": false,
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "reference_origin": "hash-pinned owner mirror; not organizer authenticated",
+    "outside_bounds": "zero; official text says null or NaN outside bounds; portal acceptance unknown"
+  },
+  "submission_name": "wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros",
+  "submission_note": "Synthetic null, research only; do not submit.",
+  "leaderboard_estimate": null,
+  "verdict": "negative",
+  "slots_used": 0
+}

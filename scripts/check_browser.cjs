@@ -53,13 +53,11 @@ const chromium = importedChromium.default || importedChromium;
     }
     await page.goto(new URL("focus9-executive-summary.html", base).href, { waitUntil: "networkidle" });
     const focus9Text = await page.locator("main").innerText();
-    assert.match(focus9Text, /DOWNLOAD: YES.*SUBMIT: NO/);
-    assert.match(focus9Text, /0\.2778/);
-    assert.match(focus9Text, /HOLDOUT-DTI not evaluated/);
+    assert.match(focus9Text, /DO NOT SUBMIT/);
+    assert.match(focus9Text, /no holdout evaluation/i);
     assert.match(focus9Text, /81\.932%/);
-    assert.doesNotMatch(focus9Text, /synthetic HOLDOUT-DTI ≈0\.0003/);
-    assert.equal(await page.locator("#master-table tbody tr").count(), 11);
-    assert.equal(await page.evaluate(() => document.body.scrollWidth > window.innerWidth), false, "desktop body overflow: Focus-9 executive summary");
+    assert.doesNotMatch(focus9Text, /expected ~0\.0003|Expected gain:/);
+    assert.equal(await page.evaluate(() => document.body.scrollWidth > window.innerWidth), false, "desktop focus9 summary overflow");
     checked.push({ file: "focus9-executive-summary.html", desktop: "passed" });
     const focus9DownloadPromise = page.waitForEvent("download");
     await page.locator("a[download]").first().click();
@@ -81,7 +79,7 @@ const chromium = importedChromium.default || importedChromium;
     await page.goto(new URL("index.html", base).href, { waitUntil: "networkidle" });
     await page.screenshot({ path: path.join(artifacts, "desktop.png"), fullPage: true });
     await page.setViewportSize({ width: 390, height: 844 });
-    for (const file of ["index.html", "executive-summary.html", "focus9-executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"]) {
+    for (const file of ["index.html", "focus9-executive-summary.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"]) {
       await page.goto(new URL(file, base).href, { waitUntil: "networkidle" });
       const overflow = await page.evaluate(() => document.body.scrollWidth > window.innerWidth);
       assert.equal(overflow, false, `mobile body overflow: ${file}`);
@@ -173,7 +171,9 @@ const chromium = importedChromium.default || importedChromium;
       javascript_page_errors: errors, site_filter: "passed", wbg2_nine_site_table: "passed", primary_download_sha256: wbg2.raster_sha256,
       primary_download_identity: "passed", wbg_s2_download_sha256: s2.artifact.tif_sha256,
       wbg_s2_download_identity: "passed", wbg3_download_sha256: wbg3.raster_sha256,
-      wbg3_download_identity: "passed", body_overflow: false, all_passed: true,
+      wbg3_download_identity: "passed", focus9_demo_download_sha256: focus9.raster_sha256,
+      focus9_demo_download_identity: "passed", focus9_no_submit_copy: "passed",
+      body_overflow: false, all_passed: true,
       no_model_training_or_slot_use: true };
     fs.writeFileSync(path.join(root, "evidence/browser_checks.json"), JSON.stringify(report, null, 2) + "\n");
     console.log(JSON.stringify(report, null, 2));

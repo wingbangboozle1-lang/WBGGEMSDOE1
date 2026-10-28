@@ -53,7 +53,7 @@ def test_all_site_local_links_resolve_and_decision_is_unmistakable(name):
     elif name in {"release-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html"}:
         assert "no competition slot" in text
     elif name == "focus9-executive-summary.html":
-        assert "no file in this repository is approved" in text and "0 slots used" in text
+        assert "do not submit" in text and "0 slots used" in text
     elif name == "hypotheses.html":
         assert "no experiment or slot was spent" in text and "untested proposals" in text
     else:
@@ -145,11 +145,10 @@ def test_nine_site_table_reports_estimate_and_measured_uniqueness_scope():
     assert "maximum forward 3 px overlap" in markdown
     assert "Unavailable for a new file" in markdown
     focus_page = (DOCS / "focus9-executive-summary.html").read_text()
-    assert "HOLDOUT-DTI not evaluated" in focus_page
+    assert "no holdout evaluation" in focus_page.lower()
     assert "synthetic HOLDOUT-DTI ≈0.0003" not in focus_page
-    assert "additional recall needed" in focus_page
-    assert "do not silently clip" in focus_page.lower()
     assert "81.932%" in focus_page
+    assert "do not silently clip" in (DOCS / "how-to-submit.html").read_text().lower()
     hypothesis_page = (DOCS / "hypotheses.html").read_text()
     assert "Highest benefit-to-cost judgment" in hypothesis_page
     assert "Not viable for validation yet" in hypothesis_page

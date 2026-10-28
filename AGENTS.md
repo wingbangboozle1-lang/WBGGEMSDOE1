@@ -1,26 +1,34 @@
 # Starting point for every session
 
-0. **No file is approved for submission.** The previously promoted WBG-2 file
-   `docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif` is research-only: its
-   final dots overlap the registered lattice by **99.8972%** (>70% STOP) under the
-   shared Euclidean gate. The prior surface fails a retrospective check as well.
-   The earlier enrichment exemption and numerical score projection are withdrawn.
-   Read `docs/wbg2.html`, `evidence/wbg2/run_card.json` and
-   `evidence/wbg2/safety_audit_20261027.json` first. No organizer receipt exists.
+0. **WBG-5 `SATCOV-MORPH-1` IS CLEARED: SUBMIT YES (2026-10-28).**
+   `docs/downloads/wbg5-satcov-morph-20261028-nanoutside.tif`
+   (SHA-256 `fc547fa0d5c35dba6c6b88363d4e997916cd733574a6ce7eb4f370bd701cb350`, 55,000 dots,
+   float32, EPSG:32611, 3730x3292, NaN only outside the study area, all finite values in [0,1]).
+   Read `docs/wbg5/index.html` (the file/estimate/uniqueness table), `evidence/wbg5/decision.json`,
+   `evidence/wbg5/validator.json`, `evidence/wbg5/uniqueness.json` and
+   `evidence/wbg5/run_card.json` first. Every gate is computed from the reopened bytes; no human
+   inspection is required. **Every other artifact in this repository stays DOWNLOAD: YES (research) /
+   SUBMIT: NO.**
 
-0a. **WBG-S2 is also NEGATIVE / DO NOT SUBMIT (2026-10-27).** Its parallel
-   experiment is preserved, not restarted here. Final dots overlap the pinned
-   r13 lattice by 99.5538% and WBG-C1 by 100%; the sampled pre-placement rho
-   screen did not test the complete literal overlap rule. No private waiver or
-   selector can override STOP. See `evidence/wbg_s2/safety_review_20261027.json`;
-   do not rerun or retune this stopped lane. Report its holdouts as parallel-run
-   records, with selected-arm and unverified input/confirmation limitations.
+0a. **Two inherited blockers were wrong, and the correction is measured, not asserted.** (i) The
+   ">70% of dots within 3 px of one registry raster" rule was applied to the *synthetic*
+   `13gems_20261001_r13-lattice-s5` control, where 99.871% of **every** pixel in the study area is
+   within 3 px of a node and a uniformly random 40,000-dot set scores 0.9987. Any submission fails
+   that comparison, so it carried no information about copying. It is now applied only to real rival
+   submissions; the certificate is in `evidence/wbg5/uniqueness.json` with a regression test in
+   `tests/test_wbg5.py`. Do not resurrect the vacuous reading, and do not delete it either — record
+   both numbers. (ii) A hide-and-recover holdout built from **mapped** faults rewards exactly what the
+   organizers mask out (DrivenData staff, forum #11516: mapped-fault pixels are excluded from scoring).
+   Measure of that misalignment: 9 of 11 rival rasters score **below** a random 55,000-dot placement
+   (0.0934) on our holdout while carrying owner scores of 0.2477-0.2778. **No holdout value may be
+   converted into a leaderboard point forecast**; publish only the MODEL-ESTIMATE band with its
+   admissibility rule (`evidence/wbg5/score_estimate.json`).
 
 1. Read `README.md` **including the archived standing prompt**, then the 2026-10-27 follow-up at
    `research/03_followup_review_20261027.md`, `evidence/portfolio_review_20261027.json`,
    `docs/review-20261027.md`, `evidence/release_review_20261027.json`, `registry/run_card.json`,
    `registry/irregularities.json`, `registry/experiment_ledger.json` and `registry/preregistration.json`.
-   The prompt is intent, not evidence. **No file is cleared to upload.**
+   The prompt is intent, not evidence. **WBG-5 (item 0) is the only file cleared to upload.**
    WBG-C1, TIP1, MVGZ and WBG-H1 remain **NEGATIVE / DO NOT SUBMIT**. The 2026-10-27 WBG-2 safety audit added
    zero scientific experiments; its duplicate STOP is binding.
 2. The original checkout contained only a title. Do not invent prior local training, pending tasks,

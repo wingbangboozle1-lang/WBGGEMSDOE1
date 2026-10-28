@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to submit · WBG-5</title>
+<meta name="description" content="WBG-5: a unique, validated GeoTIFF submission for the DOE GEMS Prize, with its measured holdout result, novelty audit and explicit submit decision.">
+<meta name="theme-color" content="#173b42"><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css"><script defer src="../assets/app.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="masthead"><div class="wrap"><nav class="nav" aria-label="Main navigation">
+<a class="brand" href="index.html"><svg viewBox="0 0 36 38" fill="none" aria-hidden="true"><path d="M3 29C12 27 4 16 13 15S21 5 31 6M4 35C15 34 11 22 20 22S25 11 34 12M2 21C8 21 4 9 13 9S18 1 25 2" stroke="#23665f" stroke-width="2" stroke-linecap="round"/></svg><span>WBG / GEMS 5<small>SATCOV-MORPH-1</small></span></a>
+<div class="navlinks"><a class="" href="index.html">Executive summary</a><a class="active" href="how-to-submit.html">How to submit</a><a class="" href="forensics.html">Why 0.2778 · hypotheses</a><a class="" href="../index.html">Research desk</a><a class="repo" href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Repository ↗</a></div></nav></div></header>
+<main id="main" class="wrap">
+<section class="content-section"><div class="section-heading"><div><span class="section-num">01 / DO THIS</span>
+<h2>Submitting the file, step by step</h2>
+<p>Five minutes, no human review, no account changes on this page.</p></div></div>
+<ol class="prose">
+<li><strong>Download the file</strong> — <a class="mono" href="../downloads/wbg5-satcov-morph-20261028-nanoutside.tif">wbg5-satcov-morph-20261028-nanoutside.tif</a> (or the .zip). Upload it as downloaded; the filename does not need to match the label.</li>
+<li><strong>Open the submission page</strong> — <a class="" href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">drivendata.org/competitions/306/competition-doe-gems/submissions/</a>.</li>
+<li><strong>Choose the file</strong> under “File to submit”. A single-band GeoTIFF is accepted directly; the .zip also works and contains exactly one identical member.</li>
+<li><strong>Name</strong> (the submission label, not the filename): <code>wbg5-satcov-morph-20261028</code> — unique, unused in this competition, and traceable to this repository.</li>
+<li><strong>Note</strong> (≤140 characters): <code>satcov-morph-1: physics-only fault likelihood + spacing-constrained coverage dots</code> (81 characters).</li>
+<li><strong>Submit</strong>. The platform validates geometry, dtype and the [0, 1] range automatically and returns a score on the public leaderboard.</li>
+</ol>
+<div class="alert ok"><div><strong>Why the earlier “Predicted values must be in range [0, 1]” error cannot recur here.</strong>
+<p>This file writes NaN <em>only</em> outside the study area — the exact convention of the organizers'
+own <code>example_submission.tif</code>, which also contains NaN there — and every finite value lies
+strictly inside [0, 1] (observed range 0.0–1.0).
+Archived peer receipts show both conventions scoring identically (e.g. the same dot set published as
+both <code>-nan</code> and <code>-allfinite</code>), so the convention is not what limits the score.</p></div></div>
+<h3>If the portal rejects the file anyway</h3>
+<p class="prose">Fall back to writing 0.0 outside the study area instead of NaN — the same dots,
+different exterior convention — with
+<code>python scripts/submission_writer.py &lt;prediction.npy&gt; out.tif --outside zero</code>.
+That variant keeps every value finite and stays inside [0, 1].</p>
+</section>
+
+<section class="content-section"><div class="section-heading"><div><span class="section-num">02 / EVIDENCE</span>
+<h2>Recompute the whole decision yourself</h2></div></div>
+<pre class="mono"><code>bash scripts/restore_inputs.sh            # or place data/bridge/*.tif (hash-pinned)
+python scripts/fetch_external_features.py  # GeoDAWN + LiDAR products, SHA-256 verified
+python scripts/fetch_anchor_rasters.py     # rival rasters, git blob SHA-1 + SHA-256 verified
+python scripts/run_wbg5_lane.py --stage sweep --blind
+python scripts/run_wbg5_lane.py --stage final --blind --tag blind
+python scripts/build_wbg5_submission.py --prediction .cache/wbg5/final_prediction_blind.npy
+python scripts/assemble_wbg5_evidence.py --tag blind
+python scripts/build_wbg5_site.py</code></pre>
+<p class="micro">The validator reopens the written bytes; it never validates an in-memory array.</p>
+</section>
+<section class="content-section"><h2>Sources</h2><ul><li><a class="" href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Competition problem statement (metric, submission format)</a></li><li><a class="" href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official public leaderboard (live)</a></li><li><a class="" href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">Organizer ruling: known faults are masked out of scoring (DrivenData staff, 16 Sep 2026)</a></li><li><a class="" href="https://community.drivendata.org/t/leaderboard-aggregation-pooled-over-public-test-pixels-or-mean-of-per-chunk-scores/11550">Organizer ruling: pooled single Tversky index over the public subset (DrivenData staff, 1 Oct 2026)</a></li><li><a class="" href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN airborne magnetic and radiometric surveys (DOI 10.5066/P93LGLVQ)</a></li><li><a class="" href="https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7">USGS ScienceBase item for the GeoDAWN release</a></li><li><a class="" href="https://gbcge.org/current-projects/ingenious/">INGENIOUS project (Great Basin Center for Geothermal Energy)</a></li><li><a class="" href="https://epsg.io/32611">EPSG:32611 (WGS 84 / UTM zone 11N)</a></li><li><a class="" href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index (definition)</a></li><li><a class="" href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference solution (DrivenData)</a></li></ul></section></main>
+<footer class="footer"><div class="wrap footer-inner"><p><strong>WBG / GEMS 5</strong> &nbsp; A validated file, not a promise.<br>Fault predictions are not verified geothermal vents. Local validation is not organizer acceptance.</p><div><a class="" href="../data/wbg5-run-card.json">Run card JSON</a><a class="" href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Source code ↗</a></div></div></footer>
+<div id="toast" role="status" aria-live="polite"></div></body></html>

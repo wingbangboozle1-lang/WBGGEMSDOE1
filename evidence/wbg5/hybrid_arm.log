@@ -1,0 +1,17 @@
+    w     dots  coverage      DTI
+ 0.00    63183    0.1761   0.1719
+ 0.25    55844    0.1634   0.1635
+ 0.60    45615    0.1439   0.1492
+Traceback (most recent call last):
+  File "/home/user/WBGGEMSDOE1/scripts/run_wbg5_hybrid.py", line 137, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/user/WBGGEMSDOE1/scripts/run_wbg5_hybrid.py", line 107, in main
+    (EVID / "hybrid_sweep.json").write_text(json.dumps(out, indent=1) + "\n")
+  File "/usr/lib/python3.11/pathlib.py", line 1079, in write_text
+    with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/pathlib.py", line 1045, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/user/WBGGEMSDOE1/evidence/wbg5/hybrid_sweep.json'

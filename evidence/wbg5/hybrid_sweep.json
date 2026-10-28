@@ -1,0 +1,257 @@
+{
+ "schema": "gemsdoe1-wbg5-hybrid-sweep-v1",
+ "weights": [
+  0.0,
+  0.25,
+  0.6
+ ],
+ "decay_px": 6.0,
+ "ring_px": 3.0,
+ "d_min": 2.0,
+ "budget": 55000,
+ "grid": [
+  {
+   "w": 0.0,
+   "TP_w": 10737.334417109365,
+   "FP_w": 57685.28013497355,
+   "FN_w": 50250.66558289064,
+   "n_truth": 60988,
+   "n_emitted": 63183,
+   "dti": 0.1718663091827828,
+   "coverage": 0.1760565097578108
+  },
+  {
+   "w": 0.25,
+   "TP_w": 9966.180423775246,
+   "FP_w": 50825.98263190419,
+   "FN_w": 51021.81957622475,
+   "n_truth": 60988,
+   "n_emitted": 55844,
+   "dti": 0.16351716672483052,
+   "coverage": 0.16341215360030245
+  },
+  {
+   "w": 0.6,
+   "TP_w": 8773.605275621707,
+   "FP_w": 41293.92674460651,
+   "FN_w": 52214.39472437829,
+   "n_truth": 60988,
+   "n_emitted": 45615,
+   "dti": 0.14920106183631318,
+   "coverage": 0.14385789459601409
+  }
+ ],
+ "per_fold": [
+  {
+   "fold": "NW",
+   "w": 0.0,
+   "TP_w": 2101.3205759988377,
+   "FP_w": 16749.692561576365,
+   "FN_w": 8063.679424001162,
+   "n_truth": 10165,
+   "n_emitted": 17921,
+   "dti": 0.17654888273565708,
+   "coverage": 0.2067211584848832
+  },
+  {
+   "fold": "NW",
+   "w": 0.25,
+   "TP_w": 1948.3695107030085,
+   "FP_w": 14726.640701135362,
+   "FN_w": 8216.630489296991,
+   "n_truth": 10165,
+   "n_emitted": 15798,
+   "dti": 0.16991097616336723,
+   "coverage": 0.19167432471254386
+  },
+  {
+   "fold": "NW",
+   "w": 0.6,
+   "TP_w": 1712.451733217603,
+   "FP_w": 11809.868536747548,
+   "FN_w": 8452.548266782396,
+   "n_truth": 10165,
+   "n_emitted": 12726,
+   "dti": 0.15802679957866833,
+   "coverage": 0.16846549269233674
+  },
+  {
+   "fold": "NE_LidarGapHeavy",
+   "w": 0.0,
+   "TP_w": 2319.51417839602,
+   "FP_w": 14417.862154026367,
+   "FN_w": 10191.48582160398,
+   "n_truth": 12511,
+   "n_emitted": 15669,
+   "dti": 0.17366474800044876,
+   "coverage": 0.18539798404572136
+  },
+  {
+   "fold": "NE_LidarGapHeavy",
+   "w": 0.25,
+   "TP_w": 2188.6847991608543,
+   "FP_w": 12793.310817987536,
+   "FN_w": 10322.315200839146,
+   "n_truth": 12511,
+   "n_emitted": 13953,
+   "dti": 0.16829306328735655,
+   "coverage": 0.17494083599719082
+  },
+  {
+   "fold": "NE_LidarGapHeavy",
+   "w": 0.6,
+   "TP_w": 1991.322535934577,
+   "FP_w": 10571.14270209663,
+   "FN_w": 10519.677464065422,
+   "n_truth": 12511,
+   "n_emitted": 11602,
+   "dti": 0.15903489586479766,
+   "coverage": 0.1591657370261831
+  },
+  {
+   "fold": "SW",
+   "w": 0.0,
+   "TP_w": 2614.2868457907966,
+   "FP_w": 13766.786373347273,
+   "FN_w": 17919.713154209203,
+   "n_truth": 20534,
+   "n_emitted": 15073,
+   "dti": 0.13268191798402273,
+   "coverage": 0.1273150309628322
+  },
+  {
+   "fold": "SW",
+   "w": 0.25,
+   "TP_w": 2440.1698384171714,
+   "FP_w": 12324.024118070562,
+   "FN_w": 18093.830161582828,
+   "n_truth": 20534,
+   "n_emitted": 13527,
+   "dti": 0.12591150434127713,
+   "coverage": 0.11883558188454131
+  },
+  {
+   "fold": "SW",
+   "w": 0.6,
+   "TP_w": 2156.975066539779,
+   "FP_w": 10432.619930802735,
+   "FN_w": 18377.02493346022,
+   "n_truth": 20534,
+   "n_emitted": 11483,
+   "dti": 0.11385386740452284,
+   "coverage": 0.10504407648484364
+  },
+  {
+   "fold": "SE",
+   "w": 0.0,
+   "TP_w": 3702.212816923711,
+   "FP_w": 12750.939046023548,
+   "FN_w": 14075.787183076289,
+   "n_truth": 17778,
+   "n_emitted": 14520,
+   "dti": 0.21139761298519158,
+   "coverage": 0.20824686786611044
+  },
+  {
+   "fold": "SE",
+   "w": 0.25,
+   "TP_w": 3388.9562754942117,
+   "FP_w": 10982.006994710722,
+   "FN_w": 14389.043724505787,
+   "n_truth": 17778,
+   "n_emitted": 12566,
+   "dti": 0.19822407564195949,
+   "coverage": 0.19062640766645358
+  },
+  {
+   "fold": "SE",
+   "w": 0.6,
+   "TP_w": 2912.855939929748,
+   "FP_w": 8480.2955749596,
+   "FN_w": 14865.144060070252,
+   "n_truth": 17778,
+   "n_emitted": 9804,
+   "dti": 0.17652570090647154,
+   "coverage": 0.1638460985448165
+  }
+ ],
+ "best_summary": {
+  "label": "HOLDOUT-DTI",
+  "evaluator_version": "gems-segment-pooled-v1",
+  "TP_w": 10737.334417109365,
+  "FP_w": 57685.28013497355,
+  "FN_w": 50250.66558289064,
+  "n_truth": 60988.0,
+  "n_emitted": 63183.0,
+  "dti": 0.1718663091827828,
+  "n_withheld_positive_pixels": 60988,
+  "n_unique_withheld_components": 3199,
+  "ci95": {
+   "level": 0.95,
+   "interval": [
+    0.15799870805832925,
+    0.18539100319827187
+   ],
+   "method": "percentile spatial-block bootstrap of pooled TPw/FPw/FNw",
+   "block_pixels": 100,
+   "block_size_m": 10000,
+   "n_blocks": 583,
+   "resamples": 1999,
+   "seed": 20261025,
+   "limitation": "Internal-validation uncertainty; geologic structures may cross blocks. Not a hidden-score interval."
+  },
+  "folds": [
+   {
+    "fold": "NW",
+    "TP_w": 2101.3205759988377,
+    "FP_w": 16749.692561576365,
+    "FN_w": 8063.679424001162,
+    "n_truth": 10165,
+    "n_emitted": 17921,
+    "dti": 0.17654888273565708,
+    "coverage": 0.2067211584848832
+   },
+   {
+    "fold": "NE_LidarGapHeavy",
+    "TP_w": 2319.51417839602,
+    "FP_w": 14417.862154026367,
+    "FN_w": 10191.48582160398,
+    "n_truth": 12511,
+    "n_emitted": 15669,
+    "dti": 0.17366474800044876,
+    "coverage": 0.18539798404572136
+   },
+   {
+    "fold": "SW",
+    "TP_w": 2614.2868457907966,
+    "FP_w": 13766.786373347273,
+    "FN_w": 17919.713154209203,
+    "n_truth": 20534,
+    "n_emitted": 15073,
+    "dti": 0.13268191798402273,
+    "coverage": 0.1273150309628322
+   },
+   {
+    "fold": "SE",
+    "TP_w": 3702.212816923711,
+    "FP_w": 12750.939046023548,
+    "FN_w": 14075.787183076289,
+    "n_truth": 17778,
+    "n_emitted": 14520,
+    "dti": 0.21139761298519158,
+    "coverage": 0.20824686786611044
+   }
+  ],
+  "protocol": {
+   "aggregation": "pooled TPw/FPw/FNw, not mean fold DTI",
+   "buffer_m": 1500,
+   "whole_components_hidden_everywhere": true,
+   "visible_fault_mask": "pixel-exact, applied before credit and FP calculation",
+   "catalogue_features": "must be constructed from fold.visible only",
+   "alpha": 0.2,
+   "beta": 0.8,
+   "triangular_kernel_radius_m": 300
+  }
+ },
+ "interpretation": "w = 0 is the physics-only arm. A positive w trades a little holdout recovery of mapped faults for mask-aware placement off the catalogue ring, which is the only zone the organizer leaves unpunished and the only zone where a new fault can be found."
+}

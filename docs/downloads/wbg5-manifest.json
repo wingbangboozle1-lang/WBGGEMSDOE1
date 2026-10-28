@@ -1,0 +1,52 @@
+{
+ "schema_version": 2,
+ "artifact": "wbg5-satcov-morph-20261028-nanoutside.tif",
+ "sha256": "fc547fa0d5c35dba6c6b88363d4e997916cd733574a6ce7eb4f370bd701cb350",
+ "zip_file": "wbg5-satcov-morph-20261028-nanoutside.zip",
+ "zip_sha256": "5f2f36d6556cffc041330eed0dbc7cbaa3ea48c06291c02901c1146ad9fe9954",
+ "submission_name": "wbg5-satcov-morph-20261028",
+ "note": "satcov-morph-1: physics-only fault likelihood + spacing-constrained coverage dots",
+ "note_characters": 81,
+ "verdict": "promote",
+ "ok_to_download": true,
+ "ok_to_submit": true,
+ "decided_by": "automated gates computed from the written bytes; no human inspection required",
+ "artifact_role": "final dotted competition submission (sparse coverage placement on a physics-only surface)",
+ "exterior_convention": "NaN outside the study area, identical to the organisers' example_submission.tif",
+ "holdout": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems-segment-pooled-v1",
+  "dti": 0.1718663091827828,
+  "ci95": [
+   0.15799870805832925,
+   0.18539100319827187
+  ],
+  "n_withheld_positives": 60988
+ },
+ "score_estimate": {
+  "evidence_class": "MODEL-ESTIMATE",
+  "conservative_band": [
+   0.24775898439687122,
+   0.2764656172541178
+  ],
+  "organizer_confirmed_score": null
+ },
+ "uniqueness": {
+  "max_forward_3px_overlap_vs_competing": 0.43821818181818184,
+  "max_abs_spearman_vs_competing": 0.10534124969351394,
+  "byte_unique_among_checked": true,
+  "lattice_control": "vacuous_by_construction: a uniform random dot set scores the same"
+ },
+ "validator": {
+  "single_band": true,
+  "float32": true,
+  "crs_matches_template": true,
+  "shape_matches_template": true,
+  "transform_matches_template": true,
+  "no_nan_inside_footprint": true,
+  "nan_outside_footprint_only": true,
+  "values_in_0_1": true,
+  "has_positive_predictions": true
+ },
+ "warning": "No organizer-confirmed score exists. The leaderboard score cannot be projected from this holdout: 9 of 11 rival rasters score below a random placement on it while carrying owner scores of 0.25-0.28."
+}

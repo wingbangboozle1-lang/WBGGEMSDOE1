@@ -1,0 +1,278 @@
+{
+ "schema": "gemsdoe1-wbg5-canaries-v1",
+ "limit": 0.9,
+ "n_samples": 240000,
+ "n_positives": 40000,
+ "n_negatives": 200000,
+ "target": "mapped-fault catalogue (the holdout proxy class)",
+ "features": [
+  {
+   "feature": "lidar_ex_max",
+   "auc": 0.5628284986875001,
+   "reverse_auc": 0.43717150131249993,
+   "orientation_invariant_max": 0.5628284986875001,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "lidar_ex_mean",
+   "auc": 0.5588559403125001,
+   "reverse_auc": 0.4411440596874999,
+   "orientation_invariant_max": 0.5588559403125001,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "lidar_step_max",
+   "auc": 0.56242281225,
+   "reverse_auc": 0.43757718775,
+   "orientation_invariant_max": 0.56242281225,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "lidar_lapneg_max",
+   "auc": 0.5659940268125,
+   "reverse_auc": 0.4340059731875,
+   "orientation_invariant_max": 0.5659940268125,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "lidar_lappos_max",
+   "auc": 0.5682799825,
+   "reverse_auc": 0.4317200175,
+   "orientation_invariant_max": 0.5682799825,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "lidar_downface_max",
+   "auc": 0.5689869602500001,
+   "reverse_auc": 0.43101303974999994,
+   "orientation_invariant_max": 0.5689869602500001,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "lidar_upface_max",
+   "auc": 0.573728030375,
+   "reverse_auc": 0.426271969625,
+   "orientation_invariant_max": 0.573728030375,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "lidar_cross_max",
+   "auc": 0.5676095178750001,
+   "reverse_auc": 0.43239048212499986,
+   "orientation_invariant_max": 0.5676095178750001,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "lidar_relief",
+   "auc": 0.5607011174375001,
+   "reverse_auc": 0.43929888256249994,
+   "orientation_invariant_max": 0.5607011174375001,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "lidar_coh100",
+   "auc": 0.5113009428124999,
+   "reverse_auc": 0.48869905718750006,
+   "orientation_invariant_max": 0.5113009428124999,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "lidar_strike",
+   "auc": 0.531151593625,
+   "reverse_auc": 0.468848406375,
+   "orientation_invariant_max": 0.531151593625,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "lidar_valid_frac",
+   "auc": 0.5197583955625,
+   "reverse_auc": 0.48024160443749997,
+   "orientation_invariant_max": 0.5197583955625,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "rad_K",
+   "auc": 0.43996932468750005,
+   "reverse_auc": 0.5600306753125,
+   "orientation_invariant_max": 0.5600306753125,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "rad_Th",
+   "auc": 0.45144791468749995,
+   "reverse_auc": 0.5485520853125001,
+   "orientation_invariant_max": 0.5485520853125001,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "rad_U",
+   "auc": 0.47748231025,
+   "reverse_auc": 0.52251768975,
+   "orientation_invariant_max": 0.52251768975,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "rad_TC",
+   "auc": 0.4482380908125,
+   "reverse_auc": 0.5517619091875,
+   "orientation_invariant_max": 0.5517619091875,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "mag_ThK",
+   "auc": 0.4853553225,
+   "reverse_auc": 0.5146446775,
+   "orientation_invariant_max": 0.5146446775,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "mag_UK",
+   "auc": 0.534911187875,
+   "reverse_auc": 0.465088812125,
+   "orientation_invariant_max": 0.534911187875,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "mag_UTh",
+   "auc": 0.5398160548125001,
+   "reverse_auc": 0.46018394518749994,
+   "orientation_invariant_max": 0.5398160548125001,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "mag_TMI_up150",
+   "auc": 0.4892512616875,
+   "reverse_auc": 0.5107487383125,
+   "orientation_invariant_max": 0.5107487383125,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "tmi_aniso_s2",
+   "auc": 0.5082194619375,
+   "reverse_auc": 0.4917805380625,
+   "orientation_invariant_max": 0.5082194619375,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "tmi_cos2t_s2",
+   "auc": 0.510204151375,
+   "reverse_auc": 0.48979584862500003,
+   "orientation_invariant_max": 0.510204151375,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "tmi_sin2t_s2",
+   "auc": 0.4974091975,
+   "reverse_auc": 0.5025908025,
+   "orientation_invariant_max": 0.5025908025,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "tmi_grad_s2",
+   "auc": 0.5285151655625,
+   "reverse_auc": 0.4714848344375,
+   "orientation_invariant_max": 0.5285151655625,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "tc_aniso_s5",
+   "auc": 0.4956176251875001,
+   "reverse_auc": 0.5043823748124999,
+   "orientation_invariant_max": 0.5043823748124999,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "tc_cos2t_s5",
+   "auc": 0.49784389775000004,
+   "reverse_auc": 0.50215610225,
+   "orientation_invariant_max": 0.50215610225,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "tc_sin2t_s5",
+   "auc": 0.49642411612500004,
+   "reverse_auc": 0.503575883875,
+   "orientation_invariant_max": 0.503575883875,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "tc_grad_s5",
+   "auc": 0.5098161019375,
+   "reverse_auc": 0.49018389806249996,
+   "orientation_invariant_max": 0.5098161019375,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "tc_smooth3",
+   "auc": 0.45056223824999997,
+   "reverse_auc": 0.54943776175,
+   "orientation_invariant_max": 0.54943776175,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "tmi_smooth3",
+   "auc": 0.49093799800000004,
+   "reverse_auc": 0.509062002,
+   "orientation_invariant_max": 0.509062002,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "relief_smooth3",
+   "auc": 0.5350728200625,
+   "reverse_auc": 0.4649271799375,
+   "orientation_invariant_max": 0.5350728200625,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "relief_var3",
+   "auc": 0.5525886145625,
+   "reverse_auc": 0.44741138543750003,
+   "orientation_invariant_max": 0.5525886145625,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  },
+  {
+   "feature": "relief_lap",
+   "auc": 0.5481533075624999,
+   "reverse_auc": 0.4518466924375001,
+   "orientation_invariant_max": 0.5481533075624999,
+   "missing_rate": 0.0,
+   "verdict": "ok"
+  }
+ ],
+ "max_orientation_invariant_auc": 0.573728030375,
+ "max_feature": "lidar_upface_max",
+ "suspected_leakage": false,
+ "limitation": "Univariate screen only; it cannot rule out multivariate or spatial leakage, and the catalogue is a proxy class rather than the scored truth."
+}

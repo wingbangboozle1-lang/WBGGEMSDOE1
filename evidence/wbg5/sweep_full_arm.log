@@ -1,0 +1,53 @@
+[grid] (3730, 3292) footprint=5167373 catalogue=60988
+[stack] 39 features -> static_stack.f32
+[fold NW] rows=348159 pos=49737 (8s)
+[fold NW] fitted (14s)
+[fold NW] predicted (115s)
+[fold NW] model fitted on 348159 rows (298422 neg / 49737 pos); surface mean=0.0097 p99=0.0000  (143s)
+[fold NE_LidarGapHeavy] rows=337267 pos=48181 (145s)
+[fold NE_LidarGapHeavy] fitted (151s)
+[fold NE_LidarGapHeavy] predicted (251s)
+[fold NE_LidarGapHeavy] model fitted on 337267 rows (289086 neg / 48181 pos); surface mean=0.0093 p99=0.0000  (280s)
+[fold SW] rows=269465 pos=38495 (282s)
+[fold SW] fitted (287s)
+[fold SW] predicted (390s)
+[fold SW] model fitted on 269465 rows (230970 neg / 38495 pos); surface mean=0.0076 p99=0.0000  (397s)
+[fold SE] rows=295575 pos=42225 (399s)
+[fold SE] fitted (405s)
+[fold SE] predicted (510s)
+[fold SE] model fitted on 295575 rows (253350 neg / 42225 pos); surface mean=0.0082 p99=0.0000  (517s)
+
+=== HOLDOUT-DTI by placement configuration (pooled over 4 folds) ===
+ d_min  budget  emitted  coverage      DTI
+   4.0   55000    53124    0.0636   0.0648
+   3.0   55000    54956    0.0477   0.0485
+   4.0   35000    34090    0.0383   0.0418
+   4.0   25000    24482    0.0271   0.0307
+   3.0   35000    34998    0.0278   0.0303
+   2.0   55000    54767    0.0267   0.0272
+   3.0   25000    24997    0.0196   0.0222
+   2.0   35000    34902    0.0172   0.0187
+   4.0   15000    14744    0.0151   0.0178
+   3.0   15000    14981    0.0110   0.0129
+   2.0   25000    25002    0.0113   0.0129
+   2.0   15000    15003    0.0066   0.0078
+   0.5   55000    55102    0.0063   0.0064
+   0.5   35000    35197    0.0047   0.0052
+   0.5   25000    25059    0.0036   0.0041
+   0.5   15000    15038    0.0023   0.0027
+Traceback (most recent call last):
+  File "/home/user/WBGGEMSDOE1/scripts/run_wbg5_lane.py", line 314, in <module>
+    
+  File "/home/user/WBGGEMSDOE1/scripts/run_wbg5_lane.py", line 262, in main
+    grid.append({"d_min": d_min, "budget": n, **agg})
+                  ^^^^^^^^^^^^^^
+  File "/home/user/WBGGEMSDOE1/scripts/run_wbg5_lane.py", line 181, in anchor_paths
+    "coverage": tp / max(sum(r["n_truth"] for r in rows), 1),
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/pathlib.py", line 1059, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/pathlib.py", line 1045, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/user/WBGGEMSDOE1/.cache/wbg5/anchors.json'

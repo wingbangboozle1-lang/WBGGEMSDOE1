@@ -1,0 +1,9 @@
+{
+ "gates": {
+  "format_valid": true,
+  "byte_unique": true,
+  "competitor_uniqueness": true
+ },
+ "SUBMIT": "YES",
+ "reasons": []
+}

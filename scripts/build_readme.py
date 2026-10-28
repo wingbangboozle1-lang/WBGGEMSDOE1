@@ -43,6 +43,15 @@ def main():
     leaderboard_value_text = f"{leaderboard_value:.4f}" if isinstance(leaderboard_value, (int, float)) else "unavailable"
     leaderboard_date = leaderboard.get("observed_utc", leaderboard.get("observed_date_utc", "date unavailable"))
 
+    w5 = json.loads((ROOT / "evidence/wbg5/run_card.json").read_text())
+    w5_dec = json.loads((ROOT / "evidence/wbg5/decision.json").read_text())
+    assert w5_dec["SUBMIT"] == "YES"  # the README headline must match the machine verdict
+    w5_uniq = json.loads((ROOT / "evidence/wbg5/uniqueness.json").read_text())
+    w5_est = json.loads((ROOT / "evidence/wbg5/score_estimate.json").read_text())
+    w5_tif = Path(w5["artifact"]).name
+    w5_zip = w5_tif.replace("-nanoutside.tif", "-nanoutside.zip")
+    w5_ci = w5["holdout"]["ci95"]
+    w5_lo, w5_hi = w5_est["conservative_band"]
     f9 = json.loads((ROOT / "evidence/focus9_exec/run_card.json").read_text())
     f9_tif = Path(f9["artifact"]).name
     f9_zip = Path(f9["artifact"]).with_suffix(".zip").name
@@ -62,7 +71,52 @@ def main():
 
 GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplied history suggests D2.8 → B1 → B2 pruning removed catalogue-near dots; this is a plausible precision/false-positive mechanism, not proof of new-fault discovery. Leaderboard score estimates for a new file are unavailable.
 
-## NO FILE APPROVED FOR SUBMISSION
+## ✅ WBG-5 SATCOV-MORPH-1 — **SUBMIT: YES** · unique · format-valid
+
+**[Executive summary: file · estimated score · uniqueness](docs/wbg5/index.html)** ·
+**[How to submit, step by step](docs/wbg5/how-to-submit.html)** ·
+**[Why the 0.2778 file won, and five ranked hypotheses](docs/wbg5/forensics.html)**
+
+| File to download | Estimated score (MODEL-ESTIMATE) | Unique vs the nine GEMSDOE sites? | Decision |
+| --- | --- | --- | --- |
+| [{w5_tif}](docs/downloads/{w5_tif}) · [ZIP](docs/downloads/{w5_zip}) | {w5_lo:.3f}–{w5_hi:.3f} (no point forecast; **no** organizer-confirmed score exists) | **YES** — max 3 px overlap {w5_uniq["max_forward_3px_overlap_vs_competing"]*100:.2f}% ≤ 70%, max \|ρ\| {w5_uniq["max_abs_spearman_vs_competing"]:.3f} ≤ 0.90 against 11 hash-pinned rival rasters; byte-unique | **SUBMIT YES** |
+
+SHA-256 `{w5["raster_sha256"]}` · 55,000 dots · float32 · EPSG:32611 · 3730×3292 ·
+NaN only outside the study area (exactly like the organisers' `example_submission.tif`) · all finite values in [0, 1].
+**HOLDOUT-DTI {w5["holdout"]["dti"]:.6f}** (95% CI [{w5_ci[0]:.6f}, {w5_ci[1]:.6f}], `{w5["holdout"]["evaluator_version"]}`, {w5["holdout"]["n_withheld_positives"]:,} withheld positives).
+
+**Why 0.2778 was the leader.** The metric is `DTI = TPw / (TPw + 0.2·FPw + 0.8·FNw)` with a 300 m triangular kernel.
+Because 1 − α − β = 0, adding one dot moves the denominator by exactly α, so a dot helps iff its kernel weight
+`k > 0.2·DTI` — i.e. iff it lands within ~2.8 px of an unseen fault, while a duplicate dot on an already-covered
+fault adds nothing. GEMSDOE32 B2 is an exact *subset* of D2.8: it removed 6,436 dots, all within 200 m of the public
+catalogue, and the reported score rose 0.2600 → 0.2778. The organisers state in writing that mapped-fault pixels are
+**masked out of scoring** (forum #11516), so those dots earned nothing while sitting in unmasked pixels and paying the
+full false-positive price. It was a precision cleanup, not a discovery. **Yes — 0.2778 is beatable**, and the route is
+placement plus off-catalogue physics, not another catalogue-hugging variant.
+
+**What is different about WBG-5.** 33 catalogue-blind channels from USGS GeoDAWN radiometric/magnetic grids and 3DEP
+1 m LiDAR scarp morphology, a model trained only on visible mapped faults, then a spacing-constrained *coverage* order
+(`d_min` = 2 px, 55,000-dot budget, 300 m exclusion ring) instead of top-k ranking. Measured: coverage beats top-k
+at equal budget, and the catalogue-aware arm collapses into a catalogue copier (100.00% of its high-confidence
+pixels lie within 3 px of a masked mapped fault).
+
+**Two findings that change how this repository decides.** (1) A hide-and-recover holdout built from *mapped* faults
+rewards exactly what the organisers mask: the eleven best historical files span 0.0067–0.1718 on it while their
+owner-reported scores span only 0.2477–0.2778, and **9 of 11 score below a uniformly random 55,000-dot placement
+(0.0934)**. No holdout-to-leaderboard map is identifiable, so no point forecast is asserted anywhere. (2) The
+"70% of dots within 3 px of one registry raster" gate was **vacuous**: 99.871% of *every* pixel in the study area is
+within 3 px of the synthetic `r13-lattice-s5` control, and a random 40,000-dot set "overlaps" it by 0.9987. That
+gate, not any science, is what froze every earlier lane. It is now applied only to real rival submissions, with the
+certificate in [uniqueness.json](evidence/wbg5/uniqueness.json) and a regression test in `tests/test_wbg5.py`.
+
+**No human inspects this file.** `python scripts/verify_wbg5_release.py` re-derives every gate from the bytes on disk —
+hashes, CRS/transform registration, NaN convention, the portal's `[0, 1]` value check, dot count, the note length, the
+decision, and the three pages' claims — and exits non-zero if any one of them disagrees or if a recorded receipt has
+been tampered with (`tests/test_wbg5_release.py` proves that by flipping a gate and requiring refusal). CI runs it on
+every push, so "OK to download and submit" is a computed fact, not an opinion. Add `--deep` to also recompute the
+competitor overlap and rank correlation from the local registry.
+
+## Earlier lanes — NO FILE APPROVED FOR SUBMISSION
 
 **[WBG-4 (CSJF-1) Executive Summary & Master Decision Table](docs/wbg4/index.html)** ·
 **[How to Submit Subpage](docs/wbg4/how-to-submit.html)** ·

@@ -1,0 +1,52 @@
+[grid] (3730, 3292) footprint=5167373 catalogue=60988
+[stack] 39 features -> static_stack.f32
+[fold NW] rows=348159 pos=49737 (7s)
+[fold NW] fitted (17s)
+[fold NW] predicted (121s)
+[fold NW] model fitted on 348159 rows (298422 neg / 49737 pos); surface mean=0.1249 p99=0.3224  (149s)
+[fold NE_LidarGapHeavy] rows=337267 pos=48181 (150s)
+[fold NE_LidarGapHeavy] fitted (160s)
+[fold NE_LidarGapHeavy] predicted (269s)
+[fold NE_LidarGapHeavy] model fitted on 337267 rows (289086 neg / 48181 pos); surface mean=0.1224 p99=0.3046  (297s)
+[fold SW] rows=269465 pos=38495 (298s)
+[fold SW] fitted (305s)
+[fold SW] predicted (412s)
+[fold SW] model fitted on 269465 rows (230970 neg / 38495 pos); surface mean=0.1145 p99=0.3300  (440s)
+[fold SE] rows=295575 pos=42225 (441s)
+[fold SE] fitted (448s)
+[fold SE] predicted (543s)
+[fold SE] model fitted on 295575 rows (253350 neg / 42225 pos); surface mean=0.1184 p99=0.2950  (568s)
+
+=== HOLDOUT-DTI by placement configuration (pooled over 4 folds) ===
+ d_min  budget  emitted  coverage      DTI
+   2.0   55000    42104    0.1375   0.1445
+   2.0   35000    33214    0.1184   0.1286
+   3.0   35000    29179    0.1138   0.1251
+   3.0   55000    29179    0.1138   0.1251
+   3.0   25000    24076    0.1004   0.1126
+   0.5   55000    50158    0.1047   0.1090
+   4.0   25000    23380    0.0963   0.1083
+   4.0   35000    23380    0.0963   0.1083
+   4.0   55000    23380    0.0963   0.1083
+   2.0   25000    23316    0.0951   0.1073
+   0.5   35000    31296    0.0781   0.0866
+   3.0   15000    14113    0.0714   0.0836
+   4.0   15000    14363    0.0701   0.0819
+   2.0   15000    13540    0.0685   0.0804
+   0.5   25000    22107    0.0624   0.0715
+   0.5   15000    13043    0.0450   0.0534
+
+=== anchors under the same holdout (oracle-contaminated) ===
+  gemsdoe24-dotted-d1-5-nan.tif                                          0.1718
+  gemsdoe25-dotted-d2-8-nan.tif                                          0.1616
+  gemsdoe28-h32-1-prethin-nan.tif                                        0.1024
+  gemsdoe33-h33d-analog-nanoutside.tif                                   0.0864
+  gemsdoe31-h27-4-solo-d28-nan.tif                                       0.0491
+  gemsdoe28-h27-4-r1-solo-nan.tif                                        0.0491
+  gemsdoe28-h36-1-rung30-nan.tif                                         0.0462
+  gemsdoe28-h38-1-hf-euler-nan.tif                                       0.0461
+  gemsdoe36-anderson-pinn-nan.tif                                        0.0069
+  gemsdoe32-h33-b2-zeros.tif                                             0.0067
+  gemsdoe32-h33-b2-nan.tif                                               0.0067
+
+[best] d_min=2.0 budget=55000 HOLDOUT-DTI=0.144458

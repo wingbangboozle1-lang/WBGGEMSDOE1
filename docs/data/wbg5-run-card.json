@@ -1,0 +1,393 @@
+{
+ "schema": "gemsdoe1-wbg5-run-card-v1",
+ "lane": "WBG-5 SATCOV-MORPH-1",
+ "hypothesis": "Under DTI with alpha=0.2, beta=0.8 and a 300 m triangular kernel, adding one dot moves the denominator by exactly alpha, so it raises the score exactly when its kernel weight k exceeds alpha*DTI (0.056 at DTI 0.28), i.e. when it lands within ~2.8 px of an unseen fault. Marginal value is therefore a chance-of-nearby-truth test, not a surface-ranking test: a spacing-constrained coverage order should beat top-k ranking at equal budget, and a physics-only model should beat a catalogue-copying model once the organizers' masking of mapped faults is taken into account.",
+ "mechanism": "33 catalogue-blind channels from hash-pinned USGS GeoDAWN radiometric/magnetic grids and 3DEP 1 m LiDAR terrain descriptors; HistGradientBoosting trained on visible mapped faults only in each holdout fold; greedy score-ordered coverage order with a 2 px suppression radius, a 300 m exclusion ring around the catalogue and a 55,000-dot budget.",
+ "non_fault_mimic": "Roads, channels, terrace risers, paleo-shorelines, landslide toes and mine benches all create LiDAR steps; basin-fill and lithologic contacts create magnetic/radiometric lineaments. The LiDAR product's own metadata names the same mimics. No negative-control raster was available with a verifiable hash, so mimic suppression is unverified.",
+ "holdout": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems-segment-pooled-v1",
+  "dti": 0.1718663091827828,
+  "ci95": [
+   0.15799870805832925,
+   0.18539100319827187
+  ],
+  "n_withheld_positives": 60988,
+  "protocol": "SegmentHoldout(buffer 15 px): whole 8-connected catalogue components touching a quadrant collar hidden everywhere; catalogue features rebuilt from visible faults only; visible faults masked pixel-exactly; pooled TP/FP/FN; alpha 0.2, beta 0.8, 300 m kernel.",
+  "arms": [
+   {
+    "arm": "physics only, budget sweep, no ring",
+    "dti": 0.144458,
+    "note": "best of 20 placement configurations in sweep_blind.json"
+   },
+   {
+    "arm": "catalogue-aware (39 features)",
+    "dti": 0.0648,
+    "note": "degenerates into a catalogue copier: 100.00% of p>0.5 pixels within 3 px of a mapped fault; receipt evidence/wbg5/sweep_full_arm.log"
+   },
+   {
+    "arm": "physics only + 300 m exclusion ring (PROMOTED)",
+    "dti": 0.1718663091827828,
+    "note": "w = 0 in the hybrid sweep; this is the artifact"
+   },
+   {
+    "arm": "physics + catalogue proximity, w = 0.25",
+    "dti": 0.163489,
+    "note": "measured negative"
+   },
+   {
+    "arm": "physics + catalogue proximity, w = 0.60",
+    "dti": 0.149184,
+    "note": "measured negative"
+   }
+  ],
+  "top_k_control": {
+   "d_min": 0.5,
+   "budget": 55000,
+   "dti": 0.109038,
+   "note": "same blind surface, same budget, ranking instead of coverage"
+  },
+  "anchors_same_evaluator": {
+   "gemsdoe32-h33-b2-zeros.tif": {
+    "TP_w": 377.94270581264595,
+    "FP_w": 37376.11923776083,
+    "FN_w": 60610.057294187354,
+    "n_truth": 60988,
+    "n_emitted": 37654,
+    "dti": 0.0067081038868037944,
+    "coverage": 0.0061970011446947915
+   },
+   "gemsdoe32-h33-b2-nan.tif": {
+    "TP_w": 377.94270581264595,
+    "FP_w": 37376.11923776083,
+    "FN_w": 60610.057294187354,
+    "n_truth": 60988,
+    "n_emitted": 37654,
+    "dti": 0.0067081038868037944,
+    "coverage": 0.0061970011446947915
+   },
+   "gemsdoe25-dotted-d2-8-nan.tif": {
+    "TP_w": 9490.23896247166,
+    "FP_w": 40136.21668536924,
+    "FN_w": 51497.76103752834,
+    "n_truth": 60988,
+    "n_emitted": 44090,
+    "dti": 0.16163037136893005,
+    "coverage": 0.15560829937810158
+   },
+   "gemsdoe24-dotted-d1-5-nan.tif": {
+    "TP_w": 10626.79993963955,
+    "FP_w": 54653.72308061156,
+    "FN_w": 50361.200060360454,
+    "n_truth": 60988,
+    "n_emitted": 60069,
+    "dti": 0.1718253926823608,
+    "coverage": 0.174244112606407
+   },
+   "gemsdoe31-h27-4-solo-d28-nan.tif": {
+    "TP_w": 2802.2860203666773,
+    "FP_w": 38838.550018702575,
+    "FN_w": 58185.71397963332,
+    "n_truth": 60988,
+    "n_emitted": 40199,
+    "dti": 0.04906085984556028,
+    "coverage": 0.04594815406910666
+   },
+   "gemsdoe28-h36-1-rung30-nan.tif": {
+    "TP_w": 2613.4885932692205,
+    "FP_w": 36399.8888065356,
+    "FN_w": 58374.51140673077,
+    "n_truth": 60988,
+    "n_emitted": 37660,
+    "dti": 0.04618035989562031,
+    "coverage": 0.04285250530053815
+   },
+   "gemsdoe28-h38-1-hf-euler-nan.tif": {
+    "TP_w": 2613.4885932692205,
+    "FP_w": 36599.8888065356,
+    "FN_w": 58374.51140673077,
+    "n_truth": 60988,
+    "n_emitted": 37860,
+    "dti": 0.04614774265948813,
+    "coverage": 0.04285250530053815
+   },
+   "gemsdoe28-h27-4-r1-solo-nan.tif": {
+    "TP_w": 2802.2860203666773,
+    "FP_w": 38838.550018702575,
+    "FN_w": 58185.71397963332,
+    "n_truth": 60988,
+    "n_emitted": 40199,
+    "dti": 0.04906085984556028,
+    "coverage": 0.04594815406910666
+   },
+   "gemsdoe28-h32-1-prethin-nan.tif": {
+    "TP_w": 5926.7369279033655,
+    "FP_w": 39638.43389186556,
+    "FN_w": 55061.26307209663,
+    "n_truth": 60988,
+    "n_emitted": 42294,
+    "dti": 0.10235553406230712,
+    "coverage": 0.09717873889787115
+   },
+   "gemsdoe36-anderson-pinn-nan.tif": {
+    "TP_w": 392.0324702373741,
+    "FP_w": 38565.26763552288,
+    "FN_w": 60595.96752976262,
+    "n_truth": 60988,
+    "n_emitted": 38854,
+    "dti": 0.006928589305656042,
+    "coverage": 0.006428026336941269
+   },
+   "gemsdoe33-h33d-analog-nanoutside.tif": {
+    "TP_w": 4986.481059559952,
+    "FP_w": 39605.4839674374,
+    "FN_w": 56001.51894044005,
+    "n_truth": 60988,
+    "n_emitted": 41865,
+    "dti": 0.08640764777535297,
+    "coverage": 0.08176167540434105
+   }
+  },
+  "random_placement_floor": {
+   "TP_w": 5653.409258710685,
+   "FP_w": 53143.19951875398,
+   "FN_w": 55334.590741289314,
+   "n_truth": 60988,
+   "n_emitted": 55389,
+   "dti": 0.09336804686783691,
+   "coverage": 0.09269707579705327
+  }
+ },
+ "registry": {
+  "schema": "gemsdoe1-wbg5-uniqueness-v1",
+  "competing_published_submissions": [
+   {
+    "anchor": "gemsdoe32-h33-b2-zeros.tif",
+    "anchor_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "owner_reported_score": 0.2778,
+    "score_label": "OWNER-REPORTED / UNVERIFIED (no organizer receipt)",
+    "byte_identical": false,
+    "forward_overlap": 0.4101090909090909,
+    "n_a": 55000,
+    "n_b": 37654,
+    "spearman_rho_vs_anchor_surface": 0.07632984500999739
+   },
+   {
+    "anchor": "gemsdoe32-h33-b2-nan.tif",
+    "anchor_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "owner_reported_score": 0.2778,
+    "score_label": "OWNER-REPORTED / UNVERIFIED (no organizer receipt)",
+    "byte_identical": false,
+    "forward_overlap": 0.4101090909090909,
+    "n_a": 55000,
+    "n_b": 37654,
+    "spearman_rho_vs_anchor_surface": 0.07632984500999739
+   },
+   {
+    "anchor": "gemsdoe25-dotted-d2-8-nan.tif",
+    "anchor_sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+    "owner_reported_score": 0.26,
+    "score_label": "OWNER-REPORTED / UNVERIFIED (no organizer receipt)",
+    "byte_identical": false,
+    "forward_overlap": 0.42307272727272727,
+    "n_a": 55000,
+    "n_b": 44090,
+    "spearman_rho_vs_anchor_surface": 0.08687650587154987
+   },
+   {
+    "anchor": "gemsdoe24-dotted-d1-5-nan.tif",
+    "anchor_sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+    "owner_reported_score": 0.2477,
+    "score_label": "OWNER-REPORTED / UNVERIFIED (no organizer receipt)",
+    "byte_identical": false,
+    "forward_overlap": 0.43821818181818184,
+    "n_a": 55000,
+    "n_b": 60069,
+    "spearman_rho_vs_anchor_surface": 0.10534124969351394
+   },
+   {
+    "anchor": "gemsdoe31-h27-4-solo-d28-nan.tif",
+    "anchor_sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+    "owner_reported_score": 0.2708,
+    "score_label": "OWNER-REPORTED / UNVERIFIED (no organizer receipt)",
+    "byte_identical": false,
+    "forward_overlap": 0.4182727272727273,
+    "n_a": 55000,
+    "n_b": 40199,
+    "spearman_rho_vs_anchor_surface": 0.08041992476093403
+   },
+   {
+    "anchor": "gemsdoe28-h36-1-rung30-nan.tif",
+    "anchor_sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+    "owner_reported_score": 0.271,
+    "score_label": "OWNER-REPORTED / UNVERIFIED (no organizer receipt)",
+    "byte_identical": false,
+    "forward_overlap": 0.4133090909090909,
+    "n_a": 55000,
+    "n_b": 37660,
+    "spearman_rho_vs_anchor_surface": 0.07704909931983318
+   },
+   {
+    "anchor": "gemsdoe28-h38-1-hf-euler-nan.tif",
+    "anchor_sha256": "81d5b87bc8424f162a8f56aa9aac8fbe630c61646b9cac24d5ebbdc1b1951783",
+    "owner_reported_score": 0.2707,
+    "score_label": "OWNER-REPORTED / UNVERIFIED (no organizer receipt)",
+    "byte_identical": false,
+    "forward_overlap": 0.4153818181818182,
+    "n_a": 55000,
+    "n_b": 37860,
+    "spearman_rho_vs_anchor_surface": 0.07712475354358596
+   },
+   {
+    "anchor": "gemsdoe28-h27-4-r1-solo-nan.tif",
+    "anchor_sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+    "owner_reported_score": 0.2708,
+    "score_label": "OWNER-REPORTED / UNVERIFIED (no organizer receipt)",
+    "byte_identical": false,
+    "forward_overlap": 0.4182727272727273,
+    "n_a": 55000,
+    "n_b": 40199,
+    "spearman_rho_vs_anchor_surface": 0.08041992476093403
+   },
+   {
+    "anchor": "gemsdoe28-h32-1-prethin-nan.tif",
+    "anchor_sha256": "04d31922f5c1ea4016984fc470ab2b0ff8e266c615792f0e86020da3b940d3ff",
+    "owner_reported_score": 0.2649,
+    "score_label": "OWNER-REPORTED / UNVERIFIED (no organizer receipt)",
+    "byte_identical": false,
+    "forward_overlap": 0.4218909090909091,
+    "n_a": 55000,
+    "n_b": 42294,
+    "spearman_rho_vs_anchor_surface": 0.0849980118653725
+   },
+   {
+    "anchor": "gemsdoe36-anderson-pinn-nan.tif",
+    "anchor_sha256": "96d451d5ffc819fc3834052f22ab66190621f206c0bf8990446082a3363dc2ef",
+    "owner_reported_score": 0.275,
+    "score_label": "OWNER-REPORTED / UNVERIFIED (no organizer receipt)",
+    "byte_identical": false,
+    "forward_overlap": 0.4144,
+    "n_a": 55000,
+    "n_b": 38854,
+    "spearman_rho_vs_anchor_surface": 0.07668442779024291
+   },
+   {
+    "anchor": "gemsdoe33-h33d-analog-nanoutside.tif",
+    "anchor_sha256": "bc3af2a5fcb4b49bc5845a2d7dc3da23daf41ce75e4c64da3337c0c8c93cc12c",
+    "owner_reported_score": 0.2632,
+    "score_label": "OWNER-REPORTED / UNVERIFIED (no organizer receipt)",
+    "byte_identical": false,
+    "forward_overlap": 0.42258181818181817,
+    "n_a": 55000,
+    "n_b": 41865,
+    "spearman_rho_vs_anchor_surface": 0.08264805328665603
+   }
+  ],
+  "synthetic_calibration_controls": [
+   {
+    "anchor": "13gems_20261001_r13-lattice-s5 (synthetic calibration control)",
+    "role": "synthetic_calibration_controls",
+    "fraction_of_ALL_footprint_pixels_within_3px": 0.9987132726822701,
+    "random_40000_dot_control_overlap": 0.9987,
+    "our_overlap": 0.9945090909090909,
+    "verdict": "vacuous_by_construction: a uniform random dot set scores the same"
+   }
+  ],
+  "max_forward_3px_overlap_vs_competing": 0.43821818181818184,
+  "max_abs_spearman_vs_competing": 0.10534124969351394,
+  "overlap_limit": 0.7,
+  "rho_limit": 0.9,
+  "byte_unique_among_checked": true,
+  "passes_competing_gate": true,
+  "scope": "11 hash-pinned anchor rasters (git blob SHA-1 and SHA-256 verified) plus the synthetic r13 lattice. NOT all 92 user-listed sites and not later commits."
+ },
+ "leakage_canary": {
+  "evidence_class": "HOLDOUT-DTI (univariate screen)",
+  "max_orientation_invariant_auc": 0.573728030375,
+  "max_feature": "lidar_upface_max",
+  "limit": 0.9,
+  "suspected_leakage": false,
+  "n_features_tested": 33,
+  "reading": "Every channel is weak on its own (max 0.574 AUC against the catalogue proxy). That is the honest constraint on this lane: the score comes from coverage-style aggregation of many weak channels, not from one strong physical discriminator."
+ },
+ "validator": {
+  "single_band": true,
+  "float32": true,
+  "crs_matches_template": true,
+  "shape_matches_template": true,
+  "transform_matches_template": true,
+  "no_nan_inside_footprint": true,
+  "nan_outside_footprint_only": true,
+  "values_in_0_1": true,
+  "has_positive_predictions": true
+ },
+ "raster_sha256": "fc547fa0d5c35dba6c6b88363d4e997916cd733574a6ce7eb4f370bd701cb350",
+ "zip_sha256": "5f2f36d6556cffc041330eed0dbc7cbaa3ea48c06291c02901c1146ad9fe9954",
+ "artifact": "docs/downloads/wbg5-satcov-morph-20261028-nanoutside.tif",
+ "submission_name": "wbg5-satcov-morph-20261028",
+ "submission_note": "satcov-morph-1: physics-only fault likelihood + spacing-constrained coverage dots",
+ "hypotheses": [
+  {
+   "rank": 1,
+   "name": "SATCOV-MORPH-1 \u2014 saturating coverage of a physics-only likelihood surface",
+   "layers": "11 LiDAR scarp channels (slope excess, crest/base curvature, up/down-facing step, cross-slope gradient, relief, coherence, strike) + 4 radiometric (K, Th, U, TC) + 4 magnetic (ThK, UK, UTh, TMI up-150 m) + 8 structure-tensor/gradient channels + 6 terrain aggregates = 33 catalogue-blind channels",
+   "signature": "scarp morphology at 2 m aggregated to 100 m, plus cross-cutting lineaments in magnetics and radiometrics; placed by a spacing-constrained coverage order",
+   "why_off_catalogue": "No catalogue-distance input and no catalogue pixel is emitted, so the model cannot earn credit by reproducing mapped faults \u2014 which the organizers mask out of scoring anyway. It has to re-find the physical signature.",
+   "status": "IMPLEMENTED AND MEASURED in this file (HOLDOUT-DTI 0.171866)",
+   "cost": "one model, ~10 min on 2 CPU cores"
+  },
+  {
+   "rank": 2,
+   "name": "Mask-aware catalogue proximity (hybrid)",
+   "layers": "physics surface x (1 + w*exp(-d_catalogue/600 m)) with a 300 m exclusion ring",
+   "signature": "same physics, re-ordered toward the ~1 km halo where new strands of mapped systems are found",
+   "why_off_catalogue": "It uses proximity only outside the ring, and the ring is exactly where the mapped fault itself sits. Inside the ring a dot is unmasked and charged full price.",
+   "status": "MEASURED NEGATIVE: w=0.25 -> 0.1635, w=0.60 -> 0.1492, versus w=0 -> 0.1719",
+   "cost": "no retraining, minutes"
+  },
+  {
+   "rank": 3,
+   "name": "Thermal corroboration gate",
+   "layers": "fault-likelihood ridges intersected with the GDR geothermal well/spring inventory, plus volcanic vents",
+   "signature": "a fault that also hosts a spring, well or young vent",
+   "why_off_catalogue": "A mapped fault already carries its own evidence; the interesting candidates are unmapped traces that nevertheless discharge. This is the sponsor's actual target.",
+   "status": "NOT VALIDATED. The free official inventory is already fetched (gdr_wellspring_in_footprint.csv, 2.1 MB) so this is viable without new external data.",
+   "cost": "low \u2014 a spatial join and a second gate"
+  },
+  {
+   "rank": 4,
+   "name": "Kinematic non-coaxiality between scarp asymmetry and strain-rate dilatation",
+   "layers": "LiDAR up-facing/down-facing step channels vs the organizer's dilatation- and shear-strain-rate bands",
+   "signature": "a scarp that faces the wrong way relative to the dilatation gradient is not a fault scarp",
+   "why_off_catalogue": "It is a physical consistency test, so it can reject false scarps anywhere, including far from any mapped fault.",
+   "status": "BLOCKED ON DATA: the strain-rate bands exist only inside the login-gated training_features.tif, which is not in this checkout. Free official source: https://www.drivendata.org/competitions/306/competition-doe-gems/data/ (account required).",
+   "cost": "medium once the file is available"
+  },
+  {
+   "rank": 5,
+   "name": "Magnetic-source-depth step across basin margins",
+   "layers": "top-of-crustal magnetic source depth (or an inversion from the available TMI up-150 m grid)",
+   "signature": "an abrupt depth step across a basin margin marks a buried fault with no surface scarp",
+   "why_off_catalogue": "Buried faults are systematically under-mapped in a surface-fault database, so this is where new labels are most likely to be found.",
+   "status": "PARTIALLY BLOCKED: the organizer's depth band is login-gated. A free substitute exists (invert the mirrored TMI up-150 m grid) but is unvalidated and was not used here.",
+   "cost": "high (inversion + validation)"
+  }
+ ],
+ "verdict": "promote",
+ "decision": {
+  "gates": {
+   "format_valid": true,
+   "byte_unique": true,
+   "competitor_uniqueness": true
+  },
+  "SUBMIT": "YES",
+  "reasons": []
+ },
+ "limitations": [
+  "No organizer receipt binds any owner-reported score to bytes.",
+  "The shared 19-band organizer feature cache is absent from this checkout; this lane uses hash-verified peer-mirrored GeoDAWN/3DEP products, so provenance is OWNER-MIRROR, not organizer-authenticated.",
+  "The holdout truth is the mapped catalogue, not the experts' new-fault labels, and mapped faults are masked at scoring - the holdout measures a related but different quantity.",
+  "No negative-control raster (TIGER roads, BLM claims) was hash-pinned, so road/bench suppression is unverified.",
+  "One 100 m fault trace is not a geothermal vent."
+ ]
+}

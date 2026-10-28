@@ -30,6 +30,7 @@ DOCS_DATA = ROOT / "docs" / "data"
 
 SAMPLE_TIF = DATA_BRIDGE / "sample_submission.tif"
 LABELS_TIF = DATA_BRIDGE / "labels.tif"
+EXISTING_TIF = DATA_BRIDGE / "existing_faults.tif"
 
 OUT_NAME = "wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros"
 OUT_TIF = DOCS_DL / f"{OUT_NAME}.tif"
@@ -50,31 +51,34 @@ def main():
         transform = ds.transform
         crs = ds.crs
         height, width = ds.height, ds.width
+        reference = (ds.shape, ds.crs, ds.transform)
     print(f"Template: {width}x{height}, CRS {crs}, transform {transform}")
 
     # Footprint = finite pixels in sample_submission
     footprint = np.isfinite(arr)
     print(f"Footprint pixels: {footprint.sum()}, outside: {(~footprint).sum()}")
 
-    # Load catalogue faults
+    # Load catalogue faults and reject accidental reference-grid mismatches.
     with rasterio.open(LABELS_TIF) as ds:
+        if (ds.shape, ds.crs, ds.transform) != reference:
+            raise ValueError("labels grid differs from sample submission")
         labels = ds.read(1)
-    # Catalogue mask: labels == 1 (or existing == 1) - inside footprint
-    # Bridge labels.tif has -1 outside, 0 background, 1 fault
-    catalogue = (labels == 1) & footprint
+    with rasterio.open(EXISTING_TIF) as ds:
+        if (ds.shape, ds.crs, ds.transform) != reference:
+            raise ValueError("existing-fault grid differs from sample submission")
+        existing = ds.read(1)
+
+    # Combine both pinned catalogue mirrors inside the finite sample footprint.
+    # Bridge labels use -1 outside, 0 background, and 1 fault.
+    catalogue = ((labels == 1) | (existing > 0)) & footprint
     print(f"Catalogue fault pixels: {catalogue.sum()}")
 
-    # Build clearance: dilate catalogue by CLEARANCE_PX (Euclidean)
-    # Use distance transform: exclude pixels within CLEARANCE_PX of catalogue
-    from scipy.ndimage import distance_transform_edt as edt
-    # Create binary where catalogue=0, background=1, then distance to catalogue
-    # Invert: we want distance from each pixel to nearest catalogue pixel
-    # So set catalogue pixels =0, others=1, then distance_transform_edt gives distance to 0
-    mask = np.ones(catalogue.shape, dtype=bool)
-    mask[catalogue] = False
-    # mask True = not catalogue, False = catalogue
-    # distance to catalogue = edt(mask)
-    dist_to_catalogue = edt(mask.astype(np.uint8))
+    # Euclidean distance in 100 m pixels; exclude catalogue cells within the
+    # preregistered two-pixel clearance. SciPy measures distance to zero cells.
+    from scipy.ndimage import distance_transform_edt
+
+    mask = ~catalogue
+    dist_to_catalogue = distance_transform_edt(mask.astype(np.uint8))
     # For catalogue pixels themselves distance is 0
     # For background, distance is Euclidean in pixels
     eligible = footprint & (dist_to_catalogue > CLEARANCE_PX)
@@ -213,7 +217,7 @@ def main():
                 "pigeonhole_min_overlap_for_36800_dots": max(0, (BUDGET - 6649) / BUDGET),
                 "pigeonhole_min_overlap": round(max(0, (BUDGET - 6649) / BUDGET), 4)
             },
-            "literal_all_entries_verdict": "STOP - by pigeonhole principle, any 36,800-dot footprint allocation must have >=81.93% forward overlap within 3px of the spacing-5 synthetic lattice, exceeding the 70% literal threshold. No sparse dotted submission can clear literal uniqueness under current registry without policy change.",
+            "literal_all_entries_verdict": "STOP - by pigeonhole principle, any 36,800-dot footprint allocation must have >=81.932% forward overlap within 3px of the spacing-5 synthetic lattice, exceeding the 70% literal threshold. No 36,800-dot allocation confined to this footprint can clear the literal 70% gate; other budgets or footprints require their own bound.",
             "competing_method_interpretation": "Competing-method interpretation (excluding synthetic calibration lattice) would PASS if measured max <70%, as WBG-3 demonstrated (59.38%). This research file is byte-distinct but literal-unseparated verdict remains negative.",
             "passes_literal_uniqueness": False,
             "passes_competing_method_uniqueness": "Unmeasured - expected PASS but not claimed",
@@ -269,7 +273,7 @@ def main():
             "submission_slots_used": 0,
             "reasons": [
                 "synthetic null model with no geophysical efficacy",
-                "literal registry lattice saturation (pigeonhole 81.93% >70%)",
+                "literal registry lattice saturation (pigeonhole 81.932% >70%)",
                 "no holdout DTI beating current best (S3DEP1 0.1661, WBG-3 0.1182)",
                 "no assigned method lane",
                 "no untouched confirmation"

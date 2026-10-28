@@ -56,7 +56,7 @@ const chromium = importedChromium.default || importedChromium;
     assert.match(focus9Text, /DOWNLOAD: YES.*SUBMIT: NO/);
     assert.match(focus9Text, /0\.2778/);
     assert.match(focus9Text, /HOLDOUT-DTI not evaluated/);
-    assert.match(focus9Text, /81\.93%/);
+    assert.match(focus9Text, /81\.932%/);
     assert.doesNotMatch(focus9Text, /synthetic HOLDOUT-DTI ≈0\.0003/);
     assert.equal(await page.locator("#master-table tbody tr").count(), 11);
     assert.equal(await page.evaluate(() => document.body.scrollWidth > window.innerWidth), false, "desktop body overflow: Focus-9 executive summary");

@@ -1,17 +1,13 @@
 # WBG GEMS — evidence-first fault mapping
 
-## FOCUS-9 RESEARCH DEMO · FORMAT PASS, NOT SUBMITTABLE
+## FOCUS-9 EXECUTIVE SUMMARY — DOWNLOAD: RESEARCH ONLY · SUBMIT: NO
 
-**[Focus-9 executive summary and nine-site table](docs/focus9-executive-summary.html)** ·
-[How to submit (future promoted artifact only)](docs/how-to-submit.html) ·
-[Ranked hypotheses](docs/hypotheses.html)
+[Focus-9 site table, forensics and hypotheses](docs/focus9-executive-summary.html) ·
+[How to submit](docs/how-to-submit.html) · [Hypotheses](docs/hypotheses.html)
 
-[Download synthetic demo TIFF](docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif) ·
-[One-TIFF ZIP](docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.zip) ·
-[Validator receipt](docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.validator.json) ·
-[Run card](evidence/focus9_exec/run_card.json)
+**Research TIFF (synthetic random null; not a geological model):** [wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif](docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif) · [ZIP](docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.zip) · [Run card](evidence/focus9_exec/run_card.json). Format checks pass; no holdout score was measured. The output is byte-unique only within the checked snapshot inventory; the fixed-36,800-dot literal 3-pixel lattice-overlap lower bound is **81.932% (>70%)**; the full competing-sparse overlap is unmeasured. **DOWNLOAD: YES for research · SUBMIT: NO.**
 
-**DOWNLOAD: YES · SUBMIT: NO.** This is a synthetic random null/UX demo, not a geological detector. Holdout-DTI and leaderboard estimate are unavailable. Local format validation passed, but the literal lattice-overlap lower bound is **81.93%** (>70% stop); its competing-sparse comparison is unmeasured. No slot used.
+GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplied history suggests D2.8 → B1 → B2 pruning removed catalogue-near dots; this is a plausible precision/false-positive mechanism, not proof of new-fault discovery. Leaderboard score estimates for a new file are unavailable.
 
 ## NO FILE APPROVED FOR SUBMISSION
 
@@ -28,6 +24,8 @@
 [Download WBG-2 TIFF for research only](docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif) ·
 [ZIP for research](docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip) ·
 [run card](evidence/wbg2/run_card.json) · [shared-gate audit](evidence/wbg2/safety_audit_20261027.json)
+
+**[Current repository review (2026-10-27)](docs/repo-review-current-20261027.md)** · [Review-only run card](evidence/current_review_card_20261027.json). No new raster, experiment, or slot; the lane remains stopped.
 
 | Artifact | Local format | Score estimate / holdout | Literal registry decision |
 |---|---|---|---|

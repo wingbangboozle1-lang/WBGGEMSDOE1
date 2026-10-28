@@ -184,7 +184,7 @@ def main():
         decision = card.get("decision", {}) if card else {}
         registry = card.get("correlation_overlap_vs_registry", {}) if card else {}
         lattice = registry.get("lattice_coverage", {})
-        lower_bound = lattice.get("pigeonhole_min_overlap")
+        lower_bound = lattice.get("pigeonhole_min_overlap_for_36800_dots", lattice.get("pigeonhole_min_overlap"))
         if (not identity_matches or card_name != "evidence/focus9_exec/run_card.json"
                 or card.get("verdict") != "negative" or decision.get("ok_to_submit") is not False
                 or decision.get("approved_for_weekly_slot") is not False
@@ -194,6 +194,7 @@ def main():
             raise ValueError("Focus-9 exact TIFF negative run card or lattice STOP is missing/inconsistent")
         report["ok_to_submit"] = False
         report["known_negative_lattice_overlap_lower_bound"] = lower_bound
+        report["known_negative_registry_overlap_lower_bound"] = lower_bound
         report["competing_sparse_overlap"] = "unmeasured"
     report["warning"] = "FORMAT PASS is not uniqueness, scientific efficacy, organizer acceptance or slot approval."
     print(json.dumps(report, indent=2, allow_nan=False))

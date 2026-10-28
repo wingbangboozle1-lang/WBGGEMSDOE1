@@ -9,7 +9,18 @@
   "universal_overlap_blocker": false,
   "overlap_limit": 0.7,
   "support_definition": "finite prediction > 0 (inherited literal support rule)",
-  "implication": "No universal blockage established.",
+  "implication": "No 100%-coverage blocker applies to every possible nonempty support because 6,649 allowed cells are uncovered; however, any 36,800-dot allocation confined to this footprint has a minimum 3-px overlap of 81.932065%, above the 70% gate.",
   "generated_utc": "2026-10-26T22:39:01+00:00",
-  "interpretation_warning": "Near saturation is a protocol obstruction, not proof of common geological reasoning. No density/lattice exemption was authorized."
+  "interpretation_warning": "The template field universal_overlap_blocker denotes complete coverage (no uncovered allowed cells), not whether a fixed-budget candidate exceeds the 70% gate. Do not interpret false as clearance. For the documented 36,800-dot budget, use fixed_budget_overlap_bound.blocks_this_budget.",
+  "interpretation_reviewed_utc": "2026-10-27",
+  "fixed_budget_overlap_bound": {
+    "budget_pixels": 36800,
+    "uncovered_allowed_pixels": 6649,
+    "minimum_covered_candidate_pixels": 30151,
+    "minimum_overlap_fraction": 0.819320652173913,
+    "overlap_limit": 0.7,
+    "blocks_this_budget": true,
+    "scope": "A 36,800-dot candidate whose dots lie in the stated allowed footprint. This is a pigeonhole lower bound, not a measured candidate-to-registry overlap or a claim for every budget.",
+    "calculation": "(budget_pixels - uncovered_allowed_pixels) / budget_pixels"
+  }
 }

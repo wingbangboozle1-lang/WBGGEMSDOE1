@@ -22,7 +22,6 @@ A true efficacy claim requires the full 19-band stack and spatially-blocked hold
 import hashlib, json, pathlib, datetime, zipfile
 import numpy as np
 import rasterio
-from scipy.ndimage import distance_transform_edt
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DATA_BRIDGE = ROOT / "data" / "bridge"
@@ -31,6 +30,8 @@ DOCS_DATA = ROOT / "docs" / "data"
 
 SAMPLE_TIF = DATA_BRIDGE / "sample_submission.tif"
 LABELS_TIF = DATA_BRIDGE / "labels.tif"
+EXISTING_TIF = DATA_BRIDGE / "existing_faults.tif"
+
 OUT_NAME = "wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros"
 OUT_TIF = DOCS_DL / f"{OUT_NAME}.tif"
 OUT_ZIP = DOCS_DL / f"{OUT_NAME}.zip"
@@ -50,25 +51,34 @@ def main():
         transform = ds.transform
         crs = ds.crs
         height, width = ds.height, ds.width
+        reference = (ds.shape, ds.crs, ds.transform)
     print(f"Template: {width}x{height}, CRS {crs}, transform {transform}")
 
     # Footprint = finite pixels in sample_submission
     footprint = np.isfinite(arr)
     print(f"Footprint pixels: {footprint.sum()}, outside: {(~footprint).sum()}")
 
-    # Load catalogue faults
+    # Load catalogue faults and reject accidental reference-grid mismatches.
     with rasterio.open(LABELS_TIF) as ds:
+        if (ds.shape, ds.crs, ds.transform) != reference:
+            raise ValueError("labels grid differs from sample submission")
         labels = ds.read(1)
+    with rasterio.open(EXISTING_TIF) as ds:
+        if (ds.shape, ds.crs, ds.transform) != reference:
+            raise ValueError("existing-fault grid differs from sample submission")
+        existing = ds.read(1)
 
-    # Catalogue mask: labels == 1 inside the template footprint.
-    # Bridge labels.tif has -1 outside, 0 background, 1 fault.
-    catalogue = (labels == 1) & footprint
+    # Combine both pinned catalogue mirrors inside the finite sample footprint.
+    # Bridge labels use -1 outside, 0 background, and 1 fault.
+    catalogue = ((labels == 1) | (existing > 0)) & footprint
     print(f"Catalogue fault pixels: {catalogue.sum()}")
 
-    # Exclude pixels within CLEARANCE_PX (Euclidean pixel distance) of catalogue.
-    # distance_transform_edt measures each non-catalogue pixel to the nearest zero.
+    # Euclidean distance in 100 m pixels; exclude catalogue cells within the
+    # preregistered two-pixel clearance. SciPy measures distance to zero cells.
+    from scipy.ndimage import distance_transform_edt
+
     mask = ~catalogue
-    dist_to_catalogue = distance_transform_edt(mask)
+    dist_to_catalogue = distance_transform_edt(mask.astype(np.uint8))
     # For catalogue pixels themselves distance is 0
     # For background, distance is Euclidean in pixels
     eligible = footprint & (dist_to_catalogue > CLEARANCE_PX)
@@ -207,7 +217,7 @@ def main():
                 "pigeonhole_min_overlap_for_36800_dots": max(0, (BUDGET - 6649) / BUDGET),
                 "pigeonhole_min_overlap": round(max(0, (BUDGET - 6649) / BUDGET), 4)
             },
-            "literal_all_entries_verdict": "STOP - by pigeonhole principle, any 36,800-dot footprint allocation must have >=81.94% forward overlap within 3px of the spacing-5 synthetic lattice, exceeding the 70% literal threshold. No sparse dotted submission can clear literal uniqueness under current registry without policy change.",
+            "literal_all_entries_verdict": "STOP - by pigeonhole principle, any 36,800-dot footprint allocation must have >=81.932% forward overlap within 3px of the spacing-5 synthetic lattice, exceeding the 70% literal threshold. No 36,800-dot allocation confined to this footprint can clear the literal 70% gate; other budgets or footprints require their own bound.",
             "competing_method_interpretation": "No competing-sparse interpretation is available because final-dot overlap was not measured for this artifact. Literal uniqueness remains negative.",
             "passes_literal_uniqueness": False,
             "passes_competing_method_uniqueness": "Unmeasured; no pass claim.",
@@ -263,15 +273,15 @@ def main():
             "submission_slots_used": 0,
             "reasons": [
                 "synthetic null model with no geophysical efficacy",
-                "literal registry lattice saturation (pigeonhole 81.94% >70%)",
-                "no holdout DTI beating current best (S3DEP1 0.1661, WBG-3 0.1182)",
+                "literal registry lattice saturation (pigeonhole 81.932% >70%)",
+                "no holdout evaluation or scientific efficacy evidence for this synthetic null",
                 "no assigned method lane",
                 "no untouched confirmation"
             ]
         },
         "experiments_completed": 1,
         "submission_slots_used": 0,
-        "next_action": "Use this file only to verify download/validator UX. Do not restart the stopped lane or run the ranked hypotheses from this record. The assigned method paragraph and fresh authorization are missing; future work requires separate assignment, preregistration, policy-compliant full registry checks, holdout validation, and selector approval before any slot consideration."
+        "next_action": "Use this file only to verify download/validator UX. Do not restart the stopped lane or run hypotheses from this record. The assigned method paragraph and fresh authorization are missing; future work requires separate assignment, preregistration, policy-compliant full registry checks, holdout validation, and selector approval before any slot consideration."
     }
     OUT_RUN_CARD.parent.mkdir(parents=True, exist_ok=True)
     with open(OUT_RUN_CARD, 'w') as f:

@@ -80,7 +80,8 @@ def test_focus9_synthetic_exact_bytes_are_locked_negative(suffix, flags, code):
     assert report["run_card_path"] == "evidence/focus9_exec/run_card.json"
     assert report["promotion_verdict"] == "negative" and not report["ok_to_submit"]
     assert report["sha256"] == card["raster_sha256"]
-    assert report["known_negative_lattice_overlap_lower_bound"] > .70
+    assert report["known_negative_lattice_overlap_lower_bound"] == pytest.approx(.819320652173913)
+    assert report["known_negative_registry_overlap_lower_bound"] == pytest.approx(.819320652173913)
     assert report["competing_sparse_overlap"] == "unmeasured"
 
 

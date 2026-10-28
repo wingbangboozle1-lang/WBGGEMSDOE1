@@ -55,7 +55,7 @@ const chromium = importedChromium.default || importedChromium;
     const focus9Text = await page.locator("main").innerText();
     assert.match(focus9Text, /DO NOT SUBMIT/);
     assert.match(focus9Text, /no holdout evaluation/i);
-    assert.match(focus9Text, /81\.93%/);
+    assert.match(focus9Text, /81\.932%/);
     assert.doesNotMatch(focus9Text, /expected ~0\.0003|Expected gain:/);
     assert.equal(await page.evaluate(() => document.body.scrollWidth > window.innerWidth), false, "desktop focus9 summary overflow");
     checked.push({ file: "focus9-executive-summary.html", desktop: "passed" });

@@ -38,7 +38,7 @@
       "pigeonhole_min_overlap_for_36800_dots": 0.819320652173913,
       "pigeonhole_min_overlap": 0.8193
     },
-    "literal_all_entries_verdict": "STOP - by pigeonhole principle, any 36,800-dot footprint allocation must have >=81.94% forward overlap within 3px of the spacing-5 synthetic lattice, exceeding the 70% literal threshold. No sparse dotted submission can clear literal uniqueness under current registry without policy change.",
+    "literal_all_entries_verdict": "STOP - by pigeonhole principle, any 36,800-dot allocation confined to this footprint must have >=81.932% forward overlap within 3px of the spacing-5 synthetic lattice, exceeding the 70% literal threshold. This fixed-budget bound applies to this footprint and budget; other budgets or footprints require their own bound.",
     "competing_method_interpretation": "No competing-sparse interpretation is available because final-dot overlap was not measured for this artifact. Literal uniqueness remains negative.",
     "passes_literal_uniqueness": false,
     "passes_competing_method_uniqueness": "Unmeasured; no pass claim.",
@@ -106,12 +106,12 @@
     "reasons": [
       "synthetic null model with no geophysical efficacy",
       "literal registry lattice saturation (pigeonhole 81.94% >70%)",
-      "no holdout DTI beating current best (S3DEP1 0.1661, WBG-3 0.1182)",
+      "no holdout evaluation or scientific efficacy evidence for this synthetic null",
       "no assigned method lane",
       "no untouched confirmation"
     ]
   },
   "experiments_completed": 1,
   "submission_slots_used": 0,
-  "next_action": "Use this file only to verify download/validator UX. Do not restart the stopped lane or run the ranked hypotheses from this record. The assigned method paragraph and fresh authorization are missing; future work requires separate assignment, preregistration, policy-compliant full registry checks, holdout validation, and selector approval before any slot consideration."
+  "next_action": "Use this file only to verify download/validator UX. Do not restart the stopped lane or run hypotheses from this record. The assigned method paragraph and fresh authorization are missing; future work requires separate assignment, preregistration, policy-compliant full registry checks, holdout validation, and selector approval before any slot consideration."
 }

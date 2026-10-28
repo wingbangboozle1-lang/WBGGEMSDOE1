@@ -26,25 +26,26 @@ def main():
     w3_comp = w3["correlation_overlap_vs_registry"]["final_dots_competing_sparse"]
     w2audit = json.loads((ROOT / "evidence/wbg2/safety_audit_20261027.json").read_text())
     w2overlap = w2audit["already_placed_final_dots_witness"]["my_dots_within_3px_of_theirs"] * 100
-    focus9 = json.loads((ROOT / "evidence/focus9_exec/run_card.json").read_text())
-    focus9_tif = Path(focus9["artifact"]).name
-    focus9_floor = focus9["correlation_overlap_vs_registry"]["lattice_coverage"]["pigeonhole_min_overlap"] * 100
 
+    f9 = json.loads((ROOT / "evidence/focus9_exec/run_card.json").read_text())
+    f9_tif = Path(f9["artifact"]).name
+    f9_zip = Path(f9["artifact"]).with_suffix(".zip").name
     header = f'''# WBG GEMS — evidence-first fault mapping
 
-## Focus-9 summary and synthetic format demo — DOWNLOAD FOR RESEARCH ONLY; DO NOT SUBMIT
+## FOCUS-9 EXECUTIVE SUMMARY — DOWNLOAD: RESEARCH ONLY · SUBMIT: NO
 
-**[Nine-site comparison and decision](docs/focus9-executive-summary.html)** · [Audited site table](docs/executive-summary.html) · [Prospective hypotheses](docs/research/future-hypotheses-20261027.md)
+[Focus-9 site table, forensics and hypotheses](docs/focus9-executive-summary.html) ·
+[How to submit](docs/how-to-submit.html) · [Hypotheses](docs/hypotheses.html)
 
-**Synthetic null/demo TIFF:** [Download](docs/downloads/{focus9_tif}) · [ZIP](docs/downloads/{focus9_tif.replace('.tif', '.zip')}) · [validator receipt](docs/downloads/{focus9_tif.replace('.tif', '.validator.json')}) · [uniqueness audit](docs/downloads/{focus9_tif.replace('.tif', '.uniqueness.json')}) · [negative run card](evidence/focus9_exec/run_card.json). Random off-catalogue points only; no geophysical model, no holdout score, no leaderboard estimate. Literal registry overlap is at least **{focus9_floor:.2f}%** (>70% limit). **FORMAT PASS ≠ submission approval. DOWNLOAD: YES · SUBMIT: NO · 0 slots used.**
+**Research TIFF (synthetic random null; not a geological model):** [{f9_tif}](docs/downloads/{f9_tif}) · [ZIP](docs/downloads/{f9_zip}) · [Run card](evidence/focus9_exec/run_card.json). Format checks pass; no holdout score was measured. The output is byte-unique only within the checked snapshot inventory; the fixed-36,800-dot literal 3-pixel lattice-overlap lower bound is **81.932% (>70%)**; the full competing-sparse overlap is unmeasured. **DOWNLOAD: YES for research · SUBMIT: NO.**
 
-The highest supplied historical claim among GEMSDOE24/25/27/28/30/31/32/33/36 is GEMSDOE32 B2 = **0.2778 (USER-REPORTED, not organizer-confirmed)**. No score is estimated for a new file; see the nine-site audit for provenance and lineage.
+GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplied history suggests D2.8 → B1 → B2 pruning removed catalogue-near dots; this is a plausible precision/false-positive mechanism, not proof of new-fault discovery. Leaderboard score estimates for a new file are unavailable.
 
 ## NO FILE APPROVED FOR SUBMISSION
 
 **[WBG-3 Executive Summary & Master Decision Table](docs/wbg3/index.html)** ·
 **[How to Submit Subpage](docs/wbg3/how-to-submit.html)** ·
-**[0.2778 Evidence Review & 4 Hypotheses](docs/wbg3/forensics-and-hypotheses.html)** ·
+**[0.2778 PhD Forensics & 4 Hypotheses](docs/wbg3/forensics-and-hypotheses.html)** ·
 [Download WBG-3 TIFF (research only)](docs/downloads/{w3_tif}) ·
 [WBG-3 ZIP](docs/downloads/{w3_zip}) ·
 [WBG-3 Run Card JSON](evidence/wbg3_spipmr/run_card.json) ·
@@ -55,6 +56,8 @@ The highest supplied historical claim among GEMSDOE24/25/27/28/30/31/32/33/36 is
 [Download WBG-2 TIFF for research only](docs/downloads/{w2tif}) ·
 [ZIP for research](docs/downloads/{w2tif.replace('.tif', '.zip')}) ·
 [run card](evidence/wbg2/run_card.json) · [shared-gate audit](evidence/wbg2/safety_audit_20261027.json)
+
+**[Current repository review (2026-10-27)](docs/repo-review-current-20261027.md)** · [Review-only run card](evidence/current_review_card_20261027.json). No new raster, experiment, or slot; the lane remains stopped.
 
 | Artifact | Local format | Score estimate / holdout | Literal registry decision |
 |---|---|---|---|
@@ -135,7 +138,7 @@ was not obtained or credibly projected in this session.
 ## Parallel work preserved during integration
 
 - **[WBG-3 / SPI-PMR-WCS-1 (100% 1m-LiDAR-free & 10m-DEM-free)](docs/wbg3/index.html): DO NOT SUBMIT; no selector eligibility.**
-  [How-to-submit subpage](docs/wbg3/how-to-submit.html) · [0.2778 evidence review & 4 hypotheses](docs/wbg3/forensics-and-hypotheses.html) ·
+  [How-to-submit subpage](docs/wbg3/how-to-submit.html) · [0.2778 PhD forensics & 4 hypotheses](docs/wbg3/forensics-and-hypotheses.html) ·
   [Research TIFF](docs/downloads/{w3_tif}) · [ZIP](docs/downloads/{w3_zip}) ·
   [run card](evidence/wbg3_spipmr/run_card.json) · [209-raster uniqueness audit](evidence/wbg3_spipmr/uniqueness_audit.json) ·
   [40-feature leakage canary](evidence/wbg3_spipmr/leakage_canary.json) · [preregistration](registry/wbg3_preregistration.json).

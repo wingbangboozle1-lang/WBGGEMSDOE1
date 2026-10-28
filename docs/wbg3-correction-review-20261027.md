@@ -30,3 +30,11 @@
 
 **Maximize P(Win):** do not spend a slot based on an unverified estimate.  
 **Own the Outcome:** preserve the negative verdict and the limits of the evidence.
+
+## Integration follow-up — merged-main reconciliation
+
+- Fetched `origin/main` at `6d1643ee` (including the merged Focus-9 and fail-closed registry updates) and integrated it into this branch without switching branches. Resolved the exact-card lookup to retain WBG-3 and add Focus-9 negative-card matching.
+- Audited the newly active Focus-9 executive page. Removed unsupported B2 false-positive causation, denominator arithmetic, ~0.28 ceiling, fixed-TP targets, and the unmeasured `≈0.0003` expectation. The page now distinguishes the deletion-only raster ancestry from score causation, labels all estimates unavailable, presents four prospective hypotheses as untested, and states the current owner-mirror/readiness limitations.
+- Focus-9 synthetic TIFF SHA-256 `e8c4bf7607cec72c54981b90aa60e7e85163b429b58ebd6f2a7c3126e8c1e351`: local format preflight passes, but it has no geological model or HOLDOUT-DTI; competing-sparse overlap is unmeasured, and the 36,800-dot literal lattice lower bound is 81.932%. Its exact negative card matches; strict submit-ready mode exits 2. **DOWNLOAD: YES for research/UX only; SUBMIT: NO.**
+- Rebuilt the static site, WBG-2/WBG-3 reports, README, and Pages staging. The main branch's earlier `BLOCKED_INPUTS` snapshot is explicitly superseded: current readiness is `BLOCKED_SCIENTIFIC` because local inputs/cache hashes match owner mirrors but scientific authorization and organizer-origin authentication remain unavailable.
+- Post-integration verification: **203 tests passed, 15 warnings**; Ruff E9/F passed; exact-release review passed with zero approvals and zero new experiments; strict submit-ready validation exited 2 for Focus-9, WBG-3 SPI-PMR-WCS, and legacy EXP3DET. Readiness returned `BLOCKED_SCIENTIFIC` / expected exit 2. No experiment, raster generation, lane validation, or slot action occurred.

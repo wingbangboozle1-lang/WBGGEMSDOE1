@@ -129,12 +129,14 @@ def main():
     # unlock those exact bytes without changing this code and its safety review.
     known_negative = "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3"
     s2_negative = "6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880"
+    focus9_negative = "e8c4bf7607cec72c54981b90aa60e7e85163b429b58ebd6f2a7c3126e8c1e351"
     paths = (
         "registry/run_card.json",
         "evidence/wbg2/run_card.json",
         "evidence/wbg_s2/run_card.json",
         "evidence/wbg3/run_card.json",
         "evidence/wbg3_spipmr/run_card.json",
+        "evidence/focus9_exec/run_card.json",
     )
     matches = []
     for name in paths:
@@ -184,6 +186,19 @@ def main():
         report["ok_to_submit"] = False
         report["known_negative_registry_overlap"] = max(row["my_dots_within_3px_of_theirs"] for row in rows)
         report["known_negative_lattice_overlap"] = rows[0]["my_dots_within_3px_of_theirs"]
+    if report["sha256"] == focus9_negative:
+        registry = card.get("correlation_overlap_vs_registry", {}) if card else {}
+        lattice = registry.get("lattice_coverage", {})
+        lower_bound = lattice.get("pigeonhole_min_overlap_for_36800_dots")
+        decision = card.get("decision", {}) if card else {}
+        if (not identity_matches or card_name != "evidence/focus9_exec/run_card.json"
+                or card.get("verdict") != "negative"
+                or decision.get("ok_to_submit") is not False
+                or registry.get("passes_literal_uniqueness") is not False
+                or not isinstance(lower_bound, (int, float)) or lower_bound <= .70):
+            raise ValueError("Focus-9 synthetic known-negative decision or lattice witness missing/inconsistent")
+        report["ok_to_submit"] = False
+        report["known_negative_registry_overlap_lower_bound"] = lower_bound
     report["warning"] = "FORMAT PASS is not uniqueness, scientific efficacy, organizer acceptance or slot approval."
     print(json.dumps(report, indent=2, allow_nan=False))
     if not report["all_checks_passed"]:

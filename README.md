@@ -1,5 +1,14 @@
 # WBG GEMS — evidence-first fault mapping
 
+## FOCUS-9 EXECUTIVE SUMMARY — DOWNLOAD: RESEARCH ONLY · SUBMIT: NO
+
+[Focus-9 site table and evidence](docs/focus9-executive-summary.html) ·
+[How to submit](docs/how-to-submit.html) · [Four current untested hypotheses](docs/research/future-hypotheses-20261027.md)
+
+**Research TIFF (synthetic random null; not a geological model):** [wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif](docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif) · [ZIP](docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.zip) · [Run card](evidence/focus9_exec/run_card.json). Format checks pass; no holdout score was measured. The output is byte-unique only within the checked snapshot inventory; the fixed-36,800-dot literal 3-pixel lattice-overlap lower bound is **81.932% (>70%)**; the full competing-sparse overlap is unmeasured. **DOWNLOAD: YES for research · SUBMIT: NO.**
+
+GEMSDOE32 B2's **0.2778 is USER-REPORTED / UNVERIFIED**, with no artifact-linked organizer receipt. The raster audit establishes a deletion-only D2.8 → B1 → B2 lineage (6,436 dots removed within 200 m; none added), but it does not establish the hidden-label contributions or why the value was reported. The 0.0178 difference from D2.8's supplied 0.2600 is arithmetic, not a confirmed paired score delta. Leaderboard score estimates for a new file are unavailable.
+
 ## NO FILE APPROVED FOR SUBMISSION
 
 **[WBG-3 Executive Summary & Master Decision Table](docs/wbg3/index.html)** ·
@@ -15,6 +24,8 @@
 [Download WBG-2 TIFF for research only](docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif) ·
 [ZIP for research](docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip) ·
 [run card](evidence/wbg2/run_card.json) · [shared-gate audit](evidence/wbg2/safety_audit_20261027.json)
+
+**[Current repository review (2026-10-27)](docs/repo-review-current-20261027.md)** · [Review-only run card](evidence/current_review_card_20261027.json). No new raster, experiment, or slot; the lane remains stopped.
 
 | Artifact | Local format | Score estimate / holdout | Literal registry decision |
 |---|---|---|---|

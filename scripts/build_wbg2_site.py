@@ -103,7 +103,7 @@ Only one champion per site was checked. Values are user-reported, with no file-s
 |---|---|---|---|---|
 {chr(10).join(mdrows)}
 
-**Why B2?** The recorded lineage is D2.8 (44,090 dots) → B1 (40,199) → B2 (37,654) through catalogue-near pruning. Removing redundant low-credit pixels may help the official distance-weighted Tversky metric, but the hidden labels and receipt are unavailable. The claim 0.2778 and its cause remain unverified. Removing mapped-fault-adjacent pixels can also remove genuinely new nearby faults.
+**What does B2 establish?** The recorded lineage is D2.8 (44,090 dots) → B1 (40,199) → B2 (37,654): exactly 6,436 D2.8 pixels are removed within 200 m of the public catalogue, with none added. This is raster ancestry only. Under the distance-weighted Tversky metric, the effect of any deletion depends on the unavailable hidden labels and the exact evaluated bytes; a nearby pixel could affect weighted TP, FP, or FN contributions. The 0.2778 claim is USER-REPORTED / UNVERIFIED, its cause is unknown, and the 0.0178 difference from the supplied D2.8 value is not an organizer-confirmed paired delta.
 
 The official public leaderboard recorded {public_score:.4f} ({observed}); this is not a score for any project file. [Dated provenance feed](data/feed.json) · [three safety-review passes](data/wbg2-review-passes-20261027.json) · [independent two-witness corroboration](data/wbg2-review.json).
 

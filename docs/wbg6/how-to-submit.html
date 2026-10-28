@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How to submit WBG-5 · WBG-5</title>
+<title>How to submit WBG-6 · WBG-6</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
 .ok { color:#0f766e; font-weight:700 }
@@ -18,17 +18,17 @@ code { background:#f3f6f4; padding:1px 4px; border-radius:4px }
 </style></head><body><div class="wrap">
 <p class="small"><a href="../index.html">← Evidence desk</a> · <a href="how-to-submit.html">How to submit</a></p>
 
-<h1>How to submit WBG-5</h1>
+<h1>How to submit WBG-6</h1>
 <div class="hero-ok">
 <p><b>Step 1.</b> Download<br>
-<span class="file"><a href="../downloads/wbg5-qmh-kdisjoint-30000-20261028.tif" download>wbg5-qmh-kdisjoint-30000-20261028.tif</a></span>
-&nbsp;(or <a href="../downloads/wbg5-qmh-kdisjoint-30000-20261028.zip" download>wbg5-qmh-kdisjoint-30000-20261028.zip</a>)</p>
+<span class="file"><a href="../downloads/wbg6-qmh-kdisjoint-30000-20261028.tif" download>wbg6-qmh-kdisjoint-30000-20261028.tif</a></span>
+&nbsp;(or <a href="../downloads/wbg6-qmh-kdisjoint-30000-20261028.zip" download>wbg6-qmh-kdisjoint-30000-20261028.zip</a>)</p>
 <p><b>Step 2.</b> Verify the bytes (optional, 10 s):</p>
-<pre><code>sha256sum wbg5-qmh-kdisjoint-30000-20261028.tif
+<pre><code>sha256sum wbg6-qmh-kdisjoint-30000-20261028.tif
 # expected: e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9</code></pre>
 <p><b>Step 3.</b> Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/</a>, choose the file, paste the note, submit.</p>
 <p><b>Note field (≤140 characters):</b><br>
-<code>WBG-5 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue</code></p>
+<code>WBG-6 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue</code></p>
 </div>
 <h2>What the portal checks, and what this file already satisfies</h2>
 <ul>
@@ -39,7 +39,7 @@ origin 243350 / 4508550) — yes;</li>
 <li>values within <b>[0, 1]</b>, no NaN inside the footprint, null/zero outside — yes
 (the historical "Predicted values must be in range [0, 1]" error came from a file that violated
 this; this one is validated byte-by-byte in
-<code>evidence/wbg5_submission_audit.json</code>);</li>
+<code>evidence/wbg6_submission_audit.json</code>);</li>
 <li>a single GeoTIFF if you upload a ZIP — the ZIP contains exactly one member, identical to the TIFF.</li>
 </ul>
 <h2>Why the outside-footprint cells are 0 and not NaN</h2>

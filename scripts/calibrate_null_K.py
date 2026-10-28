@@ -19,7 +19,7 @@ import rasterio
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "src")]
-from wbg5.null_model import expected_dti  # noqa: E402
+from wbg6.null_model import expected_dti  # noqa: E402
 
 
 def load(name, fetch, foot):
@@ -89,14 +89,14 @@ def main() -> int:
     b = np.array([r["predicted"] for r in rows])
     print(f"\nvalidation (n={len(rows)}): Pearson {pearsonr(a,b)[0]:+.3f}, "
           f"Spearman {spearmanr(a,b)[0]:+.3f}")
-    out = {"schema": "wbg5-null-calibration-v1", "K_star": Kstar,
+    out = {"schema": "wbg6-null-calibration-v1", "K_star": Kstar,
            "calibration_curve": curve, "r13_check": rep,
            "r13_reported": s13, "validation": rows,
            "pearson": float(pearsonr(a, b)[0]), "spearman": float(spearmanr(a, b)[0]),
            "assumption": "truth = K fault cells in catalogue-like segments, uniform "
                          "location/orientation, never on a mapped fault cell",
            "evidence_class": "MODEL-ESTIMATE"}
-    (ROOT / "evidence/wbg5_null_calibration.json").write_text(json.dumps(out, indent=1))
+    (ROOT / "evidence/wbg6_null_calibration.json").write_text(json.dumps(out, indent=1))
     return 0
 
 

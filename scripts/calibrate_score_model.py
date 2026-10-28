@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Family-grouped calibration of the WBG-5 score model.
+"""Family-grouped calibration of the WBG-6 score model.
 
 118 reported scores are not 118 independent observations: near-duplicate rasters
 inherit near-identical scores.  This script groups submissions whose dot sets
@@ -120,7 +120,7 @@ def main() -> int:
         print(f"  {nm:14s} {b:+.4f}")
 
     resid_sd = float(np.std(y - gof))
-    out = {"schema": "wbg5-score-model-v2",
+    out = {"schema": "wbg6-score-model-v2",
            "score_label": "OWNER-REPORTED (dependent variable only)",
            "evidence_class": "MODEL-ESTIMATE",
            "n_submissions": int(len(y)), "n_families": int(len(fams)),
@@ -138,7 +138,7 @@ def main() -> int:
            "residual_sd_grouped": resid_sd,
            "score_sd": float(y.std()),
            "families": [[names[i] for i in v] for v in fams]}
-    (ROOT / "evidence/wbg5_score_model.json").write_text(json.dumps(out, indent=1))
+    (ROOT / "evidence/wbg6_score_model.json").write_text(json.dumps(out, indent=1))
     return 0
 
 

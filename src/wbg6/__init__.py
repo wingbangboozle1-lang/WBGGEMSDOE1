@@ -1,4 +1,4 @@
-"""WBG-5: leaderboard-score inversion of the hidden DOE GEMS label distribution.
+"""WBG-6: leaderboard-score inversion of the hidden DOE GEMS label distribution.
 
 The competition truth (expert-labelled faults absent from the public catalogue) is
 never released.  What we do have is 118 owner-reported scores, each of which is an

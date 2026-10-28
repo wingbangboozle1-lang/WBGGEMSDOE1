@@ -1,17 +1,17 @@
-## ✅ DOWNLOAD & SUBMIT: YES — WBG-5 `wbg5-qmh-kdisjoint-30000-20261028`
+## ✅ DOWNLOAD & SUBMIT: YES — WBG-6 `wbg6-qmh-kdisjoint-30000-20261028`
 
-**[WBG-5 executive summary](docs/wbg5/index.html)** ·
-**[How to submit, step by step](docs/wbg5/how-to-submit.html)** ·
-**[Run card](evidence/wbg5_run_card.json)**
+**[WBG-6 executive summary](docs/wbg6/index.html)** ·
+**[How to submit, step by step](docs/wbg6/how-to-submit.html)** ·
+**[Run card](evidence/wbg6_run_card.json)**
 
 | | |
 |---|---|
-| **File to download** | [`wbg5-qmh-kdisjoint-30000-20261028.tif`](docs/downloads/wbg5-qmh-kdisjoint-30000-20261028.tif) · [one-TIFF ZIP](docs/downloads/wbg5-qmh-kdisjoint-30000-20261028.zip) |
+| **File to download** | [`wbg6-qmh-kdisjoint-30000-20261028.tif`](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif) · [one-TIFF ZIP](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.zip) |
 | **SHA-256** | `e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9` |
 | **Estimated score** | **0.247** — MODEL-ESTIMATE, range 0.142–0.286; no-localisation NULL-FLOOR 0.0425. Never ORGANIZER-CONFIRMED. |
 | **Unique?** | **Yes.** No byte copy of any of the 118 scored rasters; max surface |Spearman| 0.0148; overlap lift 1.47x over a density-matched independent field. |
 | **Format** | single-band float32, EPSG:32611, 3730x3292, 100 m, all finite, values in [0,1], zero outside the footprint, 0 dots on the catalogue. |
-| **Name / note (71 chars)** | `wbg5-qmh-kdisjoint-30000-20261028` / *WBG-5 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue* |
+| **Name / note (71 chars)** | `wbg6-qmh-kdisjoint-30000-20261028` / *WBG-6 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue* |
 
 > **Honest ceiling.** 0.247 is statistically indistinguishable from the best nine-site
 > historical value (0.2778): near-identical rasters in the owner's own history differ by up to 0.086.
@@ -30,8 +30,9 @@ reported as a decision number. (3) The 118 scored rasters are only **22 independ
 descriptors do not generalise across families (leave-one-family-out R2 -0.847).
 (4) The literal ">70% within 3 px" registry gate is **degenerate** - a 200k-dot lattice puts ~99.7% of the
 map within 3 px of a dot, so it flags every possible submission - and is replaced by a density-matched
-overlap lift. (5) Kernel-disjoint emission at 5 px separation gives 9.371 distinct coverage per dot
-versus 8.048 for the 0.2778 file: a 16% cut in redundant false-positive mass at the same distance profile.
+overlap lift. (5) Kernel-disjoint emission at 5 px separation gives 9.371 distinct coverage per dot versus 8.048 for the
+0.2778 file (16% more reach per dot), and the file carries 20% fewer dots, i.e. 7,654 fewer
+false-positive candidates at the same distance profile.
 
 
 # WBG GEMS — evidence-first fault mapping

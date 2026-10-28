@@ -1,5 +1,5 @@
 {
- "schema": "wbg5-score-model-v2",
+ "schema": "wbg6-score-model-v2",
  "score_label": "OWNER-REPORTED (dependent variable only)",
  "evidence_class": "MODEL-ESTIMATE",
  "n_submissions": 118,

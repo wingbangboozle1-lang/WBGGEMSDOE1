@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Full preflight audit of the WBG-5 submission.
+"""Full preflight audit of the WBG-6 submission.
 
 Checks, in order:
   A. Format against the shared gate (gems57.gates.format_report, unchanged), plus
@@ -13,7 +13,7 @@ Why a lift statistic: a raster with 200k dots at 5 px spacing puts almost the wh
 map within 3 px of one of its dots, so the literal ">70% of my dots are within 3 px
 of theirs" gate flags *every* submission and cannot measure duplication (this is
 recorded in vendor/gems57/uniqueness.py's own docstring and measured in
-evidence/wbg5_uniqueness.json).  The lift divides the observed overlap by the
+evidence/wbg6_uniqueness.json).  The lift divides the observed overlap by the
 overlap expected from an independent dot field of the same density, so it is
 scale-free: lift ~1 means "no more similar than chance".
 """
@@ -34,7 +34,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "src"), str(ROOT / "vendor")]
 from gems57.gates import format_report  # noqa: E402
 
-NAME = "wbg5-qmh-kdisjoint-30000-20261028"
+NAME = "wbg6-qmh-kdisjoint-30000-20261028"
 TIF = ROOT / "docs/downloads" / f"{NAME}.tif"
 ZIP = ROOT / "docs/downloads" / f"{NAME}.zip"
 RAD = 3.0
@@ -141,13 +141,13 @@ def main() -> int:
     verdict = ("PROMOTE (unique, format-valid, submittable)"
                if all(gates[k] for k in decisive) else "NEGATIVE (a gate failed)")
 
-    out = {"schema": "wbg5-submission-audit-v1", "name": NAME,
+    out = {"schema": "wbg6-submission-audit-v1", "name": NAME,
            "tif": str(TIF.relative_to(ROOT)), "zip": str(ZIP.relative_to(ROOT)),
            "sha256": sha(TIF), "zip_sha256": sha(ZIP),
            "format_checks": check, "shared_format_report": report,
            "duplicate_screen": dup, "gates": gates, "verdict": verdict,
            "note": "OWNER-REPORTED scores only; no organizer receipt exists for any file."}
-    (ROOT / "evidence/wbg5_submission_audit.json").write_text(json.dumps(out, indent=1,
+    (ROOT / "evidence/wbg6_submission_audit.json").write_text(json.dumps(out, indent=1,
                                                                         default=str))
     print(json.dumps({"format_checks": check, "gates": gates, "verdict": verdict,
                       "duplicate_screen": dup,

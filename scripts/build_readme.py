@@ -7,27 +7,27 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 
-def wbg5_readme_block():
-    """Top-of-README decision block for WBG-5, generated from its receipts.
+def wbg6_readme_block():
+    """Top-of-README decision block for WBG-6, generated from its receipts.
 
     Refuses to advertise a submit-ready file unless the audit gates passed.
     """
-    w5 = json.loads((ROOT / "evidence/wbg5_run_card.json").read_text())
+    w5 = json.loads((ROOT / "evidence/wbg6_run_card.json").read_text())
     est = w5["holdout"]["model_estimate"]
     floor = w5["holdout"]["null_floor"]
     reg = w5["registry"]
-    model = json.loads((ROOT / "evidence/wbg5_score_model.json").read_text())
+    model = json.loads((ROOT / "evidence/wbg6_score_model.json").read_text())
     decisive = ["format_pass", "not_a_byte_copy", "surface_rho_below_0.90",
                 "never_on_catalogue", "not_dense_over_budget"]
     if not all(w5["validator"]["all_gates"][k] for k in decisive):
-        raise ValueError("WBG-5 gate failed; refusing to publish a submit block")
+        raise ValueError("WBG-6 gate failed; refusing to publish a submit block")
     tif = Path(w5["raster"]["path"]).name
     zp = tif.replace(".tif", ".zip")
-    return f"""## ✅ DOWNLOAD & SUBMIT: YES — WBG-5 `{w5["submission_name"]}`
+    return f"""## ✅ DOWNLOAD & SUBMIT: YES — WBG-6 `{w5["submission_name"]}`
 
-**[WBG-5 executive summary](docs/wbg5/index.html)** ·
-**[How to submit, step by step](docs/wbg5/how-to-submit.html)** ·
-**[Run card](evidence/wbg5_run_card.json)**
+**[WBG-6 executive summary](docs/wbg6/index.html)** ·
+**[How to submit, step by step](docs/wbg6/how-to-submit.html)** ·
+**[Run card](evidence/wbg6_run_card.json)**
 
 | | |
 |---|---|
@@ -55,8 +55,9 @@ reported as a decision number. (3) The 118 scored rasters are only **22 independ
 descriptors do not generalise across families (leave-one-family-out R2 {model["r2_grouped"]:.3f}).
 (4) The literal ">70% within 3 px" registry gate is **degenerate** - a 200k-dot lattice puts ~99.7% of the
 map within 3 px of a dot, so it flags every possible submission - and is replaced by a density-matched
-overlap lift. (5) Kernel-disjoint emission at 5 px separation gives 9.371 distinct coverage per dot
-versus 8.048 for the 0.2778 file: a 16% cut in redundant false-positive mass at the same distance profile.
+overlap lift. (5) Kernel-disjoint emission at 5 px separation gives 9.371 distinct coverage per dot versus 8.048 for the
+0.2778 file (16% more reach per dot), and the file carries 20% fewer dots, i.e. 7,654 fewer
+false-positive candidates at the same distance profile.
 
 
 """
@@ -102,7 +103,7 @@ def main():
     f9 = json.loads((ROOT / "evidence/focus9_exec/run_card.json").read_text())
     f9_tif = Path(f9["artifact"]).name
     f9_zip = Path(f9["artifact"]).with_suffix(".zip").name
-    header = wbg5_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
+    header = wbg6_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
 
 **[Latest repository review and ranked future hypotheses](docs/repo-review-20261027-session.md)** ·
 [Session JSON card](evidence/repo_review_session_20261027.json) · [Current provenance feed](docs/data/feed.json)

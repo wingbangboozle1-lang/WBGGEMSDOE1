@@ -1,6 +1,6 @@
 {
- "schema": "wbg5-run-card-v1",
- "lane": "WBG-5 - leaderboard-score inversion + kernel-disjoint, quantile-matched emission",
+ "schema": "wbg6-run-card-v1",
+ "lane": "WBG-6 - leaderboard-score inversion + kernel-disjoint, quantile-matched emission",
  "decision": {
   "ok_to_download": true,
   "ok_to_submit": true,
@@ -56,9 +56,9 @@
   "literal_gate_status": "degenerate for density-mismatched rasters: a 206,895-dot 5 px lattice puts about 99.7% of the map within 3 px of a dot, so the literal >70% rule flags every non-empty submission; replaced by a density-matched lift statistic (this file: 1.47x)"
  },
  "raster": {
-  "path": "docs/downloads/wbg5-qmh-kdisjoint-30000-20261028.tif",
+  "path": "docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif",
   "sha256": "e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9",
-  "zip": "docs/downloads/wbg5-qmh-kdisjoint-30000-20261028.zip",
+  "zip": "docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.zip",
   "zip_sha256": "abf4d6b2e91b83ee0b579e4e47e74207835e03c05fa4f1c003adba102f1d6173",
   "bytes": 136230,
   "shape": [
@@ -102,8 +102,8 @@
   },
   "verdict": "PROMOTE (unique, format-valid, submittable)"
  },
- "submission_name": "wbg5-qmh-kdisjoint-30000-20261028",
- "submission_note": "WBG-5 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue",
+ "submission_name": "wbg6-qmh-kdisjoint-30000-20261028",
+ "submission_note": "WBG-6 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue",
  "negative_findings_delivered": [
   "The shared hide-and-recover holdout does not rank real submissions: Spearman 0.144 (p=0.12, n=118).",
   "Geometry descriptors do not generalise across independent submission families: leave-one-family-out R2 -0.847 (in-sample 0.407).",

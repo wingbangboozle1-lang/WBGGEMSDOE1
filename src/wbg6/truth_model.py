@@ -27,7 +27,7 @@ density ``lam`` per cell and kernel mass ``S = sum_{d<=R} k(d)``:
 which is the standard ``1 - exp(-rate)`` occupancy form.  Both terms are exact
 in the limits ``lam -> 0`` (no truth anywhere) and ``lam -> inf`` (full cover); the
 approximation only errs at intermediate density, where it is documented as such
-and tested against brute force in ``tests/test_wbg5_truth_model.py``.
+and tested against brute force in ``tests/test_wbg6_truth_model.py``.
 """
 
 from __future__ import annotations

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Score estimate for the WBG-5 submission, and the limits of that estimate.
+"""Score estimate for the WBG-6 submission, and the limits of that estimate.
 
 Two numbers are reported, never mixed:
 
@@ -29,13 +29,13 @@ import rasterio
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "src")]
-from wbg5.null_model import expected_dti  # noqa: E402
+from wbg6.null_model import expected_dti  # noqa: E402
 
-NAME = "wbg5-qmh-kdisjoint-30000-20261028"
+NAME = "wbg6-qmh-kdisjoint-30000-20261028"
 
 
 def main() -> int:
-    cal = json.loads((ROOT / "evidence/wbg5_null_calibration.json").read_text())
+    cal = json.loads((ROOT / "evidence/wbg6_null_calibration.json").read_text())
     K = int(cal["K_star"])
     with rasterio.open(ROOT / "data/bridge/existing_faults.tif") as s:
         cat = s.read(1) > 0
@@ -48,7 +48,7 @@ def main() -> int:
     rows = [r for r in cal["validation"] if r["predicted"] > 0]
     uplift = np.array([r["reported"] / r["predicted"] for r in rows])
     out = {
-        "schema": "wbg5-score-estimate-v1",
+        "schema": "wbg6-score-estimate-v1",
         "submission": NAME,
         "K_star_truth_cells": K,
         "null_floor": null,
@@ -64,7 +64,7 @@ def main() -> int:
                       "from the reported history, not measured for this file"},
         "labels": "NULL-FLOOR and MODEL-ESTIMATE only; no ORGANIZER-CONFIRMED value",
     }
-    (ROOT / "evidence/wbg5_score_estimate.json").write_text(json.dumps(out, indent=1))
+    (ROOT / "evidence/wbg6_score_estimate.json").write_text(json.dumps(out, indent=1))
     print(json.dumps(out, indent=1))
     return 0
 

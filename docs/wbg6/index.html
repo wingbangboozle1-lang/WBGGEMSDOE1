@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WBG-5 executive summary · WBG-5</title>
+<title>WBG-6 executive summary · WBG-6</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
 .ok { color:#0f766e; font-weight:700 }
@@ -18,17 +18,17 @@ code { background:#f3f6f4; padding:1px 4px; border-radius:4px }
 </style></head><body><div class="wrap">
 <p class="small"><a href="../index.html">← Evidence desk</a> · <a href="how-to-submit.html">How to submit</a></p>
 
-<h1>WBG-5 executive summary</h1>
+<h1>WBG-6 executive summary</h1>
 <p class="small">DrivenData competition 306 · DOE GEMS Prize · generated from the receipts in
-<code>evidence/wbg5_*.json</code> · all scores below are labeled either
+<code>evidence/wbg6_*.json</code> · all scores below are labeled either
 <strong>OWNER-REPORTED</strong>, <strong>MODEL-ESTIMATE</strong> or
 <strong>NULL-FLOOR</strong>. No ORGANIZER-CONFIRMED value exists for any file.</p>
 
 <div class="hero-ok">
 <h2 style="margin-top:0">DOWNLOAD &amp; SUBMIT: <span class="ok">YES</span></h2>
 <p><b>File to download:</b><br>
-<span class="file"><a href="../downloads/wbg5-qmh-kdisjoint-30000-20261028.tif" download>wbg5-qmh-kdisjoint-30000-20261028.tif</a></span><br>
-<span class="small">or the one-TIFF ZIP: <a href="../downloads/wbg5-qmh-kdisjoint-30000-20261028.zip" download>wbg5-qmh-kdisjoint-30000-20261028.zip</a>
+<span class="file"><a href="../downloads/wbg6-qmh-kdisjoint-30000-20261028.tif" download>wbg6-qmh-kdisjoint-30000-20261028.tif</a></span><br>
+<span class="small">or the one-TIFF ZIP: <a href="../downloads/wbg6-qmh-kdisjoint-30000-20261028.zip" download>wbg6-qmh-kdisjoint-30000-20261028.zip</a>
 &nbsp;·&nbsp; SHA-256 <code>e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9</code></span></p>
 <p><b>Estimated leaderboard score:</b> 0.247
 &nbsp;<span class="small">MODEL-ESTIMATE, plausible range 0.142 – 0.286;
@@ -41,8 +41,8 @@ surface rank correlation with every one of them is at most
 [0, 1], all finite, zero outside the scored footprint, zero dots on the mapped catalogue — all
 8 local checks pass and the shared
 <code>gems57</code> format gate reports ok=True.</p>
-<p class="small"><b>Name:</b> <code>wbg5-qmh-kdisjoint-30000-20261028</code><br>
-<b>Note (≤140 chars):</b> <code>WBG-5 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue, uniform-null estimator</code></p>
+<p class="small"><b>Name:</b> <code>wbg6-qmh-kdisjoint-30000-20261028</code><br>
+<b>Note (≤140 chars):</b> <code>WBG-6 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue, uniform-null estimator</code></p>
 </div>
 
 <div class="hero-no">
@@ -67,7 +67,7 @@ historical numbers; no submission-page receipt binds those bytes to those values
 <div style="overflow-x:auto"><table class="data">
 <thead><tr><th>What to download</th><th>Estimated score</th><th>Unique vs the nine sites and all 118 scored rasters</th><th>Decision</th></tr></thead>
 <tbody><tr>
-<td class="file">wbg5-qmh-kdisjoint-30000-20261028.tif</td>
+<td class="file">wbg6-qmh-kdisjoint-30000-20261028.tif</td>
 <td><b>0.247</b><br><span class="small">range 0.142 – 0.286</span></td>
 <td>Yes — max surface |Spearman| 0.0148; no byte copy; overlap lift
 1.47× over a density-matched independent field</td>
@@ -85,14 +85,14 @@ Measured consequence: pruning catalogue-near dots is exactly what raised the sco
 0.2600 → 0.2708 → 0.2778 (44,090 → 40,199 → 37,654 dots; the file lineage is in
 <code>evidence/nine_site_audit.json</code>).</li>
 <li><b>False positives are cheap, misses are expensive, but only up to a point.</b> The marginal-DTI
-algebra in <code>src/wbg5/truth_model.py</code> shows one extra dot helps whenever its expected kernel
+algebra in <code>src/wbg6/truth_model.py</code> shows one extra dot helps whenever its expected kernel
 credit exceeds α·DTI ≈ 0.06, so a fault-like dot always pays and a stray dot always costs. The
 uniform 5-px lattice with 206,895 dots scored only 0.0904 — over-budget emission is punished.</li>
 </ol>
 <p><b>The calibrated measurement.</b> Using the one submission whose geometry is provably spatially
 uniform (that 5-px lattice — its distance-to-catalogue quantiles match the footprint's to within
 0.1 px), an ensemble over 12,395-cell random fault sets reproduces its reported score to within
-0.0002 (see <code>evidence/wbg5_null_calibration.json</code>). That fixes the size of the hidden
+0.0002 (see <code>evidence/wbg6_null_calibration.json</code>). That fixes the size of the hidden
 truth: <b>K ≈ 12,395 cells</b>. Against that null, a raster with no localisation skill scores
 <b>0.0425</b>. The 0.2778 file scores 0.2778 on the same null — a
 <b>6.5× localisation uplift</b>.</p>
@@ -108,6 +108,33 @@ the 19-band feature stack and a supervised model (https://github.com/drivendatao
 download and is <b>not available in this environment</b> (Dropbox egress is blocked and it is not
 mirrored in any of the 204 public sites). That is the honest blocker, not a modelling choice.</p>
 
+<h2>2b. Where the hidden faults must be: the one axis the scores can identify</h2>
+<p>Without labels, the only thing a score can tell you is how a submission distributed its dots
+relative to the mapped catalogue. For all 118 recovered rasters we compute the ring share
+(dots per distance bin ÷ footprint share of that bin) — a <b>lift</b>, where 1.0 is "no different from
+a uniform sample of the map". Ranking those lifts against the reported scores gives one clean,
+monotone result:</p>
+<div style="overflow-x:auto"><table class="data">
+<thead><tr><th>Distance from the mapped faults</th><th>Spearman ρ with reported score</th><th>p</th></tr></thead>
+<tbody><tr><td>on px</td><td>+0.149</td><td>0.11</td></tr><tr><td>1.5 px</td><td>-0.159</td><td>0.086</td></tr><tr><td>3.5 px</td><td>-0.084</td><td>0.37</td></tr><tr><td>6.5 px</td><td>-0.017</td><td>0.85</td></tr><tr><td>10.5 px</td><td>+0.011</td><td>0.91</td></tr><tr><td>20.5 px</td><td>+0.053</td><td>0.57</td></tr><tr><td>40.5 px</td><td>+0.300</td><td>0.00098</td></tr><tr><td>80.5 px</td><td>+0.440</td><td>6.3e-07</td></tr><tr><td>budget (dots)</td><td>+0.166</td><td>0.072</td></tr></tbody></table></div>
+<p>The preference is for the <b>far field</b>: dots beyond ~40 px (4 km) of any mapped fault are worth
+more than dots next to one, and the immediate vicinity of a fault is worth least. A ridge fit on
+log-budget plus all ring lifts does <em>not</em> generalise across sites (leave-one-site-out
+R² = 0.036, ρ = 0.393), so the
+per-ring coefficients are not trustworthy — but the univariate far-field trend survives every
+sub-grouping we tried and is the reason this file keeps a wide, far-field component instead of
+hugging the catalogue.</p>
+<p><b>One contradictory row is disclosed rather than dropped:</b> dots sitting <em>on</em> the mapped
+catalogue show a weak positive association (+0.15, p = 0.11). It is not significant, and it cannot mean
+what it looks like — the metric defines the truth as faults absent from that catalogue, so an
+on-catalogue dot can never be a true positive. It is a coverage proxy. The site's rule (never place a dot
+on the mapped catalogue) is unchanged.</p>
+<p class="small">This is the sharpest self-correction in the whole analysis: the site's earlier lanes
+optimised "be near but not on a mapped fault". The score history says the opposite end of the map is
+worth more, and the null calibration says why — a submission with no localisation skill scores
+0.0425, so the leaderboard is measuring <em>where the new faults are</em>, not how neatly
+your dots trace the old ones.</p>
+
 <h2>3. What this file is, and why it should score near the top of your own history</h2>
 <ul>
 <li><b>Quantile-matched habitat.</b> Its distance-to-catalogue profile is inherited from the best
@@ -116,7 +143,8 @@ p90 73.1 px; the 0.2778 reference file: 19.6 px / 68.0 px),
 so it searches the same places, but every dot position is new.</li>
 <li><b>Kernel-disjoint emission.</b> Dots are at least 5 px apart, so no two share kernel support:
 distinct coverage per dot is 9.37 of a theoretical maximum 9.38, versus 8.05 for the 0.2778 file and
-7.10 for the 0.2478 file. Same search profile, 16% less redundant false-positive mass.</li>
+7.10 for the 0.2478 file. Same search profile with 20% fewer dots — 7,654 fewer false-positive candidates — and 16% more
+distinct coverage per dot (9.37 vs 8.05), i.e. the same reach for less false-positive mass.</li>
 <li><b>Never on the catalogue.</b> 0 dots on mapped faults; all dots
 are off-catalogue by construction.</li>
 <li><b>30,000 dots</b>, the measured direction of improvement for this family (pruning raised the
@@ -150,10 +178,10 @@ than chance, and this file is 1.47.</p>
 <tr><td>Reported-score noise floor: median |Δ| 0.0175 at >95% overlap</td>
 <td><code>evidence/score_consistency.json</code></td><td><code>scripts/score_consistency.py</code></td></tr>
 <tr><td>118 submissions collapse to 22 independent families</td>
-<td><code>evidence/wbg5_score_model.json</code></td><td><code>scripts/calibrate_score_model.py</code></td></tr>
+<td><code>evidence/wbg6_score_model.json</code></td><td><code>scripts/calibrate_score_model.py</code></td></tr>
 <tr><td>Geometry descriptors do <em>not</em> generalise across families (grouped R²
 -0.847)</td>
-<td><code>evidence/wbg5_score_model.json</code></td><td>same script</td></tr>
+<td><code>evidence/wbg6_score_model.json</code></td><td>same script</td></tr>
 <tr><td>Hide-and-recover holdout does not rank real scores (ρ 0.144, p=0.12)</td>
 <td><code>evidence/holdout_proxy_portfolio.json</code></td><td><code>scripts/holdout_proxy_portfolio.py</code></td></tr>
 <tr><td>Consensus agreement is a duplication artefact (family-level ρ
@@ -161,14 +189,22 @@ than chance, and this file is 1.47.</p>
 <td><code>evidence/consensus_partial.json</code> · <code>evidence/consensus_test.json</code></td>
 <td><code>scripts/consensus_test.py</code>, <code>scripts/consensus_partial.py</code></td></tr>
 <tr><td>Hidden truth size K ≈ 12,395; null reproduces the uniform lattice's 0.0904</td>
-<td><code>evidence/wbg5_null_calibration.json</code></td><td><code>scripts/calibrate_null_K.py</code></td></tr>
+<td><code>evidence/wbg6_null_calibration.json</code></td><td><code>scripts/calibrate_null_K.py</code></td></tr>
 <tr><td>This file's estimate 0.247 [0.142, 0.286]</td>
-<td><code>evidence/wbg5_score_estimate.json</code></td><td><code>scripts/estimate_wbg5_score.py</code></td></tr>
-<tr><td>Format + duplicate gates</td><td><code>evidence/wbg5_submission_audit.json</code></td>
-<td><code>scripts/audit_wbg5_submission.py</code></td></tr>
+<td><code>evidence/wbg6_score_estimate.json</code></td><td><code>scripts/estimate_wbg6_score.py</code></td></tr>
+<tr><td>Format + duplicate gates</td><td><code>evidence/wbg6_submission_audit.json</code></td>
+<td><code>scripts/audit_wbg6_submission.py</code></td></tr>
 </tbody></table></div>
 
 <h2>6. Limitations and irregularities (nothing here is hidden)</h2>
+<p><b>New this pass — the shared holdout was re-tested two ways.</b> We re-scored all 118 recovered
+rasters against the segment holdout under (a) the repo's rule, which forgives dots placed on the mapped
+catalogue, and (b) the organiser's rule, which counts them as false positives. The two variants return
+<b>identical</b> numbers: these rasters were all built to avoid the catalogue, so the forgiveness rule is
+inert and is <em>not</em> why the proxy fails. Corrected or not, the proxy still does not rank real
+scores (ρ = +0.125, p = 0.18).
+The reason is structural: the withheld components were visible to the authors when the rasters were
+made, so the proxy scores catalogue-following, not detection of unmapped faults.</p>
 <ul>
 <li><b>No organizer confirmation.</b> Every historical score in this repo is the owner's own report;
 no submission-page receipt identifies those bytes. The leaderboard figure is a public page
@@ -183,7 +219,7 @@ uncertainty, and it is why the range is wide.</li>
 <li><b>No feature stack, no 1 m DEM.</b> Both are egress-blocked here; without them a supervised
 prior cannot be trained, which caps achievable precision (see §2).</li>
 <li><b>Note text.</b> The competition allows a ≤140-character note; use
-<code>WBG-5 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue</code> so the entry is
+<code>WBG-6 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue</code> so the entry is
 identifiable later.</li>
 </ul>
 <p class="small">Questions about the rules: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/rules/">competition rules</a> ·

@@ -1,5 +1,5 @@
 {
- "schema": "wbg5-null-calibration-v1",
+ "schema": "wbg6-null-calibration-v1",
  "K_star": 12395,
  "calibration_curve": [
   {

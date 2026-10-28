@@ -1,6 +1,6 @@
 {
- "schema": "wbg5-score-estimate-v1",
- "submission": "wbg5-qmh-kdisjoint-30000-20261028",
+ "schema": "wbg6-score-estimate-v1",
+ "submission": "wbg6-qmh-kdisjoint-30000-20261028",
  "K_star_truth_cells": 12395,
  "null_floor": {
   "mean": 0.04253194248732718,

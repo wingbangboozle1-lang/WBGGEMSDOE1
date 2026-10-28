@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fit the WBG-5 radial hidden-truth model to the 118 owner-reported scores.
+"""Fit the WBG-6 radial hidden-truth model to the 118 owner-reported scores.
 
 The private label set of DrivenData competition 306 is never released, but each
 reported score is an exact functional of it.  This script inverts 118 of those
@@ -7,8 +7,8 @@ scores into (a) the total number of hidden-truth cells K and (b) the radial
 distribution of those cells relative to the *public* mapped-fault catalogue.
 
 Outputs (all MODEL-ESTIMATE, never ORGANIZER-CONFIRMED):
-  evidence/wbg5_truth_fit.json      fitted parameters, LOO diagnostics
-  .cache/wbg5_stats.npz             per-submission sufficient statistics
+  evidence/wbg6_truth_fit.json      fitted parameters, LOO diagnostics
+  .cache/wbg6_stats.npz             per-submission sufficient statistics
 """
 from __future__ import annotations
 
@@ -24,9 +24,9 @@ from scipy.optimize import minimize
 import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "src")]
-from wbg5.truth_model import (RADIUS_PX, RING_LABELS, ModelFit, ring_ids)
+from wbg6.truth_model import (RADIUS_PX, RING_LABELS, ModelFit, ring_ids)
 
-STATS = ROOT / ".cache/wbg5_stats.npz"
+STATS = ROOT / ".cache/wbg6_stats.npz"
 
 
 def coverage_field(dots: np.ndarray) -> np.ndarray:
@@ -164,8 +164,8 @@ def main() -> int:
     payload["predictions_in_sample"] = [
         {"name": str(nm), "score": float(s), "pred": float(p)}
         for nm, s, p in zip(names, scores, pred)]
-    (ROOT / "evidence/wbg5_truth_fit.json").write_text(json.dumps(payload, indent=1))
-    print("wrote evidence/wbg5_truth_fit.json")
+    (ROOT / "evidence/wbg6_truth_fit.json").write_text(json.dumps(payload, indent=1))
+    print("wrote evidence/wbg6_truth_fit.json")
     return 0
 
 

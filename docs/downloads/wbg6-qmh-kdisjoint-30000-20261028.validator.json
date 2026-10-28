@@ -1,10 +1,10 @@
 {
- "path": "docs/downloads/wbg5-qmh-kdisjoint-30000-20261028.tif",
- "name": "wbg5-qmh-kdisjoint-30000-20261028",
+ "path": "docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif",
+ "name": "wbg6-qmh-kdisjoint-30000-20261028",
  "sha256": "e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9",
  "bytes": 136230,
- "zip": "docs/downloads/wbg5-qmh-kdisjoint-30000-20261028.zip",
- "zip_sha256": "abf4d6b2e91b83ee0b579e4e47e74207835e03c05fa4f1c003adba102f1d6173",
+ "zip": "docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.zip",
+ "zip_sha256": "1a7e648c404db23dd1a9a3704d0b8a94f7903af4c49369a0da85014af39f56e3",
  "bands": 1,
  "dtype": "float32",
  "shape": [

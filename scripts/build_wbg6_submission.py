@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build WBG-5: a unique, format-valid submission anchored on the measured optimum.
+"""Build WBG-6: a unique, format-valid submission anchored on the measured optimum.
 
 Every design choice traces to a measurement in evidence/:
 
@@ -44,7 +44,7 @@ import rasterio
 from scipy import ndimage as ndi
 
 ROOT = Path(__file__).resolve().parents[1]
-NAME = "wbg5-qmh-kdisjoint-30000-20261028"
+NAME = "wbg6-qmh-kdisjoint-30000-20261028"
 RING_BINS = [0.0, 3.0, 6.0, 11.0, 21.0, 41.0, 81.0, 1e9]
 
 
@@ -89,9 +89,9 @@ def target_profile() -> np.ndarray:
     """Distance-to-catalogue histogram of the best reported submission, rescaled.
 
     Measured from docs/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif
-    (reported 0.2778); the raw counts are in evidence/wbg5_reference_profile.json.
+    (reported 0.2778); the raw counts are in evidence/wbg6_reference_profile.json.
     """
-    ref = ROOT / "evidence/wbg5_reference_profile.json"
+    ref = ROOT / "evidence/wbg6_reference_profile.json"
     hist = json.loads(ref.read_text())["histogram_counts"]
     return np.array(hist, float)
 

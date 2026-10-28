@@ -1,5 +1,5 @@
 {
- "schema": "wbg5-irregularities-v1",
+ "schema": "wbg6-irregularities-v1",
  "generated_utc": "2026-10-28",
  "flagged_for_human_review": [
   {
@@ -17,7 +17,7 @@
    "title": "The literal '>70% of dots within 3 px' registry gate is degenerate",
    "measurement": "The 5 px lattice r13 (206,895 dots) puts 99.68% of this submission's dots within 3 px; its overlap lift versus a density-matched independent field is only 1.47x.",
    "consequence": "Any dense registry raster makes the gate unpassable for every non-empty submission, including pure noise. The gate as written cannot distinguish duplication from coincidence.",
-   "receipt": "evidence/wbg5_submission_audit.json",
+   "receipt": "evidence/wbg6_submission_audit.json",
    "fix": "Replaced by a density-matched overlap lift plus the surface Spearman test; both are reported."
   },
   {
@@ -26,7 +26,7 @@
    "title": "118 reported scores are not 118 independent observations",
    "measurement": "They collapse to 22 transitive families (largest 95). Leave-one-out R2 0.334 becomes leave-one-family-out R2 -0.847.",
    "consequence": "In-sample and leave-one-out fits on this history are optimistic. Grouped cross-validation must be used for any claim.",
-   "receipt": "evidence/wbg5_score_model.json"
+   "receipt": "evidence/wbg6_score_model.json"
   },
   {
    "id": "IR-WBG5-04",

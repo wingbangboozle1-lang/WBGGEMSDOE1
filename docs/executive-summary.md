@@ -1,12 +1,26 @@
-# Executive summary — 27 October 2026
+# Executive summary — 28 October 2026
 
-## DOWNLOAD: YES (research only). SUBMIT: NO.
+## DOWNLOAD: YES. SUBMIT: YES — WBG-6 `wbg6-qmh-kdisjoint-30000-20261028`
 
-[WBG-2 decision, nine-site audit and research download](wbg2.html): literal overlap STOP; no verified holdout or leaderboard estimate. [Earlier four-release review](portfolio-review.html). No new experiment or slot was used.
+**[WBG-6 executive summary](wbg6/index.html)** · **[How to submit](how-to-submit.html)** · **[WBG-6 run card](evidence/wbg6_run_card.json)**
+
+| | |
+|---|---|
+| **File to download** | [`wbg6-qmh-kdisjoint-30000-20261028.tif`](downloads/wbg6-qmh-kdisjoint-30000-20261028.tif) · [one-TIFF ZIP](downloads/wbg6-qmh-kdisjoint-30000-20261028.zip) |
+| **SHA-256** | `e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9` |
+| **Estimated score** | **0.247** — MODEL-ESTIMATE, range 0.142–0.286; NULL-FLOOR 0.0425. Never ORGANIZER-CONFIRMED. |
+| **Unique?** | **Yes.** No byte copy of any of the 118 scored rasters; max surface |Spearman| 0.0148; overlap lift 1.47x over a density-matched independent field. |
+| **Format** | single-band float32, EPSG:32611, 3730x3292, 100 m, all finite, values in [0,1], zero outside the footprint, 0 dots on the catalogue. All 18 local checks pass; shared `gems57` gate OK. |
+| **Name / note (71 chars)** | `wbg6-qmh-kdisjoint-30000-20261028` / `WBG-6 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue` |
+| **Validator** | `ok_to_submit: true`, `promotion_verdict: promote`, all format checks PASS |
+
+**The one file cleared to download and submit is WBG-6, above.** Every historical file in the nine-site table below is a copy of an already-submitted raster (or fails the 70% uniqueness gate) and must NOT be re-uploaded as a unique entry.
+
+Earlier research surface (27 Oct, superseded):
 
 [Download the frozen research TIFF](downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif) · [one-TIFF ZIP](downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.zip) · [machine-readable run card](data/run-card.json)
 
-No final dotted or high-scoring promoted competition submission was produced. The literal surface overlap STOP and negative efficacy screen prohibit promotion. No weekly slot was used.
+No final dotted or high-scoring promoted competition submission was produced by the WBG-C1 screen. The literal surface overlap STOP and negative efficacy screen prohibit its promotion. No weekly slot was used.
 
 **HOLDOUT-DTI 0.014045**, 95% CI [0.011831, 0.016396], evaluator `gems57-pooled-hide-v2`, 11,330 withheld positives. Continuous confidence surface, not a matched-budget dotted submission or leaderboard estimate.
 

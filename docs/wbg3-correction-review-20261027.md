@@ -28,7 +28,8 @@
 
 **Final review decision: DOWNLOAD: YES, research only. SUBMIT: NO — DO NOT SUBMIT. No weekly slot was selected.**
 
-**Maximize P(Win):** do not spend a slot based on an unverified estimate.  
+**Maximize P(Win):** do not spend a slot based on an unverified estimate.
+
 **Own the Outcome:** preserve the negative verdict and the limits of the evidence.
 
 ## Integration follow-up — merged-main reconciliation

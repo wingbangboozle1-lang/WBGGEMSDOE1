@@ -1,7 +1,7 @@
 {
   "schema": "gemsdoe1-nine-site-executive-v1",
-  "generated_utc": "2026-10-26T22:05:07.459094+00:00",
-  "score_governance": "No artifact-linked DrivenData receipt was found. All nine historical values, including H33-B2 0.2778 and conflicting leaderboard claims 0.3195/0.4413, remain OWNER-REPORTED / UNVERIFIED. Local numbers are labeled HOLDOUT-DTI.",
+  "generated_utc": "2026-10-28T17:06:12+00:00",
+  "score_governance": "No artifact-linked DrivenData receipt was found. All nine historical values, including H33-B2 0.2778 and conflicting leaderboard claims 0.3195/0.4413, remain OWNER-REPORTED / UNVERIFIED. Local numbers are labeled HOLDOUT-DTI. WBG-5/MTA-1 is additionally a NULL result: its paired holdout CI includes zero, so it is DO NOT SUBMIT.",
   "historical_source": {
     "url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/32c2660001d98f6fa9084a0971b3a9d5062d49b9/README.md",
     "scope": "Pinned historical file table and literal pairwise uniqueness audit"
@@ -141,6 +141,22 @@
       "reason": "Historical/already-used reference and fails the cross-site 70% uniqueness rule.",
       "current_readme_ref": "32c2660001d98f6fa9084a0971b3a9d5062d49b9",
       "current_readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/32c2660001d98f6fa9084a0971b3a9d5062d49b9/README.md"
+    },
+    {
+      "site": "WBGGEMSDOE1",
+      "historical_best_file": "wbggemsdoe1-wbg5-mta1-magnetic-texture-anisotropy-20261028.tif",
+      "artifact_url": "https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/dc2c5a36dba562bb6cb450c788508cdf1fcac796/docs/downloads/wbggemsdoe1-wbg5-mta1-magnetic-texture-anisotropy-20261028.tif",
+      "sha256_prefix": "89b6e3749854",
+      "reported_value": null,
+      "reported_value_label": "HOLDOUT-DTI 0.1316 (no public score)",
+      "score_evidence_label": "HOLDOUT-DTI / null",
+      "organizer_receipt_present": false,
+      "maximum_3px_overlap_vs_other_eight_historical_masks": 0.47277845647208794,
+      "maximum_overlap_vs_nine_historical_mask": "GEMSDOE27.tif",
+      "unique_under_70_percent_rule": true,
+      "recommendation": "DO NOT SUBMIT",
+      "reason": "Scientifically distinct and competing-submission-unique, but the paired holdout CI includes zero: MTA-1 adds no signal over the 19-band control.",
+      "evidence_card": "evidence/wbg5/run_card.json"
     }
   ],
   "h33_b2_explanation": {
@@ -189,97 +205,49 @@
     }
   },
   "new_scientifically_distinct_candidate": {
-    "method": "TIP1 orientation-following fault-tip coherence gradient",
-    "file": "gemsdoe1-tip1-directional-tip-gradient-20261026-9a4b9b4bc8cd-zeros.tif",
-    "sha256": "148718d31ea75cfa3b7c643dfa25643cb0353483b2fa0e2696a62af2a107dca8",
+    "method": "WBG-5 / MTA-1: scale-persistent magnetic-texture anisotropy of the reduced-to-pole field relative to local depth-to-base structural contours",
+    "file": "docs/downloads/wbggemsdoe1-wbg5-mta1-magnetic-texture-anisotropy-20261028.tif",
+    "sha256": "89b6e3749854344f441ae27763d570333c3a26c1c8ad9148fe636a7eef806474",
     "scientifically_distinct": true,
-    "difference_from_h33_b2": "TIP1 derives a directional LiDAR coherence derivative without catalogue tips or prior predictions; B2 is a deletion-only subset of D2.8.",
+    "difference_from_h33_b2": "MTA-1 adds directional RTP-texture-energy channels at sigma 3/8 px relative to band-15 contours to the official 19-band stack; H33-B2 is a deletion-only subset of an earlier dotted field.",
     "holdout": {
-      "label": "HOLDOUT-DTI",
+      "evidence_class": "HOLDOUT-DTI",
       "evaluator_version": "gems-segment-pooled-v1",
-      "TP_w": 4691.2280687105085,
-      "FP_w": 35900.900166040476,
-      "FN_w": 56296.77193128949,
-      "n_truth": 60988.0,
-      "n_emitted": 37722.0,
-      "dti": 0.08243410429527415,
-      "n_withheld_positive_pixels": 60988,
-      "n_unique_withheld_components": 3199,
-      "ci95": {
-        "level": 0.95,
-        "interval": [
-          0.07287200123415499,
-          0.09173273826900923
-        ],
-        "method": "percentile spatial-block bootstrap of pooled TPw/FPw/FNw",
-        "block_pixels": 100,
-        "block_size_m": 10000,
-        "n_blocks": 583,
-        "resamples": 1999,
-        "seed": 20261025,
-        "limitation": "Internal-validation uncertainty; geologic structures may cross blocks. Not a hidden-score interval."
-      },
-      "folds": [
-        {
-          "fold": "NW",
-          "TP_w": 912.5033320963678,
-          "FP_w": 8059.808150460023,
-          "FN_w": 9252.496667903632,
-          "n_truth": 10165,
-          "n_emitted": 8430,
-          "dti": 0.09192633839025212,
-          "coverage": 0.08976914236068546
-        },
-        {
-          "fold": "NE_LidarGapHeavy",
-          "TP_w": 815.7608915494452,
-          "FP_w": 10092.72361645936,
-          "FN_w": 11695.239108450554,
-          "n_truth": 12511,
-          "n_emitted": 10422,
-          "dti": 0.06691777194378083,
-          "coverage": 0.06520349225077493
-        },
-        {
-          "fold": "SW",
-          "TP_w": 1717.12263626669,
-          "FP_w": 9759.799142282052,
-          "FN_w": 18816.87736373331,
-          "n_truth": 20534,
-          "n_emitted": 10429,
-          "dti": 0.091713975145416,
-          "coverage": 0.08362338737054105
-        },
-        {
-          "fold": "SE",
-          "TP_w": 1245.8412087980055,
-          "FP_w": 7988.569256839037,
-          "FN_w": 16532.158791201993,
-          "n_truth": 17778,
-          "n_emitted": 8441,
-          "dti": 0.07752936326403033,
-          "coverage": 0.07007769202373751
-        }
+      "arm": "A2_mta1",
+      "dti": 0.1315855766157561,
+      "ci95": [
+        0.1192062068107686,
+        0.14425867375826004
       ],
-      "protocol": {
-        "aggregation": "pooled TPw/FPw/FNw, not mean fold DTI",
-        "buffer_m": 1500,
-        "whole_components_hidden_everywhere": true,
-        "visible_fault_mask": "pixel-exact, applied before credit and FP calculation",
-        "catalogue_features": "must be constructed from fold.visible only",
-        "alpha": 0.2,
-        "beta": 0.8,
-        "triangular_kernel_radius_m": 300
-      }
+      "n_withheld_positives": 60988,
+      "control_arm_A1_dti": 0.13084741070100586,
+      "control_arm_A1_ci95": [
+        0.11868158479138761,
+        0.14359358481624715
+      ],
+      "paired_delta": 0.0007381659147502329,
+      "paired_delta_ci95": [
+        -0.00400981921918429,
+        0.00539075264213471
+      ],
+      "control_arm": "A1_ctrl_no_mta (19-band stack minus the MTA channels)",
+      "paired_fold_wins": "2 of 4"
     },
-    "surface_max_abs_registry_rank_correlation": 0.4822798246346134,
-    "maximum_competing_method_3px_overlap": 0.6439478288531891,
-    "maximum_competing_method_file": "docs/downloads/gemsdoe31-h3-lidar-scarp-unique-50k-20261025-allfinite.tif",
-    "retained_lattice_3px_overlap": 0.9995228248767297,
-    "strict_format_valid": true,
+    "canary": {
+      "all_features_passed": true,
+      "reduced_set_passed": true,
+      "max_sym_auc": 0.6579122968750001,
+      "dropped": [],
+      "note": "AUC > 0.90 in any fold is treated as leakage until proven otherwise."
+    },
     "verdict": "negative",
-    "recommendation": "DOWNLOAD FOR AUDIT: YES / SUBMIT: NO",
-    "can_exceed_owner_reported_0_2778": "UNPROVEN. TIP1 scored HOLDOUT-DTI 0.082434 on the named local evaluator, far below the 0.166060 local promotion benchmark; local holdout and the unverified organizer claim are not directly comparable. No score projection is made."
+    "uniqueness": {
+      "competing_submission_gate": true,
+      "maximum_3px_overlap_vs_nine_historical_masks": 0.47277845647208794,
+      "maximum_overlap_vs_nine_historical": "GEMSDOE27.tif",
+      "literal_all_entry_gate": false,
+      "literal_gate_note": "Fails only against WBGGEMSDOE1's own continuous wbg-c1 research surface, which overlaps every budget-matched dotted field by construction and is therefore reported, never gating."
+    }
   },
   "leaderboard_claim_irregularity": {
     "claims_seen": [
@@ -289,9 +257,27 @@
     "status": "UNVERIFIED-OWNER-REPORT",
     "receipt_present": false
   },
-  "recommendation": "Do not resubmit any historical best and do not spend a slot on TIP1. TIP1 is format-valid and uniquely named, but misses the efficacy gate and fails the retained literal lattice overlap gate.",
+  "recommendation": "Do not resubmit any historical best and do not spend a slot on WBG-5/MTA-1. WBG-5 is format-valid and passes the competing-submission uniqueness gate, but its paired holdout CI includes zero (MTA-1 adds no recoverable signal over the 19-band control).",
   "inputs": {
     "evidence/tip1_run_card_20261026.json": "742c2d4d2c21253e28c17a1817d2e2ec8dd9a6693b3844acf2431015ca212a51",
-    "evidence/h33_b2_forensics.json": "7532e453888d029fa942793f10a9cfab3b629dd30b34fa9bcf5ace94172f5265"
+    "evidence/h33_b2_forensics.json": "7532e453888d029fa942793f10a9cfab3b629dd30b34fa9bcf5ace94172f5265",
+    "evidence/wbg5/run_card.json": "24a99cc285b38d28ab8df8aa68a99c17edc9449c988a7802fd44ae151a97567c",
+    "scripts/build_wbg5_submission.py": "b978ad77335b7f1186b5c5e96789de313162f400c6551b7958cfe5cf172b8929"
+  },
+  "wbg5_mta1_null_result": {
+    "schema": "gemsdoe1-wbg5-mta1-forensics-v1",
+    "canary_passed": true,
+    "canary_max_sym_auc": 0.6579122968750001,
+    "canary_note": "AUC > 0.90 in any fold is treated as leakage; none was found. The earlier canary false-positive was a holdout-misalignment artifact (catalogue excluded from the footprint) and is resolved.",
+    "arms": {
+      "A2_mta1_dti": 0.1315855766157561,
+      "A1_control_dti": 0.13084741070100586
+    },
+    "paired_delta": 0.0007381659147502329,
+    "paired_ci95": [
+      -0.00400981921918429,
+      0.00539075264213471
+    ],
+    "conclusion": "MTA-1 is not supported by the segment-pooled holdout."
   }
 }

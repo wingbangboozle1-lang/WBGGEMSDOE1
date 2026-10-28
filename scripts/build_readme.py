@@ -34,12 +34,24 @@ def main():
     leaderboard_value_text = f"{leaderboard_value:.4f}" if isinstance(leaderboard_value, (int, float)) else "unavailable"
     leaderboard_date = leaderboard.get("observed_utc", leaderboard.get("observed_date_utc", "date unavailable"))
 
+    f9 = json.loads((ROOT / "evidence/focus9_exec/run_card.json").read_text())
+    f9_tif = Path(f9["artifact"]).name
+    f9_zip = Path(f9["artifact"]).with_suffix(".zip").name
     header = f'''# WBG GEMS — evidence-first fault mapping
 
 **[Latest repository review and ranked future hypotheses](docs/repo-review-20261027-session.md)** ·
 [Session JSON card](evidence/repo_review_session_20261027.json) · [Current provenance feed](docs/data/feed.json)
 
 **Freshness check:** at `{feed.get("generated_utc", "timestamp unavailable")}`, {changed_head_count}/{monitored_head_count} monitored focus-site GitHub heads differed from the frozen raster audit. This is a head check, not a current raster/score audit. The official leaderboard status is `{feed.get("leaderboard_status", "unknown")}`; the last retained public observation is {leaderboard_value_text} ({leaderboard_date}), not a score for any project TIFF.
+
+## FOCUS-9 EXECUTIVE SUMMARY — DOWNLOAD: RESEARCH ONLY · SUBMIT: NO
+
+[Focus-9 site table, forensics and hypotheses](docs/focus9-executive-summary.html) ·
+[How to submit](docs/how-to-submit.html) · [Hypotheses](docs/hypotheses.html)
+
+**Research TIFF (synthetic random null; not a geological model):** [{f9_tif}](docs/downloads/{f9_tif}) · [ZIP](docs/downloads/{f9_zip}) · [Run card](evidence/focus9_exec/run_card.json). Format checks pass; no holdout score was measured. The output is byte-unique only within the checked snapshot inventory; the fixed-36,800-dot literal 3-pixel lattice-overlap lower bound is **81.932% (>70%)**; the full competing-sparse overlap is unmeasured. **DOWNLOAD: YES for research · SUBMIT: NO.**
+
+GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplied history suggests D2.8 → B1 → B2 pruning removed catalogue-near dots; this is a plausible precision/false-positive mechanism, not proof of new-fault discovery. Leaderboard score estimates for a new file are unavailable.
 
 ## NO FILE APPROVED FOR SUBMISSION
 
@@ -56,6 +68,8 @@ def main():
 [Download WBG-2 TIFF for research only](docs/downloads/{w2tif}) ·
 [ZIP for research](docs/downloads/{w2tif.replace('.tif', '.zip')}) ·
 [run card](evidence/wbg2/run_card.json) · [shared-gate audit](evidence/wbg2/safety_audit_20261027.json)
+
+**[Current repository review (2026-10-27)](docs/repo-review-current-20261027.md)** · [Review-only run card](evidence/current_review_card_20261027.json). No new raster, experiment, or slot; the lane remains stopped.
 
 | Artifact | Local format | Score estimate / holdout | Literal registry decision |
 |---|---|---|---|

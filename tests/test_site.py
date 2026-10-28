@@ -72,6 +72,40 @@ def test_all_site_local_links_resolve_and_decision_is_unmistakable(name):
             assert parts.fragment in p.ids, (name, url)
 
 
+def test_focus9_executive_page_has_resolvable_published_links_and_research_only_status():
+    file = DOCS / "focus9-executive-summary.html"
+    html = file.read_text()
+    parser = Elements()
+    parser.feed(html)
+    text = " ".join(parser.text)
+    assert "DOWNLOAD: YES (research only)" in text
+    assert "SUBMIT: NO" in text
+    assert "USER-REPORTED" in text and "Unavailable" in text
+    assert "81.932%" in text
+    for url in parser.urls:
+        parts = urlsplit(url)
+        if parts.scheme or parts.netloc:
+            assert "localhost" not in url and "127.0.0.1" not in url
+            continue
+        target = (file.parent / unquote(parts.path)).resolve() if parts.path else file
+        assert target.is_relative_to(ROOT) and target.exists(), url
+
+
+def test_focus9_null_download_is_visible_and_fail_closed_in_generated_homepage_and_guide():
+    site = module("build_site")
+    banner = site.focus9_banner()
+    assert "DOWNLOAD YES · SUBMIT NO" in banner
+    assert "uniform-random null, not a geological model" in banner
+    assert "no HOLDOUT-DTI was measured" in banner
+    assert "81.932%" in banner and "&gt;70%" in banner
+    assert "competing-sparse overlap is unmeasured" in banner
+    assert "Download research TIFF" in banner
+    for name in ("index.html", "how-to-submit.html"):
+        html = (DOCS / name).read_text()
+        assert "Focus-9 research file: DOWNLOAD YES · SUBMIT NO." in html
+        assert "81.932%" in html
+
+
 def test_wbg2_negative_decision_and_download_are_prominent():
     card = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
     name = Path(card["artifacts"]["tif"]).name
@@ -90,6 +124,8 @@ def test_latest_review_is_published_with_separate_audit_card_and_no_go():
     assert published == card
     assert card["verdict"] == "negative" and card["decision"]["submit"] is False
     assert "DO NOT SUBMIT" in page and "0.2778" in page and "0.3195" in page and "0.4413" in page
+    assert "wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif" in page
+    assert "81.932%" in page and "not a geological model" in page
     assert "repo-review-20261027.html" in (DOCS / "index.html").read_text()
     assert "repo-review-20261027-session.md" in page
 
@@ -224,6 +260,12 @@ def test_staged_pages_match_legacy_url_layout_and_preserve_artifact_bytes(tmp_pa
                                {"duplicate_by_overlap": True, "my_dots_within_3px_of_theirs": 1.0}]}
     (tmp_path / "evidence/wbg_s2/run_card.json").write_text(json.dumps(s2))
     (tmp_path / "evidence/wbg_s2/safety_review_20261027.json").write_text(json.dumps(s2_safety))
+    (tmp_path / "evidence/focus9_exec").mkdir(parents=True)
+    focus9 = {"artifact": "docs/downloads/fixture.tif", "raster_sha256": card["raster_sha256"],
+        "verdict": "negative", "decision": {"ok_to_submit": False},
+        "correlation_overlap_vs_registry": {"lattice_coverage": {"pigeonhole_min_overlap_for_36800_dots": .819320652173913}},
+        "holdout_dti": {"dti": None}}
+    (tmp_path / "evidence/focus9_exec/run_card.json").write_text(json.dumps(focus9))
     (tmp_path / "index.html").write_text('<meta http-equiv="refresh" content="0; url=docs/">')
     monkeypatch.setattr(stage, "ROOT", tmp_path)
     monkeypatch.setattr(stage, "S2_SHA", card["raster_sha256"])
@@ -245,6 +287,13 @@ def test_staged_pages_match_legacy_url_layout_and_preserve_artifact_bytes(tmp_pa
         stage.stage()
     s2["strict_governance_decision"]["ok_to_submit"] = False
     (tmp_path / "evidence/wbg_s2/run_card.json").write_text(json.dumps(s2))
+    assert stage.stage() == target
+    focus9["decision"]["ok_to_submit"] = True
+    (tmp_path / "evidence/focus9_exec/run_card.json").write_text(json.dumps(focus9))
+    with pytest.raises(ValueError, match="Focus-9 research bytes or negative null decision"):
+        stage.stage()
+    focus9["decision"]["ok_to_submit"] = False
+    (tmp_path / "evidence/focus9_exec/run_card.json").write_text(json.dumps(focus9))
     assert stage.stage() == target
     (target / ".wbg-pages-stage").unlink()
     with pytest.raises(ValueError, match="unmarked"):

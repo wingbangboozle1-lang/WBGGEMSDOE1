@@ -159,6 +159,24 @@ def main() -> int:
     audit["sparse_max_overlap"] = sparse_max_ov
     audit["sparse_drifted"] = sparse_max_rho > 0.90 or sparse_max_ov > 0.70
 
+    # overlap against exactly the nine focus-site historical masks
+    NINE = {"GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28",
+            "GEMSDOE30", "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"}
+    nine_rows = []
+    for p in refs:
+        if Path(p).stem not in NINE:
+            continue
+        try:
+            other = U.read_dots(p, foot)
+        except Exception:
+            continue
+        ov = U.overlap_within(pred > 0, other, radius_px=3.0)
+        nine_rows.append((Path(p).name, ov["frac"], ov["n_other"]))
+    audit["nine_mask_max_overlap"] = max((r[1] for r in nine_rows), default=None)
+    audit["nine_mask_worst"] = max(nine_rows, key=lambda r: r[1])[0] if nine_rows else None
+    audit["nine_mask_overlaps"] = [{"name": n, "overlap_frac": o, "n_other": k}
+                                   for n, o, k in sorted(nine_rows, key=lambda r: -r[1])]
+
     exp = json.loads((WORK / "experiments.json").read_text())
     a2 = exp["arms"]["A2_mta1"]
     a1 = exp["arms"]["A1_ctrl_no_mta"]
@@ -209,6 +227,9 @@ def main() -> int:
             "max_overlap_all": audit["max_overlap_literal"],
             "sparse_max_abs_spearman": audit["sparse_max_abs_spearman"],
             "sparse_max_overlap": audit["sparse_max_overlap"],
+            "max_overlap_vs_nine_historical_masks": audit["nine_mask_max_overlap"],
+            "max_overlap_vs_nine_worst": audit["nine_mask_worst"],
+            "nine_mask_overlaps": audit["nine_mask_overlaps"],
             "sparse_drifted": audit["sparse_drifted"],
             "drifted": audit["drifted"],
             "drifted_reason": audit["drifted_reason"],

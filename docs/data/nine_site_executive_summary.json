@@ -1,6 +1,6 @@
 {
   "schema": "gemsdoe1-nine-site-executive-v1",
-  "generated_utc": "2026-10-28T17:06:12+00:00",
+  "generated_utc": "2026-10-28T17:27:55+00:00",
   "score_governance": "No artifact-linked DrivenData receipt was found. All nine historical values, including H33-B2 0.2778 and conflicting leaderboard claims 0.3195/0.4413, remain OWNER-REPORTED / UNVERIFIED. Local numbers are labeled HOLDOUT-DTI. WBG-5/MTA-1 is additionally a NULL result: its paired holdout CI includes zero, so it is DO NOT SUBMIT.",
   "historical_source": {
     "url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/32c2660001d98f6fa9084a0971b3a9d5062d49b9/README.md",
@@ -261,8 +261,8 @@
   "inputs": {
     "evidence/tip1_run_card_20261026.json": "742c2d4d2c21253e28c17a1817d2e2ec8dd9a6693b3844acf2431015ca212a51",
     "evidence/h33_b2_forensics.json": "7532e453888d029fa942793f10a9cfab3b629dd30b34fa9bcf5ace94172f5265",
-    "evidence/wbg5/run_card.json": "24a99cc285b38d28ab8df8aa68a99c17edc9449c988a7802fd44ae151a97567c",
-    "scripts/build_wbg5_submission.py": "b978ad77335b7f1186b5c5e96789de313162f400c6551b7958cfe5cf172b8929"
+    "evidence/wbg5/run_card.json": "3dba61dd8d9f94f6e4102d2561ad1f4244b5a6858b6f370076c960e52244e483",
+    "scripts/build_wbg5_submission.py": "e49cc5c92976ceaaf0ca3fe59131c52caf8bd50eb66b8814434333d6b5725ec6"
   },
   "wbg5_mta1_null_result": {
     "schema": "gemsdoe1-wbg5-mta1-forensics-v1",

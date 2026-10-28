@@ -69,7 +69,7 @@ def main() -> int:
 <section class="content-section" id="uniqueness">
 <div class="section-heading"><div><h2>Registry uniqueness</h2><p>Two gates, reported separately.</p></div></div>
 <div class="panel-pad">
-<p><strong>Competing-submission gate: PASSED.</strong> Maximum 3 px overlap against the nine historical masks <strong>{uniq["sparse_max_overlap"]*100:.2f}% &le; 70%</strong>; maximum |&rho;| = {uniq["sparse_max_abs_spearman"]:.4f} &le; 0.90. The artifact is not a duplicate of any competing submission.</p>
+<p><strong>Competing-submission gate: PASSED.</strong> Maximum 3 px overlap against the nine historical masks <strong>{uniq["max_overlap_vs_nine_historical_masks"]*100:.2f}% &le; 70%</strong> (worst comparator {escape(str(uniq["max_overlap_vs_nine_worst"]))}); across the full competing-submission comparator set the sparse maximum is <strong>{uniq["sparse_max_overlap"]*100:.2f}% &le; 70%</strong>; maximum |&rho;| = {uniq["sparse_max_abs_spearman"]:.4f} &le; 0.90. The artifact is not a duplicate of any competing submission.</p>
 <p><strong>Literal all-entry gate: FAILED (reported, not waived).</strong> Maximum 3 px overlap {uniq["max_overlap_all"]*100:.2f}% — the only comparator above 70% is <code>wbg-c1</code>, WBGGEMSDOE1's own continuous research surface, which overlaps every budget-matched dotted field by construction. It is logged, never gating.</p>
 </div>
 </section>

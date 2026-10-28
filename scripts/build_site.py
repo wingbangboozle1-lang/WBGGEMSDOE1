@@ -34,6 +34,7 @@ def page(name, title, body):
     nav = [("index.html", "Overview"), ("wbg6/index.html", "WBG-6 submit"), ("wbg5/index.html", "WBG-5"), ("wbg4/index.html", "WBG-4"), ("wbg3/index.html", "WBG-3"), ("wbg2.html", "WBG-2 audit"),
            ("executive-summary-20261028.html", "Exec summary 10-28"),
            ("executive-summary.html", "Site comparison"),
+           ("executive-summary-focus-sites.html", "Nine-site exec summary"),
            ("research.html", "Research"), ("evidence.html", "Evidence"),
            ("repo-review-20261027.html", "Latest review"), ("how-to-submit.html", "How to submit")]
     links = "".join(link(path, label, "active" if path == name else "") for path, label in nav)
@@ -253,6 +254,19 @@ def wbg6_banner():
             f'''<a href="wbg6/how-to-submit.html">How to submit →</a></p></div>''')
 
 
+def wbg7_banner():
+    """WBG-7 unique submission: fail-checked, never oversold.
+
+    Publishes the format/canary/uniqueness receipts and an unambiguous
+    download slot.  Refuses to claim a leaderboard score or a cleared slot.
+    """
+    card = load("evidence/wbg7/run_card.json")
+    v = card["validator"]
+    h = card["holdout"]
+    tif = card["submission_name"] + ".tif"
+    return f'''<div class="alert" role="note" style="border-left:6px solid var(--amber)"><p><strong>NEW · WBG-7 unique submission:</strong> <strong>OK to download</strong> — <a href="downloads/{tif}" download>{tif}</a> · <a href="downloads/{card['submission_name']}.zip" download>ZIP ↓</a>. Single-band float32, EPSG:32611, 3730×3292, <strong>values in [0,1] (no "[0,1]" portal error)</strong>, {v['in_footprint_positive_pixels']:,} off-catalogue dots, SHA-256 {card['raster_sha256'][:12]}…. <strong>OK to submit: NOT CLEARED</strong> — holdout-DTI {h['dti']:.4f} does not beat the 0.1661 same-evaluator best and no organizer score receipt exists; do not claim it beats 0.2778. <a href="executive-summary-focus-sites.html">Nine-site executive summary →</a> · <a href="evidence/wbg7/run_card.json">Run card →</a></p></div>'''
+
+
 def focus9_banner():
     """Expose the synthetic Focus-9 download while keeping its negative gate unmistakable."""
     card = load("evidence/focus9_exec/run_card.json")
@@ -266,7 +280,7 @@ def focus9_banner():
 
 def home(card, receipt, audit, feed):
     score = card["holdout"]
-    return wbg6_banner() + focus9_banner() + wbg2_banner() + wbg5_diff1_banner() + wbg4_banner() + wbg5_banner() + wbg_s2_banner() + wbg3_banner() + f'''<section class="hero"><div><p class="eyebrow">Evidence first. Every submission.</p><h1>A fresh TIFF.<br>An <em>honest decision.</em></h1><p class="lead">An auditable research desk for the GEMS fault-mapping challenge. Nine sites compared, separate research lanes recorded, and no weekly slot spent by this integration.</p><div class="actions">{link('executive-summary.html', 'Read executive summary  →', 'button secondary')}{link('evidence.html', 'Inspect the evidence ↗', 'text-link')}</div><p class="micro" style="margin-top:20px">C1 frozen screen: 26 October 2026 · Verdict <strong>NEGATIVE</strong><br>The experiment did not beat its control. “Format valid” never means “ready to submit.”</p></div>{download_card(card, receipt)}</section>
+    return wbg7_banner() + wbg6_banner() + focus9_banner() + wbg2_banner() + wbg5_diff1_banner() + wbg4_banner() + wbg5_banner() + wbg_s2_banner() + wbg3_banner() + f'''<section class="hero"><div><p class="eyebrow">Evidence first. Every submission.</p><h1>A fresh TIFF.<br>An <em>honest decision.</em></h1><p class="lead">An auditable research desk for the GEMS fault-mapping challenge. Nine sites compared, separate research lanes recorded, and no weekly slot spent by this integration.</p><div class="actions">{link('executive-summary.html', 'Read executive summary  →', 'button secondary')}{link('evidence.html', 'Inspect the evidence ↗', 'text-link')}</div><p class="micro" style="margin-top:20px">C1 frozen screen: 26 October 2026 · Verdict <strong>NEGATIVE</strong><br>The experiment did not beat its control. “Format valid” never means “ready to submit.”</p></div>{download_card(card, receipt)}</section>
 {alert()}{stats(card)}
 <section class="section"><div class="section-heading"><div><span class="section-num">01 / THE CURRENT EXPERIMENT</span><h2>Research surface, not a promoted prediction</h2><p>WBG-C1: non-coaxial curvature of conductivity/depth proxy fields.</p></div>{link('research.html', 'Method & limitations →', 'text-link')}</div><div class="two-col"><article class="panel"><div class="panel-head">Actual exported research field<span>Not ground truth</span></div><div class="map-frame"><span class="map-label">UTM 11N · 100 m source grid</span><img src="assets/research-field.png" alt="The actual continuous WBG-C1 confidence surface across the irregular GeoDAWN footprint; not a map of verified faults or vents." width="610" height="690"></div><div class="map-caption"><span>Nearest-neighbour preview of the exported TIFF.<br>Outside-footprint and known-catalogue support are zero.<br>OOF seams are not geological evidence.</span><div><div class="gradient-legend"></div><div class="legend-labels"><span>0</span><span>0.9</span></div><span>Confidence, not calibrated probability</span></div></div></article><article class="panel"><div class="panel-head">Automated validation gates{pill('Stopped', 'no')}</div><div class="panel-pad">{gates(card)}<div class="gates-foot"><span>No human inspector required for these local checks.</span>{link('evidence.html', 'View receipts →')}</div></div></article></div></section>
 <section class="section"><div class="section-heading"><div><span class="section-num">02 / MEASURED, NOT PROJECTED</span><h2>Did the new hypothesis help?</h2><p>No statistically established improvement on this frozen screen.</p></div>{link('data/experiment.json', 'Full evaluator output ↗', 'text-link')}</div><div class="two-col"><article class="panel"><div class="panel-head">Same-instrument comparison<span>Continuous confidence surfaces</span></div><div class="panel-pad">{chart(card)}<p class="micro">HOLDOUT-DTI · <code>{card['holdout_instrument']['evaluator_version']}</code> · {score['withheld_positive_pixels']:,} withheld positives · 95% paired spatial-cluster intervals. Not a leaderboard estimate; not a comparison against sparse historical TIFFs.</p></div></article><article class="mini-card"><span class="index">WHY THE LANE STOPS HERE</span><h3>Different bytes are not enough.</h3><p>The fresh TIFF is not an exact copy of any checked registry raster. But its positive support overlaps the registered lattice by {card['registry']['max_forward_3px_overlap'] * 100:.2f}%, exceeding the unexempted 70% rule.</p><p>The C1 scientific screen is negative as well. No C1 final dots were placed; we have not retuned around registry gaps, claimed a new high score, or spent a submission slot.</p>{link('executive-summary.html#decision', 'Read the decision →', 'text-link')}</article></div></section>

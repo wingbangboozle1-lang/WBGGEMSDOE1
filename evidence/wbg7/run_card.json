@@ -1,0 +1,151 @@
+{
+  "generated_utc": "2026-10-28T00:00:00+00:00",
+  "hypothesis": "Blind trace-tip splay propensity (H1) blended with off-catalogue distance rings: off-catalogue kernel-disjoint dots in directional lobes from catalogue trace tips, within 200-800 m rings.",
+  "mechanism": "New geothermal faults nucleate as short splays at trace ends beyond the mapped catalogue; off-catalogue dots avoid guaranteed false positives while staying inside the 300 m DTI kernel for partial credit; kernel-disjoint dots buy distinct credit.",
+  "non_fault_mimic": "Mapped trace tips that are simply trace terminations (no displacement continuation), lithologic contacts ending at the trace, and mapping edge artifacts.",
+  "lane": "WBG-7 independent lane; catalogue-derived structural surface; not the C1 Hessian commutator, not WBG-6 along-strike extrapolation, not GEMSDOE32 pure distance rings.",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "dti": 0.014908347102282908,
+    "ci95": [
+      0.013817434454450288,
+      0.01590015058249878
+    ],
+    "withheld_positive_pixels": 60988,
+    "TP_w": 818.0500908353685,
+    "FP_w": 29589.704622888035,
+    "FN_w": 60169.94990916463,
+    "n_emitted": 30000,
+    "ci_method": "percentile spatial-block bootstrap of pooled TPw/FPw/FNw",
+    "ci_block_pixels": 100,
+    "ci_block_size_m": 10000,
+    "n_blocks": 583,
+    "folds": [
+      {
+        "fold": "NW",
+        "dti": 0.016294194466936376,
+        "TP_w": 150.8140452669431,
+        "FP_w": 5467.64592136117,
+        "FN_w": 10014.185954733057,
+        "n_truth": 10165,
+        "n_emitted": 5545
+      },
+      {
+        "fold": "NE_LidarGapHeavy",
+        "dti": 0.012952830343276803,
+        "TP_w": 148.36017137122317,
+        "FP_w": 7077.042514403381,
+        "FN_w": 12362.639828628777,
+        "n_truth": 12511,
+        "n_emitted": 7155
+      },
+      {
+        "fold": "SW",
+        "dti": 0.015842708604263737,
+        "TP_w": 291.56803984479143,
+        "FP_w": 9592.062922987418,
+        "FN_w": 20242.43196015521,
+        "n_truth": 20534,
+        "n_emitted": 9735
+      },
+      {
+        "fold": "SE",
+        "dti": 0.014424502557861539,
+        "TP_w": 227.30783435241074,
+        "FP_w": 7452.953264136069,
+        "FN_w": 17550.69216564759,
+        "n_truth": 17778,
+        "n_emitted": 7565
+      }
+    ],
+    "protocol": {
+      "aggregation": "pooled TPw/FPw/FNw, not mean fold DTI",
+      "buffer_m": 1500,
+      "visible_fault_mask": "pixel-exact, applied before credit and FP calculation",
+      "alpha": 0.2,
+      "beta": 0.8,
+      "triangular_kernel_radius_m": 300
+    }
+  },
+  "control_H2_distance_rings": {
+    "note": "GEMSDOE32-B2-like distance-ring control blended at 0.4 weight"
+  },
+  "leakage_canary": {
+    "diagnostic": "LEAKAGE-CANARY AUC, not a DTI or organizer score",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "threshold": 0.9,
+    "passed": true,
+    "features": {
+      "H1_tip_splay": {
+        "pooled_auc": 0.499984375,
+        "leakage_suspected": false,
+        "folds": [
+          {
+            "fold": "NW",
+            "auc": 0.5,
+            "positives": 8000,
+            "background": 8000
+          },
+          {
+            "fold": "NE_LidarGapHeavy",
+            "auc": 0.5,
+            "positives": 8000,
+            "background": 8000
+          },
+          {
+            "fold": "SW",
+            "auc": 0.4999375,
+            "positives": 8000,
+            "background": 8000
+          },
+          {
+            "fold": "SE",
+            "auc": 0.5,
+            "positives": 8000,
+            "background": 8000
+          }
+        ]
+      }
+    }
+  },
+  "registry_uniqueness": {
+    "GEMSDOE32": {
+      "reported_historical": 0.2778,
+      "sha256_pinned": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "surface_abs_spearman": 0.003156466411366783,
+      "forward_3px_overlap_theirs_on_mine": 0.2226,
+      "forward_3px_overlap_mine_on_theirs": 0.2098,
+      "unique_vs_this_champion": true
+    },
+    "GEMSDOE36": {
+      "reported_historical": 0.275,
+      "sha256_pinned": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+      "surface_abs_spearman": 0.0034035494656416425,
+      "forward_3px_overlap_theirs_on_mine": 0.2235,
+      "forward_3px_overlap_mine_on_theirs": 0.2157,
+      "unique_vs_this_champion": true
+    }
+  },
+  "validator": {
+    "file": "wbg7-blind-tip-splay-relay-30000-20261028-zeros.tif",
+    "bytes": 134192,
+    "sha256": "701ff7a4d916dd843da402ecf5f95126dc3ecfce0597ab71933ccacb16689e3a",
+    "format_valid": true,
+    "all_checks_passed": true,
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "in_footprint_positive_pixels": 30000,
+    "range_min": 0.0,
+    "range_max": 1.0
+  },
+  "raster_sha256": "701ff7a4d916dd843da402ecf5f95126dc3ecfce0597ab71933ccacb16689e3a",
+  "submission_name": "wbg7-blind-tip-splay-relay-30000-20261028-zeros",
+  "note": "WBG-7 blind trace-tip splay off-catalogue kernel-disjoint 30k dots off the public fault catalogue, not a prior submission",
+  "verdict": "negative",
+  "download_ok": true,
+  "submit_cleared": false,
+  "leaderboard_claim": "cannot verify; no DrivenData authentication; holdout-DTI is a catalogue-proxy, not a leaderboard forecast; do not claim to beat 0.2778",
+  "verdict_reason": "format+canary+uniqueness gates PASS (file is valid and unique), but holdout-DTI 0.0149 does not beat the 0.1661 same-evaluator best, so no real weekly slot is cleared; leaderboard score is unverifiable without organizer authentication"
+}

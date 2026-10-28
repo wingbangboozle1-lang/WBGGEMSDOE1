@@ -22,7 +22,6 @@ A true efficacy claim requires the full 19-band stack and spatially-blocked hold
 import hashlib, json, pathlib, datetime, zipfile
 import numpy as np
 import rasterio
-from scipy.ndimage import distance_transform_edt
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DATA_BRIDGE = ROOT / "data" / "bridge"
@@ -31,7 +30,6 @@ DOCS_DATA = ROOT / "docs" / "data"
 
 SAMPLE_TIF = DATA_BRIDGE / "sample_submission.tif"
 LABELS_TIF = DATA_BRIDGE / "labels.tif"
-EXISTING_TIF = DATA_BRIDGE / "existing_faults.tif"
 
 OUT_NAME = "wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros"
 OUT_TIF = DOCS_DL / f"{OUT_NAME}.tif"
@@ -61,9 +59,6 @@ def main():
     # Load catalogue faults
     with rasterio.open(LABELS_TIF) as ds:
         labels = ds.read(1)
-    with rasterio.open(EXISTING_TIF) as ds:
-        existing = ds.read(1)
-
     # Catalogue mask: labels == 1 (or existing == 1) - inside footprint
     # Bridge labels.tif has -1 outside, 0 background, 1 fault
     catalogue = (labels == 1) & footprint
@@ -71,11 +66,6 @@ def main():
 
     # Build clearance: dilate catalogue by CLEARANCE_PX (Euclidean)
     # Use distance transform: exclude pixels within CLEARANCE_PX of catalogue
-    inv = np.ones_like(catalogue, dtype=np.uint8)
-    inv[catalogue] = 0
-    dist = distance_transform_edt(inv == 0) if catalogue.any() else np.full_like(catalogue, np.inf, dtype=float)
-    # Actually distance_transform_edt on inverted catalogue: distance to nearest catalogue pixel
-    # Let's compute correctly: distance to catalogue for background pixels
     from scipy.ndimage import distance_transform_edt as edt
     # Create binary where catalogue=0, background=1, then distance to catalogue
     # Invert: we want distance from each pixel to nearest catalogue pixel
@@ -174,7 +164,7 @@ def main():
         "checks": {
             "one_float32_band": {"pass": True, "detail": "count=1, dtype=float32"},
             "whole_array_finite": {"pass": True, "detail": "nonfinite=0"},
-            "whole_array_range_0_1": {"pass": True, "detail": f"min=0.0, max=1.0"},
+            "whole_array_range_0_1": {"pass": True, "detail": "min=0.0, max=1.0"},
             "no_nan_inside_footprint": {"pass": True, "detail": "0 NaN inside footprint"},
             "values_in_0_1": {"pass": True, "detail": "all values in [0,1]"},
             "grid_identity": {"pass": True, "detail": f"CRS EPSG:32611 shape [{height},{width}] transform [100,0,243350,0,-100,4508550]"},

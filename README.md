@@ -14,6 +14,36 @@
 
 GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplied history suggests D2.8 → B1 → B2 pruning removed catalogue-near dots; this is a plausible precision/false-positive mechanism, not proof of new-fault discovery. Leaderboard score estimates for a new file are unavailable.
 
+## 2026-10-28 SESSION — WBG-5 / DIFF1 (LiDAR scarp-lobe morphology) · NEGATIVE
+
+**[Executive summary and decision table (28 Oct 2026)](docs/executive-summary-20261028.md)** ·
+[Machine-readable summary](docs/data/executive_summary_20261028.json) ·
+[DIFF1 run card](evidence/wbg5/run_card.json) ·
+[Preregistration](research/06_wbg5_diff1_preregistration_20261028.md)
+
+Executed the ranked-#3 untested hypothesis: a **catalogue-free, LiDAR-only diffusion-shape
+scarp-lobe morphology detector** (crest/base curvature-lobe symmetry × scarp-height proxy ×
+face-dominance veto). Three fixed arms, 281 s, **zero slots**.
+
+| Arm | HOLDOUT-DTI (`gems-segment-pooled-v1`, 60,988 withheld positives) | 95% CI | Decision |
+|---|---:|---|---|
+| B — primary (symmetric lobe) | **0.06776** | [0.05891, 0.07675] | fails efficacy gate |
+| A — amplitude control | 0.06774 | [0.05895, 0.07681] | control only |
+| C — asymmetry ablation | 0.07170 | [0.06281, 0.08010] | ablation only |
+
+Benchmark to beat: **HOLDOUT-DTI 0.166060** (GEMSDOE24 S3DEP1). Leakage canary **PASS**
+(25 features, max |AUC| 0.583 ≤ 0.90). Surface novelty **PASS** (max |ρ| 0.564 ≤ 0.90). Final dots
+**FAIL**: competing-method 3 px overlap **78.28% > 70%**
+(vs a published LiDAR-scarp raster) and literal all-entry overlap
+**99.79% > 70%** (vs the retained spacing-5 lattice).
+
+Artifact (research only): `wbggemsdoe1-wbg5-diff1-scarp-lobe-20261028-2f3684a3f718-zeros.tif` (+ `wbggemsdoe1-wbg5-diff1-scarp-lobe-20261028-2f3684a3f718-zeros.zip`, SHA-256 `2b94cac044b778b569431c16875fcdd82b251af67327d4f936dc55c59923f99e`). Format PASS,
+strict whole-array `[0,1]` PASS. **DOWNLOAD: YES · SUBMIT: NO.** A real upload needs a HOLDOUT-DTI
+strictly above 0.1661 with a positive paired 95% CI and full registry uniqueness; neither holds.
+
+Verified public leaderboard #1 on 2026-10-28: **0.4544** (xiaofanhu) — a page observation, not a
+score for any project file. The nine focus-site historical values remain OWNER-REPORTED / UNVERIFIED.
+
 ## NO FILE APPROVED FOR SUBMISSION
 
 **[WBG-4 (CSJF-1) Executive Summary & Master Decision Table](docs/wbg4/index.html)** ·

@@ -1,0 +1,200 @@
+{
+  "schema": "gemsdoe1-executive-summary-20261028-v1",
+  "generated_utc": "2026-10-28T16:46:00.840753+00:00",
+  "headline": {
+    "verdict": "NO FILE APPROVED FOR SUBMISSION",
+    "ok_to_download": "research only",
+    "ok_to_submit": "NO",
+    "best_historical_site": "GEMSDOE32",
+    "best_historical_file": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+    "best_historical_reported_value": 0.2778,
+    "best_historical_evidence_class": "OWNER-REPORTED / UNVERIFIED",
+    "leaderboard_rank1": {
+      "date": "2026-10-28",
+      "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "rank1_team": "xiaofanhu",
+      "rank1_score": 0.4544,
+      "evidence_class": "PUBLIC-PAGE-OBSERVATION (not a project-file score)"
+    }
+  },
+  "score_governance": "No artifact-linked DrivenData receipt was found. All nine historical values, including H33-B2 0.2778 and conflicting leaderboard claims 0.3195/0.4413, remain OWNER-REPORTED / UNVERIFIED. Local numbers are labeled HOLDOUT-DTI.",
+  "rows": [
+    {
+      "site": "GEMSDOE24",
+      "file": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/fc2bc6f350bf5c6ce8da5d7a2ab03578ea1259d1/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "reported_value": 0.2477,
+      "evidence_class": "OWNER-REPORTED / UNVERIFIED",
+      "organizer_receipt": false,
+      "max_3px_overlap_vs_other_eight": 1.0,
+      "unique_under_70_percent_rule": false,
+      "decision": "DO NOT SUBMIT"
+    },
+    {
+      "site": "GEMSDOE25",
+      "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/e40b9b5e3871cb34d138f586bde97f5099658d01/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "reported_value": 0.26,
+      "evidence_class": "OWNER-REPORTED / UNVERIFIED",
+      "organizer_receipt": false,
+      "max_3px_overlap_vs_other_eight": 1.0,
+      "unique_under_70_percent_rule": false,
+      "decision": "DO NOT SUBMIT"
+    },
+    {
+      "site": "GEMSDOE27",
+      "file": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/927322eadbde56be42ae129ccdfb9b37540d8e60/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "reported_value": 0.2449,
+      "evidence_class": "OWNER-REPORTED / UNVERIFIED",
+      "organizer_receipt": false,
+      "max_3px_overlap_vs_other_eight": 0.9802,
+      "unique_under_70_percent_rule": false,
+      "decision": "DO NOT SUBMIT"
+    },
+    {
+      "site": "GEMSDOE28",
+      "file": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/e6321461066f89080e3b1bb670d3951ab20d3638/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "reported_value": 0.271,
+      "evidence_class": "OWNER-REPORTED / UNVERIFIED",
+      "organizer_receipt": false,
+      "max_3px_overlap_vs_other_eight": 1.0,
+      "unique_under_70_percent_rule": false,
+      "decision": "DO NOT SUBMIT"
+    },
+    {
+      "site": "GEMSDOE30",
+      "file": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/760af3005dd40b9f36d8fef97d6dc384fd9f2a2f/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "reported_value": 0.26,
+      "evidence_class": "OWNER-REPORTED / UNVERIFIED",
+      "organizer_receipt": false,
+      "max_3px_overlap_vs_other_eight": 1.0,
+      "unique_under_70_percent_rule": false,
+      "decision": "DO NOT SUBMIT"
+    },
+    {
+      "site": "GEMSDOE31",
+      "file": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/597b04cd1afb65d1ebbe3e9417fd952be48e3d74/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "reported_value": 0.2708,
+      "evidence_class": "OWNER-REPORTED / UNVERIFIED",
+      "organizer_receipt": false,
+      "max_3px_overlap_vs_other_eight": 1.0,
+      "unique_under_70_percent_rule": false,
+      "decision": "DO NOT SUBMIT"
+    },
+    {
+      "site": "GEMSDOE32",
+      "file": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/5fc7792c5887735ecd3aa9a612787da588a7bf2c/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "reported_value": 0.2778,
+      "evidence_class": "OWNER-REPORTED / UNVERIFIED",
+      "organizer_receipt": false,
+      "max_3px_overlap_vs_other_eight": 1.0,
+      "unique_under_70_percent_rule": false,
+      "decision": "DO NOT SUBMIT"
+    },
+    {
+      "site": "GEMSDOE33",
+      "file": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/f618cc54773bd9b4d6c2b3ebf78103a05cc10cb6/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "reported_value": 0.2632,
+      "evidence_class": "OWNER-REPORTED / UNVERIFIED",
+      "organizer_receipt": false,
+      "max_3px_overlap_vs_other_eight": 0.9971,
+      "unique_under_70_percent_rule": false,
+      "decision": "DO NOT SUBMIT"
+    },
+    {
+      "site": "GEMSDOE36",
+      "file": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/c5a8ae7da3bd2fcff5aa5855afd44c7a3346c16/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "reported_value": 0.275,
+      "evidence_class": "OWNER-REPORTED / UNVERIFIED",
+      "organizer_receipt": false,
+      "max_3px_overlap_vs_other_eight": 0.9758,
+      "unique_under_70_percent_rule": false,
+      "decision": "DO NOT SUBMIT"
+    }
+  ],
+  "new_artifact": {
+    "site": "WBGGEMSDOE1 (this repository)",
+    "file": "wbggemsdoe1-wbg5-diff1-scarp-lobe-20261028-2f3684a3f718-zeros.tif",
+    "download_url": "https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-wbg5-diff1-scarp-lobe-20261028-2f3684a3f718-zeros.tif",
+    "reported_value": null,
+    "evidence_class": "HOLDOUT-DTI (evaluator gems-segment-pooled-v1, 60,988 withheld positives)",
+    "organizer_receipt": false,
+    "holdout_dti_arm_B": 0.06775500658525734,
+    "holdout_dti_arm_C": 0.07170490215391818,
+    "benchmark_dti": 0.16606013635163805,
+    "max_3px_overlap_vs_other_eight": null,
+    "unique_under_70_percent_rule": false,
+    "competing_method_passed": false,
+    "max_competing_dot_overlap": 0.7828322994538995,
+    "literal_all_entries_passed": false,
+    "decision": "DO NOT SUBMIT"
+  },
+  "diff1_detail": {
+    "hypothesis": "WBG-5 / DIFF1: diffusion-shape scarp-lobe morphology (LiDAR-only)",
+    "mechanism": "crest/base curvature-lobe symmetry (geometric/arithmetic mean of lapneg/lappos) times a scarp-height proxy sqrt(step_max)*sqrt(relief), times a face-dominance veto and complete LiDAR support. No coherence, no catalogue, no previous raster.",
+    "named_non_fault_mimic": "Pleistocene pluvial shoreline benches / terrace risers and road or canal embankments across flat playas.",
+    "canary_passed": true,
+    "max_abs_auc": 0.5829760501303567,
+    "surface_novelty_passed": true,
+    "raster_sha256": "2b94cac044b778b569431c16875fcdd82b251af67327d4f936dc55c59923f99e",
+    "submission_note": "WBG-5 DIFF1 LiDAR scarp-lobe morphology | format-valid research; DO NOT SUBMIT | id 2f3684a3f718",
+    "stopped_reason": "duplicate final dots under literal all-entry gate; no relocation, retuning, selector promotion or slot use"
+  },
+  "h33_b2_explanation": {
+    "schema": "gemsdoe1-h33-b2-forensics-v1",
+    "inputs": {
+      "parent": {
+        "file": "docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-allfinite.tif",
+        "sha256": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+        "positive_pixels": 44090
+      },
+      "h33_b2": {
+        "file": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "positive_pixels": 37654
+      },
+      "catalogue_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "registry_sha256": "5e592cdc43902b76d711e59f5c923a6b5869db0eb8f30549c2a546bf2d751919"
+    },
+    "exact_ancestry": {
+      "b2_is_exact_subset_of_parent": true,
+      "removed_parent_dots": 6436,
+      "added_dots": 0,
+      "unchanged_kept_dots": 37654,
+      "all_removed_within_200m_of_public_catalogue": true,
+      "removed_distance_to_catalogue_px": {
+        "minimum": 1.0,
+        "maximum": 2.0,
+        "mean": 1.2861203369189074,
+        "within_1px": 3891,
+        "within_2px": 6436
+      }
+    },
+    "score_evidence": {
+      "h33_b2_value": 0.2778,
+      "parent_d2_8_value": 0.26,
+      "difference": 0.0178,
+      "label": "OWNER-REPORTED / UNVERIFIED",
+      "organizer_receipt_present": false,
+      "limitation": "No artifact-linked DrivenData submission receipt or hidden labels are present; the values cannot be upgraded to ORGANIZER-CONFIRMED."
+    },
+    "mechanism_interpretation": {
+      "metric_identity": "DTI = TPw / (TPw + 0.2*FPw + 0.8*FNw)",
+      "evidence_supported_statement": "B2 added no geological detections. It removed exactly 6,436 parent dots, all within 200 m of the public catalogue. If those dots had zero hidden-truth credit, deleting them reduces the weighted false-positive denominator and raises DTI; this is a plausible precision-cleanup mechanism.",
+      "not_proven": "Hidden TPw/FPw/FNw contributions and the uploaded file are unavailable, so the deletion cannot be asserted to have caused the owner-reported value.",
+      "scientific_uniqueness": "Not scientifically distinct from D2.8: it is a strict deletion-only subset."
+    }
+  },
+  "inputs": {
+    "nine_site_audit": "evidence/nine_site_executive_summary_20261026.json",
+    "diff1_run_card": "evidence/wbg5/run_card.json",
+    "diff1_decision": "docs/downloads/wbggemsdoe1-wbg5-diff1-scarp-lobe-20261028-2f3684a3f718-zeros.decision.json"
+  }
+}

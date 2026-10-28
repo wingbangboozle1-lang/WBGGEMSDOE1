@@ -42,6 +42,7 @@ jobs:
           python scripts/validate_submission.py docs/downloads/wbg5-satcov-morph-20261028-nanoutside.zip
       - name: Reverify the WBG-5 submission contract and its published receipts
         run: |
+          python scripts/build_wbg5_manifest.py --check
           python scripts/verify_wbg5_release.py
 
       - name: Revalidate all four frozen research downloads and decision-report identity

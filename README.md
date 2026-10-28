@@ -57,7 +57,15 @@ hashes, CRS/transform registration, NaN convention, the portal's `[0, 1]` value 
 decision, and the three pages' claims — and exits non-zero if any one of them disagrees or if a recorded receipt has
 been tampered with (`tests/test_wbg5_release.py` proves that by flipping a gate and requiring refusal). CI runs it on
 every push, so "OK to download and submit" is a computed fact, not an opinion. Add `--deep` to also recompute the
-competitor overlap and rank correlation from the local registry.
+competitor overlap and rank correlation from the local registry. The manifest is generated, never typed:
+
+```bash
+python scripts/build_wbg5_submission.py --prediction .cache/wbg5/final_prediction_hybrid.npy --force
+python scripts/assemble_wbg5_evidence.py
+python scripts/build_wbg5_manifest.py
+python scripts/build_wbg5_site.py && python scripts/build_readme.py && python scripts/build_site.py
+python scripts/verify_wbg5_release.py --deep
+```
 
 ## Earlier lanes — NO FILE APPROVED FOR SUBMISSION
 

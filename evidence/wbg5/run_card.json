@@ -322,7 +322,7 @@
   "has_positive_predictions": true
  },
  "raster_sha256": "fc547fa0d5c35dba6c6b88363d4e997916cd733574a6ce7eb4f370bd701cb350",
- "zip_sha256": "5f2f36d6556cffc041330eed0dbc7cbaa3ea48c06291c02901c1146ad9fe9954",
+ "zip_sha256": "11fe3814de5b0cbd09667812f146b8a92019f781fc5f8be60197aeb015e920bc",
  "artifact": "docs/downloads/wbg5-satcov-morph-20261028-nanoutside.tif",
  "submission_name": "wbg5-satcov-morph-20261028",
  "submission_note": "satcov-morph-1: physics-only fault likelihood + spacing-constrained coverage dots",

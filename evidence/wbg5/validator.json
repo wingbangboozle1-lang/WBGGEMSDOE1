@@ -40,7 +40,7 @@
  "sha256": "fc547fa0d5c35dba6c6b88363d4e997916cd733574a6ce7eb4f370bd701cb350",
  "bytes": 1624200,
  "zip": "docs/downloads/wbg5-satcov-morph-20261028-nanoutside.zip",
- "zip_sha256": "5f2f36d6556cffc041330eed0dbc7cbaa3ea48c06291c02901c1146ad9fe9954",
+ "zip_sha256": "94f2249ab2ff9902c60e7d79212034a86dfafa9c2d9e8540e81509ed85e668a8",
  "zip_contains_exactly_one_identical_member": true,
  "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
  "generated_utc": "2026-10-28",

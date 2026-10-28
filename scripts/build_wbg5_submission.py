@@ -157,8 +157,13 @@ def main() -> int:
 
     # --- write through the shared writer -----------------------------------
     submission.write_submission(pred, TEMPLATE, tif, outside="nan")
-    with zipfile.ZipFile(zpath, "w", compression=zipfile.ZIP_DEFLATED) as zf:
-        zf.write(tif, arcname=tif.name)
+    # Deterministic archive: a fixed member timestamp and mode keep the ZIP
+    # byte-identical across rebuilds, so the published sha256 stays meaningful.
+    info = zipfile.ZipInfo(tif.name, date_time=(1980, 1, 1, 0, 0, 0))
+    info.compress_type = zipfile.ZIP_DEFLATED
+    info.external_attr = 0o644 << 16
+    with zipfile.ZipFile(zpath, "w") as zf:
+        zf.writestr(info, tif.read_bytes())
     with zipfile.ZipFile(zpath) as zf:
         names = zf.namelist()
         zbytes = zf.read(names[0]) if len(names) == 1 else b""

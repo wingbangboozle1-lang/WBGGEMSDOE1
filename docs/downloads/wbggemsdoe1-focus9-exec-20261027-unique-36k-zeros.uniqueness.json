@@ -24,7 +24,7 @@
       "pigeonhole_min_overlap_for_36800_dots": 0.819320652173913,
       "pigeonhole_min_overlap": 0.8193
     },
-    "literal_all_entries_verdict": "STOP - by pigeonhole principle, any 36,800-dot footprint allocation must have >=81.94% forward overlap within 3px of the spacing-5 synthetic lattice, exceeding the 70% literal threshold. No sparse dotted submission can clear literal uniqueness under current registry without policy change.",
+    "literal_all_entries_verdict": "STOP - by pigeonhole principle, any 36,800-dot footprint allocation must have >=81.932% forward overlap within 3px of the spacing-5 synthetic lattice, exceeding the 70% literal threshold. No 36,800-dot allocation confined to this footprint can clear the literal 70% gate; other budgets or footprints require their own bound.",
     "competing_method_interpretation": "Competing-method interpretation (excluding synthetic calibration lattice) would PASS if measured max <70%, as WBG-3 demonstrated (59.38%). This research file is byte-distinct but literal-unseparated verdict remains negative.",
     "passes_literal_uniqueness": false,
     "passes_competing_method_uniqueness": "Unmeasured - expected PASS but not claimed",

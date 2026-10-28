@@ -24,8 +24,9 @@ code { background:#f3f6f4; padding:1px 4px; border-radius:4px }
 <strong>OWNER-REPORTED</strong>, <strong>MODEL-ESTIMATE</strong> or
 <strong>NULL-FLOOR</strong>. No ORGANIZER-CONFIRMED value exists for any file.</p>
 
-<div class="hero-ok">
-<h2 style="margin-top:0">DOWNLOAD &amp; SUBMIT: <span class="ok">YES</span></h2>
+<div class="hero-no" role="alert"><h2>STATUS OVERRIDE — RESEARCH ONLY; DO NOT SUBMIT</h2><p>This artifact fails the active explicit registry proximity rule: recorded maximum 3 px overlap is 0.9967667 (99.6767%), above the 70% stop threshold. Its 0.247 figure is a MODEL-ESTIMATE, not HOLDOUT-DTI or organizer-confirmed. This notice supersedes the frozen approval below.</p></div>
+<div class="hero-no">
+<h2 style="margin-top:0">DOWNLOAD: <span class="no">RESEARCH ONLY</span> · SUBMIT: <span class="no">NO</span></h2>
 <p><b>File to download:</b><br>
 <span class="file"><a href="../downloads/wbg6-qmh-kdisjoint-30000-20261028.tif" download>wbg6-qmh-kdisjoint-30000-20261028.tif</a></span><br>
 <span class="small">or the one-TIFF ZIP: <a href="../downloads/wbg6-qmh-kdisjoint-30000-20261028.zip" download>wbg6-qmh-kdisjoint-30000-20261028.zip</a>
@@ -33,10 +34,7 @@ code { background:#f3f6f4; padding:1px 4px; border-radius:4px }
 <p><b>Estimated leaderboard score:</b> 0.247
 &nbsp;<span class="small">MODEL-ESTIMATE, plausible range 0.142 – 0.286;
 no-localisation floor 0.0425. This is an estimate under an explicit model, not an organizer result.</span></p>
-<p><b>Unique?</b> Yes — not a byte copy of any of the 118 hash-verified historical rasters, and its
-surface rank correlation with every one of them is at most
-<strong>0.0148</strong>. It is built from a different construction
-(quantile-matched habitat + kernel-disjoint emission), so it does not reuse any historical dot set.</p>
+<p><b>Unique?</b> <strong>Not cleared under the active protocol.</strong> Exact-byte novelty was recorded against a limited set of 118 historical rasters, but the archived final-dot audit reports 99.6767% within 3 px of a registered raster, above the user's 70% stop threshold. The inventory is not a current global census.</p>
 <p><b>Format:</b> single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, all values in
 [0, 1], all finite, zero outside the scored footprint, zero dots on the mapped catalogue — all
 8 local checks pass and the shared

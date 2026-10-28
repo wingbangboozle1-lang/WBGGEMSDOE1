@@ -33,8 +33,8 @@ Reference: https://github.com/drivendataorg/gems-prize-reference-solution
 - **Measured hidden-truth size K ≈ 12,395 cells**, calibrated on the one submission with a provably
   uniform layout (reported 0.0904 reproduced to 0.0002).
 - Older rasters (WBG-C1, TIP1, MVGZ, WBG-H1, WBG-2, WBG-S2, WBG-3, WBG-4) remain **DO NOT SUBMIT**.
-- **Do not** claim this file beats 0.2778 or reaches the leaderboard top. It is a legitimate unique
-  entry with an honest, wide estimate; reaching 0.33–0.45 requires the login-gated 19-band stack.
+- **Do not** claim this file beats 0.2778 or reaches the leaderboard top. It is not cleared as unique
+  under the active literal overlap rule; reaching higher performance requires authenticated full competition inputs and valid independent holdout evidence.
 
 ## Submission contract
 

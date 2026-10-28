@@ -1,0 +1,50 @@
+{
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "WBGGEMSDOE1-HIDE-RECOVER-v1.0",
+  "name": "WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z",
+  "pooled_dti": 0.46570455816360007,
+  "ci95": [
+    0.45625939157121076,
+    0.4747908528873552
+  ],
+  "tp": 30739.647832740582,
+  "fp": 58650.139617777306,
+  "fn": 29421.352167259418,
+  "n_withheld_positives": 60161,
+  "b_visible_px": 2.0,
+  "per_fold": {
+    "NW": {
+      "dti": 0.4830962652972192,
+      "tp": 5868.7790736177285,
+      "fp": 14800.521317175302,
+      "n_truth": 10018,
+      "emitted": 32107,
+      "coverage": 0.5858234251964193
+    },
+    "NE": {
+      "dti": 0.4792526201787741,
+      "tp": 6831.965674304184,
+      "fp": 14805.325118135042,
+      "n_truth": 12410,
+      "emitted": 32050,
+      "coverage": 0.5505210051816426
+    },
+    "SW": {
+      "dti": 0.4521685166885004,
+      "tp": 9485.22017680664,
+      "fp": 14488.67774320515,
+      "n_truth": 20228,
+      "emitted": 31350,
+      "coverage": 0.4689153735815029
+    },
+    "SE": {
+      "dti": 0.45923694582750074,
+      "tp": 8553.68290801203,
+      "fp": 14555.61543926181,
+      "n_truth": 17505,
+      "emitted": 31526,
+      "coverage": 0.48864226838114994
+    }
+  },
+  "ci_method": "cluster bootstrap over 132 of 256 spatial tiles, 1000 reps"
+}

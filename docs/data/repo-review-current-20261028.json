@@ -34,6 +34,19 @@
   "verdict": "negative",
   "submission_slots_used": 0,
   "experiment_count": 0,
+  "concurrent_main_artifact": {
+    "file": "docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif",
+    "verdict": "negative; do not submit",
+    "holdout_dti": {
+      "evidence_class": "HOLDOUT-DTI (leakage-contaminated; not accepted as valid evidence)",
+      "evaluator_version": "WBGGEMSDOE1-HIDE-RECOVER-v1.0",
+      "withheld_positives": 60161,
+      "dti": 0.46570455816360007,
+      "ci95": [0.45625939157121076, 0.4747908528873552]
+    },
+    "known_protocol_violations": ["placement used the full catalogue instead of per-fold visible catalogue", "only 6 champion rasters checked; full 179-entry registry not compared"],
+    "submit_approved": false
+  },
   "verification": {
     "pytest": "232 passed, 15 Rasterio pending-deprecation warnings",
     "ci_ruff": "passed: ruff check scripts src tests --select E9,F --exclude test_template_evaluator.py",

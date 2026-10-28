@@ -1,50 +1,59 @@
 {
-  "generated_utc": "2026-10-26T22:32:50+00:00",
+  "generated_utc": "2026-10-28T20:22:12+00:00",
   "rows": [
     {
       "repo": "buffedlizard55-lab/GEMSDOE24",
       "ref": "7ab1c8f77f0b4b8644e3929403a0dab65838b008",
-      "status": "reused"
+      "status": "restored",
+      "archive_sha256": "0b12a41bfca2a6d4b03a29b0a84b86d40b7e7bed80bc4bd98ef8a907c5122bab"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE25",
       "ref": "af2b6f2543e5422a7e917638b70e038e6fd91cad",
-      "status": "reused"
+      "status": "restored",
+      "archive_sha256": "9d974333ff7ede6fc181e92f3ce3dc1079ae232ecda7c7a7cb4805f4be7ac080"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE27",
       "ref": "bef7ae8e8f63b69d299c9214c75988c8f5055f9c",
-      "status": "reused"
+      "status": "restored",
+      "archive_sha256": "fac5b149a0870c9ae51c4e6f8449b5b81dbe68eb57e44f7008ef98d35616dce2"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE28",
       "ref": "2c839d10f57ec9b074829e93c84bc39935f52896",
-      "status": "reused"
+      "status": "restored",
+      "archive_sha256": "3616749f03535c83303a0e379b2d78b3f5872da6458919fc3fa97b4b504f2627"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE30",
       "ref": "9c0d637c0171407196b61b780444bc772ce75438",
-      "status": "reused"
+      "status": "restored",
+      "archive_sha256": "17416b16957d4f1ec8d69001b26b9ff6ad6e6d480b5391b1f5d6b2b0ea956843"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE31",
       "ref": "776bf4668a8c10631908c9bba9443a8f11ce5036",
-      "status": "reused"
+      "status": "restored",
+      "archive_sha256": "aa54be29bd66df23dfc1786c53c799a7aeae24920b280b2e1a120d502ff4b6fe"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE32",
       "ref": "07806249f4ed3efe70b4fbf866183c32392b7853",
-      "status": "reused"
+      "status": "restored",
+      "archive_sha256": "74421783a733593d61893de323c3dfd6f4a2cf4a2af2d07bdd872e17bc3df12d"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE33",
       "ref": "1d99d73fe14d9a87126ffca2db52c69336d6099b",
-      "status": "reused"
+      "status": "restored",
+      "archive_sha256": "ebf8dc06f3c9ead45e1e53baff063d512a8ec222962b7b2826a50df073de1c85"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE36",
       "ref": "05979971df4775aadad34ae6749b0a7ac56d7832",
-      "status": "reused"
+      "status": "restored",
+      "archive_sha256": "b4fb2f35ab8c8e8aa96c2f9f88d7088d075af1fe701fda136063a518b0e6c44a"
     }
   ]
 }

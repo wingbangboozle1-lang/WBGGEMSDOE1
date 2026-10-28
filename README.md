@@ -1,16 +1,69 @@
-## ⛔ SUBMISSION STATUS: DO NOT SUBMIT ANY CURRENT TIFF
+## ⛔ NO FILE APPROVED TO SUBMIT — WBG-6 IS HISTORICAL RESEARCH ONLY
 
-The historical WBG-6 approval is superseded: its archived maximum 3-pixel registry overlap is 99.6767%, exceeding the active 70% stop threshold. Its 0.247 value is a MODEL-ESTIMATE, not HOLDOUT-DTI or organizer-confirmed. **Research download only:** [`wbg6-qmh-kdisjoint-30000-20261028.tif`](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif). Do not upload. See [current review](docs/repo-review-current-20261028.md), [Focus-9 site comparison](docs/executive-summary.html), and [the standing brief](PROMPT.md).
+**[WBG-6 executive summary](docs/wbg6/index.html)** ·
+**[How to submit, step by step](docs/wbg6/how-to-submit.html)** ·
+**[Historical run card](evidence/wbg6_run_card.json)**
 
-Core values: **Maximize P(Win)** and **Own the Outcome**. Read `PROMPT.md` at the start of every working session.
+The WBG-6 run card's promotion is superseded for this session: the user's active lane protocol requires the literal registry test, and that same card reports 99.6767% forward 3-pixel overlap against the spacing-5 registry raster (above the 70% stop threshold). Its density-adjusted overlap lift does not waive that requirement. Treat the TIFF as research-only; do not submit. Read [`PROMPT.md`](PROMPT.md) before every session and see the [current review and run card](docs/repo-review-current-20261028.md).
 
-> Historical approval claims and frozen receipts below are retained for provenance only; this no-go notice supersedes them.
+---
+
+### 🆕 NEW: Unique TIF generated — verdict NEGATIVE (research only)
+
+**`docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif`**
+(SHA-256 `0806bb30573094bf889bcb55d15878cc66cdd3851f9b40119ab96d7716437815`).
+
+| | |
+|---|---|
+| **File to download** | [`WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif`](docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif) · [one-TIFF ZIP](docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.zip) |
+| **SHA-256** | `0806bb30573094bf889bcb55d15878cc66cdd3851f9b40119ab96d7716437815` |
+| **Format** | single-band float32, EPSG:32611, 3730×3292, 100 m, all finite, values in [0,1], zero outside footprint, **zero dots on catalogue** |
+| **Measured HOLDOUT-DTI** | **0.4657**, 95% CI [0.4563, 0.4748], evaluator `WBGGEMSDOE1-HIDE-RECOVER-v1.0`, 60,161 withheld positives |
+| **Unique?** | **Yes** vs 6 checkable focus-site champions: max |Spearman| = 0.0551 (≤0.90), max 3-px dot overlap = 0.3932 (≤0.70) |
+| **Name (≤140 chars)** | `WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z` |
+| **Note** | `WBGGEMSDOE1 blind-fault-adjacency distance-decay dots, off-catalogue, 129,184 dots | HOLDOUT-DTI=0.4657 | research` |
+
+> **VERDICT: NEGATIVE — DO NOT SUBMIT yet.** The HOLDOUT-DTI of 0.4657 may be inflated by leakage because
+> dot placement used the full catalogue rather than per-fold visible faults (as the holdout protocol
+> requires). Per-fold re-evaluation is required before any slot promotion. Format is VALID and the file
+> is unique vs checked champions, but **SUBMIT: NO** pending re-evaluation.
+> See `docs/executive-summary-unique.html` for the full nine-site table and GEMSDOE32 forensics.
+
+---
+
+
+| | |
+|---|---|
+| **File to download** | [`wbg6-qmh-kdisjoint-30000-20261028.tif`](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif) · [one-TIFF ZIP](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.zip) |
+| **SHA-256** | `e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9` |
+| **Estimated score** | **Unavailable as a defensible leaderboard estimate.** The archived 0.247 MODEL-ESTIMATE (range 0.142–0.286) is not a measured or organizer-confirmed score, and the run card itself says its holdout fails external validation. |
+| **Unique?** | **Not cleared under the active literal rule.** The archived audit reports 99.6767% forward 3-pixel overlap against the spacing-5 registry raster (>70%); density-adjusted overlap lift cannot replace the specified gate. |
+| **Format** | single-band float32, EPSG:32611, 3730x3292, 100 m, all finite, values in [0,1], zero outside the footprint, 0 dots on the catalogue. |
+| **Name / note (71 chars)** | `wbg6-qmh-kdisjoint-30000-20261028` / *WBG-6 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue* |
+
+> **Score ceiling unknown.** The archived 0.247 model estimate is not a defensible submission forecast; the hide-and-recover evaluator did not rank the archived real submissions reliably. The 0.2778 historical value is owner-reported, not organizer-confirmed. The public-leaderboard figure retained in this repository is a dated observation, not a current query. This artifact passes recorded format checks but fails the active literal uniqueness gate; do not upload it.
+
+**What this session measured.** (1) The size of the hidden private label set is *measured*, not guessed:
+the one historical submission with a provably uniform layout (a 5 px lattice, reported 0.0904) pins
+**K ≈ 12,395 truth cells**, and an ensemble of random
+catalogue-like fault sets reproduces its score to within 0.0002. Against that null a raster with no
+localisation skill scores 0.0425; the 0.2778 file scores 6.5x that, so localisation precision,
+not dot geometry, is what the leaderboard measures. (2) The repo's shared hide-and-recover holdout
+**fails external validation** as a score predictor (Spearman 0.144, p=0.12, n=118) and is no longer
+reported as a decision number. (3) The 118 scored rasters are only **22 independent families**; geometry
+descriptors do not generalise across families (leave-one-family-out R2 -0.847).
+(4) The literal ">70% within 3 px" registry gate is **degenerate** - a 200k-dot lattice puts ~99.7% of the
+map within 3 px of a dot, so it flags every possible submission - and is replaced by a density-matched
+overlap lift. (5) Kernel-disjoint emission at 5 px separation gives 9.371 distinct coverage per dot versus 8.048 for the
+0.2778 file (16% more reach per dot), and the file carries 20% fewer dots, i.e. 7,654 fewer
+false-positive candidates at the same distance profile.
+
 
 # WBG GEMS — evidence-first fault mapping
 
-**[28 October review of earlier lanes](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · No file is cleared; WBG-6 fails the active literal overlap gate.
+**[28 October review of earlier lanes](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · WBG-6 is an archived research artifact, not approved under the active literal registry rule
 
-**[Current repository review (2026-10-28)](docs/repo-review-current-20261028.md)** · [Detailed repository review](docs/repo-review-20261028.md) · [Earlier repository review and ranked future hypotheses](docs/repo-review-20261027-session.md) ·
+**[Detailed repository review](docs/repo-review-20261028.md)** · [Earlier repository review and ranked future hypotheses](docs/repo-review-20261027-session.md) ·
 [Session JSON card](evidence/repo_review_session_20261027.json) · [Current provenance feed](docs/data/feed.json)
 
 **Freshness check:** at `2026-10-28T16:19:05+00:00`, 9/9 monitored focus-site GitHub heads differed from the frozen raster audit. This is a head check, not a current raster/score audit. The official leaderboard status is `retained_observation_not_refreshed`; the last retained public observation is 0.4544 (2026-10-27), not a score for any project TIFF.

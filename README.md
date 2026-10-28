@@ -2,7 +2,7 @@
 
 **[28 October review: no submission approved](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json)
 
-**[Earlier repository review and ranked future hypotheses](docs/repo-review-20261027-session.md)** ·
+**[Detailed repository review](docs/repo-review-20261028.md)** · [Earlier repository review and ranked future hypotheses](docs/repo-review-20261027-session.md) ·
 [Session JSON card](evidence/repo_review_session_20261027.json) · [Current provenance feed](docs/data/feed.json)
 
 **Freshness check:** at `2026-10-28T16:19:05+00:00`, 9/9 monitored focus-site GitHub heads differed from the frozen raster audit. This is a head check, not a current raster/score audit. The official leaderboard status is `retained_observation_not_refreshed`; the last retained public observation is 0.4544 (2026-10-27), not a score for any project TIFF.

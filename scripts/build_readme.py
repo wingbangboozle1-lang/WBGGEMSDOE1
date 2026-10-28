@@ -26,11 +26,23 @@ def main():
     w3_comp = w3["correlation_overlap_vs_registry"]["final_dots_competing_sparse"]
     w2audit = json.loads((ROOT / "evidence/wbg2/safety_audit_20261027.json").read_text())
     w2overlap = w2audit["already_placed_final_dots_witness"]["my_dots_within_3px_of_theirs"] * 100
+    feed = json.loads((ROOT / "docs/data/feed.json").read_text())
+    changed_head_count = sum(bool(row.get("changed_since_audit")) for row in feed.get("repository_heads", []))
+    monitored_head_count = len(feed.get("repository_heads", []))
+    leaderboard = feed.get("leaderboard") or {}
+    leaderboard_value = leaderboard.get("public_dw_tversky")
+    leaderboard_value_text = f"{leaderboard_value:.4f}" if isinstance(leaderboard_value, (int, float)) else "unavailable"
+    leaderboard_date = leaderboard.get("observed_utc", leaderboard.get("observed_date_utc", "date unavailable"))
 
     f9 = json.loads((ROOT / "evidence/focus9_exec/run_card.json").read_text())
     f9_tif = Path(f9["artifact"]).name
     f9_zip = Path(f9["artifact"]).with_suffix(".zip").name
     header = f'''# WBG GEMS — evidence-first fault mapping
+
+**[Latest repository review and ranked future hypotheses](docs/repo-review-20261027-session.md)** ·
+[Session JSON card](evidence/repo_review_session_20261027.json) · [Current provenance feed](docs/data/feed.json)
+
+**Freshness check:** at `{feed.get("generated_utc", "timestamp unavailable")}`, {changed_head_count}/{monitored_head_count} monitored focus-site GitHub heads differed from the frozen raster audit. This is a head check, not a current raster/score audit. The official leaderboard status is `{feed.get("leaderboard_status", "unknown")}`; the last retained public observation is {leaderboard_value_text} ({leaderboard_date}), not a score for any project TIFF.
 
 ## FOCUS-9 EXECUTIVE SUMMARY — DOWNLOAD: RESEARCH ONLY · SUBMIT: NO
 

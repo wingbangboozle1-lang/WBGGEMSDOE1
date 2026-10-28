@@ -1,8 +1,8 @@
 {
-  "generated_utc": "2026-10-27T19:07:34+00:00",
+  "generated_utc": "2026-10-27T23:47:34+00:00",
   "network_refresh_attempted": true,
-  "official_page_refresh_attempted": true,
-  "leaderboard_status": "network_verified",
+  "official_page_refresh_attempted": false,
+  "leaderboard_status": "retained_observation_not_refreshed",
   "leaderboard": {
     "rank": 1,
     "participant_display": "xiaofanhu",
@@ -17,65 +17,65 @@
     {
       "repo": "buffedlizard55-lab/GEMSDOE24",
       "audited_commit": "7ab1c8f77f0b4b8644e3929403a0dab65838b008",
-      "observed_head": "2521cb676e172c141a4417e4925b73b6a896c1eb",
+      "observed_head": "a73f9ffba29260cc7708e8e0557c84c5bea7d47b",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-27T17:20:54+00:00"
+      "checked_utc": "2026-10-27T23:47:31+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE25",
       "audited_commit": "af2b6f2543e5422a7e917638b70e038e6fd91cad",
-      "observed_head": "5a60fb475b7171af93cfce795abe6d96c4021ea2",
+      "observed_head": "6c21aafe403b62ae4d8bcb0d98e309ac9b72a604",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-27T17:20:55+00:00"
+      "checked_utc": "2026-10-27T23:47:31+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE27",
       "audited_commit": "bef7ae8e8f63b69d299c9214c75988c8f5055f9c",
-      "observed_head": "9833bff8a373355c8ed6acf0e10c8cc4bf77cd0f",
+      "observed_head": "4f34228a9f39e99da592aa34fd835c96d1b693f5",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-27T17:20:55+00:00"
+      "checked_utc": "2026-10-27T23:47:32+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE28",
       "audited_commit": "2c839d10f57ec9b074829e93c84bc39935f52896",
-      "observed_head": "67dbdf4da84fc92a98dd9644ab816ed18ae36bcc",
+      "observed_head": "4955e29c7b66503ba2178b25d356d713dc1bc534",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-27T17:20:56+00:00"
+      "checked_utc": "2026-10-27T23:47:32+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE30",
       "audited_commit": "9c0d637c0171407196b61b780444bc772ce75438",
-      "observed_head": "3c3d7255fdbb3a94375eff086522463a8eaca449",
+      "observed_head": "672849f56dc8476df912f7b7c7956e3f3f3c6210",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-27T17:20:56+00:00"
+      "checked_utc": "2026-10-27T23:47:32+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE31",
       "audited_commit": "776bf4668a8c10631908c9bba9443a8f11ce5036",
-      "observed_head": "abd9a45cc7adf046d7d3829eb6e8c980943f462d",
+      "observed_head": "eae0500c0550b1e0d59b14765c7cc23cce9a4856",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-27T17:20:57+00:00"
+      "checked_utc": "2026-10-27T23:47:33+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE32",
       "audited_commit": "07806249f4ed3efe70b4fbf866183c32392b7853",
-      "observed_head": "1398109a23f04a2ace71c1bd2f527cfba87860b5",
+      "observed_head": "5871b14fbc477032c6e4b339c3d41cae7243f4fe",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-27T17:20:57+00:00"
+      "checked_utc": "2026-10-27T23:47:33+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE33",
       "audited_commit": "1d99d73fe14d9a87126ffca2db52c69336d6099b",
-      "observed_head": "122e2240a835c9c84831943ee3489dbb48fd6e85",
+      "observed_head": "844f514819041c7be9efd345a24cf5cd70263f00",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-27T17:20:58+00:00"
+      "checked_utc": "2026-10-27T23:47:33+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE36",
       "audited_commit": "05979971df4775aadad34ae6749b0a7ac56d7832",
-      "observed_head": "61783525af4aa6dcf8da0bc68b06fa38b89ed27a",
+      "observed_head": "41ff1edd3f97fa2b82de5b4ba8ef51f0e6531d9d",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-27T17:20:58+00:00"
+      "checked_utc": "2026-10-27T23:47:34+00:00"
     }
   ],
   "errors": [],

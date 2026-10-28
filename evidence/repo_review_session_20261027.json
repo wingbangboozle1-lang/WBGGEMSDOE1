@@ -1,0 +1,121 @@
+{
+  "schema": "gemsdoe1-session-review-card-v1",
+  "review_date_utc": "2026-10-27",
+  "source_freshness_checked_utc": "2026-10-27T23:47:34+00:00",
+  "review_mode": "audit-only; no new geological experiment",
+  "experiments_started_this_session": 0,
+  "submission_slots_used": 0,
+  "review_passes": [
+    {
+      "pass": 1,
+      "scope": "Evidence and source freshness",
+      "finding": "The nine-site values are historical owner/user-reported claims; conflicting user leaderboard figures 0.4413 and 0.3195 remain unverified; the separate 0.4544 observation is dated; all nine monitored repository heads moved since the frozen raster audit.",
+      "resolution": "Kept score classes explicit and described the head refresh as a ref check rather than a current artifact audit."
+    },
+    {
+      "pass": 2,
+      "scope": "Scientific validity, TIFF safety, and governance",
+      "finding": "The assigned method paragraph is absent, the active lane is stopped, and frozen literal registry overlap exceeds the 70 percent stop threshold.",
+      "resolution": "Ran no experiment, generated no TIFF, placed no dots, and made no slot or submission recommendation."
+    },
+    {
+      "pass": 3,
+      "scope": "Documentation integration and regression checks",
+      "finding": "A pre-existing evidence/session_review_20261027.json is a WBG-2 historical card and must not be overwritten.",
+      "resolution": "Restored that card, stored this review separately, linked the new card in README and the site build, and reran the complete test suite."
+    }
+  ],
+  "hypothesis": "WBG-C1: conductance-depth curvature non-coaxiality; reviewed as a frozen negative result only. No new candidate was implemented because the assigned lane paragraph is absent and the active lane has a binding STOP.",
+  "mechanism": "The previously tested method used scale-normalized Hessian commutators of literal cached conductance/depth proxy bands at 300/800 m, curvature strength, cross-scale persistence and dilatation support in a spatially cross-fitted 19-band model. The operator was not rerun in this session.",
+  "named_non_fault_process": "Oblique saline-clay basin-fill or lithologic contacts, interpolation seams, and shared geophysical inversion artifacts can mimic non-coaxial curvature.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI (frozen prior measurement; not rerun this session)",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.01404466519440323,
+    "ci95": [
+      0.01183137469362976,
+      0.01639563940835171
+    ],
+    "withheld_positive_pixels": 11330,
+    "measurement_status": "Copied from registry/run_card.json and evidence/followup_run_card_20261027.json; no holdout evaluator was executed for this review."
+  },
+  "registry_correlation_overlap": {
+    "evidence_class": "REGISTRY-MEASUREMENT (frozen prior scan; no current-head raster scan)",
+    "frozen_scope": "360 unique raster hashes across 377 source paths in nine frozen focus-site snapshots; not all 92 sites or current upstream heads.",
+    "frozen_max_abs_spearman": 0.15233060870020235,
+    "rank_correlation_stop_threshold": 0.9,
+    "frozen_max_forward_3px_overlap": 0.9987243421716145,
+    "forward_overlap_stop_threshold": 0.7,
+    "frozen_surface_gate": "negative: forward 3-pixel overlap exceeds 70%",
+    "current_session_surface_check": "NOT RUN",
+    "final_dots": "NOT GENERATED; no final-dot check is claimed",
+    "freshness": "All nine monitored GitHub main heads changed since the frozen audit refs; see docs/data/feed.json. The head check does not refresh the raster inventory."
+  },
+  "raster": {
+    "path": "docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+    "sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+    "generated_this_session": false,
+    "role": "existing continuous research surface; not a final dotted submission"
+  },
+  "merged_main_existing_focus9": {
+    "path": "docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif",
+    "sha256": "e8c4bf7607cec72c54981b90aa60e7e85163b429b58ebd6f2a7c3126e8c1e351",
+    "zip_sha256": "60c295bfa4f1b1bd83ee1a8ffd6e93feeba67919efa5625c2116ef1952db8663",
+    "generated_in_this_review": false,
+    "submission_name": "wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif",
+    "submission_note": "Focus-9 exec synthetic 36k off-cat random; format PASS but literal lattice STOP; research DL only; NOT for submission.",
+    "role": "pre-existing synthetic uniform-random null; not a geological model",
+    "positive_pixels": 36800,
+    "byte_unique_in_frozen_checked_inventory": true,
+    "holdout_dti": null,
+    "leaderboard_estimate": null,
+    "literal_fixed_budget_lattice_lower_bound": 0.819320652173913,
+    "literal_overlap_stop_threshold": 0.7,
+    "competing_sparse_overlap": "NOT MEASURED",
+    "local_format_validation_passed": true,
+    "strict_submit_ready_exit_codes": {
+      "tiff": 2,
+      "one_member_zip": 2
+    },
+    "ok_to_submit": false,
+    "evidence_source": "evidence/current_review_card_20261027.json and evidence/focus9_exec/run_card.json",
+    "main_commit_integrated": "f3d31a236d92416a73bd4333b68aabe994f119ed"
+  },
+  "validator_output": {
+    "ran_this_session": true,
+    "local_format_checks_passed": true,
+    "single_band_float32": true,
+    "no_nan_inside_footprint": true,
+    "whole_array_finite": true,
+    "values_in_0_1": true,
+    "range_min": 0.0,
+    "range_max": 0.8809285163879395,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "strict_require_submit_ready_exit_code": 2,
+    "run_card_matches_exact_tiff": true,
+    "primary_run_card": "registry/run_card.json",
+    "organizer_acceptance_verified": false,
+    "ok_to_submit": false
+  },
+  "submission_name": "wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+  "submission_name_status": "EXISTING RESEARCH ARTIFACT; NOT NEW OR SUBMIT-READY",
+  "submission_note": "WBG-C1 curvature non-coaxiality; spatial OOF research surface; no dot placement; NOT approved for submission.",
+  "verdict": "negative",
+  "decision": {
+    "download": "research only",
+    "submit": false,
+    "reason": "Frozen paired efficacy was negative and frozen literal registry overlap exceeded the stop threshold; no new experiment or current-head uniqueness audit was run."
+  }
+}

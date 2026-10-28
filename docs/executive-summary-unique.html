@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive summary — unique TIF submission · WBG / GEMS research desk</title>
+<meta name="description" content="Executive summary for the WBGGEMSDOE1 unique GeoTIFF submission to the DrivenData DOE GEMS Prize (competition 306). Includes nine-site comparison table, GEMSDOE32 0.2778 forensics, and how-to-submit instructions.">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.ok { color:#0f766e; font-weight:700 }
+.no { color:#b91c1c; font-weight:700 }
+.warn { color:#b45309; font-weight:700 }
+.file { font-family:ui-monospace,monospace; word-break:break-all; font-size:13px }
+table.data { border-collapse:collapse; width:100%; font-size:13px }
+table.data th, table.data td { border:1px solid #d7ded9; padding:7px 9px; text-align:left; vertical-align:top }
+table.data th { background:#f3f6f4 }
+.hero { border-radius:12px; padding:22px 26px; margin:20px 0 }
+.hero-yes { border:3px solid #0f766e; background:#f0fdfa }
+.hero-no { border:3px solid #b91c1c; background:#fef2f2 }
+.hero-neutral { border:3px solid #b45309; background:#fffbeb }
+.wrap { max-width:1100px; margin:0 auto; padding:24px }
+.small { font-size:12.5px; color:#4b5d59 }
+.h2 { font-size:17px; margin:24px 0 8px; color:#173b42 }
+ul.check { list-style:none; padding-left:0 }
+ul.check li { margin:6px 0; padding-left:22px; position:relative }
+ul.check li::before { content:"✓"; position:absolute; left:0; color:#0f766e; font-weight:700 }
+ul.cross { list-style:none; padding-left:0 }
+ul.cross li { margin:6px 0; padding-left:22px; position:relative }
+ul.cross li::before { content:"✕"; position:absolute; left:0; color:#b91c1c; font-weight:700 }
+.copy-box { border:1px solid #d7ded9; border-radius:6px; padding:8px 12px; margin:8px 0; background:#f7f9f8 }
+.copy-box code { font-family:ui-monospace,monospace; font-size:12px }
+button.copy { background:#eef4f2; border:1px solid #c9ddd9; border-radius:4px; padding:2px 8px; cursor:pointer; font-size:11px }
+button.copy:hover { background:#dfe9e6 }
+details { border:1px solid #e3e9e7; border-radius:8px; margin:12px 0; overflow:hidden }
+summary { padding:10px 14px; background:#f4f7f6; font-weight:600; outline:none; cursor:pointer }
+summary:hover { background:#e9efee }
+details[open] > summary { border-bottom:1px solid #e3e9e7 }
+.detail-body { padding:10px 14px 14px; background:#fbfdfc }
+.fn { font-family:ui-monospace,monospace; font-size:11.5px }
+</style></head><body><div class="wrap">
+
+<nav class="small" style="margin-bottom:6px">
+<a href="index.html">← Evidence desk</a> &nbsp;·&nbsp;
+<a href="wbg6/index.html">WBG-6 submit</a> &nbsp;·&nbsp;
+<a href="how-to-submit.html">How to submit</a> &nbsp;·&nbsp;
+<a href="hypotheses.html">Hypotheses</a> &nbsp;·&nbsp;
+<a href="evidence.html">Evidence</a>
+</nav>
+
+<h1>Executive summary — unique TIF submission for the GEMS Prize</h1>
+<p class="small">DrivenData competition 306 · DOE GEMS Prize · all scores below are labeled explicitly.
+No ORGANIZER-CONFIRMED score exists for any file in this session. Historical values are USER-REPORTED / UNVERIFIED.</p>
+
+<!-- ===================================================================== -->
+<!-- HEADLINE DECISION -->
+<!-- ===================================================================== -->
+<div class="hero hero-neutral">
+<h2 style="margin-top:0">GENERATED: unique GeoTIFF · SUBMIT: NOT YET (verdict: NEGATIVE — holdout may be leaked)</h2>
+<p><b>Generated file:</b><br>
+<span class="file fn"><a href="downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif" download>WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif</a></span><br>
+<span class="small">One-TIFF ZIP:
+<a href="downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.zip" download>WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.zip</a>
+&nbsp;·&nbsp; SHA-256 <code>0806bb30573094bf889bcb55d15878cc66cdd3851f9b40119ab96d7716437815</code></span></p>
+<p><b>Measured HOLDOUT-DTI:</b> <b>0.4657</b>, 95% CI [0.4563, 0.4748],
+evaluator <code>WBGGEMSDOE1-HIDE-RECOVER-v1.0</code>, 60,161 withheld positives.
+<span class="warn">CAUTION: dot placement used the full catalogue rather than per-fold visible faults, so this HOLDOUT-DTI may be inflated by leakage. A proper per-fold re-evaluation is required before any slot promotion. Do not treat 0.4657 as a leaderboard score.</span></p>
+<p><b>Format:</b> single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, all finite, all values in [0,1],
+zero outside the footprint, <b>zero dots on the mapped catalogue</b>. Local format validation: PASS.</p>
+<p><b>Unique?</b> Yes versus the six checkable focus-site champions:
+max |Spearman| = 0.0551 (≤ 0.90), max 3-px dot overlap = 0.3932 (≤ 0.70). Full 179-entry registry check
+requires restored comparison caches (not available in this sandbox).</p>
+<p class="small"><b>Name:</b> <code>WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z</code><br>
+<b>Note (114 chars ≤140):</b> <code>WBGGEMSDOE1 blind-fault-adjacency distance-decay dots, off-catalogue, 129,184 dots | HOLDOUT-DTI=0.4657 | research</code></p>
+</div>
+
+<!-- ===================================================================== -->
+<!-- TABLE: NINE SITES -->
+<!-- ===================================================================== -->
+<h2 class="h2">1. Nine focus sites — best historical file, score, and uniqueness</h2>
+<p class="small">One row per site. All historical values are USER-REPORTED / NOT ORGANIZER-CONFIRMED.
+No file listed here may be copied as a "unique" new submission — every one fails the cross-site uniqueness rule.</p>
+<div style="overflow-x:auto"><table class="data">
+<thead><tr>
+<th scope="col">Site</th><th scope="col">Best historical file (learning only)</th><th scope="col">Reported value</th><th scope="col">Est. score for new file</th><th scope="col">Unique new submission?</th><th scope="col">Download &amp; submit?</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><b>GEMSDOE32</b></td>
+<td class="file fn"><a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif?raw=1" target="_blank" rel="noopener">gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</a></td>
+<td>0.2778 <span class="small">USER-REPORTED</span></td>
+<td>Unavailable — no projection justified</td>
+<td>No — history; part of 22-family cluster. vs our file: |ρ|=0.0056, overlap=0.1248</td>
+<td class="no">DO NOT SUBMIT — copy</td>
+</tr>
+<tr>
+<td><b>GEMSDOE36</b></td>
+<td class="file fn"><a href="https://github.com/buffedlizard55-lab/GEMSDOE36/blob/05979971df4775aadad34ae6749b0a7ac56d7832/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif?raw=1" target="_blank" rel="noopener">gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</a></td>
+<td>0.2750 <span class="small">USER-REPORTED</span></td>
+<td>Unavailable</td>
+<td>No — B2 + 1,200 additions. vs our file: |ρ|=0.0057, overlap=0.1297</td>
+<td class="no">DO NOT SUBMIT — copy</td>
+</tr>
+<tr>
+<td><b>GEMSDOE28</b></td>
+<td class="file fn"><a href="https://github.com/buffedlizard55-lab/GEMSDOE28/blob/2c839d10f57ec9b074829e93c84bc39935f52896/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif?raw=1" target="_blank" rel="noopener">gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif</a></td>
+<td>0.2710 <span class="small">USER-REPORTED</span></td>
+<td>Unavailable</td>
+<td>No — history; family overlap fails</td>
+<td class="no">DO NOT SUBMIT — copy</td>
+</tr>
+<tr>
+<td><b>GEMSDOE31</b></td>
+<td class="file fn"><a href="https://github.com/buffedlizard55-lab/GEMSDOE31/blob/eeb7da54ca4a8ae056f45e5b23eeef586ad79bf2/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif?raw=1" target="_blank" rel="noopener">gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif</a></td>
+<td>0.2708 <span class="small">USER-REPORTED</span></td>
+<td>Unavailable</td>
+<td>No — pixel-identical to GEMSDOE28 SOLO. vs our file: |ρ|=0.0000, overlap=0.2228</td>
+<td class="no">DO NOT SUBMIT — copy</td>
+</tr>
+<tr>
+<td><b>GEMSDOE33</b></td>
+<td class="file fn"><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/1d99d73fe14d9a87126ffca2db52c69336d6099b/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif?raw=1" target="_blank" rel="noopener">GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif</a></td>
+<td>0.2632 <span class="small">USER-REPORTED</span></td>
+<td>Unavailable</td>
+<td>No — history; family overlap fails. vs our file: |ρ|=0.0283, overlap=0.2813</td>
+<td class="no">DO NOT SUBMIT — copy</td>
+</tr>
+<tr>
+<td><b>GEMSDOE25</b></td>
+<td class="file fn"><a href="https://github.com/buffedlizard55-lab/GEMSDOE25/blob/e40b9b5e3871cb34d138f586bde97f5099658d01/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif?raw=1" target="_blank" rel="noopener">gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</a></td>
+<td>0.2600 <span class="small">USER-REPORTED</span></td>
+<td>Unavailable</td>
+<td>No — pixel-identical to GEMSDOE30</td>
+<td class="no">DO NOT SUBMIT — copy</td>
+</tr>
+<tr>
+<td><b>GEMSDOE30</b></td>
+<td class="file fn"><a href="https://github.com/buffedlizard55-lab/GEMSDOE30/blob/9c0d637c0171407196b61b780444bc772ce75438/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif?raw=1" target="_blank" rel="noopener">gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif</a></td>
+<td>0.2600 <span class="small">USER-REPORTED</span></td>
+<td>Unavailable</td>
+<td>No — pixel-identical to GEMSDOE25. vs our file: |ρ|=0.0397, overlap=0.3764</td>
+<td class="no">DO NOT SUBMIT — copy</td>
+</tr>
+<tr>
+<td><b>GEMSDOE24</b></td>
+<td class="file fn"><a href="https://github.com/buffedlizard55-lab/GEMSDOE24/blob/fc2bc6f350bf5c6ce8da5d7a2ab03578ea1259d1/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif?raw=1" target="_blank" rel="noopener">gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif</a></td>
+<td>0.2477 <span class="small">USER-REPORTED</span></td>
+<td>Unavailable</td>
+<td>No — history; H19-5 ridge-thinning family</td>
+<td class="no">DO NOT SUBMIT — copy</td>
+</tr>
+<tr>
+<td><b>GEMSDOE27</b></td>
+<td class="file fn"><a href="https://github.com/buffedlizard55-lab/GEMSDOE27/blob/bef7ae8e8f63b69d299c9214c75988c8f5055f9c/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif?raw=1" target="_blank" rel="noopener">gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif</a></td>
+<td>0.2449 <span class="small">USER-REPORTED</span></td>
+<td>Unavailable</td>
+<td>No — history; family overlap fails</td>
+<td class="no">DO NOT SUBMIT — copy</td>
+</tr>
+</tbody></table></div>
+
+<h3 class="h2" style="margin-top:24px">The one new file — our generated submission</h3>
+<div style="overflow-x:auto"><table class="data">
+<thead><tr>
+<th scope="col">What to download</th><th scope="col">Estimated score</th><th scope="col">Unique vs nine sites + all 179 registry rasters</th><th scope="col">Decision</th>
+</tr></thead>
+<tbody><tr>
+<td class="file fn">WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif</td>
+<td><b>HOLDOUT-DTI 0.4657</b> (CI [0.4563, 0.4748])<br><span class="small">MODEL-ESTIMATE, may be leaked — see verdict above</span></td>
+<td><b>Yes</b> — vs 6 checkable champions: max |ρ|=0.0551 ≤0.90, max overlap=0.3932 ≤0.70<br><span class="small">Full registry (179 entries) check requires restored caches</span></td>
+<td class="warn">GENERATED · format VALID · unique vs checked champions · NOT SUBMIT pending per-fold re-evaluation</td>
+</tr></tbody></table></div>
+
+<!-- ===================================================================== -->
+<!-- GEMSDOE32 FORENSICS -->
+<!-- ===================================================================== -->
+<h2 class="h2">2. Why GEMSDOE32 B2 scored 0.2778, and whether we can beat it</h2>
+<p><strong>Short answer:</strong> GEMSDOE32 B2 is the inherited D2.8 field (44,090 dots) pruned twice:
+first removing dots within 100 m of the public catalogue (→ B1, 40,199 dots), then removing dots within
+200 m (→ B2, 37,654 dots). Its reported 0.2778 is <strong>USER-REPORTED, not organizer-confirmed</strong>.
+No submission-page receipt binds those bytes to that value.</p>
+<p><strong>Plausible mechanism:</strong> the official metric is a distance-weighted Tversky index
+(α = 0.2 on false positives, β = 0.8 on false negatives, 300 m triangular kernel). Under max-cover
+credit, each truth cell receives at most the single highest-confidence prediction within 300 m.
+Redundant dots near already-covered faults add false-positive mass without new coverage.
+Pruning low-marginal-credit dots (those near the catalogue) can therefore raise DTI — but this
+is a plausible explanation, not a proved causal account, because hidden labels are unavailable.</p>
+<p><strong>Can it be beaten?</strong> In principle yes — the observed official public leaderboard shows
+higher values (0.4544 was observed on 2026-10-27; the current target to beat is ≈0.32–0.45). But
+<strong>no experiment in this session establishes a higher project leaderboard result</strong>. Our generated
+file has HOLDOUT-DTI 0.4657, but that value may be inflated by leakage (full-catalogue dot placement).
+A defensible replacement must beat a clean, identically evaluated current-best benchmark, pass final-dot
+novelty after surface clearance, and survive untouched confirmation on independent data.</p>
+
+<!-- ===================================================================== -->
+<!-- HYPOTHESES -->
+<!-- ===================================================================== -->
+<h2 class="h2">3. Five new hypotheses not yet tried (ranked)</h2>
+<p class="small">Each names layers, physical signature, off-catalogue rationale, mimic, distinction from
+existing repo work, expected DTI improvement, implementation cost, and required data source.</p>
+
+<details><summary><strong>H1 — Blind-fault adjacency with distance-decayed emission</strong> · THIS SESSION · implemented above</summary>
+<div class="detail-body">
+<p><strong>Layers:</strong> existing_faults.tif (USGS/INGENIOUS catalogue) + competition grid.</p>
+<p><strong>Physical signature:</strong> blind faults occur adjacent to — not on — mapped traces
+(splays, stepovers, blind extensions). Smooth Gaussian distance kernel peaking ~150 m from catalogue,
+decaying toward both the catalogue (already mapped) and far background.</p>
+<p><strong>Off-catalogue rationale:</strong> targets faults near but not on mapped traces — precisely
+the faults the catalogue misses. GEMSDOE32 B2 used a hard >200 m cut; this uses a smooth peak at ~150 m.</p>
+<p><strong>Named mimic:</strong> linear topography / DEM scarp edges unrelated to faults.</p>
+<p><strong>Distinction:</strong> no existing lane uses a smooth distance-decay emission; all historical
+lanes use hard thresholds or unvalidated ML proxies.</p>
+<p><strong>Status:</strong> IMPLEMENTED. Format VALID, unique vs checked champions, HOLDOUT-DTI 0.4657
+(may be leaked). Verdict: negative pending per-fold re-evaluation.</p>
+<p><strong>Data:</strong> existing bridge labels + sample grid (public owner mirrors).</p>
+</div></details>
+
+<details><summary><strong>H2 — Curvature/dilatation boundary persistence at 300–800 m scale</strong> · untested</summary>
+<div class="detail-body">
+<p><strong>Layers:</strong> cached <code>cond_surf</code>, <code>depth_to_base_surf</code>,
+<code>geod_dilaterate</code> (bands 17, 15, 8).</p>
+<p><strong>Physical signature:</strong> multiscale non-coaxial curvature (Hessian commutator)
+plus persistent dilatation boundaries — concealed structural complexity without catalogue proximity.</p>
+<p><strong>Off-catalogue rationale:</strong> flags concealed geometric complexity independent of mapped
+trace proximity; a fault can be blind even where no mapped trace exists nearby.</p>
+<p><strong>Named mimic:</strong> oblique saline-clay basin fill, lithologic contacts, shared inversion artifacts.</p>
+<p><strong>Distinction:</strong> tested once as WBG-C1 (negative), but never with distance-decay emission
+combined. Not found in inspected shared code, but global novelty not established.</p>
+<p><strong>Expected DTI improvement:</strong> qualitative, uncertain — never a numeric forecast.</p>
+<p><strong>Cost:</strong> low — uses existing 19-band cache; no external data.</p>
+</div></details>
+
+<details><summary><strong>H3 — Depth-conditioned magnetic texture transport</strong> · untested</summary>
+<div class="detail-body">
+<p><strong>Layers:</strong> cached RTP, TMI and depth proxy bands.</p>
+<p><strong>Physical signature:</strong> lagged texture changes along vs across depth-contour directions —
+may flag covered offsets without an exposed scarp.</p>
+<p><strong>Off-catalogue rationale:</strong> targets buried structures invisible to surface mapping.</p>
+<p><strong>Named mimic:</strong> volcanic/intrusive contacts, survey leveling artifacts.</p>
+<p><strong>Distinction:</strong> more specific than scalar magnetic amplitude edge; related texture/phase
+proposals exist in peer code.</p>
+<p><strong>Expected DTI improvement:</strong> untested.</p>
+<p><strong>Cost:</strong> medium — uses existing cache; no external data needed for initial screen.</p>
+</div></details>
+
+<details><summary><strong>H4 — Radiometric compositional changes across terrain saddles</strong> · conditional</summary>
+<div class="detail-body">
+<p><strong>Layers:</strong> USGS GeoDAWN K/Th/U radiometrics + terrain saddles from DEM.</p>
+<p><strong>Physical signature:</strong> tangent-coherent cross-saddle compositional changes — not raw
+counts — suggesting fracture-controlled alteration outside mapped traces.</p>
+<p><strong>Off-catalogue rationale:</strong> hydrothermal alteration can be blind to fault mapping.</p>
+<p><strong>Named mimic:</strong> sediment sorting, weathering, lithology.</p>
+<p><strong>Distinction:</strong> ratio features exist in peer code — a ratio alone is not novel.</p>
+<p><strong>Expected DTI improvement:</strong> untested.</p>
+<p><strong>Cost:</strong> medium — conditional on original-layer semantics/coverage verification.</p>
+<p><strong>Official free source:</strong>
+<a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and" target="_blank" rel="noopener">USGS GeoDAWN airborne magnetic and radiometric surveys (DOI 10.5066/P93LGLVQ)</a>.</p>
+</div></details>
+
+<details><summary><strong>H5 — Anisotropic conductivity-boundary persistence</strong> · untested</summary>
+<div class="detail-body">
+<p><strong>Layers:</strong> cached conductivity and depth proxies.</p>
+<p><strong>Physical signature:</strong> boundary survival under smoothing <em>along</em> but not across a
+local orientation tensor — retains elongated concealed discontinuities.</p>
+<p><strong>Off-catalogue rationale:</strong> targets extended blind structures that surface mapping misses.</p>
+<p><strong>Named mimic:</strong> saline deposits, gridding seams.</p>
+<p><strong>Distinction:</strong> different statistic from scalar edge detection; related coherence/vesselness
+operators already exist.</p>
+<p><strong>Expected DTI improvement:</strong> untested.</p>
+<p><strong>Cost:</strong> medium — needs a future assigned lane and frozen validation.</p>
+</div></details>
+
+<!-- ===================================================================== -->
+<!-- HOW TO SUBMIT -->
+<!-- ===================================================================== -->
+<h2 class="h2">4. How to make a submission into the contest</h2>
+<div class="hero hero-no">
+<b>Current status: SUBMIT: NO for this file.</b> The generated TIF is format-valid and unique vs checked
+champions, but the HOLDOUT-DTI may be leaked (full-catalogue placement). Per-fold re-evaluation is required
+before slot promotion. Do not upload this file until that re-evaluation passes.
+</div>
+
+<h3>Step 1 — Verify the exact file</h3>
+<ul class="check">
+<li>Download: <a href="downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif" download>WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif</a></li>
+<li>SHA-256: <code>0806bb30573094bf889bcb55d15878cc66cdd3851f9b40119ab96d7716437815</code></li>
+<li>Format: single-band float32 GeoTIFF, EPSG:32611, 3730×3292, 100 m, values in [0,1], all finite</li>
+<li>Zero dots on the mapped catalogue; zero outside the scored footprint</li>
+</ul>
+
+<h3>Step 2 — Run local preflight</h3>
+<pre class="fn small">.venv/bin/python scripts/validate_submission.py \\
+  docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif
+# Checks CRS/shape/transform, [0,1] range, no NaN/inf, ZIP twin integrity</pre>
+
+<h3>Step 3 — DrivenData submission form</h3>
+<ul class="check">
+<li>Go to: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/" target="_blank" rel="noopener">Official submissions page (login required)</a></li>
+<li>File to submit: the .tif or a .zip containing only that TIFF</li>
+<li>Note (short comment, ≤140 chars): e.g. <code>WBGGEMSDOE1 blind-fault-adjacency distance-decay dots, off-catalogue, 129,184 dots | HOLDOUT-DTI=0.4657 | research</code></li>
+<li>Respect the weekly cap (up to 3 entries per week per the rules PDF)</li>
+</ul>
+
+<h3>Step 4 — Retain the organizer receipt</h3>
+<ul class="check">
+<li>Store the submission identifier, exact artifact SHA-256, time, note and copied result</li>
+<li>Only then label the result <strong>ORGANIZER-CONFIRMED</strong></li>
+<li>The public leaderboard alone does not identify any particular project file</li>
+</ul>
+
+<!-- ===================================================================== -->
+<!-- LIMITATIONS -->
+<!-- ===================================================================== -->
+<h2 class="h2">5. Limitations and next actions</h2>
+<ul class="cross">
+<li><strong>No organizer score receipt:</strong> no submission-page receipt binds any generated file to a leaderboard value.</li>
+<li><strong>Potential leakage:</strong> HOLDOUT-DTI 0.4657 used the full catalogue for dot placement; per-fold re-evaluation required.</li>
+<li><strong>No training data access:</strong> DrivenData training_features.tif/labels.tif require login; only owner mirrors are available locally.</li>
+<li><strong>Weekly cap unknown:</strong> submissions page redirects to login; remaining allowance cannot be verified.</li>
+<li><strong>Registry check partial:</strong> 6/179 entries checked locally; full check needs restored comparison caches.</li>
+</ul>
+
+<p class="small" style="margin-top:24px"><strong>Official links:</strong>
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/" target="_blank" rel="noopener">Competition problem</a> ·
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank" rel="noopener">Leaderboard</a> ·
+<a href="https://github.com/drivendataorg/gems-prize-reference-solution" target="_blank" rel="noopener">Reference solution</a> ·
+<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf" target="_blank" rel="noopener">Rules PDF</a></p>
+
+</div></body></html>

@@ -6,6 +6,32 @@
 
 The WBG-6 run card's promotion is superseded for this session: the user's active lane protocol requires the literal registry test, and that same card reports 99.6767% forward 3-pixel overlap against the spacing-5 registry raster (above the 70% stop threshold). Its density-adjusted overlap lift does not waive that requirement. Treat the TIFF as research-only; do not submit.
 
+---
+
+### 🆕 NEW: Unique TIF generated — verdict NEGATIVE (research only)
+
+**`docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif`**
+(SHA-256 `0806bb30573094bf889bcb55d15878cc66cdd3851f9b40119ab96d7716437815`).
+
+| | |
+|---|---|
+| **File to download** | [`WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif`](docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif) · [one-TIFF ZIP](docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.zip) |
+| **SHA-256** | `0806bb30573094bf889bcb55d15878cc66cdd3851f9b40119ab96d7716437815` |
+| **Format** | single-band float32, EPSG:32611, 3730×3292, 100 m, all finite, values in [0,1], zero outside footprint, **zero dots on catalogue** |
+| **Measured HOLDOUT-DTI** | **0.4657**, 95% CI [0.4563, 0.4748], evaluator `WBGGEMSDOE1-HIDE-RECOVER-v1.0`, 60,161 withheld positives |
+| **Unique?** | **Yes** vs 6 checkable focus-site champions: max |Spearman| = 0.0551 (≤0.90), max 3-px dot overlap = 0.3932 (≤0.70) |
+| **Name (≤140 chars)** | `WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z` |
+| **Note** | `WBGGEMSDOE1 blind-fault-adjacency distance-decay dots, off-catalogue, 129,184 dots | HOLDOUT-DTI=0.4657 | research` |
+
+> **VERDICT: NEGATIVE — DO NOT SUBMIT yet.** The HOLDOUT-DTI of 0.4657 may be inflated by leakage because
+> dot placement used the full catalogue rather than per-fold visible faults (as the holdout protocol
+> requires). Per-fold re-evaluation is required before any slot promotion. Format is VALID and the file
+> is unique vs checked champions, but **SUBMIT: NO** pending re-evaluation.
+> See `docs/executive-summary-unique.html` for the full nine-site table and GEMSDOE32 forensics.
+
+---
+
+
 | | |
 |---|---|
 | **File to download** | [`wbg6-qmh-kdisjoint-30000-20261028.tif`](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif) · [one-TIFF ZIP](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.zip) |

@@ -1,0 +1,2 @@
+WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z
+WBGGEMSDOE1 blind-fault-adjacency distance-decay dots, off-catalogue, 129,184 dots | HOLDOUT-DTI=0.4657 | research

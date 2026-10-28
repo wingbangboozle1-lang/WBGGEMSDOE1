@@ -78,7 +78,8 @@
       "one_member_zip": 2
     },
     "ok_to_submit": false,
-    "evidence_source": "evidence/current_review_card_20261027.json and evidence/focus9_exec/run_card.json"
+    "evidence_source": "evidence/current_review_card_20261027.json and evidence/focus9_exec/run_card.json",
+    "main_commit_integrated": "f3d31a236d92416a73bd4333b68aabe994f119ed"
   },
   "validator_output": {
     "ran_this_session": true,

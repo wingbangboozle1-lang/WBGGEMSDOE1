@@ -125,8 +125,16 @@ def test_registry_scope_forward_stop_and_exact_pixel_distinctness_are_separate()
     assert any(r["their_dots_within_3px_of_mine"] > 0 for r in audit["rows"])
     assert "their_dots_within_3px_of_mine" not in audit["first_stop"]["row"]
     certificate = load("evidence/lattice_coverage_certificate.json")
+    # The legacy flag means complete coverage of every allowed pixel, not a
+    # fixed-budget 70% uniqueness decision. Explicitly test the latter bound.
     assert not certificate["universal_overlap_blocker"]
     assert certificate["uncovered_allowed_pixels"] > 0
+    bound = certificate["fixed_budget_overlap_bound"]
+    assert bound["budget_pixels"] == 36800
+    assert bound["minimum_covered_candidate_pixels"] == 30151
+    assert bound["minimum_overlap_fraction"] == pytest.approx(30151 / 36800)
+    assert bound["minimum_overlap_fraction"] > bound["overlap_limit"]
+    assert bound["blocks_this_budget"]
 
 
 def test_historical_numbers_never_relabelled_as_verified_scores():
@@ -147,6 +155,29 @@ def test_historical_numbers_never_relabelled_as_verified_scores():
 def test_complete_standing_request_is_embedded_in_readme():
     assert (ROOT / "docs/standing-prompt.md").read_text() in (ROOT / "README.md").read_text()
     assert "MUST GENERATE A UNIQUE TIF SUBMISSION" in (ROOT / "README.md").read_text()
+
+
+def test_focus9_research_tiff_is_prominently_downloadable_but_never_approved():
+    card = load("evidence/focus9_exec/run_card.json")
+    tif = Path(card["artifact"]).name
+    readme = (ROOT / "README.md").read_text()
+    assert f"docs/downloads/{tif}" in readme
+    assert "DOWNLOAD: YES for research · SUBMIT: NO" in readme
+    assert card["verdict"] == "negative" and card["decision"]["ok_to_submit"] is False
+    assert card["holdout_dti"]["dti"] is None
+    assert card["correlation_overlap_vs_registry"]["passes_literal_uniqueness"] is False
+    assert "not a geological model" in readme
+
+
+def test_lattice_certificate_fixed_budget_gate_is_not_confused_with_full_coverage():
+    evidence = load("evidence/lattice_coverage_certificate.json")
+    published = load("docs/data/lattice-coverage-certificate.json")
+    assert evidence == published
+    bound = evidence["fixed_budget_overlap_bound"]
+    assert bound["blocks_this_budget"] is True
+    assert bound["minimum_overlap_fraction"] > bound["overlap_limit"]
+    assert evidence["universal_overlap_blocker"] is False
+    assert "Do not interpret false as clearance" in evidence["interpretation_warning"]
 
 
 def test_all_nine_commit_pins_and_inventoried_git_blobs_are_verified():

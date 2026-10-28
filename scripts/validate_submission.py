@@ -148,8 +148,10 @@ def main():
     known_negative = "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3"
     s2_negative = "6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880"
     exp3_negative = "30901f894a84f6150a65a86e6556d3b4d3b3f5054dd4f8f3b597d754115447c1"
+    focus9_negative = "e8c4bf7607cec72c54981b90aa60e7e85163b429b58ebd6f2a7c3126e8c1e351"
     paths = ("registry/run_card.json", "evidence/wbg2/run_card.json", "evidence/wbg_s2/run_card.json",
-             "evidence/wbg3/run_card.json", "evidence/wbg3_spipmr/run_card.json")
+             "evidence/wbg3/run_card.json", "evidence/wbg3_spipmr/run_card.json",
+             "evidence/focus9_exec/run_card.json")
     matches = []
     for name in paths:
         card_path = ROOT / name
@@ -211,6 +213,29 @@ def main():
                 or witness["duplicate_by_overlap"] is not True or not math.isfinite(overlap)
                 or not .70 < overlap <= 1):
             raise ValueError("EXP3DET known-negative registry witness missing or inconsistent")
+        report["known_negative_registry_overlap"] = overlap
+    if report["sha256"] == focus9_negative:
+        registry = card.get("correlation_overlap_vs_registry", {}) if card else {}
+        lattice = registry.get("lattice_coverage", {})
+        lower_bound = lattice.get("pigeonhole_min_overlap_for_36800_dots")
+        decision = card.get("decision", {}) if card else {}
+        safety = json.loads((ROOT / "evidence/focus9_exec/safety_review_20261028.json").read_text())
+        witness = safety["witness"]
+        overlap = witness["my_dots_within_3px_of_theirs"]
+        if (not identity_matches or card_name != "evidence/focus9_exec/run_card.json"
+                or card.get("verdict") != "negative"
+                or decision.get("ok_to_submit") is not False
+                or registry.get("passes_literal_uniqueness") is not False
+                or isinstance(lower_bound, bool) or not isinstance(lower_bound, (int, float))
+                or not math.isfinite(lower_bound) or not .70 < lower_bound <= 1
+                or safety["raster_sha256"] != focus9_negative or safety["ok_to_submit"] is not False
+                or safety["verdict"] != "negative" or safety["eligible_for_separate_selector"] is not False
+                or witness["sha256"] != "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875"
+                or witness["duplicate_by_overlap"] is not True or not math.isfinite(overlap)
+                or not .70 < overlap <= 1):
+            raise ValueError("Focus-9 synthetic known-negative decision or registry witnesses missing/inconsistent")
+        report["ok_to_submit"] = False
+        report["known_negative_registry_overlap_lower_bound"] = lower_bound
         report["known_negative_registry_overlap"] = overlap
     report["warning"] = "FORMAT PASS is not uniqueness, scientific efficacy, organizer acceptance or slot approval."
     print(json.dumps(report, indent=2, allow_nan=False))

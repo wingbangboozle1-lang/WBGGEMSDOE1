@@ -228,7 +228,27 @@ def test_writer_cli_rejects_unpinned_reference_before_writing(rasters, tmp_path)
 
 def test_tip1_and_h1_spent_modes_remain_closed():
     for args in (["run_tip1_lane.py"], ["wbg_h1_evaluate_holdout.py", "--canary"],
-                 ["wbg_h1_evaluate_holdout.py", "--run-wbg-h1"]):
+                 ["wbg_h1_evaluate_holdout.py", "--run-wbg-h1"], ["generate_focus9_unique_tif.py"]):
         proc = subprocess.run([sys.executable, str(ROOT / "scripts" / args[0]), *args[1:]],
                               cwd=ROOT, capture_output=True, text=True, timeout=20)
         assert proc.returncode != 0 and "stopped" in proc.stderr.lower()
+
+
+def test_focus9_current_receipt_corrects_frozen_decoded_identity_and_stops():
+    card = json.loads((ROOT / "evidence/focus9_exec/run_card.json").read_text())
+    audit = json.loads((ROOT / "evidence/focus9_exec/safety_review_20261028.json").read_text())
+    assert audit["raster_sha256"] == card["raster_sha256"]
+    assert audit["candidate_decoded_sha256"] != card["raster_decoded_sha256"]
+    assert audit["witness"]["my_dots_within_3px_of_theirs"] == 1.0
+    assert audit["witness"]["duplicate_by_overlap"] is True
+    assert audit["holdout"]["dti"] is None and audit["leaderboard_estimate"] is None
+    assert audit["historical_hash_table_check"]["not_a_surface_or_dot_novelty_audit"]
+    assert audit["verdict"] == "negative" and not audit["ok_to_submit"]
+
+
+def test_focus9_published_page_uses_current_safety_not_unmeasured_projection():
+    html = (ROOT / "docs/focus9-executive-summary.html").read_text()
+    assert "100%" in html and "Not measured" in html and "SUBMIT: NO" in html
+    assert "expected PASS" not in html and "HOLDOUT-DTI ≈0.0003" not in html
+    assert "focus9-safety-20261028.json" in html
+    assert "scripts/audit_registry.py --candidate" not in html

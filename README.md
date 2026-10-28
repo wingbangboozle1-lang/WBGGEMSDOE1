@@ -1,5 +1,14 @@
 # WBG GEMS — evidence-first fault mapping
 
+## FOCUS-9 EXECUTIVE SUMMARY — DOWNLOAD: RESEARCH ONLY · SUBMIT: NO
+
+[Focus-9 site table, forensics and hypotheses](docs/focus9-executive-summary.html) ·
+[How to submit](docs/how-to-submit.html) · [Hypotheses](docs/hypotheses.html)
+
+**Research TIFF (synthetic random null; not a geological model):** [wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif](docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif) · [ZIP](docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.zip) · [Current safety review](evidence/focus9_exec/safety_review_20261028.json) · [Historical card](evidence/focus9_exec/run_card.json). Local format checks pass; no holdout score was measured. Its existing dots overlap registered C1 by **100%**, a literal STOP; the fixed-36,800-dot lattice lower bound is **81.932% (>70%)**. A historical hash-table lookup found no byte/decoded match in the checked snapshots, not evidence of spatial novelty; competing-sparse overlap was not measured. **DOWNLOAD: YES for research · SUBMIT: NO.**
+
+GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplied history suggests D2.8 → B1 → B2 pruning removed catalogue-near dots; this is a plausible precision/false-positive mechanism, not proof of new-fault discovery. Leaderboard score estimates for a new file are unavailable.
+
 ## NO FILE APPROVED FOR SUBMISSION
 
 **[WBG-3 Executive Summary & Master Decision Table](docs/wbg3/index.html)** ·
@@ -16,6 +25,8 @@
 [Download WBG-2 TIFF for research only](docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif) ·
 [ZIP for research](docs/downloads/wbg2-offcatalogue-density-36k-20261027.zip) ·
 [run card](evidence/wbg2/run_card.json) · [shared-gate audit](evidence/wbg2/safety_audit_20261027.json)
+
+**[Concurrent repository review (2026-10-27, historical)](docs/repo-review-current-20261027.md)** · [Review-only run card](evidence/current_review_card_20261027.json). That review ran no new experiment or slot; its then-missing owner-mirror cache was restored in the later safety integration. The lane remains stopped.
 
 | Artifact | Local format | Score estimate / holdout | Literal registry decision |
 |---|---|---|---|

@@ -274,6 +274,13 @@
    "title": "Stale repository-head observations could disappear on feed errors",
    "finding": "A failed network refresh formerly dropped a pinned repository row, potentially hiding known head changes from the user.",
    "action": "Retain dated last-known changed heads, mark each stale or unknown on refresh failure, and never treat an absent row as a verified unchanged upstream."
+  },
+  {
+   "id": "IR-040",
+   "severity": "high",
+   "title": "Focus-9 random null: literal STOP and historical identity correction",
+   "finding": "A concurrent session added a synthetic random Focus-9 TIFF. Its existing 36,800 dots overlap registered C1 by 100% within 3 px; the fixed-budget r13 bound independently exceeds 70%. The original run card repeats the TIFF byte hash as the decoded-pixel hash, and expected sparse-peer clearance was not measured. No qualifying pre-placement clearance is documented.",
+   "action": "Keep the TIFF research-only; use the dated safety review for its actual decoded fingerprint and C1 witness. The old generator is stopped. Hash-table checks against nine frozen snapshots are not global spatial uniqueness, a leakage canary, or evidence of competitive holdout performance."
   }
  ]
 }

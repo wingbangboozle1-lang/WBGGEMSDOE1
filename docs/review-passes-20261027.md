@@ -20,8 +20,9 @@
 
 ## Pass 3 — tests and final review
 
-- **214 automated tests passed**, including masked TIFFs, `nodata=0`, valid zeros, internal versus external masks, forged card flags, missing references, stale/failed feed fetches and stopped-runner regressions. Ruff E9/F passed. Historical WBG-2, WBG-S2 and EXP3DET witness rechecks passed; TIP1/WBG-H1 frozen-evidence verification passed.
-- Rendered **19 pages** at desktop and mobile sizes, checked filtering and byte-hashed four one-click TIFF downloads. The first EXP3DET mobile test exposed overflowing SHA text; fixed responsive wrapping and reran successfully. [Browser receipt](data/browser-checks-20261028.json). No browser code submits to the competition.
+- While the review was in progress, main advanced with a separate Focus-9 synthetic random TIFF and a follow-up negative decision. Integrated those commits without regenerating the TIFF. The newly measured existing dots overlap C1 by **100%** within 3 px. The frozen card repeats the file hash as its decoded-pixel hash; the [current Focus-9 safety receipt](data/focus9-safety-20261028.json) records the corrected decoded fingerprint and explicitly leaves holdout and sparse-peer overlap unmeasured. The old random generator is now stopped.
+- **224 automated tests passed**, including masked TIFFs, `nodata=0`, valid zeros, internal versus external masks, forged card flags, missing references, stale/failed feed fetches and stopped-runner regressions. Ruff E9/F passed. Historical WBG-2, WBG-S2, Focus-9 and EXP3DET witness rechecks passed; TIP1/WBG-H1 frozen-evidence verification passed.
+- Rendered **20 pages** at desktop and mobile sizes, checked filtering and byte-hashed five one-click TIFF downloads. The first EXP3DET mobile test exposed overflowing SHA text; fixed responsive wrapping and reran successfully. [Browser receipt](data/browser-checks-20261028.json). No browser code submits to the competition.
 - Rebuild static pages and README from sources and preserved evidence; no generated score or scientific run was refreshed. The full owner request remains embedded in the README and available in [standing-prompt.md](standing-prompt.md).
 
 ## What remains blocked

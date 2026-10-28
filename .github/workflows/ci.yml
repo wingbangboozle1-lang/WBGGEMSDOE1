@@ -39,6 +39,9 @@ jobs:
           python scripts/validate_submission.py docs/downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif
           python scripts/validate_submission.py docs/downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.zip
           python scripts/audit_wbg3_exp3det_safety.py --check
+          python scripts/validate_submission.py docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif
+          python scripts/validate_submission.py docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.zip
+          python scripts/audit_focus9_safety.py --check
       - name: Revalidate all four frozen research downloads and decision-report identity
         run: python scripts/review_releases.py --check
       - name: Verify stopped WBG-2 and WBG-S2 literal registry witnesses
@@ -75,7 +78,7 @@ jobs:
           cache: npm
       - name: Install exact optional browser-check dependencies
         run: npm ci
-      - name: Render research pages, test filtering and verify four research TIFF downloads
+      - name: Render research pages, test filtering and verify five research TIFF downloads
         run: |
           python3 scripts/stage_pages.py
           python3 -m http.server 8000 --bind 0.0.0.0 --directory .cache/pages > /tmp/wbg-site.log 2>&1 &

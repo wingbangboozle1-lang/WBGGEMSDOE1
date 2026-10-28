@@ -1,6 +1,6 @@
 # Ranked geological hypotheses and prospective research queue
 
-**Intent, not a score forecast.** Four proposals were ranked before WBG-C1 was implemented. Only WBG-C1 was executed. The prompt did not contain the promised assigned single-method paragraph; this is a **provisional research lane**, never an inferred authorization to use a weekly slot.
+**Intent, not a score forecast.** Four proposals were ranked before WBG-C1 was implemented; of this particular queue only WBG-C1 was executed. Other historical lanes ran separately. The prompt did not contain the promised assigned single-method paragraph; this is a **provisional research lane**, never an inferred authorization to use a weekly slot. See also the [four prospective untested proposals](research/future-hypotheses-20261027.md).
 
 Expected benefit is qualitative and uncertain. No numeric DTI or leaderboard improvement is invented. The checkout initially had no implementation at all. Nine owner-repository snapshots were then inspected for related code; this is not a guarantee that no unpublished or differently named implementation exists.
 

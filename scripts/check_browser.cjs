@@ -23,6 +23,7 @@ const chromium = importedChromium.default || importedChromium;
   const s2 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg_s2/run_card.json")));
   const wbg3 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg3_spipmr/run_card.json")));
   const exp3 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg3/exp3det_safety_review_20261027.json")));
+  const focus9 = JSON.parse(fs.readFileSync(path.join(root, "evidence/focus9_exec/safety_review_20261028.json")));
   if (process.env.BROWSER_COMPAT_LIBS === "1") {
     // Minimal Linux containers may lack NSS/NSPR. Use the dependency's own
     // bundled compatibility libraries instead of downloading system packages.
@@ -57,7 +58,7 @@ const chromium = importedChromium.default || importedChromium;
     assert.equal(await page.locator("#site-table tbody tr:visible").count(), 1);
     await page.locator("#site-filter").fill("");
     const downloadPromise = page.waitForEvent("download");
-    await page.locator("a[download]").first().click();
+    await page.locator(`a[download][href="downloads/${path.basename(wbg2.artifacts.tif)}"]`).first().click();
     const download = await downloadPromise;
     assert.equal(download.suggestedFilename(), path.basename(wbg2.artifacts.tif));
     const downloaded = fs.readFileSync(await download.path());
@@ -157,6 +158,26 @@ const chromium = importedChromium.default || importedChromium;
     assert.equal(exp3Download.suggestedFilename(), path.basename(exp3.artifact));
     assert.equal(crypto.createHash("sha256").update(fs.readFileSync(await exp3Download.path())).digest("hex"), exp3.raster_sha256);
     await page.screenshot({ path: path.join(artifacts, "exp3det-desktop.png"), fullPage: true });
+    const focus9Result = { file: "focus9-executive-summary.html" };
+    for (const [label, width, height] of [["desktop", 1440, 1100], ["mobile", 390, 844]]) {
+      await page.setViewportSize({ width, height });
+      const response = await page.goto(new URL(focus9Result.file, base).href, { waitUntil: "networkidle" });
+      assert.equal(response.status(), 200);
+      const text = await page.locator("main").innerText();
+      assert.match(text, /SUBMIT: NO/);
+      assert.match(text, /100%/);
+      assert.match(text, /Not measured/);
+      assert.equal(await page.evaluate(() => document.body.scrollWidth > window.innerWidth), false, `${label} overflow: ${focus9Result.file}`);
+      assert.equal(await page.locator("#master-table tbody tr").count(), 9);
+      focus9Result[label] = "passed";
+    }
+    checked.push(focus9Result);
+    await page.setViewportSize({ width: 1440, height: 1100 });
+    const focus9DownloadPromise = page.waitForEvent("download");
+    await page.locator("a[download]").first().click();
+    const focus9Download = await focus9DownloadPromise;
+    assert.equal(focus9Download.suggestedFilename(), path.basename(focus9.artifact));
+    assert.equal(crypto.createHash("sha256").update(fs.readFileSync(await focus9Download.path())).digest("hex"), focus9.raster_sha256);
     await page.setViewportSize({ width: 1440, height: 1100 });
     await page.goto(new URL("wbg2.html", base).href, { waitUntil: "networkidle" });
     assert.equal(await page.locator("table tbody tr").count(), 9);
@@ -178,7 +199,8 @@ const chromium = importedChromium.default || importedChromium;
       primary_download_identity: "passed", wbg_s2_download_sha256: s2.artifact.tif_sha256,
       wbg_s2_download_identity: "passed", wbg3_download_sha256: wbg3.raster_sha256,
       wbg3_download_identity: "passed", exp3det_download_sha256: exp3.raster_sha256,
-      exp3det_download_identity: "passed", body_overflow: false, all_passed: true,
+      exp3det_download_identity: "passed", focus9_download_sha256: focus9.raster_sha256,
+      focus9_download_identity: "passed", body_overflow: false, all_passed: true,
       no_model_training_or_slot_use: true };
     // Browser diagnostics must not silently overwrite the frozen prior receipt.
     fs.writeFileSync(path.join(artifacts, "browser-checks-current.json"), JSON.stringify(report, null, 2) + "\n");

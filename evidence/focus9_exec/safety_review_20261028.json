@@ -1,0 +1,81 @@
+{
+  "schema": "focus9-random-null-literal-safety-v1",
+  "review_date_utc": "2026-10-28",
+  "phase": "Existing final dots; forensic remeasurement only, no evidence of required pre-placement clearance.",
+  "hypothesis": "A synthetic uniform-random null for download and local-format testing, not a geological discovery model.",
+  "mechanism": "36,800 off-catalogue random dots; no geophysical features, learning or holdout evaluation.",
+  "named_non_fault_mimic": "Random scatter has no geological mechanism; by construction it cannot distinguish Basin-and-Range fault scarps from pluvial shorelines, basalt margins, or infrastructure.",
+  "artifact": "docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif",
+  "raster_sha256": "e8c4bf7607cec72c54981b90aa60e7e85163b429b58ebd6f2a7c3126e8c1e351",
+  "candidate_decoded_sha256": "88594c601d2d22f9cb1623b796946c24d47037d51f26881f69afebfece751980",
+  "existing_positive_pixels": 36800,
+  "validator": {
+    "local_format_passed": true,
+    "mask_report": {
+      "masked_inside_footprint": 0,
+      "inside_all_valid": true,
+      "self_contained": true,
+      "external_dependency_names": []
+    },
+    "whole_array_min": 0.0,
+    "whole_array_max": 1.0,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "zip_single_member_identical": true
+  },
+  "witness": {
+    "repo": "WBGGEMSDOE1",
+    "submission": "C1 continuous research surface",
+    "sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+    "their_dots": 5106385,
+    "my_dots_within_3px_of_theirs": 1.0,
+    "spearman_full_footprint": -0.0006207816703234692,
+    "duplicate_by_overlap": true,
+    "duplicate_by_rho": false
+  },
+  "historical_hash_table_check": {
+    "scope": "Recorded hashes from nine frozen owner snapshots; not all current, private, or organizer artifacts. Source TIFFs were not re-fetched in this check.",
+    "inventory_sha256": "eb5e8b019d000d6002085fd4b4d14935e2be4da81d03bad7ffeb6193632bd0e8",
+    "inventory_source_paths": 377,
+    "byte_hash_matches": 0,
+    "decoded_audit_sha256": "4fd57e744b741bdd3314b8f198810df3e842cfe03d9f474e5ef1108753570049",
+    "decoded_hash_rows": 360,
+    "decoded_hash_matches": 0,
+    "not_a_surface_or_dot_novelty_audit": true
+  },
+  "scope": "One registered C1 raster remeasured; one STOP is decisive. Not a complete registry surface/dot scan or evidence of copying.",
+  "holdout": {
+    "evidence_class": "NOT MEASURED",
+    "evaluator_version": null,
+    "dti": null,
+    "ci95": null,
+    "withheld_positive_pixels": null
+  },
+  "leaderboard_estimate": null,
+  "corrections": [
+    "The historical card's raster_decoded_sha256 repeats the TIFF byte hash; use the decoded fingerprint in this review.",
+    "Competing-sparse overlap was not measured; expectations based on a different file are not a uniqueness result.",
+    "A random null is not a geological method, leakage canary or evidence of competitive holdout performance.",
+    "The owner's mirrored 19-band cache was restored and hash-checked in the current integration, not independently authenticated organizer data."
+  ],
+  "submission_name": "wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros",
+  "submission_note": "Focus-9 exec synthetic 36k off-cat random; format PASS but literal lattice STOP; research DL only; NOT for submission.",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "eligible_for_separate_selector": false,
+  "new_experiments": 0,
+  "submission_slots_used": 0
+}

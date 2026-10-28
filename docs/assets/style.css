@@ -11,4 +11,4 @@
 .review-page{padding-top:28px;padding-bottom:56px}.review-page nav{margin-bottom:28px}.review-page h1{max-width:900px;font-size:42px}.review-page h2{margin-top:28px}.review-page code,.review-page pre{overflow-wrap:anywhere;white-space:pre-wrap}.review-page .notice{border-left:4px solid var(--red);padding:18px 22px;background:var(--red-bg);margin-bottom:28px}.review-page td{min-width:200px;overflow-wrap:anywhere}.review-page .table-wrap{max-width:100%}@media(max-width:600px){.review-page h1{font-size:32px}}
 
 /* Long exact-file hashes stay readable on narrow screens. */
-.prose code, .download-card code { overflow-wrap: anywhere; word-break: break-word; }
+code { overflow-wrap: anywhere; word-break: break-word; }

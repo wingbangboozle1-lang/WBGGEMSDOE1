@@ -1,23 +1,21 @@
-## ✅ DOWNLOAD & SUBMIT: YES — WBG-6 `wbg6-qmh-kdisjoint-30000-20261028`
+## ⛔ NO FILE APPROVED TO SUBMIT — WBG-6 IS HISTORICAL RESEARCH ONLY
 
 **[WBG-6 executive summary](docs/wbg6/index.html)** ·
 **[How to submit, step by step](docs/wbg6/how-to-submit.html)** ·
-**[Run card](evidence/wbg6_run_card.json)**
+**[Historical run card](evidence/wbg6_run_card.json)**
+
+The WBG-6 run card's promotion is superseded for this session: the user's active lane protocol requires the literal registry test, and that same card reports 99.6767% forward 3-pixel overlap against the spacing-5 registry raster (above the 70% stop threshold). Its density-adjusted overlap lift does not waive that requirement. Treat the TIFF as research-only; do not submit.
 
 | | |
 |---|---|
 | **File to download** | [`wbg6-qmh-kdisjoint-30000-20261028.tif`](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif) · [one-TIFF ZIP](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.zip) |
 | **SHA-256** | `e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9` |
-| **Estimated score** | **0.247** — MODEL-ESTIMATE, range 0.142–0.286; no-localisation NULL-FLOOR 0.0425. Never ORGANIZER-CONFIRMED. |
-| **Unique?** | **Yes.** No byte copy of any of the 118 scored rasters; max surface |Spearman| 0.0148; overlap lift 1.47x over a density-matched independent field. |
+| **Estimated score** | **Unavailable as a defensible leaderboard estimate.** The archived 0.247 MODEL-ESTIMATE (range 0.142–0.286) is not a measured or organizer-confirmed score, and the run card itself says its holdout fails external validation. |
+| **Unique?** | **Not cleared under the active literal rule.** The archived audit reports 99.6767% forward 3-pixel overlap against the spacing-5 registry raster (>70%); density-adjusted overlap lift cannot replace the specified gate. |
 | **Format** | single-band float32, EPSG:32611, 3730x3292, 100 m, all finite, values in [0,1], zero outside the footprint, 0 dots on the catalogue. |
 | **Name / note (71 chars)** | `wbg6-qmh-kdisjoint-30000-20261028` / *WBG-6 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue* |
 
-> **Honest ceiling.** 0.247 is statistically indistinguishable from the best nine-site
-> historical value (0.2778): near-identical rasters in the owner's own history differ by up to 0.086.
-> The public leaderboard leader is **0.4544** (observed 2026-10-28). This file is a legitimate, unique,
-> format-valid entry; it is **not** a top-20 contender. Section 2 of the executive summary states exactly
-> what reaching 0.33-0.45 requires and which download is blocked in this environment.
+> **Score ceiling unknown.** The archived 0.247 model estimate is not a defensible submission forecast; the hide-and-recover evaluator did not rank the archived real submissions reliably. The 0.2778 historical value is owner-reported, not organizer-confirmed. The public-leaderboard figure retained in this repository is a dated observation, not a current query. This artifact passes recorded format checks but fails the active literal uniqueness gate; do not upload it.
 
 **What this session measured.** (1) The size of the hidden private label set is *measured*, not guessed:
 the one historical submission with a provably uniform layout (a 5 px lattice, reported 0.0904) pins
@@ -37,7 +35,7 @@ false-positive candidates at the same distance profile.
 
 # WBG GEMS — evidence-first fault mapping
 
-**[28 October review of the earlier lanes: no submission approved there](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · **the one file cleared to submit is WBG-6, above**
+**[28 October review of earlier lanes](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · WBG-6 is an archived research artifact, not approved under the active literal registry rule
 
 **[Detailed repository review](docs/repo-review-20261028.md)** · [Earlier repository review and ranked future hypotheses](docs/repo-review-20261027-session.md) ·
 [Session JSON card](evidence/repo_review_session_20261027.json) · [Current provenance feed](docs/data/feed.json)

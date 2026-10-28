@@ -1,4 +1,16 @@
-## ✅ DOWNLOAD & SUBMIT: YES — WBG-6 `wbg6-qmh-kdisjoint-30000-20261028`
+## ⛔ SUBMISSION STATUS: DO NOT SUBMIT ANY CURRENT TIFF
+
+No artifact in this checkout satisfies the active parallel-run protocol. In particular, the historical WBG-6 “YES” approval is superseded: its recorded max 3-pixel registry overlap is 0.9967667 (99.6767%), exceeding the explicit 70% stop threshold. Its reported 0.247 is a model estimate, not HOLDOUT-DTI or organizer-confirmed, and the local holdout has been recorded as failing external score prediction. The former approval must not be relied on.
+
+**Download available only for research:** [`wbg6-qmh-kdisjoint-30000-20261028.tif`](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif). Do not upload it. No new TIFF was generated in this review because the core training inputs are absent, the active lane is not authorized, and current uniqueness/effectiveness gates cannot be verified. See [current repo review](docs/repo-review-current-20261028.md), [Focus-9 site comparison](docs/executive-summary.html), and [full working prompt](PROMPT.md).
+
+> **Governance correction:** Older sections and frozen receipts below preserve historical claims as provenance; where they say WBG-6 is approved/submittable, this notice supersedes that status. Do not treat a format pass or model estimate as a submission authorization.
+
+# WBG GEMS — evidence-first fault mapping
+
+Core values: **Maximize P(Win)** and **Own the Outcome**. Read [`PROMPT.md`](PROMPT.md) at the start of every working session; it records the goal, lane, validation rules, reporting labels and experiment budget.
+
+## Historical WBG-6 artifact (research download only)
 
 **[WBG-6 executive summary](docs/wbg6/index.html)** ·
 **[How to submit, step by step](docs/wbg6/how-to-submit.html)** ·
@@ -9,15 +21,11 @@
 | **File to download** | [`wbg6-qmh-kdisjoint-30000-20261028.tif`](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif) · [one-TIFF ZIP](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.zip) |
 | **SHA-256** | `e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9` |
 | **Estimated score** | **0.247** — MODEL-ESTIMATE, range 0.142–0.286; no-localisation NULL-FLOOR 0.0425. Never ORGANIZER-CONFIRMED. |
-| **Unique?** | **Yes.** No byte copy of any of the 118 scored rasters; max surface |Spearman| 0.0148; overlap lift 1.47x over a density-matched independent field. |
+| **Unique?** | **Not cleared.** Exact-byte novelty was recorded against a limited 118-raster inventory, but literal 3 px overlap is 99.6767% against a registry raster (>70% stop threshold); current global uniqueness is not established. |
 | **Format** | single-band float32, EPSG:32611, 3730x3292, 100 m, all finite, values in [0,1], zero outside the footprint, 0 dots on the catalogue. |
 | **Name / note (71 chars)** | `wbg6-qmh-kdisjoint-30000-20261028` / *WBG-6 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue* |
 
-> **Honest ceiling.** 0.247 is statistically indistinguishable from the best nine-site
-> historical value (0.2778): near-identical rasters in the owner's own history differ by up to 0.086.
-> The public leaderboard leader is **0.4544** (observed 2026-10-28). This file is a legitimate, unique,
-> format-valid entry; it is **not** a top-20 contender. Section 2 of the executive summary states exactly
-> what reaching 0.33-0.45 requires and which download is blocked in this environment.
+> **Score governance.** The archived 0.247 is a MODEL-ESTIMATE from an unvalidated forward model; it is not a HOLDOUT-DTI, organizer receipt, or defensible current leaderboard estimate. The file is format-valid by an archived local report but fails the active literal uniqueness stop rule, so it is not eligible for submission. The previously retained public-leaderboard observation is stale and is not asserted as current.
 
 **What this session measured.** (1) The size of the hidden private label set is *measured*, not guessed:
 the one historical submission with a provably uniform layout (a 5 px lattice, reported 0.0904) pins
@@ -37,7 +45,7 @@ false-positive candidates at the same distance profile.
 
 # WBG GEMS — evidence-first fault mapping
 
-**[28 October review of the earlier lanes: no submission approved there](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · **the one file cleared to submit is WBG-6, above**
+**[28 October review of earlier lanes: no submission approved](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · WBG-6 is also blocked by the active literal overlap gate; no file is cleared.
 
 **[Detailed repository review](docs/repo-review-20261028.md)** · [Earlier repository review and ranked future hypotheses](docs/repo-review-20261027-session.md) ·
 [Session JSON card](evidence/repo_review_session_20261027.json) · [Current provenance feed](docs/data/feed.json)

@@ -21,22 +21,18 @@ Reference: https://github.com/drivendataorg/gems-prize-reference-solution
 5. **RUN CARD.** JSON: hypothesis; mechanism; named non-fault mimic; holdout DTI + CI; correlation/overlap vs registry; raster sha256; validator; submission name + ≤140 char note; verdict promote / negative.
 6. **BUDGET.** Stop after 3 experiments or 2 hours. Do not pick live slots.
 
-## Current artifact (2026-10-28) — WBG-6 APPROVED TO SUBMIT
+## Current artifact status (review correction) — NO CURRENT FILE APPROVED
 
-- **WBG-6 `wbg6-qmh-kdisjoint-30000-20261028`**: `docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif`
-  (+ identical one-member `.zip`), SHA-256 `e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9`.
-  30,000 dots, min separation 5 px, zero dots on the catalogue, distance-to-catalogue profile matched to
-  the best reported file (median 20.1 px, p90 73.1 px). Format: 8/8 local checks plus the shared
-  `gems57` gate. Uniqueness: no byte copy among 118 scored rasters, max surface |Spearman| 0.0148,
-  overlap lift 1.47x over a density-matched independent field.
-- **Estimated score 0.247 (MODEL-ESTIMATE, range 0.142–0.286; NULL-FLOOR 0.0425).** Derived from a
-  calibrated forward model of the official metric, *not* from a projection. See
-  `docs/wbg6/index.html` §2 and `evidence/wbg6_score_estimate.json`.
-- **Measured hidden-truth size K ≈ 12,395 cells**, calibrated on the one submission with a provably
-  uniform layout (reported 0.0904 reproduced to 0.0002).
-- Older rasters (WBG-C1, TIP1, MVGZ, WBG-H1, WBG-2, WBG-S2, WBG-3, WBG-4) remain **DO NOT SUBMIT**.
-- **Do not** claim this file beats 0.2778 or reaches the leaderboard top. It is a legitimate unique
-  entry with an honest, wide estimate; reaching 0.33–0.45 requires the login-gated 19-band stack.
+- WBG-6 is retained as a historical research artifact only; **DO NOT SUBMIT**. Its recorded final-dot
+  3 px overlap is 0.9967667 (99.6767%), above the protocol's literal 70% stop threshold. Its score
+  value 0.247 is explicitly a MODEL-ESTIMATE, not HOLDOUT-DTI and not organizer-confirmed. A previous
+  approval used a different density-normalized gate and is superseded by this protocol.
+- No new artifact is eligible: the core competition stack is absent, the active method lane is not
+  assigned, and no compliant holdout/current-registry pass has been performed. Do not generate or
+  promote another TIFF until the documented blockers are resolved and budget permits.
+- Frozen historical run cards and prior web copy may contain contradictory approvals. This status
+  section plus the current README no-go notice govern new work; preserve old receipts as historical
+  provenance, not authorization.
 
 ## Submission contract
 

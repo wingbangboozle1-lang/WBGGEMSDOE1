@@ -4,7 +4,7 @@
 
 **[WBG-3 Executive Summary & Master Decision Table](docs/wbg3/index.html)** ·
 **[How to Submit Subpage](docs/wbg3/how-to-submit.html)** ·
-**[0.2778 PhD Forensics & 4 Hypotheses](docs/wbg3/forensics-and-hypotheses.html)** ·
+**[B2 Evidence & 4 Ranked Hypotheses](docs/wbg3/forensics-and-hypotheses.html)** ·
 [Download WBG-3 TIFF (research only)](docs/downloads/wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif) ·
 [WBG-3 ZIP](docs/downloads/wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.zip) ·
 [WBG-3 Run Card JSON](evidence/wbg3_spipmr/run_card.json) ·
@@ -18,7 +18,7 @@
 
 | Artifact | Local format | Score estimate / holdout | Literal registry decision |
 |---|---|---|---|
-| `wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif` | One float32 band, zeros mode `[0, 1]`, 0 NaN/Inf, 36,800 binary dots; 15/15 checks PASS | **HOLDOUT-DTI 0.118180** (`gems-segment-pooled-v1`, n=60,988, 95% CI [0.103658, 0.132432], 4/4 fold wins vs 0.090781 ctrl); **HOLDOUT-DTI 0.121862** (`gems57-pooled-hide-v2`, n=11,330). Leaderboard est.: **Unavailable**. | **DO NOT SUBMIT**. Competing sparse (206 rasters): **PASS 59.38% <= 70%** (27.55% vs GEMSDOE32 B2; 43.40% vs WBG-S2). Literal overlap: **99.9946%** vs `r13-lattice-s5` & **100%** vs `WBG-C1` (>70% STOP). |
+| `wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif` | One float32 band, zeros mode `[0, 1]`, 0 NaN/Inf, 36,800 binary dots; 15/15 checks PASS | **HOLDOUT-DTI 0.118180** (`gems-segment-pooled-v1`, n=60,988, 95% CI [0.103658, 0.132432], 4/4 fold wins vs 0.090781 ctrl); **HOLDOUT-DTI 0.121862** (`gems57-pooled-hide-v2`, n=11,330). Leaderboard est.: **Unavailable**. | **DO NOT SUBMIT**. Competing sparse (207 rasters): **PASS 59.38% <= 70%** (27.55% vs GEMSDOE32 B2; 43.40% vs WBG-S2). Literal overlap: **99.9946%** vs `r13-lattice-s5` & **100%** vs `WBG-C1` (>70% STOP). |
 | `wbg2-offcatalogue-density-36k-20261027.tif` | One float32 band, finite [0,1], grid matches pinned mirror; TIFF/ZIP bytes verified | **Unavailable**; fold-safe replay measures `HOLDOUT-DTI 0.000341` (`gems-segment-pooled-v1`) / `0.097610` (`gems57-pooled-hide-v2`); no organizer receipt | **DO NOT SUBMIT**. 99.8972% final-dot overlap with a registered lattice exceeds 70%. |
 
 The previous WBG-2 "safe to upload" claim and numerical projection are **withdrawn**. The old
@@ -95,14 +95,14 @@ was not obtained or credibly projected in this session.
 ## Parallel work preserved during integration
 
 - **[WBG-3 / SPI-PMR-WCS-1 (100% 1m-LiDAR-free & 10m-DEM-free)](docs/wbg3/index.html): DO NOT SUBMIT; no selector eligibility.**
-  [How-to-submit subpage](docs/wbg3/how-to-submit.html) · [0.2778 PhD forensics & 4 hypotheses](docs/wbg3/forensics-and-hypotheses.html) ·
+  [How-to-submit subpage](docs/wbg3/how-to-submit.html) · [B2 evidence & 4 ranked hypotheses](docs/wbg3/forensics-and-hypotheses.html) ·
   [Research TIFF](docs/downloads/wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif) · [ZIP](docs/downloads/wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.zip) ·
   [run card](evidence/wbg3_spipmr/run_card.json) · [209-raster uniqueness audit](evidence/wbg3_spipmr/uniqueness_audit.json) ·
   [40-feature leakage canary](evidence/wbg3_spipmr/leakage_canary.json) · [preregistration](registry/wbg3_preregistration.json).
   TIFF SHA-256 `f158a890dcb5f897ef35282ed05d291e54c4df9b83cf891870193d329b160fb4`; ZIP SHA-256 `1fff1657506895e3b0a0a0bc1e3c590dfcc1134d4d5b15606ce2ccfc1ba23e0a`; name `wbggemsdoe1-wbg3-spipmr-wcs-1458d60c`; note `WBG-3 SPI+PPDR+MonogenicPC+WCS 36800d zeros | segDTI=0.1182 iDTI=0.1219 | research DO NOT SUBMIT` (96 chars).
   3/3 preregistered arms executed on 100 m competition geophysics + label-free SGMC/GDR (`444.3s`, 0 slots used).
   Beats 19-band control across 4/4 spatial folds: **HOLDOUT-DTI 0.118180** vs **0.090781** (`gems-segment-pooled-v1`, paired ΔDTI `+0.027399`, 95% CI `[+0.014361, +0.041700]`) and **HOLDOUT-DTI 0.121862** vs **0.076470** (`gems57-pooled-hide-v2`).
-  Passes full-footprint pre-placement correlation (`max |ρ| = 0.644883 <= 0.90`) and competing-sparse overlap across all 206 sparse rasters (`max 59.38% <= 70%`; `27.55%` vs `GEMSDOE32 B2`; `43.40%` vs `WBG-S2`), while binding literal overlap hits **99.9946%** vs `r13-lattice-s5` and **100%** vs `WBG-C1` and trails 10m-3DEP `S3DEP1` (`0.166060`).
+  Passes full-footprint pre-placement correlation (`max |ρ| = 0.644883 <= 0.90`) and competing-sparse overlap across all 207 competing sparse rasters (`max 59.38% <= 70%`; `27.55%` vs `GEMSDOE32 B2`; `43.40%` vs `WBG-S2`), while binding literal overlap hits **99.9946%** vs `r13-lattice-s5` and **100%** vs `WBG-C1` and trails 10m-3DEP `S3DEP1` (`0.166060`).
 - **[WBG-S2 / MKSF-1 result](docs/wbg-s2-mksf1/index.html): DO NOT SUBMIT; no selector eligibility.**
   [Research TIFF](docs/downloads/wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.tif) · [ZIP](docs/downloads/wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.zip) ·
   [run card](evidence/wbg_s2/run_card.json) · [independent two-witness safety audit](evidence/wbg_s2/safety_review_20261027.json) ·

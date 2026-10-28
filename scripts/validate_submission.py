@@ -129,7 +129,13 @@ def main():
     # unlock those exact bytes without changing this code and its safety review.
     known_negative = "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3"
     s2_negative = "6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880"
-    paths = ("registry/run_card.json", "evidence/wbg2/run_card.json", "evidence/wbg_s2/run_card.json")
+    paths = (
+        "registry/run_card.json",
+        "evidence/wbg2/run_card.json",
+        "evidence/wbg_s2/run_card.json",
+        "evidence/wbg3/run_card.json",
+        "evidence/wbg3_spipmr/run_card.json",
+    )
     matches = []
     for name in paths:
         card_path = ROOT / name

@@ -1,105 +1,70 @@
-# WBG-3 Executive Summary — 2026-10-27 (this session)
+# WBG-3 parallel lane — corrected research summary (2026-10-27)
 
-## ⛔ SUBMIT DECISION: **DO NOT SUBMIT YET** — download for research: YES
+> **DOWNLOAD: YES, for research only. SUBMIT: NO — DO NOT SUBMIT.** This is the archived **EXP3DET** lane. It is separate from the current SPI-PMR-WCS lane at [`docs/wbg3/`](wbg3/index.html). Neither artifact is approved for a submission slot.
 
-**File:** `docs/downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif`
-(+ identical one-member `.zip`)
-**sha256:** `30901f894a84f6150a65a86e6556d3b4d3b3f5054dd4f8f3b597d754115447c1`
-**Portal note (≤140 chars):** `WBG-3 supervised multi-physics detector, dotted clear2 37654, zeros no NaN`
-**Format (automated validator, no human inspector):** single-band float32, EPSG:32611,
-3730×3292, 100 m, values in [0,1], **no NaN anywhere** (zeros mode — will not trigger
-"Predicted values must be in range [0, 1]"), 37,654 positive pixels. All checks PASS.
+## Executive decision
 
-**Why not submit:** on the shared hide-and-recover evaluator the file's detector scored
-**HOLDOUT-DTI 0.1382** (95% CI [0.1257, 0.1520], `gems-segment-pooled-v1`, 60,988 withheld
-positives), which does **not** beat the current benchmark 0.1661 (GEMSDOE24 S3DEP1, same
-evaluator; its fold masks are unpublished, so the paired replay the protocol requires is
-unavailable and the gate fails closed). The calibrated **MODEL-ESTIMATE is 0.21
-[0.17–0.26]**, below the champion's OWNER-REPORTED 0.2778. Spending a weekly slot on it
-is a separate owner/selector decision; this project does not recommend it.
-It **is** the best reproducible unique detector in this repo (Exp2 0.1320, B0 0.1039,
-TIP1 0.0824 — same evaluator) and the designated file if a slot is spent anyway.
+- **Leaderboard estimate: unavailable.** No validated forecast is published. The legacy EXP3DET JSON run card retains a two-anchor `MODEL-ESTIMATE` for historical provenance; its own caveats say the ratio is a ranking device, **not a forecast**. Do not use it as a score, forecast, or slot-selection input.
+- **Superseded selector wording:** the frozen legacy run card also contains an earlier sentence calling this the designated file if a slot were spent. That sentence is not authorization or a current recommendation; this corrected summary supersedes it, while the raw card remains unchanged for audit.
+- **No organizer-confirmed score:** no artifact-linked DrivenData receipt is present.
+- **No submission slot was used by the archived run.** Current account allowance and selector authorization are not verified.
+- **Do not conflate lanes:** the EXP3DET HOLDOUT-DTI and historical estimate do not belong to the current SPI-PMR-WCS card. The SPI-PMR-WCS card reports a null leaderboard estimate and a literal uniqueness STOP.
 
-**Slots used: 0. Organizer-confirmed score: none (no file in this repo has one).**
+## Archived EXP3DET research TIFF
 
-## What file to download — the table
+**Research download:** [`wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif`](downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif) · [one-TIFF ZIP](downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.zip)
 
-| File to download | Estimated score | Evidence class | Unique vs GEMSDOE24/25/27/28/30/31/32/33/36? | OK to submit? |
-|---|---|---|---|---|
-| **`wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif` (THIS session)** | **0.21 [0.17–0.26]** | MODEL-ESTIMATE (holdout × 2-anchor ratio; see run card) | **YES** — max 3-px dot overlap 45.1% (limit 70%), max \|ρ\| 0.036 (limit 0.90), per-raster gate PASS vs all 9 | **NO — not yet** (holdout gate vs 0.1661 not cleared). Designated file if owner spends a slot anyway |
-| `wbg2-offcatalogue-density-36k-20261027.tif` (previous session) | ~~0.2824~~ **retracted** | Estimator invalid (IR-WBG2-EST) | Yes (max overlap 18.6%) | **NO** — scattered off-catalogue field; DTI vs champion field 0.067; no measured detector support |
-| GEMSDOE32 `h33-h33-2-b2…-zeros` (champion, learning only) | 0.2778 | OWNER-REPORTED, no receipt | It *is* a focus site | NO — already submitted by its owner; copying it is a duplicate |
-| GEMSDOE36 `anderson-geothermal-pinn-38854…` | 0.2750 | OWNER-REPORTED | focus site | NO — historical |
-| GEMSDOE28 `h36-1-rung30…` | 0.2710 | OWNER-REPORTED | focus site | NO — historical |
-| GEMSDOE31 `h27-4-solo-d28…` | 0.2708 | OWNER-REPORTED | focus site | NO — historical |
-| GEMSDOE33 `h33d-analog-tip-stepover…` | 0.2632 | OWNER-REPORTED | focus site | NO — historical |
-| GEMSDOE25 / GEMSDOE30 `dotted-h19-5-d2-8` / `d28-poisson300m` | 0.2600 / 0.2600 | OWNER-REPORTED | focus sites; **identical dot sets to each other** | NO — historical duplicates of each other |
-| GEMSDOE24 `h25-1-dotted-h19-5-d1-5…` | 0.2477 | OWNER-REPORTED | focus site | NO — historical |
-| GEMSDOE27 `topo-gap-closure…` | 0.2449 | OWNER-REPORTED | focus site | NO — historical |
+- SHA-256: `30901f894a84f6150a65a86e6556d3b4d3b3f5054dd4f8f3b597d754115447c1`
+- **Local format validation: PASS** for the one-band float32 GeoTIFF on the competition grid; finite values in `[0, 1]`, no NaN, and one-member ZIP byte identity are recorded in the run card. This is a local format result, **not** organizer acceptance or uniqueness clearance.
+- **HOLDOUT-DTI:** `0.138233` (95% CI `[0.125701, 0.151956]`), evaluator `gems-segment-pooled-v1`, 60,988 withheld positives. The paired difference against EXP2 has a 95% CI that includes zero.
+- The recorded **S3DEP1 HOLDOUT-DTI benchmark** is `0.166060` on the same named evaluator. Its fold masks are unpublished, so the required paired replay is unavailable; no paired superiority claim is made.
+- Its recorded uniqueness audit covers only the nine focus-site champion rasters: maximum forward 3-pixel overlap `45.06%` and maximum absolute Spearman correlation `0.03595` within that limited set. **This is not a full-registry uniqueness pass.** The artifact is not globally cleared and remains **DO NOT SUBMIT**.
+- Portal note from the archived run card (metadata only): `WBG-3 supervised multi-physics detector, dotted clear2 37654, zeros no NaN`.
 
-Official leaderboard observed 2026-10-27 (https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/):
-rank 1 = **0.4544**. The brief's 0.3195 / 0.4413 figures are superseded.
+A format-valid, downloadable TIFF is not a validated leaderboard prediction. Do not infer organizer acceptance from local validation, a research download, or an owner-reported historical value.
 
-## Why 0.2778 won (measured this session, line by line)
+## Nine-site comparison
 
-1. The scored truth is **expert-mapped faults NOT in the USGS catalogue**
-   (official problem page, fetched 2026-10-27:
-   https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/).
-   Dots that retrace known faults earn no credit and pay FP cost.
-2. The champion is a **strict deletion subset** of the 44,090-dot D2.8 field:
-   exactly 6,436 dots removed, **all within 200 m of the catalogue**, 0 added
-   (`evidence/h33_b2_forensics.json`). The gain came from precision pruning, not new detection.
-3. All nine focus artifacts are nested members of one dotted-ridge family
-   (measured pairwise overlaps 98–100%); that is why none of them is a unique
-   submission for us, and why regressing their scores on budget/proximity
-   (the old WBG-2 estimator) fits lineage, not a transferable law.
-4. Measured DTI of each artifact against the *catalogue* is **negatively**
-   correlated with its reported live score (r = −0.92, `evidence/wbg3/nine_site_measured_metrics.json`):
-   catalogue-tracing is anti-predictive for this leaderboard.
+The values below are **OWNER-REPORTED / UNVERIFIED** historical claims. There are no artifact-linked organizer receipts in this evidence set. Positive-pixel counts and raster relations are local file measurements; they do not authenticate the reported scores.
 
-## What WBG-3 did differently
+| Site | Measured positive pixels | Supplied historical value | Raster lineage / comparison |
+|---|---:|---:|---|
+| GEMSDOE32 | 37,654 | **0.2778 — OWNER-REPORTED / UNVERIFIED** | B2; exact deletion-only subset of D2.8; removes 6,436 parent dots within 200 m, adds none |
+| GEMSDOE36 | 38,854 | 0.2750 — OWNER-REPORTED / UNVERIFIED | Contains every B2 dot plus 1,200 additions; set relation does not prove the filename's claimed training method |
+| GEMSDOE28 | 37,660 | 0.2710 — OWNER-REPORTED / UNVERIFIED | Rung30 member of the related ridge/dot family |
+| GEMSDOE31 | 40,199 | 0.2708 — OWNER-REPORTED / UNVERIFIED | D2.8 minus 3,891 catalogue-near dots (within one 100 m pixel); B1 |
+| GEMSDOE33 | 41,865 | 0.2632 — OWNER-REPORTED / UNVERIFIED | Analog-tip / stepover variant; heavily related to the inherited family |
+| GEMSDOE25 | 44,090 | 0.2600 — OWNER-REPORTED / UNVERIFIED | D2.8 parent field |
+| GEMSDOE30 | 44,090 | 0.2600 — OWNER-REPORTED / UNVERIFIED | Decoded positive set is pixel-identical to GEMSDOE25 |
+| GEMSDOE24 | 60,069 | 0.2477 — OWNER-REPORTED / UNVERIFIED | Earlier D1.5 ridge-thinning field |
+| GEMSDOE27 | 61,328 | 0.2449 — OWNER-REPORTED / UNVERIFIED | Topographic gap-closure variant; adds pixels to the D1.5 field |
 
-- Restored the official 19-band `training_features.tif` from the hash-pinned
-  GitHub bridge (SHA-256 `4371c82e…23bc5` verified) — removing the "login-gated,
-  absent" blocker recorded by earlier sessions — plus 3DEP LiDAR scarp
-  (`d580bb8b…`), GeoDAWN radiometric (`c22420f7…`) and extension (`a35a9c6d…`) stacks.
-- Trained a supervised HGB detector per holdout fold on **visible faults only**
-  (42 static features; leakage canary max AUC 0.598 < 0.90), then added 10 local
-  lineament features (contrast-8, structure-tensor line-likeness, Laplacians).
-- Found and fixed a leakage bug (IR-WBG3-01): catalogue-distance features
-  perfectly separated v1 training classes (fold AUC 0.500, degenerate surface);
-  they were removed and the experiment rerun.
-- Fixed the shared uniqueness gate, which combined worst-overlap and
-  worst-enrichment from *different* rasters and false-STOPped every candidate
-  (fixed per-raster, in `src/wbg2/uniqueness.py`, with tests).
-- Emitted 37,654 dots, ≥3 px spacing, >2 px from the catalogue, zeros mode.
+The table is ordered by the supplied historical values, **not** by organizer-verified scores. Closely related pixel sets are not independent methods. See the [nine-site raster audit](data/nine-site-audit.json) for pinned-file identities and measured overlap scope.
 
-## Experiments (budget of 3, exhausted)
+## GEMSDOE32 B2: what can and cannot explain the reported 0.2778
 
-| Exp | Design | HOLDOUT-DTI (`gems-segment-pooled-v1`, 60,988 withheld, 95% CI) |
-|---|---|---|
-| 1 | Detector + catalogue-distance features | **Invalid** — IR-WBG3-01 leakage (AUC 0.500 degenerate); no valid measurement |
-| 2 | Detector (42 features), dotted clear0/clear2, 37,654 | 0.1320 [0.1204, 0.1445] (clearance was a measured no-op: no top dot within 2 px of visible faults) |
-| 3 | + 10 local lineament features, dotted clear2 | **0.1382 [0.1257, 0.1520]**; paired Δ vs Exp2 +0.0063 [−0.0006, +0.0129] (not strictly positive) |
+The byte-verified ancestry is D2.8 (44,090 positive pixels) → B1 (40,199; 3,891 removed within one 100 m pixel of the public catalogue) → B2 (37,654; 2,545 more removed within two pixels). Overall, B2 removes exactly 6,436 parent dots, all within 200 m of the catalogue, and adds zero. This is a measured pixel relation, not proof about the hidden labels or the file submitted to the organizer.
 
-Benchmarks, same evaluator: S3DEP1 0.1661 [0.1519, 0.1803] (uses 10 m DEM
-features not obtainable in this sandbox; paired replay unavailable), B0 0.1039, TIP1 0.0824.
+The official metric is a distance-weighted Tversky index. Under its 300 m triangular kernel and `α = 0.2`, `β = 0.8`, removing predictions that receive little or no hidden-truth credit **could** reduce false-positive cost. But hidden faults may also occur near catalogue faults. The hidden `TP_w`, `FP_w`, and `FN_w` contributions and the exact evaluated upload are unavailable. Therefore the evidence **does not prove** that catalogue-near pruning caused the reported change from 0.2600 to 0.2778. The difference `0.0178` is only arithmetic on two owner-reported values—not an organizer-confirmed paired score delta.
 
-## How to submit (when a future file clears the gate)
+No score ceiling near 0.28 is established. No fixed increase in `TP_w` required to reach another value is established. The nine owner-reported values do not support a leaderboard estimate.
 
-1. Download the `.tif` (or the one-member `.zip`) from `docs/downloads/`.
-2. DrivenData → competition 306 → New submission → upload the file.
-3. Paste the portal note above (≤140 chars) → Create submission.
-4. Record the organizer receipt; until then every number here is
-   HOLDOUT-DTI or MODEL-ESTIMATE, never a score.
+## Ranked hypotheses and validation status
 
-## Next steps / limitations
+The current four-item WBG-3 hypothesis queue, named non-fault mimics, previous package-level HOLDOUT-DTI evidence, literal uniqueness STOP, and lane authorization limitation are documented in the [forensics and hypotheses page](wbg3/forensics-and-hypotheses.html). Those hypotheses are not verified geological detections. **No candidate was re-run or newly validated in this documentation review**: no assigned lane-method paragraph was found, and the relevant scientific lane is stopped.
 
-- Beat 0.1661 on a paired replay: add 10 m 3DEP DEM step features (the S3DEP1
-  ingredient) — official free source USGS 3DEP
-  (https://www.usgs.gov/3d-elevation-program); tile hosts are outside this
-  sandbox's outbound allowlist, so this needs an unrestricted runner.
-- Rank-2 hypothesis (upward-continuation structural index) is untested and all
-  bytes are local — cheapest next lane.
-- No organizer receipt exists for any historical score; all remain OWNER-REPORTED.
-- Full run card: `evidence/wbg3/run_card.json`. Hypotheses: `research/04_wbg3_hypotheses_20261027.md`.
+## Official references and limits
+
+- [Official competition page, metric and format](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)
+- [Official competition data page](https://www.drivendata.org/competitions/306/competition-doe-gems/data/) — authenticated download required
+- [Public leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) — public observations do not identify a project TIFF
+- [Competition rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf)
+- [USGS GeoDAWN survey](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)
+- [DOE/GDR INGENIOUS](https://gdr.openei.org/submissions/1391)
+- [USGS Great Basin heat-flow data](https://www.usgs.gov/data/heat-flow-maps-and-supporting-data-great-basin-usa)
+- [NASA ASF OPERA data portal](https://asf.alaska.edu/datasets/daac/opera/)
+
+These are source links for review, not claims that every page or raw dataset was freshly retrieved or independently validated in this continuation. Owner-mirror hashes establish byte integrity against the pinned mirror, **not organizer-origin authentication**. Hidden labels, exact submission receipts, and current weekly allowance remain unavailable.
+
+**Maximize P(Win):** do not spend a slot on an unvalidated estimate.
+**Own the Outcome:** preserve the negative decision and the unproven parts as such.

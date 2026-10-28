@@ -39,11 +39,14 @@ def test_wbg3_run_card_consistent_with_shipped_file():
     assert card["registry"]["max_abs_spearman"] <= 0.90
     assert len(card["submission_note"]) <= 140
     assert card["holdout"]["evidence_class"] == "HOLDOUT-DTI"
+    # Preserve the raw legacy value only as historical, unvalidated evidence;
+    # the two-anchor card explicitly says this ratio is not a forecast.
     assert card["score_estimate"]["evidence_class"] == "MODEL-ESTIMATE"
+    assert len(card["score_estimate"]["anchors"]) == 2
+    assert any("not a forecast" in caveat for caveat in card["score_estimate"]["caveats"])
     assert card["organizer_confirmed_score"] is None
-    # honest verdict: estimate below champion, gate not cleared
     assert card["decision"]["ok_to_submit"] is False
-    assert card["score_estimate"]["value"] < 0.2778
+    assert card["verdict"] == "negative"
 
 
 def test_wbg3_holdout_beats_prior_reproducible_detectors():

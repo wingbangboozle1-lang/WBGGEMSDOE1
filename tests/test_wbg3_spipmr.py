@@ -209,3 +209,35 @@ def test_wbg3_static_pages_and_no_raw_latex():
         assert "100%" in html
         assert "OK to submit</span>" not in html
 
+
+def test_b2_explanation_and_active_reports_do_not_claim_unproven_causation():
+    for rel in (
+        "docs/wbg3/forensics-and-hypotheses.html",
+        "docs/wbg3-executive-summary.md",
+        "docs/wbg3.html",
+        "docs/research/why-02778.md",
+    ):
+        text = (ROOT / rel).read_text(encoding="utf-8")
+        assert "0.2778" in text
+        assert "OWNER-REPORTED" in text or "OWNER-REPORTED / UNVERIFIED" in text
+        assert "leaderboard estimate" in text.lower()
+        assert "DO NOT SUBMIT" in text or "SUBMIT: NO" in text
+        assert "0.21 [0.17" not in text
+        assert "0.2108" not in text
+        assert "asymptotes near" not in text
+        assert "+110%" not in text
+        assert "NaN &gt;= 0" not in text
+        assert "catalogue-tracing is anti-predictive" not in text
+
+    for rel in ("docs/wbg3-executive-summary.md", "docs/wbg3.html", "docs/research/why-02778.md"):
+        text = (ROOT / rel).read_text(encoding="utf-8").lower()
+        assert "no score ceiling" in text or "no score ceiling near" in text
+        assert any(token in text for token in ("caused", "cause", "causation"))
+        assert "not" in text or "does not" in text
+
+    legacy = json.loads((ROOT / "evidence/wbg3/run_card.json").read_text())
+    assert legacy["score_estimate"]["evidence_class"] == "MODEL-ESTIMATE"
+    assert len(legacy["score_estimate"]["anchors"]) == 2
+    assert any("not a forecast" in caveat for caveat in legacy["score_estimate"]["caveats"])
+    assert legacy["decision"]["ok_to_submit"] is False
+

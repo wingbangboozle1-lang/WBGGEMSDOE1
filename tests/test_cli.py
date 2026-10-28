@@ -141,6 +141,27 @@ def test_wbg_s2_exact_bytes_are_locked_negative(suffix, flags, code):
     assert report["known_negative_lattice_overlap"] == pytest.approx(.9955383226217666)
 
 
+@pytest.mark.parametrize("card_path", [
+    "evidence/wbg3/run_card.json",
+    "evidence/wbg3_spipmr/run_card.json",
+])
+def test_wbg3_exact_tiff_is_linked_to_its_negative_run_card(card_path):
+    card = json.loads((ROOT / card_path).read_text())
+    if card.get("artifact"):
+        artifact = ROOT / card["artifact"]
+    else:
+        artifact = ROOT / "docs/downloads" / f"{card['submission_name']}.tif"
+    result = cli(artifact)
+    assert result.returncode == 0, result.stderr
+    report = json.loads(result.stdout)
+    assert report["all_checks_passed"]
+    assert report["sha256"] == card["raster_sha256"]
+    assert report["run_card_matches_exact_tiff"] is True
+    assert report["run_card_path"] == card_path
+    assert report["promotion_verdict"] == "negative"
+    assert report["ok_to_submit"] is False
+
+
 def test_wbg_s2_stopped_runner_is_disabled_before_any_data_work():
     result = subprocess.run([sys.executable, str(ROOT / "scripts/wbg_s2_run_experiments.py")],
                             cwd=ROOT, text=True, capture_output=True, timeout=30)

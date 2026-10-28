@@ -24,6 +24,15 @@ def main():
     w3_seg = w3["holdout_dti"]["primary_segment_holdout"]
     w3_in = w3["holdout_dti"]["secondary_intrabasin_holdout"]
     w3_comp = w3["correlation_overlap_vs_registry"]["final_dots_competing_sparse"]
+    w4 = json.loads((ROOT / "evidence/wbg4/run_card.json").read_text())
+    w4_uniq = json.loads((ROOT / "evidence/wbg4/uniqueness_audit.json").read_text())
+    w4_tif = Path(w4["artifact"]["tif_relpath"]).name
+    w4_zip = Path(w4["artifact"]["zip_relpath"]).name
+    w4_seg = w4["holdout_dti"]["primary_segment_holdout"]
+    w4_in20 = w4["holdout_dti"]["secondary_intrabasin_holdout"]
+    w4_c77 = w4["holdout_dti"]["untouched_confirmation_holdout"]
+    w4_comp = w4["registry_uniqueness"]["competing_sparse_max_forward_3px_overlap"]
+    w4_r13 = w4_uniq["two_phase_summary"]["like_for_like_reading"]["worst_forward_overlap_dot_fields"] * 100
     w2audit = json.loads((ROOT / "evidence/wbg2/safety_audit_20261027.json").read_text())
     w2overlap = w2audit["already_placed_final_dots_witness"]["my_dots_within_3px_of_theirs"] * 100
     feed = json.loads((ROOT / "docs/data/feed.json").read_text())
@@ -55,6 +64,14 @@ GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplie
 
 ## NO FILE APPROVED FOR SUBMISSION
 
+**[WBG-4 (CSJF-1) Executive Summary & Master Decision Table](docs/wbg4/index.html)** ·
+**[How to Submit Subpage](docs/wbg4/how-to-submit.html)** ·
+**[0.2778 PhD Forensics & 4 Hypotheses](docs/wbg4/forensics-and-hypotheses.html)** ·
+[Download WBG-4 TIFF (research only)](docs/downloads/{w4_tif}) ·
+[WBG-4 ZIP](docs/downloads/{w4_zip}) ·
+[WBG-4 Run Card JSON](evidence/wbg4/run_card.json) ·
+[464-Raster Uniqueness Audit](evidence/wbg4/uniqueness_audit.json)
+
 **[WBG-3 Executive Summary & Master Decision Table](docs/wbg3/index.html)** ·
 **[How to Submit Subpage](docs/wbg3/how-to-submit.html)** ·
 **[0.2778 PhD Forensics & 4 Hypotheses](docs/wbg3/forensics-and-hypotheses.html)** ·
@@ -73,6 +90,7 @@ GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplie
 
 | Artifact | Local format | Score estimate / holdout | Literal registry decision |
 |---|---|---|---|
+| `{w4_tif}` | One float32 band, zeros mode `[0, 1]`, 0 NaN/Inf, 35,135 binary dots; 15/15 checks PASS | **HOLDOUT-DTI {w4_seg['dti']:.6f}** (`{w4_seg['evaluator_version']}`, n={w4_seg['withheld_positives_n']:,}, 95% CI [{w4_seg['ci95'][0]:.6f}, {w4_seg['ci95'][1]:.6f}], +78.0% vs ctrl); **HOLDOUT-DTI {w4_in20['dti']:.6f}** (`seed=20`, n={w4_in20['withheld_positives_n']:,}); **Untouched Confirm HOLDOUT-DTI {w4_c77['dti']:.6f}** (`seed=77`, n={w4_c77['withheld_positives_n']:,}, +102.3% vs 0.051234 ctrl). Leaderboard est.: **Unavailable**. | **DO NOT SUBMIT**. Competing sparse (460 rasters across 24 repos): **PASS {w4_comp*100:.2f}% <= 70%** (max \|rho\| = 0.4952 <= 0.90). Literal overlap: **{w4_r13:.4f}%** vs `r13-lattice-s5` & **100%** vs `WBG-C1` (>70% STOP). |
 | `{w3_tif}` | One float32 band, zeros mode `[0, 1]`, 0 NaN/Inf, 36,800 binary dots; 15/15 checks PASS | **HOLDOUT-DTI {w3_seg['dti']:.6f}** (`{w3_seg['evaluator_version']}`, n={w3_seg['withheld_positive_pixels']:,}, 95% CI [{w3_seg['ci95'][0]:.6f}, {w3_seg['ci95'][1]:.6f}], 4/4 fold wins vs 0.090781 ctrl); **HOLDOUT-DTI {w3_in['dti']:.6f}** (`{w3_in['evaluator_version']}`, n={w3_in['withheld_positive_pixels']:,}). Leaderboard est.: **Unavailable**. | **DO NOT SUBMIT**. Competing sparse (206 rasters): **PASS {w3_comp['max_forward_3px_overlap']*100:.2f}% <= 70%** (27.55% vs GEMSDOE32 B2; 43.40% vs WBG-S2). Literal overlap: **99.9946%** vs `r13-lattice-s5` & **100%** vs `WBG-C1` (>70% STOP). |
 | `{w2tif}` | One float32 band, finite [0,1], grid matches pinned mirror; TIFF/ZIP bytes verified | **Unavailable**; fold-safe replay measures `HOLDOUT-DTI 0.000341` (`gems-segment-pooled-v1`) / `0.097610` (`gems57-pooled-hide-v2`); no organizer receipt | **DO NOT SUBMIT**. {w2overlap:.4f}% final-dot overlap with a registered lattice exceeds 70%. |
 

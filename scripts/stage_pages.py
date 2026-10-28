@@ -88,10 +88,21 @@ def stage():
             or focus9["decision"]["ok_to_submit"] is not False or lower_bound <= .70
             or focus9["holdout_dti"]["dti"] is not None):
         raise ValueError("staged Focus-9 research bytes or negative null decision changed")
+    w4_digest = None
+    w4_card_path = ROOT / "evidence/wbg4/run_card.json"
+    if w4_card_path.is_file():
+        w4 = json.loads(w4_card_path.read_text())
+        w4_path = Path(w4["artifact"]["tif_relpath"])
+        if w4_path.is_absolute() or ".." in w4_path.parts or w4_path.parts[:2] != ("docs", "downloads"):
+            raise ValueError("invalid staged WBG-4 research path")
+        with (target / w4_path).open("rb") as stream:
+            w4_digest = hashlib.file_digest(stream, "sha256").hexdigest()
+        if w4_digest != w4["artifact"]["tif_sha256"] or w4["verdict"] != "negative":
+            raise ValueError("staged WBG-4 bytes or negative decision changed")
     print(json.dumps({"staged_site": str(target.relative_to(ROOT)),
         "canonical_path": "/WBGGEMSDOE1/docs/", "root_redirect": "docs/",
         "artifact_sha256": digest, "wbg2_sha256": wbg2_digest, "wbg_s2_sha256": s2_digest,
-        "wbg3_sha256": w3_digest, "focus9_sha256": focus9_digest, "ok_to_submit": False}))
+        "wbg3_sha256": w3_digest, "focus9_sha256": focus9_digest, "wbg4_sha256": w4_digest, "ok_to_submit": False}))
     return target
 
 

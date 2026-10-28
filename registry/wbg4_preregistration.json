@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "lane_id": "WBG-4",
+  "method_code": "CSJF-1",
+  "locked_utc": "2026-10-27T23:48:00Z",
+  "title": "Depth-Adaptive Listric Hanging-Wall Back-Projection (DALBP) x Conjugate Structural-Junction Tensor (CSJT) x 2-Stage Out-of-Fold Spatial Context-Pyramid & Self-Credit-Penalized Expected-DTI Submodular Emission (CSJF-1)",
+  "candidate_hypotheses_ranked": [
+    {
+      "rank": 1,
+      "code": "CSJF-1",
+      "status": "selected_for_validation",
+      "expected_dti_improvement": "highest_in_sandbox",
+      "implementation_cost": "medium",
+      "layers_involved": [
+        "19-band cached competition stack (depth_to_base_surf, iso_grav_anom, iso_grav_anom_hg, iso_grav_anom_vg, rtp, tmi_hg, tmi_vg, cond_surf, geod_shearrate, geod_dilaterate, geod_2ndinv, ieq_n100a15, det_elev, Band 6 radiometric TC)",
+        "Seamless 100%-coverage USGS 3DEP 1/3 arc-second (~10 m) terrain summaries (slope, HGM 20/50/200 m, curvature, one-sided step)",
+        "USGS 3DEP 1 m LiDAR scarp summaries (strictly isolated in Full specialist; excluded from Seamless specialist so missing tiles never induce boundary bias)",
+        "USGS GeoDAWN airborne radiometric & 150 m upward-continued magnetic grids (DOI: 10.5066/P93LGLVQ)",
+        "Label-free DOE OpenEI GDR #1391 INGENIOUS 2 m temperature probes (F2mDAB), silica/cation geothermometry & paleo-geothermal sinter/travertine/opaline deposits (DOI: 10.15121/1881483; dist_known_fault_px stripped)",
+        "US Census TIGER/Line 2024 road/rail distance for anthropogenic embankment de-confounding",
+        "Fold-visible fault mask only (fold['visible']) for crack-tip horsetail & en-echelon relay stress propagation"
+      ],
+      "physical_signature": "Three untried coupled operators: (1) Depth-Adaptive Listric Hanging-Wall Vector Back-Projection (DALBP) warping subsurface gravity HGM, Thurston-Smith local wavenumber k_SPI, and MT conductivity gradient up-dip along -grad(Z_b)/||grad(Z_b)|| by listric horizontal offset Z_b * cot(delta_eff(Z_b)); (2) Harris-Forstner Multi-Physics Structure-Tensor Minor Eigenvalue sqrt(lambda_2(J_sigma)) explicitly capturing conjugate NNE x NW fault intersections and Y-splays suppressed by standard Frangi ridge filters; and (3) 2-Stage Spatially Cross-Fitted Context-Pyramid Stacker paired with Direct Self-Credit Regression q_self(x) = E[max_g k(d(x,g))] and Net Expected-DTI Minoux CELF placement.",
+      "why_missing_from_catalogue": "USGS QFaults and INGENIOUS mapped long single-azimuth subaerial range-front scarps, systematically missing (a) buried intrabasinal faults beneath 100-2,000 m of Plio-Quaternary fill whose potential-field steps are displaced 100-1,200 m basinward by listric fault dip, and (b) brecciated conjugate fault intersections and accommodation-zone horsetails (~39% of blind Great Basin geothermal systems per Faulds & Hinz 2015) where crossing strikes break 1D ridge trackers.",
+      "named_non_fault_mimic": "Intersecting bajada alluvial-fan distributary channels, buried Tertiary caldera ring-fracture/dike intersections, Pleistocene Lake Lahontan shoreline cusps/spits, and highway/railroad interchanges.",
+      "diff_from_repo": "Differs from WBG-C1 (continuous Hessian commutator, 0 dots), WBG-H1 (fixed 500/600/1000 m scalar dip shifts), WBG-2 (0-feature random KDE), WBG-3 SPI-PMR (100 m only), WBG-3 EXP3DET (single-stage pixelwise HGB + greedy NMS), and WBG-S2 (single-stage pixelwise GBDT whose Frangi filter penalizes conjugate junctions, without self-credit FP penalization or untouched confirmation)."
+    },
+    {
+      "rank": 2,
+      "code": "BFRC-1",
+      "status": "incorporated_in_static_physics",
+      "expected_dti_improvement": "moderate_high",
+      "implementation_cost": "low_medium",
+      "layers_involved": [
+        "depth_to_base_surf (15)",
+        "cond_surf (17)",
+        "iso_grav_anom (13)",
+        "det_elev (12)",
+        "geod_dilaterate (8)"
+      ],
+      "physical_signature": "Scale-normalized thin-plate elastic biharmonic rollover hinge nabla^4(Z_b) coupled with coaxial shallow electrical conductivity steepening ||grad(cond_surf)||.",
+      "why_missing_from_catalogue": "Deep listric master faults often terminate upward in broad monoclinal hanging-wall rollovers lacking brittle subaerial scarps.",
+      "named_non_fault_mimic": "Differential sediment compaction hinges over buried erosional paleovalleys and closed evaporite playa pans.",
+      "diff_from_repo": "Previously deferred as AFBD-1 in WBG-3; never coded or tested prior to WBG-4."
+    },
+    {
+      "rank": 3,
+      "code": "RGFD-1",
+      "status": "incorporated_in_static_physics",
+      "expected_dti_improvement": "moderate",
+      "implementation_cost": "medium",
+      "layers_involved": [
+        "dem10_hgm50_max",
+        "dem10_onesided",
+        "rtp (2)",
+        "iso_grav_anom_hg (18)"
+      ],
+      "physical_signature": "Directional quadrature Gabor envelope along-strike termination gradient detecting abrupt lateral offsets across transfer/accommodation zones.",
+      "why_missing_from_catalogue": "Strike-slip transfer faults in Great Basin accommodation zones have minimal vertical scarp throw yet laterally truncate magnetic and range-front blocks and host geothermal upflow.",
+      "named_non_fault_mimic": "Orthogonal erosional canyon breaches cutting volcanic hogbacks or cuesta ridges.",
+      "diff_from_repo": "Prior worm operators measured along-strike continuity rather than lateral strike-termination discontinuities."
+    },
+    {
+      "rank": 4,
+      "code": "OPERA-INSAR-1",
+      "status": "external_network_blocked_in_sandbox",
+      "expected_dti_improvement": "high_on_unrestricted_host",
+      "implementation_cost": "high",
+      "layers_involved": [
+        "NASA/JPL ASF DAAC OPERA L3 Surface Displacement from Sentinel-1 (OPERA_L3_DISP-S1_V1, https://asf.alaska.edu/datasets/daac/opera/)",
+        "USGS Great Basin Heat-Flow Well Residuals (DOI: 10.5066/P9BZPVUC, https://www.usgs.gov/data/heat-flow-maps-and-supporting-data-great-basin-usa)"
+      ],
+      "physical_signature": "30 m Sentinel-1 DInSAR secular LOS velocity-gradient discontinuities across zero-relief playas paired with convective well heat-flow outliers.",
+      "why_missing_from_catalogue": "Aseismic creep and reservoir pressure compartmentalization across active salt flats leave zero preserved topographic scarp and are blurred by 10-30 km GPS station spacing.",
+      "named_non_fault_mimic": "Agricultural/mining groundwater pumping subsidence bowls and seasonal playa clay swelling.",
+      "diff_from_repo": "Uses satellite radar interferometry and borehole conductive heat-flow residuals; free official US Gov sources verified, but asf.alaska.edu and sciencebase.gov are outside this sandbox's outbound allowlist."
+    }
+  ],
+  "experiment_budget": {
+    "max_experiments": 3,
+    "max_wall_seconds": 7200,
+    "planned_arms": [
+      "arm1_ctrl_19band_edti35600",
+      "arm2_dalbp_csjt_78ch_edti35600",
+      "arm3_csjf_mscp_stack_tworegime35600"
+    ]
+  },
+  "evaluators": {
+    "primary_segment_holdout": {
+      "evaluator_version": "gems-segment-pooled-v1",
+      "buffer_px": 15,
+      "withheld_positive_pixels": 60988,
+      "benchmarks_to_compare": {
+        "wbg2_random_kde": 0.000341,
+        "wbg3_spipmr_100m": 0.11818,
+        "wbg_h1_dpgf1": 0.12331,
+        "wbg3_exp3det": 0.138233,
+        "gemsdoe24_s3dep1": 0.16606,
+        "wbg_s2_mksf1_parallel": 0.183594
+      }
+    },
+    "secondary_intrabasin_holdout": {
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "split_seed": 20,
+      "hide_fraction": 0.2,
+      "feature_buffer_px": 3,
+      "quadrant_boundary_erosion_px": 12,
+      "training_collar_px": 80,
+      "withheld_positive_pixels": 11330,
+      "benchmarks_to_compare": {
+        "wbg2_random_kde": 0.09761,
+        "wbg3_spipmr_100m": 0.121862,
+        "wbg_s2_mksf1_parallel": 0.147773
+      }
+    },
+    "untouched_confirmation_holdout": {
+      "evaluator_version": "gems57-pooled-hide-v2-confirm-seed77",
+      "split_seed": 77,
+      "hide_fraction": 0.2,
+      "feature_buffer_px": 3,
+      "quadrant_boundary_erosion_px": 12,
+      "training_collar_px": 80,
+      "purpose": "Strictly untouched whole-component confirmation split evaluated once after arm selection is frozen, resolving WBG-S2's lack of untouched confirmation."
+    }
+  },
+  "emission": {
+    "dot_budget": 35600,
+    "catalogue_collar_px": 2.0,
+    "min_separation_px": 2.85,
+    "regime_a_fraction": 0.70,
+    "regime_b_fraction": 0.30,
+    "outside_mode": "zeros",
+    "self_credit_tau_dti": 0.22
+  },
+  "gates": {
+    "canary_max_orientation_invariant_auc": 0.9,
+    "pre_placement_max_abs_spearman": 0.9,
+    "final_dots_max_abs_spearman": 0.9,
+    "final_dots_max_forward_3px_overlap": 0.7,
+    "no_private_lattice_or_density_exemption": true
+  }
+}

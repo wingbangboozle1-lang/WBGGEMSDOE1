@@ -16,6 +16,14 @@ GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplie
 
 ## NO FILE APPROVED FOR SUBMISSION
 
+**[WBG-4 (CSJF-1) Executive Summary & Master Decision Table](docs/wbg4/index.html)** ·
+**[How to Submit Subpage](docs/wbg4/how-to-submit.html)** ·
+**[0.2778 PhD Forensics & 4 Hypotheses](docs/wbg4/forensics-and-hypotheses.html)** ·
+[Download WBG-4 TIFF (research only)](docs/downloads/wbggemsdoe1-wbg4-csjf1-edti-35135-20261027-b3dacd59-zeros.tif) ·
+[WBG-4 ZIP](docs/downloads/wbggemsdoe1-wbg4-csjf1-edti-35135-20261027-b3dacd59-zeros.zip) ·
+[WBG-4 Run Card JSON](evidence/wbg4/run_card.json) ·
+[464-Raster Uniqueness Audit](evidence/wbg4/uniqueness_audit.json)
+
 **[WBG-3 Executive Summary & Master Decision Table](docs/wbg3/index.html)** ·
 **[How to Submit Subpage](docs/wbg3/how-to-submit.html)** ·
 **[0.2778 PhD Forensics & 4 Hypotheses](docs/wbg3/forensics-and-hypotheses.html)** ·
@@ -34,6 +42,7 @@ GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplie
 
 | Artifact | Local format | Score estimate / holdout | Literal registry decision |
 |---|---|---|---|
+| `wbggemsdoe1-wbg4-csjf1-edti-35135-20261027-b3dacd59-zeros.tif` | One float32 band, zeros mode `[0, 1]`, 0 NaN/Inf, 35,135 binary dots; 15/15 checks PASS | **HOLDOUT-DTI 0.165424** (`gems-segment-pooled-v1`, n=60,988, 95% CI [0.152338, 0.178931], +78.0% vs ctrl); **HOLDOUT-DTI 0.094601** (`seed=20`, n=11,321); **Untouched Confirm HOLDOUT-DTI 0.103660** (`seed=77`, n=11,326, +102.3% vs 0.051234 ctrl). Leaderboard est.: **Unavailable**. | **DO NOT SUBMIT**. Competing sparse (460 rasters across 24 repos): **PASS 57.25% <= 70%** (max \|rho\| = 0.4952 <= 0.90). Literal overlap: **99.6983%** vs `r13-lattice-s5` & **100%** vs `WBG-C1` (>70% STOP). |
 | `wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif` | One float32 band, zeros mode `[0, 1]`, 0 NaN/Inf, 36,800 binary dots; 15/15 checks PASS | **HOLDOUT-DTI 0.118180** (`gems-segment-pooled-v1`, n=60,988, 95% CI [0.103658, 0.132432], 4/4 fold wins vs 0.090781 ctrl); **HOLDOUT-DTI 0.121862** (`gems57-pooled-hide-v2`, n=11,330). Leaderboard est.: **Unavailable**. | **DO NOT SUBMIT**. Competing sparse (206 rasters): **PASS 59.38% <= 70%** (27.55% vs GEMSDOE32 B2; 43.40% vs WBG-S2). Literal overlap: **99.9946%** vs `r13-lattice-s5` & **100%** vs `WBG-C1` (>70% STOP). |
 | `wbg2-offcatalogue-density-36k-20261027.tif` | One float32 band, finite [0,1], grid matches pinned mirror; TIFF/ZIP bytes verified | **Unavailable**; fold-safe replay measures `HOLDOUT-DTI 0.000341` (`gems-segment-pooled-v1`) / `0.097610` (`gems57-pooled-hide-v2`); no organizer receipt | **DO NOT SUBMIT**. 99.8972% final-dot overlap with a registered lattice exceeds 70%. |
 

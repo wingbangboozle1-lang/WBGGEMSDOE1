@@ -23,6 +23,7 @@ const chromium = importedChromium.default || importedChromium;
   const s2 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg_s2/run_card.json")));
   const wbg3 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg3_spipmr/run_card.json")));
   const focus9 = JSON.parse(fs.readFileSync(path.join(root, "evidence/focus9_exec/run_card.json")));
+  const wbg4 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg4/run_card.json")));
   if (process.env.BROWSER_COMPAT_LIBS === "1") {
     // Minimal Linux containers may lack NSS/NSPR. Use the dependency's own
     // bundled compatibility libraries instead of downloading system packages.
@@ -151,6 +152,32 @@ const chromium = importedChromium.default || importedChromium;
     await page.screenshot({ path: path.join(artifacts, "wbg3-desktop.png"), fullPage: true });
     await page.setViewportSize({ width: 390, height: 844 });
     await page.screenshot({ path: path.join(artifacts, "wbg3-mobile.png"), fullPage: true });
+    for (const file of ["wbg4/index.html", "wbg4/how-to-submit.html", "wbg4/forensics-and-hypotheses.html"]) {
+      const result = { file };
+      for (const [label, width, height] of [["desktop", 1440, 1100], ["mobile", 390, 844]]) {
+        await page.setViewportSize({ width, height });
+        const response = await page.goto(new URL(file, base).href, { waitUntil: "networkidle" });
+        assert.equal(response.status(), 200);
+        const text = await page.locator("main").innerText();
+        assert.match(text, /DO NOT SUBMIT/);
+        assert.match(text, /NO SELECTOR ELIGIBILITY/);
+        assert.match(text, /99\.6983%/);
+        assert.match(text, /100%/);
+        assert.equal(await page.evaluate(() => document.body.scrollWidth > window.innerWidth), false, `${label} overflow: ${file}`);
+        result[label] = "passed";
+      }
+      checked.push(result);
+    }
+    await page.setViewportSize({ width: 1440, height: 1100 });
+    await page.goto(new URL("wbg4/index.html", base).href, { waitUntil: "networkidle" });
+    const w4DownloadPromise = page.waitForEvent("download");
+    await page.locator("a[download]").first().click();
+    const w4Download = await w4DownloadPromise;
+    assert.equal(w4Download.suggestedFilename(), path.basename(wbg4.artifact.tif_relpath));
+    assert.equal(crypto.createHash("sha256").update(fs.readFileSync(await w4Download.path())).digest("hex"), wbg4.artifact.tif_sha256);
+    await page.screenshot({ path: path.join(artifacts, "wbg4-desktop.png"), fullPage: true });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.screenshot({ path: path.join(artifacts, "wbg4-mobile.png"), fullPage: true });
     await page.setViewportSize({ width: 1440, height: 1100 });
     await page.goto(new URL("wbg2.html", base).href, { waitUntil: "networkidle" });
     assert.equal(await page.locator("table tbody tr").count(), 9);
@@ -173,6 +200,8 @@ const chromium = importedChromium.default || importedChromium;
       wbg_s2_download_identity: "passed", wbg3_download_sha256: wbg3.raster_sha256,
       wbg3_download_identity: "passed", focus9_demo_download_sha256: focus9.raster_sha256,
       focus9_demo_download_identity: "passed", focus9_no_submit_copy: "passed",
+      wbg4_download_sha256: wbg4.artifact.tif_sha256,
+      wbg4_download_identity: "passed",
       body_overflow: false, all_passed: true,
       no_model_training_or_slot_use: true };
     fs.writeFileSync(path.join(root, "evidence/browser_checks.json"), JSON.stringify(report, null, 2) + "\n");

@@ -238,7 +238,11 @@ def wbg6_banner():
     if not all(audit["gates"][k] for k in decisive):
         raise ValueError("WBG-6 gate failed; refusing to publish a submit banner")
     me = est["model_estimate"]
-    tif = audit["name"] + ".tif"
+    # Recommended file: NaN outside the footprint, exactly as the official template (same dots).
+    rec = load("evidence/wbg6n-qmh-kdisjoint-30000-20261028-nanoutside_independent_verify.json")
+    if not rec["checks_pass_locally"] or rec["outside_footprint_convention"] != "nan":
+        raise ValueError("recommended NaN-outside twin failed its independent check")
+    tif = "wbg6n-qmh-kdisjoint-30000-20261028-nanoutside.tif"
     if audit["duplicate_screen"]["max_abs_surface_spearman"] > 0.90:
         raise ValueError("WBG-6 surface duplicate; refusing to publish a submit banner")
     return (f'''<div class="alert" role="note" style="border-left:6px solid var(--teal)">'''
@@ -249,7 +253,7 @@ def wbg6_banner():
             f'''{est["null_floor"]["mean"]:.4f}). Not a byte copy of any of the 118 scored rasters; '''
             f'''max surface |Spearman| {abs(audit["duplicate_screen"]["max_abs_surface_spearman"]):.4f}. '''
             f'''<a href="wbg6/index.html">Open the WBG-6 executive summary →</a> · '''
-            f'''<a href="downloads/{tif}" download>Download the TIFF to submit ↓</a> · '''
+            f'''<a href="downloads/{tif}" download>Download the TIFF to submit ↓</a> (SHA-256 <code>{rec["sha256"][:16]}…</code>, NaN outside footprint as the official template) · '''
             f'''<a href="wbg6/how-to-submit.html">How to submit →</a></p></div>''')
 
 

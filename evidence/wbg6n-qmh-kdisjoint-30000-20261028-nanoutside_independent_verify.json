@@ -1,0 +1,70 @@
+{
+  "file": "docs/downloads/wbg6n-qmh-kdisjoint-30000-20261028-nanoutside.tif",
+  "sha256": "24c4240b5ab8e22445037c44913a258c3c8e8aa50bdd111a83c6c83adf496df6",
+  "bytes": 178164,
+  "meta": {
+    "count": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null
+  },
+  "template_meta": {
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ]
+  },
+  "inside_footprint_cells": 5167373,
+  "positive_cells": 30000,
+  "n_nan_total": 7111787,
+  "min_inside": 0.0,
+  "max_inside": 1.0,
+  "positives_on_public_catalogue": 0,
+  "outside_footprint_convention": "nan",
+  "checks": {
+    "single_band_float32": true,
+    "crs_matches_template": true,
+    "shape_matches_template": true,
+    "transform_matches_template": true,
+    "no_inf": true,
+    "inside_footprint_all_finite": true,
+    "inside_footprint_in_0_1": true,
+    "outside_footprint_consistent_nan_or_zero": true,
+    "footprint_mask_labels_equals_template": true
+  },
+  "checks_pass_locally": true,
+  "template_convention_note": "Official template marks outside-bounds cells NaN. Zero outside is accepted here only as a consistent alternative; NaN outside matches the official template exactly. Manual review.",
+  "official_rule_quoted": "Your submission contains a single layer with datatype of 32-bit float (`float32`) with values between 0 and 1 ...; Your submission has the same bounds as the training data, and data outside the bounds is null or nan.",
+  "official_sources": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://docs.nlr.gov/docs/fy26osti/96647.pdf"
+  ],
+  "validation_class": "independent local format check; not organizer acceptance, not uniqueness",
+  "template_mirror_probe": {
+    "template_cells_equal_1": 60988,
+    "labels_positive_cells": 60988,
+    "template_ones_equal_public_catalogue": true,
+    "irregularity": "Official page says the sample predicts total fault absence, yet the mirrored sample's 1-cells coincide exactly with the public catalogue. Verify against the organizer's own file."
+  }
+}

@@ -62,10 +62,16 @@ def main() -> int:
     rings += (f"<tr><td>budget (dots)</td><td>{hab['budget_spearman']['spearman']:+.3f}</td>"
               f"<td>{hab['budget_spearman']['p']:.2g}</td></tr>")
     sc = load("evidence/score_consistency.json")
-    name = audit["name"]
-    val = load(f"docs/downloads/{name}.validator.json")
+    # Recommended download: same dots, NaN outside the footprint exactly as the official template.
+    # Its independent receipt is produced by scripts/verify_submission_independent.py.
+    val = load(f"docs/downloads/{audit['name']}.validator.json")
+    rec = load("evidence/wbg6n-qmh-kdisjoint-30000-20261028-nanoutside_independent_verify.json")
+    if not rec["checks_pass_locally"] or rec["outside_footprint_convention"] != "nan":
+        raise ValueError("recommended NaN-outside twin failed its independent check")
+    name = "wbg6n-qmh-kdisjoint-30000-20261028-nanoutside"
     tif = name + ".tif"
     zipf = name + ".zip"
+    audit = {**audit, "name": name, "sha256": rec["sha256"]}
     me = est["model_estimate"]
     nf = est["null_floor"]
     up = est["uplift_history"]

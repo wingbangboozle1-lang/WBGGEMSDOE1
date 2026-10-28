@@ -1,3 +1,24 @@
+## ✅ RECOMMENDED FILE TO DOWNLOAD: `wbg6n-qmh-kdisjoint-30000-20261028-nanoutside` (2026-10-28 review)
+
+| | |
+|---|---|
+| **File to download** | [`wbg6n-qmh-kdisjoint-30000-20261028-nanoutside.tif`](docs/downloads/wbg6n-qmh-kdisjoint-30000-20261028-nanoutside.tif) · one-TIFF ZIP: [`.zip`](docs/downloads/wbg6n-qmh-kdisjoint-30000-20261028-nanoutside.zip) |
+| **SHA-256 (TIFF)** | `24c4240b5ab8e22445037c44913a258c3c8e8aa50bdd111a83c6c83adf496df6` |
+| **Why this file, not the older one** | Same 30,000 dots as WBG-6, but **NaN outside the footprint exactly like the official `sample_submission` template** (the official rule text says data outside the bounds "is null or nan"). The older WBG-6 file wrote 0 outside. Its SHA `e9111de9…` is unchanged and kept only as the same-dots alternative. |
+| **Independent check** | [`scripts/verify_submission_independent.py`](scripts/verify_submission_independent.py) (does not import the shared validator) → [receipt](evidence/wbg6n-qmh-kdisjoint-30000-20261028-nanoutside_independent_verify.json): single-band float32, EPSG:32611, 3730×3292, identical transform, 0 inf, all 5,167,373 footprint cells finite and in [0,1], 0 positives on the public catalogue, footprint equal to the labels' mask. **Local format check only — not organizer acceptance.** |
+| **Estimated score** | **0.247 — MODEL-ESTIMATE**, range 0.142–0.286 (inherited uplift from 14 history files; validation Spearman 0.389). Not ORGANIZER-CONFIRMED. Same dots ⇒ same estimate as WBG-6. |
+| **Unique?** | Same dots as WBG-6, which has no byte copy among the 118 scored rasters and max surface \|Spearman\| 0.0148. Treat as one submission, not two. |
+
+**Honest standing.** On the live leaderboard (checked 2026-10-28, [leaderboard page](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)): #1 0.4544, #2 0.3916, #3 0.3911, #20 0.3273. This file's *estimate* 0.247 is **below rank 20**, so it is not expected to place top. Your figures 0.4413 and 0.3195 are older snapshots, not the current top.
+
+**Irregularities found this session (flagged for manual review):**
+1. `AGENTS.md` had unresolved git conflict markers on `main` (from merge #44). Resolved here; both notes kept and labelled.
+2. The mirrored `data/bridge/sample_submission.tif` has its 60,988 `1` cells **exactly equal to the public catalogue**, but the [official page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) describes the sample as predicting "total fault absence". The mirror and the official file may differ; check the organizer's own file.
+3. The portal error "Predicted values must be in range [0, 1]" has **no verified cause**. The repo's old "all-finite" rule was a local precaution, not an organizer rule; both `-nan` and `-zeros` historical entries exist, so neither convention is proven wrong.
+4. The historical 0.2778 (GEMSDOE32) remains USER-REPORTED, not organizer-confirmed.
+
+**What this session did not do:** no new experiment, no holdout run, no score improvement. The 19-band feature stack is not in this sandbox (Dropbox and DrivenData are not on the egress allowlist), so no candidate that could beat 0.3273 can be validated here. No slot was spent, and nothing was uploaded.
+
 ## ✅ DOWNLOAD & SUBMIT: YES — WBG-6 `wbg6-qmh-kdisjoint-30000-20261028`
 
 **[WBG-6 executive summary](docs/wbg6/index.html)** ·

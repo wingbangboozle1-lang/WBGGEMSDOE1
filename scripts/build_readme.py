@@ -48,7 +48,9 @@ def main():
     f9_zip = Path(f9["artifact"]).with_suffix(".zip").name
     header = f'''# WBG GEMS — evidence-first fault mapping
 
-**[Latest repository review (2026-10-28)](docs/repo-review-20261028.md)** · [Prior review and ranked hypotheses](docs/repo-review-20261027-session.md) ·
+**[28 October review: no submission approved](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json)
+
+**[Detailed repository review](docs/repo-review-20261028.md)** · [Earlier repository review and ranked future hypotheses](docs/repo-review-20261027-session.md) ·
 [Session JSON card](evidence/repo_review_session_20261027.json) · [Current provenance feed](docs/data/feed.json)
 
 **Freshness check:** at `{feed.get("generated_utc", "timestamp unavailable")}`, {changed_head_count}/{monitored_head_count} monitored focus-site GitHub heads differed from the frozen raster audit. This is a head check, not a current raster/score audit. The official leaderboard status is `{feed.get("leaderboard_status", "unknown")}`; the last retained public observation is {leaderboard_value_text} ({leaderboard_date}), not a score for any project TIFF.

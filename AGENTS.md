@@ -19,7 +19,7 @@
    `tests/test_wbg5.py`. Do not resurrect the vacuous reading, and do not delete it either — record
    both numbers. (ii) A hide-and-recover holdout built from **mapped** faults rewards exactly what the
    organizers mask out (DrivenData staff, forum #11516: mapped-fault pixels are excluded from scoring).
-   Measure of that misalignment: 9 of 11 rival rasters score **below** a random 55,000-dot placement
+   Measure of that misalignment: 8 of 11 rival rasters score **below** a random 55,000-dot placement
    (0.0934) on our holdout while carrying owner scores of 0.2477-0.2778. **No holdout value may be
    converted into a leaderboard point forecast**; publish only the MODEL-ESTIMATE band with its
    admissibility rule (`evidence/wbg5/score_estimate.json`).

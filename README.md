@@ -28,6 +28,13 @@ SHA-256 `fc547fa0d5c35dba6c6b88363d4e997916cd733574a6ce7eb4f370bd701cb350` · 55
 NaN only outside the study area (exactly like the organisers' `example_submission.tif`) · all finite values in [0, 1].
 **HOLDOUT-DTI 0.171866** (95% CI [0.157999, 0.185391], `gems-segment-pooled-v1`, 60,988 withheld positives).
 
+**It ties, and does not beat, the best rival on this instrument.** `gemsdoe24-dotted-d1-5` measures HOLDOUT-DTI
+0.171831 against our 0.171866 — a gap of 0.00004 with overlapping 95% CIs. The defensible claim is therefore not
+"higher holdout than every rival"; it is "the same measured recovery, earned without a catalogue-copying shortcut,
+on a file that is format-valid, byte-unique, and free of the dots that the organisers mask". The upside that the
+holdout cannot measure is off-catalogue recovery; the downside is that a 0.248–0.276 band is a *parity* estimate,
+not a winning one.
+
 **Why 0.2778 was the leader.** The metric is `DTI = TPw / (TPw + 0.2·FPw + 0.8·FNw)` with a 300 m triangular kernel.
 Because 1 − α − β = 0, adding one dot moves the denominator by exactly α, so a dot helps iff its kernel weight
 `k > 0.2·DTI` — i.e. iff it lands within ~2.8 px of an unseen fault, while a duplicate dot on an already-covered
@@ -45,7 +52,7 @@ pixels lie within 3 px of a masked mapped fault).
 
 **Two findings that change how this repository decides.** (1) A hide-and-recover holdout built from *mapped* faults
 rewards exactly what the organisers mask: the eleven best historical files span 0.0067–0.1718 on it while their
-owner-reported scores span only 0.2477–0.2778, and **9 of 11 score below a uniformly random 55,000-dot placement
+owner-reported scores span only 0.2477–0.2778, and **8 of 11 score below a uniformly random 55,000-dot placement
 (0.0934)**. No holdout-to-leaderboard map is identifiable, so no point forecast is asserted anywhere. (2) The
 "70% of dots within 3 px of one registry raster" gate was **vacuous**: 99.871% of *every* pixel in the study area is
 within 3 px of the synthetic `r13-lattice-s5` control, and a random 40,000-dot set "overlaps" it by 0.9987. That

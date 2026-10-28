@@ -22,6 +22,7 @@ const chromium = importedChromium.default || importedChromium;
   const wbg2 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg2/run_card.json")));
   const s2 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg_s2/run_card.json")));
   const wbg3 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg3_spipmr/run_card.json")));
+  const focus9 = JSON.parse(fs.readFileSync(path.join(root, "evidence/focus9_exec/run_card.json")));
   if (process.env.BROWSER_COMPAT_LIBS === "1") {
     // Minimal Linux containers may lack NSS/NSPR. Use the dependency's own
     // bundled compatibility libraries instead of downloading system packages.
@@ -50,6 +51,22 @@ const chromium = importedChromium.default || importedChromium;
       assert.equal(overflow, false, `desktop body overflow: ${file}`);
       checked.push({ file, desktop: "passed" });
     }
+    await page.goto(new URL("focus9-executive-summary.html", base).href, { waitUntil: "networkidle" });
+    const focus9Text = await page.locator("main").innerText();
+    assert.match(focus9Text, /DOWNLOAD: YES.*SUBMIT: NO/);
+    assert.match(focus9Text, /0\.2778/);
+    assert.match(focus9Text, /HOLDOUT-DTI not evaluated/);
+    assert.match(focus9Text, /81\.93%/);
+    assert.doesNotMatch(focus9Text, /synthetic HOLDOUT-DTI ≈0\.0003/);
+    assert.equal(await page.locator("#master-table tbody tr").count(), 11);
+    assert.equal(await page.evaluate(() => document.body.scrollWidth > window.innerWidth), false, "desktop body overflow: Focus-9 executive summary");
+    checked.push({ file: "focus9-executive-summary.html", desktop: "passed" });
+    const focus9DownloadPromise = page.waitForEvent("download");
+    await page.locator("a[download]").first().click();
+    const focus9Download = await focus9DownloadPromise;
+    assert.equal(focus9Download.suggestedFilename(), path.basename(focus9.artifact));
+    assert.equal(crypto.createHash("sha256").update(fs.readFileSync(await focus9Download.path())).digest("hex"), focus9.raster_sha256);
+
     await page.goto(new URL("executive-summary.html", base).href, { waitUntil: "networkidle" });
     assert.equal(await page.locator("#site-table tbody tr:visible").count(), 9);
     await page.locator("#site-filter").fill("GEMSDOE32");
@@ -64,7 +81,7 @@ const chromium = importedChromium.default || importedChromium;
     await page.goto(new URL("index.html", base).href, { waitUntil: "networkidle" });
     await page.screenshot({ path: path.join(artifacts, "desktop.png"), fullPage: true });
     await page.setViewportSize({ width: 390, height: 844 });
-    for (const file of ["index.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"]) {
+    for (const file of ["index.html", "executive-summary.html", "focus9-executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"]) {
       await page.goto(new URL(file, base).href, { waitUntil: "networkidle" });
       const overflow = await page.evaluate(() => document.body.scrollWidth > window.innerWidth);
       assert.equal(overflow, false, `mobile body overflow: ${file}`);

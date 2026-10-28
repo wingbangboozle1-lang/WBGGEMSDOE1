@@ -26,8 +26,24 @@ def main():
     w3_comp = w3["correlation_overlap_vs_registry"]["final_dots_competing_sparse"]
     w2audit = json.loads((ROOT / "evidence/wbg2/safety_audit_20261027.json").read_text())
     w2overlap = w2audit["already_placed_final_dots_witness"]["my_dots_within_3px_of_theirs"] * 100
+    f9 = json.loads((ROOT / "evidence/focus9_exec/run_card.json").read_text())
+    f9_tif = Path(f9["artifact"]).name
+    f9_overlap = f9["correlation_overlap_vs_registry"]["lattice_coverage"]["pigeonhole_min_overlap"]
 
     header = f'''# WBG GEMS — evidence-first fault mapping
+
+## FOCUS-9 RESEARCH DEMO · FORMAT PASS, NOT SUBMITTABLE
+
+**[Focus-9 executive summary and nine-site table](docs/focus9-executive-summary.html)** ·
+[How to submit (future promoted artifact only)](docs/how-to-submit.html) ·
+[Ranked hypotheses](docs/hypotheses.html)
+
+[Download synthetic demo TIFF](docs/downloads/{f9_tif}) ·
+[One-TIFF ZIP](docs/downloads/{f9_tif.replace('.tif', '.zip')}) ·
+[Validator receipt](docs/downloads/{f9_tif.replace('.tif', '.validator.json')}) ·
+[Run card](evidence/focus9_exec/run_card.json)
+
+**DOWNLOAD: YES · SUBMIT: NO.** This is a synthetic random null/UX demo, not a geological detector. Holdout-DTI and leaderboard estimate are unavailable. Local format validation passed, but the literal lattice-overlap lower bound is **{f9_overlap:.2%}** (>70% stop); its competing-sparse comparison is unmeasured. No slot used.
 
 ## NO FILE APPROVED FOR SUBMISSION
 

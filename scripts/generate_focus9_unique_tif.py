@@ -223,7 +223,7 @@ def main():
                 "pigeonhole_min_overlap_for_36800_dots": max(0, (BUDGET - 6649) / BUDGET),
                 "pigeonhole_min_overlap": round(max(0, (BUDGET - 6649) / BUDGET), 4)
             },
-            "literal_all_entries_verdict": "STOP - by pigeonhole principle, any 36,800-dot footprint allocation must have >=81.94% forward overlap within 3px of the spacing-5 synthetic lattice, exceeding the 70% literal threshold. No sparse dotted submission can clear literal uniqueness under current registry without policy change.",
+            "literal_all_entries_verdict": "STOP - by pigeonhole principle, any 36,800-dot footprint allocation must have >=81.93% forward overlap within 3px of the spacing-5 synthetic lattice, exceeding the 70% literal threshold. No sparse dotted submission can clear literal uniqueness under current registry without policy change.",
             "competing_method_interpretation": "Competing-method interpretation (excluding synthetic calibration lattice) would PASS if measured max <70%, as WBG-3 demonstrated (59.38%). This research file is byte-distinct but literal-unseparated verdict remains negative.",
             "passes_literal_uniqueness": False,
             "passes_competing_method_uniqueness": "Unmeasured - expected PASS but not claimed",
@@ -279,7 +279,7 @@ def main():
             "submission_slots_used": 0,
             "reasons": [
                 "synthetic null model with no geophysical efficacy",
-                "literal registry lattice saturation (pigeonhole 81.94% >70%)",
+                "literal registry lattice saturation (pigeonhole 81.93% >70%)",
                 "no holdout DTI beating current best (S3DEP1 0.1661, WBG-3 0.1182)",
                 "no assigned method lane",
                 "no untouched confirmation"

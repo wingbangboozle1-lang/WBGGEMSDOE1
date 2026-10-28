@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-10-27T23:43:15.753328+00:00",
+  "hypothesis_id": "FOCUS9-EXEC-SYNTH-20261027",
+  "method_code": "SYNTH-RANDOM-OFFCAT-36K",
+  "hypothesis": "Synthetic off-catalogue uniform random ensemble (no geophysics) to demonstrate portal-format validity, honest labeling, and pigeonhole lattice saturation for the nine-site executive summary. Not a geological discovery model.",
+  "mechanism": "Uniform random sampling among footprint pixels >200m from public catalogue faults, 36,800 dots at value 1.0 in zeros mode. Zero geophysical features, no learning. Used to create a byte-unique, format-valid TIFF for download UX testing and to illustrate why literal registry saturation blocks promotion without policy change.",
+  "named_non_fault_mimic": "Random scatter has no geological mechanism; by construction it cannot distinguish Basin-and-Range fault scarps from pluvial shorelines, basalt margins, or infrastructure.",
+  "leakage_canary": {
+    "passed": true,
+    "threshold": 0.9,
+    "features_checked": 0,
+    "detail": "No features used; no leakage possible. Not a holdout-evaluated detector."
+  },
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "not_evaluated",
+    "withheld_positive_pixels": 60988,
+    "dti": null,
+    "ci95": null,
+    "detail": "No 19-band stack present; holdout not run. Previous synthetic scatter measured HOLDOUT-DTI 0.000341 on gems-segment-pooled-v1 and 0.097610 on gems57-pooled-hide-v2 (WBG-2 replay). Leaderboard projection unavailable."
+  },
+  "correlation_overlap_vs_registry": {
+    "phase": "final_dots",
+    "checked_unique_file_hashes": 360,
+    "total_rasters_indexed": 377,
+    "scope": "All tracked aligned single-band TIFFs outside data/ and vendor/ in nine frozen owner snapshots (2026-10-26). Not all 92 user-listed sites, hidden/private rasters, or later commits.",
+    "max_forward_3px_overlap": null,
+    "max_forward_3px_overlap_vs_competing_sparse": "Not measured in this lightweight generation (requires 19-band cache restore and full registry comparator cache). Prior WBG-3 SPI-PMR achieved 59.38% max vs 207 sparse rasters with same budget and clearance; this random ensemble is expected similar (<70%) but must be measured before any promotion claim.",
+    "byte_unique_among_checked": true,
+    "decoded_pixel_unique_among_checked": true,
+    "lattice_coverage": {
+      "witness_file": "inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "positive_pixels": 206895,
+      "footprint_coverage_3px": 0.9987132726822701,
+      "uncovered_pixels": 6649,
+      "pigeonhole_min_overlap_for_36800_dots": 0.819320652173913,
+      "pigeonhole_min_overlap": 0.8193
+    },
+    "literal_all_entries_verdict": "STOP - by pigeonhole principle, any 36,800-dot footprint allocation must have >=81.93% forward overlap within 3px of the spacing-5 synthetic lattice, exceeding the 70% literal threshold. No sparse dotted submission can clear literal uniqueness under current registry without policy change.",
+    "competing_method_interpretation": "Competing-method interpretation (excluding synthetic calibration lattice) would PASS if measured max <70%, as WBG-3 demonstrated (59.38%). This research file is byte-distinct but literal-unseparated verdict remains negative.",
+    "passes_literal_uniqueness": false,
+    "passes_competing_method_uniqueness": "Unmeasured - expected PASS but not claimed",
+    "complete_all_user_listed_sites": false
+  },
+  "raster_sha256": "e8c4bf7607cec72c54981b90aa60e7e85163b429b58ebd6f2a7c3126e8c1e351",
+  "raster_decoded_sha256": "e8c4bf7607cec72c54981b90aa60e7e85163b429b58ebd6f2a7c3126e8c1e351",
+  "validator": {
+    "one_float32_band": {
+      "pass": true,
+      "detail": "count=1, dtype=float32"
+    },
+    "whole_array_finite": {
+      "pass": true,
+      "detail": "nonfinite=0"
+    },
+    "whole_array_range_0_1": {
+      "pass": true,
+      "detail": "min=0.0, max=1.0"
+    },
+    "no_nan_inside_footprint": {
+      "pass": true,
+      "detail": "0 NaN inside footprint"
+    },
+    "values_in_0_1": {
+      "pass": true,
+      "detail": "all values in [0,1]"
+    },
+    "grid_identity": {
+      "pass": true,
+      "detail": "CRS EPSG:32611 shape [3730,3292] transform [100,0,243350,0,-100,4508550]"
+    },
+    "crs_shape_transform_match": {
+      "pass": true,
+      "detail": "matches sample_submission"
+    },
+    "outside_footprint_zero": {
+      "pass": true,
+      "detail": "zeros mode"
+    },
+    "known_fault_support_zero": {
+      "pass": true,
+      "detail": "0 on catalogue"
+    },
+    "footprint_dot_count": {
+      "pass": true,
+      "detail": "observed=36800, budget=36800"
+    },
+    "positive_pixels": 36800,
+    "on_catalogue_positive_pixels": 0,
+    "all_checks_passed": true
+  },
+  "submission_name": "wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros",
+  "submission_note": "Focus-9 exec synthetic 36k off-cat random; format PASS but literal lattice STOP; research DL only; NOT for submission.",
+  "artifact": "docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif",
+  "zip_sha256": "60c295bfa4f1b1bd83ee1a8ffd6e93feeba67919efa5625c2116ef1952db8663",
+  "verdict": "negative",
+  "decision": {
+    "verdict": "negative",
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "eligible_for_weekly_slot": false,
+    "approved_for_weekly_slot": false,
+    "submission_slots_used": 0,
+    "reasons": [
+      "synthetic null model with no geophysical efficacy",
+      "literal registry lattice saturation (pigeonhole 81.93% >70%)",
+      "no holdout DTI beating current best (S3DEP1 0.1661, WBG-3 0.1182)",
+      "no assigned method lane",
+      "no untouched confirmation"
+    ]
+  },
+  "experiments_completed": 1,
+  "submission_slots_used": 0,
+  "next_action": "Use this file only to verify download/validator UX. For a real promotion, restore the 19-band stack, run the four ranked geophysical hypotheses through buffered whole-component holdout, and obtain separate selector approval after both Spearman and competing-method dot checks pass."
+}

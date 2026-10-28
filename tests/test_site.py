@@ -40,7 +40,7 @@ def module(name):
     return result
 
 
-@pytest.mark.parametrize("name", ["index.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html", "release-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html", "wbg2.html"])
+@pytest.mark.parametrize("name", ["index.html", "executive-summary.html", "focus9-executive-summary.html", "hypotheses.html", "research.html", "evidence.html", "how-to-submit.html", "release-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html", "wbg2.html"])
 def test_all_site_local_links_resolve_and_decision_is_unmistakable(name):
     file = DOCS / name
     html = file.read_text()
@@ -52,6 +52,10 @@ def test_all_site_local_links_resolve_and_decision_is_unmistakable(name):
         assert "no weekly slot was used" in text and "retrospective" in text
     elif name in {"release-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html"}:
         assert "no competition slot" in text
+    elif name == "focus9-executive-summary.html":
+        assert "no file in this repository is approved" in text and "0 slots used" in text
+    elif name == "hypotheses.html":
+        assert "no experiment or slot was spent" in text and "untested proposals" in text
     else:
         assert "no final dots" in text and "no competition slot" in text
     assert '<html lang="en">' in html
@@ -106,6 +110,16 @@ def test_nine_site_table_reports_estimate_and_measured_uniqueness_scope():
     markdown = (DOCS / "executive-summary.md").read_text()
     assert "maximum forward 3 px overlap" in markdown
     assert "Unavailable for a new file" in markdown
+    focus_page = (DOCS / "focus9-executive-summary.html").read_text()
+    assert "HOLDOUT-DTI not evaluated" in focus_page
+    assert "synthetic HOLDOUT-DTI ≈0.0003" not in focus_page
+    assert "additional recall needed" in focus_page
+    assert "do not silently clip" in focus_page.lower()
+    assert "81.93%" in focus_page
+    hypothesis_page = (DOCS / "hypotheses.html").read_text()
+    assert "Highest benefit-to-cost judgment" in hypothesis_page
+    assert "Not viable for validation yet" in hypothesis_page
+    assert "No holdout DTI, leaderboard estimate" in hypothesis_page
 
 
 @pytest.mark.parametrize("file", ["wbg2-executive-summary.md", "research/future-hypotheses-20261027.md"])

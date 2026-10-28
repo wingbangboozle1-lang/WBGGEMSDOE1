@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-27T23:52:26.168Z",
+  "generated_utc": "2026-10-28T00:03:20.959Z",
   "browser": "153.0.8010.0",
   "checked": [
     {
@@ -24,6 +24,11 @@
     },
     {
       "file": "how-to-submit.html",
+      "desktop": "passed",
+      "mobile": "passed"
+    },
+    {
+      "file": "focus9-executive-summary.html",
       "desktop": "passed",
       "mobile": "passed"
     },
@@ -110,6 +115,9 @@
   "wbg_s2_download_identity": "passed",
   "wbg3_download_sha256": "f158a890dcb5f897ef35282ed05d291e54c4df9b83cf891870193d329b160fb4",
   "wbg3_download_identity": "passed",
+  "focus9_demo_download_sha256": "e8c4bf7607cec72c54981b90aa60e7e85163b429b58ebd6f2a7c3126e8c1e351",
+  "focus9_demo_download_identity": "passed",
+  "focus9_no_submit_copy": "passed",
   "body_overflow": false,
   "all_passed": true,
   "no_model_training_or_slot_use": true

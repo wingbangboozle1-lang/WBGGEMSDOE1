@@ -1,5 +1,13 @@
 # WBG GEMS — evidence-first fault mapping
 
+## Focus-9 summary and synthetic format demo — DOWNLOAD FOR RESEARCH ONLY; DO NOT SUBMIT
+
+**[Nine-site comparison and decision](docs/focus9-executive-summary.html)** · [Audited site table](docs/executive-summary.html) · [Prospective hypotheses](docs/research/future-hypotheses-20261027.md)
+
+**Synthetic null/demo TIFF:** [Download](docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif) · [ZIP](docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.zip) · [validator receipt](docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.validator.json) · [uniqueness audit](docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.uniqueness.json) · [negative run card](evidence/focus9_exec/run_card.json). Random off-catalogue points only; no geophysical model, no holdout score, no leaderboard estimate. Literal registry overlap is at least **81.93%** (>70% limit). **FORMAT PASS ≠ submission approval. DOWNLOAD: YES · SUBMIT: NO · 0 slots used.**
+
+The highest supplied historical claim among GEMSDOE24/25/27/28/30/31/32/33/36 is GEMSDOE32 B2 = **0.2778 (USER-REPORTED, not organizer-confirmed)**. No score is estimated for a new file; see the nine-site audit for provenance and lineage.
+
 ## NO FILE APPROVED FOR SUBMISSION
 
 **[WBG-3 Executive Summary & Master Decision Table](docs/wbg3/index.html)** ·

@@ -26,8 +26,19 @@ def main():
     w3_comp = w3["correlation_overlap_vs_registry"]["final_dots_competing_sparse"]
     w2audit = json.loads((ROOT / "evidence/wbg2/safety_audit_20261027.json").read_text())
     w2overlap = w2audit["already_placed_final_dots_witness"]["my_dots_within_3px_of_theirs"] * 100
+    focus9 = json.loads((ROOT / "evidence/focus9_exec/run_card.json").read_text())
+    focus9_tif = Path(focus9["artifact"]).name
+    focus9_floor = focus9["correlation_overlap_vs_registry"]["lattice_coverage"]["pigeonhole_min_overlap"] * 100
 
     header = f'''# WBG GEMS — evidence-first fault mapping
+
+## Focus-9 summary and synthetic format demo — DOWNLOAD FOR RESEARCH ONLY; DO NOT SUBMIT
+
+**[Nine-site comparison and decision](docs/focus9-executive-summary.html)** · [Audited site table](docs/executive-summary.html) · [Prospective hypotheses](docs/research/future-hypotheses-20261027.md)
+
+**Synthetic null/demo TIFF:** [Download](docs/downloads/{focus9_tif}) · [ZIP](docs/downloads/{focus9_tif.replace('.tif', '.zip')}) · [validator receipt](docs/downloads/{focus9_tif.replace('.tif', '.validator.json')}) · [uniqueness audit](docs/downloads/{focus9_tif.replace('.tif', '.uniqueness.json')}) · [negative run card](evidence/focus9_exec/run_card.json). Random off-catalogue points only; no geophysical model, no holdout score, no leaderboard estimate. Literal registry overlap is at least **{focus9_floor:.2f}%** (>70% limit). **FORMAT PASS ≠ submission approval. DOWNLOAD: YES · SUBMIT: NO · 0 slots used.**
+
+The highest supplied historical claim among GEMSDOE24/25/27/28/30/31/32/33/36 is GEMSDOE32 B2 = **0.2778 (USER-REPORTED, not organizer-confirmed)**. No score is estimated for a new file; see the nine-site audit for provenance and lineage.
 
 ## NO FILE APPROVED FOR SUBMISSION
 

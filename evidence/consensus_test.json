@@ -1,0 +1,9 @@
+{
+ "schema": "wbg-consensus-test-v1",
+ "n": 118,
+ "score_label": "OWNER-REPORTED",
+ "spearman_support_excl_self": 0.6425754001393714,
+ "p_support_excl_self": 4.374514671067383e-15,
+ "spearman_dilated_support": 0.36484226060055724,
+ "p_dilated_support": 4.866609573619314e-05
+}

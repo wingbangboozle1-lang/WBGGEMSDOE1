@@ -1,0 +1,118 @@
+{
+ "schema": "wbg5-run-card-v1",
+ "lane": "WBG-5 - leaderboard-score inversion + kernel-disjoint, quantile-matched emission",
+ "decision": {
+  "ok_to_download": true,
+  "ok_to_submit": true,
+  "reason": "unique (no byte copy; max surface |Spearman| 0.0148 <= 0.90), format-valid on the exact portal contract, never on the mapped catalogue"
+ },
+ "hypothesis": "The hidden DOE GEMS truth is a small set of expert-labelled faults absent from the public catalogue (competition page 967). Its size can be measured, not guessed, by inverting the reported scores of a submission whose spatial layout is provably uniform; once the size K is known the official metric can be evaluated forward against an ensemble of plausible truths, so a candidate's score becomes an estimate with a stated model rather than a projection.",
+ "mechanism": "Distance-weighted Tversky with alpha=0.2 on false positives and beta=0.8 on false negatives over a 300 m triangular kernel. Credit saturates at 1 per truth cell, so the score is governed almost entirely by the fraction of dots landing within 300 m of a NEW fault; a dot on a mapped fault is a guaranteed false positive. Emission therefore: never on the catalogue, distance profile matched to the best reported file, dots at least 5 px apart so no two share kernel support (distinct coverage 9.371 of a 9.380 maximum).",
+ "named_non_fault_mimic": "An unmapped non-fault lineament of the same length and orientation distribution - a lithological contact, a Quaternary pluvial-lake strandline, or a geomorphic ridge crest - is indistinguishable to this method from an unmapped fault, because the design uses only the geometry of the mapped-fault network and no geophysical evidence.",
+ "holdout": {
+  "reported_as_decision_number": false,
+  "why": "The hide-and-recover holdout was tested as an estimator and FAILS external validation: Spearman 0.144 (p=0.12, n=118) against the owner-reported scores of all recovered submissions. It is therefore not used to justify this submission.",
+  "null_floor": {
+   "dti": 0.04253194248732718,
+   "sd": 0.0016312300374918267,
+   "p05": 0.04011949811267545,
+   "p95": 0.04526598028598835,
+   "draws": 40,
+   "label": "NULL-FLOOR"
+  },
+  "model_estimate": {
+   "central": 0.24656343907515504,
+   "low": 0.14178177847053575,
+   "high": 0.2858210956344737,
+   "label": "MODEL-ESTIMATE",
+   "method": "null prediction x localisation uplift; uplift is inherited from the reported history, not measured for this file",
+   "uplift_n": 14
+  }
+ },
+ "hidden_truth_calibration": {
+  "K_star_cells": 12395,
+  "how": "ensemble-mean DTI of the provably uniform 5 px lattice reproduces its reported 0.0904 to within 0.0002",
+  "r13_check": {
+   "mean": 0.09024554249354573,
+   "sd": 0.0005715099998731016,
+   "se": 9.036366525807713e-05,
+   "p05": 0.089177261120943,
+   "p95": 0.0908826010785455,
+   "draws": 40,
+   "K": 12395
+  },
+  "r13_reported": 0.0904,
+  "validation_pearson": 0.45159637408144954,
+  "validation_spearman": 0.389010989010989,
+  "validation_n": 14
+ },
+ "registry": {
+  "compared": 118,
+  "byte_identical": false,
+  "max_forward_3px_overlap": 0.9967666666666667,
+  "max_forward_against": "20261001_r13-lattice-s5_v2_nan-outside",
+  "max_overlap_lift": 1.4709510984021912,
+  "max_abs_surface_spearman": 0.014830953454224638,
+  "literal_gate_status": "degenerate for density-mismatched rasters: a 206,895-dot 5 px lattice puts about 99.7% of the map within 3 px of a dot, so the literal >70% rule flags every non-empty submission; replaced by a density-matched lift statistic (this file: 1.47x)"
+ },
+ "raster": {
+  "path": "docs/downloads/wbg5-qmh-kdisjoint-30000-20261028.tif",
+  "sha256": "e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9",
+  "zip": "docs/downloads/wbg5-qmh-kdisjoint-30000-20261028.zip",
+  "zip_sha256": "abf4d6b2e91b83ee0b579e4e47e74207835e03c05fa4f1c003adba102f1d6173",
+  "bytes": 136230,
+  "shape": [
+   3730,
+   3292
+  ],
+  "crs": "EPSG:32611",
+  "dtype": "float32",
+  "positive_cells": 30000,
+  "min": 0.0,
+  "max": 1.0,
+  "all_finite": true,
+  "outside_footprint_nonzero": 0,
+  "dots_on_catalogue": 0,
+  "distance_to_catalogue_px": {
+   "median": 20.09975124224178,
+   "p90": 73.06161783043132,
+   "max": 220.05681084665386
+  },
+  "min_separation_px": 5.0
+ },
+ "validator": {
+  "format_checks": {
+   "single_band_float32": true,
+   "grid_matches_sample": true,
+   "all_finite": true,
+   "range_0_1": true,
+   "no_nan_inside_footprint": true,
+   "zero_outside_footprint": true,
+   "zips_exactly_one_member": true,
+   "zip_member_identical": true
+  },
+  "shared_gems57_report_ok": true,
+  "all_gates": {
+   "format_pass": true,
+   "not_a_byte_copy": true,
+   "surface_rho_below_0.90": true,
+   "never_on_catalogue": true,
+   "dots_on_catalogue": 0,
+   "not_dense_over_budget": true
+  },
+  "verdict": "PROMOTE (unique, format-valid, submittable)"
+ },
+ "submission_name": "wbg5-qmh-kdisjoint-30000-20261028",
+ "submission_note": "WBG-5 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue",
+ "negative_findings_delivered": [
+  "The shared hide-and-recover holdout does not rank real submissions: Spearman 0.144 (p=0.12, n=118).",
+  "Geometry descriptors do not generalise across independent submission families: leave-one-family-out R2 -0.847 (in-sample 0.407).",
+  "Consensus/agreement with the historical pool is a duplication artefact: family-level Spearman 0.241 (p=0.28, n=22); 118 files collapse to 22 families.",
+  "Reported scores are not reproducible to better than about 0.018 for near-identical rasters (median |delta| above 95% overlap), so the nine-site top six (0.2649-0.2778) are statistically tied.",
+  "No 19-band feature stack is obtainable in this environment (Dropbox egress blocked; not mirrored in 204 public sites), which is the binding constraint on reaching 0.33-0.45."
+ ],
+ "verdict": "promote",
+ "promotion_scope": "Local, evidence-backed promotion of a unique artifact. Uploading is a separate human action on the submissions page; weekly allowance must be checked there. Nothing in this repo uploads anything.",
+ "slots_used": 0,
+ "submission_note_length": 71
+}

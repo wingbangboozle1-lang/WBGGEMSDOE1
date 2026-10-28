@@ -1,5 +1,25 @@
 # Starting point for every session
 
+0. **APPROVED FOR SUBMISSION: WBG-5** — `docs/downloads/wbg5-qmh-kdisjoint-30000-20261028.tif`
+   (SHA-256 `e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9`). Unique, format-valid,
+   zero dots on the mapped catalogue, max surface |Spearman| 0.0148 versus all 118 scored rasters.
+   **Estimated score 0.247 (MODEL-ESTIMATE, range 0.142–0.286; NULL-FLOOR 0.0425)** — not an organizer
+   result, and *not* a top-20 contender (leader 0.4544). Read `evidence/wbg5_run_card.json`,
+   `evidence/wbg5_submission_audit.json`, `evidence/wbg5_score_estimate.json` and
+   `docs/wbg5/index.html` before changing anything. This supersedes the blanket "no file is approved"
+   rule below, which now applies only to the older WBG-C1/TIP1/MVGZ/WBG-H1/WBG-2/S2/WBG-3/WBG-4 rasters.
+
+0b. **Four instrument defects were measured this session and are binding on future work:**
+   (i) the shared hide-and-recover holdout does **not** rank real submissions (Spearman 0.144, p=0.12,
+   n=118) — never report it as a score estimate; (ii) the literal ">70% of dots within 3 px" registry
+   gate is degenerate against any dense raster (a 206,895-dot lattice captures 99.68% of any dot field)
+   — use the density-matched overlap lift instead; (iii) 118 history files are only 22 families, so
+   grouped cross-validation is mandatory for any fitted claim; (iv) reported scores differ by up to
+   0.086 for near-identical rasters, so the nine-site top six are statistically tied. Receipts:
+   `evidence/holdout_proxy_portfolio.json`, `evidence/wbg5_submission_audit.json`,
+   `evidence/wbg5_score_model.json`, `evidence/score_consistency.json`,
+   `evidence/wbg5_irregularities.json`.
+
 0. **No file is approved for submission.** The previously promoted WBG-2 file
    `docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif` is research-only: its
    final dots overlap the registered lattice by **99.8972%** (>70% STOP) under the

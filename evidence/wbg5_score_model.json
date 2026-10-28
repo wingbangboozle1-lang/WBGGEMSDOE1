@@ -1,0 +1,214 @@
+{
+ "schema": "wbg5-score-model-v2",
+ "score_label": "OWNER-REPORTED (dependent variable only)",
+ "evidence_class": "MODEL-ESTIMATE",
+ "n_submissions": 118,
+ "n_families": 22,
+ "largest_family": 95,
+ "terms": [
+  "log_n",
+  "coverage",
+  "log_p90",
+  "log_cluster",
+  "frac_cat3",
+  "cat_density"
+ ],
+ "coefficients_standardised": [
+  0.10916440677040978,
+  -0.0231216540350567,
+  0.04692811847636997,
+  0.05769967860387714,
+  0.011709309771976609,
+  0.008692890158052679,
+  0.025825990887209688
+ ],
+ "feature_mean": [
+  10.960972450077312,
+  0.8018949106575994,
+  3.7596741074723683,
+  2.2714516603851354,
+  0.17013540690193496,
+  0.022913265105147483
+ ],
+ "feature_sd": [
+  0.8612761077828801,
+  0.22503548512377142,
+  0.6792255579341666,
+  0.8481807744916897,
+  0.1723065991783566,
+  0.01381730379129789
+ ],
+ "r2_in_sample": 0.40701780707868207,
+ "r2_loo": 0.3338500920088249,
+ "pearson_loo": 0.5834020197313029,
+ "pearson_grouped": -0.043832911797722335,
+ "spearman_grouped": 0.25141888784077804,
+ "r2_grouped": -0.8474511512240863,
+ "rmse_grouped": 0.11321785039144218,
+ "residual_sd_grouped": 0.09586654767286856,
+ "score_sd": 0.08329682021869979,
+ "families": [
+  [
+   "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+   "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
+   "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
+   "h27-4-solo-d28-20261004-8acb75e1-nan",
+   "h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan",
+   "h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan",
+   "h32-1-prethin-tip-euler-d2-8-20261003-31e35eee884e-nan",
+   "h33d-analog-tip-stepover-r30-20261004-cb490425926e",
+   "dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+   "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca",
+   "efd28-repro-20261003-1cc7dc534d51-nan",
+   "wormrank-d28-20261003-59dcaf6fdd11d-zeros",
+   "gems70-p5-dual-submod300-oof38k-20261020",
+   "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+   "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+   "gate_ortho_w0.25-40k-20261006T213721Z-nan",
+   "gems76-ptcf-tiltworm-submod39k-20261021T034000Z-6316481d-zeros",
+   "cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-zeros",
+   "h59-cover-ds-belief-b2xh33d-20261008T184547Z-b79c4c61d8d8",
+   "h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan",
+   "gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros",
+   "h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan",
+   "h19-4-reference-20260930-691e4dfa",
+   "h20-1-sarnnpu-powerlaw-pi0363-tilt-wingcrack-20260930-be0e8f6b-nan",
+   "gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros",
+   "h20-5-continuous-pu-proxy-unverified-20260930-824ce73a-nan",
+   "h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan",
+   "h28-dotted-ridge-20260928T020256236880Z-6452ae1d00",
+   "gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros",
+   "gems75-trlt-radon-loco-ridge-20261021-zeros",
+   "r11f-scarp-radiometric-fusion-00e049b51218-zeros",
+   "gems78-h78sigx-fuse-b5-44090dots-20261022T021932Z-zeros",
+   "Hedge-v2_submission",
+   "gems-submission-20260925T001403Z-7f00890a",
+   "gems-submission-20260926T175114Z-7f00890a",
+   "gemsdoe2-dual-family-union-20260925T160406Z-f68e590f",
+   "gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros",
+   "lidarscarp-ridge-top2pct-36c3a3f341c8",
+   "ovtr-ml-cover-tau3p0-20261012-nan",
+   "gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros",
+   "h30-arrangement-matched-habitat-20261002-0d4e02e8-nan",
+   "r7-nms3-dem10-scarp_0c9199f14e62",
+   "r7-nms3-dem10-scarp_0c9199f14e62_allfinite",
+   "H25-ctx-ridge-20260927T232947704150Z-6452ae1d00",
+   "dilcond-oof-v1-20261003-47629f496133-nan",
+   "pindrop-v4-nodes-20260925T152420Z-f347b70daa",
+   "h6-physics-dotted-80k-20261005T055000Z-0bef9211631c",
+   "pindrop-v4-ridge-20260925T152422Z-4e03fc9705",
+   "gems66-lidar03-cvretrain-reliefdecile-37654dots-20261020T190152Z-zeros",
+   "gemsdoe85-hjcd-ventbridge-submod-zeros",
+   "h53-twostage-20261008T040951Z-9a0b32c871",
+   "h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan",
+   "h45-eulerdepthreadcluster-20261006-f28e5cff6826-zeros",
+   "h18-3a-topo-geophys-x-complexity-prior-20260930-c502dfab-nan",
+   "gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros",
+   "gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros",
+   "h20-dem10-scarp-thin-20260927T155223039488Z-ffc91a1686",
+   "20261001_r13-lattice-s5_v2_nan-outside",
+   "h97b-candidate",
+   "r12-scarp-rad-concordance-23e807e2de9f-zeros",
+   "pindrop-v4-discovery-20260925T152423Z-37f9d5b855",
+   "gems-tso1-20260929T005627Z-conj_alteration_mag",
+   "h34-scatter-q50-arr-matched-20261004T223317Z",
+   "h59-sharpened-scarp-scatter-90k-20261007T171954Z-allfinite",
+   "D-step-3p0-07pct-tipProt-20261005-ecfbf59e2b48-zero",
+   "h61o-vardepth-none-40000dots-20261011T160711Z-28d4fac611ea-zeros-zeros",
+   "gems90-cnc-35000dots-20261024T084324Z",
+   "h23-b-dti-optimal-emission-10pct-20261002-86176698-nan",
+   "h46-twostageAB_20261006T160000Z_b0cfe956-zeros",
+   "gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros",
+   "gems71-hydro-conduit-38800-20261020T120000Z-zeros",
+   "wormsurv-filter-20261003-921f10960d6e-zeros",
+   "sgmc-off-catalogue-44k-20261003-c8dcd780e3fd-nan",
+   "gemsdoe72-h72-1-sgmc-offcatalogue-20261020T195456Z-6e6525e5-zeros",
+   "h16-continuation-20260927T065521077735Z-3431b83c7c",
+   "xfit-c0-habitat-20261003-ca879db0089a-zeros",
+   "h60-lidarscarp-s2p0-20261007-nanoutside",
+   "sup01-hgb21-sep40-n40000-20261006-bc2e4e9a8d6f-nan",
+   "h35-06-aaa86efb25-20261004T225420098147Z-candidate",
+   "h18-4-usgs-geologic-map-faults-gap-20260930-aef8f42c-nan",
+   "xfit-h41-union-qfaults-20261003-9edb34b99e3a-zeros",
+   "h73-chi-coherent-corridor-12000-20261011T195818Z-zeros",
+   "gems-submission-20260926T163915Z-237f0063",
+   "h40-e-disc-h40e-30k-zeros",
+   "gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros",
+   "H19-C_20260930T212401Z_c11e495e",
+   "gems6_hgb88-topk03_33cec71ff0",
+   "h42-submission-primary",
+   "gems-structural-area06-v1",
+   "17GEMSDOE_F-ensemble-2pct_20260930T050626Z",
+   "h8-tiprelay-ridgeconcord-pr2-n80000-20261009-49bec522-zeros",
+   "gems84-h84-kthm-tworegime-58000px-20261022T235900Z-zeros",
+   "repo-c0-habitat-emission-20261003-a4d439b07426-nan",
+   "gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros",
+   "gems79-tilt-ring-100000dots-20261022T212135Z-50a5d7498c71-zeros"
+  ],
+  [
+   "gemsdoe74-triregime-radon-piedmont-37654-20261021T051000Z-zeros"
+  ],
+  [
+   "h56-final-dotted-ridge-d2p8-20261009T190421Z"
+  ],
+  [
+   "xscale-worm-persistence-20261006T000541Z-nan"
+  ],
+  [
+   "h87-h87-cmgep-20261022T060000Z-8f394f43"
+  ],
+  [
+   "h59j-coherence-consensus-dotted-20261011T043000Z"
+  ],
+  [
+   "h54c-manifest-edge-20261009T025732Z-73454bc5"
+  ],
+  [
+   "gems68-autoctx-s3-strands-35000dots-20261020T210000Z-849a0f04-nan",
+   "gems68-autoctx-s3-strands-35000dots-20261020T210000Z-849a0f04-zeros"
+  ],
+  [
+   "sar-em-propensity-half-20261011T223500Z-5e4660cd-zeros"
+  ],
+  [
+   "h8-euler-lineament-depthcluster-20261006-785c4f5d5ce1-hard",
+   "h8-euler-lineament-depthcluster-20261006-785c4f5d5ce1"
+  ],
+  [
+   "h64-lidar-scarp-cv-20261011T220000Z"
+  ],
+  [
+   "h67a-orientip-lane-29447dots-20261012T021226Z-allfinite"
+  ],
+  [
+   "tensor_full-n16000-sep3-20261009T211747Z-nan"
+  ],
+  [
+   "gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros"
+  ],
+  [
+   "h57r-joint-strata-38000dots-20261010T214547Z-00cf5b2066f1-zeros"
+  ],
+  [
+   "ml-binary-ridge-20261012T000000Z"
+  ],
+  [
+   "2314b599"
+  ],
+  [
+   "h51-km-faultzone-20261006-zeros"
+  ],
+  [
+   "gems69-joint-relayramp-pullapart-38669-20261020T201504Z-f29b6df5"
+  ],
+  [
+   "GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f"
+  ],
+  [
+   "h61a-basement-step-20000dots-20261011T012029Z-eb2ae4bb024b-zeros"
+  ],
+  [
+   "datum-lahontan-strain-gauge-defensible-440dots-zeros"
+  ]
+ ]
+}

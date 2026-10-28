@@ -4,7 +4,7 @@
  "tif": "docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif",
  "zip": "docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.zip",
  "sha256": "e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9",
- "zip_sha256": "1a7e648c404db23dd1a9a3704d0b8a94f7903af4c49369a0da85014af39f56e3",
+ "zip_sha256": "1548682a97734345f5d82d63389464a3c96a1e767eda7f09d2a24402d4c74e8a",
  "format_checks": {
   "single_band_float32": true,
   "grid_matches_sample": true,

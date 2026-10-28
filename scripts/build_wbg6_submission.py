@@ -178,8 +178,13 @@ def main() -> int:
         dst.write(values, 1)
         dst.set_band_description(1, "predicted_new_fault_probability")
     zp = args.out_dir / f"{args.name}.zip"
-    with zipfile.ZipFile(zp, "w", compression=zipfile.ZIP_DEFLATED) as z:
-        z.write(tif, arcname=tif.name)
+    # Fixed member timestamp: a zip embeds wall-clock mtime, which would make the
+    # artefact differ byte-for-byte on every rebuild and break the receipt chain.
+    info = zipfile.ZipInfo(tif.name, date_time=(2026, 10, 28, 0, 0, 0))
+    info.compress_type = zipfile.ZIP_DEFLATED
+    info.external_attr = 0o644 << 16
+    with zipfile.ZipFile(zp, "w") as z:
+        z.writestr(info, tif.read_bytes())
 
     with rasterio.open(tif) as src:
         back = src.read(1)

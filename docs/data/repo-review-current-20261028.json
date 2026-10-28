@@ -38,6 +38,7 @@
     "pytest": "232 passed, 15 Rasterio pending-deprecation warnings",
     "ci_ruff": "passed: ruff check scripts src tests --select E9,F --exclude test_template_evaluator.py",
     "git_diff_check": "passed",
+    "headless_browser": "passed all 22 desktop/mobile page checks, download identity hashes and filtering checks",
     "readiness": "BLOCKED_INPUTS; training_features.tif, labels.tif, sample_submission.tif absent"
   }
 }

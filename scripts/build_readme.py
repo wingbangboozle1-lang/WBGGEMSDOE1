@@ -7,60 +7,19 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def wbg6_readme_block():
-    """Top-of-README decision block for WBG-6, generated from its receipts.
+    """Fail-closed top-of-README status under the active literal 70% rule."""
+    audit = json.loads((ROOT / "evidence/wbg6_submission_audit.json").read_text())
+    tif = Path(audit["tif"]).name
+    overlap = audit["duplicate_screen"]["max_forward_overlap_3px"]
+    return f"""## ⛔ SUBMISSION STATUS: DO NOT SUBMIT ANY CURRENT TIFF
 
-    Refuses to advertise a submit-ready file unless the audit gates passed.
-    """
-    w5 = json.loads((ROOT / "evidence/wbg6_run_card.json").read_text())
-    est = w5["holdout"]["model_estimate"]
-    floor = w5["holdout"]["null_floor"]
-    reg = w5["registry"]
-    model = json.loads((ROOT / "evidence/wbg6_score_model.json").read_text())
-    decisive = ["format_pass", "not_a_byte_copy", "surface_rho_below_0.90",
-                "never_on_catalogue", "not_dense_over_budget"]
-    if not all(w5["validator"]["all_gates"][k] for k in decisive):
-        raise ValueError("WBG-6 gate failed; refusing to publish a submit block")
-    tif = Path(w5["raster"]["path"]).name
-    zp = tif.replace(".tif", ".zip")
-    return f"""## ✅ DOWNLOAD & SUBMIT: YES — WBG-6 `{w5["submission_name"]}`
+The historical WBG-6 approval is superseded: its archived maximum 3-pixel registry overlap is {overlap:.4%}, exceeding the active 70% stop threshold. Its 0.247 value is a MODEL-ESTIMATE, not HOLDOUT-DTI or organizer-confirmed. **Research download only:** [`{tif}`](docs/downloads/{tif}). Do not upload. See [current review](docs/repo-review-current-20261028.md), [Focus-9 site comparison](docs/executive-summary.html), and [the standing brief](PROMPT.md).
 
-**[WBG-6 executive summary](docs/wbg6/index.html)** ·
-**[How to submit, step by step](docs/wbg6/how-to-submit.html)** ·
-**[Run card](evidence/wbg6_run_card.json)**
+Core values: **Maximize P(Win)** and **Own the Outcome**. Read `PROMPT.md` at the start of every working session.
 
-| | |
-|---|---|
-| **File to download** | [`{tif}`](docs/downloads/{tif}) · [one-TIFF ZIP](docs/downloads/{zp}) |
-| **SHA-256** | `{w5["raster"]["sha256"]}` |
-| **Estimated score** | **{est["central"]:.3f}** — MODEL-ESTIMATE, range {est["low"]:.3f}–{est["high"]:.3f}; no-localisation NULL-FLOOR {floor["dti"]:.4f}. Never ORGANIZER-CONFIRMED. |
-| **Unique?** | **Yes.** No byte copy of any of the {reg["compared"]} scored rasters; max surface |Spearman| {abs(reg["max_abs_surface_spearman"]):.4f}; overlap lift {reg["max_overlap_lift"]:.2f}x over a density-matched independent field. |
-| **Format** | single-band float32, EPSG:32611, 3730x3292, 100 m, all finite, values in [0,1], zero outside the footprint, {w5["raster"]["dots_on_catalogue"]} dots on the catalogue. |
-| **Name / note ({w5["submission_note_length"]} chars)** | `{w5["submission_name"]}` / *{w5["submission_note"]}* |
-
-> **Honest ceiling.** {est["central"]:.3f} is statistically indistinguishable from the best nine-site
-> historical value (0.2778): near-identical rasters in the owner's own history differ by up to 0.086.
-> The public leaderboard leader is **0.4544** (observed 2026-10-28). This file is a legitimate, unique,
-> format-valid entry; it is **not** a top-20 contender. Section 2 of the executive summary states exactly
-> what reaching 0.33-0.45 requires and which download is blocked in this environment.
-
-**What this session measured.** (1) The size of the hidden private label set is *measured*, not guessed:
-the one historical submission with a provably uniform layout (a 5 px lattice, reported 0.0904) pins
-**K ≈ {w5["hidden_truth_calibration"]["K_star_cells"]:,} truth cells**, and an ensemble of random
-catalogue-like fault sets reproduces its score to within 0.0002. Against that null a raster with no
-localisation skill scores {floor["dti"]:.4f}; the 0.2778 file scores 6.5x that, so localisation precision,
-not dot geometry, is what the leaderboard measures. (2) The repo's shared hide-and-recover holdout
-**fails external validation** as a score predictor (Spearman 0.144, p=0.12, n=118) and is no longer
-reported as a decision number. (3) The 118 scored rasters are only **22 independent families**; geometry
-descriptors do not generalise across families (leave-one-family-out R2 {model["r2_grouped"]:.3f}).
-(4) The literal ">70% within 3 px" registry gate is **degenerate** - a 200k-dot lattice puts ~99.7% of the
-map within 3 px of a dot, so it flags every possible submission - and is replaced by a density-matched
-overlap lift. (5) Kernel-disjoint emission at 5 px separation gives 9.371 distinct coverage per dot versus 8.048 for the
-0.2778 file (16% more reach per dot), and the file carries 20% fewer dots, i.e. 7,654 fewer
-false-positive candidates at the same distance profile.
-
+> Historical approval claims and frozen receipts below are retained for provenance only; this no-go notice supersedes them.
 
 """
-
 
 def main():
     card = json.loads((ROOT / "registry/run_card.json").read_text())
@@ -116,9 +75,9 @@ def main():
     w5_bench = w5["benchmark"]["dti"]
     header = wbg6_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
 
-**[28 October review of the earlier lanes: no submission approved there](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · **the one file cleared to submit is WBG-6, above**
+**[28 October review of earlier lanes](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · No file is cleared; WBG-6 fails the active literal overlap gate.
 
-**[Detailed repository review](docs/repo-review-20261028.md)** · [Earlier repository review and ranked future hypotheses](docs/repo-review-20261027-session.md) ·
+**[Current repository review (2026-10-28)](docs/repo-review-current-20261028.md)** · [Detailed repository review](docs/repo-review-20261028.md) · [Earlier repository review and ranked future hypotheses](docs/repo-review-20261027-session.md) ·
 [Session JSON card](evidence/repo_review_session_20261027.json) · [Current provenance feed](docs/data/feed.json)
 
 **Freshness check:** at `{feed.get("generated_utc", "timestamp unavailable")}`, {changed_head_count}/{monitored_head_count} monitored focus-site GitHub heads differed from the frozen raster audit. This is a head check, not a current raster/score audit. The official leaderboard status is `{feed.get("leaderboard_status", "unknown")}`; the last retained public observation is {leaderboard_value_text} ({leaderboard_date}), not a score for any project TIFF.

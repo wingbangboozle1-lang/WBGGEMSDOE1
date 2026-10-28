@@ -1,53 +1,16 @@
 ## ⛔ SUBMISSION STATUS: DO NOT SUBMIT ANY CURRENT TIFF
 
-No artifact in this checkout satisfies the active parallel-run protocol. In particular, the historical WBG-6 “YES” approval is superseded: its recorded max 3-pixel registry overlap is 0.9967667 (99.6767%), exceeding the explicit 70% stop threshold. Its reported 0.247 is a model estimate, not HOLDOUT-DTI or organizer-confirmed, and the local holdout has been recorded as failing external score prediction. The former approval must not be relied on.
+The historical WBG-6 approval is superseded: its archived maximum 3-pixel registry overlap is 99.6767%, exceeding the active 70% stop threshold. Its 0.247 value is a MODEL-ESTIMATE, not HOLDOUT-DTI or organizer-confirmed. **Research download only:** [`wbg6-qmh-kdisjoint-30000-20261028.tif`](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif). Do not upload. See [current review](docs/repo-review-current-20261028.md), [Focus-9 site comparison](docs/executive-summary.html), and [the standing brief](PROMPT.md).
 
-**Download available only for research:** [`wbg6-qmh-kdisjoint-30000-20261028.tif`](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif). Do not upload it. No new TIFF was generated in this review because the core training inputs are absent, the active lane is not authorized, and current uniqueness/effectiveness gates cannot be verified. See [current repo review](docs/repo-review-current-20261028.md), [Focus-9 site comparison](docs/executive-summary.html), and [full working prompt](PROMPT.md).
+Core values: **Maximize P(Win)** and **Own the Outcome**. Read `PROMPT.md` at the start of every working session.
 
-> **Governance correction:** Older sections and frozen receipts below preserve historical claims as provenance; where they say WBG-6 is approved/submittable, this notice supersedes that status. Do not treat a format pass or model estimate as a submission authorization.
-
-# WBG GEMS — evidence-first fault mapping
-
-Core values: **Maximize P(Win)** and **Own the Outcome**. Read [`PROMPT.md`](PROMPT.md) at the start of every working session; it records the goal, lane, validation rules, reporting labels and experiment budget.
-
-## Historical WBG-6 artifact (research download only)
-
-**[WBG-6 executive summary](docs/wbg6/index.html)** ·
-**[How to submit, step by step](docs/wbg6/how-to-submit.html)** ·
-**[Run card](evidence/wbg6_run_card.json)**
-
-| | |
-|---|---|
-| **File to download** | [`wbg6-qmh-kdisjoint-30000-20261028.tif`](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif) · [one-TIFF ZIP](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.zip) |
-| **SHA-256** | `e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9` |
-| **Estimated score** | **0.247** — MODEL-ESTIMATE, range 0.142–0.286; no-localisation NULL-FLOOR 0.0425. Never ORGANIZER-CONFIRMED. |
-| **Unique?** | **Not cleared.** Exact-byte novelty was recorded against a limited 118-raster inventory, but literal 3 px overlap is 99.6767% against a registry raster (>70% stop threshold); current global uniqueness is not established. |
-| **Format** | single-band float32, EPSG:32611, 3730x3292, 100 m, all finite, values in [0,1], zero outside the footprint, 0 dots on the catalogue. |
-| **Name / note (71 chars)** | `wbg6-qmh-kdisjoint-30000-20261028` / *WBG-6 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue* |
-
-> **Score governance.** The archived 0.247 is a MODEL-ESTIMATE from an unvalidated forward model; it is not a HOLDOUT-DTI, organizer receipt, or defensible current leaderboard estimate. The file is format-valid by an archived local report but fails the active literal uniqueness stop rule, so it is not eligible for submission. The previously retained public-leaderboard observation is stale and is not asserted as current.
-
-**What this session measured.** (1) The size of the hidden private label set is *measured*, not guessed:
-the one historical submission with a provably uniform layout (a 5 px lattice, reported 0.0904) pins
-**K ≈ 12,395 truth cells**, and an ensemble of random
-catalogue-like fault sets reproduces its score to within 0.0002. Against that null a raster with no
-localisation skill scores 0.0425; the 0.2778 file scores 6.5x that, so localisation precision,
-not dot geometry, is what the leaderboard measures. (2) The repo's shared hide-and-recover holdout
-**fails external validation** as a score predictor (Spearman 0.144, p=0.12, n=118) and is no longer
-reported as a decision number. (3) The 118 scored rasters are only **22 independent families**; geometry
-descriptors do not generalise across families (leave-one-family-out R2 -0.847).
-(4) The literal ">70% within 3 px" registry gate is **degenerate** - a 200k-dot lattice puts ~99.7% of the
-map within 3 px of a dot, so it flags every possible submission - and is replaced by a density-matched
-overlap lift. (5) Kernel-disjoint emission at 5 px separation gives 9.371 distinct coverage per dot versus 8.048 for the
-0.2778 file (16% more reach per dot), and the file carries 20% fewer dots, i.e. 7,654 fewer
-false-positive candidates at the same distance profile.
-
+> Historical approval claims and frozen receipts below are retained for provenance only; this no-go notice supersedes them.
 
 # WBG GEMS — evidence-first fault mapping
 
-**[28 October review of earlier lanes: no submission approved](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · WBG-6 is also blocked by the active literal overlap gate; no file is cleared.
+**[28 October review of earlier lanes](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · No file is cleared; WBG-6 fails the active literal overlap gate.
 
-**[Detailed repository review](docs/repo-review-20261028.md)** · [Earlier repository review and ranked future hypotheses](docs/repo-review-20261027-session.md) ·
+**[Current repository review (2026-10-28)](docs/repo-review-current-20261028.md)** · [Detailed repository review](docs/repo-review-20261028.md) · [Earlier repository review and ranked future hypotheses](docs/repo-review-20261027-session.md) ·
 [Session JSON card](evidence/repo_review_session_20261027.json) · [Current provenance feed](docs/data/feed.json)
 
 **Freshness check:** at `2026-10-28T16:19:05+00:00`, 9/9 monitored focus-site GitHub heads differed from the frozen raster audit. This is a head check, not a current raster/score audit. The official leaderboard status is `retained_observation_not_refreshed`; the last retained public observation is 0.4544 (2026-10-27), not a score for any project TIFF.

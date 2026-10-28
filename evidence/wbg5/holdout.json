@@ -1,0 +1,158 @@
+{
+ "pureHGB": {
+  "label": "HOLDOUT-DTI",
+  "evaluator_version": "gems-segment-pooled-v1",
+  "TP_w": 5397.71333321802,
+  "FP_w": 101314.28160562334,
+  "FN_w": 55590.286666781976,
+  "n_truth": 60988.0,
+  "n_emitted": 114565.0,
+  "dti": 0.07696417954389256,
+  "n_withheld_positive_pixels": 60988,
+  "n_unique_withheld_components": 3199,
+  "ci95": {
+   "level": 0.95,
+   "interval": [
+    0.06528057992604416,
+    0.08985839400429008
+   ],
+   "method": "percentile spatial-block bootstrap of pooled TPw/FPw/FNw",
+   "block_pixels": 100,
+   "block_size_m": 10000,
+   "n_blocks": 583,
+   "resamples": 999,
+   "seed": 20261025,
+   "limitation": "Internal-validation uncertainty; geologic structures may cross blocks. Not a hidden-score interval."
+  },
+  "folds": [
+   {
+    "fold": "NW",
+    "TP_w": 1112.278253674288,
+    "FP_w": 25703.19606516905,
+    "FN_w": 9052.721746325711,
+    "n_truth": 10165,
+    "n_emitted": 28589,
+    "dti": 0.08242092885558484,
+    "coverage": 0.10942235648541937
+   },
+   {
+    "fold": "NE_LidarGapHeavy",
+    "TP_w": 1536.9823931705141,
+    "FP_w": 24462.669033789804,
+    "FN_w": 10974.017606829486,
+    "n_truth": 12511,
+    "n_emitted": 28540,
+    "dti": 0.10105921824629074,
+    "coverage": 0.12285048302857599
+   },
+   {
+    "fold": "SW",
+    "TP_w": 1062.69518938738,
+    "FP_w": 25587.050813820046,
+    "FN_w": 19471.30481061262,
+    "n_truth": 20534,
+    "n_emitted": 28003,
+    "dti": 0.04884349413530534,
+    "coverage": 0.05175295555602318
+   },
+   {
+    "fold": "SE",
+    "TP_w": 1685.7574969858383,
+    "FP_w": 25561.36569284444,
+    "FN_w": 16092.242503014162,
+    "n_truth": 17778,
+    "n_emitted": 29433,
+    "dti": 0.08569400795307038,
+    "coverage": 0.09482267392202938
+   }
+  ],
+  "protocol": {
+   "aggregation": "pooled TPw/FPw/FNw, not mean fold DTI",
+   "buffer_m": 1500,
+   "whole_components_hidden_everywhere": true,
+   "visible_fault_mask": "pixel-exact, applied before credit and FP calculation",
+   "catalogue_features": "must be constructed from fold.visible only",
+   "alpha": 0.2,
+   "beta": 0.8,
+   "triangular_kernel_radius_m": 300
+  }
+ },
+ "blend75": {
+  "label": "HOLDOUT-DTI",
+  "evaluator_version": "gems-segment-pooled-v1",
+  "TP_w": 4451.317288420417,
+  "FP_w": 104167.93451723544,
+  "FN_w": 56536.682711579575,
+  "n_truth": 60988.0,
+  "n_emitted": 114621.0,
+  "dti": 0.06312649238440685,
+  "n_withheld_positive_pixels": 60988,
+  "n_unique_withheld_components": 3199,
+  "ci95": {
+   "level": 0.95,
+   "interval": [
+    0.05222329938109478,
+    0.07481583375113925
+   ],
+   "method": "percentile spatial-block bootstrap of pooled TPw/FPw/FNw",
+   "block_pixels": 100,
+   "block_size_m": 10000,
+   "n_blocks": 583,
+   "resamples": 999,
+   "seed": 20261025,
+   "limitation": "Internal-validation uncertainty; geologic structures may cross blocks. Not a hidden-score interval."
+  },
+  "folds": [
+   {
+    "fold": "NW",
+    "TP_w": 908.9426327438191,
+    "FP_w": 26254.97851750665,
+    "FN_w": 9256.05736725618,
+    "n_truth": 10165,
+    "n_emitted": 28438,
+    "dti": 0.06700752605585394,
+    "coverage": 0.08941885221286956
+   },
+   {
+    "fold": "NE_LidarGapHeavy",
+    "TP_w": 1232.6124185351782,
+    "FP_w": 26697.59211336607,
+    "FN_w": 11278.387581464822,
+    "n_truth": 12511,
+    "n_emitted": 29864,
+    "dti": 0.07903975589920771,
+    "coverage": 0.09852229386421375
+   },
+   {
+    "fold": "SW",
+    "TP_w": 743.0044227854415,
+    "FP_w": 25734.81556603365,
+    "FN_w": 19790.99557721456,
+    "n_truth": 20534,
+    "n_emitted": 27176,
+    "dti": 0.03420395410356193,
+    "coverage": 0.036184105521838976
+   },
+   {
+    "fold": "SE",
+    "TP_w": 1566.757814355978,
+    "FP_w": 25480.54832032907,
+    "FN_w": 16211.242185644021,
+    "n_truth": 17778,
+    "n_emitted": 29143,
+    "dti": 0.07980689126908853,
+    "coverage": 0.0881290254447057
+   }
+  ],
+  "protocol": {
+   "aggregation": "pooled TPw/FPw/FNw, not mean fold DTI",
+   "buffer_m": 1500,
+   "whole_components_hidden_everywhere": true,
+   "visible_fault_mask": "pixel-exact, applied before credit and FP calculation",
+   "catalogue_features": "must be constructed from fold.visible only",
+   "alpha": 0.2,
+   "beta": 0.8,
+   "triangular_kernel_radius_m": 300
+  }
+ }
+}

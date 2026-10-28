@@ -1,0 +1,214 @@
+{
+  "schema": "wbg5-run-card-v1",
+  "generated_utc": "2026-10-28T17:08:54+00:00",
+  "lane_id": "WBG-5",
+  "method_code": "DCOC-BLEND75",
+  "hypothesis": "Dip-offset cross-gradient coherence: blind normal-fault traces are where the conductivity-surface gradient is co-linear with the potential-field gradient at the dip-projected offset.",
+  "mechanism": "Max over (dy,dx) in [-4..4]^2 of the gradient dot product between cond_surf and (rtp+iso_grav_anom_hg), plus multi-scale conductivity-edge persistence; supervised HGB on 46 channels; emission surface = 0.25*HGB + 0.75*DCOC; shared submodular greedy_allocate.",
+  "named_non_fault_mimic": "Buried Tertiary dike swarms, lithologic contacts, survey seams, ephemeral fluvial incision (scale-persistence de-contends the last).",
+  "submission_name": "wbggemsdoe1-wbg5-dcoc-blend75-submod-20261028T170845Z-zeros",
+  "submission_note": "WBG-5 DCOC dip-offset cross-gradient coherence blend75 submodular zeros no NaN",
+  "raster_sha256": "80a87d9f6c741d3aefb558e7fc4794c2ddf058d5cb1b62b3aed4266fe984c81e",
+  "zip_sha256": "acc9bed787dd09a9ce02d9e0888861f637dcac76f08c1baf1c316d48ab4ddb79",
+  "dots": 28975,
+  "validator": {
+    "format_valid": true,
+    "portal_safe_local_policy": true,
+    "checks": {
+      "official_template_grid_and_footprint": {
+        "pass": true,
+        "detail": "Template must be the pinned organizer grid, not just a self-consistent arbitrary raster",
+        "hard_requirement": true
+      },
+      "single_band": {
+        "pass": true,
+        "detail": "count=1",
+        "hard_requirement": true
+      },
+      "dtype_float32": {
+        "pass": true,
+        "detail": "dtypes=('float32',)",
+        "hard_requirement": true
+      },
+      "crs_epsg_32611": {
+        "pass": true,
+        "detail": "EPSG:32611",
+        "hard_requirement": true
+      },
+      "shape_matches_template": {
+        "pass": true,
+        "detail": "(3730, 3292) vs (3730, 3292)",
+        "hard_requirement": true
+      },
+      "geotransform_matches_template": {
+        "pass": true,
+        "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+        "hard_requirement": true
+      },
+      "footprint_all_finite": {
+        "pass": true,
+        "detail": "0 NaN/Inf inside the 5,167,373-pixel footprint",
+        "hard_requirement": true
+      },
+      "footprint_range_0_1": {
+        "pass": true,
+        "detail": "finite=5167373/5167373; range=0.0 to 1.0",
+        "hard_requirement": true
+      },
+      "outside_is_nan_official_text": {
+        "pass": false,
+        "detail": "0 of 7,111,787 outside pixels are NaN",
+        "hard_requirement": false
+      },
+      "nodata_tag_is_nan": {
+        "pass": false,
+        "detail": "nodata=None",
+        "hard_requirement": false
+      },
+      "variant_nan_aware_whole_array": {
+        "pass": true,
+        "detail": "np.nanmin/np.nanmax over the whole array",
+        "hard_requirement": true
+      },
+      "variant_masked_read": {
+        "pass": true,
+        "detail": "rasterio read(masked=True).compressed()",
+        "hard_requirement": true
+      },
+      "variant_strict_whole_array_no_nan_allowed": {
+        "pass": true,
+        "detail": "((a>=0)&(a<=1)).all() over the whole array - fails for ANY NaN, including the official sample's NaN outside",
+        "hard_requirement": false
+      },
+      "profile_matches_official_sample": {
+        "pass": false,
+        "detail": "driver/dtype/nodata/size/crs/transform equal to template; compress=deflate (template lzw)",
+        "hard_requirement": false
+      }
+    }
+  },
+  "registry": {
+    "gate": "gems57 literal per-raster (Euclidean 3px); rho<=0.90; overlap<=0.70",
+    "n_comparators": 16,
+    "rows": [
+      {
+        "submission": "GEMSDOE24",
+        "forward_3px_overlap": 0.4383088869715272,
+        "spearman_subsample": 0.02524020370620862,
+        "their_dots": 60069
+      },
+      {
+        "submission": "GEMSDOE25",
+        "forward_3px_overlap": 0.4207765314926661,
+        "spearman_subsample": 0.019120079619754794,
+        "their_dots": 44090
+      },
+      {
+        "submission": "GEMSDOE27",
+        "forward_3px_overlap": 0.44234685073339086,
+        "spearman_subsample": 0.02490491353744662,
+        "their_dots": 61328
+      },
+      {
+        "submission": "GEMSDOE28",
+        "forward_3px_overlap": 0.3000172562553926,
+        "spearman_subsample": 0.010388857943646275,
+        "their_dots": 37660
+      },
+      {
+        "submission": "GEMSDOE30",
+        "forward_3px_overlap": 0.4207765314926661,
+        "spearman_subsample": 0.019120079619754794,
+        "their_dots": 44090
+      },
+      {
+        "submission": "GEMSDOE31",
+        "forward_3px_overlap": 0.3104055220017256,
+        "spearman_subsample": 0.010540629903913364,
+        "their_dots": 40199
+      },
+      {
+        "submission": "GEMSDOE32",
+        "forward_3px_overlap": 0.23644521138912855,
+        "spearman_subsample": 0.00380780773778781,
+        "their_dots": 37654
+      },
+      {
+        "submission": "GEMSDOE33",
+        "forward_3px_overlap": 0.34988783433994824,
+        "spearman_subsample": 0.009421027997980613,
+        "their_dots": 41865
+      },
+      {
+        "submission": "GEMSDOE36",
+        "forward_3px_overlap": 0.25559965487489217,
+        "spearman_subsample": 0.0046002184326870395,
+        "their_dots": 38854
+      },
+      {
+        "submission": "wbggemsdoe1-wbg3-exp3det-clear2-37",
+        "forward_3px_overlap": 0.6329939603106126,
+        "spearman_subsample": 0.02130621212472053,
+        "their_dots": 37654
+      },
+      {
+        "submission": "wbggemsdoe1-wbg4-csjf1-edti-35135-",
+        "forward_3px_overlap": 0.21943054357204486,
+        "spearman_subsample": 0.010179352841332284,
+        "their_dots": 35135
+      },
+      {
+        "submission": "wbggemsdoe1-wbg3-spipmr-wcs-36800-",
+        "forward_3px_overlap": 0.17242450388265745,
+        "spearman_subsample": 0.0077425174208558,
+        "their_dots": 36800
+      },
+      {
+        "submission": "wbg2-offcatalogue-density-36k-2026",
+        "forward_3px_overlap": 0.1912683347713546,
+        "spearman_subsample": 0.0059033135540892505,
+        "their_dots": 36000
+      },
+      {
+        "submission": "wbggemsdoe1-wbg-s2-exp3-mksf-vierb",
+        "forward_3px_overlap": 0.21201035375323554,
+        "spearman_subsample": 0.0076127536856057205,
+        "their_dots": 37654
+      },
+      {
+        "submission": "wbggemsdoe1-wbg-h1-dpgf1-exp-3-202",
+        "forward_3px_overlap": 0.08479723899913719,
+        "spearman_subsample": 0.002904752396787705,
+        "their_dots": 37654
+      },
+      {
+        "submission": "gemsdoe32-h33-h33-2-b2-20261004T22",
+        "forward_3px_overlap": 0.23644521138912855,
+        "spearman_subsample": 0.00380780773778781,
+        "their_dots": 37654
+      }
+    ],
+    "peer_champion_max_overlap": 0.44234685073339086,
+    "all_comparator_max_overlap": 0.6329939603106126,
+    "max_abs_spearman": 0.02524020370620862,
+    "unique_vs_peer_champions": true,
+    "unique_vs_all_checked": true
+  },
+  "k_truth_estimate": 12366.0,
+  "k_truth_label": "INFERRED private-truth size; not a measured fact",
+  "wbg4_benchmark_holdout_dti": 0.165424,
+  "elapsed_s": 31.673943758010864,
+  "artifact_file": "wbggemsdoe1-wbg5-dcoc-blend75-submod-20261028T170845Z-zeros.tif",
+  "holdout_summary": {
+    "measured": true,
+    "dti": 0.06312649238440685,
+    "ci95": [
+      0.05222329938109478,
+      0.07481583375113925
+    ],
+    "evaluator": "gems-segment-pooled-v1",
+    "n_withheld_positives": 60988,
+    "purehgb_control_dti": 0.07696417954389256,
+    "note": "blend75 (w=0.75 DCOC) is the submitted field; pureHGB control is more efficacious but fails the all-comparator uniqueness gate."
+  }
+}

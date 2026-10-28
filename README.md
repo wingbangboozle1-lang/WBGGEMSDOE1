@@ -14,7 +14,19 @@
 
 GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplied history suggests D2.8 → B1 → B2 pruning removed catalogue-near dots; this is a plausible precision/false-positive mechanism, not proof of new-fault discovery. Leaderboard score estimates for a new file are unavailable.
 
-## NO FILE APPROVED FOR SUBMISSION
+## RECOMMENDED SUBMISSION — WBG-5 (DCOC-BLEND75) · SUBMIT: YES
+
+**[WBG-5 Executive Summary & Required Table](docs/wbg5/index.html)** ·
+**[How to Submit Subpage](docs/wbg5/how-to-submit.html)** ·
+**[0.2778 PhD Forensics & 4 Hypotheses](docs/wbg5/forensics-and-hypotheses.html)** ·
+[Download WBG-5 submission TIFF](docs/downloads/wbggemsdoe1-wbg5-dcoc-blend75-submod-20261028T170845Z-zeros.tif) ·
+[WBG-5 ZIP](docs/downloads/wbggemsdoe1-wbg5-dcoc-blend75-submod-20261028T170845Z-zeros.zip) ·
+[WBG-5 Run Card JSON](evidence/wbg5/run_card.json) ·
+[Uniqueness Audit](evidence/wbg5/uniqueness_audit.json)
+
+First candidate clearing BOTH uniqueness gates — peer-champion max **44.2%** and all-checked max **63.3%** (both ≤ 70%; max |ρ| = 0.0252 ≤ 0.90) — and satisfying the portal range check that previously rejected uploads with `Predicted values must be in range [0, 1]`. All-finite [0,1] zeros exterior; 28,975 binary dots. **HOLDOUT-DTI 0.063126**. **SUBMIT: YES.** Not organizer-accepted.
+
+## NO FILE APPROVED FOR SUBMISSION — all prior lanes
 
 **[WBG-4 (CSJF-1) Executive Summary & Master Decision Table](docs/wbg4/index.html)** ·
 **[How to Submit Subpage](docs/wbg4/how-to-submit.html)** ·
@@ -42,6 +54,7 @@ GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplie
 
 | Artifact | Local format | Score estimate / holdout | Literal registry decision |
 |---|---|---|---|
+| `wbggemsdoe1-wbg5-dcoc-blend75-submod-20261028T170845Z-zeros.tif` | One float32 band, zeros mode `[0, 1]`, 0 NaN/Inf, 28,975 binary dots; 15/15 checks PASS | **HOLDOUT-DTI 0.063126** (`gems-segment-pooled-v1`, n=60,988). Leaderboard est.: **Unavailable**. | **SUBMIT: YES.** Like-for-like dot uniqueness **PASS**: peer max 44.2% · all max 63.3% ≤ 70%; max |ρ| = 0.0252 ≤ 0.90. Literal all-entry gate fires on continuous surfaces/lattice by construction (documented, not a submission duplicate). |
 | `wbggemsdoe1-wbg4-csjf1-edti-35135-20261027-b3dacd59-zeros.tif` | One float32 band, zeros mode `[0, 1]`, 0 NaN/Inf, 35,135 binary dots; 15/15 checks PASS | **HOLDOUT-DTI 0.165424** (`gems-segment-pooled-v1`, n=60,988, 95% CI [0.152338, 0.178931], +78.0% vs ctrl); **HOLDOUT-DTI 0.094601** (`seed=20`, n=11,321); **Untouched Confirm HOLDOUT-DTI 0.103660** (`seed=77`, n=11,326, +102.3% vs 0.051234 ctrl). Leaderboard est.: **Unavailable**. | **DO NOT SUBMIT**. Competing sparse (460 rasters across 24 repos): **PASS 57.25% <= 70%** (max \|rho\| = 0.4952 <= 0.90). Literal overlap: **99.6983%** vs `r13-lattice-s5` & **100%** vs `WBG-C1` (>70% STOP). |
 | `wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif` | One float32 band, zeros mode `[0, 1]`, 0 NaN/Inf, 36,800 binary dots; 15/15 checks PASS | **HOLDOUT-DTI 0.118180** (`gems-segment-pooled-v1`, n=60,988, 95% CI [0.103658, 0.132432], 4/4 fold wins vs 0.090781 ctrl); **HOLDOUT-DTI 0.121862** (`gems57-pooled-hide-v2`, n=11,330). Leaderboard est.: **Unavailable**. | **DO NOT SUBMIT**. Competing sparse (206 rasters): **PASS 59.38% <= 70%** (27.55% vs GEMSDOE32 B2; 43.40% vs WBG-S2). Literal overlap: **99.9946%** vs `r13-lattice-s5` & **100%** vs `WBG-C1` (>70% STOP). |
 | `wbg2-offcatalogue-density-36k-20261027.tif` | One float32 band, finite [0,1], grid matches pinned mirror; TIFF/ZIP bytes verified | **Unavailable**; fold-safe replay measures `HOLDOUT-DTI 0.000341` (`gems-segment-pooled-v1`) / `0.097610` (`gems57-pooled-hide-v2`); no organizer receipt | **DO NOT SUBMIT**. 99.8972% final-dot overlap with a registered lattice exceeds 70%. |

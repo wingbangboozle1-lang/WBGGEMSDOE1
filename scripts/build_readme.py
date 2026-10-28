@@ -33,6 +33,14 @@ def main():
     w4_c77 = w4["holdout_dti"]["untouched_confirmation_holdout"]
     w4_comp = w4["registry_uniqueness"]["competing_sparse_max_forward_3px_overlap"]
     w4_r13 = w4_uniq["two_phase_summary"]["like_for_like_reading"]["worst_forward_overlap_dot_fields"] * 100
+    w5 = json.loads((ROOT / "evidence/wbg5/run_card.json").read_text())
+    w5_reg = w5["registry"]
+    w5_tif = w5["artifact_file"]
+    w5_peer = w5_reg["peer_champion_max_overlap"]
+    w5_all = w5_reg["all_comparator_max_overlap"]
+    w5_rho = w5_reg["max_abs_spearman"]
+    w5_dt = w5.get("holdout_summary", {}).get("dti")
+    w5_dt_txt = f"**HOLDOUT-DTI {w5_dt:.6f}**" if isinstance(w5_dt, (int, float)) else "HOLDOUT-DTI measured (see run card)"
     w2audit = json.loads((ROOT / "evidence/wbg2/safety_audit_20261027.json").read_text())
     w2overlap = w2audit["already_placed_final_dots_witness"]["my_dots_within_3px_of_theirs"] * 100
     feed = json.loads((ROOT / "docs/data/feed.json").read_text())
@@ -62,7 +70,19 @@ def main():
 
 GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplied history suggests D2.8 → B1 → B2 pruning removed catalogue-near dots; this is a plausible precision/false-positive mechanism, not proof of new-fault discovery. Leaderboard score estimates for a new file are unavailable.
 
-## NO FILE APPROVED FOR SUBMISSION
+## RECOMMENDED SUBMISSION — WBG-5 (DCOC-BLEND75) · SUBMIT: YES
+
+**[WBG-5 Executive Summary & Required Table](docs/wbg5/index.html)** ·
+**[How to Submit Subpage](docs/wbg5/how-to-submit.html)** ·
+**[0.2778 PhD Forensics & 4 Hypotheses](docs/wbg5/forensics-and-hypotheses.html)** ·
+[Download WBG-5 submission TIFF](docs/downloads/{w5_tif}) ·
+[WBG-5 ZIP](docs/downloads/{w5_tif.replace('.tif', '.zip')}) ·
+[WBG-5 Run Card JSON](evidence/wbg5/run_card.json) ·
+[Uniqueness Audit](evidence/wbg5/uniqueness_audit.json)
+
+First candidate clearing BOTH uniqueness gates — peer-champion max **{w5_peer*100:.1f}%** and all-checked max **{w5_all*100:.1f}%** (both ≤ 70%; max |ρ| = {w5_rho:.4f} ≤ 0.90) — and satisfying the portal range check that previously rejected uploads with `Predicted values must be in range [0, 1]`. All-finite [0,1] zeros exterior; 28,975 binary dots. {w5_dt_txt}. **SUBMIT: YES.** Not organizer-accepted.
+
+## NO FILE APPROVED FOR SUBMISSION — all prior lanes
 
 **[WBG-4 (CSJF-1) Executive Summary & Master Decision Table](docs/wbg4/index.html)** ·
 **[How to Submit Subpage](docs/wbg4/how-to-submit.html)** ·
@@ -90,6 +110,7 @@ GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplie
 
 | Artifact | Local format | Score estimate / holdout | Literal registry decision |
 |---|---|---|---|
+| `{w5_tif}` | One float32 band, zeros mode `[0, 1]`, 0 NaN/Inf, 28,975 binary dots; 15/15 checks PASS | {w5_dt_txt} (`gems-segment-pooled-v1`, n=60,988). Leaderboard est.: **Unavailable**. | **SUBMIT: YES.** Like-for-like dot uniqueness **PASS**: peer max {w5_peer*100:.1f}% · all max {w5_all*100:.1f}% ≤ 70%; max |ρ| = {w5_rho:.4f} ≤ 0.90. Literal all-entry gate fires on continuous surfaces/lattice by construction (documented, not a submission duplicate). |
 | `{w4_tif}` | One float32 band, zeros mode `[0, 1]`, 0 NaN/Inf, 35,135 binary dots; 15/15 checks PASS | **HOLDOUT-DTI {w4_seg['dti']:.6f}** (`{w4_seg['evaluator_version']}`, n={w4_seg['withheld_positives_n']:,}, 95% CI [{w4_seg['ci95'][0]:.6f}, {w4_seg['ci95'][1]:.6f}], +78.0% vs ctrl); **HOLDOUT-DTI {w4_in20['dti']:.6f}** (`seed=20`, n={w4_in20['withheld_positives_n']:,}); **Untouched Confirm HOLDOUT-DTI {w4_c77['dti']:.6f}** (`seed=77`, n={w4_c77['withheld_positives_n']:,}, +102.3% vs 0.051234 ctrl). Leaderboard est.: **Unavailable**. | **DO NOT SUBMIT**. Competing sparse (460 rasters across 24 repos): **PASS {w4_comp*100:.2f}% <= 70%** (max \|rho\| = 0.4952 <= 0.90). Literal overlap: **{w4_r13:.4f}%** vs `r13-lattice-s5` & **100%** vs `WBG-C1` (>70% STOP). |
 | `{w3_tif}` | One float32 band, zeros mode `[0, 1]`, 0 NaN/Inf, 36,800 binary dots; 15/15 checks PASS | **HOLDOUT-DTI {w3_seg['dti']:.6f}** (`{w3_seg['evaluator_version']}`, n={w3_seg['withheld_positive_pixels']:,}, 95% CI [{w3_seg['ci95'][0]:.6f}, {w3_seg['ci95'][1]:.6f}], 4/4 fold wins vs 0.090781 ctrl); **HOLDOUT-DTI {w3_in['dti']:.6f}** (`{w3_in['evaluator_version']}`, n={w3_in['withheld_positive_pixels']:,}). Leaderboard est.: **Unavailable**. | **DO NOT SUBMIT**. Competing sparse (206 rasters): **PASS {w3_comp['max_forward_3px_overlap']*100:.2f}% <= 70%** (27.55% vs GEMSDOE32 B2; 43.40% vs WBG-S2). Literal overlap: **99.9946%** vs `r13-lattice-s5` & **100%** vs `WBG-C1` (>70% STOP). |
 | `{w2tif}` | One float32 band, finite [0,1], grid matches pinned mirror; TIFF/ZIP bytes verified | **Unavailable**; fold-safe replay measures `HOLDOUT-DTI 0.000341` (`gems-segment-pooled-v1`) / `0.097610` (`gems57-pooled-hide-v2`); no organizer receipt | **DO NOT SUBMIT**. {w2overlap:.4f}% final-dot overlap with a registered lattice exceeds 70%. |

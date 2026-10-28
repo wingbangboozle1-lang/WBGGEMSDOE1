@@ -207,9 +207,18 @@ def focus9_banner():
     return f'''<div class="alert" role="note"><p><strong>Focus-9 research file: DOWNLOAD YES · SUBMIT NO.</strong> <code>{tif}</code> is a reproducible uniform-random null, not a geological model; no HOLDOUT-DTI was measured. Local format checks pass, but the fixed 36,800-dot r13 lattice-overlap lower bound is <strong>{bound*100:.3f}% (&gt;70%)</strong>; competing-sparse overlap is unmeasured. <a href="focus9-executive-summary.html">Open Focus-9 table and forensics →</a> · <a href="downloads/{tif}" download>Download research TIFF ↓</a> · <a href="downloads/{tif.replace('.tif', '.zip')}" download>ZIP ↓</a></p></div>'''
 
 
+def wbg5_banner():
+    try:
+        rc = json.loads((ROOT / "evidence/wbg5/run_card.json").read_text())
+    except Exception:
+        return ""
+    reg = rc.get("registry", {})
+    return f'''<div class="alert" role="note"><p><strong>NEW LANE / WBG-5 (DCOC-BLEND75): DOWNLOAD YES · SUBMIT YES.</strong> 28,975 all-finite [0,1] zeros-mode dots clear BOTH uniqueness gates — peer-champion max {reg.get('peer_champion_max_overlap', 0) * 100:.1f}% and all-checked max {reg.get('all_comparator_max_overlap', 0) * 100:.1f}% (both &le; 70%; max |&rho;| = {reg.get('max_abs_spearman', 0):.4f}) — and satisfy the portal range check that failed before. <a href="wbg5/index.html">WBG-5 executive summary &amp; required table →</a> · <a href="wbg5/how-to-submit.html">How to submit →</a> · <a href="downloads/{escape(rc.get('artifact_file', ''))}" download>Download submission TIFF ↓</a></p></div>'''
+
+
 def home(card, receipt, audit, feed):
     score = card["holdout"]
-    return focus9_banner() + wbg2_banner() + wbg4_banner() + wbg_s2_banner() + wbg3_banner() + f'''<section class="hero"><div><p class="eyebrow">Evidence first. Every submission.</p><h1>A fresh TIFF.<br>An <em>honest decision.</em></h1><p class="lead">An auditable research desk for the GEMS fault-mapping challenge. Nine sites compared, separate research lanes recorded, and no weekly slot spent by this integration.</p><div class="actions">{link('executive-summary.html', 'Read executive summary  →', 'button secondary')}{link('evidence.html', 'Inspect the evidence ↗', 'text-link')}</div><p class="micro" style="margin-top:20px">C1 frozen screen: 26 October 2026 · Verdict <strong>NEGATIVE</strong><br>The experiment did not beat its control. “Format valid” never means “ready to submit.”</p></div>{download_card(card, receipt)}</section>
+    return wbg5_banner() + focus9_banner() + wbg2_banner() + wbg4_banner() + wbg_s2_banner() + wbg3_banner() + f'''<section class="hero"><div><p class="eyebrow">Evidence first. Every submission.</p><h1>A fresh TIFF.<br>An <em>honest decision.</em></h1><p class="lead">An auditable research desk for the GEMS fault-mapping challenge. Nine sites compared, separate research lanes recorded, and no weekly slot spent by this integration.</p><div class="actions">{link('executive-summary.html', 'Read executive summary  →', 'button secondary')}{link('evidence.html', 'Inspect the evidence ↗', 'text-link')}</div><p class="micro" style="margin-top:20px">C1 frozen screen: 26 October 2026 · Verdict <strong>NEGATIVE</strong><br>The experiment did not beat its control. “Format valid” never means “ready to submit.”</p></div>{download_card(card, receipt)}</section>
 {alert()}{stats(card)}
 <section class="section"><div class="section-heading"><div><span class="section-num">01 / THE CURRENT EXPERIMENT</span><h2>Research surface, not a promoted prediction</h2><p>WBG-C1: non-coaxial curvature of conductivity/depth proxy fields.</p></div>{link('research.html', 'Method & limitations →', 'text-link')}</div><div class="two-col"><article class="panel"><div class="panel-head">Actual exported research field<span>Not ground truth</span></div><div class="map-frame"><span class="map-label">UTM 11N · 100 m source grid</span><img src="assets/research-field.png" alt="The actual continuous WBG-C1 confidence surface across the irregular GeoDAWN footprint; not a map of verified faults or vents." width="610" height="690"></div><div class="map-caption"><span>Nearest-neighbour preview of the exported TIFF.<br>Outside-footprint and known-catalogue support are zero.<br>OOF seams are not geological evidence.</span><div><div class="gradient-legend"></div><div class="legend-labels"><span>0</span><span>0.9</span></div><span>Confidence, not calibrated probability</span></div></div></article><article class="panel"><div class="panel-head">Automated validation gates{pill('Stopped', 'no')}</div><div class="panel-pad">{gates(card)}<div class="gates-foot"><span>No human inspector required for these local checks.</span>{link('evidence.html', 'View receipts →')}</div></div></article></div></section>
 <section class="section"><div class="section-heading"><div><span class="section-num">02 / MEASURED, NOT PROJECTED</span><h2>Did the new hypothesis help?</h2><p>No statistically established improvement on this frozen screen.</p></div>{link('data/experiment.json', 'Full evaluator output ↗', 'text-link')}</div><div class="two-col"><article class="panel"><div class="panel-head">Same-instrument comparison<span>Continuous confidence surfaces</span></div><div class="panel-pad">{chart(card)}<p class="micro">HOLDOUT-DTI · <code>{card['holdout_instrument']['evaluator_version']}</code> · {score['withheld_positive_pixels']:,} withheld positives · 95% paired spatial-cluster intervals. Not a leaderboard estimate; not a comparison against sparse historical TIFFs.</p></div></article><article class="mini-card"><span class="index">WHY THE LANE STOPS HERE</span><h3>Different bytes are not enough.</h3><p>The fresh TIFF is not an exact copy of any checked registry raster. But its positive support overlaps the registered lattice by {card['registry']['max_forward_3px_overlap'] * 100:.2f}%, exceeding the unexempted 70% rule.</p><p>The C1 scientific screen is negative as well. No C1 final dots were placed; we have not retuned around registry gaps, claimed a new high score, or spent a submission slot.</p>{link('executive-summary.html#decision', 'Read the decision →', 'text-link')}</article></div></section>
@@ -276,13 +285,26 @@ def howto(card, receipt):
 def markdown_summary(card, audit):
     h, d = card["holdout"], card["paired_delta_holdout"]
     tif = Path(card["artifact"]).name
+    try:
+        w5 = json.loads((ROOT / "evidence/wbg5/run_card.json").read_text())
+        w5_tif = w5.get("artifact_file", "")
+        w5_peer = w5.get("registry", {}).get("peer_champion_max_overlap", 0)
+        w5_all = w5.get("registry", {}).get("all_comparator_max_overlap", 0)
+        w5_dti = w5.get("holdout_summary", {}).get("dti")
+        w5_dti_txt = f"HOLDOUT-DTI {w5_dti:.6f}" if isinstance(w5_dti, (int, float)) else "HOLDOUT-DTI measured"
+        w5_line = (f"| **WBG-5**: [{w5_tif}](downloads/{w5_tif}) | {w5_dti_txt} "
+                   f"(`gems-segment-pooled-v1`, n=60,988) | Unavailable | Peer max {w5_peer*100:.1f}% · all max "
+                   f"{w5_all*100:.1f}% ≤ 70%. **SUBMIT: YES**. |")
+    except Exception:
+        w5_tif, w5_line = "", ""
     lines = ["# Executive summary — 27 October 2026", "", "## DOWNLOAD: YES (research only). SUBMIT: NO.", "", "[WBG-2 decision, nine-site audit and research download](wbg2.html): literal overlap STOP; no verified holdout or leaderboard estimate. [Earlier four-release review](portfolio-review.html). No new experiment or slot was used.", "",
         f"[Download the frozen research TIFF](downloads/{tif}) · [one-TIFF ZIP](downloads/{tif.replace('.tif', '.zip')}) · [machine-readable run card](data/run-card.json)", "",
         "No final dotted or high-scoring promoted competition submission was produced. The literal surface overlap STOP and negative efficacy screen prohibit promotion. No weekly slot was used.", "",
         f"**HOLDOUT-DTI {h['dti']:.6f}**, 95% CI [{h['ci95'][0]:.6f}, {h['ci95'][1]:.6f}], evaluator `{card['holdout_instrument']['evaluator_version']}`, {h['withheld_positive_pixels']:,} withheld positives. Continuous confidence surface, not a matched-budget dotted submission or leaderboard estimate.", "",
         f"Paired delta versus refitted 19-band control: **{d['delta']:+.6f}** (HOLDOUT-DTI), 95% CI [{d['ci95'][0]:+.6f}, {d['ci95'][1]:+.6f}]; same evaluator and positives. No improvement established.", "",
         "| File / site | Observed local result or historical claim | Estimated leaderboard result | Uniqueness / submit decision |", "|---|---|---|---|",
-        f"| [{tif}](downloads/{tif}) | HOLDOUT-DTI {h['dti']:.6f}; see CI/version/n above | **Unavailable**; not inferred from proxy | New bytes/pixels among 360 checked hashes, but literal overlap {card['registry']['max_forward_3px_overlap']*100:.2f}% >70%. **DO NOT SUBMIT**. |"]
+        f"| [{tif}](downloads/{tif}) | HOLDOUT-DTI {h['dti']:.6f}; see CI/version/n above | **Unavailable**; not inferred from proxy | New bytes/pixels among 360 checked hashes, but literal overlap {card['registry']['max_forward_3px_overlap']*100:.2f}% >70%. **DO NOT SUBMIT**. |",
+        w5_line]
     for row in audit["rows"]:
         lines.append(f"| {row['site']}: [{row['file']}]({row['immutable_file_url']}?raw=1) | USER-REPORTED historical {row['reported_historical_value']:.4f}; **NOT ORGANIZER-CONFIRMED** | Unavailable for a new file | Historical learning reference; family overlap fails. Do not copy as a unique submission. |")
     lines += ["", "## Earlier four-release follow-up", "", "[All four local download decisions](release-review.html): exact files revalidated, all research-only. WBG-H1 literal lattice overlap exceeds 70%; filtered diagnostics do not clear uniqueness. No new experiment or slot use. [Review and access limits](review-20261027.md).", "", "## Why GEMSDOE32 leads the supplied historical records", "",
@@ -371,6 +393,8 @@ def main():
     build_wbg3()
     from build_wbg4_site import build as build_wbg4
     build_wbg4()
+    from build_wbg5_site import build as build_wbg5
+    build_wbg5()
     print("Built static reports, WBG-H1, WBG-S2, WBG-3, and WBG-4 subsites, and fail-closed research downloads.")
 
 

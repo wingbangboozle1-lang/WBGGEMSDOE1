@@ -1,0 +1,58 @@
+{
+ "w=0.0": {
+  "dots": 28517,
+  "peer_max": 0.4954237823052916,
+  "all_max": 0.8135498123926079,
+  "worst": "wbggemsdoe1-wbg3-exp3det-clear",
+  "pass_both": false
+ },
+ "w=0.15": {
+  "dots": 28290,
+  "peer_max": 0.4965005302226935,
+  "all_max": 0.8123718628490633,
+  "worst": "wbggemsdoe1-wbg3-exp3det-clear",
+  "pass_both": false
+ },
+ "w=0.25": {
+  "dots": 28624,
+  "peer_max": 0.49668110676355504,
+  "all_max": 0.8110676355505869,
+  "worst": "wbggemsdoe1-wbg3-exp3det-clear",
+  "pass_both": false
+ },
+ "w=0.35": {
+  "dots": 28379,
+  "peer_max": 0.49765671799570105,
+  "all_max": 0.8100708270199796,
+  "worst": "wbggemsdoe1-wbg3-exp3det-clear",
+  "pass_both": false
+ },
+ "w=0.5": {
+  "dots": 28083,
+  "peer_max": 0.4975964106398889,
+  "all_max": 0.8047573264964569,
+  "worst": "wbggemsdoe1-wbg3-exp3det-clear",
+  "pass_both": false
+ },
+ "w=0.65": {
+  "dots": 28102,
+  "peer_max": 0.4856237990178635,
+  "all_max": 0.7546793822503737,
+  "worst": "wbggemsdoe1-wbg3-exp3det-clear",
+  "pass_both": false
+ },
+ "w=0.75": {
+  "dots": 28975,
+  "peer_max": 0.44234685073339086,
+  "all_max": 0.6329939603106126,
+  "worst": "wbggemsdoe1-wbg3-exp3det-clear",
+  "pass_both": true
+ },
+ "w=1.0": {
+  "dots": 29108,
+  "peer_max": 0.27233063075443176,
+  "all_max": 0.1765837570427374,
+  "worst": "wbg2-offcatalogue-density-36k-",
+  "pass_both": true
+ }
+}

@@ -1,11 +1,45 @@
 # WBG GEMS — evidence-first fault mapping
 
+> **Read the standing prompt at the bottom of this file every session.** It is the user's own brief;
+the bullets under *standing request* are binding. Current decision: **WBG-5 CTP-3 is the only file
+approved for submission.**
+
 **[Latest repository review and ranked future hypotheses](docs/repo-review-20261027-session.md)** ·
 [Session JSON card](evidence/repo_review_session_20261027.json) · [Current provenance feed](docs/data/feed.json)
 
 **Freshness check:** at `2026-10-27T23:47:34+00:00`, 9/9 monitored focus-site GitHub heads differed from the frozen raster audit. This is a head check, not a current raster/score audit. The official leaderboard status is `retained_observation_not_refreshed`; the last retained public observation is 0.4544 (2026-10-27), not a score for any project TIFF.
 
-## FOCUS-9 EXECUTIVE SUMMARY — DOWNLOAD: RESEARCH ONLY · SUBMIT: NO
+## WBG-5 — SUBMIT: YES, one file
+
+**[WBG-5 submission page](docs/wbg5/index.html)** ·
+**[Hypotheses, ranked and rejected](docs/wbg5/hypotheses.html)** ·
+**[Download the TIF](docs/downloads/wbggemsdoe1-wbg5-ctp3-tip-trace-15px-20261028-60fbe04ce3c1-zeros.tif)** ·
+**[ZIP (one file, identical bytes)](docs/downloads/wbggemsdoe1-wbg5-ctp3-tip-trace-15px-20261028-60fbe04ce3c1-zeros.zip)** ·
+**[Run card](docs/data/wbg5_run_card.json)**
+
+`wbggemsdoe1-wbg5-ctp3-tip-trace-15px-20261028-60fbe04ce3c1-zeros.tif` — 62 903 pixels, single-band
+float32, EPSG:32611, 3 730 × 3 292, **1.0 on the trace and 0.0 everywhere else** (finite, inside
+[0, 1], so the portal's *"Predicted values must be in range [0, 1]"* message cannot come from this
+file). It is a 1-px along-strike continuation, 15 px (1.5 km) long, from both tips of each of the
+2 297 catalogue segments. **Submit it. It is not a copy of anything: 70 registry rasters were
+compared by mask, by IoU and by a distance-matched spatial null.**
+
+Why this shape: `1/DTI − 1 = (0.2·FP + 0.8·FN)/TP`. Comparing the 60 069-dot GEMSDOE24 file with the
+37 654-dot champion — the same dot set, forward 3 px overlap **1.0000** — identifies the champion's
+true positives at **≈10 249 px** without assuming the hidden truth, which brackets that truth at
+34 139–43 552 px and the champion's recall at **23.5–30.0 %**. The public ladder climbed by *deleting*
+pixels that earned nothing, so the ceiling of a dotted field is its precision. A trace earns full
+credit per pixel and costs nothing where it is right; a dot earns 2.33 credit only when it lands
+within 300 m and costs 0.2 whenever it misses.
+
+Measured holdout (`docs/data/exp5_decisive.json`, official metric, synthetic truths):
+TRACE-15 **0.3816 / 0.3985** versus a 40 000-dot carpet **0.2623 / 0.1851** and an area-filling
+null **0.0546 / 0.0372**. On the adversarial "the missed faults are unrelated structures" truth the
+order reverses (0.0252 versus 0.0712) — that is the risk and it is on the page.
+
+Read the standing brief below before touching anything.
+
+## FOCUS-9 EXECUTIVE SUMMARY — HISTORICAL: DOWNLOAD: RESEARCH ONLY · SUBMIT: NO
 
 [Focus-9 site table, forensics and hypotheses](docs/focus9-executive-summary.html) ·
 [How to submit](docs/how-to-submit.html) · [Hypotheses](docs/hypotheses.html)
@@ -14,7 +48,7 @@
 
 GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplied history suggests D2.8 → B1 → B2 pruning removed catalogue-near dots; this is a plausible precision/false-positive mechanism, not proof of new-fault discovery. Leaderboard score estimates for a new file are unavailable.
 
-## NO FILE APPROVED FOR SUBMISSION
+## HISTORICAL: NO FILE WAS APPROVED BEFORE 2026-10-28
 
 **[WBG-4 (CSJF-1) Executive Summary & Master Decision Table](docs/wbg4/index.html)** ·
 **[How to Submit Subpage](docs/wbg4/how-to-submit.html)** ·

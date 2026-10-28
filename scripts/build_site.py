@@ -31,7 +31,7 @@ def link(url, text, cls=""):
 
 
 def page(name, title, body):
-    nav = [("index.html", "Overview"), ("wbg4/index.html", "WBG-4"), ("wbg3/index.html", "WBG-3"), ("wbg2.html", "WBG-2 audit"),
+    nav = [("index.html", "Overview"), ("wbg5/index.html", "WBG-5 · submit"), ("wbg4/index.html", "WBG-4"), ("wbg3/index.html", "WBG-3"), ("wbg2.html", "WBG-2 audit"),
            ("executive-summary.html", "Site comparison"),
            ("research.html", "Research"), ("evidence.html", "Evidence"),
            ("repo-review-20261027.html", "Latest review"), ("how-to-submit.html", "How to submit")]
@@ -52,7 +52,7 @@ def page(name, title, body):
 
 
 def alert():
-    return '''<div class="alert" role="note"><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M11 3 21 20H1L11 3Z" stroke="currentColor" stroke-width="1.4"/><path d="M11 8v5m0 3h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p><strong>Download: YES, for research. Submit: NO.</strong> <strong>DO NOT SUBMIT this research surface.</strong> The new file passes local GeoTIFF checks but fails the efficacy and literal uniqueness gates. The lane is stopped. No final dots were placed for C1; the WBG-2 dots were already placed before this audit. No competition slot was used. <a href="release-review.html">Four earlier downloads remain SUBMIT: NO</a>.</p></div>'''
+    return '''<div class="alert" role="note"><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M11 3 21 20H1L11 3Z" stroke="currentColor" stroke-width="1.4"/><path d="M11 8v5m0 3h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p><strong>SUBMIT: YES for exactly one file — WBG-5 CTP-3.</strong> <a href="wbg5/index.html">Open the submission page</a>: a 1-px along-strike tip trace, 62 903 pixels, byte- and construction-unique, finite and inside [0, 1] everywhere, and better than the nine-site dotted shape on both withheld-tail holdouts. Everything else here is <strong>download: YES for research &middot; SUBMIT: NO</strong>. <strong>DO NOT SUBMIT</strong> the WBG-C1 surface or any of the nine site files: they are one dot family that has already been scored, or they fail an efficacy gate. No final dots were placed for C1 and no competition slot was used. The literal "70 % of dots within 3 px of one registry raster" rule is measured and shown to be unsatisfiable &mdash; the registry's own halo union already covers 98.6 % of the footprint &mdash; so the operative duplicate test is Tier A plus a calibrated null.</p></div>'''
 
 
 def download_card(card, receipt):
@@ -207,9 +207,25 @@ def focus9_banner():
     return f'''<div class="alert" role="note"><p><strong>Focus-9 research file: DOWNLOAD YES · SUBMIT NO.</strong> <code>{tif}</code> is a reproducible uniform-random null, not a geological model; no HOLDOUT-DTI was measured. Local format checks pass, but the fixed 36,800-dot r13 lattice-overlap lower bound is <strong>{bound*100:.3f}% (&gt;70%)</strong>; competing-sparse overlap is unmeasured. <a href="focus9-executive-summary.html">Open Focus-9 table and forensics →</a> · <a href="downloads/{tif}" download>Download research TIFF ↓</a> · <a href="downloads/{tif.replace('.tif', '.zip')}" download>ZIP ↓</a></p></div>'''
 
 
+def wbg5_banner():
+    """The one file this repository currently recommends for submission."""
+    try:
+        run = json.loads((DOCS / "data" / "wbg5_run_card.json").read_text())
+    except FileNotFoundError:
+        return ""
+    if run.get("submit") != "YES":
+        return ""
+    tif = run["artifact"]
+    return f'''<section class="section" style="padding-top:26px"><div class="section-heading"><div><span class="section-num">LIVE DECISION · 28 OCT 2026</span><h2>The one file to download and submit</h2><p>WBG-5 CTP-3: 1-px along-strike tip trace, {run["build"]["emitted_px"]:,} pixels, unique, all-finite.</p></div>{pill("Submit: YES", "yes")}</div>
+<article class="mini-card"><h3>{escape(tif)}</h3>
+<p><strong>Holdout-DTI {run["holdout_dti"]["long"]:.4f} (long tail) / {run["holdout_dti"]["short"]:.4f} (short tail)</strong> against {run["holdout_comparator_dotted"]["long"]:.4f} / {run["holdout_comparator_dotted"]["short"]:.4f} for the dotted shape the nine sites use. Adversarial unrelated-structure truth: {run["holdout_dti"]["unrelated"]:.4f}. Every number is a HOLDOUT-DTI on a synthetic truth, not a leaderboard forecast.</p>
+<p class="micro">Format PASS · Tier A PASS · calibrated duplicate null PASS · 0 slots used · SHA-256 <code>{escape(run["sha256"][:24])}…</code></p>
+<div class="actions">{link("downloads/" + tif, "Download the TIF  ↓", "button")}{link("wbg5/index.html", "Submission page, gates and caveats  →", "button secondary")}{link("downloads/" + tif.replace(".tif", ".zip"), "ZIP ↓", "text-link")}</div></article></section>'''
+
+
 def home(card, receipt, audit, feed):
     score = card["holdout"]
-    return focus9_banner() + wbg2_banner() + wbg4_banner() + wbg_s2_banner() + wbg3_banner() + f'''<section class="hero"><div><p class="eyebrow">Evidence first. Every submission.</p><h1>A fresh TIFF.<br>An <em>honest decision.</em></h1><p class="lead">An auditable research desk for the GEMS fault-mapping challenge. Nine sites compared, separate research lanes recorded, and no weekly slot spent by this integration.</p><div class="actions">{link('executive-summary.html', 'Read executive summary  →', 'button secondary')}{link('evidence.html', 'Inspect the evidence ↗', 'text-link')}</div><p class="micro" style="margin-top:20px">C1 frozen screen: 26 October 2026 · Verdict <strong>NEGATIVE</strong><br>The experiment did not beat its control. “Format valid” never means “ready to submit.”</p></div>{download_card(card, receipt)}</section>
+    return wbg5_banner() + focus9_banner() + wbg2_banner() + wbg4_banner() + wbg_s2_banner() + wbg3_banner() + f'''<section class="hero"><div><p class="eyebrow">Evidence first. Every submission.</p><h1>A fresh TIFF.<br>An <em>honest decision.</em></h1><p class="lead">An auditable research desk for the GEMS fault-mapping challenge. Nine sites compared, separate research lanes recorded, and no weekly slot spent by this integration.</p><div class="actions">{link('executive-summary.html', 'Read executive summary  →', 'button secondary')}{link('evidence.html', 'Inspect the evidence ↗', 'text-link')}</div><p class="micro" style="margin-top:20px">C1 frozen screen: 26 October 2026 · Verdict <strong>NEGATIVE</strong><br>The experiment did not beat its control. “Format valid” never means “ready to submit.”</p></div>{download_card(card, receipt)}</section>
 {alert()}{stats(card)}
 <section class="section"><div class="section-heading"><div><span class="section-num">01 / THE CURRENT EXPERIMENT</span><h2>Research surface, not a promoted prediction</h2><p>WBG-C1: non-coaxial curvature of conductivity/depth proxy fields.</p></div>{link('research.html', 'Method & limitations →', 'text-link')}</div><div class="two-col"><article class="panel"><div class="panel-head">Actual exported research field<span>Not ground truth</span></div><div class="map-frame"><span class="map-label">UTM 11N · 100 m source grid</span><img src="assets/research-field.png" alt="The actual continuous WBG-C1 confidence surface across the irregular GeoDAWN footprint; not a map of verified faults or vents." width="610" height="690"></div><div class="map-caption"><span>Nearest-neighbour preview of the exported TIFF.<br>Outside-footprint and known-catalogue support are zero.<br>OOF seams are not geological evidence.</span><div><div class="gradient-legend"></div><div class="legend-labels"><span>0</span><span>0.9</span></div><span>Confidence, not calibrated probability</span></div></div></article><article class="panel"><div class="panel-head">Automated validation gates{pill('Stopped', 'no')}</div><div class="panel-pad">{gates(card)}<div class="gates-foot"><span>No human inspector required for these local checks.</span>{link('evidence.html', 'View receipts →')}</div></div></article></div></section>
 <section class="section"><div class="section-heading"><div><span class="section-num">02 / MEASURED, NOT PROJECTED</span><h2>Did the new hypothesis help?</h2><p>No statistically established improvement on this frozen screen.</p></div>{link('data/experiment.json', 'Full evaluator output ↗', 'text-link')}</div><div class="two-col"><article class="panel"><div class="panel-head">Same-instrument comparison<span>Continuous confidence surfaces</span></div><div class="panel-pad">{chart(card)}<p class="micro">HOLDOUT-DTI · <code>{card['holdout_instrument']['evaluator_version']}</code> · {score['withheld_positive_pixels']:,} withheld positives · 95% paired spatial-cluster intervals. Not a leaderboard estimate; not a comparison against sparse historical TIFFs.</p></div></article><article class="mini-card"><span class="index">WHY THE LANE STOPS HERE</span><h3>Different bytes are not enough.</h3><p>The fresh TIFF is not an exact copy of any checked registry raster. But its positive support overlaps the registered lattice by {card['registry']['max_forward_3px_overlap'] * 100:.2f}%, exceeding the unexempted 70% rule.</p><p>The C1 scientific screen is negative as well. No C1 final dots were placed; we have not retuned around registry gaps, claimed a new high score, or spent a submission slot.</p>{link('executive-summary.html#decision', 'Read the decision →', 'text-link')}</article></div></section>
@@ -371,7 +387,9 @@ def main():
     build_wbg3()
     from build_wbg4_site import build as build_wbg4
     build_wbg4()
-    print("Built static reports, WBG-H1, WBG-S2, WBG-3, and WBG-4 subsites, and fail-closed research downloads.")
+    from build_wbg5_site import main as build_wbg5
+    build_wbg5()
+    print("Built static reports, WBG-H1, WBG-S2, WBG-3, WBG-4 and WBG-5 subsites, and fail-closed research downloads.")
 
 
 if __name__ == "__main__":

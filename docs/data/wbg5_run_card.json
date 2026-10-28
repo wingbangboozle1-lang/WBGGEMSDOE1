@@ -1,0 +1,183 @@
+{
+ "schema": "wbg5-run-card-v1",
+ "date_utc": "2026-10-28",
+ "lane": "WBG-5 / CTP-3 along-strike tip trace",
+ "artifact": "wbggemsdoe1-wbg5-ctp3-tip-trace-15px-20261028-60fbe04ce3c1-zeros.tif",
+ "sha256": "34b889f6df719156cefad89db1e11c9dcfd20be373bfd621b6ce83c334ff5bfb",
+ "bytes": 863178,
+ "zip": "wbggemsdoe1-wbg5-ctp3-tip-trace-15px-20261028-60fbe04ce3c1-zeros.zip",
+ "hypothesis": "Where the public fault catalogue stops, the fault does not. Its unmapped continuation lies within a kilometre or two beyond the mapped tip, along the segment's own strike.",
+ "mechanism": "Metric algebra plus geology. The DTI kernel gives full credit to a prediction that sits on a structure and charges 0.2 for every pixel that misses, so a thin correctly-placed trace is the cheapest TP in the game. 2,297 catalogue segments are decomposed to principal axes and their two tips extended 15 px (1.5 km) at one-pixel width.",
+ "named_non_fault_mimic": "roads, canals, terrace risers, paleo-shorelines and landslide margins. The trace field never follows an external lineament, only the strike of a mapped fault, which is why those mimics cannot enter it.",
+ "holdout_dti": {
+  "long": 0.3816,
+  "short": 0.3985,
+  "unrelated": 0.0252
+ },
+ "holdout_comparator_dotted": {
+  "long": 0.2623,
+  "short": 0.1851,
+  "unrelated": 0.0712
+ },
+ "holdout_truth_definitions": "structural truths are along-strike continuations by construction and therefore favour TRACE; the unrelated truth is the opposite extreme. Both are reported because a submission is taken once.",
+ "score_estimate": {
+  "estimate": 0.0542,
+  "interval_95": [
+   0.0,
+   0.183
+  ],
+  "loo_rmse": 0.0657,
+  "model": "hgb",
+  "label": "FLEET-GEOMETRY-ESTIMATE (owner-reported training labels)",
+  "features": {
+   "log_dots": 4.79867,
+   "frac_le3": 0.48519,
+   "frac_le5": 0.67138,
+   "frac_le8": 0.82721,
+   "frac_le15": 0.99415,
+   "frac_le30": 1.0,
+   "frac_le60": 1.0,
+   "cov3": 0.43559,
+   "cov8": 0.76927,
+   "cov15": 0.91562,
+   "clump_frac": 0.99989,
+   "nn_mean": 1.04292,
+   "nn_p90": 1.0,
+   "line_coherence": 0.4289,
+   "annulus_occupancy": 0.01892,
+   "mass_frac": 0.00512
+  },
+  "hull": {
+   "nearest_training_distance": 6.66,
+   "nearest_training_file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+   "nearest_training_score": 0.128,
+   "features_outside_training_range": {
+    "line_coherence": {
+     "value": 0.4289,
+     "training_range": [
+      0.0048,
+      0.2779
+     ]
+    }
+   },
+   "trustworthy": false
+  },
+  "warning": "The fleet model was fitted on 72 dotted emissions. Fields whose geometry lies outside that hull are reported but NOT used to rank this artifact; the decision rests on the holdout and on the metric algebra.",
+  "estimate_note": "EXTRAPOLATION: this artifact's geometry is outside the fitted hull, so the point estimate is not interpretable as a score."
+ },
+ "uniqueness": {
+  "tier_a_pass": true,
+  "tier_b_literal_pass": false,
+  "tier_b_literal_max_overlap": 0.881595,
+  "tier_b_literal_vs": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00",
+  "tier_b_operative_pass": false,
+  "calibrated_alignment_pass": true,
+  "calibrated_max_excess_over_null": 0.2019,
+  "calibrated_max_excess_vs": "gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros",
+  "tier_b_operative_max_overlap": 0.834825,
+  "tier_b_operative_vs": "gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00",
+  "registry_size": 70,
+  "comparators": 51,
+  "excluded_as_carpet": [
+   "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00",
+   "gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan",
+   "gems10-h20-dem10-scarp-thin-20260927T155223039488Z-ffc91a1686",
+   "gems10-h16-continuation-20260927T065521077735Z-3431b83c7c",
+   "gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan",
+   "pindrop-v4-nodes-20260925T152420Z-f347b70daa",
+   "pindrop-v4-discovery-20260925T152423Z-37f9d5b855",
+   "12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62_allfinite",
+   "12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62",
+   "gems-structural-area06-v1",
+   "gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan",
+   "gems16-h18-3a-topo-geophys-x-complexity-prior-20260930-c502dfab-nan",
+   "pindrop-v4-ridge-20260925T152422Z-4e03fc9705",
+   "gems20-h20-1-sarnnpu-powerlaw-pi0363-tilt-wingcrack-20260930-be0e8f6b-nan",
+   "gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan",
+   "gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan",
+   "gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan",
+   "gems20-h20-5-continuous-pu-proxy-unverified-20260930-824ce73a-nan",
+   "gemsdoe9-PLACEHOLDER-2314b599"
+  ],
+  "tier_c": {
+   "spacing5": {
+    "spacing_px": 5,
+    "radius_px": 3.0,
+    "footprint_pixels_within_radius": 0.999966,
+    "conclusion": "vacuous as a uniqueness reference"
+   },
+   "spacing8": {
+    "spacing_px": 8,
+    "radius_px": 3.0,
+    "footprint_pixels_within_radius": 0.453199,
+    "conclusion": "usable"
+   },
+   "spacing10": {
+    "spacing_px": 10,
+    "radius_px": 3.0,
+    "footprint_pixels_within_radius": 0.290145,
+    "conclusion": "usable"
+   },
+   "note": "Tier B is therefore applied to real submission rasters only."
+  },
+  "literal_rule_unsatisfiable": {
+   "why": "the union of the 70 registry halos covers 98.6 % of the footprint, and the nine site best submissions are 96 % redundant with each other (56 of 72 pairs above the 70 % rule)",
+   "registry_union_footprint_coverage": 0.9859,
+   "nine_site_median_pairwise_overlap": 0.9615,
+   "nine_site_pairs_over_0_70": 56
+  }
+ },
+ "validator": {
+  "format_valid": true,
+  "all_finite": true,
+  "in_0_1": true,
+  "portal_range_error_impossible": true
+ },
+ "build": {
+  "segments": 2297,
+  "tips": 4594,
+  "trace_px": 63948,
+  "emitted_px": 62903,
+  "extend_px": 15,
+  "strike_hist_top": [
+   [
+    "015-030",
+    465
+   ],
+   [
+    "000-015",
+    405
+   ],
+   [
+    "030-045",
+    305
+   ],
+   [
+    "165-180",
+    252
+   ],
+   [
+    "150-165",
+    212
+   ]
+  ],
+  "features": {
+   "n_dots": 62903,
+   "frac_le3": 0.4852,
+   "frac_le15": 0.9941,
+   "cat_cov3": 0.4356,
+   "dist_p50": 3.1623,
+   "dist_p90": 10.0499,
+   "n_comp": 3139,
+   "clump": 0.2555,
+   "areal_cov3": 0.0368,
+   "within3": 451561.0
+  }
+ },
+ "submission_name": "WBG5-CTP3-15",
+ "note": "WBG5 CTP3 tip trace 15px, unique, all-finite 0/1 raster",
+ "slots_used": 0,
+ "verdict": "promote",
+ "download": "YES",
+ "submit": "YES"
+}

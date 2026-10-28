@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hypotheses · WBG GEMS research desk</title>
+<meta name="description" content="An auditable GEMS fault-mapping research desk: nine-site comparison, measured holdout results, unique-byte research TIFF and explicit no-go submission status.">
+<meta name="theme-color" content="#173b42"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css"><script defer src="assets/app.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="masthead"><div class="wrap"><nav class="nav" aria-label="Main navigation">
+<a class="brand" href="index.html"><svg viewBox="0 0 36 38" fill="none" aria-hidden="true"><path d="M3 29C12 27 4 16 13 15S21 5 31 6M4 35C15 34 11 22 20 22S25 11 34 12M2 21C8 21 4 9 13 9S18 1 25 2" stroke="#23665f" stroke-width="2" stroke-linecap="round"/></svg><span>WBG / GEMS<small>FAULT MAPPING · RESEARCH DESK</small></span></a>
+<div class="navlinks"><a class="" href="index.html">Overview</a><a class="" href="wbg5/index.html">WBG-5 · submit</a><a class="" href="wbg4/index.html">WBG-4</a><a class="" href="wbg3/index.html">WBG-3</a><a class="" href="wbg2.html">WBG-2 audit</a><a class="" href="executive-summary.html">Site comparison</a><a class="" href="research.html">Research</a><a class="" href="evidence.html">Evidence</a><a class="" href="repo-review-20261027.html">Latest review</a><a class="" href="how-to-submit.html">How to submit</a><a class="repo" href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Repository ↗</a></div></nav></div></header>
+<main id="main" class="wrap"><div class="breadcrumb">GEMS prize challenge <span>/</span> Hypotheses <span>/</span> 26 OCT 2026 frozen experiment</div><p class="micro"><a href="portfolio-review.html">27 October follow-up: four earlier releases and trust corrections →</a></p><p class="micro"><a href="repo-review-20261027.html">27 October 2026 review: all 9 monitored heads changed; no file cleared →</a></p><h1>Hypotheses, and what happened to each</h1>
+<p class="lede">A hypothesis only enters a submission after it has been scored on withheld truth with
+the official metric. Five were tested this lane; one survived.</p>
+<h2>Ranked by expected DTI gain per unit of implementation cost</h2>
+<ol>
+<li><b>Tip propagation (adopted).</b> A mapped fault continues along its own strike beyond the last
+mapped pixel. Cost: trivial. Gain: the largest of anything tested — holdout
+0.3816 versus 0.2623
+for the dotted shape, and 3.5× the ring-uniform null.</li>
+<li><b>Grain-aligned dashes (rejected).</b> Emitting short dashes along the local strike field
+instead of single points raised line coherence from 0.08 to 0.45 but scored below the plain trace:
+the extra pixels on the dash are pixels the metric charges for.</li>
+<li><b>Relay and step-over bridging (rejected).</b> Connecting quasi-collinear tips 4–30 px apart is
+geologically sound and scored 0.3558 against 0.3816 for the unbridged trace.</li>
+<li><b>Lidar-scarp gating (rejected, with a number).</b> Restricting extensions to tips that sit on a
+3DEP scarp cost 0.14 of holdout DTI, because the scarp composite only reaches AUC 0.575 on this
+region and lidar covers three quarters of the footprint.</li>
+<li><b>A supervised 19-band detector (rejected).</b> A HistGradientBoosting model over the official
+19-band stack plus 56 derivative channels, trained in four geographically blocked folds, reaches AUC
+0.63–0.71 on held-out blocks — real but weak skill — and emits a field that scores 0.05 on the
+withheld-tail truth. It finds faults that are already mapped.</li>
+</ol>
+<h2>Why the evidence ideas were rejected: measured skill per field</h2>
+<table class="tbl"><thead><tr><th>Field</th><th>AUC (pooled, 4 blocks)</th><th>Footprint coverage</th><th>Verdict</th></tr></thead>
+<tbody><tr><td>lidar_scarp_composite</td><td class='num'>0.5745</td><td class='num'>0.754</td><td>weak evidence (below the 0.60 floor)</td></tr><tr><td>radiometric_texture</td><td class='num'>0.5060</td><td class='num'>1.000</td><td>no usable skill</td></tr><tr><td>magnetic_texture</td><td class='num'>0.5156</td><td class='num'>1.000</td><td>no usable skill</td></tr><tr><td>_control_ring_prior</td><td class='num'>1.0000</td><td class='num'>1.000</td><td>control</td></tr><tr><td>_control_noise</td><td class='num'>0.4981</td><td class='num'>1.000</td><td>control</td></tr></tbody></table>
+<p class="micro">The <code>_control_ring_prior</code> row is the reason a holdout built on the
+catalogue cannot rank methods: distance-to-catalogue alone separates mapped faults from ordinary
+ground at AUC 1.0000, i.e. it is a copy of the labels, not a predictor of them.</p>
+<h2>The detector, fold by fold</h2>
+<table class="tbl"><thead><tr><th>Fold</th><th>Held-out rows</th><th>AUC</th><th>Average precision</th><th>Best single-feature AUC</th></tr></thead>
+<tbody><tr><td>0</td><td>0–932</td><td class='num'>0.7051</td><td class='num'>0.0294</td><td class='num'>0.5976</td></tr><tr><td>1</td><td>932–1865</td><td class='num'>0.6261</td><td class='num'>0.0298</td><td class='num'>0.5559</td></tr><tr><td>2</td><td>1865–2797</td><td class='num'>0.6320</td><td class='num'>0.0240</td><td class='num'>0.5961</td></tr><tr><td>3</td><td>2797–3730</td><td class='num'>0.6788</td><td class='num'>0.0345</td><td class='num'>0.6633</td></tr></tbody></table>
+<h2>What would actually raise the ceiling</h2>
+<ul>
+<li><b>Per-tip continuation length.</b> Fifteen pixels is one number for 4 594 tips. The distribution
+of segment lengths in the catalogue is heavy-tailed; a tip on a 40-px segment should probably
+continue further than a tip on a 9-px one. Cheap to test, unimplemented.</li>
+<li><b>Tip-quality priors.</b> Not every tip deserves a continuation. A tip whose extension runs into
+another fault at a high angle is a step-over, not a continuation — the geometry to detect that is
+already computed in <code>structure.py</code>.</li>
+<li><b>Off-catalogue truth.</b> Every holdout in this repository is built from the catalogue, so all
+of them reward re-finding mapped geometry. The only artefact that could settle the real question is a
+public, expert-mapped, off-catalogue fault set for this region; the SGMC normal-fault layer used by
+the sibling repositories is the nearest thing and it is a different scale of mapping.</li>
+</ul></main>
+<footer class="footer"><div class="wrap footer-inner"><p><strong>WBG / GEMS</strong> &nbsp; Evidence before a weekly slot.<br>Fault predictions are not verified geothermal vents. Local validation is not organizer acceptance.</p><div><a class="" href="data/run-card.json">Run card JSON</a><a class="" href="repo-review-20261027.html">Latest review</a><a class="" href="standing-prompt.md">Standing brief</a><a class="" href="parallel/main-b9a2d53/index.html">Parallel negative archives</a><a class="" href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Source code ↗</a></div></div></footer>
+<div id="toast" role="status" aria-live="polite"></div></body></html>

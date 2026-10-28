@@ -1,0 +1,57 @@
+{
+ "schema": "wbg5-build-v1",
+ "file": "wbggemsdoe1-wbg5-ctp3-tip-trace-15px-20261028-60fbe04ce3c1-zeros.tif",
+ "zip": "wbggemsdoe1-wbg5-ctp3-tip-trace-15px-20261028-60fbe04ce3c1-zeros.zip",
+ "bytes": 863178,
+ "zip_bytes": 217050,
+ "design": {
+  "name": "WBG5-CTP3",
+  "extend_px": 15,
+  "width_px": 1,
+  "min_component_px": 8,
+  "description": "1 px along-strike continuation of both tips of every catalogue component of >= 8 px, 15 px long (1.5 km at 100 m)",
+  "min_px": 8
+ },
+ "measured": {
+  "segments": 2297,
+  "tips": 4594,
+  "trace_px": 63948,
+  "emitted_px": 62903,
+  "extend_px": 15,
+  "strike_hist_top": [
+   [
+    "015-030",
+    465
+   ],
+   [
+    "000-015",
+    405
+   ],
+   [
+    "030-045",
+    305
+   ],
+   [
+    "165-180",
+    252
+   ],
+   [
+    "150-165",
+    212
+   ]
+  ],
+  "features": {
+   "n_dots": 62903,
+   "frac_le3": 0.4852,
+   "frac_le15": 0.9941,
+   "cat_cov3": 0.4356,
+   "dist_p50": 3.1623,
+   "dist_p90": 10.0499,
+   "n_comp": 3139,
+   "clump": 0.2555,
+   "areal_cov3": 0.0368,
+   "within3": 451561.0
+  }
+ },
+ "catalogue_sha256": "d8b86f12ef449735"
+}

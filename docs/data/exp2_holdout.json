@@ -1,0 +1,83 @@
+{
+ "schema": "wbg5-exp2-holdout-v1",
+ "evaluator": "gems.metric.dti_components_exact (alpha 0.2, beta 0.8, R = 3 px = 300 m)",
+ "truth_models": {
+  "structural": "distal 30-55 % of every catalogue component >= 20 px is hidden; emitters rebuilt from kept parts only",
+  "unrelated": "catalogue translated (dy,dx). Arbitrary adversarial control."
+ },
+ "caveat": "The structural model is favourable to along-strike continuation by construction: the hidden tail is collinear with the kept tail. It measures 'can we recover a structurally removed segment', not the organisers' labels.",
+ "rows": [
+  {
+   "candidate": "TIP",
+   "structural_dti": 0.18206,
+   "structural_ci95": [
+    0.18133,
+    0.18293
+   ],
+   "structural_coverage": 0.2357,
+   "structural_halo_coverage": 0.8047,
+   "unrelated_dti": 0.04272,
+   "n_replicates": 3
+  },
+  {
+   "candidate": "RING",
+   "structural_dti": 0.09573,
+   "structural_ci95": [
+    0.09447,
+    0.09638
+   ],
+   "structural_coverage": 0.1236,
+   "structural_halo_coverage": 0.3566,
+   "unrelated_dti": 0.07197,
+   "n_replicates": 3
+  },
+  {
+   "candidate": "EVIDENCE",
+   "structural_dti": 0.07478,
+   "structural_ci95": [
+    0.07404,
+    0.07625
+   ],
+   "structural_coverage": 0.0963,
+   "structural_halo_coverage": 0.2491,
+   "unrelated_dti": 0.06636,
+   "n_replicates": 3
+  },
+  {
+   "candidate": "UNIFORM",
+   "structural_dti": 0.05504,
+   "structural_ci95": [
+    0.05419,
+    0.05575
+   ],
+   "structural_coverage": 0.0707,
+   "structural_halo_coverage": 0.2127,
+   "unrelated_dti": 0.07048,
+   "n_replicates": 3
+  },
+  {
+   "candidate": "WBG5-CTP2 (wbggemsdoe1-wbg5-ctp2-tip-continuation-40k-20261028-036ea8b9f611-zeros.tif)",
+   "structural_dti": 0.01196,
+   "structural_ci95": [
+    0.01174,
+    0.01213
+   ],
+   "structural_coverage": 0.0153,
+   "structural_halo_coverage": 0.0759,
+   "unrelated_dti": 0.06768,
+   "n_replicates": 3
+  },
+  {
+   "candidate": "0.2778 CHAMPION",
+   "structural_dti": 0.00471,
+   "structural_ci95": [
+    0.00453,
+    0.00483
+   ],
+   "structural_coverage": 0.0059,
+   "structural_halo_coverage": 0.0639,
+   "unrelated_dti": 0.06081,
+   "n_replicates": 3
+  }
+ ]
+}

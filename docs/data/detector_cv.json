@@ -1,0 +1,495 @@
+{
+ "schema": "wbg5-detector-cv-v1",
+ "folds": [
+  {
+   "fold": 0,
+   "rows": [
+    0,
+    932
+   ],
+   "auc": 0.7051,
+   "average_precision": 0.0294,
+   "pos_rate": 0.00877,
+   "leakage_canary_top_single_features": {
+    "det_elev_slope__grad2": 0.5976,
+    "det_elev_slope__grad6": 0.5976,
+    "det_elev__grad2": 0.5746,
+    "det_elev__grad6": 0.5746,
+    "iso_grav_anom_slope__grad2": 0.5637,
+    "iso_grav_anom_slope__grad6": 0.5637
+   },
+   "canary_max": 0.5976,
+   "sweep": {
+    "dots_4000": {
+     "n_dots": 10302,
+     "dti": 0.14871228248444454,
+     "TP": 3046.491116207642,
+     "FP": 9010.54383964534,
+     "FN": 19546.508883792358,
+     "n_truth": 22593,
+     "coverage": 0.13484225716848766
+    },
+    "dots_6000": {
+     "n_dots": 15453,
+     "dti": 0.17647989767465985,
+     "TP": 3811.618408131634,
+     "FP": 13806.539630737268,
+     "FN": 18781.381591868365,
+     "n_truth": 22593,
+     "coverage": 0.16870793644631674
+    },
+    "dots_8000": {
+     "n_dots": 20604,
+     "dti": 0.1992254764634033,
+     "TP": 4522.911625043327,
+     "FP": 18617.469053193887,
+     "FN": 18070.08837495667,
+     "n_truth": 22593,
+     "coverage": 0.2001908389785919
+    },
+    "dots_12000": {
+     "n_dots": 30907,
+     "dti": 0.22302940390619438,
+     "TP": 5546.520568458868,
+     "FP": 28426.531503002916,
+     "FN": 17046.47943154113,
+     "n_truth": 22593,
+     "coverage": 0.24549730307877962
+    },
+    "dots_16000": {
+     "n_dots": 41209,
+     "dti": 0.2397254957539703,
+     "TP": 6477.951342400602,
+     "FP": 38261.904866355224,
+     "FN": 16115.048657599398,
+     "n_truth": 22593,
+     "coverage": 0.28672382341435854
+    },
+    "dots_24000": {
+     "n_dots": 61814,
+     "dti": 0.252235473202093,
+     "TP": 7888.961791912279,
+     "FP": 58119.93284867535,
+     "FN": 14704.03820808772,
+     "n_truth": 22593,
+     "coverage": 0.3491772580849059
+    },
+    "dots_36000": {
+     "n_dots": 92722,
+     "dti": 0.24925550673460892,
+     "TP": 9369.772590579829,
+     "FP": 88213.40467519726,
+     "FN": 13223.227409420171,
+     "n_truth": 22593,
+     "coverage": 0.4147201606948979
+    },
+    "prob_continuous": {
+     "dti": 0.0631876666207177,
+     "TP": 4188.308636639058,
+     "FP": 236857.89847749216,
+     "FN": 18404.691363360944,
+     "n_truth": 22593,
+     "coverage": 0.18538080983663338
+    },
+    "champion_control": {
+     "dti": 0.008414328993499046,
+     "TP": 184.1228919822881,
+     "FP": 18854.20092807572,
+     "FN": 22408.87710801771,
+     "n_truth": 22593,
+     "coverage": 0.008149554817079985
+    }
+   }
+  },
+  {
+   "fold": 1,
+   "rows": [
+    932,
+    1865
+   ],
+   "auc": 0.6261,
+   "average_precision": 0.0298,
+   "pos_rate": 0.01558,
+   "leakage_canary_top_single_features": {
+    "det_elev_slope__grad2": 0.5559,
+    "det_elev_slope__grad6": 0.5559,
+    "depth_to_base_surf__grad2": 0.551,
+    "depth_to_base_surf__grad6": 0.551,
+    "iso_grav_anom_hg__std6": 0.5478,
+    "depth_to_base_surf__std6": 0.5457
+   },
+   "canary_max": 0.5559,
+   "sweep": {
+    "dots_4000": {
+     "n_dots": 4959,
+     "dti": 0.0901262871056734,
+     "TP": 1498.7151375315093,
+     "FP": 4358.568311527456,
+     "FN": 17823.284862468492,
+     "n_truth": 19322,
+     "coverage": 0.07756521775859172
+    },
+    "dots_6000": {
+     "n_dots": 7439,
+     "dti": 0.11449343170279365,
+     "TP": 1966.6181270320767,
+     "FP": 6628.829411061133,
+     "FN": 17355.381872967922,
+     "n_truth": 19322,
+     "coverage": 0.10178129215568144
+    },
+    "dots_8000": {
+     "n_dots": 9918,
+     "dti": 0.13886104241507458,
+     "TP": 2461.645624837375,
+     "FP": 8887.368112438722,
+     "FN": 16860.354375162624,
+     "n_truth": 19322,
+     "coverage": 0.12740118128751554
+    },
+    "dots_12000": {
+     "n_dots": 14878,
+     "dti": 0.1759046178679424,
+     "TP": 3309.0894441049995,
+     "FP": 13462.108210718805,
+     "FN": 16012.910555895,
+     "n_truth": 19322,
+     "coverage": 0.17126019273910567
+    },
+    "dots_16000": {
+     "n_dots": 19837,
+     "dti": 0.20577188779607053,
+     "TP": 4092.335178982682,
+     "FP": 18058.301040795748,
+     "FN": 15229.664821017319,
+     "n_truth": 19322,
+     "coverage": 0.2117966659239562
+    },
+    "dots_24000": {
+     "n_dots": 29756,
+     "dti": 0.24362853554685585,
+     "TP": 5359.303463287085,
+     "FP": 27341.935917745795,
+     "FN": 13962.696536712916,
+     "n_truth": 19322,
+     "coverage": 0.2773679465524834
+    },
+    "dots_36000": {
+     "n_dots": 44634,
+     "dti": 0.27685862723723353,
+     "TP": 6957.903987748292,
+     "FP": 41412.163040059066,
+     "FN": 12364.096012251708,
+     "n_truth": 19322,
+     "coverage": 0.36010268024781555
+    },
+    "prob_continuous": {
+     "dti": 0.07578962203983088,
+     "TP": 3050.857030239429,
+     "FP": 120932.5669536727,
+     "FN": 16271.14296976057,
+     "n_truth": 19322,
+     "coverage": 0.15789550927644286
+    },
+    "champion_control": {
+     "dti": 0.004946585438486979,
+     "TP": 85.01656377877993,
+     "FP": 8561.578962271025,
+     "FN": 19236.98343622122,
+     "n_truth": 19322,
+     "coverage": 0.004399987774494355
+    }
+   }
+  },
+  {
+   "fold": 2,
+   "rows": [
+    1865,
+    2797
+   ],
+   "auc": 0.632,
+   "average_precision": 0.024,
+   "pos_rate": 0.01334,
+   "leakage_canary_top_single_features": {
+    "det_elev_slope__grad2": 0.5961,
+    "det_elev_slope__grad6": 0.5961,
+    "det_elev__grad2": 0.5774,
+    "det_elev__grad6": 0.5774,
+    "det_elev_slope": 0.5764,
+    "det_elev_slope__std2": 0.574
+   },
+   "canary_max": 0.5961,
+   "sweep": {
+    "dots_4000": {
+     "n_dots": 2943,
+     "dti": 0.07907417096354771,
+     "TP": 674.3377801007077,
+     "FP": 2649.235412747706,
+     "FN": 9154.662219899292,
+     "n_truth": 9829,
+     "coverage": 0.06860695697433185
+    },
+    "dots_6000": {
+     "n_dots": 4415,
+     "dti": 0.10678610220014476,
+     "TP": 945.2403384471112,
+     "FP": 3997.343829406849,
+     "FN": 8883.75966155289,
+     "n_truth": 9829,
+     "coverage": 0.09616851545906106
+    },
+    "dots_8000": {
+     "n_dots": 5887,
+     "dti": 0.13185661140985586,
+     "TP": 1210.1163784799878,
+     "FP": 5361.471870900341,
+     "FN": 8618.883621520012,
+     "n_truth": 9829,
+     "coverage": 0.12311693747888776
+    },
+    "dots_12000": {
+     "n_dots": 8831,
+     "dti": 0.1717802635975646,
+     "TP": 1686.788413243677,
+     "FP": 8094.48207349265,
+     "FN": 8142.2115867563225,
+     "n_truth": 9829,
+     "coverage": 0.17161343099437146
+    },
+    "dots_16000": {
+     "n_dots": 11775,
+     "dti": 0.196618928905141,
+     "TP": 2054.013978348822,
+     "FP": 10863.359221444196,
+     "FN": 7774.986021651178,
+     "n_truth": 9829,
+     "coverage": 0.20897486807903368
+    },
+    "dots_24000": {
+     "n_dots": 17663,
+     "dti": 0.23416508825916854,
+     "TP": 2738.756466673612,
+     "FP": 16424.423478780136,
+     "FN": 7090.2435333263875,
+     "n_truth": 9829,
+     "coverage": 0.27864039746399555
+    },
+    "dots_36000": {
+     "n_dots": 26494,
+     "dti": 0.26225360666431463,
+     "TP": 3551.7587190453614,
+     "FP": 24848.349444252406,
+     "FN": 6277.241280954639,
+     "n_truth": 9829,
+     "coverage": 0.36135504314226896
+    },
+    "prob_continuous": {
+     "dti": 0.06578391705022538,
+     "TP": 1416.5251025618127,
+     "FP": 66932.47616771304,
+     "FN": 8412.474897438187,
+     "n_truth": 9829,
+     "coverage": 0.1441169094070417
+    },
+    "champion_control": {
+     "dti": 0.007288485850824787,
+     "TP": 65.5834329273334,
+     "FP": 5609.539736491262,
+     "FN": 9763.416567072667,
+     "n_truth": 9829,
+     "coverage": 0.006672442051819453
+    }
+   }
+  },
+  {
+   "fold": 3,
+   "rows": [
+    2797,
+    3730
+   ],
+   "auc": 0.6788,
+   "average_precision": 0.0345,
+   "pos_rate": 0.01496,
+   "leakage_canary_top_single_features": {
+    "ieq_n100a15": 0.6633,
+    "geod_shearrate": 0.6572,
+    "geod_2ndinv": 0.6478,
+    "depth_to_base_surf__std6": 0.6147,
+    "depth_to_base_surf__grad2": 0.6142,
+    "depth_to_base_surf__grad6": 0.6142
+   },
+   "canary_max": 0.6633,
+   "sweep": {
+    "dots_4000": {
+     "n_dots": 2463,
+     "dti": 0.12191107610888313,
+     "TP": 976.5635419931306,
+     "FP": 2099.725927945429,
+     "FN": 8267.436458006869,
+     "n_truth": 9244,
+     "coverage": 0.10564296213685964
+    },
+    "dots_6000": {
+     "n_dots": 3695,
+     "dti": 0.1512832157823843,
+     "TP": 1254.1229511896072,
+     "FP": 3219.384341757267,
+     "FN": 7989.877048810393,
+     "n_truth": 9244,
+     "coverage": 0.1356688610114244
+    },
+    "dots_8000": {
+     "n_dots": 4927,
+     "dti": 0.18093115083317357,
+     "TP": 1550.8189687051245,
+     "FP": 4329.785920658399,
+     "FN": 7693.1810312948755,
+     "n_truth": 9244,
+     "coverage": 0.16776492521691092
+    },
+    "dots_12000": {
+     "n_dots": 7391,
+     "dti": 0.22207424246573249,
+     "TP": 2024.763598964292,
+     "FP": 6586.774524789945,
+     "FN": 7219.236401035708,
+     "n_truth": 9244,
+     "coverage": 0.21903543909176676
+    },
+    "dots_16000": {
+     "n_dots": 9855,
+     "dti": 0.24570950084879842,
+     "TP": 2370.5576166692704,
+     "FP": 8892.472792322988,
+     "FN": 6873.44238333073,
+     "n_truth": 9244,
+     "coverage": 0.2564428404012625
+    },
+    "dots_24000": {
+     "n_dots": 14782,
+     "dti": 0.2833386222760557,
+     "TP": 3033.1727778446816,
+     "FP": 13516.406499892091,
+     "FN": 6210.827222155318,
+     "n_truth": 9244,
+     "coverage": 0.3281234073825921
+    },
+    "dots_36000": {
+     "n_dots": 22173,
+     "dti": 0.3023007505274661,
+     "TP": 3704.0959029375954,
+     "FP": 20584.983598921306,
+     "FN": 5539.904097062405,
+     "n_truth": 9244,
+     "coverage": 0.4007027155925568
+    },
+    "prob_continuous": {
+     "dti": 0.08171716357151584,
+     "TP": 1579.5109799896798,
+     "FP": 58089.48444983689,
+     "FN": 7664.48902001032,
+     "n_truth": 9244,
+     "coverage": 0.1708687775843444
+    },
+    "champion_control": {
+     "dti": 0.005223567419262675,
+     "TP": 43.21981712424447,
+     "FP": 4350.799610922827,
+     "FN": 9200.780182875755,
+     "n_truth": 9244,
+     "coverage": 0.004675445383410263
+    }
+   }
+  }
+ ],
+ "n_features": 75,
+ "features": [
+  "mag_anom",
+  "rtp",
+  "tmi_hg",
+  "geod_2ndinv",
+  "iso_grav_anom_slope",
+  "tc",
+  "geod_shearrate",
+  "geod_dilaterate",
+  "tmi_vg",
+  "deq_n100a15",
+  "iso_grav_anom_vg",
+  "det_elev",
+  "iso_grav_anom",
+  "tmi",
+  "depth_to_base_surf",
+  "ieq_n100a15",
+  "cond_surf",
+  "iso_grav_anom_hg",
+  "det_elev_slope",
+  "rtp__std2",
+  "rtp__grad2",
+  "rtp__std6",
+  "rtp__grad6",
+  "tmi__std2",
+  "tmi__grad2",
+  "tmi__std6",
+  "tmi__grad6",
+  "tmi_hg__std2",
+  "tmi_hg__grad2",
+  "tmi_hg__std6",
+  "tmi_hg__grad6",
+  "tmi_vg__std2",
+  "tmi_vg__grad2",
+  "tmi_vg__std6",
+  "tmi_vg__grad6",
+  "tc__std2",
+  "tc__grad2",
+  "tc__std6",
+  "tc__grad6",
+  "mag_anom__std2",
+  "mag_anom__grad2",
+  "mag_anom__std6",
+  "mag_anom__grad6",
+  "iso_grav_anom__std2",
+  "iso_grav_anom__grad2",
+  "iso_grav_anom__std6",
+  "iso_grav_anom__grad6",
+  "iso_grav_anom_hg__std2",
+  "iso_grav_anom_hg__grad2",
+  "iso_grav_anom_hg__std6",
+  "iso_grav_anom_hg__grad6",
+  "iso_grav_anom_vg__std2",
+  "iso_grav_anom_vg__grad2",
+  "iso_grav_anom_vg__std6",
+  "iso_grav_anom_vg__grad6",
+  "iso_grav_anom_slope__std2",
+  "iso_grav_anom_slope__grad2",
+  "iso_grav_anom_slope__std6",
+  "iso_grav_anom_slope__grad6",
+  "det_elev__std2",
+  "det_elev__grad2",
+  "det_elev__std6",
+  "det_elev__grad6",
+  "det_elev_slope__std2",
+  "det_elev_slope__grad2",
+  "det_elev_slope__std6",
+  "det_elev_slope__grad6",
+  "cond_surf__std2",
+  "cond_surf__grad2",
+  "cond_surf__std6",
+  "cond_surf__grad6",
+  "depth_to_base_surf__std2",
+  "depth_to_base_surf__grad2",
+  "depth_to_base_surf__std6",
+  "depth_to_base_surf__grad6"
+ ],
+ "protocol": "contiguous N-S strips; the evaluated strip is never seen in training; inputs are 19 official bands + 4 derivative channels on 14 of them; no coordinates, no catalogue distance, no neighbour labels",
+ "mean_dti_by_emission": {
+  "dots_4000": 0.10996,
+  "dots_6000": 0.13726,
+  "dots_8000": 0.16272,
+  "dots_12000": 0.1982,
+  "dots_16000": 0.22196,
+  "dots_24000": 0.25334,
+  "dots_36000": 0.27267,
+  "prob_continuous": 0.07162,
+  "champion_control": 0.00647
+ }
+}

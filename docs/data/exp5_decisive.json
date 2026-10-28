@@ -1,0 +1,127 @@
+{
+ "schema": "wbg5-exp5-decisive-v1",
+ "metric": "gems.metric.dti_components_exact, alpha 0.2, beta 0.8, R = 3 px",
+ "caveat": "structural truths are along-strike continuations by construction and therefore favour TRACE; the unrelated truth is the opposite extreme. Both are reported because a submission is taken once.",
+ "rows": [
+  {
+   "truth": "long",
+   "candidate": "TRACE-15",
+   "holdout_dti": 0.3816,
+   "worst": 0.3814,
+   "coverage": 0.4222,
+   "mass_px": 26495
+  },
+  {
+   "truth": "long",
+   "candidate": "HEDGE_trace15+25k_collar",
+   "holdout_dti": 0.3787,
+   "worst": 0.378,
+   "coverage": 0.5256,
+   "mass_px": 50040
+  },
+  {
+   "truth": "long",
+   "candidate": "TRACE-30",
+   "holdout_dti": 0.3343,
+   "worst": 0.3336,
+   "coverage": 0.4684,
+   "mass_px": 52628
+  },
+  {
+   "truth": "long",
+   "candidate": "DOTS-40K",
+   "holdout_dti": 0.2623,
+   "worst": 0.2613,
+   "coverage": 0.3449,
+   "mass_px": 40000
+  },
+  {
+   "truth": "long",
+   "candidate": "UNIFORM",
+   "holdout_dti": 0.0546,
+   "worst": 0.0526,
+   "coverage": 0.0701,
+   "mass_px": 40000
+  },
+  {
+   "truth": "short",
+   "candidate": "TRACE-15",
+   "holdout_dti": 0.3985,
+   "worst": 0.3958,
+   "coverage": 0.5337,
+   "mass_px": 21072
+  },
+  {
+   "truth": "short",
+   "candidate": "HEDGE_trace15+25k_collar",
+   "holdout_dti": 0.3138,
+   "worst": 0.3109,
+   "coverage": 0.6189,
+   "mass_px": 44868
+  },
+  {
+   "truth": "short",
+   "candidate": "TRACE-30",
+   "holdout_dti": 0.2999,
+   "worst": 0.2984,
+   "coverage": 0.5607,
+   "mass_px": 41961
+  },
+  {
+   "truth": "short",
+   "candidate": "DOTS-40K",
+   "holdout_dti": 0.1851,
+   "worst": 0.1836,
+   "coverage": 0.353,
+   "mass_px": 40000
+  },
+  {
+   "truth": "short",
+   "candidate": "UNIFORM",
+   "holdout_dti": 0.0372,
+   "worst": 0.0364,
+   "coverage": 0.0697,
+   "mass_px": 40000
+  },
+  {
+   "truth": "unrelated",
+   "candidate": "UNIFORM",
+   "holdout_dti": 0.0729,
+   "worst": 0.072,
+   "coverage": 0.0725,
+   "mass_px": 40000
+  },
+  {
+   "truth": "unrelated",
+   "candidate": "DOTS-40K",
+   "holdout_dti": 0.0712,
+   "worst": 0.0656,
+   "coverage": 0.0708,
+   "mass_px": 40000
+  },
+  {
+   "truth": "unrelated",
+   "candidate": "HEDGE_trace15+25k_collar",
+   "holdout_dti": 0.0517,
+   "worst": 0.0475,
+   "coverage": 0.0623,
+   "mass_px": 87443
+  },
+  {
+   "truth": "unrelated",
+   "candidate": "TRACE-30",
+   "holdout_dti": 0.0423,
+   "worst": 0.0375,
+   "coverage": 0.0579,
+   "mass_px": 125766
+  },
+  {
+   "truth": "unrelated",
+   "candidate": "TRACE-15",
+   "holdout_dti": 0.0252,
+   "worst": 0.0215,
+   "coverage": 0.0275,
+   "mass_px": 63948
+  }
+ ]
+}

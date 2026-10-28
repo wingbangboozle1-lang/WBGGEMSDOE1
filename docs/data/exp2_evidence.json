@@ -1,0 +1,185 @@
+{
+ "schema": "wbg5-evidence-skill-v1",
+ "question": "do mapped faults rank higher than ordinary ground on this product?",
+ "protocol": "4 spatial folds; in each, one quarter of the 4x4 lattice is scored and the other 12 blocks are ignored; AUC per fold and pooled AUC over 250 000 sampled valid pixels per fold",
+ "rows": [
+  {
+   "field": "lidar_scarp_composite",
+   "product": null,
+   "coverage_of_footprint": 0.7537,
+   "auc_by_block_group": [
+    {
+     "block_group": 0,
+     "n": 249511,
+     "pos": 3851,
+     "auc": 0.5457
+    },
+    {
+     "block_group": 1,
+     "n": 249828,
+     "pos": 3160,
+     "auc": 0.5868
+    },
+    {
+     "block_group": 2,
+     "n": 249618,
+     "pos": 2765,
+     "auc": 0.6078
+    },
+    {
+     "block_group": 3,
+     "n": 54833,
+     "pos": 701,
+     "auc": 0.5442
+    }
+   ],
+   "auc_pooled": 0.5745,
+   "auc_mean": 0.5711,
+   "n_sampled": 803790,
+   "n_positive": 10477,
+   "verdict": "weak evidence (below the 0.60 floor)"
+  },
+  {
+   "field": "radiometric_texture",
+   "product": null,
+   "coverage_of_footprint": 0.9998,
+   "auc_by_block_group": [
+    {
+     "block_group": 0,
+     "n": 249821,
+     "pos": 3326,
+     "auc": 0.5112
+    },
+    {
+     "block_group": 1,
+     "n": 249896,
+     "pos": 3036,
+     "auc": 0.5119
+    },
+    {
+     "block_group": 2,
+     "n": 250477,
+     "pos": 2823,
+     "auc": 0.5057
+    },
+    {
+     "block_group": 3,
+     "n": 250460,
+     "pos": 2142,
+     "auc": 0.5041
+    }
+   ],
+   "auc_pooled": 0.506,
+   "auc_mean": 0.5082,
+   "n_sampled": 1000654,
+   "n_positive": 11327,
+   "verdict": "no usable skill"
+  },
+  {
+   "field": "magnetic_texture",
+   "product": null,
+   "coverage_of_footprint": 1.0,
+   "auc_by_block_group": [
+    {
+     "block_group": 0,
+     "n": 249908,
+     "pos": 3280,
+     "auc": 0.5186
+    },
+    {
+     "block_group": 1,
+     "n": 249895,
+     "pos": 3214,
+     "auc": 0.5246
+    },
+    {
+     "block_group": 2,
+     "n": 250102,
+     "pos": 2703,
+     "auc": 0.494
+    },
+    {
+     "block_group": 3,
+     "n": 250001,
+     "pos": 2176,
+     "auc": 0.4828
+    }
+   ],
+   "auc_pooled": 0.5156,
+   "auc_mean": 0.505,
+   "n_sampled": 999906,
+   "n_positive": 11373,
+   "verdict": "no usable skill"
+  },
+  {
+   "field": "_control_ring_prior",
+   "product": "d_cat Gaussian, control only",
+   "coverage_of_footprint": 1.0,
+   "auc_by_block_group": [
+    {
+     "block_group": 0,
+     "n": 249578,
+     "pos": 3348,
+     "auc": 1.0
+    },
+    {
+     "block_group": 1,
+     "n": 249641,
+     "pos": 3147,
+     "auc": 1.0
+    },
+    {
+     "block_group": 2,
+     "n": 250131,
+     "pos": 2885,
+     "auc": 1.0
+    },
+    {
+     "block_group": 3,
+     "n": 249440,
+     "pos": 2109,
+     "auc": 1.0
+    }
+   ],
+   "auc_pooled": 1.0,
+   "auc_mean": 1.0,
+   "n_sampled": 998790,
+   "n_positive": 11489
+  },
+  {
+   "field": "_control_noise",
+   "product": "uniform noise",
+   "coverage_of_footprint": 1.0,
+   "auc_by_block_group": [
+    {
+     "block_group": 0,
+     "n": 249498,
+     "pos": 3369,
+     "auc": 0.4999
+    },
+    {
+     "block_group": 1,
+     "n": 249550,
+     "pos": 3113,
+     "auc": 0.4987
+    },
+    {
+     "block_group": 2,
+     "n": 249439,
+     "pos": 2770,
+     "auc": 0.4963
+    },
+    {
+     "block_group": 3,
+     "n": 250051,
+     "pos": 2108,
+     "auc": 0.4968
+    }
+   ],
+   "auc_pooled": 0.4981,
+   "auc_mean": 0.4979,
+   "n_sampled": 998538,
+   "n_positive": 11360
+  }
+ ]
+}

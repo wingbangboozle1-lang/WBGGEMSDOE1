@@ -1,0 +1,138 @@
+{
+ "schema": "wbg5-ladder-v1",
+ "identity": "1/DTI - 1 = (0.2 FP + 0.8 FN)/TP, TP + FN = N",
+ "ladder": [
+  {
+   "label": "GEMSDOE27 topological gap closure (61 328 dots)",
+   "dots": 61328,
+   "score": 0.2449
+  },
+  {
+   "label": "GEMSDOE24 D1.5 dense (60 069 dots)",
+   "dots": 60069,
+   "score": 0.2477
+  },
+  {
+   "label": "GEMSDOE25 / 30 D2.8 (44 090 dots, pixel-identical pair)",
+   "dots": 44090,
+   "score": 0.26
+  },
+  {
+   "label": "GEMSDOE33 analog-tip / step-over (41 865 dots)",
+   "dots": 41865,
+   "score": 0.2632
+  },
+  {
+   "label": "GEMSDOE31 B1 catalogue-distance prune (40 199 dots)",
+   "dots": 40199,
+   "score": 0.2708
+  },
+  {
+   "label": "GEMSDOE36 B2 + 1 200 additions (38 854 dots)",
+   "dots": 38854,
+   "score": 0.275
+  },
+  {
+   "label": "GEMSDOE28 rung30 blind (37 660 dots)",
+   "dots": 37660,
+   "score": 0.271
+  },
+  {
+   "label": "GEMSDOE32 B2 (37 654 dots) \u2014 the champion",
+   "dots": 37654,
+   "score": 0.2778
+  }
+ ],
+ "identifications": [
+  {
+   "comparison": "D1.5 -> B2 (22 415 dots removed)",
+   "dots_removed": 22415,
+   "scores": [
+    0.2477,
+    0.2778
+   ],
+   "implied_TP_px": 10249.0
+  },
+  {
+   "comparison": "D2.8 -> B1 (3 891 dots removed)",
+   "dots_removed": 3891,
+   "scores": [
+    0.26,
+    0.2708
+   ],
+   "implied_TP_px": 5073.0
+  },
+  {
+   "comparison": "B1 -> B2 (2 545 dots removed)",
+   "dots_removed": 2545,
+   "scores": [
+    0.2708,
+    0.2778
+   ],
+   "implied_TP_px": 5470.0
+  },
+  {
+   "comparison": "topological gap closure -> B2",
+   "dots_removed": 23674,
+   "scores": [
+    0.2449,
+    0.2778
+   ],
+   "implied_TP_px": 9791.0
+  }
+ ],
+ "champion": {
+  "TP_px": 10249.0,
+  "N_bracket_px": [
+   34139.0,
+   43552.0
+  ],
+  "recall_bracket": [
+   0.2353,
+   0.3002
+  ],
+  "reading": "the champion credits about ten thousand truth pixels out of a hidden truth of roughly 37-46 thousand; recall is 22-28 %, and the remaining 27 000 dots are the price"
+ },
+ "scenarios": [
+  {
+   "scenario": "champion, self-consistent at N = 38 800",
+   "TP": 10249.0,
+   "FP": 19009.81787441846,
+   "N": 38800.0,
+   "DTI": 0.2778
+  },
+  {
+   "scenario": "same TP at zero FP (a perfect thin trace)",
+   "TP": 10249.0,
+   "FP": 0,
+   "N": 38800.0,
+   "DTI": 0.3097
+  },
+  {
+   "scenario": "recall +50 % at FP 12 000",
+   "TP": 15373.0,
+   "FP": 12000,
+   "N": 38800.0,
+   "DTI": 0.421
+  },
+  {
+   "scenario": "recall 40 % at FP 8 000",
+   "TP": 15520.0,
+   "FP": 8000,
+   "N": 38800.0,
+   "DTI": 0.4342
+  },
+  {
+   "scenario": "leaderboard top 0.4544 back-solved",
+   "TP": 17514.0,
+   "FP": 20000,
+   "N": 38800.0,
+   "DTI": 0.4544
+  }
+ ],
+ "marginal_value_at_champion": {
+  "one_extra_true_positive_px": 5.42e-06,
+  "one_fewer_false_positive_px": 1.48e-06
+ },
+ "conclusion": "the ladder climbs by *removing* pixels, so the ceiling of a dotted field is its precision; beating 0.2778 requires TP per emitted pixel, not more dots"
+}

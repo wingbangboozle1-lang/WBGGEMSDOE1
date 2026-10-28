@@ -1,0 +1,45 @@
+{
+ "estimate": 0.0542,
+ "interval_95": [
+  0.0,
+  0.183
+ ],
+ "loo_rmse": 0.0657,
+ "model": "hgb",
+ "label": "FLEET-GEOMETRY-ESTIMATE (owner-reported training labels)",
+ "features": {
+  "log_dots": 4.79867,
+  "frac_le3": 0.48519,
+  "frac_le5": 0.67138,
+  "frac_le8": 0.82721,
+  "frac_le15": 0.99415,
+  "frac_le30": 1.0,
+  "frac_le60": 1.0,
+  "cov3": 0.43559,
+  "cov8": 0.76927,
+  "cov15": 0.91562,
+  "clump_frac": 0.99989,
+  "nn_mean": 1.04292,
+  "nn_p90": 1.0,
+  "line_coherence": 0.4289,
+  "annulus_occupancy": 0.01892,
+  "mass_frac": 0.00512
+ },
+ "hull": {
+  "nearest_training_distance": 6.66,
+  "nearest_training_file": "gems10-h25-ctx-ridge-20260927T232947704150Z-6452ae1d00.tif",
+  "nearest_training_score": 0.128,
+  "features_outside_training_range": {
+   "line_coherence": {
+    "value": 0.4289,
+    "training_range": [
+     0.0048,
+     0.2779
+    ]
+   }
+  },
+  "trustworthy": false
+ },
+ "warning": "The fleet model was fitted on 72 dotted emissions. Fields whose geometry lies outside that hull are reported but NOT used to rank this artifact; the decision rests on the holdout and on the metric algebra.",
+ "estimate_note": "EXTRAPOLATION: this artifact's geometry is outside the fitted hull, so the point estimate is not interpretable as a score."
+}

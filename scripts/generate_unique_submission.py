@@ -42,7 +42,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
-import rasterio
 from scipy.ndimage import distance_transform_edt
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -51,7 +50,6 @@ sys.path.insert(0, str(ROOT / "src"))
 from gems1.grid import read_template, read_labels, write_geotiff  # noqa: E402
 from gems1.holdout import build_context, evaluate_mask, EVALUATOR_VERSION as HOLDOUT_VERSION  # noqa: E402
 from gems1.metric import dti_binary, ALPHA, BETA  # noqa: E402
-from gems1.uniqueness import audit, read_dots, spearman_surface  # noqa: E402
 from gems.submission import check_variants  # noqa: E402
 # ---------------------------------------------------------------------------
 # Configuration
@@ -153,7 +151,6 @@ def check_registry_uniqueness(dots: np.ndarray, surface: np.ndarray,
     entries = reg["entries"]
 
     # Collect local comparison cache NPY files
-    cache_dir = ROOT / "registry" / "cache" / "comparison"
     available = []
     for entry in entries:
         cpath = entry.get("comparison_cache_path")

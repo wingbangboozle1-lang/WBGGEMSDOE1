@@ -11,13 +11,18 @@ def wbg6_readme_block():
     audit = json.loads((ROOT / "evidence/wbg6_submission_audit.json").read_text())
     tif = Path(audit["tif"]).name
     overlap = audit["duplicate_screen"]["max_forward_overlap_3px"]
-    return f"""## ⛔ SUBMISSION STATUS: DO NOT SUBMIT ANY CURRENT TIFF
+    newer = json.loads((ROOT / "docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.run-card.json").read_text())
+    newer_tif = Path(newer["download_url"]).name
+    holdout = newer["holdout_dti"]
+    return f"""## ⛔ SUBMISSION STATUS: NO CURRENT TIFF CLEARED — DO NOT SUBMIT
 
-The historical WBG-6 approval is superseded: its archived maximum 3-pixel registry overlap is {overlap:.4%}, exceeding the active 70% stop threshold. Its 0.247 value is a MODEL-ESTIMATE, not HOLDOUT-DTI or organizer-confirmed. **Research download only:** [`{tif}`](docs/downloads/{tif}). Do not upload. See [current review](docs/repo-review-current-20261028.md), [Focus-9 site comparison](docs/executive-summary.html), and [the standing brief](PROMPT.md).
+The historical WBG-6 approval is superseded: its archived maximum 3-pixel registry overlap is {overlap:.4%}, exceeding the active 70% stop threshold. Its 0.247 value is a MODEL-ESTIMATE, not HOLDOUT-DTI or organizer-confirmed. **Research download only:** [`{tif}`](docs/downloads/{tif}).
 
-Core values: **Maximize P(Win)** and **Own the Outcome**. Read `PROMPT.md` at the start of every working session.
+A newer concurrently added candidate [`{newer_tif}`](docs/downloads/{newer_tif}) records HOLDOUT-DTI {holdout:.4f}, 95% CI [{newer["holdout_ci95"][0]:.4f}, {newer["holdout_ci95"][1]:.4f}], evaluator `{newer["evaluator_version"]}`, n={newer["n_withheld_positives"]:,}. **This is NEGATIVE / DO NOT SUBMIT:** its own run card states it used the full catalogue during placement (holdout leakage risk) and checked only {newer["registry_champions_checked"]} champion rasters, not the full registry. Re-evaluate with per-fold visible catalogues and complete registry checks before promotion.
 
-> Historical approval claims and frozen receipts below are retained for provenance only; this no-go notice supersedes them.
+See [current review](docs/repo-review-current-20261028.md), [Focus-9 site comparison](docs/executive-summary.html), and [the standing brief](PROMPT.md). Core values: **Maximize P(Win)** and **Own the Outcome**. Read `PROMPT.md` at the start of every working session.
+
+> Historical approval claims and frozen receipts below are retained for provenance only; these no-go notices supersede them.
 
 """
 

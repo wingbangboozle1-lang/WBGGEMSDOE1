@@ -375,7 +375,7 @@ def main():
         "how-to-submit.html": ("How to submit", howto(card, receipt))}
     for name, (title, body) in pages.items():
         (DOCS / name).write_text(page(name, title, body), encoding="utf-8")
-    legacy = {"hypotheses.html": "research.html", "methodology.html": "research.html",
+    legacy = {"methodology.html": "research.html",
         "sources.html": "evidence.html", "irregularities.html": "evidence.html",
         "submission-guide.html": "how-to-submit.html", "submission-instructions.html": "how-to-submit.html"}
     for name, target in legacy.items():

@@ -29,8 +29,8 @@
       "no organizer receipt; no authenticated weekly allowance"
     ]
   },
-  "elapsed_s": 27.58876895904541,
-  "generated_utc": "2026-10-28T17:03:35+00:00",
+  "elapsed_s": 35.938822507858276,
+  "generated_utc": "2026-10-28T17:27:55+00:00",
   "holdout_dti": {
     "arm": "A2_mta1",
     "ci95": [
@@ -64,7 +64,56 @@
     "literal_all_entry_pass": false,
     "max_abs_spearman_all": 0.09566271366090891,
     "max_overlap_all": 1.0,
+    "max_overlap_vs_nine_historical_masks": 0.47277845647208794,
+    "max_overlap_vs_nine_worst": "GEMSDOE27.tif",
     "n_reference_rasters": 20,
+    "nine_mask_overlaps": [
+      {
+        "n_other": 61328,
+        "name": "GEMSDOE27.tif",
+        "overlap_frac": 0.47277845647208794
+      },
+      {
+        "n_other": 60069,
+        "name": "GEMSDOE24.tif",
+        "overlap_frac": 0.46964465926594784
+      },
+      {
+        "n_other": 44090,
+        "name": "GEMSDOE25.tif",
+        "overlap_frac": 0.45506453497636373
+      },
+      {
+        "n_other": 44090,
+        "name": "GEMSDOE30.tif",
+        "overlap_frac": 0.45506453497636373
+      },
+      {
+        "n_other": 41865,
+        "name": "GEMSDOE33.tif",
+        "overlap_frac": 0.447309714771339
+      },
+      {
+        "n_other": 40199,
+        "name": "GEMSDOE31.tif",
+        "overlap_frac": 0.4404312954798959
+      },
+      {
+        "n_other": 37660,
+        "name": "GEMSDOE28.tif",
+        "overlap_frac": 0.4361555213257556
+      },
+      {
+        "n_other": 38854,
+        "name": "GEMSDOE36.tif",
+        "overlap_frac": 0.42603707441440486
+      },
+      {
+        "n_other": 37654,
+        "name": "GEMSDOE32.tif",
+        "overlap_frac": 0.4243108301906836
+      }
+    ],
     "passes_sparse_gate": true,
     "sparse_drifted": false,
     "sparse_max_abs_spearman": 0.09566271366090891,

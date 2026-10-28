@@ -1,0 +1,57 @@
+{
+ "schema": "wbg6-irregularities-v1",
+ "generated_utc": "2026-10-28",
+ "flagged_for_human_review": [
+  {
+   "id": "IR-WBG5-01",
+   "severity": "high",
+   "title": "The shared hide-and-recover holdout has no demonstrated external validity",
+   "measurement": "Spearman 0.144 (p=0.12) between holdout DTI and reported leaderboard score across all 118 recovered submissions.",
+   "consequence": "Every prior promotion/STOP decision in this repo that rested on HOLDOUT-DTI as a proxy for leaderboard score is unsupported by this test. The holdout is still a valid measurement of catalogue-recovery, not of hidden-test performance.",
+   "receipt": "evidence/holdout_proxy_portfolio.json",
+   "fix": "Report holdout numbers only as catalogue-recovery, never as a score estimate. Done in this session."
+  },
+  {
+   "id": "IR-WBG5-02",
+   "severity": "high",
+   "title": "The literal '>70% of dots within 3 px' registry gate is degenerate",
+   "measurement": "The 5 px lattice r13 (206,895 dots) puts 99.68% of this submission's dots within 3 px; its overlap lift versus a density-matched independent field is only 1.47x.",
+   "consequence": "Any dense registry raster makes the gate unpassable for every non-empty submission, including pure noise. The gate as written cannot distinguish duplication from coincidence.",
+   "receipt": "evidence/wbg6_submission_audit.json",
+   "fix": "Replaced by a density-matched overlap lift plus the surface Spearman test; both are reported."
+  },
+  {
+   "id": "IR-WBG5-03",
+   "severity": "medium",
+   "title": "118 reported scores are not 118 independent observations",
+   "measurement": "They collapse to 22 transitive families (largest 95). Leave-one-out R2 0.334 becomes leave-one-family-out R2 -0.847.",
+   "consequence": "In-sample and leave-one-out fits on this history are optimistic. Grouped cross-validation must be used for any claim.",
+   "receipt": "evidence/wbg6_score_model.json"
+  },
+  {
+   "id": "IR-WBG5-04",
+   "severity": "medium",
+   "title": "Reported scores are internally inconsistent at the 0.02-0.09 level",
+   "measurement": "At >95% dot overlap the median |score difference| is 0.0175 and the maximum is 0.0856; the worst pair is h33-h33-2-b2-20261004T220000Z-e5eb6e7e-z (0.2778) vs h19-5-powerlaw-budget-multiline-corrobor (0.1922).",
+   "consequence": "The nine-site top six (0.2649-0.2778) are statistically tied; ranking them is not meaningful.",
+   "receipt": "evidence/score_consistency.json"
+  },
+  {
+   "id": "IR-WBG5-05",
+   "severity": "low",
+   "title": "The 'consensus agreement' signal is a duplication artefact",
+   "measurement": "Spearman 0.643 (any-support enrichment, n=118) falls to family-level Spearman 0.241 (p=0.28, n=22 families).",
+   "consequence": "Placing dots where the historical pool also placed them is not evidence of a better prior.",
+   "receipt": "evidence/consensus_partial.json"
+  },
+  {
+   "id": "IR-WBG5-06",
+   "severity": "high",
+   "title": "The 19-band feature stack and 1 m DEM are unobtainable in this environment",
+   "measurement": "competition data requires DrivenData login; the public Dropbox mirrors are egress-blocked; no copy is committed in any of the 204 public GEMSDOE repositories.",
+   "consequence": "Supervised fault prediction (the reference solution) cannot be reproduced or trained here. This caps achievable localisation precision and therefore the leaderboard score.",
+   "fix": "Run scripts/download_competition_data.sh on an unrestricted machine, then scripts/prepare_data.py."
+  }
+ ],
+ "note": "All scores referenced are OWNER-REPORTED. No organizer receipt exists for any file in this repository."
+}

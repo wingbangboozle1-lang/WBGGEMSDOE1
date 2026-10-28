@@ -1,0 +1,28 @@
+{
+ "schema": "wbg6-score-estimate-v1",
+ "submission": "wbg6-qmh-kdisjoint-30000-20261028",
+ "K_star_truth_cells": 12395,
+ "null_floor": {
+  "mean": 0.04253194248732718,
+  "sd": 0.0016312300374918267,
+  "se": 0.0002579201153078016,
+  "p05": 0.04011949811267545,
+  "p95": 0.04526598028598835,
+  "draws": 40,
+  "K": 12395
+ },
+ "uplift_history": {
+  "n": 14,
+  "min": 3.333536400618924,
+  "median": 5.797135626914315,
+  "max": 6.7201514654459285,
+  "note": "reported score divided by the null prediction, per history entry"
+ },
+ "model_estimate": {
+  "central": 0.24656343907515504,
+  "low": 0.14178177847053575,
+  "high": 0.2858210956344737,
+  "method": "null prediction x localisation uplift; uplift is inherited from the reported history, not measured for this file"
+ },
+ "labels": "NULL-FLOOR and MODEL-ESTIMATE only; no ORGANIZER-CONFIRMED value"
+}

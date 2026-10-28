@@ -1,0 +1,26 @@
+{
+ "source": "docs/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+ "reported_score": 0.2778,
+ "score_label": "OWNER-REPORTED",
+ "ring_edges_px": [
+  0.0,
+  3.0,
+  6.0,
+  11.0,
+  21.0,
+  41.0,
+  81.0,
+  1000000000.0
+ ],
+ "histogram_counts": [
+  1611,
+  4969,
+  5545,
+  7514,
+  8138,
+  7894,
+  1983
+ ],
+ "n_dots": 37654,
+ "note": "distance-to-catalogue histogram of the best reported submission; used to inherit its search profile without reusing any of its dot positions"
+}

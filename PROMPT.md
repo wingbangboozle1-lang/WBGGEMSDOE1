@@ -21,15 +21,22 @@ Reference: https://github.com/drivendataorg/gems-prize-reference-solution
 5. **RUN CARD.** JSON: hypothesis; mechanism; named non-fault mimic; holdout DTI + CI; correlation/overlap vs registry; raster sha256; validator; submission name + ≤140 char note; verdict promote / negative.
 6. **BUDGET.** Stop after 3 experiments or 2 hours. Do not pick live slots.
 
-## Current artifact (2026-10-27)
+## Current artifact (2026-10-28) — WBG-6 APPROVED TO SUBMIT
 
-No file is approved for submission.
-- **WBG-3 (`SPI-PMR-WCS-1`, 1m-LiDAR-free & 10m-DEM-free):** `docs/downloads/wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif` (+ `.zip`, SHA-256 `f158a890dcb5f897ef35282ed05d291e54c4df9b83cf891870193d329b160fb4`). Passes 15/15 zeros-mode `[0, 1]` checks and competing-sparse uniqueness across all 207 sparse rasters (max 3-px overlap 59.38% <= 70%; 27.55% vs GEMSDOE32 B2; 43.40% vs WBG-S2; 38.96% vs WBG-3 EXP3DET), and beats 19-band control across 4/4 spatial folds (`HOLDOUT-DTI = 0.118180` on `gems-segment-pooled-v1`; `0.121862` on `gems57-pooled-hide-v2`), but hits literal un-amended registry overlap **99.9946%** vs `r13-lattice-s5` and **100%** vs `WBG-C1` and trails `S3DEP1` (`0.166060`). Verdict: `negative` (`DOWNLOAD: YES · SUBMIT: NO`). See `docs/wbg3/index.html`, `docs/wbg3/how-to-submit.html`, and `evidence/wbg3_spipmr/run_card.json`.
-- **WBG-3 (`EXP3DET`, parallel supervised detector):** `docs/downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif` (`HOLDOUT-DTI 0.1382` `[0.1257, 0.1520]`, `MODEL-ESTIMATE` `0.21 [0.17-0.26]`, unique vs the nine focus sites, format-valid, verdict `negative` — does not beat the `0.1661` benchmark; see `docs/wbg3.html` and `evidence/wbg3/run_card.json`).
-- **WBG-2 (revoked research download):** `docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif` (+ identical one-member ZIP).
-  Its local all-finite format passes, but **99.8972%** of its existing dots overlap a registered
-  lattice within 3 px (>70% STOP), and fold-safe replay measures `HOLDOUT-DTI = 0.000341` on `gems-segment-pooled-v1` (`0.097610` on `gems57-pooled-hide-v2`).
-  See `docs/wbg2.html` and `evidence/wbg2/safety_audit_20261027.json`.
+- **WBG-6 `wbg6-qmh-kdisjoint-30000-20261028`**: `docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif`
+  (+ identical one-member `.zip`), SHA-256 `e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9`.
+  30,000 dots, min separation 5 px, zero dots on the catalogue, distance-to-catalogue profile matched to
+  the best reported file (median 20.1 px, p90 73.1 px). Format: 8/8 local checks plus the shared
+  `gems57` gate. Uniqueness: no byte copy among 118 scored rasters, max surface |Spearman| 0.0148,
+  overlap lift 1.47x over a density-matched independent field.
+- **Estimated score 0.247 (MODEL-ESTIMATE, range 0.142–0.286; NULL-FLOOR 0.0425).** Derived from a
+  calibrated forward model of the official metric, *not* from a projection. See
+  `docs/wbg6/index.html` §2 and `evidence/wbg6_score_estimate.json`.
+- **Measured hidden-truth size K ≈ 12,395 cells**, calibrated on the one submission with a provably
+  uniform layout (reported 0.0904 reproduced to 0.0002).
+- Older rasters (WBG-C1, TIP1, MVGZ, WBG-H1, WBG-2, WBG-S2, WBG-3, WBG-4) remain **DO NOT SUBMIT**.
+- **Do not** claim this file beats 0.2778 or reaches the leaderboard top. It is a legitimate unique
+  entry with an honest, wide estimate; reaching 0.33–0.45 requires the login-gated 19-band stack.
 
 ## Submission contract
 

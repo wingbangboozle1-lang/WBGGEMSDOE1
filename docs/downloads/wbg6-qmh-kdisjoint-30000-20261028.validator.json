@@ -1,0 +1,81 @@
+{
+ "path": "docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif",
+ "name": "wbg6-qmh-kdisjoint-30000-20261028",
+ "sha256": "e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9",
+ "bytes": 136230,
+ "zip": "docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.zip",
+ "zip_sha256": "1a7e648c404db23dd1a9a3704d0b8a94f7903af4c49369a0da85014af39f56e3",
+ "bands": 1,
+ "dtype": "float32",
+ "shape": [
+  3730,
+  3292
+ ],
+ "crs": "EPSG:32611",
+ "transform": [
+  100.0,
+  0.0,
+  243350.0,
+  0.0,
+  -100.0,
+  4508550.0
+ ],
+ "nodata": null,
+ "all_finite": true,
+ "min": 0.0,
+ "max": 1.0,
+ "positive_cells": 30000,
+ "outside_footprint_nonzero": 0,
+ "dots_within_3px_of_catalogue": 1283,
+ "distance_to_catalogue_px": {
+  "median": 20.09975124224178,
+  "p90": 73.06161783043132,
+  "max": 220.05681084665386
+ },
+ "min_separation_px": 5.0,
+ "per_ring": [
+  {
+   "ring": "[0,3)",
+   "cells": 345336,
+   "alloc": 1283,
+   "placed": 1283
+  },
+  {
+   "ring": "[3,6)",
+   "cells": 398544,
+   "alloc": 3958,
+   "placed": 3958
+  },
+  {
+   "ring": "[6,11)",
+   "cells": 592322,
+   "alloc": 4417,
+   "placed": 4417
+  },
+  {
+   "ring": "[11,21)",
+   "cells": 993570,
+   "alloc": 5986,
+   "placed": 5986
+  },
+  {
+   "ring": "[21,41)",
+   "cells": 1310736,
+   "alloc": 6488,
+   "placed": 6488
+  },
+  {
+   "ring": "[41,81)",
+   "cells": 1165172,
+   "alloc": 6289,
+   "placed": 6289
+  },
+  {
+   "ring": "[81,1e+09)",
+   "cells": 300705,
+   "alloc": 1579,
+   "placed": 1579
+  }
+ ],
+ "design": "quantile-matched distance profile + kernel-disjoint selection + along-strike structural habitat"
+}

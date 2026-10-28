@@ -1,0 +1,89 @@
+{
+ "schema": "wbg6-submission-audit-v1",
+ "name": "wbg6-qmh-kdisjoint-30000-20261028",
+ "tif": "docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif",
+ "zip": "docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.zip",
+ "sha256": "e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9",
+ "zip_sha256": "1a7e648c404db23dd1a9a3704d0b8a94f7903af4c49369a0da85014af39f56e3",
+ "format_checks": {
+  "single_band_float32": true,
+  "grid_matches_sample": true,
+  "all_finite": true,
+  "range_0_1": true,
+  "no_nan_inside_footprint": true,
+  "zero_outside_footprint": true,
+  "zips_exactly_one_member": true,
+  "zip_member_identical": true
+ },
+ "shared_format_report": {
+  "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif",
+  "bytes": 136230,
+  "sha256": "e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9",
+  "bands": 1,
+  "dtype": "float32",
+  "crs": "EPSG:32611",
+  "width": 3292,
+  "height": 3730,
+  "bounds": [
+   243350.0,
+   4135550.0,
+   572550.0,
+   4508550.0
+  ],
+  "ref_bounds": [
+   243350.0,
+   4135550.0,
+   572550.0,
+   4508550.0
+  ],
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ],
+  "nodata": null,
+  "blocksize": [
+   256,
+   256
+  ],
+  "fixture_grid": false,
+  "has_validity_mask": false,
+  "nan_pixels": 0,
+  "infinity_pixels": 0,
+  "n_nan": 0,
+  "min": 0.0,
+  "max": 1.0,
+  "mean": 0.002443163888528943,
+  "n_nonzero": 30000,
+  "mass": 30000.0,
+  "mass_outside_footprint": 0,
+  "problems": [],
+  "ok": true,
+  "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+ },
+ "duplicate_screen": {
+  "n_compared": 118,
+  "my_dots": 30000,
+  "max_forward_overlap_3px": 0.9967666666666667,
+  "max_overlap_against": "20261001_r13-lattice-s5_v2_nan-outside",
+  "max_lift": 1.4709510984021912,
+  "max_lift_against": "20261001_r13-lattice-s5_v2_nan-outside",
+  "max_abs_surface_spearman": 0.014830953454224638,
+  "max_abs_spearman_against": "repo-c0-habitat-emission-20261003-a4d439b07426-nan",
+  "any_byte_identical": false,
+  "distinct_values": 2
+ },
+ "gates": {
+  "format_pass": true,
+  "not_a_byte_copy": true,
+  "surface_rho_below_0.90": true,
+  "never_on_catalogue": true,
+  "dots_on_catalogue": 0,
+  "not_dense_over_budget": true
+ },
+ "verdict": "PROMOTE (unique, format-valid, submittable)",
+ "note": "OWNER-REPORTED scores only; no organizer receipt exists for any file."
+}

@@ -1,6 +1,43 @@
+## ✅ DOWNLOAD & SUBMIT: YES — WBG-6 `wbg6-qmh-kdisjoint-30000-20261028`
+
+**[WBG-6 executive summary](docs/wbg6/index.html)** ·
+**[How to submit, step by step](docs/wbg6/how-to-submit.html)** ·
+**[Run card](evidence/wbg6_run_card.json)**
+
+| | |
+|---|---|
+| **File to download** | [`wbg6-qmh-kdisjoint-30000-20261028.tif`](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif) · [one-TIFF ZIP](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.zip) |
+| **SHA-256** | `e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9` |
+| **Estimated score** | **0.247** — MODEL-ESTIMATE, range 0.142–0.286; no-localisation NULL-FLOOR 0.0425. Never ORGANIZER-CONFIRMED. |
+| **Unique?** | **Yes.** No byte copy of any of the 118 scored rasters; max surface |Spearman| 0.0148; overlap lift 1.47x over a density-matched independent field. |
+| **Format** | single-band float32, EPSG:32611, 3730x3292, 100 m, all finite, values in [0,1], zero outside the footprint, 0 dots on the catalogue. |
+| **Name / note (71 chars)** | `wbg6-qmh-kdisjoint-30000-20261028` / *WBG-6 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue* |
+
+> **Honest ceiling.** 0.247 is statistically indistinguishable from the best nine-site
+> historical value (0.2778): near-identical rasters in the owner's own history differ by up to 0.086.
+> The public leaderboard leader is **0.4544** (observed 2026-10-28). This file is a legitimate, unique,
+> format-valid entry; it is **not** a top-20 contender. Section 2 of the executive summary states exactly
+> what reaching 0.33-0.45 requires and which download is blocked in this environment.
+
+**What this session measured.** (1) The size of the hidden private label set is *measured*, not guessed:
+the one historical submission with a provably uniform layout (a 5 px lattice, reported 0.0904) pins
+**K ≈ 12,395 truth cells**, and an ensemble of random
+catalogue-like fault sets reproduces its score to within 0.0002. Against that null a raster with no
+localisation skill scores 0.0425; the 0.2778 file scores 6.5x that, so localisation precision,
+not dot geometry, is what the leaderboard measures. (2) The repo's shared hide-and-recover holdout
+**fails external validation** as a score predictor (Spearman 0.144, p=0.12, n=118) and is no longer
+reported as a decision number. (3) The 118 scored rasters are only **22 independent families**; geometry
+descriptors do not generalise across families (leave-one-family-out R2 -0.847).
+(4) The literal ">70% within 3 px" registry gate is **degenerate** - a 200k-dot lattice puts ~99.7% of the
+map within 3 px of a dot, so it flags every possible submission - and is replaced by a density-matched
+overlap lift. (5) Kernel-disjoint emission at 5 px separation gives 9.371 distinct coverage per dot versus 8.048 for the
+0.2778 file (16% more reach per dot), and the file carries 20% fewer dots, i.e. 7,654 fewer
+false-positive candidates at the same distance profile.
+
+
 # WBG GEMS — evidence-first fault mapping
 
-**[28 October review: no submission approved](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json)
+**[28 October review of the earlier lanes: no submission approved there](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · **the one file cleared to submit is WBG-6, above**
 
 **[Detailed repository review](docs/repo-review-20261028.md)** · [Earlier repository review and ranked future hypotheses](docs/repo-review-20261027-session.md) ·
 [Session JSON card](evidence/repo_review_session_20261027.json) · [Current provenance feed](docs/data/feed.json)

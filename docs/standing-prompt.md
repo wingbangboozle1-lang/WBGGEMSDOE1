@@ -9,6 +9,15 @@
 > The user request below is archived intent, not independently verified evidence.
 
 
+> **27 OCT SAFETY REVIEW:** No file is approved. The parallel EXP3DET file has a
+> literal 100% three-pixel overlap STOP against registered WBG-C1; its old nine-file
+> uniqueness diagnostic and two-anchor leaderboard projection do not authorize it.
+> Its historical HOLDOUT-DTI is not a leaderboard result. The SPI-PMR runner's
+> surface correlation was calculated after placement; pre-placement overlap
+> clearance is not established. No new experiments or slots were used.
+> See `evidence/wbg3/exp3det_safety_review_20261027.json` and
+> `docs/review-passes-20261027.md`.
+
 ## Active follow-up instructions (2026-10-27 summary, not a verbatim transcript)
 
 - Compare GEMSDOE24, 25, 27, 28, 30, 31, 32, 33 and 36, give an obvious research download and honest submission decision, explain the reported GEMSDOE32 0.2778, and never turn an unreceipted score or model projection into organizer confirmation. Public leaderboards are dated observations, not project receipts.

@@ -188,8 +188,8 @@ def verify_recorded() -> dict:
     if sha256_file(artifact) != card["raster_sha256"]:
         raise ValueError("TIP1 raster checksum mismatch")
     checks = submission.check_variants(artifact, TEMPLATE)
-    if checks != card["validator_output"] or not checks["format_valid"]:
-        raise ValueError("TIP1 exact-file validation changed")
+    if not submission.matches_frozen_validation(checks, card["validator_output"]):
+        raise ValueError("TIP1 exact-file validation changed or new mask checks failed")
     if not checks["checks"]["variant_strict_whole_array_no_nan_allowed"]["pass"]:
         raise ValueError("TIP1 strict whole-array [0,1] validation failed")
     if not (1 <= len(card["submission_note"]) <= 140):
@@ -202,6 +202,7 @@ def verify_recorded() -> dict:
 
 
 def execute() -> dict:
+    raise RuntimeError("TIP1 is stopped after a literal duplicate and the three-experiment budget is exhausted; verify only.")
     if RUN_CARD.exists() or DOCS_CARD.exists():
         raise SystemExit("Frozen TIP1 receipt exists; use --verify-recorded. No reruns or tuning.")
     started = time.monotonic()

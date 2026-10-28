@@ -19,6 +19,7 @@ import rasterio
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "src"), str(ROOT / "vendor")]
 from gems57.validate import validate  # noqa: E402
+from gems.submission import raster_mask_report  # noqa: E402
 
 REVIEW_DATE = "2026-10-27"
 
@@ -83,9 +84,13 @@ def validate_artifact(spec, template):
     report["file"] = spec["artifact"]
     with rasterio.open(template) as ref, rasterio.open(path) as ds:
         a = ds.read(1)
+        same_grid = (ds.crs, ds.shape, ds.transform) == (ref.crs, ref.shape, ref.transform)
+        mask_report = raster_mask_report(ds, np.isfinite(ref.read(1))) if same_grid else None
         checks = dict(sha256_matches_card=sha(path) == spec["expected_sha256"],
                       shared_validator_passed=report["all_checks_passed"],
-                      crs_shape_transform_match=(ds.crs, ds.shape, ds.transform) == (ref.crs, ref.shape, ref.transform),
+                      crs_shape_transform_match=same_grid,
+                      footprint_gdal_mask_valid=bool(mask_report and mask_report["inside_all_valid"]),
+                      single_file_self_contained=bool(mask_report and mask_report["self_contained"]),
                       all_finite=bool(np.isfinite(a).all()),
                       whole_array_in_0_1=bool(((a >= 0) & (a <= 1)).all()),
                       note_at_most_140_chars=0 < len(spec["note"]) <= 140)

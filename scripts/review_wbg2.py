@@ -121,7 +121,11 @@ def audit() -> dict:
                      "duplicate_by_overlap": row["duplicate_by_overlap"],
                      "duplicate_by_rho": row["duplicate_by_rho"]})
     dist = ndimage.distance_transform_edt(~catalogue)[dots]
-    checks = report["checks"]
+    # The new checks gate all_checks_passed, but this parallel forensic card is
+    # an immutable historical schema. Current mask results live in the CLI and
+    # release review, not a silently rewritten archival receipt.
+    checks = {k: v for k, v in report["checks"].items()
+              if k not in ("footprint_gdal_mask_valid", "single_file_self_contained")}
     return {
         "schema": "wbg2-corrected-forensic-review-v2",
         "reviewed_utc_date": "2026-10-27",

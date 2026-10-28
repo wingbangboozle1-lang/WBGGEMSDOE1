@@ -22,6 +22,7 @@ import rasterio
 from gems57 import gates
 from gems57.grid import SHAPE
 from gems57.validate import validate as validate_shared
+from gems.submission import raster_mask_report
 from wbggems.audit import sha256
 # Preserve the pre-existing supplied-reference API for inherited tests/callers.
 # It is not the authoritative all-finite writer/validator for WBG-C1.
@@ -66,7 +67,19 @@ def check_tiff(path):
     if sample.exists():
         template = gates.format_report(path, sample, footprint=footprint)
         report["template_report"] = template
-        report["all_checks_passed"] &= template["ok"]
+        with rasterio.open(path) as dataset:
+            mask_report = raster_mask_report(dataset, footprint)
+        report["mask_report"] = mask_report
+        report["checks"]["footprint_gdal_mask_valid"] = mask_report["inside_all_valid"]
+        report["checks"]["single_file_self_contained"] = mask_report["self_contained"]
+        report["all_checks_passed"] &= template["ok"] and mask_report["inside_all_valid"] and mask_report["self_contained"]
+    else:
+        # The vendor validator can check a fixed grid without a reference, but
+        # cannot establish the footprint or detect in-footprint masked pixels.
+        report["checks"]["footprint_gdal_mask_valid"] = False
+        report["checks"]["single_file_self_contained"] = False
+        report["mask_report"] = None
+        report["all_checks_passed"] = False
     report["mirrored_reference_available"] = sample.exists()
     report["catalogue_reference_available"] = catalogue is not None
     report["independent_organizer_origin_authenticated"] = False
@@ -74,16 +87,13 @@ def check_tiff(path):
 
 
 def approval_matches(card, report, identity_matches):
-    """Format or a single accidentally flipped decision flag cannot approve a file."""
-    if not card or not identity_matches or not report.get("all_checks_passed"):
-        return False
-    decision = card.get("decision", {})
-    return bool(card.get("verdict") == "promote"
-        and decision.get("verdict") == "promote"
-        and decision.get("ok_to_submit") is True
-        and decision.get("eligible_for_separate_selector") is True
-        and decision.get("approved_for_weekly_slot") is True
-        and card.get("registry", {}).get("passes_literal_uniqueness") is True)
+    """Never grant live-slot authorization from self-reported JSON flags.
+
+    No separate selector exists to verify scientific gates, unchanged registry
+    scope, current account allowance and authorization. Even a perfectly formatted
+    TIFF with a card claiming promotion therefore remains unapproved here.
+    """
+    return False
 
 
 def main():
@@ -94,6 +104,14 @@ def main():
     args = parser.parse_args()
     if args.reference is not None:
         legacy = validate(args.file, args.reference)
+        if legacy.get("ok"):
+            with rasterio.open(args.reference) as ref, rasterio.open(args.file) as pred:
+                footprint = (ref.read_masks(1) > 0) & np.isfinite(ref.read(1))
+                mask_report = raster_mask_report(pred, footprint)
+            legacy["mask_report"] = mask_report
+            if not mask_report["inside_all_valid"] or not mask_report["self_contained"]:
+                legacy["ok"] = False
+                legacy["errors"].append("Candidate is masked inside the footprint or depends on external sidecars.")
         metadata = legacy.get("checks", {}).get("candidate", {})
         if metadata.get("nodata") is not None and not math.isfinite(metadata["nodata"]):
             metadata["nodata"] = str(metadata["nodata"])
@@ -129,7 +147,9 @@ def main():
     # unlock those exact bytes without changing this code and its safety review.
     known_negative = "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3"
     s2_negative = "6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880"
-    paths = ("registry/run_card.json", "evidence/wbg2/run_card.json", "evidence/wbg_s2/run_card.json")
+    exp3_negative = "30901f894a84f6150a65a86e6556d3b4d3b3f5054dd4f8f3b597d754115447c1"
+    paths = ("registry/run_card.json", "evidence/wbg2/run_card.json", "evidence/wbg_s2/run_card.json",
+             "evidence/wbg3/run_card.json", "evidence/wbg3_spipmr/run_card.json")
     matches = []
     for name in paths:
         card_path = ROOT / name
@@ -146,6 +166,7 @@ def main():
     report["run_card_matches_exact_tiff"] = identity_matches
     report["run_card_path"] = card_name
     report["promotion_verdict"] = card["verdict"] if identity_matches else "untracked"
+    report["separate_slot_selector_available"] = False
     report["ok_to_submit"] = approval_matches(card, report, identity_matches)
     if report["sha256"] == known_negative:
         if (not identity_matches or card_name != "evidence/wbg2/run_card.json"
@@ -178,6 +199,19 @@ def main():
         report["ok_to_submit"] = False
         report["known_negative_registry_overlap"] = max(row["my_dots_within_3px_of_theirs"] for row in rows)
         report["known_negative_lattice_overlap"] = rows[0]["my_dots_within_3px_of_theirs"]
+    if report["sha256"] == exp3_negative:
+        safety = json.loads((ROOT / "evidence/wbg3/exp3det_safety_review_20261027.json").read_text())
+        witness = safety["witness"]
+        overlap = witness["my_dots_within_3px_of_theirs"]
+        if (not identity_matches or card_name != "evidence/wbg3/run_card.json"
+                or card.get("verdict") != "negative" or card.get("decision", {}).get("ok_to_submit") is not False
+                or safety["raster_sha256"] != exp3_negative or safety["verdict"] != "negative"
+                or safety["ok_to_submit"] is not False or safety["eligible_for_separate_selector"] is not False
+                or witness["sha256"] != "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875"
+                or witness["duplicate_by_overlap"] is not True or not math.isfinite(overlap)
+                or not .70 < overlap <= 1):
+            raise ValueError("EXP3DET known-negative registry witness missing or inconsistent")
+        report["known_negative_registry_overlap"] = overlap
     report["warning"] = "FORMAT PASS is not uniqueness, scientific efficacy, organizer acceptance or slot approval."
     print(json.dumps(report, indent=2, allow_nan=False))
     if not report["all_checks_passed"]:

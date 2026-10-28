@@ -22,6 +22,7 @@ const chromium = importedChromium.default || importedChromium;
   const wbg2 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg2/run_card.json")));
   const s2 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg_s2/run_card.json")));
   const wbg3 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg3_spipmr/run_card.json")));
+  const exp3 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg3/exp3det_safety_review_20261027.json")));
   if (process.env.BROWSER_COMPAT_LIBS === "1") {
     // Minimal Linux containers may lack NSS/NSPR. Use the dependency's own
     // bundled compatibility libraries instead of downloading system packages.
@@ -136,6 +137,26 @@ const chromium = importedChromium.default || importedChromium;
     await page.screenshot({ path: path.join(artifacts, "wbg3-desktop.png"), fullPage: true });
     await page.setViewportSize({ width: 390, height: 844 });
     await page.screenshot({ path: path.join(artifacts, "wbg3-mobile.png"), fullPage: true });
+    const exp3Result = { file: "wbg3.html" };
+    for (const [label, width, height] of [["desktop", 1440, 1100], ["mobile", 390, 844]]) {
+      await page.setViewportSize({ width, height });
+      const response = await page.goto(new URL("wbg3.html", base).href, { waitUntil: "networkidle" });
+      assert.equal(response.status(), 200);
+      const text = await page.locator("main").innerText();
+      assert.match(text, /DO NOT SUBMIT/);
+      assert.match(text, /100\.0%/);
+      assert.doesNotMatch(text, /0\.21 \[0\.17/);
+      assert.equal(await page.evaluate(() => document.body.scrollWidth > window.innerWidth), false, `${label} overflow: wbg3.html`);
+      exp3Result[label] = "passed";
+    }
+    checked.push(exp3Result);
+    await page.setViewportSize({ width: 1440, height: 1100 });
+    const exp3DownloadPromise = page.waitForEvent("download");
+    await page.locator("a[download]").first().click();
+    const exp3Download = await exp3DownloadPromise;
+    assert.equal(exp3Download.suggestedFilename(), path.basename(exp3.artifact));
+    assert.equal(crypto.createHash("sha256").update(fs.readFileSync(await exp3Download.path())).digest("hex"), exp3.raster_sha256);
+    await page.screenshot({ path: path.join(artifacts, "exp3det-desktop.png"), fullPage: true });
     await page.setViewportSize({ width: 1440, height: 1100 });
     await page.goto(new URL("wbg2.html", base).href, { waitUntil: "networkidle" });
     assert.equal(await page.locator("table tbody tr").count(), 9);
@@ -156,9 +177,11 @@ const chromium = importedChromium.default || importedChromium;
       javascript_page_errors: errors, site_filter: "passed", wbg2_nine_site_table: "passed", primary_download_sha256: wbg2.raster_sha256,
       primary_download_identity: "passed", wbg_s2_download_sha256: s2.artifact.tif_sha256,
       wbg_s2_download_identity: "passed", wbg3_download_sha256: wbg3.raster_sha256,
-      wbg3_download_identity: "passed", body_overflow: false, all_passed: true,
+      wbg3_download_identity: "passed", exp3det_download_sha256: exp3.raster_sha256,
+      exp3det_download_identity: "passed", body_overflow: false, all_passed: true,
       no_model_training_or_slot_use: true };
-    fs.writeFileSync(path.join(root, "evidence/browser_checks.json"), JSON.stringify(report, null, 2) + "\n");
+    // Browser diagnostics must not silently overwrite the frozen prior receipt.
+    fs.writeFileSync(path.join(artifacts, "browser-checks-current.json"), JSON.stringify(report, null, 2) + "\n");
     console.log(JSON.stringify(report, null, 2));
   } finally {
     await browser.close();

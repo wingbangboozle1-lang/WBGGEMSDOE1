@@ -1,0 +1,74 @@
+{
+  "schema": "wbg3-exp3det-literal-safety-v1",
+  "review_date_utc": "2026-10-27",
+  "phase": "Final dots already existed; forensic remeasurement only. No surface-before-placement clearance is established.",
+  "evidence_class": "REGISTRY-MEASUREMENT",
+  "hypothesis": "WBG-3: supervised multi-physics fault detector (official 19-band GeoDAWN stack + 3DEP LiDAR scarp + GeoDAWN radiometrics + local lineament texture) with catalogue-clearance dotted emission",
+  "mechanism": "HGB trained on visible catalogue pixels learns the joint geophysical expression of mapped faults; dotted emission (>=3 px spacing, >2 px from catalogue, 37,654 dots) converts the surface to a max-cover-style field that does not retrace known faults, which earn no credit against expert-mapped new-fault truth.",
+  "named_non_fault_mimic": "Range-front alluvial aprons and lithologic contacts produce coincident gravity/magnetic/basement steps without faulting; pluvial shoreline benches mimic scarps in the LiDAR stack.",
+  "artifact": "docs/downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif",
+  "raster_sha256": "30901f894a84f6150a65a86e6556d3b4d3b3f5054dd4f8f3b597d754115447c1",
+  "existing_positive_pixels": 37654,
+  "validator": {
+    "local_format_passed": true,
+    "mask_report": {
+      "masked_inside_footprint": 0,
+      "inside_all_valid": true,
+      "self_contained": true,
+      "external_dependency_names": []
+    },
+    "whole_array_min": 0.0,
+    "whole_array_max": 1.0,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "zip_single_member_identical": true
+  },
+  "witness": {
+    "repo": "WBGGEMSDOE1",
+    "submission": "C1 continuous research surface",
+    "sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+    "their_dots": 5106385,
+    "my_dots_within_3px_of_theirs": 1.0,
+    "spearman_full_footprint": 0.0574906462037712,
+    "duplicate_by_overlap": true,
+    "duplicate_by_rho": false
+  },
+  "scope": "One registered raster. One STOP is decisive; not a complete registry audit or proof of common geology or copying.",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "dti": 0.13823302967086964,
+    "ci95": [
+      0.12570057571548604,
+      0.1519562135793138
+    ],
+    "withheld_positive_pixels": 60988,
+    "status": "Recorded parallel result; not rerun or independently confirmed in this review."
+  },
+  "leaderboard_estimate": null,
+  "corrections": [
+    "The old two-anchor model projection is withdrawn; it is not a measured leaderboard result.",
+    "The nine-focus-site diagnostic is not a complete registry audit. The literal C1 witness exceeds the 70% stop threshold.",
+    "The cause of the user's portal range error is unverified; all-finite output is only a local policy."
+  ],
+  "submission_name": "wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros",
+  "submission_note": "WBG-3 supervised multi-physics detector, dotted clear2 37654, zeros no NaN",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "eligible_for_separate_selector": false,
+  "new_experiments": 0,
+  "submission_slots_used": 0
+}

@@ -64,7 +64,7 @@ def _shell(active: str, title: str, body: str, *, prefix: str) -> str:
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{escape(title)} · WBG-3 · WBG GEMS research desk</title>
-<meta name="description" content="WBG-3 (SPI-PMR-WCS-1): 100% 1m-LiDAR-free & 10m-DEM-free preregistered 3-arm GeoTIFF, 208-raster uniqueness audit, PhD explanation of 0.2778, and fail-closed submission guide.">
+<meta name="description" content="WBG-3 (SPI-PMR-WCS-1): 100% 1m-LiDAR-free & 10m-DEM-free preregistered 3-arm GeoTIFF, 209-raster historical audit, forensics of the user-reported 0.2778, and fail-closed submission guide.">
 <meta name="theme-color" content="#173b42"><link rel="icon" href="{prefix}assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="{prefix}assets/style.css"><script defer src="{prefix}assets/app.js"></script></head>
 <body><a class="skip" href="#main">Skip to content</a>
@@ -72,7 +72,7 @@ def _shell(active: str, title: str, body: str, *, prefix: str) -> str:
 <a class="brand" href="{prefix}index.html"><svg viewBox="0 0 36 38" fill="none" aria-hidden="true"><path d="M3 29C12 27 4 16 13 15S21 5 31 6M4 35C15 34 11 22 20 22S25 11 34 12M2 21C8 21 4 9 13 9S18 1 25 2" stroke="#23665f" stroke-width="2" stroke-linecap="round"/></svg><span>WBG / GEMS<small>WBG-3 · SPI-PMR-WCS-1</small></span></a>
 <div class="navlinks">{links}{_link(REPO, 'Repository ↗', 'repo')}</div></nav></div></header>
 <main id="main" class="wrap"><div class="breadcrumb">DOE GEMS Prize (Comp. 306) <span>/</span> WBG-3 (SPI-PMR-WCS-1) <span>/</span> {escape(title)}</div>{body}</main>
-<footer class="footer"><div class="wrap footer-inner"><p><strong>WBG / GEMS · WBG-3</strong> &nbsp; Download: YES (research). Submit: NO (fail-closed).<br>No competition slot was used. Format validity is not organizer acceptance.</p><div>{_link(f'{prefix}data/wbg3-run-card.json', 'WBG-3 Run Card JSON')}{_link(f'{prefix}data/wbg3-uniqueness.json', '208-Raster Uniqueness JSON')}{_link(f'{prefix}standing-prompt.md', 'Standing brief')}{_link(REPO, 'Source code ↗')}</div></div></footer>
+<footer class="footer"><div class="wrap footer-inner"><p><strong>WBG / GEMS · WBG-3</strong> &nbsp; Download: YES (research). Submit: NO (fail-closed).<br>No competition slot was used. Format validity is not organizer acceptance.</p><div>{_link(f'{prefix}data/wbg3-run-card.json', 'WBG-3 Run Card JSON')}{_link(f'{prefix}data/wbg3-uniqueness.json', '209-Raster Uniqueness JSON')}{_link(f'{prefix}standing-prompt.md', 'Standing brief')}{_link(REPO, 'Source code ↗')}</div></div></footer>
 <div id="toast" role="status" aria-live="polite"></div></body></html>'''
 
 
@@ -80,7 +80,7 @@ def _stop_banner(w3: dict) -> str:
     seg = w3["holdout_dti"]["primary_segment_holdout"]["dti"]
     intra = w3["holdout_dti"]["secondary_intrabasin_holdout"]["dti"]
     comp_ov = w3["correlation_overlap_vs_registry"]["final_dots_competing_sparse"]["max_forward_3px_overlap"] * 100
-    return f'''<div class="alert" role="note"><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M11 3 21 20H1L11 3Z" stroke="currentColor" stroke-width="1.4"/><path d="M11 8v5m0 3h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p><strong>Download: YES, for research. Submit: NO — DO NOT SUBMIT · NO SELECTOR ELIGIBILITY.</strong> <code>{escape(Path(w3["artifact"]).name)}</code> passes all 15 portal-safe <code>[0, 1]</code> zeros-mode checks (0 NaN anywhere), clears competing-sparse uniqueness across all 206 sparse rasters (max 3 px overlap <strong>{comp_ov:.2f}% ≤ 70%</strong>; 27.55% vs GEMSDOE32 B2; 43.40% vs WBG-S2; full-footprint pre-placement max |ρ| = 0.6449 ≤ 0.90), and beats 19-band control across <strong>4/4 spatial folds</strong> (<code>HOLDOUT-DTI = {seg:.6f}</code> on <code>gems-segment-pooled-v1</code>; <code>{intra:.6f}</code> on <code>gems57-pooled-hide-v2</code>). However, literal un-amended registry overlap hits <strong>99.9946%</strong> against <code>r13-lattice-s5</code> (206,895-dot synthetic lattice) and <strong>100%</strong> against continuous <code>WBG-C1</code>, and primary <code>SegmentHoldout</code> trails 10m-3DEP benchmark <code>S3DEP1</code> (<code>0.166060</code>). No competition slot was used.</p></div>'''
+    return f'''<div class="alert" role="note"><svg viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M11 3 21 20H1L11 3Z" stroke="currentColor" stroke-width="1.4"/><path d="M11 8v5m0 3h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><p><strong>Download: YES, for research. Submit: NO — DO NOT SUBMIT · NO SELECTOR ELIGIBILITY.</strong> <code>{escape(Path(w3["artifact"]).name)}</code> passes all 15 historical local <code>[0, 1]</code> zeros-mode checks (0 NaN anywhere), clears competing-sparse uniqueness across all 207 sparse rasters (max 3 px overlap <strong>{comp_ov:.2f}% ≤ 70%</strong>; 27.55% vs GEMSDOE32 B2; 43.40% vs WBG-S2; surface max |ρ| = 0.6449, calculated after dot placement; pre-placement overlap clearance is not established), and beats 19-band control across <strong>4/4 spatial folds</strong> (<code>HOLDOUT-DTI = {seg:.6f}</code> on <code>gems-segment-pooled-v1</code>; <code>{intra:.6f}</code> on <code>gems57-pooled-hide-v2</code>). However, literal un-amended registry overlap hits <strong>99.9946%</strong> against <code>r13-lattice-s5</code> (206,895-dot synthetic lattice) and <strong>100%</strong> against continuous <code>WBG-C1</code>, and primary <code>SegmentHoldout</code> trails 10m-3DEP benchmark <code>S3DEP1</code> (<code>0.166060</code>). No competition slot was used.</p></div>'''
 
 
 def _download_card(w3: dict, *, prefix: str) -> str:
@@ -93,7 +93,7 @@ def _download_card(w3: dict, *, prefix: str) -> str:
     intra = w3["holdout_dti"]["secondary_intrabasin_holdout"]["dti"]
     return f'''<aside class="download-card" aria-label="WBG-3 GeoTIFF deliverable and submission decision"><div class="card-top"><div class="file-icon" aria-hidden="true">.TIF</div><div class="file-label">WBG-3 · SPI-PMR-WCS-1<small>36,800 off-catalogue binary dots · zeros mode (0 NaN)</small></div>{_pill('DO NOT SUBMIT', 'no')}</div><div class="card-body">
 <div class="status-line"><span>Automated format validator</span><b style="color:var(--teal)">PASS · 15/15 ([0, 1], 0 NaN)</b></div>
-<div class="status-line"><span>Competing sparse (206 rasters)</span><b style="color:var(--teal)">PASS · max {comp_ov:.2f}% ({b2_ov:.2f}% vs B2)</b></div>
+<div class="status-line"><span>Competing sparse (207 rasters)</span><b style="color:var(--teal)">PASS · max {comp_ov:.2f}% ({b2_ov:.2f}% vs B2)</b></div>
 <div class="status-line"><span>Literal lattice / C1 witness</span><b style="color:var(--red)">99.9946% (r13) · 100% (C1)</b></div>
 <div class="status-line"><span>Measured HOLDOUT-DTI</span><b>{seg:.4f} (seg) · {intra:.4f} (hide-v2)</b></div>
 <div class="status-line"><span>Live slot decision</span><b style="color:var(--red)">DO NOT SUBMIT (0 slots used)</b></div>
@@ -111,8 +111,8 @@ def _stats(w3: dict) -> str:
     return f'''<section class="stats" aria-label="WBG-3 measured verification status">
 <div class="stat"><label>Primary · HOLDOUT-DTI (Segment)</label><div class="value good">{seg['dti']:.6f}</div><p>95% CI [{seg['ci95'][0]:.6f}, {seg['ci95'][1]:.6f}] · 4/4 fold wins<br><code>{seg['evaluator_version']}</code> · {seg['withheld_positive_pixels']:,} positives</p></div>
 <div class="stat"><label>Secondary · HOLDOUT-DTI (Intra-Basin)</label><div class="value good">{intra['dti']:.6f}</div><p>95% CI [{intra['ci95'][0]:.6f}, {intra['ci95'][1]:.6f}] · +59.4% vs 19b ctrl<br><code>{intra['evaluator_version']}</code> · {intra['withheld_positive_pixels']:,} positives</p></div>
-<div class="stat"><label>Uniqueness · 208-Raster Audit</label><div class="value bad">99.9946%</div><p>Literal r13 lattice STOP (&gt;70%) · 100% vs C1<br>Competing sparse (206): <strong style="color:var(--teal)">{comp['max_forward_3px_overlap'] * 100:.2f}% PASS</strong> · |ρ|≤{surf_rho:.4f}</p></div>
-<div class="stat"><label>Portal Format &amp; Slots Used</label><div class="value word">0 Slots</div><p>15/15 checks PASS · zeros mode · 0 NaN<br>Decision: <strong style="color:var(--red)">DO NOT SUBMIT</strong></p></div></section>'''
+<div class="stat"><label>Uniqueness · 209-Raster Audit</label><div class="value bad">99.9946%</div><p>Literal r13 lattice STOP (&gt;70%) · 100% vs C1<br>Competing sparse (207): <strong style="color:var(--teal)">{comp['max_forward_3px_overlap'] * 100:.2f}% PASS</strong> · |ρ|≤{surf_rho:.4f}</p></div>
+<div class="stat"><label>Local Format &amp; Slots Used</label><div class="value word">0 Slots</div><p>15/15 checks PASS · zeros mode · 0 NaN<br>Decision: <strong style="color:var(--red)">DO NOT SUBMIT</strong></p></div></section>'''
 
 
 def _chart(w3: dict) -> str:
@@ -156,7 +156,7 @@ def _master_table(w3: dict, s2: dict, h1: dict, w2: dict, c1: dict, audit: dict,
         f'''<tr class="featured"><td class="site-cell">WBG-3 (Ours · 1m-LiDAR-free)<small>SPI-PMR-WCS-1 · 36,800 dots · zeros mode</small></td>
 <td class="file-cell"><a href="{prefix}downloads/{escape(w3_tif)}" download>{escape(w3_tif)}</a><div class="cell-note"><a href="{prefix}downloads/{escape(w3_zip)}" download>One-TIFF ZIP ↓</a> · SHA-256 <code>{w3['raster_sha256'][:16]}…</code></div></td>
 <td><span class="score">{w3_seg['dti']:.4f} / {w3_in['dti']:.4f}</span><div class="cell-note"><strong>HOLDOUT-DTI</strong>: <code>{w3_seg['evaluator_version']}</code> {w3_seg['dti']:.6f} CI [{w3_seg['ci95'][0]:.4f}, {w3_seg['ci95'][1]:.4f}] (n={w3_seg['withheld_positive_pixels']:,}, 4/4 fold wins); <code>{w3_in['evaluator_version']}</code> {w3_in['dti']:.6f} CI [{w3_in['ci95'][0]:.4f}, {w3_in['ci95'][1]:.4f}] (n={w3_in['withheld_positive_pixels']:,}).<br>Leaderboard est.: <strong>Unavailable</strong> (never projected).</div></td>
-<td><span class="score">99.9946% / {w3_comp['max_forward_3px_overlap']*100:.2f}%</span><div class="cell-note">Literal STOP: <strong>99.9946%</strong> vs <code>r13-lattice-s5</code> &amp; <strong>100%</strong> vs <code>WBG-C1</code> (&gt;70%).<br>Competing sparse (206): <strong>PASS {w3_comp['max_forward_3px_overlap']*100:.2f}% ≤ 70%</strong> ({b2_ov:.2f}% vs B2; {s2_ov:.2f}% vs WBG-S2).</div></td>
+<td><span class="score">99.9946% / {w3_comp['max_forward_3px_overlap']*100:.2f}%</span><div class="cell-note">Literal STOP: <strong>99.9946%</strong> vs <code>r13-lattice-s5</code> &amp; <strong>100%</strong> vs <code>WBG-C1</code> (&gt;70%).<br>Competing sparse (207): <strong>PASS {w3_comp['max_forward_3px_overlap']*100:.2f}% ≤ 70%</strong> ({b2_ov:.2f}% vs B2; {s2_ov:.2f}% vs WBG-S2).</div></td>
 <td>{_pill('DO NOT SUBMIT', 'no')}<div class="cell-note"><strong>DOWNLOAD: YES · SUBMIT: NO.</strong> No selector eligibility; trails 10m-3DEP S3DEP1 (0.1661) &amp; hits literal lattice STOP.</div></td></tr>''',
         f'''<tr><td class="site-cell">WBG-S2 (Ours · Parallel)<small>MKSF-1 · 37,654 dots (10m DEM + 1m LiDAR)</small></td>
 <td class="file-cell"><a href="{prefix}downloads/{escape(s2_tif)}" download>{escape(s2_tif)}</a></td>
@@ -264,17 +264,17 @@ def _index_body(w3, s2, h1, w2, c1, audit, *, prefix: str) -> str:
         f"<tr><td class='mono' style='font-size:11px'>{escape(_short_id(r['id']))}</td><td>{r['positive_pixels']:,}</td><td><span class='score'>{r['forward_3px_overlap']*100:.2f}%</span></td><td>{r['reverse_3px_overlap']*100:.2f}%</td><td>{r['dots_spearman']:+.4f}</td><td>{_pill('PASS ≤70%', 'ok')}</td></tr>"
         for r in comp["top_10_competing_overlaps"][:5]
     )
-    return f'''<section class="hero"><div><p class="eyebrow">Executive Summary · WBG-3 (SPI-PMR-WCS-1)</p><h1>1m-LiDAR-free geophysics.<br><em>Verified, unique vs peers, stopped fairly.</em></h1><p class="lead"><strong>Download: YES. Submit: NO (no competition slot used).</strong> WBG-3 combines crustal Source-Parameter Local Wavenumber, FFT Poisson Magnetite-Destruction Residuals, 2D Riesz Monogenic Phase Congruency, and Fold-Safe Crack-Tip Wing-Crack Synthesis into 36,800 off-catalogue binary dots in portal-safe zeros mode.</p><div class="actions">{_link(f'{sub_prefix}how-to-submit.html', 'Open How-to-Submit subpage →', 'button secondary')}{_link(f'{sub_prefix}forensics-and-hypotheses.html', '0.2778 PhD forensics & 4 hypotheses →', 'text-link')}</div></div>{_download_card(w3, prefix=prefix)}</section>
+    return f'''<section class="hero"><div><p class="eyebrow">Executive Summary · WBG-3 (SPI-PMR-WCS-1)</p><h1>1m-LiDAR-free geophysics.<br><em>Measured, scoped, and stopped.</em></h1><p class="lead"><strong>Download: YES. Submit: NO (no competition slot used).</strong> WBG-3 combines crustal Source-Parameter Local Wavenumber, FFT Poisson Magnetite-Destruction Residuals, 2D Riesz Monogenic Phase Congruency, and Fold-Safe Crack-Tip Wing-Crack Synthesis into 36,800 off-catalogue binary dots in local all-finite zeros mode (not an organizer acceptance guarantee).</p><div class="actions">{_link(f'{sub_prefix}how-to-submit.html', 'Open How-to-Submit subpage →', 'button secondary')}{_link(f'{sub_prefix}forensics-and-hypotheses.html', '0.2778 PhD forensics & 4 hypotheses →', 'text-link')}</div></div>{_download_card(w3, prefix=prefix)}</section>
 {_stop_banner(w3)}{_stats(w3)}
 <section class="section"><div class="section-heading"><div><span class="section-num">01 / EXECUTIVE SUBMISSION &amp; NINE-SITE DECISION TABLE</span><h2>File to download, estimated/measured score, uniqueness &amp; submit verdict</h2><p>Every score carries its mandatory protocol label; projections are never presented as leaderboard scores.</p></div>{_link(f'{sub_prefix}how-to-submit.html', 'Submission instructions →', 'text-link')}</div>{_master_table(w3, s2, h1, w2, c1, audit, prefix=prefix)}</section>
 <section class="section"><div class="section-heading"><div><span class="section-num">02 / 3-ARM PREREGISTERED ABLATION &amp; SPATIAL PREVIEW</span><h2>4/4 spatial-fold victory over 19-band control and WBG-2</h2><p>Evaluated via unchanged shared <code>SegmentHoldout</code> and <code>gems57.holdout</code>.</p></div>{_link(f'{prefix}data/wbg3-run-card.json', 'WBG-3 JSON Run Card ↗', 'text-link')}</div>
 <div class="two-col"><article class="panel"><div class="panel-head">WBG-3 emitted 36,800-dot field<span>zeros mode · 0 NaN</span></div><div class="map-frame"><span class="map-label">UTM 11N · EPSG:32611 · 3730×3292</span><img src="{prefix}assets/wbg3-spipmr-preview.png" alt="Spatial map of the 36,800 WBG-3 off-catalogue binary fault predictions in teal alongside grey mapped USGS and INGENIOUS catalogue traces across the Great Basin footprint." width="610" height="690"></div><div class="map-caption"><span>Teal: 36,800 WBG-3 off-catalogue dots (≥200 m collar). Grey: mapped catalogue.<br>Single-band float32 in [0, 1] · 0 NaN/Inf across all 12,279,160 pixels.</span><div><span>SHA-256: <code>{w3['raster_sha256'][:16]}…</code></span></div></div></article>
 <article class="panel"><div class="panel-head">SegmentHoldout 4-arm comparison<span>n = 60,988 withheld positives</span></div><div class="panel-pad">{_chart(w3)}<p class="micro">Paired ΔDTI vs 19-band control: <strong>+0.027399</strong>, 95% CI [+0.014361, +0.041700] (4/4 folds won). Intra-basin <code>gems57-pooled-hide-v2</code> (n=11,330): WBG-3 <strong>{intra['dti']:.6f}</strong> vs 19-band ctrl 0.076470 (+0.045392) and WBG-2 0.097610 (+0.024252). Off-catalogue USGS SGMC blind fault proxy: <strong>{sgmc['wbg3_arm3_proxy_dti']:.6f}</strong> vs WBG-2 {sgmc['wbg2_pr13_proxy_dti']:.6f} (+25.2%).</p></div></article></div></section>
-<section class="content-section"><h2>Per-Fold SegmentHoldout &amp; 208-Raster Uniqueness Summary</h2>
+<section class="content-section"><h2>Per-Fold SegmentHoldout &amp; 209-Raster Uniqueness Summary</h2>
 <div class="table-wrap" style="margin-bottom:22px"><table><caption>Per-fold SegmentHoldout breakdown for WBG-3 Arm 3 (gems-segment-pooled-v1 · n=60,988)</caption>
 <thead><tr><th>Fold</th><th>Withheld Truth px</th><th>Emitted Dots</th><th>Fold DTI</th><th>TP_w</th><th>FP_w</th><th>300 m Coverage</th></tr></thead>
 <tbody>{fold_rows}</tbody></table></div>
-<div class="table-wrap"><table><caption>Key uniqueness comparators across 208 audited GeoTIFFs (206 competing sparse + 2 dense/lattice)</caption>
+<div class="table-wrap"><table><caption>Key uniqueness comparators across 209 historically audited GeoTIFFs (207 competing sparse + 2 dense/lattice)</caption>
 <thead><tr><th>Comparator</th><th>Positive px</th><th>Fwd 3-px Overlap</th><th>Rev 3-px Overlap</th><th>Spearman ρ</th><th>Gate Status</th></tr></thead>
 <tbody>
 <tr class="featured"><td class="mono" style="font-size:11px">GEMSDOE32 · B2 (0.2778 focus-site leader)</td><td>37,654</td><td><span class="score">{comp['vs_gemsdoe32_b2']['forward_3px_overlap']*100:.2f}%</span></td><td>{comp['vs_gemsdoe32_b2']['reverse_3px_overlap']*100:.2f}%</td><td>{comp['vs_gemsdoe32_b2']['dots_spearman']:+.4f}</td><td>{_pill('PASS ≤70%', 'ok')}</td></tr>
@@ -296,22 +296,23 @@ def _howto_body(w3, s2, h1, w2, c1, audit, *, prefix: str) -> str:
 {_stop_banner(w3)}
 <section class="content-section"><h2>1. Submission Decision Table — File to Download, Score, Uniqueness &amp; Submit Verdict</h2>
 {_master_table(w3, s2, h1, w2, c1, audit, prefix=prefix)}</section>
-<section class="content-section"><h2>2. Portal-Safe Zeros-Mode Validation (Eliminates DrivenData <code>[0, 1]</code> NaN Error)</h2>
-<div class="two-col">{_download_card(w3, prefix=prefix)}<article class="panel"><div class="panel-pad prose"><h3>Why zeros-mode is mandatory in our automated preflight</h3>
+<section class="content-section"><h2>2. Local Zeros-Mode Validation (Organizer Acceptance Unknown)</h2>
+<div class="two-col">{_download_card(w3, prefix=prefix)}<article class="panel"><div class="panel-pad prose"><h3>What zeros-mode checks — and cannot prove</h3>
 <ul>
-<li><strong>Portal error prevented:</strong> Uploading GeoTIFFs with <code>NaN</code> outside the study footprint has triggered DrivenData's whole-array check <code>"Predicted values must be in range [0, 1]"</code> because <code>NaN &gt;= 0</code> evaluates to <code>False</code>.</li>
-<li><strong>Shared writer guarantee:</strong> <code>WBG-3</code> was written via unchanged <code>scripts/submission_writer.py --outside zeros</code>, writing <code>0.0</code> float32 across all 7,111,787 exterior cells and <code>{{0.0, 1.0}}</code> across all 5,167,373 in-footprint cells (<code>nodata=None</code>, 0 NaN, 0 Inf across all 12,279,160 cells).</li>
+<li><strong>Portal error cause unknown:</strong> The reported <code>"Predicted values must be in range [0, 1]"</code> is real user feedback, but its cause was not established. Zero-filled files pass our finite-range policy; official instructions say exterior values should be null/NaN. Neither approach is proven accepted by the portal.</li>
+<li><strong>Historical local writer output:</strong> <code>WBG-3</code> was written via unchanged <code>scripts/submission_writer.py --outside zeros</code>, writing <code>0.0</code> float32 across all 7,111,787 exterior cells and <code>{{0.0, 1.0}}</code> across all 5,167,373 in-footprint cells (<code>nodata=None</code>, 0 NaN, 0 Inf across all 12,279,160 cells).</li>
 <li><strong>15/15 automatic checks in CI:</strong> Single-band <code>float32</code>, <code>EPSG:32611</code>, <code>(3730, 3292)</code>, exact 100 m geotransform <code>(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)</code>, 0 dots on mapped catalogue faults, and byte-identical single-member <code>.zip</code>. No human inspector is required.</li>
 </ul></div></article></div></section>
 <section class="content-section prose"><h2>3. Five-Step Upload Procedure (For a Future Promoted Candidate Only)</h2>
 <h3><span class="step-number">1</span> Verify Run Card authorization</h3>
-<p>Confirm the candidate's JSON Run Card sets <code>"verdict": "promote"</code> and <code>"ok_to_submit": true</code> after clearing holdout benchmark efficacy and literal registry gates. Currently <strong>all local artifacts are <code>negative</code> (<code>DO NOT SUBMIT</code>)</strong>.</p>
+<p>No separate selector has been implemented, and card booleans are not authorization. Any future process must independently verify the same-evaluator holdout, full literal registry, current allowance and explicit authorization. Currently <strong>all local artifacts are <code>negative</code> (DO NOT SUBMIT)</strong>.</p>
 <h3><span class="step-number">2</span> Run automated local validator on exact bytes</h3>
 <pre><code>.venv/bin/python scripts/validate_submission.py \\
   docs/downloads/{escape(w3_tif)}
-# Returns format_valid: true, portal_safe_local_policy: true, submission_authorized: false.</code></pre>
+# Inspect all_checks_passed and mask_report; ok_to_submit remains false.
+# A local pass is not organizer acceptance or a uniqueness clearance.</code></pre>
 <h3><span class="step-number">3</span> Check remaining weekly allowance on DrivenData</h3>
-<p>Official Rules PDF §3.4 allows up to 3 submissions per week. Log into <a href="{SUBMIT}">DrivenData Competition 306 → Submissions ↗</a> in your own browser to confirm remaining quota (never place credentials in chat or Git).</p>
+<p>Official Rules PDF §3.2 describes up to 3 submissions per week and AI-use disclosure. Log into <a href="{SUBMIT}">DrivenData Competition 306 → Submissions ↗</a> in your own browser to confirm remaining quota (never place credentials in chat or Git).</p>
 <h3><span class="step-number">4</span> Upload the exact <code>-zeros.tif</code> (or single-TIFF <code>.zip</code>) &amp; paste ≤140-char note</h3>
 <p>Upload the untouched file and attach its exact ≤140-character note so every submission maps 1-to-1 to a SHA-256 and git commit.</p>
 <h3><span class="step-number">5</span> Archive the organizer receipt</h3>
@@ -324,7 +325,7 @@ def _howto_body(w3, s2, h1, w2, c1, audit, *, prefix: str) -> str:
 
 def _forensics_body(w3: dict, *, prefix: str) -> str:
     sub_prefix = "wbg3/" if prefix == "" else ""
-    return f'''<section class="subhero"><div><p class="eyebrow">PhD Structural Forensics &amp; Hypothesis Queue</p><h1>Why <code>0.2778</code> won.<br><em>Why amplitude-invariant physics matters.</em></h1><p class="lead"><strong>Download: YES. Submit: NO — DO NOT SUBMIT · NO SELECTOR ELIGIBILITY.</strong> Complete mathematical proof of the nine-site <code>H19-5 → D2.8 → B1 → B2</code> lineage, analysis of <code>0.2778 / 0.3195 / 0.4413 / 0.4544</code>, and our four preregistered Basin-and-Range fault hypotheses (99.9946% literal r13 lattice witness; 100% WBG-C1 witness; no competition slot used).</p></div>{_pill('Research forensics · 0 slots', 'no')}</section>
+    return f'''<section class="subhero"><div><p class="eyebrow">PhD Structural Forensics &amp; Hypothesis Queue</p><h1>Investigating <code>0.2778</code>.<br><em>Why amplitude-invariant physics matters.</em></h1><p class="lead"><strong>Download: YES. Submit: NO — DO NOT SUBMIT · NO SELECTOR ELIGIBILITY.</strong> Reproducible structural comparison of the nine-site <code>H19-5 → D2.8 → B1 → B2</code> lineage, analysis of <code>0.2778 / 0.3195 / 0.4413 / 0.4544</code>, and our four preregistered Basin-and-Range fault hypotheses (99.9946% literal r13 lattice witness; 100% WBG-C1 witness; no competition slot used).</p></div>{_pill('Research forensics · 0 slots', 'no')}</section>
 {_stop_banner(w3)}
 {_forensics_and_hypotheses_blocks(w3)}
 <div class="actions">{_link(f'{sub_prefix}index.html', 'Back to WBG-3 executive summary →', 'button')}{_link(f'{sub_prefix}how-to-submit.html', 'How to submit subpage →', 'button secondary')}{_link(f'{prefix}data/wbg3-preregistration.json', 'Locked preregistration JSON ↗', 'text-link')}</div>'''
@@ -348,7 +349,7 @@ def build() -> None:
     if (DOCS / "data/feed.json").exists():
         shutil.copyfile(DOCS / "data/feed.json", SUBDIR / "data/feed.json")
 
-    # Dedicated subsite pages docs/wbg3/*.html (leaving docs/wbg3.html intact for parallel EXP3DET lane)
+    # Dedicated SPI-PMR subsite plus the independently reviewed parallel EXP3DET page.
     (SUBDIR / "index.html").write_text(
         _shell("index.html", "WBG-3 executive summary", _index_body(w3, s2, h1, w2, c1, audit, prefix="../"), prefix="../"),
         encoding="utf-8",
@@ -361,6 +362,8 @@ def build() -> None:
         _shell("forensics-and-hypotheses.html", "0.2778 forensics & hypotheses", _forensics_body(w3, prefix="../"), prefix="../"),
         encoding="utf-8",
     )
+    from build_exp3det_review import build as build_exp3det_review
+    build_exp3det_review()
 
 
 if __name__ == "__main__":

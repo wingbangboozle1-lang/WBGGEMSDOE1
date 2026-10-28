@@ -9,7 +9,8 @@
 [WBG-3 ZIP](docs/downloads/wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.zip) ·
 [WBG-3 Run Card JSON](evidence/wbg3_spipmr/run_card.json) ·
 [Parallel EXP3DET Summary](docs/wbg3.html) ·
-[Parallel EXP3DET Run Card](evidence/wbg3/run_card.json)
+[Parallel EXP3DET Forensic STOP](evidence/wbg3/exp3det_safety_review_20261027.json) ·
+[Historical EXP3DET Run Card](evidence/wbg3/run_card.json)
 
 **[Executive audit and nine-site table](docs/wbg2.html)** ·
 [Download WBG-2 TIFF for research only](docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif) ·
@@ -18,8 +19,12 @@
 
 | Artifact | Local format | Score estimate / holdout | Literal registry decision |
 |---|---|---|---|
-| `wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif` | One float32 band, zeros mode `[0, 1]`, 0 NaN/Inf, 36,800 binary dots; 15/15 checks PASS | **HOLDOUT-DTI 0.118180** (`gems-segment-pooled-v1`, n=60,988, 95% CI [0.103658, 0.132432], 4/4 fold wins vs 0.090781 ctrl); **HOLDOUT-DTI 0.121862** (`gems57-pooled-hide-v2`, n=11,330). Leaderboard est.: **Unavailable**. | **DO NOT SUBMIT**. Competing sparse (206 rasters): **PASS 59.38% <= 70%** (27.55% vs GEMSDOE32 B2; 43.40% vs WBG-S2). Literal overlap: **99.9946%** vs `r13-lattice-s5` & **100%** vs `WBG-C1` (>70% STOP). |
+| `wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif` | One float32 band, zeros mode `[0, 1]`, 0 NaN/Inf, 36,800 binary dots; 15/15 checks PASS | **HOLDOUT-DTI 0.118180** (`gems-segment-pooled-v1`, n=60,988, 95% CI [0.103658, 0.132432], 4/4 fold wins vs 0.090781 ctrl); **HOLDOUT-DTI 0.121862** (`gems57-pooled-hide-v2`, n=11,330). Leaderboard est.: **Unavailable**. | **DO NOT SUBMIT**. Competing sparse (207 rasters): **PASS 59.38% <= 70%** (27.55% vs GEMSDOE32 B2; 43.40% vs WBG-S2). Literal overlap: **99.9946%** vs `r13-lattice-s5` & **100%** vs `WBG-C1` (>70% STOP). |
 | `wbg2-offcatalogue-density-36k-20261027.tif` | One float32 band, finite [0,1], grid matches pinned mirror; TIFF/ZIP bytes verified | **Unavailable**; fold-safe replay measures `HOLDOUT-DTI 0.000341` (`gems-segment-pooled-v1`) / `0.097610` (`gems57-pooled-hide-v2`); no organizer receipt | **DO NOT SUBMIT**. 99.8972% final-dot overlap with a registered lattice exceeds 70%. |
+
+The parallel EXP3DET file also **must not be submitted**: its existing dots overlap the registered C1 surface by **100%** within 3 pixels. The old 9-file scan was partial; its numerical leaderboard projection is withdrawn. Its recorded HOLDOUT-DTI is 0.138233 (95% CI [0.125701, 0.151956], `gems-segment-pooled-v1`, 60,988 positives), below the 0.166060 benchmark; no run was repeated.
+
+A nodata=0 validity-mask defect was reproduced in the pinned shared validator. The common project preflight now fails closed for masked interior pixels, sidecars, missing reference, and unverified selector authorization. The upstream template was not modified: this account has no push permission and an issue-creation attempt returned an integration permissions error. Upstream repair remains open.
 
 The previous WBG-2 "safe to upload" claim and numerical projection are **withdrawn**. The old
 code applied a private enrichment exception, checked eight local references and a separate nine-champion
@@ -30,7 +35,7 @@ closer than 400 m Euclidean. The owner-mirror 19-band stack was restored and has
 authenticated by DrivenData.
 See [four untested research hypotheses](docs/research/future-hypotheses-20261027.md) and
 [the 27 October source audit](evidence/official_source_audit_20261027.json) and
-[three safety-review passes](evidence/wbg2/review_passes_20261027.json).
+[latest three safety-review passes](docs/review-passes-20261027.md).
 Concurrent reviews are preserved as historical context: [protocol](docs/protocol-review-20261027.md),
 [repository](docs/repo-review-20261027.md), and [session](docs/session-review-20261027.md).
 Their older private-distance metrics and 400 m buffer interpretation are superseded by the
@@ -102,7 +107,7 @@ was not obtained or credibly projected in this session.
   TIFF SHA-256 `f158a890dcb5f897ef35282ed05d291e54c4df9b83cf891870193d329b160fb4`; ZIP SHA-256 `1fff1657506895e3b0a0a0bc1e3c590dfcc1134d4d5b15606ce2ccfc1ba23e0a`; name `wbggemsdoe1-wbg3-spipmr-wcs-1458d60c`; note `WBG-3 SPI+PPDR+MonogenicPC+WCS 36800d zeros | segDTI=0.1182 iDTI=0.1219 | research DO NOT SUBMIT` (96 chars).
   3/3 preregistered arms executed on 100 m competition geophysics + label-free SGMC/GDR (`444.3s`, 0 slots used).
   Beats 19-band control across 4/4 spatial folds: **HOLDOUT-DTI 0.118180** vs **0.090781** (`gems-segment-pooled-v1`, paired ΔDTI `+0.027399`, 95% CI `[+0.014361, +0.041700]`) and **HOLDOUT-DTI 0.121862** vs **0.076470** (`gems57-pooled-hide-v2`).
-  Passes full-footprint pre-placement correlation (`max |ρ| = 0.644883 <= 0.90`) and competing-sparse overlap across all 206 sparse rasters (`max 59.38% <= 70%`; `27.55%` vs `GEMSDOE32 B2`; `43.40%` vs `WBG-S2`), while binding literal overlap hits **99.9946%** vs `r13-lattice-s5` and **100%** vs `WBG-C1` and trails 10m-3DEP `S3DEP1` (`0.166060`).
+  The prior surface correlation (`max |ρ| = 0.644883 <= 0.90`) was audited **after** dot placement and does not establish the required pre-placement overlap clearance. The restricted competing-sparse overlap passes across all 207 sparse rasters (`max 59.38% <= 70%`; `27.55%` vs `GEMSDOE32 B2`; `43.40%` vs `WBG-S2`), while binding literal overlap hits **99.9946%** vs `r13-lattice-s5` and **100%** vs `WBG-C1` and trails 10m-3DEP `S3DEP1` (`0.166060`).
 - **[WBG-S2 / MKSF-1 result](docs/wbg-s2-mksf1/index.html): DO NOT SUBMIT; no selector eligibility.**
   [Research TIFF](docs/downloads/wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.tif) · [ZIP](docs/downloads/wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.zip) ·
   [run card](evidence/wbg_s2/run_card.json) · [independent two-witness safety audit](evidence/wbg_s2/safety_review_20261027.json) ·
@@ -139,7 +144,7 @@ Different evaluator/split/representation results must not be pooled or ranked as
   supplied-reference format API; this is compatibility only and never confers slot approval.
   WBG-C1 still uses the unchanged, pinned `gems57` all-finite validator/writer.
   The separate integration CLI now rejects mismatched source grids, input overwrite aliases and
-  portal-unsafe NaN twins; [explicit source amendment](evidence/integration_amendments_20261027.json)
+  NaN-exterior compatibility twins that fail the strict local all-finite policy; [explicit source amendment](evidence/integration_amendments_20261027.json)
   preserves its prior hash/archive. No metric, evaluator or pinned-template fork was introduced.
 - The older bridge-specific restore entry point is retained as `scripts/download_bridge_legacy.sh`
   with `scripts/prepare_bridge_legacy.py`; current WBG-C1 commands below are unchanged.
@@ -276,6 +281,15 @@ not verified facts. The measured run card takes precedence over stale factual as
 > and `evidence/wbg2/safety_audit_20261027.json`. This status supersedes any prior approval.
 > The user request below is archived intent, not independently verified evidence.
 
+
+> **27 OCT SAFETY REVIEW:** No file is approved. The parallel EXP3DET file has a
+> literal 100% three-pixel overlap STOP against registered WBG-C1; its old nine-file
+> uniqueness diagnostic and two-anchor leaderboard projection do not authorize it.
+> Its historical HOLDOUT-DTI is not a leaderboard result. The SPI-PMR runner's
+> surface correlation was calculated after placement; pre-placement overlap
+> clearance is not established. No new experiments or slots were used.
+> See `evidence/wbg3/exp3det_safety_review_20261027.json` and
+> `docs/review-passes-20261027.md`.
 
 ## Active follow-up instructions (2026-10-27 summary, not a verbatim transcript)
 

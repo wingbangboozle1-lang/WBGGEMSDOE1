@@ -92,7 +92,7 @@ def review():
     return {
         "schema_version": 1, "review_date_utc": "2026-10-27",
         "scope": "Four local frozen research TIFFs; not a new scientific experiment or current external registry audit.",
-        "shared_validator": "vendor/gems57/validate.py; unchanged pinned owner template",
+        "shared_validator": "vendor/gems57/validate.py; unchanged pinned owner template, with fail-closed integration mask and self-contained-file guards",
         "all_exact_artifacts_format_valid": all(r["ok_to_download"] for r in rows),
         "any_ok_to_submit": False, "new_experiments": 0, "submission_slots_used": 0,
         "rows": rows,

@@ -1,47 +1,18 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WBG-3 Executive Summary · WBG GEMS</title>
-<link rel="stylesheet" href="assets/style.css"></head>
-<body><main class="wrap" style="max-width:900px;margin:2rem auto;padding:0 1rem">
-<p><a href="index.html">← Research desk</a></p>
-<h1>WBG-3 Executive Summary</h1>
-<div style="border:3px solid #b00020;background:#fff3f3;padding:1rem 1.2rem;border-radius:8px">
-<p style="font-size:1.3rem;margin:.2rem 0"><strong>⛔ DO NOT SUBMIT YET</strong></p>
-<p>The new unique file below is <strong>safe to download</strong> and format-valid, but it has
-<strong>not beaten the holdout benchmark</strong> (0.1382 vs 0.1661). Estimated leaderboard
-score <strong>0.21 [0.17–0.26]</strong> (MODEL-ESTIMATE), below the champion's reported 0.2778.
-Do not spend a weekly slot on it unless you, as selector, accept that estimate.</p>
-</div>
-<h2>Download</h2>
-<p><a href="downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif" download style="font-size:1.15rem">
-⬇ wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif</a>
-· <a href="downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.zip" download>one-TIFF ZIP ↓</a></p>
-<p>sha256 <code>30901f894a84f6150a65a86e6556d3b4d3b3f5054dd4f8f3b597d754115447c1</code> ·
-single-band float32 · EPSG:32611 · 3730×3292 · values in [0,1] · <strong>no NaN</strong> ·
-37,654 dots · automated validator: PASS (no human inspector needed).</p>
-<p><strong>Portal note:</strong> <code>WBG-3 supervised multi-physics detector, dotted clear2 37654, zeros no NaN</code></p>
-<h2>Decision table</h2>
-<table border="1" cellspacing="0" cellpadding="6">
-<tr><th>File</th><th>Estimated score</th><th>Unique vs 9 focus sites?</th><th>Submit?</th></tr>
-<tr><td><strong>WBG-3 (this session)</strong></td><td>0.21 [0.17–0.26] MODEL-ESTIMATE</td><td>YES — max overlap 45.1%, max |ρ| 0.036</td><td><strong>NO — not yet</strong></td></tr>
-<tr><td>WBG-2 (previous)</td><td>retracted (estimator invalid)</td><td>Yes</td><td>NO</td></tr>
-<tr><td>GEMSDOE32 champion</td><td>0.2778 OWNER-REPORTED</td><td>is a focus site</td><td>NO — already submitted; copying = duplicate</td></tr>
-<tr><td>GEMSDOE36 / 28 / 31 / 33 / 25 / 30 / 24 / 27</td><td>0.2750 / 0.2710 / 0.2708 / 0.2632 / 0.2600 / 0.2600 / 0.2477 / 0.2449 OWNER-REPORTED</td><td>focus sites (25≡30 identical dots)</td><td>NO — historical</td></tr>
-</table>
-<p>Official leaderboard observed 2026-10-27: rank 1 = 0.4544 —
-<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a>.</p>
-<h2>Why 0.2778 won</h2>
-<p>The scored truth is expert-mapped faults <em>not</em> in the USGS catalogue
-(<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem page</a>).
-The champion is a strict deletion subset of the 44,090-dot D2.8 field: exactly 6,436 dots
-removed, all within 200 m of the catalogue, zero added. The gain was precision pruning of
-catalogue-tracing dots, not new detection. All nine focus artifacts are one nested family
-(98–100% overlaps), so none is unique for us.</p>
-<h2>Map</h2><p><img src="assets/wbg3-preview.png" style="max-width:100%" alt="WBG-3 dots (teal) vs champion dots (orange) vs catalogue (grey)"></p><p>Teal: WBG-3 (this session). Orange: GEMSDOE32 champion. Grey: mapped catalogue. Downsampled 4x, max-pooled.</p><h2>Evidence</h2>
-<ul>
-<li>HOLDOUT-DTI 0.1382 [0.1257, 0.1520], evaluator <code>gems-segment-pooled-v1</code>, 60,988 withheld positives — best reproducible detector here (Exp2 0.1320, B0 0.1039, TIP1 0.0824); benchmark S3DEP1 0.1661 not beaten, paired replay unavailable.</li>
-<li>Leakage canary: max feature AUC 0.598 (&lt; 0.90). A catalogue-distance leakage bug (IR-WBG3-01) was found, fixed, and rerun.</li>
-<li>Full run card: <a href="../evidence/wbg3/run_card.json">evidence/wbg3/run_card.json</a> · Markdown summary: <a href="wbg3-executive-summary.md">wbg3-executive-summary.md</a> · Hypotheses: <a href="../research/04_wbg3_hypotheses_20261027.md">research/04</a></li>
-<li>Competition slots used: <strong>0</strong>. Organizer-confirmed scores: none.</li>
-</ul>
-</main></body></html>
+<title>EXP3DET forensic review · WBG GEMS research desk</title>
+<meta name="description" content="An auditable GEMS fault-mapping research desk: nine-site comparison, measured holdout results, unique-byte research TIFF and explicit no-go submission status.">
+<meta name="theme-color" content="#173b42"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css"><script defer src="assets/app.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="masthead"><div class="wrap"><nav class="nav" aria-label="Main navigation">
+<a class="brand" href="index.html"><svg viewBox="0 0 36 38" fill="none" aria-hidden="true"><path d="M3 29C12 27 4 16 13 15S21 5 31 6M4 35C15 34 11 22 20 22S25 11 34 12M2 21C8 21 4 9 13 9S18 1 25 2" stroke="#23665f" stroke-width="2" stroke-linecap="round"/></svg><span>WBG / GEMS<small>FAULT MAPPING · RESEARCH DESK</small></span></a>
+<div class="navlinks"><a class="" href="index.html">Overview</a><a class="" href="wbg3/index.html">WBG-3</a><a class="" href="wbg2.html">WBG-2 audit</a><a class="" href="executive-summary.html">Site comparison</a><a class="" href="research.html">Research</a><a class="" href="evidence.html">Evidence</a><a class="" href="how-to-submit.html">How to submit</a><a class="repo" href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Repository ↗</a></div></nav></div></header>
+<main id="main" class="wrap"><div class="breadcrumb">GEMS prize challenge <span>/</span> EXP3DET forensic review <span>/</span> 26 OCT 2026 frozen experiment</div><p class="micro"><a href="portfolio-review.html">27 October follow-up: four earlier releases and trust corrections →</a></p><section class="hero"><div><p class="eyebrow">Parallel WBG-3 · EXP3DET · forensic review</p><h1>A measured result.<br><em>Not a submission.</em></h1><p class="lead"><strong>DOWNLOAD: YES for research. SUBMIT: NO.</strong> The already-placed dots meet a decisive literal registry STOP. The prior numerical leaderboard projection is withdrawn; no reliable leaderboard estimate or artifact-linked organizer score is available.</p><div class="actions"><a class="button secondary" href="wbg3/index.html">Compare SPI-PMR result →</a><a class="text-link" href="how-to-submit.html">Submission requirements →</a></div></div>
+<aside class="download-card" aria-label="Research file and decision"><div class="card-top"><div class="file-icon">.TIF</div><div class="file-label">WBG-3 · EXP3DET<small>Existing frozen dots · research only</small></div><span class="pill no">DO NOT SUBMIT</span></div><div class="card-body"><div class="status-line"><span>Local format recheck</span><b>PASS · not portal acceptance</b></div><div class="status-line"><span>Literal C1 3 px overlap</span><b>100.0% · STOP</b></div><div class="status-line"><span>Live slot authorization</span><b>NO</b></div><div class="filename">wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif</div><a class="button" href="downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.tif" download>Download research TIFF ↓</a><p class="micro"><a href="downloads/wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros.zip" download>One-TIFF research ZIP ↓</a> · SHA-256 <code>30901f894a84f6150a65a86e6556d3b4d3b3f5054dd4f8f3b597d754115447c1</code></p></div></aside></section>
+<section class="content-section"><div class="alert"><p><strong>Negative result; no selector eligibility.</strong> The original nine-focus-artifact comparison was a partial diagnostic, not an all-registry pass. One valid counterexample is decisive. The literal rule does not exempt dense surfaces. This forensic remeasurement used existing files only; no new model, placement or competition slot.</p></div></section>
+<section class="stats"><div class="stat"><label>Recorded HOLDOUT-DTI</label><div class="value">0.138233</div><p>gems-segment-pooled-v1 · 60,988 positives<br>95% CI [0.125701, 0.151956]</p></div><div class="stat"><label>Benchmark</label><div class="value">0.166060</div><p>Same-evaluator S3DEP1 comparison recorded in the historical card. EXP3DET trails it.</p></div><div class="stat"><label>Literal registry witness</label><div class="value bad">100.0%</div><p>Forward Euclidean overlap with C1; &gt;70% is STOP. Full-footprint dot Spearman 0.0575.</p></div><div class="stat"><label>Leaderboard estimate</label><div class="value word">Unknown</div><p>Two-anchor projection withdrawn; hidden labels and receipts unavailable.</p></div></section>
+<section class="content-section prose"><h2>What was checked</h2><ul><li>The exact TIFF has SHA-256 <code>30901f894a84f6150a65a86e6556d3b4d3b3f5054dd4f8f3b597d754115447c1</code>, one float32 band, EPSG:32611, shape 3730 × 3292, transform <code>(100, 0, 243350, 0, -100, 4508550)</code>, range [0.0, 1.0], and no NaN, infinity or masked interior pixel. The ZIP contains the same TIFF bytes. These are local checks against an owner mirror, not an organizer acceptance guarantee.</li><li><code>5,106,385</code> positive C1 cells are the registered witness under the literal finite-positive support rule. The overlap check uses the shared Euclidean 3-pixel gate, against <strong>one</strong> witness; it is not a complete inventory. It does not imply the methods copied each other.</li><li>The earlier nine-focus-file scan reported maximum forward overlap 45.06% and sampled Spearman |ρ| 0.03595 within that limited scope. It cannot override C1. A qualifying pre-placement overlap check is not established.</li><li>Our local all-finite exterior policy conflicts with the public specification's null/NaN exterior wording. The cause of the reported portal range error is unknown; no actual portal test was performed.</li><li>Fault likelihood is not evidence of a geothermal vent or a confirmed resource.</li></ul>
+<p>Audit metadata (not upload instructions): name <code>wbggemsdoe1-wbg3-exp3det-clear2-37654-20261027T200705Z-zeros</code>; note <code>WBG-3 supervised multi-physics detector, dotted clear2 37654, zeros no NaN</code> (74/140 characters).</p><p><a href="data/exp3det-safety-20261027.json">Current forensic receipt ↗</a> · <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/main/evidence/wbg3/run_card.json">Historical run card (projection superseded) ↗</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official task and format ↗</a></p></section></main>
+<footer class="footer"><div class="wrap footer-inner"><p><strong>WBG / GEMS</strong> &nbsp; Evidence before a weekly slot.<br>Fault predictions are not verified geothermal vents. Local validation is not organizer acceptance.</p><div><a class="" href="data/run-card.json">Run card JSON</a><a class="" href="standing-prompt.md">Standing brief</a><a class="" href="parallel/main-b9a2d53/index.html">Parallel negative archives</a><a class="" href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Source code ↗</a></div></div></footer>
+<div id="toast" role="status" aria-live="polite"></div></body></html>

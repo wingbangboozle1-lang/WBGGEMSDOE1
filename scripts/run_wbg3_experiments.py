@@ -143,6 +143,7 @@ def dotted(surface, valid, dist_visible, budget, clearance_px, block_radius=2):
 
 
 def main() -> int:
+    raise RuntimeError("WBG-3 EXP3DET is stopped; its experiment budget is exhausted and no rerun is authorized.")
     t0 = time.time()
     with rasterio.open(LABELS) as s:
         lab = s.read(1)

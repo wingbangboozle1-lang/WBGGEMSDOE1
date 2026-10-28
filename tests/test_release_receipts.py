@@ -47,7 +47,10 @@ def test_exact_download_reopens_and_matches_complete_validator():
         assert dataset.crs.to_epsg() == 32611
     assert np.isfinite(values).all()
     assert values.min() >= 0 and values.max() <= 1
-    assert submission.check_variants(artifact, TEMPLATE) == card["validator_output"]
+    current = submission.check_variants(artifact, TEMPLATE)
+    assert submission.matches_frozen_validation(current, card["validator_output"])
+    assert current["checks"]["footprint_gdal_mask_valid"]["pass"]
+    assert current["checks"]["single_file_self_contained"]["pass"]
     assert card["validator_output"]["format_valid"] is True
     assert card["validator_output"]["checks"][
         "variant_strict_whole_array_no_nan_allowed"

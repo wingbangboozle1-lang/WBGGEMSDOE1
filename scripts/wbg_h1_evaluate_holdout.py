@@ -4,10 +4,8 @@
 Reuses `src/gems/holdout.py` (`EVALUATOR_VERSION = "gems-segment-pooled-v1"`) and
 `scripts/submission_writer.py` without modification (Parallel-Run Protocol Rule 2).
 
-Modes:
-  --verify-recorded : Verify immutable SHA-256 locks, 66-ch canary, portal gates, and Run Card.
-  --canary          : Run standalone 66-channel `SegmentHoldout.canary()` leakage audit.
-  --run-wbg-h1      : Execute the frozen 3-experiment `WBG-H1` (`DPGF-1`) protocol.
+Recorded-evidence verification remains available. The --canary and
+--run-wbg-h1 modes are retired because WBG-H1 is stopped.
 """
 
 from __future__ import annotations
@@ -15,14 +13,13 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from wbggems1.canary import run_all_feature_canaries  # noqa: E402
+from validate_submission import check_tiff  # noqa: E402
 from wbggems1.selector_gate import validate_geotiff_portal_gates  # noqa: E402
 
 
@@ -55,7 +52,10 @@ def verify_recorded() -> dict:
     assert _sha256(zip_path) == rc["raster_sha256"]["zip_sha256"], "ZIP SHA-256 mismatch"
 
     portal = validate_geotiff_portal_gates(tif_path)
-    assert portal["all_10_gates_passed"] is True, "Portal 10-gate check failed"
+    assert portal["all_10_gates_passed"] is True, "Historical 10-gate check failed"
+    common = check_tiff(tif_path)
+    if not common["all_checks_passed"]:
+        raise ValueError("Common exact-file mask/grid/range preflight failed")
     assert len(rc["submission_note"]) <= 140, "Submission note exceeds 140 characters"
 
     return {
@@ -77,12 +77,8 @@ def main() -> None:
     ap.add_argument("--run-wbg-h1", action="store_true", help="Run frozen 3-experiment WBG-H1 protocol")
     args = ap.parse_args()
 
-    if args.canary:
-        print(json.dumps(run_all_feature_canaries(), indent=2))
-        return
-    if args.run_wbg_h1:
-        subprocess.run([sys.executable, "-u", str(ROOT / "scripts" / "run_wbg_h1_experiment.py")], check=True)
-        return
+    if args.canary or args.run_wbg_h1:
+        raise RuntimeError("WBG-H1 is stopped after a literal duplicate; only recorded-evidence verification is allowed.")
     print(json.dumps(verify_recorded(), indent=2))
 
 

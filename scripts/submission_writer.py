@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from gems import submission  # noqa: E402
+from gems.validator import sha256_file  # noqa: E402
 
 
 def read_prediction(path: Path, template: Path | None = None) -> np.ndarray:
@@ -35,6 +36,12 @@ def read_prediction(path: Path, template: Path | None = None) -> np.ndarray:
             with rasterio.open(template) as ref:
                 if (dataset.shape, dataset.crs, dataset.transform) != (ref.shape, ref.crs, ref.transform):
                     raise ValueError("Prediction GeoTIFF CRS/shape/transform must match the template; metadata cannot be discarded")
+                footprint = np.isfinite(ref.read(1))
+                mask = submission.raster_mask_report(dataset, footprint)
+                if not mask["inside_all_valid"]:
+                    raise ValueError("Prediction GeoTIFF has masked values inside the footprint; no silent mask removal")
+                if not mask["self_contained"]:
+                    raise ValueError("Prediction GeoTIFF depends on sidecar files and is not a single self-contained TIFF")
             return dataset.read(1)
     raise ValueError("Prediction must be an aligned .npy, .tif or .tiff")
 
@@ -55,20 +62,27 @@ def main() -> int:
         raise ValueError("Output must not overwrite the prediction or reference template")
     if args.receipt and args.receipt.resolve() in protected | {args.output.resolve()}:
         raise ValueError("Receipt must not overwrite a raster input or output")
+    manifest = json.loads((ROOT / "registry/data_manifest.json").read_text())
+    pin = next(row["sha256"] for row in manifest["files"] if row["dest"] == "sample_submission.tif")
+    if not args.template.is_file() or sha256_file(args.template) != pin:
+        raise ValueError("Reference template is unavailable or does not match the pinned owner mirror")
     prediction = read_prediction(args.prediction, args.template)
     submission.write_submission(
         prediction, args.template, args.output, outside=outside
     )
     receipt = submission.check_variants(args.output, args.template)
     strict = receipt["checks"]["variant_strict_whole_array_no_nan_allowed"]["pass"]
-    receipt["portal_safe_local_policy"] = bool(receipt["format_valid"] and strict)
+    receipt["portal_safe_local_policy"] = bool(receipt["format_valid"] and strict)  # legacy local-only key
+    receipt["mirrored_reference_hash_verified"] = True
+    receipt["independent_organizer_origin_authenticated"] = False
     receipt["submission_authorized"] = False
+    receipt["warning"] = "Local finite-range policy only; organizer acceptance and upload authorization are not established."
     text = json.dumps(receipt, indent=2, allow_nan=False) + "\n"
     print(text, end="")
     if args.receipt:
         args.receipt.parent.mkdir(parents=True, exist_ok=True)
         args.receipt.write_text(text)
-    # NaN compatibility exports are explicit research twins, never portal-safe successes.
+    # NaN compatibility exports are research twins, not strict all-finite local passes.
     return 0 if receipt["portal_safe_local_policy"] else 2
 
 

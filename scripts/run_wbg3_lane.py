@@ -444,6 +444,7 @@ def audit_uniqueness_all(
 
 
 def main() -> int:
+    raise RuntimeError("WBG-3 SPI-PMR-WCS-1 is stopped after a literal duplicate; its experiment budget is exhausted.")
     t0 = time.monotonic()
     started_utc = utc_now()
     OUT_DIR.mkdir(parents=True, exist_ok=True)

@@ -191,7 +191,12 @@ def audit(do_fetch=False):
         'literal_rule': 'STOP when signed rho > 0.90 OR forward overlap > 0.70, without enrichment/density exemptions',
         'passed_literal_gate': False, 'verdict': 'negative', 'ok_to_submit': False,
         'local_format_passed': bool(validation['all_checks_passed']),
-        'local_format': {k: validation[k] for k in ('sha256', 'meta', 'n_nan', 'n_infinite', 'min', 'max', 'checks')},
+        # Preserve the frozen receipt's schema; the new mask checks still gate
+        # all_checks_passed and are reported in the common CLI/release review.
+        'local_format': {**{k: validation[k] for k in ('sha256', 'meta', 'n_nan', 'n_infinite', 'min', 'max')},
+                         'checks': {k: v for k, v in validation['checks'].items()
+                                    if k not in ('footprint_gdal_mask_valid', 'single_file_self_contained')}},
+
         'zip_single_member_identical': zip_ok,
         'format_caveat': 'Local mirrored-grid check and zero-exterior policy only, not organizer acceptance or proof of official data origin.',
         'slots_used': 0,

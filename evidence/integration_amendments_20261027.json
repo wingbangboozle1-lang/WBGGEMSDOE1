@@ -7,8 +7,17 @@
       "path": "scripts/submission_writer.py",
       "original_sha256": "9aa3b296fbdf3aa499602efc3d5a2df7e900eb65a7cf2255d9eff4a59c4fe550",
       "original_archive": "research/history/submission_writer_20261026.py",
-      "replacement_sha256": "6745240617ff6724d62c2e08313cc190f18ad6584a5f2eb1924def32fbdc0f4b",
-      "reason": "Integration CLI discarded input GeoTIFF georeferencing, allowed clobbering inputs, and returned success for NaN compatibility twins. Reject these cases in the shared integration wrapper; underlying numerical writer and pinned template unchanged."
+      "replacement_sha256": "7d03aca643cdd5323e6c5787c26df7c38842a1aaa32d0454af6413b8d03166e4",
+      "reason": "Integration CLI discarded input GeoTIFF georeferencing, allowed clobbering inputs, and returned success for NaN compatibility twins. Reject these cases in the shared integration wrapper; underlying numerical writer and pinned template unchanged. Later safety review also rejects GeoTIFF inputs with in-footprint GDAL masks or sidecar dependencies before reading raw pixels.",
+      "previous_replacement_sha256": "6745240617ff6724d62c2e08313cc190f18ad6584a5f2eb1924def32fbdc0f4b",
+      "previous_replacement_archive": "research/history/submission_writer_20261027_pre_mask_guard.py.txt"
+    },
+    {
+      "path": "src/gems/submission.py",
+      "original_sha256": "fe26ba1d414bc56053cb04423c200f8bf3121e562361fdfac70f136c5bce4b37",
+      "original_archive": "research/history/submission_utils_20261027_pre_mask_guard.py.txt",
+      "replacement_sha256": "c45073dd07e06861269fce05585cfe51b6441a5a1ecc1ba7d56475b977d30760",
+      "reason": "Fail-closed integration for GDAL validity masks, sidecar dependencies and masked array inputs. The upstream gems57 template and its pinned numerical writer remain untouched."
     }
   ]
 }

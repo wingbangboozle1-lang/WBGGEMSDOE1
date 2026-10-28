@@ -209,7 +209,7 @@
    "id": "IR-030",
    "severity": "high",
    "title": "MT source and depth descriptions corrected",
-   "finding": "The previously proposed ScienceBase item 5fb70a0ad34eb413d5e14873 and USGS publication 70247315 were not found. The verified Great Basin MT conductance release contains depth-integrated layers at 2\u201312, 12\u201320, 20\u201350, 50\u201390 and 90\u2013200 km, not earlier proposed shallow slices.",
+   "finding": "The previously proposed ScienceBase item 5fb70a0ad34eb413d5e14873 and USGS publication 70247315 were not found. The verified Great Basin MT conductance release contains depth-integrated layers at 2–12, 12–20, 20–50, 50–90 and 90–200 km, not earlier proposed shallow slices.",
    "action": "Use DOI 10.5066/P9TWT2LU as official metadata; verify bytes, grid, coverage and label independence before any prospective use."
   },
   {
@@ -237,8 +237,8 @@
    "id": "IR-034",
    "severity": "high",
    "title": "WBG-3 (SPI-PMR-WCS-1) 209-raster audit and fold-safe WBG-2 holdout measurement",
-   "finding": "WBG-3 SPI-PMR-WCS-1 (wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif, 100% 1m-LiDAR-free and 10m-DEM-free) passes competing-sparse uniqueness across all 207 sparse rasters (max 3-px overlap 59.38% <= 70%; 27.55% vs GEMSDOE32 B2; 43.40% vs WBG-S2; 38.96% vs WBG-3 EXP3DET; 33.80% vs WBG-2; full-footprint pre-placement max |Spearman rho| = 0.6449 <= 0.90), and beats 19-band control across 4/4 folds (HOLDOUT-DTI = 0.118180 vs 0.090781 on gems-segment-pooled-v1; 0.121862 vs 0.076470 on gems57-pooled-hide-v2), while fold-safe replay of WBG-2 scores 0.000341 on gems-segment-pooled-v1 and 0.097610 on gems57-pooled-hide-v2. However, WBG-3 overlaps GEMSDOE24's 206,895-dot synthetic lattice r13-lattice-s5 by 99.9946% and continuous WBG-C1 by 100.00%, and trails S3DEP1 (0.166060).",
-   "action": "Keep WBG-3 verdict 'negative' (DOWNLOAD: YES, SUBMIT: NO, zero selector eligibility), report both competing-sparse and literal all-entry measurements without exemption, and spend zero competition slots."
+   "finding": "WBG-3 SPI-PMR-WCS-1 (wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif, 100% 1m-LiDAR-free and 10m-DEM-free) passes competing-sparse uniqueness across all 207 sparse rasters (max 3-px overlap 59.38% <= 70%; 27.55% vs GEMSDOE32 B2; 43.40% vs WBG-S2; 38.96% vs WBG-3 EXP3DET; 33.80% vs WBG-2; full-footprint surface max |Spearman rho| = 0.6449 <= 0.90, calculated after dot placement; no qualifying pre-placement overlap clearance is established), and beats 19-band control across 4/4 folds (HOLDOUT-DTI = 0.118180 vs 0.090781 on gems-segment-pooled-v1; 0.121862 vs 0.076470 on gems57-pooled-hide-v2), while fold-safe replay of WBG-2 scores 0.000341 on gems-segment-pooled-v1 and 0.097610 on gems57-pooled-hide-v2. However, WBG-3 overlaps GEMSDOE24's 206,895-dot synthetic lattice r13-lattice-s5 by 99.9946% and continuous WBG-C1 by 100.00%, and trails S3DEP1 (0.166060).",
+   "action": "Keep WBG-3 verdict 'negative' (DOWNLOAD: YES, SUBMIT: NO, zero selector eligibility), report both competing-sparse and literal all-entry measurements without exemption, and spend zero competition slots. The archived card’s pre-placement label and 205/206 comparator descriptions are superseded: the historical audit records 209 entries, including 207 competing-sparse entries."
   },
   {
    "id": "IR-035",
@@ -246,6 +246,34 @@
    "title": "GDR 1391 fault-distance column exclusion and NASA ASF OPERA InSAR sandbox gate",
    "finding": "OpenEI GDR 1391 CSVs include pre-computed fault-distance attributes, while NASA ASF OPERA Sentinel-1 DInSAR endpoints (asf.alaska.edu) are outside the sandbox network allowlist.",
    "action": "Strip all fault-distance attributes from GDR 1391 CSVs before feature generation (verified via 40-channel SegmentHoldout.canary max orientation-invariant AUC = 0.5727 <= 0.90) and defer OPERA InSAR until primary official granules can be hash-pinned."
+  },
+  {
+   "id": "IR-036",
+   "severity": "blocking",
+   "title": "Shared validator ignores in-footprint GDAL masks",
+   "finding": "A nodata=0 TIFF with 5,131,373 invalid interior cells produced a false format pass in the unchanged pinned shared validator. This is a local validation defect, not a proven explanation of a portal error.",
+   "action": "The project CLI, writer and portfolio guard now reject masked interior pixels, sidecar dependencies and missing footprint references. Upstream push is unavailable and a public issue creation attempt returned Resource not accessible by integration; the shared template fix remains outstanding."
+  },
+  {
+   "id": "IR-037",
+   "severity": "blocking",
+   "title": "EXP3DET literal C1 witness STOP and projection withdrawn",
+   "finding": "The existing EXP3DET TIFF overlaps the registered WBG-C1 positive support by 100% within 3 pixels under the shared literal Euclidean gate. The earlier nine-focus-artifact sampled-correlation screen was not all-registry clearance. Its two-anchor numerical leaderboard projection is not calibrated by independent artifact-linked receipts.",
+   "action": "Keep the historical card unchanged but supersede its selector recommendation and projection with the forensic safety review. The file is research-only, negative and not selector-eligible."
+  },
+  {
+   "id": "IR-038",
+   "severity": "blocking",
+   "title": "No independent slot selector is implemented",
+   "finding": "The old integration CLI could infer authorization from self-declared card flags without verifying independent efficacy, complete registry, account allowance or separate approval.",
+   "action": "Fail closed for every file; do not implement a selector or spend slots in this task. Separate authenticated selector implementation remains future work."
+  },
+  {
+   "id": "IR-039",
+   "severity": "medium",
+   "title": "Stale repository-head observations could disappear on feed errors",
+   "finding": "A failed network refresh formerly dropped a pinned repository row, potentially hiding known head changes from the user.",
+   "action": "Retain dated last-known changed heads, mark each stale or unknown on refresh failure, and never treat an absent row as a verified unchanged upstream."
   }
  ]
 }

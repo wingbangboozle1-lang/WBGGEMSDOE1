@@ -74,6 +74,7 @@ def _format_holdout_label(summary: dict[str, Any]) -> str:
 
 
 def main() -> None:
+    raise RuntimeError("WBG-H1 DPGF-1 is stopped after a literal duplicate; no rerun or placement is authorized.")
     t_start = time.time()
     prereg_path = ROOT / "evidence" / "wbg_h1" / "preregistration_20261026.json"
     got_sha = _sha256(prereg_path)

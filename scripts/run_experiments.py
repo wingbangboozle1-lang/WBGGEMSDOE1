@@ -55,6 +55,7 @@ def registry_paths() -> list[Path]:
 
 
 def main() -> int:
+    raise RuntimeError("MVGZ/TSML lanes are stopped; no rerun, retuning, placement or slot selection is authorized.")
     print("=== WBGGEMSDOE1 experiments", UTC, "===")
     # pin check
     pins = {}

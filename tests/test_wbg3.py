@@ -41,9 +41,13 @@ def test_wbg3_run_card_consistent_with_shipped_file():
     assert card["holdout"]["evidence_class"] == "HOLDOUT-DTI"
     assert card["score_estimate"]["evidence_class"] == "MODEL-ESTIMATE"
     assert card["organizer_confirmed_score"] is None
-    # honest verdict: estimate below champion, gate not cleared
+    # Historical projection is preserved for provenance, not endorsed as a
+    # forecast; the current review explicitly withdraws it and records a STOP.
     assert card["decision"]["ok_to_submit"] is False
-    assert card["score_estimate"]["value"] < 0.2778
+    review = json.loads((ROOT / "evidence/wbg3/exp3det_safety_review_20261027.json").read_text())
+    assert review["leaderboard_estimate"] is None
+    assert review["witness"]["my_dots_within_3px_of_theirs"] == 1.0
+    assert not review["ok_to_submit"]
 
 
 def test_wbg3_holdout_beats_prior_reproducible_detectors():

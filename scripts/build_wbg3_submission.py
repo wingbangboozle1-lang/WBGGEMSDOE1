@@ -47,6 +47,7 @@ def sha256(path: Path) -> str:
 
 
 def main() -> int:
+    raise RuntimeError("WBG-3 EXP3DET is stopped; no retraining, placement, regeneration or slot selection is authorized.")
     t0 = time.time()
     with rasterio.open(LABELS) as s:
         lab = s.read(1)

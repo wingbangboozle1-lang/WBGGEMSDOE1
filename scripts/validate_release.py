@@ -9,6 +9,7 @@ from pathlib import Path
 
 import numpy as np
 import rasterio
+from validate_submission import check_tiff
 
 ROOT = Path(__file__).resolve().parents[1]
 CARD_PATH = ROOT / "evidence/tip1_run_card_20261026.json"
@@ -95,6 +96,7 @@ def main() -> int:
             and card["validator_output"]["checks"][
                 "variant_strict_whole_array_no_nan_allowed"
             ]["pass"]
+            and check_tiff(artifact)["all_checks_passed"]
         ),
         "full shared validator output is embedded in run card",
     )

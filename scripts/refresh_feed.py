@@ -125,6 +125,41 @@ def fetch(url, *, github=False):
         return response.read().decode("utf-8")
 
 
+def refresh_repository_heads(pins, previous_rows, *, attempt):
+    """Keep one row per pinned repo; a failed refresh never drops a warning.
+
+    Only a prior row with a real SHA and timestamp may be retained as an
+    observation. Missing observations and failed fetches are explicitly stale,
+    not a successful zero-change audit.
+    """
+    previous = {row.get("repo"): row for row in previous_rows if isinstance(row, dict)}
+    heads, errors = [], []
+    for pin in pins:
+        repo, audited = pin["repo"], pin["ref"]
+        old = previous.get(repo, {})
+        old_sha, old_time = old.get("observed_head"), old.get("checked_utc")
+        old_valid = (isinstance(old_sha, str) and re.fullmatch(r"[0-9a-f]{40}", old_sha)
+                     and isinstance(old_time, str) and bool(old_time.strip()))
+        row = {"repo": repo, "audited_commit": audited,
+               "observed_head": old_sha if old_valid else None,
+               "changed_since_audit": old_sha != audited if old_valid else None,
+               "checked_utc": old_time if old_valid else None,
+               "refresh_status": "not_attempted_last_observation_retained" if old_valid else "not_attempted_no_prior"}
+        if attempt:
+            try:
+                data = json.loads(fetch(f"https://api.github.com/repos/{repo}/commits/main", github=True))
+                current = data.get("sha")
+                if not isinstance(current, str) or not re.fullmatch(r"[0-9a-f]{40}", current):
+                    raise ValueError("GitHub response has no valid 40-character commit SHA")
+                row.update(observed_head=current, changed_since_audit=current != audited,
+                           checked_utc=utc_now(), refresh_status="network_verified")
+            except Exception as error:
+                row["refresh_status"] = "unavailable_last_observation_retained" if old_valid else "unavailable_no_prior"
+                errors.append({"source": repo, "error": str(error)[:220]})
+        heads.append(row)
+    return heads, errors
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     mode = ap.add_mutually_exclusive_group()
@@ -160,16 +195,10 @@ def main():
             except Exception as e:
                 errors.append({"source": LEADERBOARD, "error": str(e)[:220]})
                 leaderboard_status = "refresh_unavailable_last_observation_retained"
-        pins = json.loads((ROOT / "registry/repository_snapshots.json").read_text())["repositories"]
-        for pin in pins:
-            try:
-                data = json.loads(fetch(f"https://api.github.com/repos/{pin['repo']}/commits/main", github=True))
-                heads.append({"repo": pin["repo"], "audited_commit": pin["ref"], "observed_head": data["sha"],
-                              "changed_since_audit": data["sha"] != pin["ref"], "checked_utc": utc_now()})
-            except Exception as e:
-                errors.append({"source": pin["repo"], "error": str(e)[:220]})
-    else:
-        heads = previous.get("repository_heads", [])
+    pins = json.loads((ROOT / "registry/repository_snapshots.json").read_text())["repositories"]
+    heads, head_errors = refresh_repository_heads(pins, previous.get("repository_heads", []),
+                                                  attempt=not args.offline)
+    errors.extend(head_errors)
     feed = {"generated_utc": utc_now(), "network_refresh_attempted": not args.offline,
             "official_page_refresh_attempted": not args.offline and not args.github_only,
             "leaderboard_status": leaderboard_status, "leaderboard": last,
@@ -180,7 +209,10 @@ def main():
             "promotion_status": "negative — frozen research result; feed updates never authorize a submission",
             "scope": "Public provenance only; a changed upstream head is not a newly validated prediction or a file-specific organizer score."}
     dump_json(path, feed)
-    print(json.dumps({"leaderboard_status": leaderboard_status, "repository_heads_checked": len(heads), "errors": len(errors)}))
+    print(json.dumps({"leaderboard_status": leaderboard_status,
+                      "repository_heads_checked": sum(r["refresh_status"] == "network_verified" for r in heads),
+                      "repository_heads_stale_or_unknown": sum(r["refresh_status"] != "network_verified" for r in heads),
+                      "errors": len(errors)}))
 
 
 if __name__ == "__main__":

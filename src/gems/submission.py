@@ -30,6 +30,44 @@ def sanitize(pred: np.ndarray) -> np.ndarray:
     return np.clip(a, 0.0, 1.0).astype(np.float32)
 
 
+def raster_mask_report(dataset: Any, footprint: np.ndarray) -> dict[str, Any]:
+    """Inspect GDAL's effective band mask and external sidecars without modifying data.
+
+    Range-checking ``read(1)`` alone misses finite pixels marked nodata by metadata
+    or a GDAL mask. A single-file submission must not depend on an adjacent .msk,
+    .aux.xml, or other sidecar. The footprint comes from a separately checked grid.
+    """
+    fp = np.asarray(footprint, dtype=bool)
+    if fp.shape != dataset.shape or not fp.any():
+        raise ValueError("a nonempty, grid-aligned footprint is required for mask validation")
+    mask = dataset.read_masks(1)
+    masked_inside = int(np.count_nonzero(fp & (mask == 0)))
+    primary = Path(dataset.name).resolve()
+    extra_files = sorted(Path(name).name for name in dataset.files
+                         if Path(name).resolve() != primary)
+    return {
+        "masked_inside_footprint": masked_inside,
+        "inside_all_valid": masked_inside == 0,
+        "self_contained": not extra_files,
+        "external_dependency_names": extra_files,
+    }
+
+
+def matches_frozen_validation(current: dict[str, Any], frozen: dict[str, Any]) -> bool:
+    """Compare a historical receipt without weakening the newer mask guards.
+
+    The frozen TIP1 card predates these two mandatory checks. Require both
+    current checks to pass, then compare every previously recorded field exactly.
+    The historical card itself remains unchanged.
+    """
+    names = ("footprint_gdal_mask_valid", "single_file_self_contained")
+    checks = current.get("checks", {})
+    if not current.get("format_valid") or any(checks.get(name, {}).get("pass") is not True for name in names):
+        return False
+    comparable = {**current, "checks": {key: value for key, value in checks.items() if key not in names}}
+    return comparable == frozen
+
+
 def write_submission(
     pred_2d: np.ndarray,
     template_path: Path | str,
@@ -37,13 +75,13 @@ def write_submission(
     *,
     outside: str = "zero",
 ) -> Path:
-    """Write ``pred_2d`` using the template profile and a portal-safe default.
+    """Write ``pred_2d`` using the template profile and a local finite policy.
 
-    The default is an all-finite ``0.0`` exterior because some portal validators
-    inspect every stored cell and reject the template's ``NaN`` outside
-    convention as out of range.  Use ``outside="nan"`` only when producing an
-    explicitly labelled compatibility twin; it is never the recommended upload
-    artifact and must fail the strict whole-array preflight diagnostic.
+    The default is an all-finite ``0.0`` exterior for strict local range checks.
+    Official instructions instead describe null/NaN outside the footprint; the
+    cause of the reported portal error and actual portal acceptance are unknown.
+    The NaN compatibility twin fails this project's strict all-finite policy.
+    Neither option authorizes a competition submission.
     """
     if outside not in ("nan", "zero"):
         raise ValueError("outside must be 'nan' or 'zero'")
@@ -54,9 +92,11 @@ def write_submission(
         footprint = np.isfinite(t.read(1))
     if not footprint.any():
         raise ValueError("template contains no finite prediction footprint")
+    if np.shape(pred_2d) != footprint.shape:
+        raise ValueError(f"prediction shape {np.shape(pred_2d)} != template {footprint.shape}")
+    if np.ma.isMaskedArray(pred_2d) and np.ma.getmaskarray(pred_2d)[footprint].any():
+        raise ValueError("Prediction has masked pixels inside the footprint; no silent mask removal")
     pred_2d = np.asarray(pred_2d)
-    if pred_2d.shape != footprint.shape:
-        raise ValueError(f"prediction shape {pred_2d.shape} != template {footprint.shape}")
     values = pred_2d[footprint]
     if not np.isfinite(values).all() or np.any((values < 0) | (values > 1)):
         raise ValueError(
@@ -69,9 +109,17 @@ def write_submission(
     profile.update(
         driver="GTiff", dtype="float32", count=1, nodata=(np.nan if outside == "nan" else None)
     )
+    # A stale sidecar from an earlier file could otherwise override the new TIFF's
+    # nodata/mask metadata, even though only the TIFF is ultimately uploaded.
+    if any(Path(str(out_path) + suffix).exists() for suffix in (".msk", ".aux.xml")):
+        raise ValueError("Output path has existing raster sidecars; refusing an ambiguous overwrite")
     with rasterio.open(out_path, "w", **profile) as dst:
         dst.write(arr, 1)
         dst.update_tags(AREA_OR_POINT="Area")
+    with rasterio.open(out_path) as written:
+        mask_report = raster_mask_report(written, footprint)
+    if not mask_report["inside_all_valid"] or not mask_report["self_contained"]:
+        raise ValueError("Written raster is masked inside the footprint or depends on sidecar files")
     return out_path
 
 
@@ -116,6 +164,7 @@ def check_variants(path: Path | str, template_path: Path | str) -> dict[str, Any
             s.dtypes,
             s.nodata,
         )
+        mask_report = raster_mask_report(s, footprint) if s.shape == footprint.shape and footprint.any() else None
     shape_ok = arr.shape == footprint.shape
     if shape_ok:
         inside, outside = arr[footprint], arr[~footprint]
@@ -150,6 +199,10 @@ def check_variants(path: Path | str, template_path: Path | str) -> dict[str, Any
         "Template must be the pinned organizer grid, not just a self-consistent arbitrary raster",
     )
     add("single_band", count == 1, f"count={count}")
+    add("footprint_gdal_mask_valid", bool(mask_report and mask_report["inside_all_valid"]),
+        f"GDAL validity mask within footprint: {mask_report}")
+    add("single_file_self_contained", bool(mask_report and mask_report["self_contained"]),
+        f"External raster dependencies: {mask_report}")
     add("dtype_float32", dtypes == ("float32",), f"dtypes={dtypes}")
     add("crs_epsg_32611", crs is not None and crs.to_epsg() == 32611 and crs == t_crs, f"{crs}")
     add("shape_matches_template", shape == t_shape, f"{shape} vs {t_shape}")

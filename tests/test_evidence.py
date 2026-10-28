@@ -173,7 +173,8 @@ def test_concurrent_main_archive_and_frozen_science_are_byte_preserved():
         assert sha256(ROOT / row["archived"]) == row["sha256"]
     amendments = load("evidence/integration_amendments_20261027.json")
     assert amendments["upstream_template_modified"] is False
-    assert {r["path"] for r in amendments["amendments"]} == {"scripts/submission_writer.py"}
+    assert {r["path"] for r in amendments["amendments"]} == {
+        "scripts/submission_writer.py", "src/gems/submission.py"}
     by_path = {r["path"]: r for r in amendments["amendments"]}
     for row in receipt["inherited_shared_sources"] + receipt["frozen_artifacts_and_cards"]:
         if row["path"] in by_path:

@@ -49,12 +49,15 @@ async function showFeed() {
     for (const node of document.querySelectorAll("[data-feed-date]")) {
       node.textContent = date ? `observed ${date.replace("T", " ")}` : "observation date unavailable";
     }
-    const changed = (feed.repository_heads || []).filter(row => row.changed_since_audit).length;
+    const heads = Array.isArray(feed.repository_heads) ? feed.repository_heads : [];
+    const changed = heads.filter(row => row.changed_since_audit === true).length;
+    const stale = heads.filter(row => row.refresh_status !== "network_verified").length;
     const fresh = feed.leaderboard_status === "network_verified";
     let status = fresh
       ? "Official public-page refresh succeeded. Not a result for any project file."
       : "Retained dated observation; a fresh official-page check is unavailable or was not attempted.";
     if (changed) status += ` ${changed} upstream heads changed since the frozen audit; no model was revalidated.`;
+    if (!heads.length || stale) status += ` ${stale || "All"} upstream head observations are stale or unavailable.`;
     if (date && Date.now() - Date.parse(date) > 24 * 60 * 60 * 1000) {
       status += " Observation is older than 24 hours.";
     }

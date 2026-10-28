@@ -1,8 +1,8 @@
 {
-  "generated_utc": "2026-10-28T16:19:05+00:00",
+  "generated_utc": "2026-10-28T17:32:18+00:00",
   "network_refresh_attempted": true,
-  "official_page_refresh_attempted": false,
-  "leaderboard_status": "retained_observation_not_refreshed",
+  "official_page_refresh_attempted": true,
+  "leaderboard_status": "refresh_unavailable_last_observation_retained",
   "leaderboard": {
     "rank": 1,
     "participant_display": "xiaofanhu",
@@ -17,68 +17,73 @@
     {
       "repo": "buffedlizard55-lab/GEMSDOE24",
       "audited_commit": "7ab1c8f77f0b4b8644e3929403a0dab65838b008",
-      "observed_head": "5834de6d4320dcbeb8c5dc108521eaaacd3e896b",
+      "observed_head": "2cbddf15c2c6fceb2210c2ed14a2c9cb370faa95",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-28T16:19:01+00:00"
+      "checked_utc": "2026-10-28T17:32:14+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE25",
       "audited_commit": "af2b6f2543e5422a7e917638b70e038e6fd91cad",
-      "observed_head": "a728c9f42e6298aaa5b65013806ac578f1b2a3ef",
+      "observed_head": "64e83ea36659fed9b16ea6d086c458881b47e749",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-28T16:19:01+00:00"
+      "checked_utc": "2026-10-28T17:32:15+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE27",
       "audited_commit": "bef7ae8e8f63b69d299c9214c75988c8f5055f9c",
       "observed_head": "0f9e3e4b06eeecdd584d32fb9dd7544a01d2f3f0",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-28T16:19:02+00:00"
+      "checked_utc": "2026-10-28T17:32:15+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE28",
       "audited_commit": "2c839d10f57ec9b074829e93c84bc39935f52896",
-      "observed_head": "75baf0c04120f90b7bd6394bf3f2689a76c34d65",
+      "observed_head": "f6746e1ad4eb49a35902bb4fd5404b5e6edc9287",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-28T16:19:02+00:00"
+      "checked_utc": "2026-10-28T17:32:16+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE30",
       "audited_commit": "9c0d637c0171407196b61b780444bc772ce75438",
-      "observed_head": "a7494c9582bc67184f705f22edc6b472d5260881",
+      "observed_head": "c3d6c815ae5b6415b07a39d99058a10d4fda0789",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-28T16:19:03+00:00"
+      "checked_utc": "2026-10-28T17:32:16+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE31",
       "audited_commit": "776bf4668a8c10631908c9bba9443a8f11ce5036",
       "observed_head": "cd0b12260807732f3ddb339889984f066d12e870",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-28T16:19:03+00:00"
+      "checked_utc": "2026-10-28T17:32:16+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE32",
       "audited_commit": "07806249f4ed3efe70b4fbf866183c32392b7853",
-      "observed_head": "109f364fb39030e40ef51b839b79cf694123b51b",
+      "observed_head": "a77bac6c4b4caa6d92c7821f2b855d35cc7f8797",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-28T16:19:04+00:00"
+      "checked_utc": "2026-10-28T17:32:17+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE33",
       "audited_commit": "1d99d73fe14d9a87126ffca2db52c69336d6099b",
-      "observed_head": "1e08a7e81ee4595e2f3770f5c4f7c071adc1a53e",
+      "observed_head": "3eaf85efb49f364b84f8be04e8b084b12d0303b9",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-28T16:19:04+00:00"
+      "checked_utc": "2026-10-28T17:32:17+00:00"
     },
     {
       "repo": "buffedlizard55-lab/GEMSDOE36",
       "audited_commit": "05979971df4775aadad34ae6749b0a7ac56d7832",
-      "observed_head": "4b717aaff6eaf5de9b53030e637f8e1cf0d56e43",
+      "observed_head": "e280188adbbe762e6b7ac6f3b8e105e8e7915026",
       "changed_since_audit": true,
-      "checked_utc": "2026-10-28T16:19:05+00:00"
+      "checked_utc": "2026-10-28T17:32:18+00:00"
     }
   ],
-  "errors": [],
+  "errors": [
+    {
+      "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "error": "<urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:992)>"
+    }
+  ],
   "models_retrained": false,
   "submission_slots_used": 0,
   "weekly_allowance": {

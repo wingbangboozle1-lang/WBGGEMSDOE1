@@ -62,7 +62,6 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from gems.holdout import SegmentHoldout  # noqa: E402
-from gems1 import grid as G  # noqa: E402
 
 WORK = Path("/tmp/wbg5")
 WORK.mkdir(parents=True, exist_ok=True)
@@ -274,11 +273,9 @@ def main() -> int:
     flagged = [n for n, v in canary_all["features"].items() if _sym(v) > 0.90]
     print("canary(all) passed:", canary_all["passed"], "flagged:", flagged, flush=True)
 
-    # Protocol: AUC > 0.90 is leakage until proven otherwise. The flagged bands
-    # are regional geodetic-strain / DEM fields that separate the held-out
-    # mapped catalogue from background in one fold at AUC~0.999; that circularity
-    # cannot be excluded, so they are dropped and the reduced set is re-canaried.
-    keep_idx = [i for i, n in enumerate(names) if n not in flagged]
+    # Protocol: AUC > 0.90 in any fold is treated as leakage until proven
+    # otherwise. On the corrected full-template holdout nothing is flagged, so
+    # the reduced set equals the full set; it is re-canaried regardless.
     keep_names = [n for n in names if n not in flagged]
     canary = ho.canary({n: feat_map[n] for n in keep_names}, max_per_class=8000)
     (WORK / "canary.json").write_text(json.dumps(canary, indent=1))
@@ -295,7 +292,6 @@ def main() -> int:
     names = keep_names
     mta_idx = [i for i, n in enumerate(names) if n.startswith("mta:")]
     n_mta = len(mta_idx)
-    n_ctrl = feats_full.shape[0] - n_mta - len(flagged)
 
     def col(j: int) -> np.ndarray:
         return np.asarray(feats_full[j])

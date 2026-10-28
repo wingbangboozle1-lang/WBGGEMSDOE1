@@ -15,7 +15,6 @@ import hashlib
 import json
 import sys
 import time
-import zipfile
 from pathlib import Path
 
 import numpy as np
@@ -27,7 +26,6 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from gems import submission as SUB  # noqa: E402
 from gems.holdout import SegmentHoldout  # noqa: E402
-from gems1 import grid as G  # noqa: E402
 from gems1 import uniqueness as U  # noqa: E402
 
 WORK = Path("/tmp/wbg5")

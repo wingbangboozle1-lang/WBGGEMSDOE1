@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WBG-5 / MTA-1 · WBGGEMSDOE1 · WBG GEMS research desk</title>
+<meta name="description" content="An auditable GEMS fault-mapping research desk: nine-site comparison, measured holdout results, unique-byte research TIFF and explicit no-go submission status.">
+<meta name="theme-color" content="#173b42"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css"><script defer src="assets/app.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="masthead"><div class="wrap"><nav class="nav" aria-label="Main navigation">
+<a class="brand" href="index.html"><svg viewBox="0 0 36 38" fill="none" aria-hidden="true"><path d="M3 29C12 27 4 16 13 15S21 5 31 6M4 35C15 34 11 22 20 22S25 11 34 12M2 21C8 21 4 9 13 9S18 1 25 2" stroke="#23665f" stroke-width="2" stroke-linecap="round"/></svg><span>WBG / GEMS<small>FAULT MAPPING · RESEARCH DESK</small></span></a>
+<div class="navlinks"><a class="" href="index.html">Overview</a><a class="active" href="wbg5/index.html">WBG-5</a><a class="" href="wbg4/index.html">WBG-4</a><a class="" href="wbg3/index.html">WBG-3</a><a class="" href="wbg2.html">WBG-2 audit</a><a class="" href="executive-summary.html">Site comparison</a><a class="" href="research.html">Research</a><a class="" href="evidence.html">Evidence</a><a class="" href="repo-review-20261027.html">Latest review</a><a class="" href="how-to-submit.html">How to submit</a><a class="repo" href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Repository ↗</a></div></nav></div></header>
+<main id="main" class="wrap"><div class="breadcrumb">GEMS prize challenge <span>/</span> WBG-5 / MTA-1 · WBGGEMSDOE1 <span>/</span> 26 OCT 2026 frozen experiment</div><p class="micro"><a href="review-20261028.md">28 October review: no submission approved; frozen generator disabled →</a></p><p class="micro"><a href="portfolio-review.html">27 October follow-up: four earlier releases and trust corrections →</a></p><p class="micro"><a href="repo-review-20261027.html">27 October 2026 review: all 9 monitored heads changed; no file cleared →</a></p><section class="subhero"><div><p class="eyebrow">WBG-5 · MTA-1 · submit path</p><h1>Magnetic-texture anisotropy<br>vs depth contours</h1><p class="lead">A fresh, format-valid TIFF is generated here. It is a <strong>null</strong> on the paired holdout, so it is labeled <strong>DO NOT SUBMIT</strong>.</p></div><span class="pill no"><span class="dot"></span>Negative · no real slot</span></section>
+<section class="content-section" id="artifact">
+<h2>Submission identity</h2>
+<div class="two-col content-section">
+<div class="panel"><div class="panel-head">Unique submission name</div><div class="panel-pad"><div class="filename">wbggemsdoe1-wbg5-mta1-magnetic-texture-anisotropy-20261028</div><p class="micro">SHA-256 <span class="mono">89b6e3749854344f441ae27763d570333c3a26c1c8ad9148fe636a7eef806474</span></p></div></div>
+<div class="panel"><div class="panel-head">Short note (portal field)</div><div class="panel-pad"><p class="mono">WBG-5 MTA-1 magnetic-texture anisotropy vs depth contours; 19-band + MTA HGB OOF, 37654 dots zeros | research, holdout-only</p><p class="micro">Length 123 characters (limit 140).</p></div></div>
+</div>
+<div class="actions" style="margin-top:16px">
+<a class="button" href="../downloads/wbggemsdoe1-wbg5-mta1-magnetic-texture-anisotropy-20261028.tif" download>Download research TIFF ↓</a>
+<a class="button secondary" href="../downloads/wbggemsdoe1-wbg5-mta1-magnetic-texture-anisotropy-20261028.zip" download>One-TIFF ZIP ↓</a>
+<a class="button secondary" href="../evidence/wbg5/run_card.json">Run card JSON ↗</a>
+</div>
+<p class="note">DOWNLOAD: YES · SUBMIT: NO. Research artifact only; no organizer receipt, no authenticated weekly allowance, no promotion to a live slot.</p>
+</section>
+
+<section class="content-section" id="measured">
+<div class="section-heading"><div><h2>Measured on the frozen holdout</h2><p>Every number is HOLDOUT-DTI, not a leaderboard score.</p></div></div>
+<div class="panel-pad">
+<p><strong>Candidate A2_mta1</strong> <code>HOLDOUT-DTI 0.131586</code> · 95% CI [0.119206, 0.144259]<br>
+<strong>Control A1_ctrl_no_mta</strong> (19-band stack) <code>0.130847</code> · 95% CI [0.118682, 0.143594]</p>
+<p><strong>Paired delta +0.000738</strong> · 95% CI [-0.004010, +0.005391] · evaluator <code>gems-segment-pooled-v1</code> · 60,988 withheld positives · MTA-1 wins 2 of 4 folds.</p>
+<p class="note">The paired confidence interval includes zero. A projection is never a score; a non-significant paired CI is a null, not a forecast.</p>
+</div>
+</section>
+
+<section class="content-section" id="canary">
+<h2>Leakage canary</h2>
+<div class="panel-pad">
+<p>Canary over the full 32-channel set passed: <strong>True</strong>, no feature dropped, maximum symmetric fold AUC <code>0.657912</code> &le; 0.90. The reduced set also passed. The earlier canary false-positive was a holdout-misalignment artifact (the catalogue had been excluded from the evaluation footprint, which corrupted the valid/truth masks); it is resolved and no bands were dropped.</p>
+</div>
+</section>
+
+<section class="content-section" id="uniqueness">
+<div class="section-heading"><div><h2>Registry uniqueness</h2><p>Two gates, reported separately.</p></div></div>
+<div class="panel-pad">
+<p><strong>Competing-submission gate: PASSED.</strong> Maximum 3 px overlap against the nine historical masks <strong>58.32% &le; 70%</strong>; maximum |&rho;| = 0.0957 &le; 0.90. The artifact is not a duplicate of any competing submission.</p>
+<p><strong>Literal all-entry gate: FAILED (reported, not waived).</strong> Maximum 3 px overlap 100.00% — the only comparator above 70% is <code>wbg-c1</code>, WBGGEMSDOE1's own continuous research surface, which overlaps every budget-matched dotted field by construction. It is logged, never gating.</p>
+</div>
+</section>
+
+<section class="content-section" id="decision">
+<h2>The decision in plain English</h2>
+<div class="prose"><ol>
+<li><strong>The TIFF is genuinely generated here</strong> — 37,654 zeros-mode dots, single-band float32, EPSG:32611, 3730×3292, values in [0,1], zero outside the footprint. Format validation: True.</li>
+<li><strong>It does not improve the clean control.</strong> The paired holdout CI includes zero, so MTA-1 adds no recoverable signal. No final dots were placed or retuned around the registry after the null.</li>
+<li><strong>Uniqueness is reported, not decided by format.</strong> It passes the competing-submission gate but fails the literal all-entry gate against the project's own research surface.</li>
+<li><strong>No real slot is selected.</strong> No organizer receipt and no authenticated weekly allowance. Promotion to a live slot is a separate selector step.</li>
+</ol></div>
+</section></main>
+<footer class="footer"><div class="wrap footer-inner"><p><strong>WBG / GEMS</strong> &nbsp; Evidence before a weekly slot.<br>Fault predictions are not verified geothermal vents. Local validation is not organizer acceptance.</p><div><a class="" href="data/run-card.json">Run card JSON</a><a class="" href="repo-review-20261027.html">Latest review</a><a class="" href="standing-prompt.md">Standing brief</a><a class="" href="parallel/main-b9a2d53/index.html">Parallel negative archives</a><a class="" href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Source code ↗</a></div></div></footer>
+<div id="toast" role="status" aria-live="polite"></div></body></html>

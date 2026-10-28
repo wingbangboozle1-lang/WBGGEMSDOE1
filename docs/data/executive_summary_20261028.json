@@ -194,7 +194,7 @@
   },
   "inputs": {
     "nine_site_audit": "evidence/nine_site_executive_summary_20261026.json",
-    "diff1_run_card": "evidence/wbg5/run_card.json",
+    "diff1_run_card": "evidence/wbg5/diff1_run_card.json",
     "diff1_decision": "docs/downloads/wbggemsdoe1-wbg5-diff1-scarp-lobe-20261028-2f3684a3f718-zeros.decision.json"
   }
 }

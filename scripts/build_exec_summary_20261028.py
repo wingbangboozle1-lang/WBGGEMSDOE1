@@ -13,7 +13,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 NINE = ROOT / "evidence/nine_site_executive_summary_20261026.json"
-DIFF1 = ROOT / "evidence/wbg5/run_card.json"
+DIFF1 = ROOT / "evidence/wbg5/diff1_run_card.json"
 DECISION = ROOT / "docs/downloads/wbggemsdoe1-wbg5-diff1-scarp-lobe-20261028-2f3684a3f718-zeros.decision.json"
 OUT_JSON = ROOT / "docs/data/executive_summary_20261028.json"
 OUT_MD = ROOT / "docs/executive-summary-20261028.md"
@@ -122,7 +122,7 @@ def build() -> dict:
         "h33_b2_explanation": nine["h33_b2_explanation"],
         "inputs": {
             "nine_site_audit": "evidence/nine_site_executive_summary_20261026.json",
-            "diff1_run_card": "evidence/wbg5/run_card.json",
+            "diff1_run_card": "evidence/wbg5/diff1_run_card.json",
             "diff1_decision": "docs/downloads/wbggemsdoe1-wbg5-diff1-scarp-lobe-20261028-2f3684a3f718-zeros.decision.json",
         },
     }
@@ -194,7 +194,7 @@ def to_markdown(doc: dict) -> str:
         "",
         "## Records",
         "",
-        "- DIFF1 run card: [evidence/wbg5/run_card.json](../evidence/wbg5/run_card.json)",
+        "- DIFF1 run card: [evidence/wbg5/diff1_run_card.json](../evidence/wbg5/diff1_run_card.json)",
         "- DIFF1 decision: [decision JSON](downloads/wbggemsdoe1-wbg5-diff1-scarp-lobe-20261028-2f3684a3f718-zeros.decision.json)",
         "- Three review passes (implement, bugs/edge cases, re-check vs request): "
         "[review-passes-20261028.json](data/review-passes-20261028.json)",

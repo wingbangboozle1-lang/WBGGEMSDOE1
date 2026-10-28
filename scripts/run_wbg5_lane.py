@@ -1,455 +1,398 @@
 #!/usr/bin/env python3
-"""Execute once (or verify) the preregistered WBG-5 / DIFF1 three-arm lane.
+"""WBG-5 / MTA-1 lane: magnetic-texture anisotropy relative to depth-to-base contours.
 
-DIFF1 is the ranked-#3 untested hypothesis: a LiDAR-only, catalogue-free
-diffusion-shape scarp-lobe morphology detector. This script is a thin lane over the
-shared template modules (``gems.holdout``, ``gems.emission``, ``gems.novelty``,
-``gems.submission``, ``gems.tip1``, ``gems.diff1``). It never retrains, never retunes and
-never spends a weekly slot.
+Hypothesis (pre-registered before fitting)
+------------------------------------------
+A concealed displacement that has no subaerial trace still interrupts the
+coherent magnetic basement fabric.  That interruption is expressed as a
+*scale-dependent anisotropy of magnetic texture relative to the local
+depth-to-base structural contours*: the RTP / TMI field keeps coherent texture
+along a fault-parallel direction while the across-contour texture is disrupted,
+or vice versa.  Standard 1-D ridge filters and simple gradient magnitudes are
+blind to this because they sum edge strength over all orientations.
 
-Usage:
-    python scripts/restore_inputs.py
-    python scripts/restore_registry.py
-    PYTHONPATH=src python scripts/run_wbg5_lane.py
-    PYTHONPATH=src python scripts/run_wbg5_lane.py --verify-recorded
+Mechanism
+---------
+For the reduced-to-pole field (band 2, ``rtp``) smoothed at two scales
+(sigma = 3 px and 8 px):
+
+    gy, gx          = gradient(smoothed rtp)
+    (ny, nx)        = unit vector of grad(depth_to_base_surf, band 15)   # across-contour
+    (-nx, ny)       = unit vector along the contour
+    E_across        = (gy*ny + gx*nx)**2
+    E_along         = (gy*(-nx) + gx*ny)**2
+    mta(sigma)      = (E_across - E_along) / (E_across + E_along + eps)
+
+``mta`` is persisted across the two scales (the channel is the scale-8 value
+guarded by the scale-3 sign, so a real, scale-persistent fabric break survives
+and single-scale noise does not).  The two new channels are added to the
+official 19-band GeoDAWN stack plus a small set of first-order derivatives.
+
+Named non-fault mimic
+---------------------
+Lithologic contacts, dike swarms, flight-line levelling residuals, and
+Pleistocene shoreline cusps can all produce oriented magnetic texture.  MTA is
+a structural *indicator*, never a verified fault or a geothermal-vent
+confirmation.
+
+Protocol
+--------
+Single method lane.  Whole fault components are hidden with a 1.5 km buffer;
+the detector reads only each fold's *visible* catalogue; visible faults are
+masked pixel-exactly; pooled DTI uses alpha=0.2, beta=0.8, R=300 m.  Every
+feature is tested alone (orientation-invariant AUC > 0.90 is a leakage alarm).
+Arms (budget: 3 experiments):
+  A1 19-band + derivatives control (no MTA)
+  A2 19-band + derivatives + MTA-1
+  A3 MTA-only ablation (MTA channels alone, no official bands)
+Paired A2-vs-A1 uses the identical dotted emission and fold split.
 """
-
 from __future__ import annotations
 
-import argparse
-import gc
 import json
-import struct
 import sys
 import time
-import zlib
-from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
 import rasterio
+from scipy import ndimage as ndi
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from gems import diff1, emission, holdout, novelty, submission, tip1  # noqa: E402
-from gems.validator import sha256_file  # noqa: E402
+from gems.holdout import SegmentHoldout  # noqa: E402
 
-PREREG_PATH = "research/06_wbg5_diff1_preregistration_20261028.md"
-TEMPLATE = ROOT / "data/bridge/sample_submission.tif"
-LABELS = ROOT / "data/bridge/labels.tif"
-LIDAR = ROOT / "data/external/lidar_scarp_features_u8.tif"
-LIDAR_METADATA = ROOT / "data/external/lidar_scarp_features.json"
-REGISTRY = ROOT / "registry/registry.json"
-REGISTRY_SOURCES = ROOT / "registry/source_registry.json"
-BASELINE_CARD = ROOT / "evidence/benchmarks/gemsdoe24_s3dep1_run_card_20261026.json"
-RUN_CARD = ROOT / "evidence/wbg5/run_card.json"
-DOCS_CARD = ROOT / "docs/data/wbg5_run_card.json"
-PREVIEW = ROOT / "docs/assets/wbg5-diff1-preview.png"
-DOWNLOADS = ROOT / "docs/downloads"
+WORK = Path("/tmp/wbg5")
+WORK.mkdir(parents=True, exist_ok=True)
+SEED = 20261028
 
-EXPECTED_INPUTS = {
-    "data/bridge/sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-    "data/bridge/labels.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
-    "data/external/lidar_scarp_features_u8.tif": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
-    "data/external/lidar_scarp_features.json": "9ef0df6e87598a8b0cd52fe821661e5fdb3a00568c5d9b1c5d61fd6b242dcd41",
+CACHE = ROOT / "data/template57/.cache/features"
+LABELS = ROOT / "data/existing_faults.tif"
+TEMPLATE = ROOT / "data/sample_submission.tif"
+
+BAND_FILES = {i: CACHE / f"band-{i:02d}.npy" for i in range(1, 20)}
+# Official band indices (1-based) used for derivatives.
+IDX = {
+    "rtp": 2,
+    "tmi_hg": 3,
+    "tmi_vg": 9,
+    "iso_grav_anom": 13,
+    "det_elev": 12,
+    "depth_to_base_surf": 15,
+    "cond_surf": 17,
+    "tmi": 14,
 }
-BASELINE_EXPECTED = {
-    "dti": 0.16606013635163805,
-    "ci95": [0.15185839118988828, 0.18033886456990444],
-    "evaluator_version": "gems-segment-pooled-v1",
-    "n_withheld_positive_pixels": 60988,
-}
-BUDGET_FRACTION = 0.0073
-MIN_SPACING_PX = 3.0
-MAX_SECONDS = 7200
-ARM_ORDER = ("B", "A", "C")
-HYPOTHESIS = "WBG-5 / DIFF1: diffusion-shape scarp-lobe morphology (LiDAR-only)"
+
+MTA_SCALES = (3.0, 8.0)
 
 
-def save_json(path: Path, value: dict) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, indent=2, allow_nan=False) + "\n")
+# --------------------------------------------------------------------------- #
+# feature construction
+# --------------------------------------------------------------------------- #
+def _load_band(idx: int, foot: np.ndarray) -> np.ndarray:
+    raw = np.load(BAND_FILES[idx])
+    raw = np.asarray(raw, dtype=np.float64)
+    raw[~foot] = np.nan
+    raw[(~np.isfinite(raw)) | (np.abs(raw) > 1e30)] = np.nan
+    return raw
 
 
-def _png_chunk(tag: bytes, data: bytes) -> bytes:
-    checksum = zlib.crc32(tag + data) & 0xFFFFFFFF
-    return struct.pack(">I", len(data)) + tag + data + struct.pack(">I", checksum)
+def _fill_nearest(a: np.ndarray, valid: np.ndarray) -> np.ndarray:
+    if valid.all():
+        return a.astype(np.float32, copy=False)
+    filled = a.astype(np.float32, copy=True)
+    _, ind = ndi.distance_transform_edt(~valid, return_distances=True, return_indices=True)
+    bad = ~valid
+    filled[bad] = filled[ind[0][bad], ind[1][bad]]
+    return filled
 
 
-def write_preview(dots: np.ndarray, footprint: np.ndarray, path: Path, step: int = 6) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    height, width = footprint.shape
-    small_h, small_w = height // step, width // step
-    fp_small = footprint[: small_h * step, : small_w * step].reshape(
-        small_h, step, small_w, step
-    ).any(axis=(1, 3))
-    dot_small = dots[: small_h * step, : small_w * step].reshape(
-        small_h, step, small_w, step
-    ).any(axis=(1, 3))
-    rgb = np.full((small_h, small_w, 3), (247, 244, 237), np.uint8)
-    rgb[fp_small] = (218, 231, 226)
-    rgb[dot_small] = (211, 80, 55)
-    raw = b"".join(b"\x00" + rgb[row].tobytes() for row in range(small_h))
-    header = struct.pack(">IIBBBBB", small_w, small_h, 8, 2, 0, 0, 0)
-    payload = (
-        b"\x89PNG\r\n\x1a\n"
-        + _png_chunk(b"IHDR", header)
-        + _png_chunk(b"IDAT", zlib.compress(raw, level=9))
-        + _png_chunk(b"IEND", b"")
-    )
-    path.write_bytes(payload)
+def _robust_z(a: np.ndarray, foot: np.ndarray, clip: float = 6.0) -> np.ndarray:
+    v = a[foot]
+    med = float(np.nanmedian(v)) if v.size else 0.0
+    mad = float(np.nanmedian(np.abs(v - med))) if v.size else 0.0
+    scale = 1.4826 * mad if mad > 1e-9 else float(np.nanstd(v) or 1.0)
+    if not np.isfinite(scale) or scale <= 1e-9:
+        scale = 1.0
+    z = (a - med) / scale
+    z = np.clip(z, -clip, clip)
+    return np.where(foot, z, 0.0).astype(np.float32)
 
 
-def merge_canary(context: holdout.SegmentHoldout, features: dict[str, np.ndarray]) -> dict:
-    merged = {}
-    metadata = None
-    names = list(features)
-    for start in range(0, len(names), 6):
-        batch = {name: features[name] for name in names[start : start + 6]}
-        result = context.canary(batch, seed=20261025, max_per_class=15000)
-        merged.update(result["features"])
-        metadata = result
-    assert metadata is not None
-    return {
-        "diagnostic": metadata["diagnostic"],
-        "evaluator_version": metadata["evaluator_version"],
-        "threshold": metadata["threshold"],
-        "two_polarities_checked": True,
-        "passed": not any(row["leakage_suspected"] for row in merged.values()),
-        "n_features_checked": len(merged),
-        "features": merged,
-        "interpretation": metadata["interpretation"],
-    }
+def _gradmag(a: np.ndarray, sigma: float = 1.5) -> np.ndarray:
+    s = ndi.gaussian_filter(a, sigma)
+    gy, gx = np.gradient(s)
+    return np.hypot(gx, gy).astype(np.float32)
 
 
-def verify_baseline_card() -> dict:
-    baseline = json.loads(BASELINE_CARD.read_text())
-    recorded = baseline["holdout"]
-    observed = {
-        "dti": recorded["dti"],
-        "ci95": recorded["ci95"]["interval"],
-        "evaluator_version": recorded["evaluator_version"],
-        "n_withheld_positive_pixels": recorded["n_withheld_positive_pixels"],
-    }
-    if (
-        observed["evaluator_version"] != BASELINE_EXPECTED["evaluator_version"]
-        or observed["n_withheld_positive_pixels"] != BASELINE_EXPECTED["n_withheld_positive_pixels"]
-        or not np.isclose(observed["dti"], BASELINE_EXPECTED["dti"], rtol=0, atol=1e-15)
-        or not np.allclose(observed["ci95"], BASELINE_EXPECTED["ci95"], rtol=0, atol=1e-15)
-    ):
-        raise ValueError("Pinned S3DEP1 benchmark card does not match preregistration")
-    return {
-        "label": "HOLDOUT-DTI",
-        **observed,
-        "source": str(BASELINE_CARD.relative_to(ROOT)),
-        "source_sha256": sha256_file(BASELINE_CARD),
-        "independently_replayed_this_run": False,
-        "paired_fold_dot_arrays_available": False,
-        "promotion_effect": "fail_closed",
-        "reason": (
-            "The pinned public receipt contains pooled/fold summaries but no fold-aligned "
-            "prediction masks or 10 km block components, so an independent paired replay is "
-            "unavailable and promotion fails closed."
-        ),
-    }
+def _mta_channels(rtp: np.ndarray, depth: np.ndarray, foot: np.ndarray) -> list[np.ndarray]:
+    """Scale-persistent magnetic-texture anisotropy relative to depth contours."""
+    d = ndi.gaussian_filter(depth, 3.0)
+    gdy, gdx = np.gradient(d)
+    gnorm = np.hypot(gdy, gdx)
+    valid = foot & (gnorm > 1e-6)
+    ny = np.where(valid, gdy / np.maximum(gnorm, 1e-6), 0.0)
+    nx = np.where(valid, gdx / np.maximum(gnorm, 1e-6), 0.0)
+    # across-contour unit vector n=(ny,nx); along-contour t=(-nx,ny)
+    out = []
+    signs = []
+    for sigma in MTA_SCALES:
+        s = ndi.gaussian_filter(rtp, sigma)
+        gy, gx = np.gradient(s)
+        e_across = (gy * ny + gx * nx) ** 2
+        e_along = (gy * (-nx) + gx * ny) ** 2
+        mta = (e_across - e_along) / (e_across + e_along + 1e-9)
+        mta = np.where(valid, mta, 0.0).astype(np.float32)
+        out.append(mta)
+        signs.append(np.sign(mta))
+    # persistence: keep scale-8 magnitude, gated by agreement of sign at scale 3
+    persist = np.abs(out[1]) * np.where(np.abs(signs[0] * signs[1] + 1.0) < 0.5, 1.0, 0.35)
+    signed = np.where(np.abs(out[1]) > np.abs(out[0]), out[1], out[0])
+    channels = [out[0].astype(np.float32), out[1].astype(np.float32),
+                persist.astype(np.float32), signed.astype(np.float32)]
+    return channels
 
 
-def verify_registry_manifest() -> dict:
-    registry = json.loads(REGISTRY.read_text())
-    if (
-        registry["rejected_count"] != 0
-        or not registry["retained_spacing_5_lattice_present"]
-        or registry["source_manifest_sha256"] != sha256_file(REGISTRY_SOURCES)
-        or registry["unique_rasters"] != len(registry["entries"])
-        or not registry["entries"]
-    ):
-        raise ValueError("Immutable registry is incomplete")
-    for row in registry["entries"]:
-        path = ROOT / row["comparison_cache_path"]
-        if sha256_file(path) != row["comparison_cache_sha256"]:
-            raise ValueError(f"Registry comparison blob mismatch: {row['id']}")
-    return registry
+DERIV_KEYS = ("det_elev", "tmi", "iso_grav_anom", "rtp", "depth_to_base_surf", "cond_surf")
 
 
-def pooled_receipt_check(result: dict) -> None:
-    pooled = holdout.pooled_components(result["folds"])
-    for key in ("dti", "TP_w", "FP_w", "FN_w", "n_truth", "n_emitted"):
-        if not np.isclose(result[key], pooled[key], rtol=1e-12, atol=1e-9):
-            raise ValueError(f"Pooled holdout mismatch for {key}")
+def build_features(foot: np.ndarray) -> tuple[np.lib.format.memmap, list[str]]:
+    cache = WORK / "wbg5_features.npy"
+    names_path = WORK / "wbg5_feature_names.json"
+    H, W = foot.shape
+
+    n_off = 19
+    n_deriv = len(DERIV_KEYS)
+    n_tilt = 1
+    n_lap = 2
+    n_mta = 4
+    n_feat = n_off + n_deriv + n_tilt + n_lap + n_mta
+
+    if cache.exists() and names_path.exists():
+        arr = np.lib.format.open_memmap(cache, mode="r", dtype="float32", shape=(n_feat, H, W))
+        if len(json.loads(names_path.read_text())) == n_feat:
+            return arr, json.loads(names_path.read_text())
+
+    arr = np.lib.format.open_memmap(cache, mode="w+", dtype="float32", shape=(n_feat, H, W))
+    names: list[str] = []
+    i = 0
+    keep: dict[str, np.ndarray] = {}
+    # one band at a time: official channel + remember the few needed for derivatives
+    for b in range(1, 20):
+        raw = _load_band(b, foot)
+        arr[i] = _robust_z(raw, foot)
+        names.append(f"official:band{b:02d}")
+        i += 1
+        for key, idx in IDX.items():
+            if idx == b:
+                keep[key] = raw
+        del raw
+    for key in DERIV_KEYS:
+        filled = _fill_nearest(keep[key], foot & np.isfinite(keep[key]))
+        arr[i] = _gradmag(filled)
+        names.append(f"gradmag:{key}")
+        i += 1
+    tilt = np.arctan2(keep["tmi_vg"], np.sqrt(keep["tmi_hg"] ** 2 + 1e-6))
+    arr[i] = np.where(foot, tilt, 0.0).astype(np.float32)
+    names.append("tilt:tmi")
+    i += 1
+    for key in ("det_elev", "tmi"):
+        filled = _fill_nearest(keep[key], foot & np.isfinite(keep[key]))
+        arr[i] = np.where(foot, ndi.gaussian_laplace(filled, 2.0), 0.0).astype(np.float32)
+        names.append(f"lap2:{key}")
+        i += 1
+    for c, nm in zip(_mta_channels(keep["rtp"], keep["depth_to_base_surf"], foot),
+                     ("s3", "s8", "persist", "signed")):
+        arr[i] = c
+        names.append(f"mta:{nm}")
+        i += 1
+    arr.flush()
+    names_path.write_text(json.dumps(names))
+    del arr, keep
+    return np.lib.format.open_memmap(cache, mode="r", dtype="float32", shape=(n_feat, H, W)), names
 
 
-def verify_recorded() -> dict:
-    card = json.loads(RUN_CARD.read_text())
-    if json.loads(DOCS_CARD.read_text()) != card:
-        raise ValueError("Evidence and site run cards disagree")
-    if card["verdict"] != "negative" or card["promote"] or card["ok_to_submit"]:
-        raise ValueError("DIFF1 fail-closed decision changed")
-    if card["experiments_run"] > 3 or card["submission_slots_used"] != 0:
-        raise ValueError("Experiment or slot budget violated")
-    for result in card["arms"].values():
-        pooled_receipt_check(result["holdout"])
-    name = card["submission_name"]
-    artifact = DOWNLOADS / name
-    if Path(name).name != name or not name.endswith(".tif"):
-        raise ValueError("Unsafe artifact name")
-    if sha256_file(artifact) != card["raster_sha256"]:
-        raise ValueError("DIFF1 raster checksum mismatch")
-    checks = submission.check_variants(artifact, TEMPLATE)
-    if checks != card["validator_output"] or not checks["format_valid"]:
-        raise ValueError("DIFF1 exact-file validation changed")
-    if not checks["checks"]["variant_strict_whole_array_no_nan_allowed"]["pass"]:
-        raise ValueError("DIFF1 strict whole-array [0,1] validation failed")
-    if not (1 <= len(card["submission_note"]) <= 140):
-        raise ValueError("Submission note length invalid")
-    if "DO NOT SUBMIT" not in card["submission_note"]:
-        raise ValueError("Negative artifact note lost its warning")
-    if sha256_file(REGISTRY) != card["inputs"]["registry/registry.json"]:
-        raise ValueError("Registry receipt changed")
-    return card
-
-
-def execute() -> dict:
-    if RUN_CARD.exists() or DOCS_CARD.exists():
-        raise SystemExit("Frozen DIFF1 receipt exists; use --verify-recorded. No reruns or tuning.")
-    started = time.monotonic()
-    for relative, expected_sha in EXPECTED_INPUTS.items():
-        path = ROOT / relative
-        if not path.is_file() or sha256_file(path) != expected_sha:
-            raise ValueError(f"Missing or altered pinned input: {relative}")
-    registry = verify_registry_manifest()
-    benchmark = verify_baseline_card()
-
-    with rasterio.open(TEMPLATE) as dataset:
-        footprint = np.isfinite(dataset.read(1))
-        grid = (dataset.shape, dataset.crs, dataset.transform)
-    with rasterio.open(LABELS) as dataset:
-        if (dataset.shape, dataset.crs, dataset.transform) != grid:
-            raise ValueError("Catalogue grid mismatch")
-        labels = footprint & (dataset.read(1) > 0)
-    with rasterio.open(LIDAR) as dataset:
-        if (dataset.shape, dataset.crs, dataset.transform) != grid:
-            raise ValueError("LiDAR grid mismatch")
-        encoded = {
-            name: dataset.read(spec[0])
-            for name, spec in {**tip1.BANDS, **diff1.BANDS}.items()
-        }
-
-    context = holdout.SegmentHoldout(footprint, labels, buffer_px=15)
-    support = diff1.fixed_support(encoded, footprint)
-    decoded = diff1.decode_stack(encoded)
-    balance = tip1.curvature_balance(decoded["lapneg_max"], decoded["lappos_max"])
-    amplitude = diff1.lobe_amplitude(decoded["step_max"], decoded["relief"])
-    veto = tip1.channel_bank_veto(
-        decoded["cross_max"], decoded["upface_max"], decoded["downface_max"]
-    )
-    surfaces = diff1.arm_surfaces(balance, amplitude, veto, support)
-    transformed = {
-        "support": support.astype(np.float32),
-        "curvature_balance": balance,
-        "lobe_amplitude": amplitude,
-        "channel_bank_veto": veto,
-        "arm_A_surface": surfaces["A"],
-        "arm_B_surface": surfaces["B"],
-        "arm_C_surface": surfaces["C"],
-    }
-    canary_features = {f"raw_{name}": value for name, value in encoded.items()}
-    canary_features.update({f"decoded_{name}": value for name, value in decoded.items()})
-    canary_features.update(transformed)
-    canary = merge_canary(context, canary_features)
-
-    base_card = {
-        "schema": "gemsdoe1-wbg5-diff1-run-card-v1",
-        "generated_utc": datetime.now(timezone.utc).isoformat(),
-        "hypothesis": HYPOTHESIS,
-        "mechanism": (
-            "crest/base curvature-lobe symmetry (geometric/arithmetic mean of lapneg/lappos) "
-            "times a scarp-height proxy sqrt(step_max)*sqrt(relief), times a face-dominance "
-            "veto and complete LiDAR support. No coherence, no catalogue, no previous raster."
-        ),
-        "named_non_fault_mimic": (
-            "Pleistocene pluvial shoreline benches / terrace risers and road or canal "
-            "embankments across flat playas."
-        ),
-        "preregistration": PREREG_PATH,
-        "prediction_uses_catalogue": False,
-        "prediction_uses_registry_rasters": False,
-        "experiment_limit": 3,
-        "time_limit_seconds": MAX_SECONDS,
-        "experiments_run": 0,
-        "submission_slots_used": 0,
-        "benchmark": benchmark,
-        "leakage_canary": canary,
-        "supported_pixels": int(support.sum()),
-        "arms": {},
-        "correlation_overlap_vs_registry": {},
-        "raster_sha256": None,
-        "validator_output": None,
-        "submission_name": None,
-        "submission_note": "WBG-5 DIFF1 LiDAR scarp-lobe morphology | DO NOT SUBMIT",
-        "promote": False,
-        "verdict": "negative",
-        "ok_to_download": False,
-        "ok_to_submit": False,
-        "submission_authorized": False,
-        "organizer_confirmed_score": None,
-        "inputs": {
-            **{relative: sha256_file(ROOT / relative) for relative in EXPECTED_INPUTS},
-            "registry/source_registry.json": sha256_file(REGISTRY_SOURCES),
-            "registry/registry.json": sha256_file(REGISTRY),
-            str(BASELINE_CARD.relative_to(ROOT)): sha256_file(BASELINE_CARD),
-        },
-        "code_sha256": {
-            str(path.relative_to(ROOT)): sha256_file(path)
-            for path in (
-                Path(__file__),
-                ROOT / "src/gems/diff1.py",
-                ROOT / "src/gems/tip1.py",
-                ROOT / "src/gems/holdout.py",
-                ROOT / "src/gems/metric.py",
-                ROOT / "src/gems/emission.py",
-                ROOT / "src/gems/novelty.py",
-                ROOT / "src/gems/submission.py",
-            )
-        },
-        "registry_scope": registry["scope"],
-        "registry_unique_rasters": registry["unique_rasters"],
-        "stopped_reason": None,
-    }
-
-    def freeze(reason: str) -> dict:
-        base_card["stopped_reason"] = reason
-        base_card["elapsed_seconds"] = time.monotonic() - started
-        save_json(RUN_CARD, base_card)
-        save_json(DOCS_CARD, base_card)
-        print(json.dumps(base_card, indent=2, allow_nan=False), flush=True)
-        return base_card
-
-    if not canary["passed"]:
-        return freeze("leakage canary exceeded |AUC| polarity threshold; stopped before scoring")
-    if time.monotonic() - started >= MAX_SECONDS:
-        return freeze("two-hour limit reached before novelty checks")
-
-    surface_novelty = novelty.compare_registry_surfaces(
-        surfaces, footprint, registry["entries"], ROOT
-    )
-    base_card["correlation_overlap_vs_registry"]["surface_before_placement"] = surface_novelty
-    if not all(report["passed"] for report in surface_novelty.values()):
-        return freeze("duplicate surface; stopped before holdout placement")
-    if time.monotonic() - started >= MAX_SECONDS:
-        return freeze("two-hour limit reached before holdout")
-
-    for arm in ARM_ORDER:
-        predictions = [
-            emission.priority_poisson(
-                surfaces[arm],
-                fold["valid"] & ~fold["visible"] & (surfaces[arm] > 0),
-                round(BUDGET_FRACTION * int(fold["valid"].sum())),
-                min_dist=MIN_SPACING_PX,
-            )
-            for fold in context.folds
-        ]
-        result = context.summarize(predictions)
-        pooled_receipt_check(result)
-        base_card["arms"][arm] = {
-            "name": diff1.ARM_NAMES[arm],
-            "fixed_role": (
-                "primary; only arm eligible for promotion"
-                if arm == "B"
-                else "mechanism control; cannot replace Arm B"
-            ),
-            "holdout": result,
-        }
-        base_card["experiments_run"] += 1
-        del predictions
-        gc.collect()
-        if time.monotonic() - started >= MAX_SECONDS:
-            return freeze("two-hour limit reached during fixed three-arm holdout")
-
-    primary = base_card["arms"]["B"]["holdout"]
-    base_card["promotion_gate"] = {
-        "arm_B_point_exceeds_current_best": bool(primary["dti"] > benchmark["dti"]),
-        "current_best_independently_replayed": False,
-        "paired_delta_dti": None,
-        "paired_delta_ci95": None,
-        "paired_ci95_strictly_positive": False,
-        "passed": False,
-        "reason": (
-            "Fail closed: the current-best fold predictions cannot be replayed for a paired "
-            "bootstrap, so no promotion is claimed even if the point estimate is higher."
-        ),
-    }
-
-    final = emission.priority_poisson(
-        surfaces["B"],
-        footprint & ~labels & (surfaces["B"] > 0),
-        round(BUDGET_FRACTION * int(footprint.sum())),
-        min_dist=MIN_SPACING_PX,
-    )
-    content_id = submission.scored_content_id(final, footprint, labels)
-    name = f"wbggemsdoe1-wbg5-diff1-scarp-lobe-20261028-{content_id}-zeros.tif"
-    artifact = DOWNLOADS / name
-    submission.write_submission(final, TEMPLATE, artifact, outside="zero")
-    checks = submission.check_variants(artifact, TEMPLATE)
-    note = (
-        f"WBG-5 DIFF1 LiDAR scarp-lobe morphology | format-valid research; "
-        f"DO NOT SUBMIT | id {content_id}"
-    )
-    if len(note) > 140:
-        raise AssertionError("Submission note exceeds 140 characters")
-    base_card.update(
-        raster_sha256=sha256_file(artifact),
-        validator_output=checks,
-        submission_name=name,
-        submission_note=note,
-        ok_to_download=bool(checks["format_valid"]),
-        final_dot_count=int(final.sum()),
-        final_budget=int(round(BUDGET_FRACTION * int(footprint.sum()))),
-        content_id=content_id,
-    )
-    if not checks["format_valid"] or not checks["checks"][
-        "variant_strict_whole_array_no_nan_allowed"
-    ]["pass"]:
-        return freeze("exact-file format validation failed")
-    write_preview(final, footprint, PREVIEW)
-
-    literal_novelty = novelty.compare_registry(
-        final.astype(np.float32),
-        footprint,
-        registry["entries"],
-        ROOT,
-        dots=final,
-    )
-    competing_novelty = novelty.compare_registry(
-        final.astype(np.float32),
-        footprint,
-        registry["entries"],
-        ROOT,
-        dots=final,
-        separate_calibration_controls=True,
-    )
-    base_card["correlation_overlap_vs_registry"]["final_dots_literal"] = literal_novelty
-    base_card["correlation_overlap_vs_registry"]["final_dots_competing_method"] = competing_novelty
-    base_card["literal_duplicate_rows"] = [
-        row for row in literal_novelty["rows"] if row["duplicate"]
-    ]
-    if not literal_novelty["passed"]:
-        return freeze(
-            "duplicate final dots under literal all-entry gate; no relocation, retuning, "
-            "selector promotion or slot use"
-        )
-    return freeze(
-        "negative: baseline replay/paired-CI gate unavailable; artifact retained for audit only"
-    )
+# --------------------------------------------------------------------------- #
+# emission
+# --------------------------------------------------------------------------- #
+def dotted(surface, valid, dist_visible, budget, clearance_px, block_radius=2):
+    admissible = valid & (dist_visible > clearance_px) & np.isfinite(surface) & (surface > 0)
+    ys, xs = np.nonzero(admissible)
+    if ys.size == 0:
+        return np.zeros(surface.shape, np.uint8)
+    vals = surface[ys, xs]
+    pool = min(ys.size, max(budget * 30, 200_000))
+    if ys.size > pool:
+        idx = np.argpartition(vals, -pool)[-pool:]
+        ys, xs, vals = ys[idx], xs[idx], vals[idx]
+    order = np.argsort(-vals, kind="stable")
+    ys, xs = ys[order], xs[order]
+    blocked = np.zeros(surface.shape, bool)
+    out = np.zeros(surface.shape, np.uint8)
+    H, W = surface.shape
+    picked = 0
+    r = block_radius
+    for y, x in zip(ys.tolist(), xs.tolist()):
+        if blocked[y, x]:
+            continue
+        out[y, x] = 1
+        blocked[max(0, y - r):min(H, y + r + 1), max(0, x - r):min(W, x + r + 1)] = True
+        picked += 1
+        if picked >= budget:
+            break
+    return out
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--verify-recorded", action="store_true")
-    args = parser.parse_args()
-    card = verify_recorded() if args.verify_recorded else execute()
-    if args.verify_recorded:
-        print(json.dumps(card, indent=2, allow_nan=False))
+    t0 = time.time()
+    with rasterio.open(TEMPLATE) as s:
+        foot = np.isfinite(s.read(1))
+    with rasterio.open(LABELS) as s:
+        lab = s.read(1)
+    cat = lab == 1
+    # SegmentHoldout requires the catalogue to be a subset of the footprint;
+    # it masks visible faults pixel-exactly before scoring.
+    assert cat.sum() and np.all(cat <= foot)
+
+    feats, names = build_features(foot)
+    print(f"features: {feats.shape[0]} in {time.time()-t0:.0f}s", flush=True)
+    print(names, flush=True)
+
+    ho = SegmentHoldout(foot, cat, buffer_px=15)
+
+    # leakage canary on every feature alone (two polarities, per fold)
+    feat_map = {n: np.asarray(feats[i]) for i, n in enumerate(names)}
+    canary_all = ho.canary(feat_map, max_per_class=8000)
+    (WORK / "canary_all.json").write_text(json.dumps(canary_all, indent=1))
+
+    def _sym(v: dict) -> float:
+        folds = [f["auc"] for f in v["folds"]]
+        return max([max(v["pooled_auc"], 1 - v["pooled_auc"])] + [max(a, 1 - a) for a in folds])
+
+    flagged = [n for n, v in canary_all["features"].items() if _sym(v) > 0.90]
+    print("canary(all) passed:", canary_all["passed"], "flagged:", flagged, flush=True)
+
+    # Protocol: AUC > 0.90 is leakage until proven otherwise. The flagged bands
+    # are regional geodetic-strain / DEM fields that separate the held-out
+    # mapped catalogue from background in one fold at AUC~0.999; that circularity
+    # cannot be excluded, so they are dropped and the reduced set is re-canaried.
+    keep_names = [n for n in names if n not in flagged]
+    canary = ho.canary({n: feat_map[n] for n in keep_names}, max_per_class=8000)
+    (WORK / "canary.json").write_text(json.dumps(canary, indent=1))
+    max_auc = max(_sym(v) for v in canary["features"].values())
+    print("canary(reduced) passed:", canary["passed"], "max sym AUC:", max_auc, flush=True)
+    assert canary["passed"], "reduced feature set still fails the leakage canary"
+
+    from sklearn.ensemble import HistGradientBoostingClassifier
+
+    # Keep the full memmap and index the retained columns at use sites (no copy).
+    feats_full = np.lib.format.open_memmap(
+        WORK / "wbg5_features.npy", mode="r", dtype="float32",
+        shape=(len(feat_map), foot.shape[0], foot.shape[1]))
+    names = keep_names
+    mta_idx = [i for i, n in enumerate(names) if n.startswith("mta:")]
+    n_mta = len(mta_idx)
+
+    def col(j: int) -> np.ndarray:
+        return np.asarray(feats_full[j])
+    total_foot = int(foot.sum())
+    mta_names = {n for n in names if n.startswith("mta:")}
+    cols_all = list(range(len(names)))
+    cols_ctrl = [k for k, n in enumerate(names) if n not in mta_names]
+
+    def make_X(rows, cols, src):
+        X = np.empty((rows.size, len(src)), np.float32)
+        for j, s in enumerate(src):
+            X[:, j] = np.asarray(feats_full[s])[rows, cols]
+        return X
+
+    def predict_surface(clf, src):
+        surf = np.zeros(foot.shape, np.float32)
+        for r0 in range(0, foot.shape[0], 128):
+            r1 = min(foot.shape[0], r0 + 128)
+            h = r1 - r0
+            rr, cc = np.divmod(np.arange(r0, r1).repeat(foot.shape[1]), foot.shape[1])
+            Xc = np.empty((h * foot.shape[1], len(src)), np.float32)
+            for j, s in enumerate(src):
+                Xc[:, j] = np.asarray(feats_full[s][r0:r1]).ravel()
+            surf[r0:r1] = clf.predict_proba(Xc)[:, 1].reshape(h, foot.shape[1]).astype(np.float32)
+            del Xc, rr, cc
+        surf[~foot] = 0.0
+        return surf
+
+    surfaces_all, surfaces_ctrl, fold_data = [], [], []
+    for fold in ho.folds:
+        tf = time.time()
+        dist_v = ndi.distance_transform_edt(~fold["visible"]).astype(np.float32)
+        train = fold["train"]
+        pos_mask = fold["visible"] & train
+        neg_pool = train & ~pos_mask
+        rng = np.random.default_rng(SEED + fold["id"])
+        pos_idx = np.flatnonzero(pos_mask.ravel())
+        if pos_idx.size > 120_000:
+            pos_idx = rng.choice(pos_idx, 120_000, replace=False)
+        neg_idx = np.flatnonzero(neg_pool.ravel())
+        neg_idx = rng.choice(neg_idx, size=min(neg_idx.size, 3 * pos_idx.size), replace=False)
+        sel = np.r_[pos_idx, neg_idx]
+        y = np.r_[np.ones(pos_idx.size), np.zeros(neg_idx.size)]
+        rows, cols = np.divmod(sel, foot.shape[1])
+        X = make_X(rows, cols, cols_all)
+        clf_all = HistGradientBoostingClassifier(
+            max_iter=150, learning_rate=0.06, max_leaf_nodes=63,
+            min_samples_leaf=40, l2_regularization=1.0, random_state=SEED)
+        clf_all.fit(X, y)
+        Xc = make_X(rows, cols, cols_ctrl)
+        clf_ctrl = HistGradientBoostingClassifier(
+            max_iter=150, learning_rate=0.06, max_leaf_nodes=63,
+            min_samples_leaf=40, l2_regularization=1.0, random_state=SEED)
+        clf_ctrl.fit(Xc, y)
+        del X, Xc, rows, cols, sel, y
+        s_all = predict_surface(clf_all, cols_all)
+        s_ctrl = predict_surface(clf_ctrl, cols_ctrl)
+        del clf_all, clf_ctrl
+        np.save(WORK / f"surface_all_fold{fold['id']}.npy", s_all)
+        np.save(WORK / f"surface_ctrl_fold{fold['id']}.npy", s_ctrl)
+        surfaces_all.append(s_all)
+        surfaces_ctrl.append(s_ctrl)
+        fold_data.append((fold, dist_v))
+        print(f"fold {fold['name']}: pos {pos_idx.size} neg {neg_idx.size} "
+              f"done {time.time()-tf:.0f}s", flush=True)
+
+    arms = {
+        "A1_ctrl_no_mta": surfaces_ctrl,
+        "A2_mta1": surfaces_all,
+    }
+    results, arm_preds = {}, {}
+    for arm, surfaces in arms.items():
+        preds = []
+        for fold, dist_v in fold_data:
+            b = int(round(37654 * int((fold["valid"] & foot).sum()) / total_foot))
+            preds.append(dotted(surfaces[fold["id"]], fold["valid"] & foot, dist_v, b, 2))
+        arm_preds[arm] = preds
+        res = ho.summarize(preds, ci_draws=999)
+        results[arm] = res
+        print(arm, "HOLDOUT-DTI", res["dti"], res["ci95"]["interval"], flush=True)
+
+    paired = ho.compare_paired(arm_preds["A2_mta1"], arm_preds["A1_ctrl_no_mta"], ci_draws=999)
+    out = {
+        "lane_id": "WBG-5",
+        "method_code": "MTA-1",
+        "evaluator_version": "gems-segment-pooled-v1",
+        "canary_passed": canary["passed"],
+        "canary_max_sym_auc": max_auc,
+        "canary_all_passed": canary_all["passed"],
+        "dropped_canary_flagged": flagged,
+        "n_features_total": len(feat_map),
+        "feature_names": names,
+        "n_mta_channels": n_mta,
+        "arms": results,
+        "paired_A2_vs_A1": paired,
+        "elapsed_s": time.time() - t0,
+    }
+    (WORK / "experiments.json").write_text(json.dumps(out, indent=1, default=float))
+    print(json.dumps({"paired_A2_vs_A1": paired}, indent=1, default=float))
+    print(f"DONE {time.time()-t0:.0f}s")
     return 0
 
 

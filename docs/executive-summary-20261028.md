@@ -42,7 +42,7 @@ B2 added no geological detections. It removed exactly 6,436 parent dots, all wit
 
 ## Records
 
-- DIFF1 run card: [evidence/wbg5/run_card.json](../evidence/wbg5/run_card.json)
+- DIFF1 run card: [evidence/wbg5/diff1_run_card.json](../evidence/wbg5/diff1_run_card.json)
 - DIFF1 decision: [decision JSON](downloads/wbggemsdoe1-wbg5-diff1-scarp-lobe-20261028-2f3684a3f718-zeros.decision.json)
 - Three review passes (implement, bugs/edge cases, re-check vs request): [review-passes-20261028.json](data/review-passes-20261028.json)
 - How to submit (when a file is approved): [how-to-submit.html](how-to-submit.html)

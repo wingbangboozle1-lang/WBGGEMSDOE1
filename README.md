@@ -1,9 +1,11 @@
 # WBG GEMS — evidence-first fault mapping
 
-**[Latest repository review and ranked future hypotheses](docs/repo-review-20261027-session.md)** ·
+**[28 October review: no submission approved](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json)
+
+**[Detailed repository review](docs/repo-review-20261028.md)** · [Earlier repository review and ranked future hypotheses](docs/repo-review-20261027-session.md) ·
 [Session JSON card](evidence/repo_review_session_20261027.json) · [Current provenance feed](docs/data/feed.json)
 
-**Freshness check:** at `2026-10-27T23:47:34+00:00`, 9/9 monitored focus-site GitHub heads differed from the frozen raster audit. This is a head check, not a current raster/score audit. The official leaderboard status is `retained_observation_not_refreshed`; the last retained public observation is 0.4544 (2026-10-27), not a score for any project TIFF.
+**Freshness check:** at `2026-10-28T16:19:05+00:00`, 9/9 monitored focus-site GitHub heads differed from the frozen raster audit. This is a head check, not a current raster/score audit. The official leaderboard status is `retained_observation_not_refreshed`; the last retained public observation is 0.4544 (2026-10-27), not a score for any project TIFF.
 
 ## FOCUS-9 EXECUTIVE SUMMARY — DOWNLOAD: RESEARCH ONLY · SUBMIT: NO
 
@@ -18,8 +20,12 @@ GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplie
 
 **[Executive summary and decision table (28 Oct 2026)](docs/executive-summary-20261028.md)** ·
 [Machine-readable summary](docs/data/executive_summary_20261028.json) ·
-[DIFF1 run card](evidence/wbg5/run_card.json) ·
+[DIFF1 run card](evidence/wbg5/diff1_run_card.json) ·
 [Preregistration](research/06_wbg5_diff1_preregistration_20261028.md)
+
+WBG-5 is a 28 October 2026 release carrying **two frozen sub-lanes**, both NEGATIVE and neither
+approved: this **DIFF1** lane and the merged **MTA-1** lane
+([docs/wbg5/index.html](docs/wbg5/index.html), [run card](evidence/wbg5/run_card.json)).
 
 Executed the ranked-#3 untested hypothesis: a **catalogue-free, LiDAR-only diffusion-shape
 scarp-lobe morphology detector** (crest/base curvature-lobe symmetry × scarp-height proxy ×

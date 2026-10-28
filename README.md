@@ -16,6 +16,40 @@
 
 GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplied history suggests D2.8 → B1 → B2 pruning removed catalogue-near dots; this is a plausible precision/false-positive mechanism, not proof of new-fault discovery. Leaderboard score estimates for a new file are unavailable.
 
+## 2026-10-28 SESSION — WBG-5 / DIFF1 (LiDAR scarp-lobe morphology) · NEGATIVE
+
+**[Executive summary and decision table (28 Oct 2026)](docs/executive-summary-20261028.md)** ·
+[Machine-readable summary](docs/data/executive_summary_20261028.json) ·
+[DIFF1 run card](evidence/wbg5/diff1_run_card.json) ·
+[Preregistration](research/06_wbg5_diff1_preregistration_20261028.md)
+
+WBG-5 is a 28 October 2026 release carrying **two frozen sub-lanes**, both NEGATIVE and neither
+approved: this **DIFF1** lane and the merged **MTA-1** lane
+([docs/wbg5/index.html](docs/wbg5/index.html), [run card](evidence/wbg5/run_card.json)).
+
+Executed the ranked-#3 untested hypothesis: a **catalogue-free, LiDAR-only diffusion-shape
+scarp-lobe morphology detector** (crest/base curvature-lobe symmetry × scarp-height proxy ×
+face-dominance veto). Three fixed arms, 281 s, **zero slots**.
+
+| Arm | HOLDOUT-DTI (`gems-segment-pooled-v1`, 60,988 withheld positives) | 95% CI | Decision |
+|---|---:|---|---|
+| B — primary (symmetric lobe) | **0.06776** | [0.05891, 0.07675] | fails efficacy gate |
+| A — amplitude control | 0.06774 | [0.05895, 0.07681] | control only |
+| C — asymmetry ablation | 0.07170 | [0.06281, 0.08010] | ablation only |
+
+Benchmark to beat: **HOLDOUT-DTI 0.166060** (GEMSDOE24 S3DEP1). Leakage canary **PASS**
+(25 features, max |AUC| 0.583 ≤ 0.90). Surface novelty **PASS** (max |ρ| 0.564 ≤ 0.90). Final dots
+**FAIL**: competing-method 3 px overlap **78.28% > 70%**
+(vs a published LiDAR-scarp raster) and literal all-entry overlap
+**99.79% > 70%** (vs the retained spacing-5 lattice).
+
+Artifact (research only): `wbggemsdoe1-wbg5-diff1-scarp-lobe-20261028-2f3684a3f718-zeros.tif` (+ `wbggemsdoe1-wbg5-diff1-scarp-lobe-20261028-2f3684a3f718-zeros.zip`, SHA-256 `2b94cac044b778b569431c16875fcdd82b251af67327d4f936dc55c59923f99e`). Format PASS,
+strict whole-array `[0,1]` PASS. **DOWNLOAD: YES · SUBMIT: NO.** A real upload needs a HOLDOUT-DTI
+strictly above 0.1661 with a positive paired 95% CI and full registry uniqueness; neither holds.
+
+Verified public leaderboard #1 on 2026-10-28: **0.4544** (xiaofanhu) — a page observation, not a
+score for any project file. The nine focus-site historical values remain OWNER-REPORTED / UNVERIFIED.
+
 ## NO FILE APPROVED FOR SUBMISSION
 
 **[WBG-4 (CSJF-1) Executive Summary & Master Decision Table](docs/wbg4/index.html)** ·
@@ -25,12 +59,6 @@ GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplie
 [WBG-4 ZIP](docs/downloads/wbggemsdoe1-wbg4-csjf1-edti-35135-20261027-b3dacd59-zeros.zip) ·
 [WBG-4 Run Card JSON](evidence/wbg4/run_card.json) ·
 [464-Raster Uniqueness Audit](evidence/wbg4/uniqueness_audit.json)
-
-**[WBG-5 (MTA-1) Submit-Path Subpage](docs/wbg5/index.html)** ·
-[Download WBG-5 TIFF (research only)](docs/downloads/wbggemsdoe1-wbg5-mta1-magnetic-texture-anisotropy-20261028.tif) ·
-[WBG-5 ZIP](docs/downloads/wbggemsdoe1-wbg5-mta1-magnetic-texture-anisotropy-20261028.zip) ·
-[WBG-5 Run Card JSON](evidence/wbg5/run_card.json) ·
-[Executive summary (nine-site table)](docs/data/nine_site_executive_summary.json)
 
 **[WBG-3 Executive Summary & Master Decision Table](docs/wbg3/index.html)** ·
 **[How to Submit Subpage](docs/wbg3/how-to-submit.html)** ·
@@ -51,7 +79,6 @@ GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplie
 | Artifact | Local format | Score estimate / holdout | Literal registry decision |
 |---|---|---|---|
 | `wbggemsdoe1-wbg4-csjf1-edti-35135-20261027-b3dacd59-zeros.tif` | One float32 band, zeros mode `[0, 1]`, 0 NaN/Inf, 35,135 binary dots; 15/15 checks PASS | **HOLDOUT-DTI 0.165424** (`gems-segment-pooled-v1`, n=60,988, 95% CI [0.152338, 0.178931], +78.0% vs ctrl); **HOLDOUT-DTI 0.094601** (`seed=20`, n=11,321); **Untouched Confirm HOLDOUT-DTI 0.103660** (`seed=77`, n=11,326, +102.3% vs 0.051234 ctrl). Leaderboard est.: **Unavailable**. | **DO NOT SUBMIT**. Competing sparse (460 rasters across 24 repos): **PASS 57.25% <= 70%** (max \|rho\| = 0.4952 <= 0.90). Literal overlap: **99.6983%** vs `r13-lattice-s5` & **100%** vs `WBG-C1` (>70% STOP). |
-| `wbggemsdoe1-wbg5-mta1-magnetic-texture-anisotropy-20261028.tif` | One float32 band, zeros mode `[0, 1]`, 0 NaN/Inf, 37,654 binary dots; 15/15 checks PASS | **HOLDOUT-DTI 0.131586** (`gems-segment-pooled-v1`, n=60,988, 95% CI [0.119206, 0.144259]) vs 19-band control 0.130847 (95% CI [0.118682, 0.143594]); **paired delta +0.000738, 95% CI [-0.004010, +0.005391] — the CI includes zero** (MTA-1 wins 2 of 4 folds). Leaderboard est.: **Unavailable**. | **DO NOT SUBMIT**. Competing-submission gate (nine historical masks): **PASS 47.28% <= 70%** (max \|rho\| = 0.0957 <= 0.90). Literal all-entry overlap: **100%** vs WBGGEMSDOE1's own continuous `wbg-c1` research surface (reported, not gating). |
 | `wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif` | One float32 band, zeros mode `[0, 1]`, 0 NaN/Inf, 36,800 binary dots; 15/15 checks PASS | **HOLDOUT-DTI 0.118180** (`gems-segment-pooled-v1`, n=60,988, 95% CI [0.103658, 0.132432], 4/4 fold wins vs 0.090781 ctrl); **HOLDOUT-DTI 0.121862** (`gems57-pooled-hide-v2`, n=11,330). Leaderboard est.: **Unavailable**. | **DO NOT SUBMIT**. Competing sparse (206 rasters): **PASS 59.38% <= 70%** (27.55% vs GEMSDOE32 B2; 43.40% vs WBG-S2). Literal overlap: **99.9946%** vs `r13-lattice-s5` & **100%** vs `WBG-C1` (>70% STOP). |
 | `wbg2-offcatalogue-density-36k-20261027.tif` | One float32 band, finite [0,1], grid matches pinned mirror; TIFF/ZIP bytes verified | **Unavailable**; fold-safe replay measures `HOLDOUT-DTI 0.000341` (`gems-segment-pooled-v1`) / `0.097610` (`gems57-pooled-hide-v2`); no organizer receipt | **DO NOT SUBMIT**. 99.8972% final-dot overlap with a registered lattice exceeds 70%. |
 

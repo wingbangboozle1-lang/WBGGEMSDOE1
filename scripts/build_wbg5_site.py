@@ -44,7 +44,7 @@ def main() -> int:
 <div class="actions" style="margin-top:16px">
 <a class="button" href="../downloads/{tif}" download>Download research TIFF ↓</a>
 <a class="button secondary" href="../downloads/{zipf}" download>One-TIFF ZIP ↓</a>
-<a class="button secondary" href="../evidence/wbg5/run_card.json">Run card JSON ↗</a>
+<a class="button secondary" href="../data/wbg5_run_card.json">Run card JSON ↗</a>
 </div>
 <p class="note">DOWNLOAD: YES · SUBMIT: NO. Research artifact only; no organizer receipt, no authenticated weekly allowance, no promotion to a live slot.</p>
 </section>
@@ -87,6 +87,11 @@ def main() -> int:
     (ROOT / "docs/wbg5").mkdir(parents=True, exist_ok=True)
     (ROOT / "docs/wbg5/index.html").write_text(
         bs.page("wbg5/index.html", "WBG-5 / MTA-1 · WBGGEMSDOE1", body), encoding="utf-8")
+    # Publish the frozen card inside docs/ so top-level pages can link the receipt
+    # without pointing outside the published site (docs/data is the receipt area).
+    (ROOT / "docs/data").mkdir(parents=True, exist_ok=True)
+    (ROOT / "docs/data/wbg5_run_card.json").write_text(
+        json.dumps(card, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print("Built WBG-5 submit-path subpage")
     return 0
 

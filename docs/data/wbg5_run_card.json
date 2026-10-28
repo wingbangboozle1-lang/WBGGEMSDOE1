@@ -1,0 +1,170 @@
+{
+  "artifact": {
+    "emitted_dots": 37654,
+    "outside_encoding": "zeros",
+    "tif": "docs/downloads/wbggemsdoe1-wbg5-mta1-magnetic-texture-anisotropy-20261028.tif",
+    "tif_bytes": 826900,
+    "tif_sha256": "89b6e3749854344f441ae27763d570333c3a26c1c8ad9148fe636a7eef806474",
+    "value_range": [
+      0.0,
+      1.0
+    ],
+    "zip": "docs/downloads/wbggemsdoe1-wbg5-mta1-magnetic-texture-anisotropy-20261028.zip",
+    "zip_sha256": "7e052d58027baa725fbb0581d3f19167d971b19cde70565438c1fde4219c8fbe"
+  },
+  "canary": {
+    "all_features_passed": true,
+    "dropped": [],
+    "max_sym_auc": 0.6579122968750001,
+    "note": "AUC > 0.90 in any fold is treated as leakage until proven otherwise.",
+    "reduced_set_passed": true
+  },
+  "decision": {
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "reasons": [
+      "paired holdout CI includes zero",
+      "sparse registry gate passed",
+      "literal all-entry gate failed (reported, not waived)",
+      "no organizer receipt; no authenticated weekly allowance"
+    ]
+  },
+  "elapsed_s": 27.58876895904541,
+  "generated_utc": "2026-10-28T17:03:35+00:00",
+  "holdout_dti": {
+    "arm": "A2_mta1",
+    "ci95": [
+      0.1192062068107686,
+      0.14425867375826004
+    ],
+    "control_arm_A1_ci95": [
+      0.11868158479138761,
+      0.14359358481624715
+    ],
+    "control_arm_A1_dti": 0.13084741070100586,
+    "dti": 0.1315855766157561,
+    "evaluator_version": "gems-segment-pooled-v1",
+    "evidence_class": "HOLDOUT-DTI",
+    "n_withheld_positives": 60988,
+    "paired_delta": 0.0007381659147502329,
+    "paired_delta_ci95": [
+      -0.00400981921918429,
+      0.00539075264213471
+    ]
+  },
+  "hypothesis": "Scale-persistent magnetic-texture anisotropy of the RTP field relative to local depth-to-base structural contours identifies concealed displacement that leaves no subaerial trace.",
+  "lane_id": "WBG-5",
+  "mechanism": "Directional texture energy of the reduced-to-pole field (band 2) along vs across the local depth-to-base_surf (band 15) contour normal, at sigma 3 px and 8 px; scale-persistent anisotropy channels added to the official 19-band stack and six derivative channels; spatially cross-fitted HGB per SegmentHoldout fold; budget-matched dotted emission with a 2 px catalogue clearance.",
+  "method_code": "MTA-1",
+  "named_non_fault_mimic": "Lithologic contacts, dike swarms, flight-line levelling residuals and Pleistocene shoreline cusps can produce oriented magnetic texture.",
+  "registry_uniqueness": {
+    "comparator_scope": "nine focus-site historical submissions + lane registration artifacts; the project's own research surfaces and the artifact itself are reported, never gating",
+    "drifted": false,
+    "drifted_reason": null,
+    "literal_all_entry_pass": false,
+    "max_abs_spearman_all": 0.09566271366090891,
+    "max_overlap_all": 1.0,
+    "n_reference_rasters": 20,
+    "passes_sparse_gate": true,
+    "sparse_drifted": false,
+    "sparse_max_abs_spearman": 0.09566271366090891,
+    "sparse_max_overlap": 0.5831784139799224,
+    "top": [
+      {
+        "n_other": 5106385,
+        "name": "wbg-c1-commutator-research-surface-20261026-acea88448272.tif",
+        "overlap_frac": 1.0,
+        "rho": 0.05559420865922442,
+        "space_filling": true
+      },
+      {
+        "n_other": 37654,
+        "name": "wbggemsdoe1-wbg-s2-exp3-mksf-vierbeincoulomb-20261027-e9b4a3c09065-zeros.tif",
+        "overlap_frac": 0.5831784139799224,
+        "rho": 0.08970284391007888,
+        "space_filling": false
+      },
+      {
+        "n_other": 37654,
+        "name": "wbggemsdoe1-wbg-h1-dpgf1-exp-3-20261026-0749b3c8195f-zeros.tif",
+        "overlap_frac": 0.49779571891432517,
+        "rho": 0.08635023065202822,
+        "space_filling": false
+      },
+      {
+        "n_other": 61328,
+        "name": "GEMSDOE27.tif",
+        "overlap_frac": 0.47277845647208794,
+        "rho": 0.09521677126858026,
+        "space_filling": false
+      },
+      {
+        "n_other": 60069,
+        "name": "GEMSDOE24.tif",
+        "overlap_frac": 0.46964465926594784,
+        "rho": 0.09566271366090891,
+        "space_filling": false
+      },
+      {
+        "n_other": 36800,
+        "name": "wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.tif",
+        "overlap_frac": 0.4676262814043661,
+        "rho": 0.06459046358112906,
+        "space_filling": false
+      },
+      {
+        "n_other": 44090,
+        "name": "GEMSDOE25.tif",
+        "overlap_frac": 0.45506453497636373,
+        "rho": 0.0826317918332446,
+        "space_filling": false
+      },
+      {
+        "n_other": 44090,
+        "name": "GEMSDOE30.tif",
+        "overlap_frac": 0.45506453497636373,
+        "rho": 0.0826317918332446,
+        "space_filling": false
+      },
+      {
+        "n_other": 41865,
+        "name": "GEMSDOE33.tif",
+        "overlap_frac": 0.447309714771339,
+        "rho": 0.07954323030156321,
+        "space_filling": false
+      },
+      {
+        "n_other": 40199,
+        "name": "GEMSDOE31.tif",
+        "overlap_frac": 0.4404312954798959,
+        "rho": 0.07686087338663881,
+        "space_filling": false
+      },
+      {
+        "n_other": 37660,
+        "name": "GEMSDOE28.tif",
+        "overlap_frac": 0.4361555213257556,
+        "rho": 0.07482985099421459,
+        "space_filling": false
+      },
+      {
+        "n_other": 38854,
+        "name": "GEMSDOE36.tif",
+        "overlap_frac": 0.42603707441440486,
+        "rho": 0.07223907326350727,
+        "space_filling": false
+      }
+    ]
+  },
+  "schema_version": 1,
+  "submission_name": "wbggemsdoe1-wbg5-mta1-magnetic-texture-anisotropy-20261028",
+  "submission_note": "WBG-5 MTA-1 magnetic-texture anisotropy vs depth contours; 19-band + MTA HGB OOF, 37654 dots zeros | research, holdout-only",
+  "submission_slots_used": 0,
+  "validator": {
+    "format_valid": true,
+    "hard_failures": [],
+    "in_footprint_positive_pixels": 37654,
+    "official_format_compliant": false
+  },
+  "verdict": "negative"
+}

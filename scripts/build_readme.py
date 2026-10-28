@@ -46,6 +46,18 @@ def main():
     f9 = json.loads((ROOT / "evidence/focus9_exec/run_card.json").read_text())
     f9_tif = Path(f9["artifact"]).name
     f9_zip = Path(f9["artifact"]).with_suffix(".zip").name
+    w5 = json.loads((ROOT / "evidence/wbg5/diff1_run_card.json").read_text())
+    w5_arms = w5["arms"]
+    w5_tif = w5["submission_name"]
+    w5_zip = Path(w5_tif).with_suffix(".zip").name
+    w5_arm_b = w5_arms["B"]["holdout"]
+    w5_arm_c = w5_arms["C"]["holdout"]
+    w5_ci_b = w5_arm_b["ci95"]["interval"]
+    w5_ci_c = w5_arm_c["ci95"]["interval"]
+    w5_ci_a = w5_arms["A"]["holdout"]["ci95"]["interval"]
+    w5_comp = w5["correlation_overlap_vs_registry"]["final_dots_competing_method"]
+    w5_lit = w5["correlation_overlap_vs_registry"]["final_dots_literal"]
+    w5_bench = w5["benchmark"]["dti"]
     header = f'''# WBG GEMS — evidence-first fault mapping
 
 **[28 October review: no submission approved](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json)
@@ -63,6 +75,40 @@ def main():
 **Research TIFF (synthetic random null; not a geological model):** [{f9_tif}](docs/downloads/{f9_tif}) · [ZIP](docs/downloads/{f9_zip}) · [Run card](evidence/focus9_exec/run_card.json). Format checks pass; no holdout score was measured. The output is byte-unique only within the checked snapshot inventory; the fixed-36,800-dot literal 3-pixel lattice-overlap lower bound is **81.932% (>70%)**; the full competing-sparse overlap is unmeasured. **DOWNLOAD: YES for research · SUBMIT: NO.**
 
 GEMSDOE32 B2's **0.2778 is USER-REPORTED, not organizer-confirmed**. The supplied history suggests D2.8 → B1 → B2 pruning removed catalogue-near dots; this is a plausible precision/false-positive mechanism, not proof of new-fault discovery. Leaderboard score estimates for a new file are unavailable.
+
+## 2026-10-28 SESSION — WBG-5 / DIFF1 (LiDAR scarp-lobe morphology) · NEGATIVE
+
+**[Executive summary and decision table (28 Oct 2026)](docs/executive-summary-20261028.md)** ·
+[Machine-readable summary](docs/data/executive_summary_20261028.json) ·
+[DIFF1 run card](evidence/wbg5/diff1_run_card.json) ·
+[Preregistration](research/06_wbg5_diff1_preregistration_20261028.md)
+
+WBG-5 is a 28 October 2026 release carrying **two frozen sub-lanes**, both NEGATIVE and neither
+approved: this **DIFF1** lane and the merged **MTA-1** lane
+([docs/wbg5/index.html](docs/wbg5/index.html), [run card](evidence/wbg5/run_card.json)).
+
+Executed the ranked-#3 untested hypothesis: a **catalogue-free, LiDAR-only diffusion-shape
+scarp-lobe morphology detector** (crest/base curvature-lobe symmetry × scarp-height proxy ×
+face-dominance veto). Three fixed arms, 281 s, **zero slots**.
+
+| Arm | HOLDOUT-DTI (`gems-segment-pooled-v1`, 60,988 withheld positives) | 95% CI | Decision |
+|---|---:|---|---|
+| B — primary (symmetric lobe) | **{w5_arm_b['dti']:.5f}** | [{w5_ci_b[0]:.5f}, {w5_ci_b[1]:.5f}] | fails efficacy gate |
+| A — amplitude control | {w5_arms['A']['holdout']['dti']:.5f} | [{w5_ci_a[0]:.5f}, {w5_ci_a[1]:.5f}] | control only |
+| C — asymmetry ablation | {w5_arm_c['dti']:.5f} | [{w5_ci_c[0]:.5f}, {w5_ci_c[1]:.5f}] | ablation only |
+
+Benchmark to beat: **HOLDOUT-DTI {w5_bench:.6f}** (GEMSDOE24 S3DEP1). Leakage canary **PASS**
+(25 features, max |AUC| 0.583 ≤ 0.90). Surface novelty **PASS** (max |ρ| 0.564 ≤ 0.90). Final dots
+**FAIL**: competing-method 3 px overlap **{w5_comp['max_competing_dot_overlap']*100:.2f}% > 70%**
+(vs a published LiDAR-scarp raster) and literal all-entry overlap
+**{w5_lit['max_dot_overlap']*100:.2f}% > 70%** (vs the retained spacing-5 lattice).
+
+Artifact (research only): `{w5_tif}` (+ `{w5_zip}`, SHA-256 `{w5['raster_sha256']}`). Format PASS,
+strict whole-array `[0,1]` PASS. **DOWNLOAD: YES · SUBMIT: NO.** A real upload needs a HOLDOUT-DTI
+strictly above {w5_bench:.4f} with a positive paired 95% CI and full registry uniqueness; neither holds.
+
+Verified public leaderboard #1 on 2026-10-28: **0.4544** (xiaofanhu) — a page observation, not a
+score for any project file. The nine focus-site historical values remain OWNER-REPORTED / UNVERIFIED.
 
 ## NO FILE APPROVED FOR SUBMISSION
 

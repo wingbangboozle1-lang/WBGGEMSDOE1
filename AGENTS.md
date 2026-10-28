@@ -1,32 +1,21 @@
 # Starting point for every session
 
-<<<<<<< HEAD
-0. **APPROVED FOR SUBMISSION: WBG-6** — `docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif`
-   (SHA-256 `e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9`). Unique, format-valid,
-   zero dots on the mapped catalogue, max surface |Spearman| 0.0148 versus all 118 scored rasters.
-   **Estimated score 0.247 (MODEL-ESTIMATE, range 0.142–0.286; NULL-FLOOR 0.0425)** — not an organizer
-   result, and *not* a top-20 contender (leader 0.4544). Read `evidence/wbg6_run_card.json`,
-   `evidence/wbg6_submission_audit.json`, `evidence/wbg6_score_estimate.json` and
-   `docs/wbg6/index.html` before changing anything. This supersedes the blanket "no file is approved"
-   rule below, which now applies only to the older WBG-C1/TIP1/MVGZ/WBG-H1/WBG-2/S2/WBG-3/WBG-4 rasters.
+0. **NO FILE IS CLEARED TO SUBMIT (28 Oct 2026, verified).** WBG-6 (`wbg6-qmh-kdisjoint-30000-20261028`) is on
+   **HOLD**. An earlier "APPROVED FOR SUBMISSION" claim was withdrawn in this session. It relied on a density-matched
+   substitute for the literal gate, and AGENTS.md itself forbids density exemptions.
+   Measured facts (reproduce with the scripts named here):
+   - Literal parallel-run gate (STOP if >70% of a file's dots lie within 3 px of a registry raster's dots): WBG-6 measures
+     **99.68%** against the r13 lattice. A random set of 30,000 dots inside the footprint measures **99.86%**.
+     So the literal gate rejects every dotted in-footprint file while r13 is registered (`scripts/verify_literal_gate.py`,
+     `evidence/literal_gate_degeneracy_20261028.json`). **The owner must choose the gate.** See `docs/wbg6/gate-decision-20261028.html`.
+   - Byte-level comparison with the ten named files of the nine sites (`scripts/verify_nine_sites_bytes.py`,
+     `evidence/nine_sites_bytes_20261028.json`): 16–19% of each site file's dots lie within 3 px of a WBG-6 dot (17–19% in the reverse direction). The named files include duplicates
+     (GEMSDOE25 = GEMSDOE30, GEMSDOE28 = GEMSDOE31, identical dot sets).
+   - Estimated score: **unknown**. The earlier 0.247 MODEL-ESTIMATE is not a decision number, because the repo's holdout failed external validation.
+   - Recommended format if approved: `docs/downloads/wbg6-qmh-kdisjoint-30000-20261028-nan.tif` (same dots, NaN outside the footprint, per the official rules).
+     Built by `scripts/make_wbg6_nan_variant.py`.
 
-0b. **Four instrument defects were measured this session and are binding on future work:**
-   (i) the shared hide-and-recover holdout does **not** rank real submissions (Spearman 0.144, p=0.12,
-   n=118) — never report it as a score estimate; (ii) the literal ">70% of dots within 3 px" registry
-   gate is degenerate against any dense raster (a 206,895-dot lattice captures 99.68% of any dot field)
-   — use the density-matched overlap lift instead; (iii) 118 history files are only 22 families, so
-   grouped cross-validation is mandatory for any fitted claim; (iv) reported scores differ by up to
-   0.086 for near-identical rasters, so the nine-site top six are statistically tied. Receipts:
-   `evidence/holdout_proxy_portfolio.json`, `evidence/wbg6_submission_audit.json`,
-   `evidence/wbg6_score_model.json`, `evidence/score_consistency.json`,
-   `evidence/wbg6_irregularities.json`.
-=======
-Read `docs/review-20261028.md` and `docs/data/review-20261028.json` for the
-latest review. The Focus-9 synthetic generator is disabled after a binding STOP;
-its existing TIFF and receipts are frozen and must not be regenerated.
->>>>>>> origin/main
-
-0. **No file is approved for submission.** The previously promoted WBG-2 file
+0a. **Historical record (older, superseded):** the previously promoted WBG-2 file
    `docs/downloads/wbg2-offcatalogue-density-36k-20261027.tif` is research-only: its
    final dots overlap the registered lattice by **99.8972%** (>70% STOP) under the
    shared Euclidean gate. The prior surface fails a retrospective check as well.

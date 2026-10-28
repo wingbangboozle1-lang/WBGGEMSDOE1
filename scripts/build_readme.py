@@ -7,57 +7,71 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def wbg6_readme_block():
-    """Top-of-README decision block for WBG-6, generated from its receipts.
+    """Top-of-README decision block for WBG-6 (HOLD), generated from receipts only.
 
-    Refuses to advertise a submit-ready file unless the audit gates passed.
+    The block never advertises the file as cleared. It shows the measured literal-gate result,
+    the recommended NaN-convention file, and the measured nine-site table.
     """
     w5 = json.loads((ROOT / "evidence/wbg6_run_card.json").read_text())
-    est = w5["holdout"]["model_estimate"]
-    floor = w5["holdout"]["null_floor"]
     reg = w5["registry"]
-    model = json.loads((ROOT / "evidence/wbg6_score_model.json").read_text())
     decisive = ["format_pass", "not_a_byte_copy", "surface_rho_below_0.90",
                 "never_on_catalogue", "not_dense_over_budget"]
     if not all(w5["validator"]["all_gates"][k] for k in decisive):
-        raise ValueError("WBG-6 gate failed; refusing to publish a submit block")
+        raise ValueError("WBG-6 gate failed; refusing to publish the WBG-6 block")
+    lit = json.loads((ROOT / "evidence/literal_gate_degeneracy_20261028.json").read_text())
+    rnd = lit["random_in_footprint_dots_forward3px_vs_r13"]["mean"]
+    nan = json.loads((ROOT / "docs/downloads/wbg6-qmh-kdisjoint-30000-20261028-nan.validator.json").read_text())
+    nine = json.loads((ROOT / "evidence/nine_sites_bytes_20261028.json").read_text())
     tif = Path(w5["raster"]["path"]).name
     zp = tif.replace(".tif", ".zip")
-    return f"""## ✅ DOWNLOAD & SUBMIT: YES — WBG-6 `{w5["submission_name"]}`
+    nan_tif = nan["tif"].split("/")[-1]
+    nan_zp = nan["zip"].split("/")[-1]
+    checks_pass = sum(nan["checks"].values())
+    checks_total = len(nan["checks"])
 
-**[WBG-6 executive summary](docs/wbg6/index.html)** ·
-**[How to submit, step by step](docs/wbg6/how-to-submit.html)** ·
-**[Run card](evidence/wbg6_run_card.json)**
+    ordered = sorted((x for x in nine["files"] if "file" in x),
+                     key=lambda x: -float(x["user_reported_score"]))
+    rows = [
+        f"| {x['user_reported_score']} | {x['site']} | `{Path(x['file']).name}` | {x['dots']:,} | "
+        f"{x['forward3px_vs_WBG6'] * 100:.1f}% of its dots within 3 px of a WBG-6 dot | "
+        f"{x['forward3px_vs_r13_lattice'] * 100:.2f}% (FAIL) |"
+        for x in ordered
+    ]
+    rows.append(
+        f"| none (not scored) | WBG-6 | `{nan_tif}` (recommended format) | {nine['wbg6']['dots']:,} | "
+        f"— | {lit['wbg6_forward3px_vs_r13'] * 100:.2f}% (FAIL) |"
+    )
+    nine_rows = "\n".join(rows)
+
+    return f"""## ⛔ HOLD — WBG-6 is NOT CLEARED TO SUBMIT (download for review only)
+
+> **Decision (2026-10-28):** the earlier "SUBMIT: YES" was withdrawn. The project's own literal
+> 3-px registry gate (STOP if >70% of dots lie within 3 px of a registry raster's dots) gives
+> **{lit["wbg6_forward3px_vs_r13"] * 100:.2f}%** against the r13 lattice. A **random** set of the same
+> number of dots inside the footprint gives **{rnd * 100:.2f}%**, so the literal gate fails for any dotted
+> file while r13 is in the registry. The owner must choose the gate before any upload. See
+> [the gate decision](docs/wbg6/gate-decision-20261028.html) ·
+> [literal-gate receipt](evidence/literal_gate_degeneracy_20261028.json).
+
+**Recommended file if the owner approves:** [`{nan_tif}`](docs/downloads/{nan_tif}) · [ZIP](docs/downloads/{nan_zp}) — the same dots, NaN outside the footprint as in the official rules. Checks: {checks_pass}/{checks_total} PASS.
+
+**[WBG-6 executive summary](docs/wbg6/index.html)** · **[Run card](evidence/wbg6_run_card.json)** · **[0.2778 verification (bytes)](evidence/nine_sites_bytes_20261028.json)**
 
 | | |
 |---|---|
-| **File to download** | [`{tif}`](docs/downloads/{tif}) · [one-TIFF ZIP](docs/downloads/{zp}) |
-| **SHA-256** | `{w5["raster"]["sha256"]}` |
-| **Estimated score** | **{est["central"]:.3f}** — MODEL-ESTIMATE, range {est["low"]:.3f}–{est["high"]:.3f}; no-localisation NULL-FLOOR {floor["dti"]:.4f}. Never ORGANIZER-CONFIRMED. |
-| **Unique?** | **Yes.** No byte copy of any of the {reg["compared"]} scored rasters; max surface |Spearman| {abs(reg["max_abs_surface_spearman"]):.4f}; overlap lift {reg["max_overlap_lift"]:.2f}x over a density-matched independent field. |
-| **Format** | single-band float32, EPSG:32611, 3730x3292, 100 m, all finite, values in [0,1], zero outside the footprint, {w5["raster"]["dots_on_catalogue"]} dots on the catalogue. |
+| **Status** | **HOLD — not cleared.** Format-valid; byte-distinct from the ten named files; **fails the literal 3-px gate** against r13 (see above). |
+| **Zeros-mode file (older)** | [`{tif}`](docs/downloads/{tif}) · [ZIP](docs/downloads/{zp}) — same dots, zeros outside the footprint. |
+| **Estimated score** | **Unknown.** The earlier 0.247 figure was a MODEL-ESTIMATE that is not validated (the repo's own holdout failed external validation). Not an organizer result. |
+| **Unique?** | Byte-distinct from the ten named files (measured 28 Oct). Surface max \|Spearman\| {abs(reg["max_abs_surface_spearman"]):.4f} (repo receipt, not re-measured here). **Literal 3-px gate: FAIL (99.68% vs r13).** |
 | **Name / note ({w5["submission_note_length"]} chars)** | `{w5["submission_name"]}` / *{w5["submission_note"]}* |
 
-> **Honest ceiling.** {est["central"]:.3f} is statistically indistinguishable from the best nine-site
-> historical value (0.2778): near-identical rasters in the owner's own history differ by up to 0.086.
-> The public leaderboard leader is **0.4544** (observed 2026-10-28). This file is a legitimate, unique,
-> format-valid entry; it is **not** a top-20 contender. Section 2 of the executive summary states exactly
-> what reaching 0.33-0.45 requires and which download is blocked in this environment.
+**Nine sites + WBG-6, measured on the bytes.** Scores are USER-REPORTED labels, not organizer results. There are no estimates for the nine sites.
 
-**What this session measured.** (1) The size of the hidden private label set is *measured*, not guessed:
-the one historical submission with a provably uniform layout (a 5 px lattice, reported 0.0904) pins
-**K ≈ {w5["hidden_truth_calibration"]["K_star_cells"]:,} truth cells**, and an ensemble of random
-catalogue-like fault sets reproduces its score to within 0.0002. Against that null a raster with no
-localisation skill scores {floor["dti"]:.4f}; the 0.2778 file scores 6.5x that, so localisation precision,
-not dot geometry, is what the leaderboard measures. (2) The repo's shared hide-and-recover holdout
-**fails external validation** as a score predictor (Spearman 0.144, p=0.12, n=118) and is no longer
-reported as a decision number. (3) The 118 scored rasters are only **22 independent families**; geometry
-descriptors do not generalise across families (leave-one-family-out R2 {model["r2_grouped"]:.3f}).
-(4) The literal ">70% within 3 px" registry gate is **degenerate** - a 200k-dot lattice puts ~99.7% of the
-map within 3 px of a dot, so it flags every possible submission - and is replaced by a density-matched
-overlap lift. (5) Kernel-disjoint emission at 5 px separation gives 9.371 distinct coverage per dot versus 8.048 for the
-0.2778 file (16% more reach per dot), and the file carries 20% fewer dots, i.e. 7,654 fewer
-false-positive candidates at the same distance profile.
+| Reported score | Site | File | Dots | Overlap with WBG-6 | Literal 3-px gate vs r13 |
+|---:|---|---|---:|---|---|
+{nine_rows}
 
+Full table with catalogue adjacency and nesting: [gate decision](docs/wbg6/gate-decision-20261028.html) · [receipt](evidence/nine_sites_bytes_20261028.json). Two pairs are identical dot sets (GEMSDOE25 = GEMSDOE30; GEMSDOE28 = GEMSDOE31), so the ten rows hold about seven distinct submissions.
 
 """
 
@@ -116,7 +130,7 @@ def main():
     w5_bench = w5["benchmark"]["dti"]
     header = wbg6_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
 
-**[28 October review of the earlier lanes: no submission approved there](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · **the one file cleared to submit is WBG-6, above**
+**[28 October review of the earlier lanes: no submission approved there](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · **no file is cleared to submit: WBG-6 is on HOLD, above**
 
 **[Detailed repository review](docs/repo-review-20261028.md)** · [Earlier repository review and ranked future hypotheses](docs/repo-review-20261027-session.md) ·
 [Session JSON card](evidence/repo_review_session_20261027.json) · [Current provenance feed](docs/data/feed.json)

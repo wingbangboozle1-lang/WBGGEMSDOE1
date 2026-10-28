@@ -97,7 +97,8 @@ def main() -> int:
 <strong>NULL-FLOOR</strong>. No ORGANIZER-CONFIRMED value exists for any file.</p>
 
 <div class="hero-ok">
-<h2 style="margin-top:0">DOWNLOAD &amp; SUBMIT: <span class="ok">YES</span></h2>
+<h2 style="margin-top:0">DOWNLOAD (review only) · SUBMIT: <span class="warn">NOT CLEARED — HOLD</span></h2>
+<p>The literal 3-px registry gate fails (99.68% against r13; a random in-footprint field gives 99.86%). The owner must decide the gate first. <a href="gate-decision-20261028.html">Gate decision and nine-site table →</a></p>
 <p><b>File to download:</b><br>
 <span class="file"><a href="../downloads/{escape(tif)}" download>{escape(tif)}</a></span><br>
 <span class="small">or the one-TIFF ZIP: <a href="../downloads/{escape(zipf)}" download>{escape(zipf)}</a>
@@ -128,8 +129,8 @@ contender and nothing in the analysis below claims otherwise.
 
 <h2>1. The table the brief asked for</h2>
 <p>One row per focus site: the best <em>historical</em> file there, and whether it may be reused.
-None of them may: every one is a copy of an already-submitted raster, and the brief forbids that.
-<b>There is exactly one new file to download — the one in the green box above.</b></p>
+Byte-level checks (scripts/verify_nine_sites_bytes.py) show these nine files are distinct from WBG-6 (16–19% of their dots lie within 3 px of a WBG-6 dot), but several of them are duplicates of one another.
+<b>The file to review is in the box above; it is not cleared to submit.</b></p>
 <div style="overflow-x:auto"><table class="data">
 <thead><tr><th>Site</th><th>Best historical file (learning only)</th><th>Reported score</th>
 <th>Unique submission?</th><th>Download &amp; submit?</th></tr></thead>
@@ -140,10 +141,10 @@ historical numbers; no submission-page receipt binds those bytes to those values
 <thead><tr><th>What to download</th><th>Estimated score</th><th>Unique vs the nine sites and all 118 scored rasters</th><th>Decision</th></tr></thead>
 <tbody><tr>
 <td class="file">{escape(tif)}</td>
-<td><b>{me['central']:.3f}</b><br><span class="small">range {me['low']:.3f} – {me['high']:.3f}</span></td>
+<td><b>unknown</b><br><span class="small">(the earlier 0.247 MODEL-ESTIMATE is withdrawn as a decision number)</span></td>
 <td>Yes — max surface |Spearman| {abs(d['max_abs_surface_spearman']):.4f}; no byte copy; overlap lift
 {d['max_lift']:.2f}× over a density-matched independent field</td>
-<td class="ok">SUBMIT</td></tr></tbody></table></div>
+<td class="warn">NOT CLEARED (HOLD)</td></tr></tbody></table></div>
 
 <h2>2. Why the GEMSDOE32 file got 0.2778, and how far that is from the top</h2>
 <p>The official metric is a distance-weighted Tversky index with α = 0.2 on false positives and
@@ -310,7 +311,7 @@ credentials.</p>
 <p><b>Step 2.</b> Verify the bytes (optional, 10 s):</p>
 <pre><code>sha256sum {escape(tif)}
 # expected: {escape(audit['sha256'])}</code></pre>
-<p><b>Step 3.</b> Open <a href="{SUBMIT}">{escape(SUBMIT)}</a>, choose the file, paste the note, submit.</p>
+<p><b>Step 3 — BLOCKED.</b> Do not upload. WBG-6 is on HOLD: the literal 3-px registry gate fails (see the <a href="gate-decision-20261028.html">gate decision</a>). Upload is allowed only after the project owner chooses the gate and records approval. Upload page, for reference only: <a href="{SUBMIT}">{escape(SUBMIT)}</a>.</p>
 <p><b>Note field (≤140 characters):</b><br>
 <code>WBG-6 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue</code></p>
 </div>
@@ -326,15 +327,17 @@ this; this one is validated byte-by-byte in
 <code>evidence/wbg6_submission_audit.json</code>);</li>
 <li>a single GeoTIFF if you upload a ZIP — the ZIP contains exactly one member, identical to the TIFF.</li>
 </ul>
-<h2>Why the outside-footprint cells are 0 and not NaN</h2>
-<p>The sample submission masks the footprint with NaN, but the historically accepted best file
-(<code>gemsdoe32-h33-h33-2-b2-...-zeros</code>, reported 0.2778) is an <em>all-finite zeros-mode</em>
-export and the portal accepted it. Zero is a valid probability, cannot trigger
-"Predicted values must be in range [0, 1]", and survives validators that reject NaN. This file follows
-that empirically accepted convention.</p>
+<h2>Outside-footprint convention (corrected 28 Oct 2026)</h2>
+<p>The official rules say data outside the bounds is "null or nan". The pinned sample submission uses NaN for the
+7,111,787 cells outside the footprint. The earlier zeros-outside file is still in the repo, but the recommended file is now
+<a href="../downloads/wbg6-qmh-kdisjoint-30000-20261028-nan.tif"><code>wbg6-qmh-kdisjoint-30000-20261028-nan.tif</code></a>, which has the same dots and NaN outside the footprint.
+The earlier claim that zeros was the only portal-accepted convention is withdrawn: user-reported scores exist for
+NaN-outside files too (GEMSDOE25 0.2600, GEMSDOE28 0.2708, GEMSDOE31 0.2708), and the 0.2778 file is also zeros-outside.
+Both conventions have user-reported scores. The cause of the "[0, 1]" portal error is still unverified.</p>
 <h2>Decision</h2>
-<p><span class="ok">DOWNLOAD: YES · SUBMIT: YES</span> — the file is unique, format-valid and
-history-independent. Estimated score {me['central']:.3f} (range {me['low']:.3f} – {me['high']:.3f}).</p>
+<p><span class="warn">DOWNLOAD: YES (review only) · SUBMIT: NOT CLEARED (HOLD)</span>. The file is format-valid and distinct from the nine sites (16–19% of each site's dots lie within 3 px of a WBG-6 dot).
+It fails the literal 3-px registry gate against r13 (99.68%; random in-footprint: 99.86%). The estimate of {me['central']:.3f} is withdrawn as a decision number:
+it was a MODEL-ESTIMATE that the repo's own holdout could not validate. The leaderboard result is unknown.</p>
 <p class="small">This project does not upload anything and never asks for credentials. Weekly slot
 allowance is shown on the submissions page and must be checked there.</p>
 """

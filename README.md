@@ -1,43 +1,46 @@
-## ✅ DOWNLOAD & SUBMIT: YES — WBG-6 `wbg6-qmh-kdisjoint-30000-20261028`
+## ⛔ HOLD — WBG-6 is NOT CLEARED TO SUBMIT (download for review only)
 
-**[WBG-6 executive summary](docs/wbg6/index.html)** ·
-**[How to submit, step by step](docs/wbg6/how-to-submit.html)** ·
-**[Run card](evidence/wbg6_run_card.json)**
+> **Decision (2026-10-28):** the earlier "SUBMIT: YES" was withdrawn. The project's own literal
+> 3-px registry gate (STOP if >70% of dots lie within 3 px of a registry raster's dots) gives
+> **99.68%** against the r13 lattice. A **random** set of the same
+> number of dots inside the footprint gives **99.86%**, so the literal gate fails for any dotted
+> file while r13 is in the registry. The owner must choose the gate before any upload. See
+> [the gate decision](docs/wbg6/gate-decision-20261028.html) ·
+> [literal-gate receipt](evidence/literal_gate_degeneracy_20261028.json).
+
+**Recommended file if the owner approves:** [`wbg6-qmh-kdisjoint-30000-20261028-nan.tif`](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028-nan.tif) · [ZIP](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028-nan.zip) — the same dots, NaN outside the footprint as in the official rules. Checks: 13/13 PASS.
+
+**[WBG-6 executive summary](docs/wbg6/index.html)** · **[Run card](evidence/wbg6_run_card.json)** · **[0.2778 verification (bytes)](evidence/nine_sites_bytes_20261028.json)**
 
 | | |
 |---|---|
-| **File to download** | [`wbg6-qmh-kdisjoint-30000-20261028.tif`](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif) · [one-TIFF ZIP](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.zip) |
-| **SHA-256** | `e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9` |
-| **Estimated score** | **0.247** — MODEL-ESTIMATE, range 0.142–0.286; no-localisation NULL-FLOOR 0.0425. Never ORGANIZER-CONFIRMED. |
-| **Unique?** | **Yes.** No byte copy of any of the 118 scored rasters; max surface |Spearman| 0.0148; overlap lift 1.47x over a density-matched independent field. |
-| **Format** | single-band float32, EPSG:32611, 3730x3292, 100 m, all finite, values in [0,1], zero outside the footprint, 0 dots on the catalogue. |
+| **Status** | **HOLD — not cleared.** Format-valid; byte-distinct from the ten named files; **fails the literal 3-px gate** against r13 (see above). |
+| **Zeros-mode file (older)** | [`wbg6-qmh-kdisjoint-30000-20261028.tif`](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif) · [ZIP](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.zip) — same dots, zeros outside the footprint. |
+| **Estimated score** | **Unknown.** The earlier 0.247 figure was a MODEL-ESTIMATE that is not validated (the repo's own holdout failed external validation). Not an organizer result. |
+| **Unique?** | Byte-distinct from the ten named files (measured 28 Oct). Surface max \|Spearman\| 0.0148 (repo receipt, not re-measured here). **Literal 3-px gate: FAIL (99.68% vs r13).** |
 | **Name / note (71 chars)** | `wbg6-qmh-kdisjoint-30000-20261028` / *WBG-6 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue* |
 
-> **Honest ceiling.** 0.247 is statistically indistinguishable from the best nine-site
-> historical value (0.2778): near-identical rasters in the owner's own history differ by up to 0.086.
-> The public leaderboard leader is **0.4544** (observed 2026-10-28). This file is a legitimate, unique,
-> format-valid entry; it is **not** a top-20 contender. Section 2 of the executive summary states exactly
-> what reaching 0.33-0.45 requires and which download is blocked in this environment.
+**Nine sites + WBG-6, measured on the bytes.** Scores are USER-REPORTED labels, not organizer results. There are no estimates for the nine sites.
 
-**What this session measured.** (1) The size of the hidden private label set is *measured*, not guessed:
-the one historical submission with a provably uniform layout (a 5 px lattice, reported 0.0904) pins
-**K ≈ 12,395 truth cells**, and an ensemble of random
-catalogue-like fault sets reproduces its score to within 0.0002. Against that null a raster with no
-localisation skill scores 0.0425; the 0.2778 file scores 6.5x that, so localisation precision,
-not dot geometry, is what the leaderboard measures. (2) The repo's shared hide-and-recover holdout
-**fails external validation** as a score predictor (Spearman 0.144, p=0.12, n=118) and is no longer
-reported as a decision number. (3) The 118 scored rasters are only **22 independent families**; geometry
-descriptors do not generalise across families (leave-one-family-out R2 -0.847).
-(4) The literal ">70% within 3 px" registry gate is **degenerate** - a 200k-dot lattice puts ~99.7% of the
-map within 3 px of a dot, so it flags every possible submission - and is replaced by a density-matched
-overlap lift. (5) Kernel-disjoint emission at 5 px separation gives 9.371 distinct coverage per dot versus 8.048 for the
-0.2778 file (16% more reach per dot), and the file carries 20% fewer dots, i.e. 7,654 fewer
-false-positive candidates at the same distance profile.
+| Reported score | Site | File | Dots | Overlap with WBG-6 | Literal 3-px gate vs r13 |
+|---:|---|---|---:|---|---|
+| 0.2778 | GEMSDOE32 | `gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif` | 37,654 | 18.5% of its dots within 3 px of a WBG-6 dot | 99.91% (FAIL) |
+| 0.2750 | GEMSDOE36 | `gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif` | 38,854 | 18.6% of its dots within 3 px of a WBG-6 dot | 99.92% (FAIL) |
+| 0.2710 | GEMSDOE28 | `gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif` | 37,660 | 17.8% of its dots within 3 px of a WBG-6 dot | 99.91% (FAIL) |
+| 0.2708 | GEMSDOE28 | `gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif` | 40,199 | 17.7% of its dots within 3 px of a WBG-6 dot | 99.92% (FAIL) |
+| 0.2708 | GEMSDOE31 | `gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif` | 40,199 | 17.7% of its dots within 3 px of a WBG-6 dot | 99.92% (FAIL) |
+| 0.2632 | GEMSDOE33 | `GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif` | 41,865 | 17.4% of its dots within 3 px of a WBG-6 dot | 99.91% (FAIL) |
+| 0.2600 | GEMSDOE25 | `gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif` | 44,090 | 16.5% of its dots within 3 px of a WBG-6 dot | 99.92% (FAIL) |
+| 0.2600 | GEMSDOE30 | `gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif` | 44,090 | 16.5% of its dots within 3 px of a WBG-6 dot | 99.92% (FAIL) |
+| 0.2477 | GEMSDOE24 | `gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif` | 60,069 | 16.4% of its dots within 3 px of a WBG-6 dot | 99.92% (FAIL) |
+| 0.2449 | GEMSDOE27 | `gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif` | 61,328 | 16.9% of its dots within 3 px of a WBG-6 dot | 99.92% (FAIL) |
+| none (not scored) | WBG-6 | `wbg6-qmh-kdisjoint-30000-20261028-nan.tif` (recommended format) | 30,000 | — | 99.68% (FAIL) |
 
+Full table with catalogue adjacency and nesting: [gate decision](docs/wbg6/gate-decision-20261028.html) · [receipt](evidence/nine_sites_bytes_20261028.json). Two pairs are identical dot sets (GEMSDOE25 = GEMSDOE30; GEMSDOE28 = GEMSDOE31), so the ten rows hold about seven distinct submissions.
 
 # WBG GEMS — evidence-first fault mapping
 
-**[28 October review of the earlier lanes: no submission approved there](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · **the one file cleared to submit is WBG-6, above**
+**[28 October review of the earlier lanes: no submission approved there](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · **no file is cleared to submit: WBG-6 is on HOLD, above**
 
 **[Detailed repository review](docs/repo-review-20261028.md)** · [Earlier repository review and ranked future hypotheses](docs/repo-review-20261027-session.md) ·
 [Session JSON card](evidence/repo_review_session_20261027.json) · [Current provenance feed](docs/data/feed.json)

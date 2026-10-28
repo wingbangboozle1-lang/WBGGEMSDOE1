@@ -1,0 +1,32 @@
+{
+  "name": "wbg6-qmh-kdisjoint-30000-20261028-nan",
+  "tif": "docs/downloads/wbg6-qmh-kdisjoint-30000-20261028-nan.tif",
+  "tif_sha256": "13cfea427594f570f562a4d08da8549b5a012d2f77fbc43a4c462c300d4473ee",
+  "tif_bytes": 178176,
+  "zip": "docs/downloads/wbg6-qmh-kdisjoint-30000-20261028-nan.zip",
+  "zip_sha256": "f30d3186ca1238af149098146a5ac2600e7d4004a0e8eb78e39a5d15cb26d804",
+  "source_tif": "docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif",
+  "source_sha256": "e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9",
+  "footprint_source": "data/bridge/sample_submission.tif (sha256 pinned, NaN outside footprint)",
+  "positives": 30000,
+  "outside_footprint_convention": "NaN (official rules p.967: 'data outside the bounds is null or nan')",
+  "sample_profile_nodata": "nan",
+  "checks": {
+    "single_band": true,
+    "dtype_float32": true,
+    "crs_epsg_32611": true,
+    "shape_matches_sample": true,
+    "transform_matches_sample": true,
+    "transform_matches_source": true,
+    "footprint_nan_matches_sample": true,
+    "no_nan_inside_footprint": true,
+    "values_in_0_1_inside_footprint": true,
+    "no_inf": true,
+    "positives_equal_source": true,
+    "dots_identical_to_source": true,
+    "zip_exactly_one_identical_member": true
+  },
+  "all_checks_pass": true,
+  "label": "FORMAT-CONVENTION VARIANT OF WBG-6; same dots; NOT a new scientific result; NOT cleared to submit",
+  "note": "Score unknown. Portal acceptance unknown. Uniqueness identical to WBG-6 (literal 3-px gate fails vs r13, see evidence/literal_gate_degeneracy_20261028.json)."
+}

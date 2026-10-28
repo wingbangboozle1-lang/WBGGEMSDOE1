@@ -1,0 +1,24 @@
+{
+  "schema": "literal-gate-degeneracy-v1",
+  "gate": "STOP if forward share of a submission's dots within 3 px of registry dots > 0.70",
+  "registry_raster": "GEMSDOE24/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+  "registry_raster_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+  "registry_dots": 206895,
+  "wbg6_dots": 30000,
+  "wbg6_forward3px_vs_r13": 0.99677,
+  "random_in_footprint_dots_forward3px_vs_r13": {
+    "n": 30000,
+    "draws": 5,
+    "values": [
+      0.99883,
+      0.99833,
+      0.99893,
+      0.99847,
+      0.99847
+    ],
+    "mean": 0.99861,
+    "min": 0.99833
+  },
+  "footprint_cells_within3px_of_r13": 0.99871,
+  "conclusion": "A random in-footprint field also fails the literal gate. Any dotted submission in the footprint fails it while r13 is in the registry. The gate needs an amendment decision by the project owner; it is not a property of WBG-6."
+}

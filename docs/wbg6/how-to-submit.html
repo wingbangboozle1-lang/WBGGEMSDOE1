@@ -26,7 +26,7 @@ code { background:#f3f6f4; padding:1px 4px; border-radius:4px }
 <p><b>Step 2.</b> Verify the bytes (optional, 10 s):</p>
 <pre><code>sha256sum wbg6-qmh-kdisjoint-30000-20261028.tif
 # expected: e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9</code></pre>
-<p><b>Step 3.</b> Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/</a>, choose the file, paste the note, submit.</p>
+<p><b>Step 3 — BLOCKED.</b> Do not upload. WBG-6 is on HOLD: the literal 3-px registry gate fails (see the <a href="gate-decision-20261028.html">gate decision</a>). Upload is allowed only after the project owner chooses the gate and records approval. Upload page, for reference only: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/</a>.</p>
 <p><b>Note field (≤140 characters):</b><br>
 <code>WBG-6 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue</code></p>
 </div>
@@ -42,15 +42,17 @@ this; this one is validated byte-by-byte in
 <code>evidence/wbg6_submission_audit.json</code>);</li>
 <li>a single GeoTIFF if you upload a ZIP — the ZIP contains exactly one member, identical to the TIFF.</li>
 </ul>
-<h2>Why the outside-footprint cells are 0 and not NaN</h2>
-<p>The sample submission masks the footprint with NaN, but the historically accepted best file
-(<code>gemsdoe32-h33-h33-2-b2-...-zeros</code>, reported 0.2778) is an <em>all-finite zeros-mode</em>
-export and the portal accepted it. Zero is a valid probability, cannot trigger
-"Predicted values must be in range [0, 1]", and survives validators that reject NaN. This file follows
-that empirically accepted convention.</p>
+<h2>Outside-footprint convention (corrected 28 Oct 2026)</h2>
+<p>The official rules say data outside the bounds is "null or nan". The pinned sample submission uses NaN for the
+7,111,787 cells outside the footprint. The earlier zeros-outside file is still in the repo, but the recommended file is now
+<a href="../downloads/wbg6-qmh-kdisjoint-30000-20261028-nan.tif"><code>wbg6-qmh-kdisjoint-30000-20261028-nan.tif</code></a>, which has the same dots and NaN outside the footprint.
+The earlier claim that zeros was the only portal-accepted convention is withdrawn: user-reported scores exist for
+NaN-outside files too (GEMSDOE25 0.2600, GEMSDOE28 0.2708, GEMSDOE31 0.2708), and the 0.2778 file is also zeros-outside.
+Both conventions have user-reported scores. The cause of the "[0, 1]" portal error is still unverified.</p>
 <h2>Decision</h2>
-<p><span class="ok">DOWNLOAD: YES · SUBMIT: YES</span> — the file is unique, format-valid and
-history-independent. Estimated score 0.247 (range 0.142 – 0.286).</p>
+<p><span class="warn">DOWNLOAD: YES (review only) · SUBMIT: NOT CLEARED (HOLD)</span>. The file is format-valid and distinct from the nine sites (16–19% of each site's dots lie within 3 px of a WBG-6 dot).
+It fails the literal 3-px registry gate against r13 (99.68%; random in-footprint: 99.86%). The estimate of 0.247 is withdrawn as a decision number:
+it was a MODEL-ESTIMATE that the repo's own holdout could not validate. The leaderboard result is unknown.</p>
 <p class="small">This project does not upload anything and never asks for credentials. Weekly slot
 allowance is shown on the submissions page and must be checked there.</p>
 

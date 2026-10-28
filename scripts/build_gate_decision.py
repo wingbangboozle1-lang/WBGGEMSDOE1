@@ -1,0 +1,159 @@
+#!/usr/bin/env python3
+"""Build docs/wbg6/gate-decision-20261028.html from measured receipts only.
+
+Every number on the page is read from evidence/*.json. Scores are USER-REPORTED labels
+from the standing brief (not ORGANIZER-CONFIRMED). No score is projected here.
+"""
+from __future__ import annotations
+
+import html
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+OUT = ROOT / "docs/wbg6/gate-decision-20261028.html"
+
+
+def esc(x) -> str:
+    return html.escape(str(x))
+
+
+def main() -> int:
+    nine = json.loads((ROOT / "evidence/nine_sites_bytes_20261028.json").read_text())
+    lit = json.loads((ROOT / "evidence/literal_gate_degeneracy_20261028.json").read_text())
+    nan = json.loads((ROOT / "docs/downloads/wbg6-qmh-kdisjoint-30000-20261028-nan.validator.json").read_text())
+    rows = sorted([f for f in nine["files"] if "file" in f], key=lambda f: -float(f["user_reported_score"]))
+    w6 = nine["wbg6"]
+
+    trs = []
+    for f in rows:
+        if f["site"] == "GEMSDOE32":
+            uniq = "reference (0.2778)"
+        else:
+            uniq = ("not unique: " + f"{f['pixel_exact_share_of_GEMSDOE32_dots_present_here']*100:.1f}% of 0.2778 dots present")
+        nan_conv = "NaN outside footprint" if f["outside_footprint_all_nan"] else "zeros outside footprint"
+        trs.append(
+            "<tr>"
+            f"<td>{esc(f['user_reported_score'])}</td><td>{esc(f['site'])}</td>"
+            f"<td><code>{esc(Path(f['file']).name)}</code></td>"
+            f"<td>{f['dots']:,}</td><td>{nan_conv}</td>"
+            f"<td>{f['within3px_of_catalogue']*100:.1f}%</td>"
+            f"<td>{f['forward3px_vs_WBG6']*100:.1f}%</td>"
+            f"<td>{f['forward3px_vs_r13_lattice']*100:.2f}%</td>"
+            f"<td>{esc(uniq)}</td>"
+            "</tr>"
+        )
+    table = "\n".join(trs)
+    wbg6_row = (
+        "<tr class='hl'><td>— (no score)</td><td>WBG-6</td>"
+        f"<td><code>{esc(Path(nan['tif']).name)}</code> (recommended format)</td>"
+        f"<td>{w6['dots']:,}</td><td>NaN outside footprint</td>"
+        f"<td>{w6['within3px_of_catalogue']*100:.1f}%</td><td>—</td>"
+        f"<td>{lit['wbg6_forward3px_vs_r13']*100:.2f}%</td>"
+        "<td>Distinct from all nine sites: 16–19% of their dots lie within 3 px of a WBG-6 dot (17–19% reverse). <b>Literal gate FAILS vs r13.</b></td></tr>"
+    )
+    rand = lit["random_in_footprint_dots_forward3px_vs_r13"]
+    page = f"""<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>WBG-6 gate decision — 28 Oct 2026</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+body{{font:16px/1.5 system-ui,sans-serif;max-width:1100px;margin:2rem auto;padding:0 1rem;color:#111}}
+.hold{{background:#fff4e5;border-left:6px solid #d97706;padding:1rem;border-radius:6px}}
+table{{border-collapse:collapse;width:100%;font-size:13px;margin:1rem 0}}
+th,td{{border:1px solid #ddd;padding:4px 6px;text-align:left;vertical-align:top}}
+th{{background:#f5f5f5}} tr.hl td{{background:#eef6ff}} code{{font-size:12px;word-break:break-all}}
+.small{{color:#555;font-size:13px}}
+</style></head><body>
+<h1>WBG-6: gate decision (28 Oct 2026)</h1>
+<div class="hold"><p><b>⛔ HOLD — NOT CLEARED TO SUBMIT.</b> Download for review only. Estimated score: <b>unknown</b>
+(no organizer receipt, no validated holdout; the earlier 0.247 MODEL-ESTIMATE is withdrawn as a decision number).</p>
+<p>Reason: the project's literal parallel-run gate (STOP if more than 70% of a submission's dots lie within 3 px of one
+registry raster's dots) is measured at <b>{lit['wbg6_forward3px_vs_r13']*100:.2f}%</b> against the r13 lattice.
+A random set of {lit['wbg6_dots']:,} dots drawn inside the footprint scores <b>{rand['mean']*100:.2f}%</b> on the same test,
+so the gate rejects any dotted file while r13 is in the registry. That makes it a rule decision, not a WBG-6 property.</p></div>
+
+<h2>Decision needed from the owner (one choice)</h2>
+<ol>
+<li><b>Exclude r13 from the registry</b> (it is a synthetic calibration lattice from this repo, not a competitor submission)
+and keep the literal 70% gate for real submissions. WBG-6 then needs a full check against all scored rasters (not yet run here;
+measured against the nine named sites only).</li>
+<li><b>Keep r13 and drop the 3-px gate</b>, accepting that no dotted file can pass it. Uniqueness then rests on the other
+checks (byte, surface correlation, nearest-dot profile).</li>
+<li><b>Adopt a density-matched rule</b> (the repo's current substitute). This is a self-authored exemption that the repo's own AGENTS rules forbid, so it needs your explicit approval.</li>
+</ol>
+
+<h2>Which file, if approved</h2>
+<p>Recommended: <a href="../downloads/{esc(Path(nan['tif']).name)}"><code>{esc(Path(nan['tif']).name)}</code></a>
+(or ZIP <a href="../downloads/{esc(Path(nan['zip']).name)}">{esc(Path(nan['zip']).name)}</a>): the same 30,000 dots as WBG-6, NaN outside the footprint as in the official rules and the pinned
+sample. Validator: {sum(nan['checks'].values())}/{len(nan['checks'])} checks PASS.
+Older zeros-outside file (same dots): <a href="../downloads/wbg6-qmh-kdisjoint-30000-20261028.tif">wbg6-qmh-kdisjoint-30000-20261028.tif</a>.</p>
+
+<h2>Nine sites plus WBG-6, measured on the bytes</h2>
+<p class="small">Scores are USER-REPORTED labels from the standing brief, not ORGANIZER-CONFIRMED. "Within 3 px of catalogue" uses the pinned
+mapped-fault catalogue (<code>data/bridge/labels.tif</code>, label 1). Every file is binary {{0,1}}, float32, EPSG:32611, 3730×3292.
+Receipt: <a href="../../evidence/nine_sites_bytes_20261028.json">evidence/nine_sites_bytes_20261028.json</a>.</p>
+<table><thead><tr><th>Score (user-reported)</th><th>Site</th><th>File</th><th>Dots</th><th>Outside footprint</th>
+<th>Dots within 3 px of catalogue</th><th>Site dots within 3 px of a WBG-6 dot</th><th>Dots within 3 px of r13</th><th>Uniqueness vs 0.2778</th></tr></thead>
+<tbody>
+{table}
+{wbg6_row}
+</tbody></table>
+<p class="small">Two pairs are the same dot set under two file encodings: GEMSDOE25 and GEMSDOE30 (44,090 dots, identical), and GEMSDOE28 and GEMSDOE31 (40,199 dots, identical).
+So the ten rows contain about seven distinct dot sets.</p>
+
+<h2>Why the 0.2778 file scored highest: what the bytes show</h2>
+<ul>
+<li><b>Nested pruning, verified by pixel test.</b> All 37,654 dots of the 0.2778 file are also in the 44,090-dot file (GEMSDOE25/30, 0.2600).
+The 40,199-dot file (GEMSDOE28/31, 0.2708) is also a strict superset of 0.2778. The 0.2778 file is the 44,090-dot file with 6,436 dots removed.</li>
+<li><b>What was removed.</b> Dots within 3 px of the mapped catalogue fall from 19.5% (44,090-dot file) to 5.8% (0.2778 file).
+No file has a dot exactly on the catalogue, so the catalogue proximity itself is what changed.</li>
+<li><b>Mechanism (proposed, not proven).</b> The hidden truth is new faults that experts labelled, so a dot on or beside a
+mapped fault is more likely to be a false positive. With alpha=0.2 and beta=0.8, removing dots with little credit can raise the
+Tversky index. The metric is official (docs.nlr.gov 96647 §3.2; competition page 967).</li>
+<li><b>Monotone pattern across the ten rows.</b> Spearman between user-reported score and catalogue-adjacent share is
+<b>ρ = −0.997</b> (n = 10, about 7 distinct dot sets, so the p-value is not a valid test). This is a descriptive ordering, not a validated predictor.</li>
+<li><b>Confounders not separated.</b> Dot count, catalogue share and site/family are strongly tangled. The 60k-dot files score lowest and have the highest catalogue share.
+With n = 10, the relation cannot be attributed to one cause.</li>
+</ul>
+
+<h2>Three candidate hypotheses (untested, ranked by testability, not by expected score)</h2>
+<ol>
+<li><b>H1 — Catalogue-adjacency suppression at matched count.</b> Layer: mapped-fault catalogue only (already in data/bridge).
+Signature: share of dots within 3 px of catalogue below 6%, at a fixed dot count. Not in the catalogue: it targets un-mapped structure only.
+Mimic: a dense lattice away from faults that scores well for other reasons. Status: needs a holdout that ranks submissions; the repo's own holdout does not (Spearman 0.144, n=118).</li>
+<li><b>H2 — Count-matched nested pruning.</b> Take a dense family (44,090 dots) and remove dots by catalogue proximity to reach a chosen count.
+Test: compare with random removal at the same count. Status: the 0.2778 file is one such prune; a matched-random control has not been run.</li>
+<li><b>H3 — Dot-count confound.</b> Test whether the ordering survives equal-count controls (for example, random subsets of the 44,090-dot file at 37,654 dots).
+Status: cannot be run without the 19-band feature stack (not in the repo; Dropbox egress blocked).</li>
+</ol>
+
+<h2>Irregularities for manual review</h2>
+<ul>
+<li>AGENTS.md contained unresolved merge-conflict markers (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main</code>); fixed in this session.</li>
+<li>The WBG-6 run card records <code>promote</code> after replacing the literal 3-px gate with a density-matched lift, while AGENTS.md says "No density exemption". Corrected to HOLD.</li>
+<li>The WBG-6 submit guide said the zeros convention was "the only empirically accepted" one. The user-reported history includes NaN-outside files with scores (for example 0.2600, 0.2708, 0.2449). Both conventions have user-reported scores, so that claim is unsupported.</li>
+<li>Leaderboard figures differ across the brief: 0.4413, 0.3195 and 0.4544. The official leaderboard page fetched on 28 Oct 2026 shows #1 = <b>0.4544</b>
+(<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">source</a>). No brief figure is attributed to a project file.</li>
+<li>The portal error "Predicted values must be in range [0, 1]" remains unexplained. The competition data page requires login and no submission page is reachable from this sandbox.</li>
+<li>The 19-band training features are not in the repo (no parts in git history), so the holdout cannot be rebuilt here.</li>
+</ul>
+
+<h2>Official sources (manual review)</h2>
+<ul>
+<li>Problem description, metric and submission format: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">drivendata page 967</a></li>
+<li>About and sponsor: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/">drivendata page 968</a></li>
+<li>Official rules (3.2 submission, "three submissions per week"): <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">docs.nlr.gov/docs/fy26osti/96647.pdf</a></li>
+<li>Leaderboard: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">drivendata leaderboard</a></li>
+</ul>
+<p class="small">Generated by scripts/build_gate_decision.py from evidence receipts. Not an organizer result. Nothing in this repo uploads anything.</p>
+</body></html>
+"""
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(page, encoding="utf-8")
+    print(f"wrote {OUT}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

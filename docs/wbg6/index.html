@@ -25,7 +25,8 @@ code { background:#f3f6f4; padding:1px 4px; border-radius:4px }
 <strong>NULL-FLOOR</strong>. No ORGANIZER-CONFIRMED value exists for any file.</p>
 
 <div class="hero-ok">
-<h2 style="margin-top:0">DOWNLOAD &amp; SUBMIT: <span class="ok">YES</span></h2>
+<h2 style="margin-top:0">DOWNLOAD (review only) · SUBMIT: <span class="warn">NOT CLEARED — HOLD</span></h2>
+<p>The literal 3-px registry gate fails (99.68% against r13; a random in-footprint field gives 99.86%). The owner must decide the gate first. <a href="gate-decision-20261028.html">Gate decision and nine-site table →</a></p>
 <p><b>File to download:</b><br>
 <span class="file"><a href="../downloads/wbg6-qmh-kdisjoint-30000-20261028.tif" download>wbg6-qmh-kdisjoint-30000-20261028.tif</a></span><br>
 <span class="small">or the one-TIFF ZIP: <a href="../downloads/wbg6-qmh-kdisjoint-30000-20261028.zip" download>wbg6-qmh-kdisjoint-30000-20261028.zip</a>
@@ -56,8 +57,8 @@ contender and nothing in the analysis below claims otherwise.
 
 <h2>1. The table the brief asked for</h2>
 <p>One row per focus site: the best <em>historical</em> file there, and whether it may be reused.
-None of them may: every one is a copy of an already-submitted raster, and the brief forbids that.
-<b>There is exactly one new file to download — the one in the green box above.</b></p>
+Byte-level checks (scripts/verify_nine_sites_bytes.py) show these nine files are distinct from WBG-6 (16–19% of their dots lie within 3 px of a WBG-6 dot), but several of them are duplicates of one another.
+<b>The file to review is in the box above; it is not cleared to submit.</b></p>
 <div style="overflow-x:auto"><table class="data">
 <thead><tr><th>Site</th><th>Best historical file (learning only)</th><th>Reported score</th>
 <th>Unique submission?</th><th>Download &amp; submit?</th></tr></thead>
@@ -68,10 +69,10 @@ historical numbers; no submission-page receipt binds those bytes to those values
 <thead><tr><th>What to download</th><th>Estimated score</th><th>Unique vs the nine sites and all 118 scored rasters</th><th>Decision</th></tr></thead>
 <tbody><tr>
 <td class="file">wbg6-qmh-kdisjoint-30000-20261028.tif</td>
-<td><b>0.247</b><br><span class="small">range 0.142 – 0.286</span></td>
+<td><b>unknown</b><br><span class="small">(the earlier 0.247 MODEL-ESTIMATE is withdrawn as a decision number)</span></td>
 <td>Yes — max surface |Spearman| 0.0148; no byte copy; overlap lift
 1.47× over a density-matched independent field</td>
-<td class="ok">SUBMIT</td></tr></tbody></table></div>
+<td class="warn">NOT CLEARED (HOLD)</td></tr></tbody></table></div>
 
 <h2>2. Why the GEMSDOE32 file got 0.2778, and how far that is from the top</h2>
 <p>The official metric is a distance-weighted Tversky index with α = 0.2 on false positives and

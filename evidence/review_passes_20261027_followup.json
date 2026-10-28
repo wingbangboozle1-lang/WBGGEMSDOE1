@@ -1,0 +1,30 @@
+{
+  "review_date_utc": "2026-10-27",
+  "passes": [
+    {
+      "pass": 1,
+      "work": "Read PROMPT.md, AGENTS.md, README, the lane ledger, frozen run cards, current nine-site evidence, candidate queue, generated pages and builders. Restored the three hash-pinned core owner-mirror inputs and prepared the shared 19-band cache.",
+      "verification": "All three core input hashes and all 19 expected cache-band hashes matched. Source provenance remains owner-mirror integrity, not independently authenticated DrivenData origin. Readiness remains BLOCKED_SCIENTIFIC because the lane is stopped."
+    },
+    {
+      "pass": 2,
+      "work": "Corrected overconfident WBG-3 forensics that inferred hidden-test false positives and score causality from raster set subtraction; removed unsupported reverse score/recall arithmetic and the assertion that NaN caused the reported portal error. Added exact negative run-card recognition for the WBG-3 TIFF and ZIP in the integration validator, with regression tests.",
+      "verification": "Forensic copy now distinguishes verified pixel lineage from unverified historical scores and says no leaderboard conversion is defensible. Range-guide copy states the reported error's cause is unverified."
+    },
+    {
+      "pass": 3,
+      "work": "Regenerated README and static site from source builders, staged the Pages tree, checked TIFF download identity, and reran full tests, static checks and the desktop/mobile browser suite.",
+      "verification": "198 tests passed (15 existing rasterio deprecation warnings); Ruff E9/F passed; git diff --check passed; browser run passed 18 page/viewport checks, site filter, three TIFF-download SHA checks, zero JavaScript errors and no body overflow. Generic validator recognizes the WBG-3 TIFF and ZIP by exact hash and returns negative / not authorized. No model experiment or competition slot was used."
+    }
+  ],
+  "experiments_started": 0,
+  "new_tiffs_generated": 0,
+  "submission_slots_used": 0,
+  "verdict": "negative",
+  "unresolved": [
+    "No assigned single-method paragraph; existing stopped lanes were not restarted.",
+    "No artifact-linked organizer score receipt; owner-reported historical values remain unconfirmed.",
+    "No current direct refresh of DrivenData/USGS/DOE external pages in this network-constrained review.",
+    "No candidate is cleared for upload. No new final dots or registry audit were produced in this review; the frozen WBG-3 final-dot audit already records a literal all-entry STOP."
+  ]
+}

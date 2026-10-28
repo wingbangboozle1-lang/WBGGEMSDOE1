@@ -125,8 +125,16 @@ def test_registry_scope_forward_stop_and_exact_pixel_distinctness_are_separate()
     assert any(r["their_dots_within_3px_of_mine"] > 0 for r in audit["rows"])
     assert "their_dots_within_3px_of_mine" not in audit["first_stop"]["row"]
     certificate = load("evidence/lattice_coverage_certificate.json")
+    # The legacy flag means complete coverage of every allowed pixel, not a
+    # fixed-budget 70% uniqueness decision. Explicitly test the latter bound.
     assert not certificate["universal_overlap_blocker"]
     assert certificate["uncovered_allowed_pixels"] > 0
+    bound = certificate["fixed_budget_overlap_bound"]
+    assert bound["budget_pixels"] == 36800
+    assert bound["minimum_covered_candidate_pixels"] == 30151
+    assert bound["minimum_overlap_fraction"] == pytest.approx(30151 / 36800)
+    assert bound["minimum_overlap_fraction"] > bound["overlap_limit"]
+    assert bound["blocks_this_budget"]
 
 
 def test_historical_numbers_never_relabelled_as_verified_scores():
@@ -147,6 +155,63 @@ def test_historical_numbers_never_relabelled_as_verified_scores():
 def test_complete_standing_request_is_embedded_in_readme():
     assert (ROOT / "docs/standing-prompt.md").read_text() in (ROOT / "README.md").read_text()
     assert "MUST GENERATE A UNIQUE TIF SUBMISSION" in (ROOT / "README.md").read_text()
+
+
+def test_session_review_card_is_audit_only_and_preserves_negative_decision():
+    session = load("evidence/repo_review_session_20261027.json")
+    prior = load("registry/run_card.json")
+    assert session["review_mode"] == "audit-only; no new geological experiment"
+    assert session["experiments_started_this_session"] == 0
+    assert session["submission_slots_used"] == 0
+    assert len(session["review_passes"]) == 3
+    assert session["holdout_dti"]["evidence_class"].startswith("HOLDOUT-DTI")
+    assert session["holdout_dti"]["measurement_status"].endswith("no holdout evaluator was executed for this review.")
+    assert session["holdout_dti"]["dti"] == prior["holdout"]["dti"]
+    assert session["raster"]["sha256"] == prior["raster_sha256"]
+    assert session["raster"]["generated_this_session"] is False
+    focus9 = session["merged_main_existing_focus9"]
+    focus9_source = load("evidence/focus9_exec/run_card.json")
+    assert focus9["sha256"] == focus9_source["raster_sha256"]
+    assert focus9["generated_in_this_review"] is False
+    assert focus9["holdout_dti"] is None and focus9["leaderboard_estimate"] is None
+    assert focus9["literal_fixed_budget_lattice_lower_bound"] > focus9["literal_overlap_stop_threshold"]
+    assert focus9["local_format_validation_passed"] and focus9["ok_to_submit"] is False
+    assert focus9["strict_submit_ready_exit_codes"] == {"tiff": 2, "one_member_zip": 2}
+    assert len(focus9["submission_note"]) <= 140
+    assert session["registry_correlation_overlap"]["current_session_surface_check"] == "NOT RUN"
+    assert session["registry_correlation_overlap"]["frozen_max_forward_3px_overlap"] > 0.70
+    assert session["validator_output"]["local_format_checks_passed"]
+    assert session["validator_output"]["strict_require_submit_ready_exit_code"] == 2
+    assert session["validator_output"]["run_card_matches_exact_tiff"] is True
+    assert session["validator_output"]["ok_to_submit"] is False
+    assert session["submission_name_status"].startswith("EXISTING RESEARCH ARTIFACT")
+    assert session["submission_name"].endswith(".tif")
+    assert len(session["submission_note"]) <= 140
+    assert session["verdict"] == "negative"
+    assert "docs/repo-review-20261027-session.md" in (ROOT / "README.md").read_text()
+
+
+def test_focus9_research_tiff_is_prominently_downloadable_but_never_approved():
+    card = load("evidence/focus9_exec/run_card.json")
+    tif = Path(card["artifact"]).name
+    readme = (ROOT / "README.md").read_text()
+    assert f"docs/downloads/{tif}" in readme
+    assert "DOWNLOAD: YES for research · SUBMIT: NO" in readme
+    assert card["verdict"] == "negative" and card["decision"]["ok_to_submit"] is False
+    assert card["holdout_dti"]["dti"] is None
+    assert card["correlation_overlap_vs_registry"]["passes_literal_uniqueness"] is False
+    assert "not a geological model" in readme
+
+
+def test_lattice_certificate_fixed_budget_gate_is_not_confused_with_full_coverage():
+    evidence = load("evidence/lattice_coverage_certificate.json")
+    published = load("docs/data/lattice-coverage-certificate.json")
+    assert evidence == published
+    bound = evidence["fixed_budget_overlap_bound"]
+    assert bound["blocks_this_budget"] is True
+    assert bound["minimum_overlap_fraction"] > bound["overlap_limit"]
+    assert evidence["universal_overlap_blocker"] is False
+    assert "Do not interpret false as clearance" in evidence["interpretation_warning"]
 
 
 def test_all_nine_commit_pins_and_inventoried_git_blobs_are_verified():

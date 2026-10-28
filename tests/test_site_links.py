@@ -9,6 +9,7 @@ PAGES = [
     DOCS / "research.html",
     DOCS / "methodology.html",
     DOCS / "submission-instructions.html",
+    DOCS / "repo-review-20261027.html",
 ]
 
 

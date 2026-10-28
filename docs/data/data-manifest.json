@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-10-04",
+  "provenance_warning": "Every entry is a public GitHub mirror maintained by this project (buffedlizard55-lab). A SHA-256 match proves byte identity to that mirror and nothing more: it is NOT an organizer-authenticated download of the DrivenData file, and it does NOT evidence organizer acceptance or a leaderboard score. DrivenData is never contacted by these scripts.",
+  "grid": {
+    "crs": "EPSG:32611",
+    "shape": [3730, 3292],
+    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "bounds": [243350.0, 4135550.0, 572550.0, 4508550.0],
+    "footprint_pixels": 5167373,
+    "outside_pixels": 7111787,
+    "verified_from": "training_features.tif, labels.tif and sample_submission.tif opened with rasterio during this session (COMPUTED)"
+  },
+  "files": [
+    {
+      "id": "training_features",
+      "group": "core",
+      "repo": "buffedlizard55-lab/GEMSDOE",
+      "ref": "c0c06ac82178f26b94fce3397036ef8f12a2f3a0",
+      "parts": [
+        "data/bridge/gems-geodawn-numerical-features.tif.part-000",
+        "data/bridge/gems-geodawn-numerical-features.tif.part-001",
+        "data/bridge/gems-geodawn-numerical-features.tif.part-002",
+        "data/bridge/gems-geodawn-numerical-features.tif.part-003",
+        "data/bridge/gems-geodawn-numerical-features.tif.part-004"
+      ],
+      "dest": "training_features.tif",
+      "bytes": 418912844,
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "provenance": "Owner-supplied mirror of the login-walled competition training_features.tif; 19 float32 bands; verified locally this session (band names in descriptions).",
+      "bands": [
+        "mag_anom", "rtp", "tmi_hg", "geod_2ndinv", "iso_grav_anom_slope", "tc", "geod_shearrate",
+        "geod_dilaterate", "tmi_vg", "deq_n100a15", "iso_grav_anom_vg", "det_elev", "iso_grav_anom",
+        "tmi", "depth_to_base_surf", "ieq_n100a15", "cond_surf", "iso_grav_anom_hg", "det_elev_slope"
+      ]
+    },
+    {
+      "id": "labels",
+      "group": "core",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "path": "data/bridge/labels.tif",
+      "dest": "labels.tif",
+      "bytes": 425830,
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "provenance": "Owner-supplied mirror of the competition public catalogue raster (int8; -1 outside footprint, 0 background, 1 catalogue fault).",
+      "verified_values": {"outside": 7111787, "background": 5106385, "catalogue": 60988}
+    },
+    {
+      "id": "sample_submission",
+      "group": "core",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "path": "data/bridge/sample_submission.tif",
+      "dest": "sample_submission.tif",
+      "bytes": 1599597,
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "provenance": "Owner-supplied grid template used for format validation. float32, values {0,1} inside the footprint, NaN outside, nodata=nan.",
+      "irregularity": "IR-31-TEMPLATE-CATALOGUE-CONTENT: the template's 60,988 non-zero cells are exactly the catalogue fault raster, so it is not an all-zero 'total fault absence' sample; it is still the exact-grid template used for CRS/shape/transform/NaN-mask checks."
+    },
+    {
+      "id": "lidar_scarp_features",
+      "group": "external",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "path": "data/external/lidar_scarp_features_u8.tif",
+      "dest": "external/lidar_scarp_features_u8.tif",
+      "bytes": 36943606,
+      "sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+      "provenance": "Derived by this project from USGS 3DEP 1 m DEM tiles (706/716 tiles processed; official bucket URLs) onto the competition grid; uint8 quantised; 12 bands; 0 = no lidar.",
+      "bands": ["ex_max", "ex_mean", "step_max", "lapneg_max", "lappos_max", "downface_max", "upface_max", "cross_max", "relief", "coh100", "strike", "valid"]
+    },
+    {
+      "id": "geodawn_rad",
+      "group": "external",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "path": "data/external/geodawn_rad_u8.tif",
+      "dest": "external/geodawn_rad_u8.tif",
+      "bytes": 26612970,
+      "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+      "provenance": "Derived from the official USGS GeoDAWN airborne radiometric release, sciencebase item 657e1d85d34e23d3533209f7 (DOI 10.5066/P93LGLVQ); contractor K, Th, U and total-count grids resampled to the competition grid.",
+      "bands": ["K", "Th", "U", "TC"]
+    },
+    {
+      "id": "geodawn_extensions",
+      "group": "external",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "path": "data/external/geodawn_extensions_u8.tif",
+      "dest": "external/geodawn_extensions_u8.tif",
+      "bytes": 27132925,
+      "sha256": "a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b",
+      "provenance": "Same official GeoDAWN release; contractor Th/K, U/K, U/Th ratio grids plus TMI upward-continued to 150 m.",
+      "bands": ["ThK", "UK", "UTh", "TMI_up150"]
+    },
+    {
+      "id": "sgmc_faults",
+      "group": "external",
+      "repo": "buffedlizard55-lab/GEMSDOE30",
+      "ref": "666cb3697025766d715a3ae4994fad75a287ad02",
+      "path": "data/external/derived_sgmc_faults_100m_u8.tif",
+      "dest": "external/derived_sgmc_faults_100m_u8.tif",
+      "bytes": 213034,
+      "sha256": "26d142c4c93282cd94f6950ab96f22aeff59fbbea523d43d662e76fa1b161b5c",
+      "provenance": "USGS State Geologic Map Compilation structure layers (NV_structure.shp, CA_structure.shp) rasterised onto the competition grid. Source archives: https://mrdata.usgs.gov/geology/state/shp/NV.zip (69,056,094 B, sha256 3b333ac025e59aae7f0d827db45ba32c425cf867eb341561a788af1de186b76b) and CA.zip (24,977,406 B, sha256 78765ba4428df9f25a84f86e0b2529bd0508fc8a2cf65d2f41a830e82bccfd58); US Government work / public domain.",
+      "verified_values": {"pixels_in_footprint": 82151, "pixels_off_catalogue_gt_300m": 61664}
+    },
+    {
+      "id": "gdr_volcanics",
+      "group": "external",
+      "repo": "buffedlizard55-lab/GEMSDOE30",
+      "ref": "666cb3697025766d715a3ae4994fad75a287ad02",
+      "path": "data/external/derived_gdr_volcanics_100m_u8.tif",
+      "dest": "external/derived_gdr_volcanics_100m_u8.tif",
+      "bytes": 72349,
+      "sha256": "c219bd644e6f7a4071dc429e29b909a2296967b0657bf456bb6675413ee76cb2",
+      "provenance": "INGENIOUS Great Basin Quaternary volcanic flows and vents (GDR 1391, DOI 10.15121/1881483, CC-BY 4.0) rasterised onto the competition grid."
+    },
+    {
+      "id": "gdr_2m_probes",
+      "group": "external",
+      "repo": "buffedlizard55-lab/GEMSDOE30",
+      "ref": "666cb3697025766d715a3ae4994fad75a287ad02",
+      "path": "data/external/derived_gdr_2m_probes_100m_u8.tif",
+      "dest": "external/derived_gdr_2m_probes_100m_u8.tif",
+      "bytes": 78021,
+      "sha256": "7ac3cfdf2412f7f8a8b82d928115888c510f106f0254fb0b3988448db2f3b6ec",
+      "provenance": "INGENIOUS 2 m temperature-probe locations (GDR 1391, CC-BY 4.0) rasterised onto the competition grid."
+    },
+    {
+      "id": "gdr_paleo",
+      "group": "external",
+      "repo": "buffedlizard55-lab/GEMSDOE30",
+      "ref": "666cb3697025766d715a3ae4994fad75a287ad02",
+      "path": "data/external/derived_gdr_paleo_100m_u8.tif",
+      "dest": "external/derived_gdr_paleo_100m_u8.tif",
+      "bytes": 70221,
+      "sha256": "d6a3609bd7943fa5f1126a3cc688441aeceee261a76cd6a90a206830400066a4",
+      "provenance": "INGENIOUS paleo-geothermal system outlines (GDR 1391, CC-BY 4.0) rasterised onto the competition grid."
+    },
+    {
+      "id": "gdr_qfaults_v2",
+      "group": "external",
+      "repo": "buffedlizard55-lab/GEMSDOE30",
+      "ref": "666cb3697025766d715a3ae4994fad75a287ad02",
+      "path": "data/external/derived_gdr_qfaults_v2_100m_u8.tif",
+      "dest": "external/derived_gdr_qfaults_v2_100m_u8.tif",
+      "bytes": 191289,
+      "sha256": "82bdf4e67f16de893caa7a7c16bfe51eac0a712b87db93fff60c1eebef701eb9",
+      "provenance": "Attempted INGENIOUS Quaternary-fault-compilation v2 raster. DO NOT USE AS AN INDEPENDENT LAYER.",
+      "irregularity": "IR-31-QFAULTS-V2-NOT-INDEPENDENT: the producing repository's own receipt (GEMSDOE30 data/external/external_receipt.json) marks this derivation ok=false ('no features intersect the grid'); the committed raster is 99.95% identical to labels.tif (59,037 of 59,065 cells). It is a copy of the competition catalogue, not new information."
+    }
+  ]
+}

@@ -76,6 +76,18 @@ def stage():
             w3_digest = hashlib.file_digest(stream, "sha256").hexdigest()
         if w3_digest != w3["raster_sha256"] or w3["verdict"] != "negative" or w3["decision"]["ok_to_submit"] is not False:
             raise ValueError("staged WBG-3 bytes or negative decision changed")
+    focus9 = json.loads((ROOT / "evidence/focus9_exec/run_card.json").read_text())
+    focus9_path = Path(focus9["artifact"])
+    if (focus9_path.is_absolute() or ".." in focus9_path.parts
+            or focus9_path.parts[:2] != ("docs", "downloads")):
+        raise ValueError("invalid staged Focus-9 research path")
+    with (target / focus9_path).open("rb") as stream:
+        focus9_digest = hashlib.file_digest(stream, "sha256").hexdigest()
+    lower_bound = focus9["correlation_overlap_vs_registry"]["lattice_coverage"]["pigeonhole_min_overlap_for_36800_dots"]
+    if (focus9_digest != focus9["raster_sha256"] or focus9["verdict"] != "negative"
+            or focus9["decision"]["ok_to_submit"] is not False or lower_bound <= .70
+            or focus9["holdout_dti"]["dti"] is not None):
+        raise ValueError("staged Focus-9 research bytes or negative null decision changed")
     w4_digest = None
     w4_card_path = ROOT / "evidence/wbg4/run_card.json"
     if w4_card_path.is_file():
@@ -89,7 +101,8 @@ def stage():
             raise ValueError("staged WBG-4 bytes or negative decision changed")
     print(json.dumps({"staged_site": str(target.relative_to(ROOT)),
         "canonical_path": "/WBGGEMSDOE1/docs/", "root_redirect": "docs/",
-        "artifact_sha256": digest, "wbg2_sha256": wbg2_digest, "wbg_s2_sha256": s2_digest, "wbg3_sha256": w3_digest, "wbg4_sha256": w4_digest, "ok_to_submit": False}))
+        "artifact_sha256": digest, "wbg2_sha256": wbg2_digest, "wbg_s2_sha256": s2_digest,
+        "wbg3_sha256": w3_digest, "focus9_sha256": focus9_digest, "wbg4_sha256": w4_digest, "ok_to_submit": False}))
     return target
 
 

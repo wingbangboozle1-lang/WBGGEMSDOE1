@@ -1,16 +1,88 @@
+## 2026-10-29 STATUS (read first)
+
+- **OK TO SUBMIT: NO, for every file.** No file is cleared. Nine-site summary: [docs/executive-summary-focus9-20261029.md](docs/executive-summary-focus9-20261029.md) (table with file, estimated score, uniqueness).
+- **Leakage confirmed:** the blind-fault-adjacency file's HOLDOUT-DTI 0.4657 falls to **0.0069** when placement uses only visible faults per fold (`evidence/per_fold_recheck_blind_adjacency.json`). It is NEGATIVE.
+- Leaderboard: #1 0.4544 on the public page (2026-10-29). Any project-file score is unverified until an organizer receipt exists.
+- Full standing prompt (from `PROMPT.md`, read every session):
+
+<details open><summary>Standing prompt (PROMPT.md)</summary>
+
+# Session operating prompt (read at the start of every working session)
+
+This file is the standing brief for WBGGEMSDOE1. The original user message is longer (many GEMSDOE URLs). The requirements that actually bind work are here.
+
+## Goal
+
+Place a **unique**, portal-valid GeoTIFF on the DrivenData DOE GEMS Prize (competition 306) path — but **do not spend a weekly slot** unless hide-and-recover DTI beats the current same-evaluator best.
+
+Competition: https://www.drivendata.org/competitions/306/competition-doe-gems/
+Problem: https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
+About: https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/
+Leaderboard: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
+Reference: https://github.com/drivendataorg/gems-prize-reference-solution
+
+## Parallel-run protocol
+
+1. **LANE.** Stay in the declared method. If rank-correlation with any registry raster exceeds 0.90, or more than 70% of dots fall within 3 px of one registry raster, log a duplicate and stop.
+2. **REUSE.** Use `scripts/evaluate_holdout.py` and `scripts/submission_writer.py`. Holdout = hide-and-recover: withhold whole fault segments with a buffer; catalogue-based features from visible faults only; mask visible faults pixel-exactly; pooled DTI (α=0.2, β=0.8, 300 m triangular kernel).
+3. **LABEL EVERY NUMBER** as HOLDOUT-DTI (evaluator version, n withheld positives, 95% CI) or ORGANIZER-CONFIRMED / OWNER-REPORT. A projection is never a score.
+4. **LEAKAGE CANARY.** Test each feature alone on the holdout. AUC > 0.90 means leakage until proven otherwise.
+5. **RUN CARD.** JSON: hypothesis; mechanism; named non-fault mimic; holdout DTI + CI; correlation/overlap vs registry; raster sha256; validator; submission name + ≤140 char note; verdict promote / negative.
+6. **BUDGET.** Stop after 3 experiments or 2 hours. Do not pick live slots.
+
+## Archived artifact (2026-10-28) — WBG-6 NOT APPROVED UNDER ACTIVE LITERAL GATE
+
+- Archived WBG-6 `wbg6-qmh-kdisjoint-30000-20261028`: `docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif`
+  (+ identical one-member `.zip`), SHA-256 `e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9`. **Research download only; do not submit under the active literal registry gate.**
+  30,000 dots, min separation 5 px, zero dots on the catalogue, distance-to-catalogue profile matched to
+  the best reported file (median 20.1 px, p90 73.1 px). Format: 8/8 local checks plus the shared
+  `gems57` gate. Uniqueness: no byte copy among 118 scored rasters, max surface |Spearman| 0.0148,
+  overlap lift 1.47x over a density-matched independent field.
+- Archived score estimate: `0.247` (MODEL-ESTIMATE, range 0.142–0.286; NULL-FLOOR 0.0425), not an observed score. The run card says the underlying holdout fails external validation; do not use this number as leaderboard prediction or submit justification.
+- **Measured hidden-truth size K ≈ 12,395 cells**, calibrated on the one submission with a provably
+  uniform layout (reported 0.0904 reproduced to 0.0002).
+- Older rasters (WBG-C1, TIP1, MVGZ, WBG-H1, WBG-2, WBG-S2, WBG-3, WBG-4) remain **DO NOT SUBMIT**.
+- **Do not** claim this file beats 0.2778 or reaches the leaderboard top. It is not cleared as unique
+  under the active literal overlap rule; reaching higher performance requires authenticated full competition inputs and valid independent holdout evidence.
+
+## Submission contract
+
+- Single-band float32 GeoTIFF, EPSG:32611, 3730×3292, 100 m, sample geotransform.
+- Values in [0, 1]. The reported portal error was “Predicted values must be in range [0, 1]”; its cause is unverified. The local research file uses an all-finite, zero exterior convention, while official instructions say data outside the bounds should be null/NaN. Local validation does not establish organizer acceptance; no current file is approved.
+- Unique name + short note.
+- Homepage must make **OK TO SUBMIT / DO NOT SUBMIT** obvious. Validation is automatic; no human inspector.
+
+## Nine focus sites
+
+GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36.
+
+Highest OWNER-REPORT among them: GEMSDOE32 `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` = **0.2778**.
+
+Question this repo must answer: why that file scored 0.2778, and whether a *unique* file can beat it.
+
+## Core values
+
+Maximize P(Win). Own the Outcome. A negative unique result that prevents a wasted slot is a win relative to a duplicate upload.
+
+</details>
+
+---
+
 ## ⛔ SUBMISSION STATUS: NO CURRENT TIFF CLEARED — DO NOT SUBMIT
 
 The historical WBG-6 approval is superseded: its archived maximum 3-pixel registry overlap is 99.6767%, exceeding the active 70% stop threshold. Its 0.247 value is a MODEL-ESTIMATE, not HOLDOUT-DTI or organizer-confirmed. **Research download only:** [`wbg6-qmh-kdisjoint-30000-20261028.tif`](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif).
 
-A newer concurrently added candidate [`WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif`](docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif) records HOLDOUT-DTI 0.4657, 95% CI [0.4563, 0.4748], evaluator `WBGGEMSDOE1-HIDE-RECOVER-v1.0`, n=60,161. **This is NEGATIVE / DO NOT SUBMIT:** its own run card states it used the full catalogue during placement (holdout leakage risk) and checked only 6 champion rasters, not the full registry. Re-evaluate with per-fold visible catalogues and complete registry checks before promotion.
+A newer concurrently added candidate [`WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif`](docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif) records HOLDOUT-DTI 0.4657, 95% CI [0.4563, 0.4748], evaluator `WBGGEMSDOE1-HIDE-RECOVER-v1.0`, n=60,161. **This is NEGATIVE / DO NOT SUBMIT (2026-10-29 per-fold re-check: 0.0069, leakage confirmed):** its own run card states it used the full catalogue during placement (holdout leakage risk) and checked only 6 champion rasters, not the full registry. Re-evaluate with per-fold visible catalogues and complete registry checks before promotion.
 
-See [current review](docs/repo-review-current-20261028.md), [Focus-9 site comparison](docs/executive-summary.html), and [the standing brief](PROMPT.md). Core values: **Maximize P(Win)** and **Own the Outcome**. Read `PROMPT.md` at the start of every working session.
+See [latest review (29 Oct 2026)](docs/repo-review-20261029.md), [Focus-9 site comparison](docs/executive-summary.html), and [the standing brief](PROMPT.md). Core values: **Maximize P(Win)** and **Own the Outcome**. Read `PROMPT.md` at the start of every working session; it preserves the operating requirements and links.
 
 > Historical approval claims and frozen receipts below are retained for provenance only; these no-go notices supersede them.
 
 # WBG GEMS — evidence-first fault mapping
 
 **[START HERE — 29 Oct 2026 executive summary (download / submit verdicts, estimates, nine-site table)](docs/start-here-20261029.html)** · No file is cleared for submission under the 70% protocol.
+
+**[Repository review (2026-10-29)](docs/repo-review-current-20261029.md)** · no new TIFF approved; core competition inputs are absent and the active method lane is unspecified. Local tests and lint pass. Treat all existing candidate downloads according to their individual negative/STOP decisions.
 
 **[28 October review of earlier lanes](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · No file is cleared; WBG-6 fails the active literal overlap gate.
 

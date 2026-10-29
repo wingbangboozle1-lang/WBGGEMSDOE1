@@ -26,6 +26,23 @@ See [current review](docs/repo-review-current-20261028.md), [Focus-9 site compar
 
 """
 
+def brief_20261029_block():
+    """Top-of-README pointer to the 29 Oct 2026 owner brief, executive summary and live verdict."""
+    run = json.loads((ROOT / "evidence/candidates/wbggemsdoe1-tipgap2km-K12395-20261029.run_card.json").read_text())
+    name = run["name"]
+    canary = run["leakage_canary"]["detached_max_auc"]
+    dup = run["registry_comparison"]["duplicate_count"]
+    return f"""## 29 OCT 2026 STANDING BRIEF — READ FIRST EVERY SESSION
+
+**Owner brief (condensed, official links kept):** [`docs/owner-brief-20261029.md`](docs/owner-brief-20261029.md). Read it at the start of every session, together with this README and [`AGENTS.md`](AGENTS.md).
+
+**Start here:** [Executive summary, 29 Oct 2026](docs/executive-summary-20261029.html) (best-submission table, download and submit verdicts) · [How to submit](docs/how-to-submit-20261029.html)
+
+**Verdict now:** the new research TIFF `{name}` is **DOWNLOAD: {"YES (research)" if run["ok_to_download"] else "NO"}** and **SUBMIT: {"YES" if run["ok_to_submit"] else "NO"}**. Failed gates: leakage canary (detached max AUC {canary:.4f}, above the 0.90 limit) and the literal 70% uniqueness rule ({dup} registry rasters). No slot has been used. GEMSDOE32 B2's 0.2778 is USER-REPORTED, not organizer-confirmed.
+
+"""
+
+
 def main():
     card = json.loads((ROOT / "registry/run_card.json").read_text())
     wbg_h1_rc = json.loads((ROOT / "evidence/wbg_h1/run_card.json").read_text())
@@ -78,7 +95,7 @@ def main():
     w5_comp = w5["correlation_overlap_vs_registry"]["final_dots_competing_method"]
     w5_lit = w5["correlation_overlap_vs_registry"]["final_dots_literal"]
     w5_bench = w5["benchmark"]["dti"]
-    header = wbg6_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
+    header = brief_20261029_block() + wbg6_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
 
 **[28 October review of earlier lanes](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · No file is cleared; WBG-6 fails the active literal overlap gate.
 

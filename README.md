@@ -1,3 +1,11 @@
+## 29 OCT 2026 STANDING BRIEF — READ FIRST EVERY SESSION
+
+**Owner brief (condensed, official links kept):** [`docs/owner-brief-20261029.md`](docs/owner-brief-20261029.md). Read it at the start of every session, together with this README and [`AGENTS.md`](AGENTS.md).
+
+**Start here:** [Executive summary, 29 Oct 2026](docs/executive-summary-20261029.html) (best-submission table, download and submit verdicts) · [How to submit](docs/how-to-submit-20261029.html)
+
+**Verdict now:** the new research TIFF `wbggemsdoe1-tipgap2km-K12395-20261029` is **DOWNLOAD: YES (research)** and **SUBMIT: NO**. Failed gates: leakage canary (detached max AUC 0.9143, above the 0.90 limit) and the literal 70% uniqueness rule (19 registry rasters). No slot has been used. GEMSDOE32 B2's 0.2778 is USER-REPORTED, not organizer-confirmed.
+
 ## ⛔ SUBMISSION STATUS: NO CURRENT TIFF CLEARED — DO NOT SUBMIT
 
 The historical WBG-6 approval is superseded: its archived maximum 3-pixel registry overlap is 99.6767%, exceeding the active 70% stop threshold. Its 0.247 value is a MODEL-ESTIMATE, not HOLDOUT-DTI or organizer-confirmed. **Research download only:** [`wbg6-qmh-kdisjoint-30000-20261028.tif`](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif).

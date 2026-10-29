@@ -1,0 +1,82 @@
+{
+ "schema": "unique-candidate-run-card-v1",
+ "name": "wbggemsdoe1-tipgap2km-K12395-20261029",
+ "note": "Research only: C_tipgap 2 km tip-decay field, K*=12395. Format-valid, unique in-test. Leakage canary FAILED (AUC 0.914). Do NOT submit.",
+ "note_chars": 135,
+ "hypothesis": "Hidden new faults are continuations of visible catalogue fault tips; decay from visible endpoints only.",
+ "mechanism": "Greedy exact-marginal emission (gems57.emit.greedy_allocate) on a probability field scaled to K*=12395 hidden truth cells; field = C_tipgap at 2000 m from the full public catalogue.",
+ "named_non_fault_mimic": "Lithologic contacts and dike margins parallel to mapped faults; alluvial fan edges adjacent to mapped scarps; survey-line artefacts along catalogue traces.",
+ "holdout": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "withholding_mode": "detached",
+  "draw_reported": 21,
+  "dti": 0.13718712444419992,
+  "ci95": [
+   0.1277593806788421,
+   0.14695901528996888
+  ],
+  "withheld_positive_pixels": 11312,
+  "null_matched_budget_dti": 0.06485666836648675,
+  "paired_delta_vs_null": {
+   "evidence_class": "HOLDOUT-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "delta": 0.07233045607771317,
+   "ci95": [
+    0.06419158063886043,
+    0.08076503452816636
+   ],
+   "withheld_positive_pixels": 11312
+  },
+  "all_mode_reference": {
+   "evidence_class": "HOLDOUT-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "dti": 0.14033496238225382,
+   "ci95": [
+    0.13217185959288652,
+    0.14868296130044537
+   ],
+   "withheld_positive_pixels": 11323,
+   "tpw": 4506.5570716380835,
+   "fpw": 110765.74547767319,
+   "fnw": 6816.442928361917
+  }
+ },
+ "leakage_canary": {
+  "threshold": 0.9,
+  "detached_max_auc": 0.9143432540936673,
+  "pass_": false,
+  "all_mode_max_auc": 0.9191351957259052
+ },
+ "registry_comparison": {
+  "expected": 118,
+  "checked": 117,
+  "complete_accessible_scan": false,
+  "duplicate_count": 19,
+  "worst_spearman_full_footprint": 0.3764847884361321,
+  "worst_dot_overlap": 1.0,
+  "worst_overlap_submission": "Hedge-v2_submission",
+  "byte_unique": true,
+  "pixel_unique": true,
+  "unique": false,
+  "verdict": "negative"
+ },
+ "raster": {
+  "path": "docs/downloads/wbggemsdoe1-tipgap2km-K12395-20261029.tif",
+  "sha256": "4f01023dcfa7b57331113e3e107adc3255b17cb5f02f5718858ae0edce2e3338",
+  "zip": "docs/downloads/wbggemsdoe1-tipgap2km-K12395-20261029.zip",
+  "zip_sha256": "d03696f210405ecd01ede41b58b892370327a64d63fc91d7e3e47f2cb430e04c",
+  "dots": 32139,
+  "format_valid": true
+ },
+ "organizer_confirmed_score": null,
+ "leaderboard_estimate": "unavailable: no organizer receipt and holdout does not rank registry files",
+ "gates": {
+  "G1_format": true,
+  "G2_uniqueness_vs_118_registry": false,
+  "G3_leakage_canary_detached": false
+ },
+ "ok_to_download": true,
+ "ok_to_submit": false,
+ "verdict": "negative"
+}

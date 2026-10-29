@@ -138,17 +138,17 @@ small{color:#4a5a60}
 <section>
 <h2>3 · Official public leaderboard (retrieved 2026-10-29)</h2>
 <p>The live page shows #1 at 0.4544. The prompt's figures 0.4413 and 0.3195 do not match that page: 0.3195 is rank #47, not the highest score. Source: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">official leaderboard</a>.</p>
-<table><thead><tr><th>Rank</th><th>Participant</th><th>Best public score</th></tr></thead><tbody><tr><td>#1</td><td>xiaofanhu</td><td>0.4544</td></tr><tr><td>#2</td><td>cfld__</td><td>0.3916</td></tr><tr><td>#5</td><td>op01</td><td>0.3642</td></tr><tr><td>#10</td><td>zeaal</td><td>0.3405</td></tr><tr><td>#47</td><td>kpomazi</td><td>0.3195</td></tr><tr><td>#48</td><td>drjy</td><td>0.3180</td></tr><tr><td>#49</td><td>twang</td><td>0.3169</td></tr><tr><td>#50</td><td>kinneso_outlook</td><td>0.3167</td></tr></tbody></table>
+<div style="overflow-x:auto"><table><thead><tr><th>Rank</th><th>Participant</th><th>Best public score</th></tr></thead><tbody><tr><td>#1</td><td>xiaofanhu</td><td>0.4544</td></tr><tr><td>#2</td><td>cfld__</td><td>0.3916</td></tr><tr><td>#5</td><td>op01</td><td>0.3642</td></tr><tr><td>#10</td><td>zeaal</td><td>0.3405</td></tr><tr><td>#47</td><td>kpomazi</td><td>0.3195</td></tr><tr><td>#48</td><td>drjy</td><td>0.3180</td></tr><tr><td>#49</td><td>twang</td><td>0.3169</td></tr><tr><td>#50</td><td>kinneso_outlook</td><td>0.3167</td></tr></tbody></table></div>
 <p>The historical nine-site values (0.2477–0.2778) sit below the visible top-50 cutoff of 0.3167. Whether those values correspond to a DrivenData public score is unknown: the page does not show the owners' accounts.</p>
 </section>
 
 <section>
 <h2>4 · Why GEMSDOE32 B2 scored 0.2778 (verified mechanism, user-reported scores)</h2>
-<table><thead><tr><th>Step</th><th>File family</th><th>Positives</th><th>Removed</th><th>USER-REPORTED</th><th>Within 300 m of catalogue</th></tr></thead><tbody>
+<div style="overflow-x:auto"><table><thead><tr><th>Step</th><th>File family</th><th>Positives</th><th>Removed</th><th>USER-REPORTED</th><th>Within 300 m of catalogue</th></tr></thead><tbody>
 <tr><td>D2.8</td><td>GEMSDOE25 / GEMSDOE30 (identical sets)</td><td>44,090</td><td>—</td><td>0.2600</td><td>19.5%</td></tr>
 <tr><td>B1</td><td>GEMSDOE31 (= GEMSDOE28 solo)</td><td>40,199</td><td>3,891 within 100 m (≤1 px); measured 3,891</td><td>0.2708</td><td>11.7%</td></tr>
 <tr><td>B2</td><td>GEMSDOE32 · 0.2778 file</td><td>37,654</td><td>2,545 more within 200 m (≤2 px); measured 2,545 at ≤2 px in B1</td><td>0.2778</td><td>5.8% (0 within 200 m)</td></tr>
-</tbody></table>
+</tbody></table></div>
 <p><b>Verified from the raster bytes:</b> B2 has zero dots within 200 m of the catalogue. Its 2,171 near-catalogue dots lie between 200 m and 300 m from the catalogue. D2.8 → B1 → B2 is a pure removal ladder: B2 ⊂ B1 ⊂ D2.8, and GEMSDOE36 = B2 + 1,200 dots. The user-reported lineage rises +0.0108 then +0.0070 with each removal.</p>
 <p><b>Mechanism (plausible, not proven):</b> under the official metric (α = 0.2 for false positives, β = 0.8 for false negatives, 300 m triangular kernel), a dot near a <i>known</i> mapped fault is charged as a false positive unless a hidden new fault lies within the kernel. Removing dots that carry no hidden-fault credit lowers the false-positive term at little cost to true-positive credit. This is the "precision by exclusion" explanation, consistent with the lineage. It is not a causal proof: hidden labels are unavailable and the scores are user-reported.</p>
 <p><b>Descriptive pattern (n = 9 distinct positive sets):</b> Spearman ρ = -0.93, p ≈ 0.0002 between the share of dots within 300 m of the catalogue and the user-reported score. Fewer near-catalogue dots goes with a higher reported score. This is the strongest pattern we found, and it is the first hypothesis to test. The caveat is that the scores are unverified and the files come from one family.</p>
@@ -167,11 +167,11 @@ small{color:#4a5a60}
 
 <section>
 <h2>6 · Candidate hypotheses (ranked, none tested; none may be presented as a score)</h2>
-<table><thead><tr><th>Rank · cost · expected benefit</th><th>Layers and operator</th><th>Physical signature / why a missing fault would respond</th><th>Named non-fault mimic</th><th>Difference from the repo</th></tr></thead><tbody>
+<div style="overflow-x:auto"><table><thead><tr><th>Rank · cost · expected benefit</th><th>Layers and operator</th><th>Physical signature / why a missing fault would respond</th><th>Named non-fault mimic</th><th>Difference from the repo</th></tr></thead><tbody>
 <tr><td>1 · low cost (labels only) · highest measured lead</td><td>Public catalogue <code>labels.tif</code> only. Test the 0.2778 removal ladder (D2.8 → B1 → B2 → ≥3 px) on the holdout with per-fold visible catalogues.</td><td>Hidden new faults are not on mapped traces. If they lie more than 300 m from known faults, near-catalogue dots are false positives. Signature: distance-to-catalogue histogram of hidden positives.</td><td>Mapping bias: faults are mapped where they are already known or accessible (roads, claims).</td><td>Tests the metric prior directly. The lineage was built with the full catalogue, so it must be regenerated per fold before any score claim.</td></tr>
 <tr><td>2 · medium–high cost (needs stack) · uncertain</td><td>19-band stack. Compute a calibrated per-cell posterior of "hidden fault within 300 m" and choose dots by the metric's expected-value rule (α = 0.2, β = 0.8), not by fixed coverage.</td><td>Expected value of a dot = P(hidden fault in kernel) minus the false-positive cost. The metric's asymmetry makes thresholds matter more than ranking.</td><td>Calibration drift between catalogue-trained labels and hidden labels.</td><td>Differs from max-cover/CELF families: the decision is made on calibrated probabilities, not coverage.</td></tr>
 <tr><td>3 · low cost · methodological</td><td>Labels only. Measure how close withheld catalogue segments lie to visible segments at buffers of 0, 1, 2, 3 px, and compare with the nine-site near-catalogue shares.</td><td>Checks whether the holdout's 3 px buffer matches the hidden set's distance distribution. If it does not, the holdout will mis-rank catalogue-adjacent strategies.</td><td>Holdout artefact: buffers remove the very adjacency the metric rewards.</td><td>A check on the evaluator, not a new geology claim. Required before H1 or H2 is trusted.</td></tr>
-</tbody></table>
+</tbody></table></div>
 </section>
 
 <section id="irregularities">

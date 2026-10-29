@@ -267,7 +267,7 @@ def decision_banner():
     """First thing on the homepage: the single, unambiguous submit decision (29 Oct 2026)."""
     audit = load("docs/data/nine_site_audit_20261029.json")
     best = next(f for f in audit["files"] if f["site"] == "GEMSDOE32")
-    return ('<div class="alert" role="alert" style="border:4px solid #a32626;background:#fff">'
+    return ('<div class="alert" role="alert" style="border:4px solid #a32626;background:#fff"><div style="min-width:0">'
             '<p style="font-size:20px;margin:0 0 6px"><strong style="color:#a32626">SUBMIT: NO. No file is cleared.</strong></p>'
             '<p><strong>DOWNLOAD:</strong> research only. <strong>Estimated leaderboard score:</strong> UNAVAILABLE for every file here '
             '(no holdout or organizer score can be computed in this sandbox). Live public leaderboard #1 is 0.4544; the 50th row is 0.3167.</p>'
@@ -275,7 +275,7 @@ def decision_banner():
             'It is already in the competition, so it is a duplicate and must not be uploaded again. '
             f'Its SHA-256 is <code>{best["sha256"][:16]}…</code>.</p>'
             '<p><a href="executive-summary-20261029.html"><strong>Open the 29 Oct executive summary: nine-site decision table, '
-            'why 0.2778 scored, blockers, and ranked hypotheses →</strong></a></p></div>')
+            'why 0.2778 scored, blockers, and ranked hypotheses →</strong></a></p></div></div>')
 
 
 def home(card, receipt, audit, feed):

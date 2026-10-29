@@ -79,7 +79,6 @@ def main() -> None:
 </tr>""")
 
     lb = "".join(f"<tr><td>{r}</td><td>{esc(u)}</td><td>{s}</td></tr>" for r, u, s in LEADERBOARD)
-    stats = {f["key"]: f for f in files}
     b2 = next(f for f in files if f["site"] == "GEMSDOE32")
     d28 = next(f for f in files if f["key"] == "GEMSDOE25:dotted-h19-5-d2-8-20261002-e56ea318af89-nan")
     b1 = next(f for f in files if f["key"] == "GEMSDOE31:h27-4-solo-d28-20261004-8acb75e1-nan")
@@ -87,11 +86,11 @@ def main() -> None:
     assert b2["n_positive"] == 37654 and b2["n_positive_within_2px"] == 0, "B2 identity changed"
     assert d28["n_positive"] == 44090 and b1["n_positive"] == 40199, "lineage counts changed"
 
-    lineage = f"""<table><thead><tr><th>Step</th><th>File family</th><th>Positives</th><th>Removed</th><th>USER-REPORTED</th><th>Within 300 m of catalogue</th></tr></thead><tbody>
+    lineage = f"""<div style="overflow-x:auto"><table><thead><tr><th>Step</th><th>File family</th><th>Positives</th><th>Removed</th><th>USER-REPORTED</th><th>Within 300 m of catalogue</th></tr></thead><tbody>
 <tr><td>D2.8</td><td>GEMSDOE25 / GEMSDOE30 (identical sets)</td><td>{d28["n_positive"]:,}</td><td>—</td><td>0.2600</td><td>{pct(d28["frac_positive_within_3px"])}</td></tr>
 <tr><td>B1</td><td>GEMSDOE31 (= GEMSDOE28 solo)</td><td>{b1["n_positive"]:,}</td><td>{d28["n_positive"] - b1["n_positive"]:,} within 100 m (≤1 px); measured {d28["n_positive_within_1px"]:,}</td><td>0.2708</td><td>{pct(b1["frac_positive_within_3px"])}</td></tr>
 <tr><td>B2</td><td>GEMSDOE32 · 0.2778 file</td><td>{b2["n_positive"]:,}</td><td>{b1["n_positive"] - b2["n_positive"]:,} more within 200 m (≤2 px); measured {b1["n_positive_within_2px"]:,} at ≤2 px in B1</td><td>0.2778</td><td>{pct(b2["frac_positive_within_3px"])} (0 within 200 m)</td></tr>
-</tbody></table>"""
+</tbody></table></div>"""
 
     checks = "".join(f"<li><b>{esc(f['site'])}</b> <code>{esc(f['name'][:44])}</code>: float32, EPSG:{f['crs_epsg']}, shape {f['shape'][0]}×{f['shape'][1]}, transform matches reference: {f['transform_matches_official']}, values in [0,1]: {f['n_outside_0_1'] == 0} ({f['value_min']:g}–{f['value_max']:g}), NaN footprint matches official sample: {f['nan_mask_matches_official_sample']}</li>" for f in files)
 
@@ -136,7 +135,7 @@ small{{color:#4a5a60}}
 <section>
 <h2>3 · Official public leaderboard (retrieved 2026-10-29)</h2>
 <p>The live page shows #1 at 0.4544. The prompt's figures 0.4413 and 0.3195 do not match that page: 0.3195 is rank #47, not the highest score. Source: <a href="{SRC["leaderboard"]}">official leaderboard</a>.</p>
-<table><thead><tr><th>Rank</th><th>Participant</th><th>Best public score</th></tr></thead><tbody>{lb}</tbody></table>
+<div style="overflow-x:auto"><table><thead><tr><th>Rank</th><th>Participant</th><th>Best public score</th></tr></thead><tbody>{lb}</tbody></table></div>
 <p>The historical nine-site values (0.2477–0.2778) sit below the visible top-50 cutoff of 0.3167. Whether those values correspond to a DrivenData public score is unknown: the page does not show the owners' accounts.</p>
 </section>
 
@@ -161,11 +160,11 @@ small{{color:#4a5a60}}
 
 <section>
 <h2>6 · Candidate hypotheses (ranked, none tested; none may be presented as a score)</h2>
-<table><thead><tr><th>Rank · cost · expected benefit</th><th>Layers and operator</th><th>Physical signature / why a missing fault would respond</th><th>Named non-fault mimic</th><th>Difference from the repo</th></tr></thead><tbody>
+<div style="overflow-x:auto"><table><thead><tr><th>Rank · cost · expected benefit</th><th>Layers and operator</th><th>Physical signature / why a missing fault would respond</th><th>Named non-fault mimic</th><th>Difference from the repo</th></tr></thead><tbody>
 <tr><td>1 · low cost (labels only) · highest measured lead</td><td>Public catalogue <code>labels.tif</code> only. Test the 0.2778 removal ladder (D2.8 → B1 → B2 → ≥3 px) on the holdout with per-fold visible catalogues.</td><td>Hidden new faults are not on mapped traces. If they lie more than 300 m from known faults, near-catalogue dots are false positives. Signature: distance-to-catalogue histogram of hidden positives.</td><td>Mapping bias: faults are mapped where they are already known or accessible (roads, claims).</td><td>Tests the metric prior directly. The lineage was built with the full catalogue, so it must be regenerated per fold before any score claim.</td></tr>
 <tr><td>2 · medium–high cost (needs stack) · uncertain</td><td>19-band stack. Compute a calibrated per-cell posterior of "hidden fault within 300 m" and choose dots by the metric's expected-value rule (α = 0.2, β = 0.8), not by fixed coverage.</td><td>Expected value of a dot = P(hidden fault in kernel) minus the false-positive cost. The metric's asymmetry makes thresholds matter more than ranking.</td><td>Calibration drift between catalogue-trained labels and hidden labels.</td><td>Differs from max-cover/CELF families: the decision is made on calibrated probabilities, not coverage.</td></tr>
 <tr><td>3 · low cost · methodological</td><td>Labels only. Measure how close withheld catalogue segments lie to visible segments at buffers of 0, 1, 2, 3 px, and compare with the nine-site near-catalogue shares.</td><td>Checks whether the holdout's 3 px buffer matches the hidden set's distance distribution. If it does not, the holdout will mis-rank catalogue-adjacent strategies.</td><td>Holdout artefact: buffers remove the very adjacency the metric rewards.</td><td>A check on the evaluator, not a new geology claim. Required before H1 or H2 is trusted.</td></tr>
-</tbody></table>
+</tbody></table></div>
 </section>
 
 <section id="irregularities">

@@ -1,0 +1,160 @@
+{
+  "schema": "gemsdoe1-focus9-summary-20261029-v1",
+  "headline": {
+    "ok_to_submit_any_file": "NO",
+    "ok_to_download_any_file": "RESEARCH ONLY - no file is cleared",
+    "best_owner_reported_focus_file": "GEMSDOE32 h33-h33-2-b2 = 0.2778 (OWNER-REPORTED, not organizer-confirmed)",
+    "leaderboard_rank1_public_observation": "0.4544 (xiaofanhu), drivendata leaderboard page 2026-10-29",
+    "leaky_claim_retracted": "WBGGEMSDOE1 blind-fault-adjacency HOLDOUT-DTI 0.4657 reproduces but is leakage: per-fold visible-only = 0.0069"
+  },
+  "rows": [
+    {
+      "site": "GEMSDOE24",
+      "file": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/fc2bc6f350bf5c6ce8da5d7a2ab03578ea1259d1/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "owner_reported_score": 0.2477,
+      "evidence_class": "OWNER-REPORTED / UNVERIFIED (no organizer receipt)",
+      "estimated_leaderboard_score": null,
+      "estimated_leaderboard_score_text": "Not estimable: no validated estimator (proxy-vs-score Spearman 0.144, p=0.12, n=118)",
+      "unique_vs_other_focus_sites": false,
+      "max_3px_overlap_vs_other_focus_sites": 1.0,
+      "unique_reason": "FAIL: 3 px overlap with another focus-site file = 1.0000 (> 0.70 gate)",
+      "decision": "DO NOT SUBMIT"
+    },
+    {
+      "site": "GEMSDOE25",
+      "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/e40b9b5e3871cb34d138f586bde97f5099658d01/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "owner_reported_score": 0.26,
+      "evidence_class": "OWNER-REPORTED / UNVERIFIED (no organizer receipt)",
+      "estimated_leaderboard_score": null,
+      "estimated_leaderboard_score_text": "Not estimable: no validated estimator (proxy-vs-score Spearman 0.144, p=0.12, n=118)",
+      "unique_vs_other_focus_sites": false,
+      "max_3px_overlap_vs_other_focus_sites": 1.0,
+      "unique_reason": "FAIL: 3 px overlap with another focus-site file = 1.0000 (> 0.70 gate)",
+      "decision": "DO NOT SUBMIT"
+    },
+    {
+      "site": "GEMSDOE27",
+      "file": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/927322eadbde56be42ae129ccdfb9b37540d8e60/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "owner_reported_score": 0.2449,
+      "evidence_class": "OWNER-REPORTED / UNVERIFIED (no organizer receipt)",
+      "estimated_leaderboard_score": null,
+      "estimated_leaderboard_score_text": "Not estimable: no validated estimator (proxy-vs-score Spearman 0.144, p=0.12, n=118)",
+      "unique_vs_other_focus_sites": false,
+      "max_3px_overlap_vs_other_focus_sites": 0.9802,
+      "unique_reason": "FAIL: 3 px overlap with another focus-site file = 0.9802 (> 0.70 gate)",
+      "decision": "DO NOT SUBMIT"
+    },
+    {
+      "site": "GEMSDOE28",
+      "file": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/e6321461066f89080e3b1bb670d3951ab20d3638/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "owner_reported_score": 0.271,
+      "evidence_class": "OWNER-REPORTED / UNVERIFIED (no organizer receipt)",
+      "estimated_leaderboard_score": null,
+      "estimated_leaderboard_score_text": "Not estimable: no validated estimator (proxy-vs-score Spearman 0.144, p=0.12, n=118)",
+      "unique_vs_other_focus_sites": false,
+      "max_3px_overlap_vs_other_focus_sites": 1.0,
+      "unique_reason": "FAIL: 3 px overlap with another focus-site file = 1.0000 (> 0.70 gate)",
+      "decision": "DO NOT SUBMIT"
+    },
+    {
+      "site": "GEMSDOE30",
+      "file": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/760af3005dd40b9f36d8fef97d6dc384fd9f2a2f/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "owner_reported_score": 0.26,
+      "evidence_class": "OWNER-REPORTED / UNVERIFIED (no organizer receipt)",
+      "estimated_leaderboard_score": null,
+      "estimated_leaderboard_score_text": "Not estimable: no validated estimator (proxy-vs-score Spearman 0.144, p=0.12, n=118)",
+      "unique_vs_other_focus_sites": false,
+      "max_3px_overlap_vs_other_focus_sites": 1.0,
+      "unique_reason": "FAIL: 3 px overlap with another focus-site file = 1.0000 (> 0.70 gate)",
+      "decision": "DO NOT SUBMIT"
+    },
+    {
+      "site": "GEMSDOE31",
+      "file": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/597b04cd1afb65d1ebbe3e9417fd952be48e3d74/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "owner_reported_score": 0.2708,
+      "evidence_class": "OWNER-REPORTED / UNVERIFIED (no organizer receipt)",
+      "estimated_leaderboard_score": null,
+      "estimated_leaderboard_score_text": "Not estimable: no validated estimator (proxy-vs-score Spearman 0.144, p=0.12, n=118)",
+      "unique_vs_other_focus_sites": false,
+      "max_3px_overlap_vs_other_focus_sites": 1.0,
+      "unique_reason": "FAIL: 3 px overlap with another focus-site file = 1.0000 (> 0.70 gate)",
+      "decision": "DO NOT SUBMIT"
+    },
+    {
+      "site": "GEMSDOE32",
+      "file": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/5fc7792c5887735ecd3aa9a612787da588a7bf2c/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "owner_reported_score": 0.2778,
+      "evidence_class": "OWNER-REPORTED / UNVERIFIED (no organizer receipt)",
+      "estimated_leaderboard_score": null,
+      "estimated_leaderboard_score_text": "Not estimable: no validated estimator (proxy-vs-score Spearman 0.144, p=0.12, n=118)",
+      "unique_vs_other_focus_sites": false,
+      "max_3px_overlap_vs_other_focus_sites": 1.0,
+      "unique_reason": "FAIL: 3 px overlap with another focus-site file = 1.0000 (> 0.70 gate)",
+      "decision": "DO NOT SUBMIT"
+    },
+    {
+      "site": "GEMSDOE33",
+      "file": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/f618cc54773bd9b4d6c2b3ebf78103a05cc10cb6/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "owner_reported_score": 0.2632,
+      "evidence_class": "OWNER-REPORTED / UNVERIFIED (no organizer receipt)",
+      "estimated_leaderboard_score": null,
+      "estimated_leaderboard_score_text": "Not estimable: no validated estimator (proxy-vs-score Spearman 0.144, p=0.12, n=118)",
+      "unique_vs_other_focus_sites": false,
+      "max_3px_overlap_vs_other_focus_sites": 0.9971,
+      "unique_reason": "FAIL: 3 px overlap with another focus-site file = 0.9971 (> 0.70 gate)",
+      "decision": "DO NOT SUBMIT"
+    },
+    {
+      "site": "GEMSDOE36",
+      "file": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/c5a8ae7da3bd2fcff5aa5855afd44c7a3346c16/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "owner_reported_score": 0.275,
+      "evidence_class": "OWNER-REPORTED / UNVERIFIED (no organizer receipt)",
+      "estimated_leaderboard_score": null,
+      "estimated_leaderboard_score_text": "Not estimable: no validated estimator (proxy-vs-score Spearman 0.144, p=0.12, n=118)",
+      "unique_vs_other_focus_sites": false,
+      "max_3px_overlap_vs_other_focus_sites": 0.9758,
+      "unique_reason": "FAIL: 3 px overlap with another focus-site file = 0.9758 (> 0.70 gate)",
+      "decision": "DO NOT SUBMIT"
+    },
+    {
+      "site": "WBGGEMSDOE1 (this repo)",
+      "file": "WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif",
+      "download_url": "https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif",
+      "owner_reported_score": null,
+      "evidence_class": "HOLDOUT-DTI, leakage-corrected per fold (evaluator WBGGEMSDOE1-HIDE-RECOVER-v1.0, n=60161 withheld positives; CI not recomputed)",
+      "holdout_dti_archived_leaky": 0.46570455816360007,
+      "holdout_dti_archived_leaky_ci95": [
+        0.45625939157121076,
+        0.4747908528873552
+      ],
+      "holdout_dti_per_fold_visible_only": 0.006945589801501288,
+      "benchmark_holdout_dti": 0.16606,
+      "estimated_leaderboard_score": null,
+      "estimated_leaderboard_score_text": "Not estimable: no validated estimator (proxy-vs-score Spearman 0.144, p=0.12, n=118)",
+      "unique_vs_other_focus_sites": null,
+      "unique_reason": "Format-valid, zeros outside footprint; registry uniqueness not fully re-checked this session",
+      "decision": "DO NOT SUBMIT (download = research only)"
+    }
+  ],
+  "leakage_recheck": {
+    "source": "evidence/per_fold_recheck_blind_adjacency.json",
+    "verdict": "NEGATIVE",
+    "canary_status": "PASS",
+    "canary_auc_distance_alone": 0.8287477893614652,
+    "canary_auc_emission_surface": 0.378464599977991
+  },
+  "proxy_audit": {
+    "source": "evidence/holdout_proxy_portfolio.json",
+    "spearman": 0.14392765973058838,
+    "spearman_p": 0.11996541394461034
+  }
+}

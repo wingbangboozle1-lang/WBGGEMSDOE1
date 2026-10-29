@@ -58,7 +58,6 @@ import sys
 sys.path.insert(0, str(ROOT / "src"))
 
 from gems import submission, holdout  # noqa: E402
-from gems.metric import dti_score_fast  # noqa: E402
 
 NAME = "wbg7-blind-tip-splay-relay-30000-20261028-zeros"
 N_DOTS = 30000

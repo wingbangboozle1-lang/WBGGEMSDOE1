@@ -10,6 +10,8 @@ See [current review](docs/repo-review-current-20261028.md), [Focus-9 site compar
 
 # WBG GEMS — evidence-first fault mapping
 
+**[START HERE — 29 Oct 2026 executive summary (download / submit verdicts, estimates, nine-site table)](docs/start-here-20261029.html)** · No file is cleared for submission under the 70% protocol.
+
 **[28 October review of earlier lanes](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · No file is cleared; WBG-6 fails the active literal overlap gate.
 
 **[Current repository review (2026-10-28)](docs/repo-review-current-20261028.md)** · [Detailed repository review](docs/repo-review-20261028.md) · [Earlier repository review and ranked future hypotheses](docs/repo-review-20261027-session.md) ·

@@ -1,8 +1,16 @@
+## 29 OCT 2026 STANDING BRIEF — READ FIRST EVERY SESSION
+
+**Owner brief (condensed, official links kept):** [`docs/owner-brief-20261029.md`](docs/owner-brief-20261029.md). Read it at the start of every session, together with this README and [`AGENTS.md`](AGENTS.md).
+
+**Unique-lane summary:** [Unique-lane results, 29 Oct 2026](docs/unique-lane-summary-20261029.html) (holdout arms, canary, the candidate file) · [How to submit](docs/how-to-submit-20261029.html) · [29 Oct executive summary](docs/executive-summary-20261029.html)
+
+**Verdict now:** the new research TIFF `wbggemsdoe1-tipgap2km-K12395-20261029` is **DOWNLOAD: YES (research)** and **SUBMIT: NO**. Failed gates: leakage canary (detached max AUC 0.9143, above the 0.90 limit) and the literal 70% uniqueness rule (19 registry rasters). No slot has been used. GEMSDOE32 B2's 0.2778 is USER-REPORTED, not organizer-confirmed.
+
 ## ⛔ SUBMISSION STATUS (29 Oct 2026): SUBMIT NO — NO FILE IS CLEARED
 
 **Start here:** [29 Oct executive summary — nine-site decision table, why GEMSDOE32 B2 scored 0.2778, blockers, ranked hypotheses](docs/executive-summary-20261029.html) · [verified nine-site audit](docs/data/nine_site_audit_20261029.json) · [irregularities flagged for review](docs/executive-summary-20261029.html#irregularities).
 
-Estimated leaderboard score: **UNAVAILABLE** for every file here (no holdout or organizer score is computable in this sandbox). Live public leaderboard #1 is **0.4544**; the 50th row is **0.3167** (DrivenData page retrieved 2026-10-29). GEMSDOE32 B2 (0.2778, USER-REPORTED) is already in the competition: re-uploading it is a duplicate.
+Estimated leaderboard score: **UNAVAILABLE** for every file here (no holdout or organizer score is computable in this sandbox). Live public leaderboard #1 is **0.4544**; the 50th row read this session is **0.3169** (the board moves: another read recorded 0.3167) (DrivenData page retrieved 2026-10-29). GEMSDOE32 B2 (0.2778, USER-REPORTED) is already in the competition: re-uploading it is a duplicate.
 
 ---
 

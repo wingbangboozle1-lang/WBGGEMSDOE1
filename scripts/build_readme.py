@@ -18,7 +18,7 @@ def wbg6_readme_block():
 
 **Start here:** [29 Oct executive summary — nine-site decision table, why GEMSDOE32 B2 scored 0.2778, blockers, ranked hypotheses](docs/executive-summary-20261029.html) · [verified nine-site audit](docs/data/nine_site_audit_20261029.json) · [irregularities flagged for review](docs/executive-summary-20261029.html#irregularities).
 
-Estimated leaderboard score: **UNAVAILABLE** for every file here (no holdout or organizer score is computable in this sandbox). Live public leaderboard #1 is **0.4544**; the 50th row is **0.3167** (DrivenData page retrieved 2026-10-29). GEMSDOE32 B2 (0.2778, USER-REPORTED) is already in the competition: re-uploading it is a duplicate.
+Estimated leaderboard score: **UNAVAILABLE** for every file here (no holdout or organizer score is computable in this sandbox). Live public leaderboard #1 is **0.4544**; the 50th row read this session is **0.3169** (the board moves: another read recorded 0.3167) (DrivenData page retrieved 2026-10-29). GEMSDOE32 B2 (0.2778, USER-REPORTED) is already in the competition: re-uploading it is a duplicate.
 
 ---
 
@@ -33,6 +33,23 @@ See [latest review (29 Oct 2026)](docs/repo-review-20261029.md), [Focus-9 site c
 > Historical approval claims and frozen receipts below are retained for provenance only; these no-go notices supersede them.
 
 """
+
+def brief_20261029_block():
+    """Top-of-README pointer to the 29 Oct 2026 owner brief, executive summary and live verdict."""
+    run = json.loads((ROOT / "evidence/candidates/wbggemsdoe1-tipgap2km-K12395-20261029.run_card.json").read_text())
+    name = run["name"]
+    canary = run["leakage_canary"]["detached_max_auc"]
+    dup = run["registry_comparison"]["duplicate_count"]
+    return f"""## 29 OCT 2026 STANDING BRIEF — READ FIRST EVERY SESSION
+
+**Owner brief (condensed, official links kept):** [`docs/owner-brief-20261029.md`](docs/owner-brief-20261029.md). Read it at the start of every session, together with this README and [`AGENTS.md`](AGENTS.md).
+
+**Unique-lane summary:** [Unique-lane results, 29 Oct 2026](docs/unique-lane-summary-20261029.html) (holdout arms, canary, the candidate file) · [How to submit](docs/how-to-submit-20261029.html) · [29 Oct executive summary](docs/executive-summary-20261029.html)
+
+**Verdict now:** the new research TIFF `{name}` is **DOWNLOAD: {"YES (research)" if run["ok_to_download"] else "NO"}** and **SUBMIT: {"YES" if run["ok_to_submit"] else "NO"}**. Failed gates: leakage canary (detached max AUC {canary:.4f}, above the 0.90 limit) and the literal 70% uniqueness rule ({dup} registry rasters). No slot has been used. GEMSDOE32 B2's 0.2778 is USER-REPORTED, not organizer-confirmed.
+
+"""
+
 
 def main():
     card = json.loads((ROOT / "registry/run_card.json").read_text())
@@ -86,7 +103,7 @@ def main():
     w5_comp = w5["correlation_overlap_vs_registry"]["final_dots_competing_method"]
     w5_lit = w5["correlation_overlap_vs_registry"]["final_dots_literal"]
     w5_bench = w5["benchmark"]["dti"]
-    header = wbg6_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
+    header = brief_20261029_block() + wbg6_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
 
 **[START HERE — 29 Oct 2026 executive summary (download / submit verdicts, estimates, nine-site table)](docs/start-here-20261029.html)** · No file is cleared for submission under the 70% protocol.
 **[Repository review (2026-10-29)](docs/repo-review-current-20261029.md)** · no new TIFF approved; core competition inputs are absent and the active method lane is unspecified. Local tests and lint pass. Treat all existing candidate downloads according to their individual negative/STOP decisions.

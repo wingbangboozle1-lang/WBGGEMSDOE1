@@ -1,0 +1,470 @@
+{
+ "schema": "unique-candidate-lane-v1",
+ "evaluator_version": "gems57-pooled-hide-v2",
+ "withholding_mode": "detached",
+ "evidence_class": "HOLDOUT-DTI",
+ "k_rule": "K_cell = 0.25 * visible catalogue in domain (non-leaky)",
+ "selection_draw": 20,
+ "report_draw": 21,
+ "arms": {
+  "A_decay@2000m": {
+   "arm": "A_decay",
+   "param_m": 2000.0,
+   "draw20": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.12565385330173415,
+    "ci95": [
+     0.11723281568814146,
+     0.1343448351784177
+    ],
+    "withheld_positive_pixels": 11307,
+    "tpw": 4248.771996197915,
+    "fpw": 119589.75022160012,
+    "fnw": 7058.228003802082
+   },
+   "draw21": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.1265605689295369,
+    "ci95": [
+     0.11729215958474964,
+     0.13615739840020208
+    ],
+    "withheld_positive_pixels": 11312,
+    "tpw": 4290.119403171976,
+    "fpw": 119950.66527353552,
+    "fnw": 7021.880596828027
+   },
+   "draw21_null": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.06501172158972973,
+    "ci95": [
+     0.05765612221493534,
+     0.07324844626071449
+    ],
+    "withheld_positive_pixels": 11312,
+    "tpw": 2244.9631077838444,
+    "fpw": 125165.37087321425,
+    "fnw": 9067.036892216149
+   },
+   "draw21_paired_vs_null": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.06154884733980717,
+    "ci95": [
+     0.05424934871297408,
+     0.06968950230716522
+    ],
+    "withheld_positive_pixels": 11312
+   },
+   "draw20_paired_vs_null": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.05981832313659263,
+    "ci95": [
+     0.05288209364525428,
+     0.06724865519370116
+    ],
+    "withheld_positive_pixels": 11307
+   },
+   "canary_auc_max": 0.9025481923273879,
+   "canary_auc_per_cell": [
+    0.8977814182949726,
+    0.8870140202479221,
+    0.8704716078054802,
+    0.8599525535496989,
+    0.9025481923273879,
+    0.8858900705173529,
+    0.858300554822256,
+    0.8698983980272029
+   ],
+   "cells": [
+    {
+     "cell": "draw20_foldNW_detached",
+     "dti": 0.12303211835414375,
+     "n_emitted": 32417,
+     "withheld_positive_pixels": 1919,
+     "K_cell": 1916.5,
+     "null_dti": 0.055867567471932306
+    },
+    {
+     "cell": "draw20_foldNE_detached",
+     "dti": 0.11472588878118332,
+     "n_emitted": 29144,
+     "withheld_positive_pixels": 2361,
+     "K_cell": 2354.0,
+     "null_dti": 0.05056096174244527
+    },
+    {
+     "cell": "draw20_foldSW_detached",
+     "dti": 0.12874948919309617,
+     "n_emitted": 30846,
+     "withheld_positive_pixels": 3778,
+     "K_cell": 3775.75,
+     "null_dti": 0.07483952737382296
+    },
+    {
+     "cell": "draw20_foldSE_detached",
+     "dti": 0.13393399577178955,
+     "n_emitted": 33619,
+     "withheld_positive_pixels": 3249,
+     "K_cell": 3243.0,
+     "null_dti": 0.07812877314808804
+    },
+    {
+     "cell": "draw21_foldNW_detached",
+     "dti": 0.12403932620394668,
+     "n_emitted": 34522,
+     "withheld_positive_pixels": 1924,
+     "K_cell": 1915.25,
+     "null_dti": 0.047358187846959304
+    },
+    {
+     "cell": "draw21_foldNE_detached",
+     "dti": 0.11829876609507435,
+     "n_emitted": 29105,
+     "withheld_positive_pixels": 2358,
+     "K_cell": 2354.75,
+     "null_dti": 0.051156835279908726
+    },
+    {
+     "cell": "draw21_foldSW_detached",
+     "dti": 0.1272080934683728,
+     "n_emitted": 31568,
+     "withheld_positive_pixels": 3781,
+     "K_cell": 3775.0,
+     "null_dti": 0.07112286058111825
+    },
+    {
+     "cell": "draw21_foldSE_detached",
+     "dti": 0.1355406593911147,
+     "n_emitted": 31129,
+     "withheld_positive_pixels": 3249,
+     "K_cell": 3243.0,
+     "null_dti": 0.08744042465389434
+    }
+   ]
+  },
+  "A_decay@4000m": {
+   "arm": "A_decay",
+   "param_m": 4000.0,
+   "draw20": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.11746395584146131,
+    "ci95": [
+     0.10949879433677867,
+     0.12525416510063325
+    ],
+    "withheld_positive_pixels": 11307,
+    "tpw": 3827.075478215658,
+    "fpw": 113849.17250152135,
+    "fnw": 7479.924521784342
+   },
+   "draw21": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.12394738932016039,
+    "ci95": [
+     0.11529948341861003,
+     0.1332077977055344
+    ],
+    "withheld_positive_pixels": 11312,
+    "tpw": 4205.823439175435,
+    "fpw": 120207.81535144272,
+    "fnw": 7106.17656082457
+   },
+   "draw21_null": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.0634563586348272,
+    "ci95": [
+     0.05663376100243872,
+     0.07063868694250568
+    ],
+    "withheld_positive_pixels": 11312,
+    "tpw": 2194.69176467883,
+    "fpw": 125486.53171224963,
+    "fnw": 9117.308235321165
+   },
+   "draw21_paired_vs_null": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.060491030685333194,
+    "ci95": [
+     0.05302984707081636,
+     0.06848250040729738
+    ],
+    "withheld_positive_pixels": 11312
+   },
+   "draw20_paired_vs_null": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.05126971258492137,
+    "ci95": [
+     0.04333150743432132,
+     0.05855257876740486
+    ],
+    "withheld_positive_pixels": 11307
+   },
+   "canary_auc_max": 0.9025481923273879,
+   "canary_auc_per_cell": [
+    0.8977814182949726,
+    0.8870140202479221,
+    0.8704716078054802,
+    0.8599525535496989,
+    0.9025481923273879,
+    0.8858900705173529,
+    0.858300554822256,
+    0.8698983980272029
+   ],
+   "cells": [
+    {
+     "cell": "draw20_foldNW_detached",
+     "dti": 0.11733686569386226,
+     "n_emitted": 29754,
+     "withheld_positive_pixels": 1919,
+     "K_cell": 1916.5,
+     "null_dti": 0.0551720887324098
+    },
+    {
+     "cell": "draw20_foldNE_detached",
+     "dti": 0.11160677775167747,
+     "n_emitted": 30236,
+     "withheld_positive_pixels": 2361,
+     "K_cell": 2354.0,
+     "null_dti": 0.053940766160401006
+    },
+    {
+     "cell": "draw20_foldSW_detached",
+     "dti": 0.11560122043475987,
+     "n_emitted": 29205,
+     "withheld_positive_pixels": 3778,
+     "K_cell": 3775.75,
+     "null_dti": 0.06750584937220515
+    },
+    {
+     "cell": "draw20_foldSE_detached",
+     "dti": 0.1248541743911418,
+     "n_emitted": 30473,
+     "withheld_positive_pixels": 3249,
+     "K_cell": 3243.0,
+     "null_dti": 0.08547199959933911
+    },
+    {
+     "cell": "draw21_foldNW_detached",
+     "dti": 0.12139662287010496,
+     "n_emitted": 34213,
+     "withheld_positive_pixels": 1924,
+     "K_cell": 1915.25,
+     "null_dti": 0.04769011070477108
+    },
+    {
+     "cell": "draw21_foldNE_detached",
+     "dti": 0.115307131116462,
+     "n_emitted": 30076,
+     "withheld_positive_pixels": 2358,
+     "K_cell": 2354.75,
+     "null_dti": 0.04731591683743665
+    },
+    {
+     "cell": "draw21_foldSW_detached",
+     "dti": 0.1265466217730659,
+     "n_emitted": 32635,
+     "withheld_positive_pixels": 3781,
+     "K_cell": 3775.0,
+     "null_dti": 0.07798119470539822
+    },
+    {
+     "cell": "draw21_foldSE_detached",
+     "dti": 0.13156062767335638,
+     "n_emitted": 29702,
+     "withheld_positive_pixels": 3249,
+     "K_cell": 3243.0,
+     "null_dti": 0.07752789315012441
+    }
+   ]
+  },
+  "C_tipgap@2000m": {
+   "arm": "C_tipgap",
+   "param_m": 2000.0,
+   "draw20": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.13877535138762048,
+    "ci95": [
+     0.1303982944299071,
+     0.1470110368613507
+    ],
+    "withheld_positive_pixels": 11307,
+    "tpw": 4397.388521193591,
+    "fpw": 108810.11451388868,
+    "fnw": 6909.61147880641
+   },
+   "draw21": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.13718712444419992,
+    "ci95": [
+     0.1277593806788421,
+     0.14695901528996888
+    ],
+    "withheld_positive_pixels": 11312,
+    "tpw": 4394.6014038596295,
+    "fpw": 110525.54198656141,
+    "fnw": 6917.39859614037
+   },
+   "draw21_null": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.06485666836648675,
+    "ci95": [
+     0.057677032762213594,
+     0.07319324316011522
+    ],
+    "withheld_positive_pixels": 11312,
+    "tpw": 2144.8365086692556,
+    "fpw": 117959.20536229067,
+    "fnw": 9167.16349133074
+   },
+   "draw21_paired_vs_null": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.07233045607771317,
+    "ci95": [
+     0.06419158063886043,
+     0.08076503452816636
+    ],
+    "withheld_positive_pixels": 11312
+   },
+   "draw20_paired_vs_null": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.07408101214668528,
+    "ci95": [
+     0.06587808365206911,
+     0.08298375501057133
+    ],
+    "withheld_positive_pixels": 11307
+   },
+   "canary_auc_max": 0.9143432540936673,
+   "canary_auc_per_cell": [
+    0.9102503512314258,
+    0.9002936478378686,
+    0.8813126834808729,
+    0.8756472328936161,
+    0.9143432540936673,
+    0.8978472374792569,
+    0.8635830454496954,
+    0.8788938438945929
+   ],
+   "cells": [
+    {
+     "cell": "draw20_foldNW_detached",
+     "dti": 0.13267791951732905,
+     "n_emitted": 29556,
+     "withheld_positive_pixels": 1919,
+     "K_cell": 1916.5,
+     "null_dti": 0.05517905225278654
+    },
+    {
+     "cell": "draw20_foldNE_detached",
+     "dti": 0.1284571109137994,
+     "n_emitted": 29728,
+     "withheld_positive_pixels": 2361,
+     "K_cell": 2354.0,
+     "null_dti": 0.05034284663945844
+    },
+    {
+     "cell": "draw20_foldSW_detached",
+     "dti": 0.14883597705990256,
+     "n_emitted": 28457,
+     "withheld_positive_pixels": 3778,
+     "K_cell": 3775.75,
+     "null_dti": 0.07488608347029475
+    },
+    {
+     "cell": "draw20_foldSE_detached",
+     "dti": 0.1434517201405993,
+     "n_emitted": 29457,
+     "withheld_positive_pixels": 3249,
+     "K_cell": 3243.0,
+     "null_dti": 0.07577124972705467
+    },
+    {
+     "cell": "draw21_foldNW_detached",
+     "dti": 0.132313501838357,
+     "n_emitted": 29463,
+     "withheld_positive_pixels": 1924,
+     "K_cell": 1915.25,
+     "null_dti": 0.04751808238557702
+    },
+    {
+     "cell": "draw21_foldNE_detached",
+     "dti": 0.12624355557089467,
+     "n_emitted": 29962,
+     "withheld_positive_pixels": 2358,
+     "K_cell": 2354.75,
+     "null_dti": 0.05114508491269525
+    },
+    {
+     "cell": "draw21_foldSW_detached",
+     "dti": 0.14061165977378376,
+     "n_emitted": 29584,
+     "withheld_positive_pixels": 3781,
+     "K_cell": 3775.0,
+     "null_dti": 0.06990239098936152
+    },
+    {
+     "cell": "draw21_foldSE_detached",
+     "dti": 0.14802346450150666,
+     "n_emitted": 30047,
+     "withheld_positive_pixels": 3249,
+     "K_cell": 3243.0,
+     "null_dti": 0.08704425752978703
+    }
+   ]
+  }
+ },
+ "selected_on_draw20": {
+  "A_decay": "A_decay@2000m",
+  "C_tipgap": "C_tipgap@2000m"
+ },
+ "selected_reported_draw21": {
+  "A_decay": {
+   "evidence_class": "HOLDOUT-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "dti": 0.1265605689295369,
+   "ci95": [
+    0.11729215958474964,
+    0.13615739840020208
+   ],
+   "withheld_positive_pixels": 11312,
+   "tpw": 4290.119403171976,
+   "fpw": 119950.66527353552,
+   "fnw": 7021.880596828027
+  },
+  "C_tipgap": {
+   "evidence_class": "HOLDOUT-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "dti": 0.13718712444419992,
+   "ci95": [
+    0.1277593806788421,
+    0.14695901528996888
+   ],
+   "withheld_positive_pixels": 11312,
+   "tpw": 4394.6014038596295,
+   "fpw": 110525.54198656141,
+   "fnw": 6917.39859614037
+  }
+ },
+ "caveats": [
+  "HOLDOUT-DTI on owner-mirror catalogue proxies; not the organizer's hidden test set.",
+  "Holdout DTI is not an organizer score and was not shown to rank registry submissions (see evidence/holdout_proxy_portfolio.json).",
+  "Greedy emission uses K_cell from visible catalogue only; the final full-catalogue emission uses K* = 12,395 (owner-calibrated).",
+  "Withholding mode is recorded in withholding_mode; 'all' is the primary instrument, 'detached' the conservative one.",
+  "Greedy allocator is the shared gems57.emit.greedy_allocate, unmodified."
+ ]
+}

@@ -31,7 +31,7 @@ def link(url, text, cls=""):
 
 
 def page(name, title, body):
-    nav = [("index.html", "Overview"), ("wbg6/index.html", "WBG-6 submit"), ("wbg5/index.html", "WBG-5"), ("wbg4/index.html", "WBG-4"), ("wbg3/index.html", "WBG-3"), ("wbg2.html", "WBG-2 audit"),
+    nav = [("unique-lane-summary-20261029.html", "Unique lane · 29 Oct"), ("how-to-submit-20261029.html", "How to submit · 29 Oct"), ("index.html", "Overview"), ("wbg6/index.html", "WBG-6 submit"), ("wbg5/index.html", "WBG-5"), ("wbg4/index.html", "WBG-4"), ("wbg3/index.html", "WBG-3"), ("wbg2.html", "WBG-2 audit"),
            ("executive-summary-20261028.html", "Exec summary 10-28"),
            ("executive-summary.html", "Site comparison"),
            ("executive-summary-focus-sites.html", "Nine-site exec summary"),
@@ -270,7 +270,7 @@ def decision_banner():
     return ('<div class="alert" role="alert" style="border:4px solid #a32626;background:#fff"><div style="min-width:0">'
             '<p style="font-size:20px;margin:0 0 6px"><strong style="color:#a32626">SUBMIT: NO. No file is cleared.</strong></p>'
             '<p><strong>DOWNLOAD:</strong> research only. <strong>Estimated leaderboard score:</strong> UNAVAILABLE for every file here '
-            '(no holdout or organizer score can be computed in this sandbox). Live public leaderboard #1 is 0.4544; the 50th row is 0.3167.</p>'
+            '(no holdout or organizer score can be computed in this sandbox). Live public leaderboard #1 is 0.4544; the 50th row read this session is 0.3169 (the board moves: another read recorded 0.3167).</p>'
             '<p>Best user-reported nine-site file: GEMSDOE32 B2, 0.2778 (USER-REPORTED, not organizer-confirmed). '
             'It is already in the competition, so it is a duplicate and must not be uploaded again. '
             f'Its SHA-256 is <code>{best["sha256"][:16]}…</code>.</p>'
@@ -444,7 +444,9 @@ def main():
     build_wbg4()
     from build_wbg5_site import main as build_wbg5
     build_wbg5()
-    print("Built static reports, WBG-H1, WBG-S2, WBG-3, WBG-4, and WBG-5 subsites, and fail-closed research downloads.")
+    from build_exec_20261029 import build as build_exec_20261029
+    build_exec_20261029()
+    print("Built static reports, WBG-H1, WBG-S2, WBG-3, WBG-4, and WBG-5 subsites, the 29 Oct executive summary, and fail-closed research downloads.")
 
 
 if __name__ == "__main__":

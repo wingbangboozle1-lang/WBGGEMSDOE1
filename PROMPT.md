@@ -1,6 +1,14 @@
 # Session operating prompt (read at the start of every working session)
 
-This file is the standing brief for WBGGEMSDOE1. The original user message is longer (many GEMSDOE URLs). The requirements that actually bind work are here.
+This file is the standing brief for WBGGEMSDOE1. The complete original user message is archived in the README and `docs/standing-prompt.md`. Read this file at the start of each session; intent is not evidence.
+
+## Current state — 29 October 2026
+
+- **NO CURRENT TIFF CLEARED — DO NOT SUBMIT.** No new TIFF, holdout experiment, dot placement, selector decision, or slot use occurred in the 29 Oct review.
+- GEMSDOE32 B2 `0.2778` is **OWNER-REPORTED / NOT ORGANIZER-CONFIRMED**. The pinned B2 ancestry confirms a deletion-only subset of D2.8 (6,436 removed, zero added; all removed dots within 200 m of the catalogue); that is compatible with a false-positive-cost explanation, not proof of hidden-label causality.
+- The requested assigned single-method lane paragraph is absent. `registry/experiment_ledger.json` records WBG-C1 as `negative_stopped`; do not restart it or treat remaining budget as authorization for another lane.
+- `scripts/check_readiness.py` currently reports `BLOCKED_INPUTS`: core competition rasters and cached feature stack are absent in this checkout. The official DrivenData data page resolves to login. A hash-pinned owner-mirror restoration is not organizer-origin authentication.
+- The prospective top research candidate is P1 in `docs/repo-review-current-20261029.md` (magnetic/gravity edge displacement relative to detrended elevation). It is a proposal only; no HOLDOUT-DTI, canary, raster, validator result, or score estimate exists for it. Do not create a file or use a slot until governance, inputs, and preregistration are resolved.
 
 ## Goal
 

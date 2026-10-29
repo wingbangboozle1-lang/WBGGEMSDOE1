@@ -126,7 +126,7 @@ def test_latest_review_is_published_with_separate_audit_card_and_no_go():
     assert "DO NOT SUBMIT" in page and "0.2778" in page and "0.3195" in page and "0.4413" in page
     assert "wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif" in page
     assert "81.932%" in page and "not a geological model" in page
-    assert "repo-review-20261027.html" in (DOCS / "index.html").read_text()
+    assert "repo-review-current-20261029.md" in (DOCS / "index.html").read_text()
     assert "repo-review-20261027-session.md" in page
 
 

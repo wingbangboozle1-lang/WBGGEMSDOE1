@@ -1,0 +1,167 @@
+{
+  "schema": "wbggemsdoe1-repo-review-v1",
+  "review_date_utc": "2026-10-29",
+  "review_type": "repository-and-research-queue-review",
+  "hypothesis": "P1: relative displacement of magnetic and gravity edge ridges, assessed against detrended-elevation structure, may identify buried structural discontinuities not represented in the public fault catalogue.",
+  "mechanism": "At fixed physical scales, compute gradient-ridge locations for TMI and isostatic gravity, estimate signed cross-normal displacement between the ridges, and test coherent displacement relative to detrended elevation. This is a proposed operator only; no feature was computed in this review.",
+  "named_non_fault_mimic": "Intrusive or dike contacts, lithologic boundaries, magnetic remanence changes, and survey-line leveling seams.",
+  "candidate_ranking": [
+    {
+      "id": "P1",
+      "name": "Cross-scale magnetic-gravity edge displacement relative to terrain",
+      "expected_incremental_benefit": "highest qualitative priority; uncertain/moderate potential; not a score estimate",
+      "implementation_cost": "medium",
+      "layers": ["tmi band 14", "iso_grav_anom band 13", "det_elev band 12"],
+      "physical_signature": "Signed cross-normal displacement of magnetic and gravity gradient ridges, scale-persistent and assessed against detrended elevation structure.",
+      "why_missing_faults": "A buried or dipping density/magnetization boundary may yield offset potential-field responses relative to muted surface relief.",
+      "named_non_fault_mimic": "Intrusive or dike contacts, lithologic boundaries, magnetic remanence changes, and survey-line leveling seams.",
+      "difference_from_repo": "Not the implemented assumed-dip DPGF up-dip advection, C1 conductivity-depth Hessian commutator, or catalogue-proximity feature. Exact operator is untested locally; related proposal exists in historical notes.",
+      "data_source": "Competition training_features.tif bands; official data URL currently resolves to login. A public pinned owner-mirror restoration route exists but does not authenticate organizer origin.",
+      "data_checked": "Official problem page verified the named broad feature families; actual local TIFF/cache absent.",
+      "viable_now": false,
+      "blocking_reason": "Missing core TIFFs/cache and missing authorized single-method lane; WBG-C1 ledger is negative_stopped."
+    },
+    {
+      "id": "P2",
+      "name": "Multiscale radiometric compositional-closure residual at gravity edges",
+      "expected_incremental_benefit": "uncertain/moderate potential; not a score estimate",
+      "implementation_cost": "medium-high",
+      "layers": ["GeoDAWN K", "GeoDAWN Th", "GeoDAWN U", "isostatic gravity gradient"],
+      "physical_signature": "Robust centred-log-ratio local K-Th-U composition residual at multiple scales with spatial coherence to an independent gravity edge.",
+      "why_missing_faults": "Fracture-guided alteration may form a compositional boundary without an exposed scarp or mapped trace.",
+      "named_non_fault_mimic": "Lithologic contacts, felsic ash, weathering, soil sorting, playa redistribution, and flight-height/processing artifacts.",
+      "difference_from_repo": "Prior work contains raw/ratiometric features and composite priors; this exact local compositional-closure residual was not recorded as executed.",
+      "data_source": "USGS GeoDAWN data release, DOI 10.5066/P93LGLVQ, CC0.",
+      "data_checked": "Official USGS release page read and found public downloadable geophysical products; bytes/scaling/overlap not checked.",
+      "viable_now": false,
+      "blocking_reason": "Requires fetching and auditing original grids plus lane authorization."
+    },
+    {
+      "id": "P3",
+      "name": "Sampling-aware USGS well heat-flow residual association",
+      "expected_incremental_benefit": "uncertain/low-to-moderate potential; not a score estimate",
+      "implementation_cost": "high",
+      "layers": ["USGS well-level heat-flow residuals", "conductance", "gravity edge"],
+      "physical_signature": "Spatially cross-fitted local statistic on well residuals against the USGS background conductive model, paired with independent structural-edge evidence.",
+      "why_missing_faults": "Point residuals may capture convective or groundwater influence associated with a blind conduit omitted from fault maps.",
+      "named_non_fault_mimic": "Groundwater flow, measurement or thermal-conductivity error, uneven well sampling, and clustered drilling.",
+      "difference_from_repo": "Repo features include 2 m probe/spring priors; no USGS well-residual estimator was found. The proposed distinction is a cross-fitted, sampling-aware residual analysis, not well proximity.",
+      "data_source": "USGS Heat Flow Maps and Supporting Data for the Great Basin, DOI 10.5066/P9BZPVUC, CC0.",
+      "data_checked": "Official source page read; it describes point-well coverage with residual attributes. Exact points, coverage, and metadata not fetched.",
+      "viable_now": false,
+      "blocking_reason": "Requires external point data and coverage/metadata audit plus lane authorization."
+    },
+    {
+      "id": "P4",
+      "name": "Cross-scale drainage deflection and channel-offset geometry",
+      "expected_incremental_benefit": "uncertain/low potential; not a score estimate",
+      "implementation_cost": "high",
+      "layers": ["USGS 3DEP 1-10 m bare-earth elevation and derived drainage network"],
+      "physical_signature": "Repeated cross-slope channel offsets or paired knickpoints with geometric alignment and persistence over multiple scales.",
+      "why_missing_faults": "Drainage networks can preserve displacement where scarps are muted, eroded, or buried.",
+      "named_non_fault_mimic": "Lithologic knickpoints, landslides, roads/ditches, and drainage-extraction errors.",
+      "difference_from_repo": "LiDAR work in the repo targets scarp amplitude/curvature/coherence; this targets channel-network geometry. Exact operator not recorded as an experiment.",
+      "data_source": "USGS 3D Elevation Program products and access tools, public/free.",
+      "data_checked": "Official USGS program page read; exact competition-footprint tile coverage, dates, and quality not checked.",
+      "viable_now": false,
+      "blocking_reason": "Needs a tile-coverage/quality audit and lane authorization before preregistration."
+    }
+  ],
+  "irregularities": [
+    {
+      "id": "IR-20261029-LEADERBOARD",
+      "severity": "high",
+      "finding": "Prompt-listed public leaderboard values 0.3195 and 0.4413 differ from the official public page read on 2026-10-29, which displayed rank 1 at 0.4544 and rank 2 at 0.3916.",
+      "status": "OFFICIAL PUBLIC LEADERBOARD OBSERVATION, not a receipt or score for any project TIFF."
+    },
+    {
+      "id": "IR-20261029-SUBMISSION-FOOTPRINT",
+      "severity": "high",
+      "finding": "Official submission format specifies null/NaN outside bounds, while some archived research rasters use zeros outside.",
+      "status": "No current file is cleared; local format validation is not organizer acceptance."
+    },
+    {
+      "id": "IR-20261029-RECHECK-BENCHMARK-VERSION",
+      "severity": "high",
+      "finding": "The inherited per-fold recheck uses WBGGEMSDOE1-HIDE-RECOVER-v1.0, while its cited 0.166060 HOLDOUT-DTI comparator is recorded under gems-segment-pooled-v1.",
+      "status": "Do not call this a same-evaluator comparison; the numeric difference is not an efficacy claim."
+    },
+    {
+      "id": "IR-20261029-DATA-ACCESS",
+      "severity": "high",
+      "finding": "Official DrivenData data URL resolves to login; competition core TIFFs and cached features are absent locally.",
+      "status": "No authenticated download attempted; public owner mirrors do not authenticate organizer origin."
+    },
+    {
+      "id": "IR-20261029-LANE",
+      "severity": "high",
+      "finding": "The referenced assigned single-method paragraph is not present in the archived user prompt.",
+      "status": "No new lane, experiment, raster placement, or slot authorized."
+    }
+  ],
+  "inherited_blind_adjacency_recheck": {
+    "evidence_source": "evidence/per_fold_recheck_blind_adjacency.json",
+    "archived_leaky_holdout_dti": {
+      "evidence_class": "HOLDOUT-DTI (full-catalogue placement; leakage confirmed)",
+      "evaluator_version": "WBGGEMSDOE1-HIDE-RECOVER-v1.0",
+      "dti": 0.46570455816360007,
+      "withheld_positive_pixels": 60161,
+      "ci95": [0.45625939157121076, 0.4747908528873552]
+    },
+    "visible_only_per_fold_holdout_dti": {
+      "evidence_class": "HOLDOUT-DTI (visible-only per-fold placement)",
+      "evaluator_version": "WBGGEMSDOE1-HIDE-RECOVER-v1.0",
+      "dti": 0.006945589801501288,
+      "withheld_positive_pixels": 60161,
+      "ci95": null,
+      "ci_status": "not recomputed; fold-level pooled counts retained",
+      "verdict": "negative; cited 0.166060 comparator uses a different evaluator version, so not a like-for-like comparison"
+    },
+    "cited_benchmark": {
+      "evidence_class": "HOLDOUT-DTI benchmark receipt (separate evaluator; not directly comparable)",
+      "dti": 0.16606013635163805,
+      "evaluator_version": "gems-segment-pooled-v1",
+      "withheld_positive_pixels": 60988,
+      "ci95": [0.15185839118988828, 0.18033886456990444],
+      "source": "evidence/wbg5/diff1_run_card.json"
+    },
+    "comparison_status": "NOT LIKE-FOR-LIKE: candidate uses WBGGEMSDOE1-HIDE-RECOVER-v1.0; cited benchmark uses gems-segment-pooled-v1",
+    "new_experiment_in_this_review": false
+  },
+  "holdout_dti": {
+    "evidence_class": "NOT RUN",
+    "evaluator_version": null,
+    "withheld_positive_pixels": null,
+    "ci95": null,
+    "reason": "No experiment run. Core inputs/cache are absent, official competition data page resolves to login, and no assigned method paragraph authorizes a fresh lane."
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_preplacement": "NOT RUN; no candidate surface generated",
+    "final_dots": "NOT RUN; no dots placed",
+    "registry_scope": "No fresh comparison in this review"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT APPLICABLE; no raster generated",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "submission_name": null,
+  "submission_note": "No raster generated; lane authorization and current inputs are missing.",
+  "submission_note_length": 71,
+  "verdict": "negative",
+  "experiments_started": 0,
+  "submission_slots_used": 0,
+  "leaderboard_estimate": null,
+  "leaderboard_estimate_reason": "No validated mapping from local catalogue-recovery holdout results to hidden leaderboard performance; no current file or receipt.",
+  "sources_checked": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "https://www.usgs.gov/data/heat-flow-maps-and-supporting-data-great-basin-usa",
+    "https://www.usgs.gov/3d-elevation-program",
+    "https://gdr.openei.org/submissions/1391"
+  ]
+}

@@ -6,7 +6,7 @@
 
 - Every focus-site score is OWNER-REPORTED. No DrivenData submission receipt is available here.
 - No focus-site file is unique: each one overlaps another focus-site file by 97.6% to 100% in its 3 px dot test (gate: 70%).
-- The one new candidate from this repo had a leaky holdout score. The leak-corrected score is 0.0069, which is below the 0.1661 benchmark.
+- The archived blind-adjacency HOLDOUT-DTI 0.4657 is leakage-contaminated. Its visible-only per-fold recheck is HOLDOUT-DTI 0.006946 (WBGGEMSDOE1-HIDE-RECOVER-v1.0, n=60,161; 95% CI not recomputed). Its numeric value is below a separately recorded HOLDOUT-DTI benchmark 0.166060 (gems-segment-pooled-v1, n=60,988; 95% CI [0.151858, 0.180339]), but evaluator versions differ, so this is not a like-for-like comparison.
 - Local format checks are not organizer acceptance. Nothing here is a prediction of leaderboard placement.
 
 ## Summary table
@@ -22,7 +22,7 @@
 | GEMSDOE32 | [gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif](https://github.com/buffedlizard55-lab/GEMSDOE32/blob/5fc7792c5887735ecd3aa9a612787da588a7bf2c/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif) | 0.2778 | Not estimable | NO (overlap 1.0000) | **DO NOT SUBMIT** |
 | GEMSDOE33 | [GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif](https://github.com/buffedlizard55-lab/GEMSDOE33/blob/f618cc54773bd9b4d6c2b3ebf78103a05cc10cb6/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif) | 0.2632 | Not estimable | NO (overlap 0.9971) | **DO NOT SUBMIT** |
 | GEMSDOE36 | [gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif](https://github.com/buffedlizard55-lab/GEMSDOE36/blob/c5a8ae7da3bd2fcff5aa5855afd44c7a3346c16/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif) | 0.275 | Not estimable | NO (overlap 0.9758) | **DO NOT SUBMIT** |
-| WBGGEMSDOE1 (this repo) | [WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif) | none | Not estimable (leak-corrected HOLDOUT-DTI 0.0069 vs benchmark 0.1661) | Not fully checked | **DO NOT SUBMIT (download = research only)** |
+| WBGGEMSDOE1 (this repo) | [WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif) | none | Not estimable (HOLDOUT-DTI 0.006946; WBGGEMSDOE1-HIDE-RECOVER-v1.0, n=60,161, CI not recomputed; separate 0.166060 benchmark uses gems-segment-pooled-v1) | Not fully checked | **DO NOT SUBMIT (download = research only)** |
 
 Owner-reported values come from `docs/data/executive_summary_20261028.json`. Overlap values are the shared 3 px test from that file.
 
@@ -37,7 +37,8 @@ Owner-reported values come from `docs/data/executive_summary_20261028.json`. Ove
 ## Leakage re-check of the one new candidate (Experiment 1 of the budget)
 
 - Archived file (full-catalogue placement): HOLDOUT-DTI 0.4657, CI95 [0.4563, 0.4748], n=60161. This reproduces the original run card.
-- Same method rebuilt per fold from visible faults only: HOLDOUT-DTI 0.0069, n=60161. CI not recomputed (fold-level pooling).
+- Same method rebuilt per fold from visible faults only: HOLDOUT-DTI 0.006946 (WBGGEMSDOE1-HIDE-RECOVER-v1.0), n=60161; CI not recomputed (fold-level pooling).
+- Cited comparator: HOLDOUT-DTI 0.166060 (gems-segment-pooled-v1, n=60,988, 95% CI [0.151858, 0.180339]). Evaluator versions differ; this is not a like-for-like comparison.
 - Leakage canary (single feature, AUC on holdout): distance to visible catalogue alone 0.829; emission surface alone 0.378. Both are below the 0.90 leakage threshold. The 0.4657 score is leakage, not canary failure.
 - Verdict: **NEGATIVE**. The earlier 0.4657 claim is retracted.
 - Receipt: `evidence/per_fold_recheck_blind_adjacency.json`; script: `scripts/per_fold_holdout_recheck.py`.
@@ -52,7 +53,7 @@ Owner-reported values come from `docs/data/executive_summary_20261028.json`. Ove
 
 ## Ranked next hypotheses (untested; none is validated)
 
-Expected improvement and cost are qualitative. Each candidate must pass the per-fold holdout (point estimate above 0.1661 with a positive CI) before any slot decision.
+Expected improvement and cost are qualitative. Before any separate slot decision, an authorized candidate and its designated comparator must be evaluated under the same pinned evaluator and spatial split; require a favorable paired 95% CI. The cross-version 0.166060 comparator above is not a direct gate for WBGGEMSDOE1-HIDE-RECOVER-v1.0.
 
 1. **Analytic-signal magnetic edges, catalogue-free, per-fold** - layers: the stack already holds the total magnetic intensity (band 14), horizontal gradient (band 3), vertical gradient (band 9) and tilt/total curvature (band 6). Signature: analytic-signal amplitude ridges, a combination of those bands. Novelty: LOW, because the same information is already inside the stack and tilt is already implemented in the repo (6 files). Cost: low. Mimic: magnetized dikes and intrusions.
 2. **Conductivity lineaments with a new external source** - layer: band 17 (conductivity surface) is already in the stack, so this is only new if a different, free, official conductivity dataset is added. The source is NOT verified in this session. Do not implement until a free official source is confirmed. Cost: high. Mimic: clay-rich basin fill.
@@ -60,8 +61,8 @@ Expected improvement and cost are qualitative. Each candidate must pass the per-
 
 ## Verification notes
 
-- Restored inputs: `scripts/restore_data.py` verified hashes for the core rasters (`evidence/data_restore.json`). This is owner-mirror integrity, not organizer-origin authentication.
-- Tests: 232 existing tests plus 5 new leakage-receipt tests pass locally (237 total, `pytest`).
+- Owner-mirror integrity receipt: `evidence/data_restore.json` records matching hashes, but the ignored core raster blobs are absent from this checkout and the mirror is not organizer-origin authentication.
+- Tests: 242 passed locally (including 5 leakage-receipt tests; 15 Rasterio warnings).
 - Sources: official rules `https://docs.nlr.gov/docs/fy26osti/96647.pdf`; reference solution `https://github.com/drivendataorg/gems-prize-reference-solution` (writes float predictions on the label grid, no NaN padding); leaderboard `https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/`.
 
 ## Machine-readable card

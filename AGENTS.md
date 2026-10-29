@@ -1,49 +1,35 @@
-# Starting point for every session
+# Agent instructions for WBGGEMSDOE1
 
-0. **Current artifacts (read before any session work):**
-   - **WBG-6 — APPROVED FOR SUBMISSION (per its own run card).** `docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif` (SHA-256 `e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9`). Unique, format-valid, zero dots on the mapped catalogue, max surface |Spearman| 0.0148 versus all 118 scored rasters. **Estimated score 0.247 (MODEL-ESTIMATE, range 0.142–0.286; NULL-FLOOR 0.0425)** — not an organizer result, and *not* a top-20 contender (public leaderboard leader 0.4544, retained observation). Read `evidence/wbg6_run_card.json`, `evidence/wbg6_submission_audit.json`, `evidence/wbg6_score_estimate.json` and `docs/wbg6/index.html` before changing anything.
-   - **WBG-7 (this branch) — DOWNLOAD YES · SUBMIT NOT CLEARED.** `docs/downloads/wbg7-blind-tip-splay-relay-30000-20261028-zeros.tif` (SHA-256 `701ff7a4d916dd843da402ecf5f95126dc3ecfce0597ab71933ccacb16689e3a`). Unique, format-valid, values in [0,1] (no "[0,1]" portal error), 30,000 off-catalogue kernel-disjoint dots from blind trace-tip splay lobes blended with distance rings. Holdout-DTI 0.0149 (95% CI [0.01382, 0.01590]) is a catalogue-fault proxy below the 0.1661 same-evaluator best; no organizer score receipt exists. **Do not claim it beats 0.2778.** See `evidence/wbg7/run_card.json` and `docs/executive-summary-focus-sites.html`.
-   - **WBGGEMSDOE1-blind-fault-adjacency-distance-decay (main lane) — research only, verdict NEGATIVE — leakage CONFIRMED 2026-10-29 (per-fold visible-only HOLDOUT-DTI 0.0069, `evidence/per_fold_recheck_blind_adjacency.json`).** `docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif` (SHA-256 `0806bb30573094bf889bcb55d15878cc66cdd3851f9b40119ab96d7716437815`). Format VALID, unique vs checkable focus-site champions, but its HOLDEDTI 0.4657 (CI [0.4563, 0.4748]) **was leaked**: dot placement used the full catalogue; the per-fold re-evaluation is done and it fails. **SUBMIT: NO.** See `docs/executive-summary-unique.html`.
-   - Older WBG-C1/TIP1/MVGZ/WBG-H1/WBG-2/S2/WBG-3/WBG-4 rasters remain research-only / DO NOT SUBMIT (WBG-2's literal registry STOP and WBG-S2's 99.5538% r13 / 100% WBG-C1 overlap are binding).
+Read `PROMPT.md`, the current README status, and [`docs/repo-review-current-20261029.md`](docs/repo-review-current-20261029.md) before starting project work. The full original user request is archived in the README and `docs/standing-prompt.md`.
 
-0b. **Four instrument defects are binding on future work:**
-   (i) the shared hide-and-recover holdout does **not** rank real submissions (Spearman 0.144, p=0.12, n=118) — never report it as a score estimate; (ii) the literal ">70% of dots within 3 px" registry gate is degenerate against any dense raster (a 206,895-dot lattice captures 99.68% of any dot field) — use the density-matched overlap lift instead; (iii) 118 history files are only 22 families, so grouped cross-validation is mandatory for any fitted claim; (iv) reported scores differ by up to 0.086 for near-identical rasters, so the nine-site top six are statistically tied. Receipts: `evidence/holdout_proxy_portfolio.json`, `evidence/wbg6_submission_audit.json`, `evidence/wbg6_score_model.json`, `evidence/score_consistency.json`, `evidence/wbg6_irregularities.json`.
+## Current binding status — 29 October 2026
 
-   Read `docs/review-20261028.md` and `docs/data/review-20261028.json` for the latest review. The Focus-9 synthetic generator is disabled after a binding STOP; its existing TIFF and receipts are frozen and must not be regenerated.
+- **NO CURRENT TIFF CLEARED — DO NOT SUBMIT.** Downloadable, byte-unique, and locally format-valid do not mean upload-approved.
+- GEMSDOE32 B2 `0.2778` is **OWNER-REPORTED / NOT ORGANIZER-CONFIRMED**. Never copy a historical prediction or report a new-file leaderboard estimate without validated evidence.
+- The blind-fault-adjacency archived result's HOLDOUT-DTI 0.4657 is **leakage-confirmed** because dot placement used the full catalogue. Its visible-only per-fold recheck is HOLDOUT-DTI 0.006946 (evaluator `WBGGEMSDOE1-HIDE-RECOVER-v1.0`, n=60,161, CI not recomputed), numerically below the separate HOLDOUT-DTI 0.166060 comparator (`gems-segment-pooled-v1`, n=60,988, 95% CI [0.151858, 0.180339]), but the recorded evaluator versions differ, so this is not a like-for-like benchmark comparison. Receipt: `evidence/per_fold_recheck_blind_adjacency.json`. Do not submit it.
+- `data/training_features.tif`, `data/labels.tif`, `data/sample_submission.tif`, and the 19-band cache are absent from this checkout. An owner-mirror integrity receipt exists, but the ignored blobs are not present and it does not establish organizer-origin provenance. `scripts/check_readiness.py` returns `BLOCKED_INPUTS` (exit 2).
+- The assigned single-method paragraph is absent. The local WBG-C1 lane ledger is `negative_stopped`; do not restart it, retune it, or use its unused budget as authorization for another method. No new experiment or submission slot was used in the 29 Oct repository review.
+- The official public leaderboard was observed at 0.4544 on 29 Oct 2026. This is a **public-page observation**, not a score for a project TIFF. The official competition data page resolves to login here.
+- Read `registry/experiment_ledger.json`, `registry/preregistration.json`, `registry/irregularities.json`, and the Focus-9 executive summary before changing claims. Keep frozen receipts intact.
 
-1. **No file is approved for submission except via its own verified run card.** The previously promoted WBG-2 file
+## Parallel-run protocol
 
-2. Read `README.md` (including the archived standing prompt below), then `registry/run_card.json`,
-   `registry/irregularities.json`, and the executive summary at `docs/executive-summary-unique.html`.
-   The prompt is intent, not evidence. **No file is cleared to upload without a separate selector step.**
+1. Stay within the explicitly assigned single method. If the assignment is missing, stop at research planning. For an authorized lane, compare the pre-placement surface and final dots against the full authorized registry; Spearman absolute correlation >0.90 or >70% forward 3-pixel overlap is a stop. Do not replace the literal threshold with density-adjusted exemptions or tune around registry gaps.
+2. Reuse the pinned shared template/cache, `scripts/evaluate_holdout.py`, and `scripts/submission_writer.py`. Hide whole fault segments with buffers; derive catalogue features from visible faults only in each fold; mask visible faults pixel-exactly; use pooled DTI with α=0.2, β=0.8, and a 300 m triangular kernel. Fix shared-tool defects centrally, not in a private fork.
+3. Label numeric results **HOLDOUT-DTI** (evaluator version, withheld-positive count, 95% CI) or **ORGANIZER-CONFIRMED** (artifact-linked receipt). Preserve OWNER-REPORTED historical values as such. HOLDOUT-DTI is not a leaderboard score or projection.
+4. Test each feature alone for leakage; AUC >0.90 is leakage until explained. Do not claim canary validation if skipped.
+5. Preserve a complete JSON run card: hypothesis, mechanism, named non-fault mimic, measured HOLDOUT-DTI and CI or explicit “not run,” registry correlation/overlap, raster SHA-256 or null, validator output, submission name and ≤140-character note, verdict promote/negative.
+6. Stop at 3 experiments or 2 hours per authorized run. Do not select a live slot; promotion is a separate selector step. Never upload automatically.
 
-3. **Shared tools:** `vendor/gems57/` and `vendor/template57/prepare_data.py` are pinned unchanged owner-template
-   files. Do not keep a private evaluator, writer, metric or novelty-threshold fork. Fix shared-template
-   defects once and report them.
+## Working standards
 
-4. **Parallel-run protocol:**
-   - LANE: stay in the declared method. If rank-correlation with any registry raster exceeds 0.90, or more
-     than 70% of dots fall within 3 px of one registry raster's dots, log it as a duplicate and stop.
-   - REUSE: use `scripts/evaluate_holdout.py` and `scripts/submission_writer.py`. Holdout = hide-and-recover:
-     withhold whole fault segments with a buffer, derive catalogue features from visible faults only,
-     mask visible faults pixel-exactly, score pooled DTI (α=0.2, β=0.8, 300 m triangular kernel).
-   - LABEL: every number as HOLDOUT-DTI (evaluator version, n withheld positives, 95% CI) or
-     ORGANIZER-CONFIRMED (submission-page receipt). A projection is never written as a score.
-   - LEAKAGE CANARY: test each feature alone on the holdout. AUC > 0.90 means leakage until proven otherwise.
-   - RUN CARD: end with one JSON card (hypothesis, mechanism, mimic, HOLDOUT-DTI + CI, registry correlation/
-     overlap, raster SHA-256, validator output, submission name + ≤140 char note, verdict promote/negative).
-   - BUDGET: stop after 3 experiments or 2 hours. Do not pick submissions; promotion is a separate selector step.
-
-5. **No DrivenData auth:** cannot auto-download training data or submit. The submissions page redirects to login.
-   Never request or store credentials.
-
-## Focus sites (GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36)
-
-Best supplied historical claim: GEMSDOE32 `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` = **0.2778**
-(USER-REPORTED / NOT ORGANIZER-CONFIRMED). All nine historical files fail cross-site uniqueness and are
-DO NOT SUBMIT. See `docs/executive-summary-unique.html` for the full table.
+- Prefer official primary sources. State whether the page or actual bytes were checked; a public listing does not establish download, coverage, semantics, license suitability, or scientific utility.
+- The competition target is mapped faults indicative of geothermal resources, not confirmed geothermal vents. Faults are not proof of heat, permeability, or commercial viability.
+- Do not use hide-and-recover holdout as a leaderboard score estimate. If no estimator is externally validated, report the estimate as unavailable.
+- Official output format requires a single-band float32 GeoTIFF in EPSG:32611 at the sample grid, values in [0,1], and null/NaN outside the region. Local validator success is not organizer acceptance.
+- Keep large generated data out of Git unless required. Never request or store DrivenData or GitHub credentials.
+- Run tests, static checks, and three review passes for substantial changes. Keep README and generated Pages in sync with the no-go status.
 
 ## Core values
 
-Maximize P(Win). Own the Outcome. A negative unique result that prevents a wasted slot is a win relative
-to a duplicate upload.
+**Maximize P(Win). Own the Outcome.** A supported negative decision that prevents an unvalidated or duplicate upload is preferable to a fabricated high score.

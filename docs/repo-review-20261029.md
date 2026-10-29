@@ -1,5 +1,7 @@
 # Repository review — 29 October 2026
 
+> **Historical companion review, superseded for current status by [`repo-review-current-20261029.md`](repo-review-current-20261029.md).** This report was written before the inherited per-fold leakage correction and the 29 October leaderboard recheck. Read it as a record of its review pass, not as a current instruction to rerun the lane.
+
 ## Decision
 
 **No TIFF is cleared for competition submission. Do not submit any current download.** This review generated no new raster, ran no geological experiment, and used no competition slot. That is the evidence-consistent outcome, not a claim that a higher score was achieved.
@@ -68,7 +70,7 @@ These proposals do **not** override the explicit stop. No candidate was trained 
 
 1. Provide an actual method-lane paragraph and decide through the separate selector process whether the stopped literal all-entry 70% gate remains authoritative. Never silently reinterpret it or optimize around a registry raster.
 2. Restore and hash-check full feature, labels and sample submission inputs from an authenticated or independently provenance-verified source; the readiness check currently blocks.
-3. Retire/revalidate the stopped WBG-C1 candidate only through a separately authorized process. For the adjacency-distance candidate, repeat the existing holdout correctly with catalogue features built from each fold's visible faults only; run every-feature-alone leakage canaries; perform pre-placement surface correlation and final-dot overlap against the complete registry. A previous contaminated score is not a usable comparator.
+3. The later inherited receipt `evidence/per_fold_recheck_blind_adjacency.json` already rebuilt the adjacency-distance method from visible faults per fold and ran feature-alone canaries. It reports HOLDOUT-DTI 0.0069456 (`WBGGEMSDOE1-HIDE-RECOVER-v1.0`, n=60,161; CI not recomputed), so the archived full-catalogue HOLDOUT-DTI 0.4657046 is leakage-contaminated and retracted. The cited 0.166060 comparator is from `gems-segment-pooled-v1` (n=60,988; CI95 [0.151858, 0.180339]), a different evaluator; do not call the values comparable. Registry validation remains incomplete (only six champions checked); do not rerun or promote this lane without explicit authorization. WBG-C1 remains stopped.
 4. Establish a same-evaluator current-best baseline and paired uncertainty before any sparse emission. Do not compare unlike evaluator versions, representations, or split designs as a ranking.
 5. Require all local file checks, full registry clearance, and a separate selector decision before considering a weekly submission slot; retrieve the account's remaining allowance and preserve the organizer receipt if a submission is later made.
 6. Recheck official rules for outside-footprint nodata and competition upload acceptance. Local `[0,1]` validation does not explain or prove a resolution of the historical portal range error.

@@ -1,4 +1,20 @@
-## ⛔ SUBMISSION STATUS: NO CURRENT TIFF CLEARED — DO NOT SUBMIT
+## 29 OCT 2026 STANDING BRIEF — READ FIRST EVERY SESSION
+
+**Owner brief (condensed, official links kept):** [`docs/owner-brief-20261029.md`](docs/owner-brief-20261029.md). Read it at the start of every session, together with this README and [`AGENTS.md`](AGENTS.md).
+
+**Unique-lane summary:** [Unique-lane results, 29 Oct 2026](docs/unique-lane-summary-20261029.html) (holdout arms, canary, the candidate file) · [How to submit](docs/how-to-submit-20261029.html) · [29 Oct executive summary](docs/executive-summary-20261029.html)
+
+**Verdict now:** the new research TIFF `wbggemsdoe1-tipgap2km-K12395-20261029` is **DOWNLOAD: YES (research)** and **SUBMIT: NO**. Failed gates: leakage canary (detached max AUC 0.9143, above the 0.90 limit) and the literal 70% uniqueness rule (19 registry rasters). No slot has been used. GEMSDOE32 B2's 0.2778 is USER-REPORTED, not organizer-confirmed.
+
+## ⛔ SUBMISSION STATUS (29 Oct 2026): SUBMIT NO — NO FILE IS CLEARED
+
+**Start here:** [29 Oct executive summary — nine-site decision table, why GEMSDOE32 B2 scored 0.2778, blockers, ranked hypotheses](docs/executive-summary-20261029.html) · [verified nine-site audit](docs/data/nine_site_audit_20261029.json) · [irregularities flagged for review](docs/executive-summary-20261029.html#irregularities).
+
+Estimated leaderboard score: **UNAVAILABLE** for every file here (no holdout or organizer score is computable in this sandbox). Live public leaderboard #1 is **0.4544**; the 50th row read this session is **0.3169** (the board moves: another read recorded 0.3167) (DrivenData page retrieved 2026-10-29). GEMSDOE32 B2 (0.2778, USER-REPORTED) is already in the competition: re-uploading it is a duplicate.
+
+---
+
+## ⛔ Earlier status (28 Oct 2026, retained for provenance): NO CURRENT TIFF CLEARED — DO NOT SUBMIT
 
 The historical WBG-6 approval is superseded: its archived maximum 3-pixel registry overlap is 99.6767%, exceeding the active 70% stop threshold. Its 0.247 value is a MODEL-ESTIMATE, not HOLDOUT-DTI or organizer-confirmed. **Research download only:** [`wbg6-qmh-kdisjoint-30000-20261028.tif`](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif).
 
@@ -6,9 +22,21 @@ A newer concurrently added candidate [`WBGGEMSDOE1-blind-fault-adjacency-distanc
 
 Start here: [START HERE decision page](docs/start-here.html) — DOWNLOAD YES · SUBMIT NO · estimated score UNAVAILABLE. Final run card: [evidence/scarp_offcat/final_run_card_20261029.json](evidence/scarp_offcat/final_run_card_20261029.json). See [current review](docs/repo-review-current-20261028.md), [Focus-9 site comparison](docs/executive-summary.html), and [the standing brief](PROMPT.md). Core values: **Maximize P(Win)** and **Own the Outcome**. Read `PROMPT.md` at the start of every working session.
 
+See [latest review (29 Oct 2026)](docs/repo-review-20261029.md), [Focus-9 site comparison](docs/executive-summary.html), and [the standing brief](PROMPT.md). Core values: **Maximize P(Win)** and **Own the Outcome**. Read `PROMPT.md` at the start of every working session; it preserves the operating requirements and links.
+
 > Historical approval claims and frozen receipts below are retained for provenance only; these no-go notices supersede them.
 
+## WBGGEMSDOE1 tip-continuation experiment (29 Oct 2026) · research only · negative
+
+- **Experiment page:** [tipcont-experiment-20261029.html](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/tipcont-experiment-20261029.html) (source [docs/tipcont-experiment-20261029.html](docs/tipcont-experiment-20261029.html)).
+- **Research ZIP:** [`wbggemsdoe1-tipcont-catalogue-strike-20261029-1c5b292c-zeros.zip`](docs/downloads/wbggemsdoe1-tipcont-catalogue-strike-20261029-1c5b292c-zeros.zip) · SHA-256 `9e5df9f7a02cad153b1d84c89cfc96a83bddea8b9752b3eca49210b98f814c32` · 18,611 binary dots · run card [evidence/tip_continuation_20261029/run_card.json](evidence/tip_continuation_20261029/run_card.json).
+- **Catalogue-proxy HOLDOUT-DTI** (`WBGGEMSDOE1-HIDE-RECOVER-v1.0`): 0.000434, 95% CI [0.000142, 0.000793]; matched random null 0.0240–0.0270. Lane STOP: 35 GEMSDOE25-family rasters exceed the 70% 3 px gate.
+- **Estimated leaderboard score: UNAVAILABLE.** Not a submission candidate.
+
 # WBG GEMS — evidence-first fault mapping
+
+**[START HERE — 29 Oct 2026 executive summary (download / submit verdicts, estimates, nine-site table)](docs/start-here-20261029.html)** · No file is cleared for submission under the 70% protocol.
+**[Repository review (2026-10-29)](docs/repo-review-current-20261029.md)** · no new TIFF approved; core competition inputs are absent and the active method lane is unspecified. Local tests and lint pass. Treat all existing candidate downloads according to their individual negative/STOP decisions.
 
 **[28 October review of earlier lanes](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · No file is cleared; WBG-6 fails the active literal overlap gate.
 

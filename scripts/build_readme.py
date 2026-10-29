@@ -14,7 +14,15 @@ def wbg6_readme_block():
     newer = json.loads((ROOT / "docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.run-card.json").read_text())
     newer_tif = Path(newer["download_url"]).name
     holdout = newer["holdout_dti"]
-    return f"""## ⛔ SUBMISSION STATUS: NO CURRENT TIFF CLEARED — DO NOT SUBMIT
+    return f"""## ⛔ SUBMISSION STATUS (29 Oct 2026): SUBMIT NO — NO FILE IS CLEARED
+
+**Start here:** [29 Oct executive summary — nine-site decision table, why GEMSDOE32 B2 scored 0.2778, blockers, ranked hypotheses](docs/executive-summary-20261029.html) · [verified nine-site audit](docs/data/nine_site_audit_20261029.json) · [irregularities flagged for review](docs/executive-summary-20261029.html#irregularities).
+
+Estimated leaderboard score: **UNAVAILABLE** for every file here (no holdout or organizer score is computable in this sandbox). Live public leaderboard #1 is **0.4544**; the 50th row read this session is **0.3169** (the board moves: another read recorded 0.3167) (DrivenData page retrieved 2026-10-29). GEMSDOE32 B2 (0.2778, USER-REPORTED) is already in the competition: re-uploading it is a duplicate.
+
+---
+
+## ⛔ Earlier status (28 Oct 2026, retained for provenance): NO CURRENT TIFF CLEARED — DO NOT SUBMIT
 
 The historical WBG-6 approval is superseded: its archived maximum 3-pixel registry overlap is {overlap:.4%}, exceeding the active 70% stop threshold. Its 0.247 value is a MODEL-ESTIMATE, not HOLDOUT-DTI or organizer-confirmed. **Research download only:** [`{tif}`](docs/downloads/{tif}).
 
@@ -22,9 +30,45 @@ A newer concurrently added candidate [`{newer_tif}`](docs/downloads/{newer_tif})
 
 Start here: [START HERE decision page](docs/start-here.html) — DOWNLOAD YES · SUBMIT NO · estimated score UNAVAILABLE. Final run card: [evidence/scarp_offcat/final_run_card_20261029.json](evidence/scarp_offcat/final_run_card_20261029.json). See [current review](docs/repo-review-current-20261028.md), [Focus-9 site comparison](docs/executive-summary.html), and [the standing brief](PROMPT.md). Core values: **Maximize P(Win)** and **Own the Outcome**. Read `PROMPT.md` at the start of every working session.
 
+See [latest review (29 Oct 2026)](docs/repo-review-20261029.md), [Focus-9 site comparison](docs/executive-summary.html), and [the standing brief](PROMPT.md). Core values: **Maximize P(Win)** and **Own the Outcome**. Read `PROMPT.md` at the start of every working session; it preserves the operating requirements and links.
+
 > Historical approval claims and frozen receipts below are retained for provenance only; these no-go notices supersede them.
 
 """
+
+def brief_20261029_block():
+    """Top-of-README pointer to the 29 Oct 2026 owner brief, executive summary and live verdict."""
+    run = json.loads((ROOT / "evidence/candidates/wbggemsdoe1-tipgap2km-K12395-20261029.run_card.json").read_text())
+    name = run["name"]
+    canary = run["leakage_canary"]["detached_max_auc"]
+    dup = run["registry_comparison"]["duplicate_count"]
+    return f"""## 29 OCT 2026 STANDING BRIEF — READ FIRST EVERY SESSION
+
+**Owner brief (condensed, official links kept):** [`docs/owner-brief-20261029.md`](docs/owner-brief-20261029.md). Read it at the start of every session, together with this README and [`AGENTS.md`](AGENTS.md).
+
+**Unique-lane summary:** [Unique-lane results, 29 Oct 2026](docs/unique-lane-summary-20261029.html) (holdout arms, canary, the candidate file) · [How to submit](docs/how-to-submit-20261029.html) · [29 Oct executive summary](docs/executive-summary-20261029.html)
+
+**Verdict now:** the new research TIFF `{name}` is **DOWNLOAD: {"YES (research)" if run["ok_to_download"] else "NO"}** and **SUBMIT: {"YES" if run["ok_to_submit"] else "NO"}**. Failed gates: leakage canary (detached max AUC {canary:.4f}, above the 0.90 limit) and the literal 70% uniqueness rule ({dup} registry rasters). No slot has been used. GEMSDOE32 B2's 0.2778 is USER-REPORTED, not organizer-confirmed.
+
+"""
+
+
+def tipcont_experiment_readme_block():
+    """WBGGEMSDOE1 tip-continuation experiment (29 Oct 2026): research only, numbers from the measured JSON."""
+    summ = json.loads((ROOT / "docs/data/tipcont_experiment_20261029.json").read_text())
+    nf = summ["new_file"]
+    h = nf["holdout_dti_catalogue_proxy"]
+    u = nf["uniqueness"]
+    zip_name = Path(nf["zeros_zip"]).name
+    return f"""## WBGGEMSDOE1 tip-continuation experiment (29 Oct 2026) · research only · negative
+
+- **Experiment page:** [tipcont-experiment-20261029.html](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/tipcont-experiment-20261029.html) (source [docs/tipcont-experiment-20261029.html](docs/tipcont-experiment-20261029.html)).
+- **Research ZIP:** [`{zip_name}`](docs/downloads/{zip_name}) · SHA-256 `{nf['sha256_zeros_tif']}` · {nf['dots']:,} binary dots · run card [evidence/tip_continuation_20261029/run_card.json](evidence/tip_continuation_20261029/run_card.json).
+- **Catalogue-proxy HOLDOUT-DTI** (`{h['evaluator']}`): {h['pooled_dti']:.6f}, 95% CI [{h['ci95'][0]:.6f}, {h['ci95'][1]:.6f}]; matched random null {h['matched_random_null_dti_2_5_97_5'][0]:.4f}–{h['matched_random_null_dti_2_5_97_5'][1]:.4f}. Lane STOP: {u['of_which_GEMSDOE25_family']} GEMSDOE25-family rasters exceed the 70% 3 px gate.
+- **Estimated leaderboard score: UNAVAILABLE.** Not a submission candidate.
+
+"""
+
 
 def main():
     card = json.loads((ROOT / "registry/run_card.json").read_text())
@@ -78,7 +122,10 @@ def main():
     w5_comp = w5["correlation_overlap_vs_registry"]["final_dots_competing_method"]
     w5_lit = w5["correlation_overlap_vs_registry"]["final_dots_literal"]
     w5_bench = w5["benchmark"]["dti"]
-    header = wbg6_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
+    header = brief_20261029_block() + wbg6_readme_block() + tipcont_experiment_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
+
+**[START HERE — 29 Oct 2026 executive summary (download / submit verdicts, estimates, nine-site table)](docs/start-here-20261029.html)** · No file is cleared for submission under the 70% protocol.
+**[Repository review (2026-10-29)](docs/repo-review-current-20261029.md)** · no new TIFF approved; core competition inputs are absent and the active method lane is unspecified. Local tests and lint pass. Treat all existing candidate downloads according to their individual negative/STOP decisions.
 
 **[28 October review of earlier lanes](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · No file is cleared; WBG-6 fails the active literal overlap gate.
 

@@ -132,7 +132,7 @@ def main():
     focus9_negative = "e8c4bf7607cec72c54981b90aa60e7e85163b429b58ebd6f2a7c3126e8c1e351"
     paths = ("registry/run_card.json", "evidence/wbg2/run_card.json", "evidence/wbg_s2/run_card.json",
              "evidence/wbg3_spipmr/run_card.json", "evidence/focus9_exec/run_card.json",
-             "evidence/wbg6_run_card.json")
+             "evidence/wbg6_run_card.json", "evidence/tip_continuation_20261029/run_card.json")
     matches = []
     for name in paths:
         card_path = ROOT / name
@@ -181,6 +181,19 @@ def main():
         report["ok_to_submit"] = False
         report["known_negative_registry_overlap"] = max(row["my_dots_within_3px_of_theirs"] for row in rows)
         report["known_negative_lattice_overlap"] = rows[0]["my_dots_within_3px_of_theirs"]
+    tipcont_negatives = {
+        "9e5df9f7a02cad153b1d84c89cfc96a83bddea8b9752b3eca49210b98f814c32",
+        "6c171eaedab99d87528637f145b6d2f2b3df7ce714fdf998a7c54580cf0a9601",
+    }
+    if report["sha256"] in tipcont_negatives:
+        decision = card.get("decision", {}) if card else {}
+        if (not identity_matches or card_name != "evidence/tip_continuation_20261029/run_card.json"
+                or card.get("verdict") != "negative" or decision.get("ok_to_submit") is not False
+                or decision.get("approved_for_weekly_slot") is not False
+                or card.get("registry", {}).get("passes_literal_uniqueness") is not False):
+            raise ValueError("WBGGEMSDOE1 tip-continuation negative run card missing or inconsistent")
+        report["ok_to_submit"] = False
+        report["known_negative_reason"] = "holdout at or below matched null; literal 70% lane gate fails (GEMSDOE25 family)"
     if report["sha256"] == focus9_negative:
         decision = card.get("decision", {}) if card else {}
         registry = card.get("correlation_overlap_vs_registry", {}) if card else {}

@@ -1,0 +1,53 @@
+{
+ "valid_for_claims": false,
+ "invalid_reason": "Evaluated with the MVGZ-compatibility evaluator (scripts/evaluate_holdout.py positional path, label truth = data/bridge/labels.tif, visible-only b_visible_px=2). The candidate was emitted from the full public catalogue, including components this evaluator hides per fold, so the number is leaked by construction and is not a holdout estimate. Not comparable to 0.166060. Not reported as a score.",
+ "evaluator_family": "MVGZ-compat (gems1.holdout.evaluate_mask)",
+ "evidence_class": "HOLDOUT-DTI",
+ "evaluator_version": "WBGGEMSDOE1-HIDE-RECOVER-v1.0",
+ "name": "wbggemsdoe1-tipgap2km-K12395-20261029",
+ "pooled_dti": 0.24214955541089853,
+ "ci95": [
+  0.22829204885811594,
+  0.2556174845490121
+ ],
+ "tp": 12832.481339249352,
+ "fp": 11493.679714199245,
+ "fn": 47328.51866075065,
+ "n_withheld_positives": 60161,
+ "b_visible_px": 2.0,
+ "per_fold": {
+  "NW": {
+   "dti": 0.26594767486443244,
+   "tp": 2384.9246516910976,
+   "fp": 2381.3062692375875,
+   "n_truth": 10018,
+   "emitted": 6503,
+   "coverage": 0.23806395005900355
+  },
+  "NE": {
+   "dti": 0.24526456481488138,
+   "tp": 2696.9997009359836,
+   "fp": 2644.4384650624434,
+   "n_truth": 12410,
+   "emitted": 7204,
+   "coverage": 0.2173247140157924
+  },
+  "SW": {
+   "dti": 0.2541246612675166,
+   "tp": 4539.380307134402,
+   "fp": 3862.6651005996464,
+   "n_truth": 20228,
+   "emitted": 10731,
+   "coverage": 0.22441073300051423
+  },
+  "SE": {
+   "dti": 0.21171724317268784,
+   "tp": 3211.1766794878695,
+   "fp": 2605.269879299567,
+   "n_truth": 17505,
+   "emitted": 7220,
+   "coverage": 0.18344339785706196
+  }
+ },
+ "ci_method": "cluster bootstrap over 132 of 256 spatial tiles, 1000 reps"
+}

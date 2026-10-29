@@ -20,7 +20,7 @@ The historical WBG-6 approval is superseded: its archived maximum 3-pixel regist
 
 A newer concurrently added candidate [`{newer_tif}`](docs/downloads/{newer_tif}) records HOLDOUT-DTI {holdout:.4f}, 95% CI [{newer["holdout_ci95"][0]:.4f}, {newer["holdout_ci95"][1]:.4f}], evaluator `{newer["evaluator_version"]}`, n={newer["n_withheld_positives"]:,}. **This is NEGATIVE / DO NOT SUBMIT:** its own run card states it used the full catalogue during placement (holdout leakage risk) and checked only {newer["registry_champions_checked"]} champion rasters, not the full registry. Re-evaluate with per-fold visible catalogues and complete registry checks before promotion.
 
-See [current review](docs/repo-review-current-20261028.md), [Focus-9 site comparison](docs/executive-summary.html), and [the standing brief](PROMPT.md). Core values: **Maximize P(Win)** and **Own the Outcome**. Read `PROMPT.md` at the start of every working session.
+Start here: [START HERE decision page](docs/start-here.html) — DOWNLOAD YES · SUBMIT NO · estimated score UNAVAILABLE. Final run card: [evidence/scarp_offcat/final_run_card_20261029.json](evidence/scarp_offcat/final_run_card_20261029.json). See [current review](docs/repo-review-current-20261028.md), [Focus-9 site comparison](docs/executive-summary.html), and [the standing brief](PROMPT.md). Core values: **Maximize P(Win)** and **Own the Outcome**. Read `PROMPT.md` at the start of every working session.
 
 > Historical approval claims and frozen receipts below are retained for provenance only; these no-go notices supersede them.
 

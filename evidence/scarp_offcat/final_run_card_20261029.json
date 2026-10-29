@@ -1,0 +1,354 @@
+{
+  "schema": "gemsdoe1-final-run-card-v1",
+  "date_utc": "2026-10-29",
+  "name": "wbggemsdoe1-lidar-scarp-coh-nms-offcat-36800-20261029-zeros",
+  "submission_note": "LiDAR scarp excess x coherence NMS; 36,800 off-catalogue dots; no fitted model; holdout unverified",
+  "submission_note_chars": 98,
+  "hypothesis": "Unmapped fault scarps leave short-wavelength slope excess (ex_max) that is coherent along strike (coh100); NMS peaks of ex_max x coh100 outside a 3 px (300 m) halo of the mapped catalogue are off-catalogue fault candidates.",
+  "mechanism": "Scarp crest: concentrated short-wavelength slope excess (ex_max) with linear coherence along strike (coh100); peak survival under non-maximum suppression (NMS) and the 5 px spacing rule.",
+  "named_non_fault_mimic": "Roads, canal and ditch banks, channel banks, terrace risers, paleo-shorelines landslide headscarps and mines (caveats listed in data/external/lidar_scarp_features.json).",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "scope": "catalogue hide-and-recover, fold-safe replay: dots regenerated per fold from visible catalogue only",
+    "withheld_positives": 11330,
+    "candidate_dti": 0.058087,
+    "candidate_ci95": [
+      0.049006,
+      0.066467
+    ],
+    "control_random_same_mask_dti": 0.049541,
+    "control_ci95": [
+      0.042507,
+      0.055846
+    ],
+    "paired_delta_vs_control": 0.008546135106950778,
+    "paired_delta_ci95": [
+      0.001052675606975073,
+      0.016446429650292128
+    ],
+    "leakage_canary_auc_single_feature": 0.540569,
+    "leakage_canary_threshold": 0.9,
+    "leakage_canary_pass": true,
+    "experiments_used": 3,
+    "experiments_budget": 3,
+    "selection_caveat": "Best of three variants on the same holdout; no independent split was used."
+  },
+  "estimated_leaderboard_score": "UNAVAILABLE",
+  "correlation_overlap_vs_registry": {
+    "registry_rasters_compared": 519,
+    "max_spearman_sample": {
+      "value": 0.11297032471486851,
+      "registry": "G24/docs/downloads/gems24-oj1-3eef450351de-RESEARCH-NOT-SUBMISSION-zeros.tif"
+    },
+    "max_dot_overlap_3px": {
+      "value": 0.6424184782608696,
+      "registry": "G24/docs/downloads/GEMSDOE24-geo1-concealed-conduit-rad-mag-lidar-20261029-8c9946590ca7-zeros.tif"
+    },
+    "duplicate_hits": 0,
+    "unique_by_lane_rule": true,
+    "scope": "focus-site repos (GEMSDOE24,25,27,28,30,31,32,33,36) + repo downloads; not the full 24-repo registry"
+  },
+  "raster_sha256": "2607ca44aba65dc7babe30022cfd779fc1352bf3162abaf6091bd31592a33590",
+  "validator": {
+    "file": "/home/user/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-lidar-scarp-coh-nms-offcat-36800-20261029-zeros.tif",
+    "sha256": "2607ca44aba65dc7babe30022cfd779fc1352bf3162abaf6091bd31592a33590",
+    "bytes": 823692,
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "emitted_positive_pixels": 36800,
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 36800,
+    "footprint_fraction": 0.0071216070525584275,
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "ok_to_submit": false,
+    "promotion_verdict": "untracked",
+    "independent_organizer_origin_authenticated": false,
+    "warning": "FORMAT PASS is not uniqueness, scientific efficacy, organizer acceptance or slot approval.",
+    "run_card_matches_exact_tiff": false,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    }
+  },
+  "verdict": "negative_for_promotion",
+  "decision": {
+    "download": "YES",
+    "submit": "NO",
+    "reason": "Format-valid and unique, but the project promotion gate requires a holdout that beats the best same-evaluator result; this file beats only a random control, by a small paired margin. No leaderboard score is projected."
+  },
+  "nine_site_geometry_vs_reported": {
+    "n": 9,
+    "spearman_reported_vs_median_dist": 0.9915966386554623,
+    "spearman_p": 1.7765161836879756e-07,
+    "caveat": "n=9; reported scores are USER-REPORTED and unverified; correlation, not causation",
+    "rows": [
+      {
+        "site": "GEMSDOE24",
+        "file": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+        "reported": 0.2477,
+        "format_pass": false,
+        "dots": 36800,
+        "median_dist_px": 14.56,
+        "share_within_3px": 0.1998,
+        "on_catalogue": 0.0,
+        "max_overlap": 1.0,
+        "max_overlap_registry": "G24/docs/downloads/gems24-h24-0-mirror-h19-5-group-best-20261002-e27054cf-allfinite.tif",
+        "max_rho": NaN,
+        "pixel_identical_nonself": 0,
+        "pixel_identical_paths": [],
+        "literal_rule_hits_nonself": 101,
+        "literal_rule_hits_dense_registry": 57
+      },
+      {
+        "site": "GEMSDOE25",
+        "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "reported": 0.26,
+        "format_pass": false,
+        "dots": 36800,
+        "median_dist_px": 15.13,
+        "share_within_3px": 0.1954,
+        "on_catalogue": 0.0,
+        "max_overlap": 1.0,
+        "max_overlap_registry": "G24/docs/downloads/gems24-h24-0-mirror-h19-5-group-best-20261002-e27054cf-allfinite.tif",
+        "max_rho": NaN,
+        "pixel_identical_nonself": 0,
+        "pixel_identical_paths": [],
+        "literal_rule_hits_nonself": 98,
+        "literal_rule_hits_dense_registry": 54
+      },
+      {
+        "site": "GEMSDOE27",
+        "file": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+        "reported": 0.2449,
+        "format_pass": false,
+        "dots": 36800,
+        "median_dist_px": 14.14,
+        "share_within_3px": 0.2016,
+        "on_catalogue": 0.0,
+        "max_overlap": 1.0,
+        "max_overlap_registry": "G27/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+        "max_rho": NaN,
+        "pixel_identical_nonself": 0,
+        "pixel_identical_paths": [],
+        "literal_rule_hits_nonself": 101,
+        "literal_rule_hits_dense_registry": 57
+      },
+      {
+        "site": "GEMSDOE28",
+        "file": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+        "reported": 0.271,
+        "format_pass": false,
+        "dots": 36800,
+        "median_dist_px": 17.72,
+        "share_within_3px": 0.1161,
+        "on_catalogue": 0.0,
+        "max_overlap": 1.0,
+        "max_overlap_registry": "G24/docs/downloads/gems24-h24-0-mirror-h19-5-group-best-20261002-e27054cf-allfinite.tif",
+        "max_rho": NaN,
+        "pixel_identical_nonself": 0,
+        "pixel_identical_paths": [],
+        "literal_rule_hits_nonself": 97,
+        "literal_rule_hits_dense_registry": 53
+      },
+      {
+        "site": "GEMSDOE30",
+        "file": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+        "reported": 0.26,
+        "format_pass": true,
+        "dots": 44090,
+        "median_dist_px": 15.0,
+        "share_within_3px": 0.1952,
+        "on_catalogue": 0.0,
+        "max_overlap": 1.0,
+        "max_overlap_registry": "G24/docs/downloads/gems24-h24-0-mirror-h19-5-group-best-20261002-e27054cf-allfinite.tif",
+        "max_rho": 1.0,
+        "pixel_identical_nonself": 7,
+        "pixel_identical_paths": [
+          "G24/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-allfinite.tif",
+          "G25/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+          "G30/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+          "G32/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+          "G32/gems32-probe-S1-ANCHOR-identical-to-live-02600.tif",
+          "G32/gemsdoe32-d28-ref02600-repro-44090-20261004T183200Z-426073b6-zeros.tif",
+          "G33/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif"
+        ],
+        "literal_rule_hits_nonself": 102,
+        "literal_rule_hits_dense_registry": 60
+      },
+      {
+        "site": "GEMSDOE31",
+        "file": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+        "reported": 0.2708,
+        "format_pass": false,
+        "dots": 36800,
+        "median_dist_px": 17.72,
+        "share_within_3px": 0.1173,
+        "on_catalogue": 0.0,
+        "max_overlap": 1.0,
+        "max_overlap_registry": "G24/docs/downloads/gems24-h24-0-mirror-h19-5-group-best-20261002-e27054cf-allfinite.tif",
+        "max_rho": NaN,
+        "pixel_identical_nonself": 0,
+        "pixel_identical_paths": [],
+        "literal_rule_hits_nonself": 97,
+        "literal_rule_hits_dense_registry": 53
+      },
+      {
+        "site": "GEMSDOE32",
+        "file": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+        "reported": 0.2778,
+        "format_pass": true,
+        "dots": 37654,
+        "median_dist_px": 19.65,
+        "share_within_3px": 0.0577,
+        "on_catalogue": 0.0,
+        "max_overlap": 1.0,
+        "max_overlap_registry": "G24/docs/downloads/gems24-h24-0-mirror-h19-5-group-best-20261002-e27054cf-allfinite.tif",
+        "max_rho": 0.9999999999999999,
+        "pixel_identical_nonself": 0,
+        "pixel_identical_paths": [],
+        "literal_rule_hits_nonself": 100,
+        "literal_rule_hits_dense_registry": 57
+      },
+      {
+        "site": "GEMSDOE33",
+        "file": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+        "reported": 0.2632,
+        "format_pass": true,
+        "dots": 41865,
+        "median_dist_px": 16.64,
+        "share_within_3px": 0.1439,
+        "on_catalogue": 0.0,
+        "max_overlap": 1.0,
+        "max_overlap_registry": "G32/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+        "max_rho": 1.0,
+        "pixel_identical_nonself": 0,
+        "pixel_identical_paths": [],
+        "literal_rule_hits_nonself": 101,
+        "literal_rule_hits_dense_registry": 59
+      },
+      {
+        "site": "GEMSDOE36",
+        "file": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+        "reported": 0.275,
+        "format_pass": true,
+        "dots": 38854,
+        "median_dist_px": 19.24,
+        "share_within_3px": 0.0587,
+        "on_catalogue": 0.0,
+        "max_overlap": 1.0,
+        "max_overlap_registry": "G32/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+        "max_rho": 0.9999999999999999,
+        "pixel_identical_nonself": 0,
+        "pixel_identical_paths": [],
+        "literal_rule_hits_nonself": 100,
+        "literal_rule_hits_dense_registry": 57
+      }
+    ]
+  },
+  "irregularities": [
+    [
+      "I1",
+      "The portal error 'Predicted values must be in range [0, 1]' is not reproducible here; the portal is login-walled. Our file has no NaN and values in [0,1]."
+    ],
+    [
+      "I2",
+      "The official rules allow null or NaN outside the bounds. Our file has no NaN cells (validator), so every cell holds a finite 0 or 1. Organizer acceptance of finite zeros outside the footprint is not verified."
+    ],
+    [
+      "I3",
+      "data/bridge/sample_submission.tif is not all-zero: it holds 60,988 pixels equal to 1 (the mapped catalogue) and NaN outside the 5,167,373-cell footprint. The official page says the sample predicts total fault absence. The two disagree."
+    ],
+    [
+      "I4",
+      "A recorded holdout value cannot be reproduced by re-scoring the final TIFF. The WBG-3 TIFF scores 0.003987 on the same folds, but its recorded value is 0.121862, because that lane regenerated dots inside each fold. A catalogue-trained TIFF has no single file-level holdout score."
+    ],
+    [
+      "I5",
+      "The 'gems-segment-pooled-v1' evaluator has no implementing code in this repository or in the 6GEMSDOE mirror. Benchmarks based on it are unverified here."
+    ],
+    [
+      "I6",
+      "The prompt gives the leaderboard top as 0.4413, and the repo notes say 0.4544. The page fetched on 2026-10-29 shows #1 at 0.4544 with no cache time. This is flagged, not resolved."
+    ],
+    [
+      "I7",
+      "LiDAR coverage is partial and was not re-measured in this session (see data/external/lidar_scarp_features.json). The LiDAR feature responds to roads, channels, terrace risers and other steps, so it is not a fault detector by construction."
+    ],
+    [
+      "I8",
+      "The nearest registry raster is a sibling LiDAR file created today (GEMSDOE24 geo1 concealed-conduit, 20261029) at about 64\u201365% dot overlap. It passes the 70% rule with a margin of about 5 points, which is a lane-proximity risk to review."
+    ],
+    [
+      "I9",
+      "The uniqueness check covers 519 rasters from the nine focus-site repos and this repo's downloads. The full 24-repo registry cited in other receipts was not available."
+    ],
+    [
+      "I10",
+      "The holdout scores recovery of known catalogue faults. The organizer scores new faults. The repo's own check finds the shared holdout does not rank submissions (Spearman 0.144, n=118, AGENTS.md). Holdout DTI is therefore not a leaderboard estimate."
+    ],
+    [
+      "I11",
+      "Three variants were tested on one holdout, and the best paired interval was selected. That selection is a source of optimism."
+    ],
+    [
+      "I12",
+      "All nine focus-site scores are USER-REPORTED, not organizer-confirmed. The distance-to-catalogue ordering uses nine points, and it was noticed after the scores were known, so the rank correlation is post hoc."
+    ],
+    [
+      "I13",
+      "The literal uniqueness rule (\u226570% 3 px dot overlap or Spearman >0.90) flags about 100 non-self registry rasters for each of the nine focus files. About half are dense binary rasters (a density artifact of the literal gate); the rest form a shared family. The nine files are therefore NOT unique in this corpus. Our coherence candidate's maximum on the same rule is 0.6424."
+    ],
+    [
+      "I14",
+      "The shared validator reports run_card_matches_exact_tiff = false and run_card_path = null for the selected TIFF. The run card is not yet linked to the exact bytes; this is a blocker for any promotion."
+    ],
+    [
+      "I15",
+      "The exmax and halo15 run cards still reference their original docs/downloads paths, which have been moved to evidence/scarp_offcat/negative/. Their SHA-256 values are recorded in the negative folder."
+    ]
+  ],
+  "sources": [
+    [
+      "DrivenData problem description and metric (distance-weighted Tversky, alpha 0.2, beta 0.8, 300 m kernel, float32 in [0,1], EPSG:32611, 100 m)",
+      "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+    ],
+    [
+      "GEMS Prize Official Rules, September 2026",
+      "https://docs.nlr.gov/docs/fy26osti/96647.pdf"
+    ],
+    [
+      "DrivenData leaderboard (fetched 2026-10-29)",
+      "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
+    ],
+    [
+      "Reference solution (GitHub; recorded in repo notes, not fetched this session)",
+      "https://github.com/drivendataorg/gems-prize-reference-solution"
+    ],
+    [
+      "EPSG:32611 (WGS 84 / UTM 11N; recorded in repo notes, not fetched this session)",
+      "https://epsg.io/32611"
+    ],
+    [
+      "USGS 3DEP, cited as the LiDAR source in the restored JSON (not fetched this session; the no-restriction claim is unverified)",
+      "https://www.usgs.gov/3d-elevation-program"
+    ]
+  ]
+}

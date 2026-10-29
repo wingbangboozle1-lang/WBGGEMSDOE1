@@ -1,0 +1,120 @@
+{
+  "schema": "gemsdoe1-run-card-v1",
+  "date_utc": "2026-10-29",
+  "name": "wbggemsdoe1-lidar-scarp-coh-nms-offcat-36800-20261029-zeros",
+  "variant": "exmax_x_coh100",
+  "hypothesis": "Unmapped Quaternary scarps leave 2 m-resolved slope excess above the 30 m regional slope in USGS 3DEP 1 m DEM; NMS peaks of that excess, excluding 300 m of the mapped catalogue, are off-catalogue fault candidates.",
+  "mechanism": "Fault scarp crest: concentrated short-wavelength slope excess (ex_max, 2 m work grid) where regional slope is low; crest peaks survive NMS.",
+  "named_non_fault_mimic": "Roads, canal/ditch banks, channel banks, terrace risers, paleo-shorelines (Lake Lahontan), landslide headscarps and mines (listed as caveats in data/external/lidar_scarp_features.json).",
+  "inputs": {
+    "lidar_raster": "data/external/lidar_scarp_features_u8.tif",
+    "lidar_sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+    "lidar_coverage_of_footprint": 0.753416,
+    "catalogue": "data/bridge/existing_faults.tif (identical to labels.tif, sha256 7ba308cc...)"
+  },
+  "parameters": {
+    "dots": 36800,
+    "nms_window_px": 7,
+    "min_separation_px": 5,
+    "catalogue_buffer_px": 3,
+    "ex_max_xmax": 1.5,
+    "ex_max_quantisation": "sqrt",
+    "fold_generator": "gems57.holdout.buffered_component_draw(seed=71614, hide_frac=0.2, buffer_px=3, boundary_px=12)"
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": 11330,
+    "candidate_dti": 0.058087,
+    "candidate_ci95": [
+      0.049006,
+      0.066467
+    ],
+    "control_random_same_mask_dti": 0.049541,
+    "control_ci95": [
+      0.042507,
+      0.055846
+    ],
+    "paired_difference": {
+      "control_random_same_mask": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.008546135106950778,
+        "ci95": [
+          0.001052675606975073,
+          0.016446429650292128
+        ],
+        "withheld_positive_pixels": 11330
+      }
+    },
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 152,
+      "draws": 1000,
+      "seed": 520810,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    },
+    "per_fold": [
+      {
+        "fold": 0,
+        "budget": 7819,
+        "dots_placed": 7819,
+        "region_px": 1097924,
+        "withheld_positive_px": 1920,
+        "candidate_dti_fold": 0.042161,
+        "control_dti_fold": 0.047886
+      },
+      {
+        "fold": 1,
+        "budget": 9694,
+        "dots_placed": 9005,
+        "region_px": 1361215,
+        "withheld_positive_px": 2385,
+        "candidate_dti_fold": 0.040746,
+        "control_dti_fold": 0.041951
+      },
+      {
+        "fold": 2,
+        "budget": 9571,
+        "dots_placed": 9571,
+        "region_px": 1343885,
+        "withheld_positive_px": 3780,
+        "candidate_dti_fold": 0.070562,
+        "control_dti_fold": 0.054831
+      },
+      {
+        "fold": 3,
+        "budget": 7712,
+        "dots_placed": 7712,
+        "region_px": 1082917,
+        "withheld_positive_px": 3245,
+        "candidate_dti_fold": 0.070564,
+        "control_dti_fold": 0.051513
+      }
+    ],
+    "leakage_canary_auc_ex_max_alone": 0.540569,
+    "leakage_canary_threshold": 0.9,
+    "leakage_canary_pass": true,
+    "caveat": "Catalogue hide-and-recover proxy, not the organizer's private test. Withheld faults are the catalogue, not new faults."
+  },
+  "validator": {
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "finite_all": true,
+    "min": 0.0,
+    "max": 1.0,
+    "dots": 36800,
+    "writer": {
+      "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-lidar-scarp-coh-nms-offcat-36800-20261029-zeros.tif",
+      "mode": "zeros",
+      "nodata": null
+    }
+  },
+  "sha256": "2607ca44aba65dc7babe30022cfd779fc1352bf3162abaf6091bd31592a33590",
+  "estimated_leaderboard_score": "UNAVAILABLE",
+  "verdict": "pending_uniqueness_audit"
+}

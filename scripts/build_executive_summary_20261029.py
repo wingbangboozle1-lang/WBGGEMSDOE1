@@ -297,8 +297,8 @@ small{{color:#5b6472}}
 <section><h2>1 · The new file: what to download and what to expect</h2>
 <table>
 <tr><th>Item</th><th>Value</th></tr>
-<tr><td>Download (recommended, zeros exterior)</td><td><a href="{e(nf['zeros_zip'])}">{e(nf['zeros_zip'])}</a> · raw <a href="{e(nf['zeros_tif'])}">.tif</a></td></tr>
-<tr><td>Download (NaN exterior, matches official sample)</td><td><a href="{e(nf['nan_zip'])}">{e(nf['nan_zip'])}</a> · raw <a href="{e(nf['nan_tif'])}">.tif</a></td></tr>
+<tr><td>Download (recommended, zeros exterior)</td><td><a href="downloads/{e(Path(nf['zeros_zip']).name)}" download>{e(Path(nf['zeros_zip']).name)}</a> · raw <a href="downloads/{e(Path(nf['zeros_tif']).name)}" download>.tif</a></td></tr>
+<tr><td>Download (NaN exterior, matches official sample)</td><td><a href="downloads/{e(Path(nf['nan_zip']).name)}" download>{e(Path(nf['nan_zip']).name)}</a> · raw <a href="downloads/{e(Path(nf['nan_tif']).name)}" download>.tif</a></td></tr>
 <tr><td>Name / note (≤140 chars, {nf['note_chars']} used)</td><td><code>{e(nf['name'])}</code> — {e(nf['note'])}</td></tr>
 <tr><td>Positive dots</td><td>{nf['dots']:,} (binary 0/1), none on the catalogue, none within 200 m of it</td></tr>
 <tr><td>sha256 (zeros tif)</td><td><code>{e(nf['sha256_zeros_tif'])}</code></td></tr>

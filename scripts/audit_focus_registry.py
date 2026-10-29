@@ -26,7 +26,6 @@ from pathlib import Path
 
 import numpy as np
 import rasterio
-from scipy import ndimage as ndi
 from scipy.spatial import cKDTree
 from scipy.stats import spearmanr
 

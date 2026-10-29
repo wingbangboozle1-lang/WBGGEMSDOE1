@@ -6,6 +6,17 @@ import json
 ROOT = Path(__file__).resolve().parents[1]
 
 
+NEW_STATUS_2026_10_29 = """## 2026-10-29 decision: SUBMIT NO. How to submit: [docs/how-to-submit-20261029.html](docs/how-to-submit-20261029.html)
+
+- **No file is cleared for portal submission.** The unique-candidate attempt ran its three pre-registered arms (E1 primary; E2, E3 alternates). All three are format-valid and not copies, but each fails the 70% lane gate against one raster (GEMSDOE77). The 3-experiment budget is used.
+- Research-only TIFs: [`docs/research/`](docs/research/). Validator: `python scripts/validate_candidate_tif.py FILE.tif`.
+- The literal lane rule cannot be passed by any dot field (r13 lattice, 99.87% coverage). A gate-definition decision is needed; see the [executive summary](docs/executive-summary-20261029.html).
+- Scores are USER-REPORTED only. The holdout is a sanity check (Spearman 0.140 vs owner scores) and never a gate or estimate.
+- Core values: **Maximize P(Win)** and **Own the Outcome**.
+
+"""
+
+
 def wbg6_readme_block():
     """Fail-closed top-of-README status under the active literal 70% rule."""
     audit = json.loads((ROOT / "evidence/wbg6_submission_audit.json").read_text())
@@ -14,7 +25,7 @@ def wbg6_readme_block():
     newer = json.loads((ROOT / "docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.run-card.json").read_text())
     newer_tif = Path(newer["download_url"]).name
     holdout = newer["holdout_dti"]
-    return f"""## ⛔ SUBMISSION STATUS: NO CURRENT TIFF CLEARED — DO NOT SUBMIT
+    return NEW_STATUS_2026_10_29 + f"""## ⛔ SUBMISSION STATUS: NO CURRENT TIFF CLEARED — DO NOT SUBMIT
 
 The historical WBG-6 approval is superseded: its archived maximum 3-pixel registry overlap is {overlap:.4%}, exceeding the active 70% stop threshold. Its 0.247 value is a MODEL-ESTIMATE, not HOLDOUT-DTI or organizer-confirmed. **Research download only:** [`{tif}`](docs/downloads/{tif}).
 

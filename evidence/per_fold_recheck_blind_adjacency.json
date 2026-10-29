@@ -1,0 +1,72 @@
+{
+  "schema": "gemsdoe1-per-fold-recheck-v1",
+  "question": "Does the blind-fault-adjacency DTI survive visible-only (per-fold) placement?",
+  "evaluator": "gems1.holdout.evaluate_mask (shared, unchanged), EVALUATOR_VERSION WBGGEMSDOE1-HIDE-RECOVER-v1.0",
+  "archived_raster": "docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif",
+  "archived_raster_sha256": "0806bb30573094bf889bcb55d15878cc66cdd3851f9b40119ab96d7716437815",
+  "archived_full_catalogue": {
+    "evidence_class": "HOLDOUT-DTI (leaky placement: full catalogue)",
+    "pooled_dti": 0.46570455816360007,
+    "ci95": [
+      0.45625939157121076,
+      0.4747908528873552
+    ],
+    "n_withheld_positives": 60161,
+    "original_run_card_value": 0.46570455816360007
+  },
+  "per_fold_visible_only": {
+    "evidence_class": "HOLDOUT-DTI (visible-only placement, per fold)",
+    "pooled_dti": 0.006945589801501288,
+    "ci95": "NOT RECOMPUTED (fold-level pooling; see per_fold list)",
+    "n_withheld_positives": 60161,
+    "folds": [
+      {
+        "fold": "NW",
+        "n_withheld_positives": 10018,
+        "n_dots": 108091,
+        "dti_single_fold": 0.008309096233866168,
+        "tp": 78.14892900956113,
+        "fp": 6875.981717451206,
+        "fn": 9939.851070990439
+      },
+      {
+        "fold": "NE",
+        "n_withheld_positives": 12410,
+        "n_dots": 100525,
+        "dti_single_fold": 0.006701429945466933,
+        "tp": 68.94239497751326,
+        "fp": 1729.6278344614575,
+        "fn": 12341.057605022486
+      },
+      {
+        "fold": "SW",
+        "n_withheld_positives": 20228,
+        "n_dots": 112757,
+        "dti_single_fold": 0.006708034530136825,
+        "tp": 120.74671876756884,
+        "fp": 8968.81650000878,
+        "fn": 20107.25328123243
+      },
+      {
+        "fold": "SE",
+        "n_withheld_positives": 17505,
+        "n_dots": 106396,
+        "dti_single_fold": 0.006543470081659324,
+        "tp": 98.2232365289814,
+        "fp": 4936.170917645461,
+        "fn": 17406.776763471018
+      }
+    ]
+  },
+  "sum_check_pooled_from_fold_counts_on_archived": 0.46570455816360007,
+  "leakage_canary": {
+    "evidence_class": "HOLDOUT-DTI canary (single feature)",
+    "auc_emission_surface_alone": 0.378464599977991,
+    "auc_negative_visible_distance_alone": 0.17125221063853485,
+    "threshold": 0.9,
+    "status": "PASS"
+  },
+  "verdict": "NEGATIVE",
+  "benchmark": "0.166060 HOLDOUT-DTI (GEMSDOE24 S3DEP1, per docs/executive-summary-20261028.md)",
+  "submission_slots_used": 0
+}

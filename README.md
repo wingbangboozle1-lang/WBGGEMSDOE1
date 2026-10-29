@@ -10,6 +10,8 @@ See [current review](docs/repo-review-current-20261028.md), [Focus-9 site compar
 
 # WBG GEMS — evidence-first fault mapping
 
+**[Repository review (2026-10-29)](docs/repo-review-current-20261029.md)** · no new TIFF approved; core competition inputs are absent and the active method lane is unspecified. Local tests pass; one pre-existing lint finding remains. Treat all existing candidate downloads according to their individual negative/STOP decisions.
+
 **[28 October review of earlier lanes](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · No file is cleared; WBG-6 fails the active literal overlap gate.
 
 **[Current repository review (2026-10-28)](docs/repo-review-current-20261028.md)** · [Detailed repository review](docs/repo-review-20261028.md) · [Earlier repository review and ranked future hypotheses](docs/repo-review-20261027-session.md) ·

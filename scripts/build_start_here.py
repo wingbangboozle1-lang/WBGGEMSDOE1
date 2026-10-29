@@ -73,11 +73,12 @@ def run_validator() -> dict:
     out = subprocess.run([sys.executable, str(ROOT / "scripts/validate_submission.py"), str(TIF)],
                          capture_output=True, text=True, check=True).stdout
     data = json.loads(out)
-    keep = {k: data.get(k) for k in ("file", "sha256", "bytes", "n_finite", "n_nan", "n_infinite", "min", "max",
+    keep = {"file": str(TIF.relative_to(ROOT))}
+    keep.update({k: data.get(k) for k in ("sha256", "bytes", "n_finite", "n_nan", "n_infinite", "min", "max",
                                      "emitted_positive_pixels", "on_catalogue_positive_pixels",
                                      "in_footprint_positive_pixels", "footprint_fraction", "all_checks_passed",
                                      "validation_class", "ok_to_submit", "promotion_verdict",
-                                     "independent_organizer_origin_authenticated", "warning")}
+                                     "independent_organizer_origin_authenticated", "warning")})
     keep["run_card_matches_exact_tiff"] = data.get("run_card_matches_exact_tiff")
     keep["checks"] = data.get("checks")
     return keep
@@ -119,7 +120,6 @@ def build_card() -> dict:
     nine_audit = load(NINE_UNIQ)
     geom = load(GEOM)
     val = run_validator()
-    VALIDATOR_OUT.write_text(json.dumps(val, indent=1) + "\n")
     nine = nine_site_rows(nine_audit, geom)
     rep = np.array([r["reported"] for r in nine])
     med = np.array([r["median_dist_px"] for r in nine])
@@ -368,6 +368,7 @@ def render_body() -> str:
 
 if __name__ == "__main__":
     card = build_card()
+    VALIDATOR_OUT.write_text(json.dumps(card["validator"], indent=1) + "\n")
     FINAL_CARD.parent.mkdir(parents=True, exist_ok=True)
     FINAL_CARD.write_text(json.dumps(card, indent=2, default=float) + "\n")
     print(json.dumps({"final_card": str(FINAL_CARD.relative_to(ROOT)), "sha256": card["raster_sha256"],

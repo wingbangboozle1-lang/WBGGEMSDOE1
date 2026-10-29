@@ -51,7 +51,7 @@
   },
   "raster_sha256": "2607ca44aba65dc7babe30022cfd779fc1352bf3162abaf6091bd31592a33590",
   "validator": {
-    "file": "/home/user/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-lidar-scarp-coh-nms-offcat-36800-20261029-zeros.tif",
+    "file": "docs/downloads/wbggemsdoe1-lidar-scarp-coh-nms-offcat-36800-20261029-zeros.tif",
     "sha256": "2607ca44aba65dc7babe30022cfd779fc1352bf3162abaf6091bd31592a33590",
     "bytes": 823692,
     "n_finite": 12279160,

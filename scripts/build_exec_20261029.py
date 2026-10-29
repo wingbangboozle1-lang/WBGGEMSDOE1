@@ -232,8 +232,8 @@ def build() -> None:
 </section>
 """
     DOCS.mkdir(parents=True, exist_ok=True)
-    (DOCS / "executive-summary-20261029.html").write_text(
-        page_wrap("Executive summary · 29 Oct 2026", body, "executive-summary-20261029.html"), encoding="utf-8")
+    (DOCS / "unique-lane-summary-20261029.html").write_text(
+        page_wrap("Unique-lane summary · 29 Oct 2026", body, "unique-lane-summary-20261029.html"), encoding="utf-8")
 
     how = f"""
 <section class="content-section" id="how"><h1>How to submit · read the verdict first</h1>
@@ -262,7 +262,7 @@ def build() -> None:
 
 def main() -> int:
     build()
-    print("wrote docs/executive-summary-20261029.html and docs/how-to-submit-20261029.html")
+    print("wrote docs/unique-lane-summary-20261029.html and docs/how-to-submit-20261029.html")
     return 0
 
 

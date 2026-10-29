@@ -3,7 +3,7 @@
 **Status of this document:** a condensed transcription of the owner's standing requirements from the
 29 October 2026 session message, with every official link kept. Earlier standing briefs remain in
 [`PROMPT.md`](../PROMPT.md) and [`AGENTS.md`](../AGENTS.md). Read this file, the
-[README](../README.md) and [`docs/executive-summary-20261029.html`](executive-summary-20261029.html)
+[README](../README.md) and [`docs/executive-summary-20261029.html`](executive-summary-20261029.html) (main's decision page) and [`docs/unique-lane-summary-20261029.html`](unique-lane-summary-20261029.html) (unique-lane results)
 before any project work.
 
 ## 1. Goal

@@ -16,7 +16,7 @@ NAME = "wbggemsdoe1-tipgap2km-K12395-20261029"
 CARD = ROOT / f"evidence/candidates/{NAME}.run_card.json"
 HOLD = ROOT / f"evidence/candidates/{NAME}.holdout.json"
 TIF = ROOT / f"docs/downloads/{NAME}.tif"
-PAGE = ROOT / "docs/executive-summary-20261029.html"
+PAGE = ROOT / "docs/unique-lane-summary-20261029.html"
 
 
 def test_run_card_verdict_is_download_yes_submit_no():

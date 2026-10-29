@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>START HERE — GEMS submission status · 29 Oct 2026</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;margin:0;background:#f5f7f6;color:#1b2a2a;line-height:1.5}
+main{max-width:1100px;margin:0 auto;padding:24px}
+h1{font-size:1.7rem;margin:.2rem 0} h2{margin-top:2rem;border-bottom:2px solid #c8d6d3;padding-bottom:.3rem}
+.banner{background:#fff4d6;border:2px solid #b7791f;border-radius:10px;padding:16px 20px}
+.verdict{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.box{padding:12px;border-radius:8px;background:#fff;border:1px solid #d6e0dd}
+.box.red{border-color:#c53030;background:#fff5f5} .box.green{border-color:#2f855a;background:#f0fff4}
+table{border-collapse:collapse;width:100%;background:#fff;font-size:.88rem;margin:.6rem 0}
+th,td{border:1px solid #d6e0dd;padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#e8f0ee} td.no{color:#9b2c2c;font-weight:600} code{font-size:.8rem;word-break:break-all}
+small{color:#4a5a5a} .tag{display:inline-block;font-size:.75rem;padding:1px 6px;border-radius:4px;background:#e2e8f0}
+ul li{margin:.25rem 0}
+</style></head><body><main>
+<p><span class="tag">Built from measured receipts · scripts/build_start_here_20261029.py</span></p>
+<h1>START HERE — which file to download and submit</h1>
+
+<div class="banner"><strong>Bottom line (29 Oct 2026):</strong> <strong>No file is cleared for submission under your 70% uniqueness protocol.</strong>
+The only format-valid, original-generated file we hold is WBG-6. It <em>fails</em> the 70% gate against 3 registry rasters.
+The highest owner-reported historical file (GEMSDOE32 B2, 0.2778) is another team's prior submission; submitting it would breach the official "original work" clause (A.5).
+We have <strong>no validated score estimate</strong> for any new file.
+<div class="verdict">
+<div class="box green"><strong>DOWNLOAD — allowed for review only</strong><br>
+<a href="docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif">docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif</a><br><small>Format checks pass · 30,000 dots · values 0/1 (in [0,1]) · EPSG:32611 · 3,730×3,292 · 100 m</small></div>
+<div class="box red"><strong>SUBMIT — NO (not cleared)</strong><br>Your protocol says overlap &gt; 70% = duplicate. WBG-6 is 99.68% overlapping with <code>20261001_r13-lattice-s5_v2_nan-outside</code>. The official rules contain <em>no</em> overlap gate (see below), so this is a decision for you, not for the code.</div>
+</div></div>
+
+<h2>1. Candidate files — what to download, estimated score, uniqueness</h2>
+<p>Estimated leaderboard score: <strong>UNAVAILABLE for every file.</strong> The shared holdout does not rank real submissions (Spearman 0.144, p = 0.12, n = 118; <a href="../evidence/holdout_proxy_portfolio.json">evidence/holdout_proxy_portfolio.json</a>). The older 0.247 figure for WBG-6 is a model estimate that is not validated and is not used here.</p>
+<table><thead><tr><th>File (download)</th><th>Dots</th><th>Format</th><th>Literal 3-px gate: rasters over 70%</th><th>Passes 70% gate?</th><th>Estimated score</th><th>Submit decision</th></tr></thead>
+<tbody><tr><td>WBG-6 (wbg6-qmh-kdisjoint-30000-20261028)<br><a href="docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif">docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif</a><br><small>SHA-256 <code>e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9</code></small></td><td>30,000</td><td>PASS</td><td>3 of 116 (worst 0.9968 vs 20261001_r13-lattice-s5_v2_nan-outside)</td><td>NO</td><td>UNAVAILABLE (no validated estimator)</td><td class="no">NOT CLEARED under the 70% protocol</td></tr><tr><td>WBG-7 (wbg7-blind-tip-splay-relay-30000-20261028-zeros)<br><a href="docs/downloads/wbg7-blind-tip-splay-relay-30000-20261028-zeros.tif">docs/downloads/wbg7-blind-tip-splay-relay-30000-20261028-zeros.tif</a><br><small>SHA-256 <code>701ff7a4d916dd843da402ecf5f95126dc3ecfce0597ab71933ccacb16689e3a</code></small></td><td>30,000</td><td>PASS</td><td>6 of 116 (worst 0.9970 vs 20261001_r13-lattice-s5_v2_nan-outside)</td><td>NO</td><td>UNAVAILABLE (no validated estimator)</td><td class="no">NOT CLEARED under the 70% protocol</td></tr><tr><td>Main-lane adjacency (WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z)<br><a href="docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif">docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif</a><br><small>SHA-256 <code>0806bb30573094bf889bcb55d15878cc66cdd3851f9b40119ab96d7716437815</code></small></td><td>129,184</td><td>PASS</td><td>19 of 116 (worst 1.0000 vs Hedge-v2_submission)</td><td>NO</td><td>UNAVAILABLE (no validated estimator)</td><td class="no">NOT CLEARED under the 70% protocol</td></tr><tr><td>Focus-9 synthetic null (wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros)<br><a href="docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif">docs/downloads/wbggemsdoe1-focus9-exec-20261027-unique-36k-zeros.tif</a><br><small>SHA-256 <code>e8c4bf7607cec72c54981b90aa60e7e85163b429b58ebd6f2a7c3126e8c1e351</code></small></td><td>36,800</td><td>PASS</td><td>3 of 116 (worst 0.9987 vs 20261001_r13-lattice-s5_v2_nan-outside)</td><td>NO</td><td>UNAVAILABLE (no validated estimator)</td><td class="no">NOT CLEARED under the 70% protocol</td></tr></tbody></table>
+<p><small>Measured by <code>scripts/measure_registry_overlap.py</code> (uses the shared <code>vendor/gems57/uniqueness.dot_overlap</code>) against 116 unique registry rasters (owner-reported). Receipts: <code>evidence/session_20261029/overlap_*.json</code>.</small></p>
+
+<h2>2. Nine focus sites — highest owner-reported files (all are other teams' prior submissions)</h2>
+<p>Owner-reported scores are <strong>not organizer-confirmed</strong>. Sorted by score. "Share within 3 px of catalogue" is the fraction of dots within 3 px of a mapped fault; no dot sits on a mapped fault in any of these files.</p>
+<table><thead><tr><th>Site</th><th>Registry name</th><th>Owner score</th><th>Dots</th><th>On catalogue</th><th>Share ≤3 px of catalogue</th><th>Median px to catalogue</th><th>Identical dot sets with</th><th>Max 3-px overlap vs other nine-site rasters</th><th>Submit?</th></tr></thead>
+<tbody><tr><td>GEMSDOE32</td><td>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</td><td>0.2778</td><td>37,654</td><td>0</td><td>0.058</td><td>19.6</td><td>—</td><td>1.000</td><td class="no">DO NOT SUBMIT (another team's prior submission; A.5)</td></tr><tr><td>GEMSDOE36</td><td>anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros</td><td>0.2750</td><td>38,854</td><td>0</td><td>0.059</td><td>19.2</td><td>—</td><td>0.976</td><td class="no">DO NOT SUBMIT (another team's prior submission; A.5)</td></tr><tr><td>GEMSDOE28</td><td>h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan</td><td>0.2710</td><td>37,660</td><td>0</td><td>0.116</td><td>17.7</td><td>—</td><td>1.000</td><td class="no">DO NOT SUBMIT (another team's prior submission; A.5)</td></tr><tr><td>GEMSDOE31</td><td>h27-4-solo-d28-20261004-8acb75e1-nan</td><td>0.2708</td><td>40,199</td><td>0</td><td>0.117</td><td>17.7</td><td>h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan</td><td>1.000</td><td class="no">DO NOT SUBMIT (another team's prior submission; A.5)</td></tr><tr><td>GEMSDOE28</td><td>h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan</td><td>0.2708</td><td>40,199</td><td>0</td><td>0.117</td><td>17.7</td><td>h27-4-solo-d28-20261004-8acb75e1-nan</td><td>1.000</td><td class="no">DO NOT SUBMIT (another team's prior submission; A.5)</td></tr><tr><td>GEMSDOE28</td><td>h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan</td><td>0.2707</td><td>37,860</td><td>0</td><td>0.116</td><td>17.7</td><td>—</td><td>0.996</td><td class="no">DO NOT SUBMIT (another team's prior submission; A.5)</td></tr><tr><td>GEMSDOE28</td><td>h32-1-prethin-tip-euler-d2-8-20261003-31e35eee884e-nan</td><td>0.2649</td><td>42,294</td><td>0</td><td>0.161</td><td>16.1</td><td>—</td><td>1.000</td><td class="no">DO NOT SUBMIT (another team's prior submission; A.5)</td></tr><tr><td>GEMSDOE33</td><td>h33d-analog-tip-stepover-r30-20261004-cb490425926e</td><td>0.2632</td><td>41,865</td><td>0</td><td>0.144</td><td>16.6</td><td>—</td><td>0.997</td><td class="no">DO NOT SUBMIT (another team's prior submission; A.5)</td></tr><tr><td>GEMSDOE25</td><td>dotted-h19-5-d2-8-20261002-e56ea318af89-nan</td><td>0.2600</td><td>44,090</td><td>0</td><td>0.195</td><td>15.0</td><td>d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca</td><td>1.000</td><td class="no">DO NOT SUBMIT (another team's prior submission; A.5)</td></tr><tr><td>GEMSDOE30</td><td>d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca</td><td>0.2600</td><td>44,090</td><td>0</td><td>0.195</td><td>15.0</td><td>dotted-h19-5-d2-8-20261002-e56ea318af89-nan</td><td>1.000</td><td class="no">DO NOT SUBMIT (another team's prior submission; A.5)</td></tr><tr><td>GEMSDOE24</td><td>h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan</td><td>0.2477</td><td>60,069</td><td>0</td><td>0.199</td><td>14.9</td><td>—</td><td>1.000</td><td class="no">DO NOT SUBMIT (another team's prior submission; A.5)</td></tr><tr><td>GEMSDOE27</td><td>topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan</td><td>0.2449</td><td>61,328</td><td>0</td><td>0.199</td><td>14.1</td><td>—</td><td>0.980</td><td class="no">DO NOT SUBMIT (another team's prior submission; A.5)</td></tr></tbody></table>
+<ul>
+<li><strong>Uniqueness among the nine sites fails the literal 70% test:</strong> most pairs overlap at 0.97–1.00. Two pairs have identical dot sets (GEMSDOE25 = GEMSDOE30; GEMSDOE28 h27-4-r1 = GEMSDOE31 h27-4-solo).</li>
+<li><strong>Why GEMSDOE32 B2 (0.2778) ranks highest in the owner's data (measured, association only):</strong> it has zero dots on the catalogue, the lowest share of dots near a mapped fault among the top files (5.8%), and a median distance of 19.6 px. The 0.2600 files, with 19.5% of dots near a fault, sit lower. Six files is too few to prove causation.</li>
+<li><strong>Can we beat 0.2778?</strong> Not demonstrated. We have no validated estimator and no organizer receipt. Only a real public-leaderboard submission can answer this, and that spends one of the three weekly submissions.</li>
+</ul>
+
+<h2>3. Why no new file is generated in this session</h2>
+<ul>
+<li>The literal 70% rule cannot be met at competitive dot counts. The r13 lattice (206,895 dots) covers <strong>99.87%</strong> of the footprint. Only 6,649 footprint pixels are outside its 3-px reach.</li>
+<li>A greedy estimate places about 1,209 dots (5 px apart) in that area. Keeping 30% of dots outside r13 caps the total at roughly <strong>4,030</strong> dots. Competitive files carry 37,654–44,090.</li>
+<li>Writing another file of the same family would only add a near-duplicate of WBG-6 with no validated gain.</li>
+</ul>
+
+<h2>3b. Other sessions merged to main on 29 Oct (read with this page)</h2>
+<ul>
+<li><strong>Main-lane adjacency file is a leakage case (NEGATIVE):</strong> archived HOLDOUT-DTI 0.4657 (CI95 [0.4563, 0.4748], n=60,161) falls to <strong>0.0069</strong> when placement uses only visible faults per fold. Leakage canary: distance-to-visible-catalogue AUC 0.829, below the 0.90 threshold. Source: <a href="../evidence/per_fold_recheck_blind_adjacency.json">evidence/per_fold_recheck_blind_adjacency.json</a>. Its 129,184 dots and 19 registry rasters over 70% make it DO NOT SUBMIT.</li>
+<li>Parallel focus-9 summary: <a href="../docs/executive-summary-focus9-20261029.md">docs/executive-summary-focus9-20261029.md</a>. Its conclusion (no file cleared) matches this page.</li>
+</ul>
+
+<h2>4. Official sources checked (fetched 29 Oct 2026)</h2>
+<ul>
+<li>Problem description (metric, labels, one submission): <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">drivendata.org …/page/967/</a></li>
+<li>About the data and task: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/">drivendata.org …/page/968/</a></li>
+<li>Official rules (single GeoTIFF, 100 m, three submissions per week, one final submission, A.5 original work; no overlap gate): <a href="https://www.nlr.gov/docs/fy26osti/96647.pdf">nlr.gov/docs/fy26osti/96647.pdf</a></li>
+<li>Public leaderboard: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">drivendata.org …/leaderboard/</a> — top public score <strong>0.4544</strong> (xiaofanhu); this is a public-page observation, not a project receipt. The prompt's figures 0.4413 and 0.3195 do not match this page.</li>
+</ul>
+
+<h2>5. Irregularities flagged for human review</h2>
+<ul>
+<li><strong>IR-29-01 (high):</strong> WBG-6's run card and its validator report <code>ok_to_submit: true</code>, while the registry overlap test fails. The card's claim that the literal gate is "degenerate" is an override of your protocol. The validator's flag is <em>not</em> a uniqueness clearance.</li>
+<li><strong>IR-29-02 (high):</strong> <code>AGENTS.md</code> said WBG-6 was "APPROVED FOR SUBMISSION"; the README said nothing is cleared. Corrected in this session.</li>
+<li><strong>IR-29-03 (high):</strong> the literal 70% gate cannot be satisfied at competitive dot counts (see section 3). Your protocol and the official rules disagree.</li>
+<li><strong>IR-29-04 (medium):</strong> the leaderboard values differ: prompt 0.4413 and 0.3195; repo 0.4544; live page 0.4544.</li>
+<li><strong>IR-29-05 (medium):</strong> the nine-site registry has 12 entries for 9 sites; identical dot sets appear across sites (section 2).</li>
+<li><strong>IR-29-06 (medium):</strong> the "Predicted values must be in range [0, 1]" error from the portal is not reproduced by WBG-6 (binary 0/1). The user's rejected file was not supplied, so its cause is unknown.</li>
+<li><strong>IR-29-07 (medium):</strong> the official rules require the competitor's entire submission to be an original work (A.5). Submitting any file from the registry would breach that clause.</li>
+</ul>
+
+<h2>6. Decisions needed from you (next steps)</h2>
+<ol>
+<li><strong>Decide the uniqueness gate.</strong> Option A: use the official rules (no overlap gate; original work plus format pass). Under A, WBG-6 is downloadable and submittable, but it still needs a slot decision by you. Option B: keep the 70% gate. Under B, no competitive file can pass, so the decision is to stop.</li>
+<li><strong>Spend one weekly slot on a public-leaderboard probe.</strong> The only real score feedback is an organizer score. Doing this would turn WBG-6's estimate into an ORGANIZER-CONFIRMED number. This is your call; we have not submitted anything.</li>
+<li><strong>Provide the rejected file</strong> from the portal error, so IR-29-06 can be reproduced.</li>
+</ol>
+
+<p><small>Machine-readable: <a href="../evidence/session_20261029/summary.json">evidence/session_20261029/summary.json</a>. Builder: <a href="../scripts/build_start_here_20261029.py">scripts/build_start_here_20261029.py</a>. Nothing in this page was uploaded or submitted.</small></p>
+</main></body></html>

@@ -1,0 +1,574 @@
+{
+ "schema": "executive-summary-20261029-v1",
+ "decision": {
+  "download": "RESEARCH ONLY",
+  "submit": "NO",
+  "headline": "No file in this repository is cleared for upload. The new TIFF is format-valid and not a byte-duplicate, but it fails the holdout test and the 70% lane gate."
+ },
+ "new_file": {
+  "name": "wbggemsdoe1-tipcont-catalogue-strike-20261029-1c5b292c",
+  "note": "WBG-8 catalogue strike-tip rays 200m-1.5km, >200m off catalogue; holdout-only; no organizer score; not approved",
+  "note_chars": 111,
+  "zeros_tif": "docs/downloads/wbggemsdoe1-tipcont-catalogue-strike-20261029-1c5b292c-zeros.tif",
+  "zeros_zip": "docs/downloads/wbggemsdoe1-tipcont-catalogue-strike-20261029-1c5b292c-zeros.zip",
+  "nan_tif": "docs/downloads/wbggemsdoe1-tipcont-catalogue-strike-20261029-1c5b292c-nan.tif",
+  "nan_zip": "docs/downloads/wbggemsdoe1-tipcont-catalogue-strike-20261029-1c5b292c-nan.zip",
+  "sha256_zeros_tif": "9e5df9f7a02cad153b1d84c89cfc96a83bddea8b9752b3eca49210b98f814c32",
+  "sha256_nan_tif": "6c171eaedab99d87528637f145b6d2f2b3df7ce714fdf998a7c54580cf0a9601",
+  "dots": 18611,
+  "estimated_score": "UNAVAILABLE",
+  "holdout_dti_catalogue_proxy": {
+   "evidence_class": "HOLDOUT-DTI",
+   "evaluator": "WBGGEMSDOE1-HIDE-RECOVER-v1.0",
+   "pooled_dti": 0.000434423478349204,
+   "ci95": [
+    0.00014180732734647778,
+    0.0007933620332133572
+   ],
+   "withheld_positives": 60161,
+   "matched_random_null_dti_2_5_97_5": [
+    0.023981835590771227,
+    0.02702550996831924
+   ]
+  },
+  "uniqueness": {
+   "rasters_scanned": 769,
+   "exact_or_decoded_duplicates": 0,
+   "max_abs_spearman": 0.037567588385477475,
+   "rasters_over_70pct_3px_overlap": 38,
+   "of_which_GEMSDOE25_family": 35,
+   "GEMSDOE25_family_lift_over_chance": [
+    2.932000640679212,
+    3.4428200026207696
+   ],
+   "bytes_unique": true,
+   "lane_unique_under_70pct_gate": false
+  },
+  "validator": {
+   "zeros_variant": "all finite, zero exterior; fails official 'outside is null or nan' text",
+   "nan_variant": "NaN exterior; matches official sample profile; fails repo strict no-NaN check"
+  },
+  "verdict": "negative"
+ },
+ "nine_sites": [
+  {
+   "site": "GEMSDOE24",
+   "file_to_download": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/main/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+   "repo_path": "docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+   "raster_sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+   "user_reported_score": 0.2477,
+   "estimated_score": "UNAVAILABLE (no measurable estimate in this repo; not inferred)",
+   "positive_dots": 60069,
+   "outside_convention": "nan",
+   "share_within_200m_of_catalogue": 0.14598212056135446,
+   "min_dist_to_catalogue_m": 100.0,
+   "max_overlap_vs_other_9_sites_3px": 1.0,
+   "unique_vs_other_9_sites": false,
+   "overlap_with_new_file_3px": 0.28123152974047605
+  },
+  {
+   "site": "GEMSDOE25",
+   "file_to_download": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/main/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "repo_path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "raster_sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+   "user_reported_score": 0.26,
+   "estimated_score": "UNAVAILABLE (no measurable estimate in this repo; not inferred)",
+   "positive_dots": 44090,
+   "outside_convention": "nan",
+   "share_within_200m_of_catalogue": 0.1459741437967793,
+   "min_dist_to_catalogue_m": 100.0,
+   "max_overlap_vs_other_9_sites_3px": 1.0,
+   "unique_vs_other_9_sites": false,
+   "overlap_with_new_file_3px": 0.2658642738165601
+  },
+  {
+   "site": "GEMSDOE27",
+   "file_to_download": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/main/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+   "repo_path": "docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+   "raster_sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+   "user_reported_score": 0.2449,
+   "estimated_score": "UNAVAILABLE (no measurable estimate in this repo; not inferred)",
+   "positive_dots": 61328,
+   "outside_convention": "nan",
+   "share_within_200m_of_catalogue": 0.14471367075397862,
+   "min_dist_to_catalogue_m": 100.0,
+   "max_overlap_vs_other_9_sites_3px": 0.9801884946517089,
+   "unique_vs_other_9_sites": false,
+   "overlap_with_new_file_3px": 0.3503841813980979
+  },
+  {
+   "site": "GEMSDOE28",
+   "file_to_download": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/main/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+   "repo_path": "docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+   "raster_sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+   "user_reported_score": 0.271,
+   "estimated_score": "UNAVAILABLE (no measurable estimate in this repo; not inferred)",
+   "positive_dots": 37660,
+   "outside_convention": "nan",
+   "share_within_200m_of_catalogue": 0.06248008497079129,
+   "min_dist_to_catalogue_m": 141.4213562373095,
+   "max_overlap_vs_other_9_sites_3px": 1.0,
+   "unique_vs_other_9_sites": false,
+   "overlap_with_new_file_3px": 0.24743431304067487
+  },
+  {
+   "site": "GEMSDOE30",
+   "file_to_download": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/main/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+   "repo_path": "docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+   "raster_sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+   "user_reported_score": 0.26,
+   "estimated_score": "UNAVAILABLE (no measurable estimate in this repo; not inferred)",
+   "positive_dots": 44090,
+   "outside_convention": "zero",
+   "share_within_200m_of_catalogue": 0.1459741437967793,
+   "min_dist_to_catalogue_m": 100.0,
+   "max_overlap_vs_other_9_sites_3px": 1.0,
+   "unique_vs_other_9_sites": false,
+   "overlap_with_new_file_3px": 0.2658642738165601
+  },
+  {
+   "site": "GEMSDOE31",
+   "file_to_download": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/main/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+   "repo_path": "docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+   "raster_sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+   "user_reported_score": 0.2708,
+   "estimated_score": "UNAVAILABLE (no measurable estimate in this repo; not inferred)",
+   "positive_dots": 40199,
+   "outside_convention": "nan",
+   "share_within_200m_of_catalogue": 0.06331003258787532,
+   "min_dist_to_catalogue_m": 141.4213562373095,
+   "max_overlap_vs_other_9_sites_3px": 1.0,
+   "unique_vs_other_9_sites": false,
+   "overlap_with_new_file_3px": 0.251840309494385
+  },
+  {
+   "site": "GEMSDOE32",
+   "file_to_download": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/main/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+   "repo_path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+   "raster_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+   "user_reported_score": 0.2778,
+   "estimated_score": "UNAVAILABLE (no measurable estimate in this repo; not inferred)",
+   "positive_dots": 37654,
+   "outside_convention": "zero",
+   "share_within_200m_of_catalogue": 0.0,
+   "min_dist_to_catalogue_m": 223.60679774997897,
+   "max_overlap_vs_other_9_sites_3px": 1.0,
+   "unique_vs_other_9_sites": false,
+   "overlap_with_new_file_3px": 0.23142227714792327
+  },
+  {
+   "site": "GEMSDOE33",
+   "file_to_download": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+   "repo_path": "docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+   "raster_sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+   "user_reported_score": 0.2632,
+   "estimated_score": "UNAVAILABLE (no measurable estimate in this repo; not inferred)",
+   "positive_dots": 41865,
+   "outside_convention": "zero",
+   "share_within_200m_of_catalogue": 0.09301325689716948,
+   "min_dist_to_catalogue_m": 100.0,
+   "max_overlap_vs_other_9_sites_3px": 0.9970858712528365,
+   "unique_vs_other_9_sites": false,
+   "overlap_with_new_file_3px": 0.26414486056633174
+  },
+  {
+   "site": "GEMSDOE36",
+   "file_to_download": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/main/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+   "repo_path": "docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+   "raster_sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+   "user_reported_score": 0.275,
+   "estimated_score": "UNAVAILABLE (no measurable estimate in this repo; not inferred)",
+   "positive_dots": 38854,
+   "outside_convention": "zero",
+   "share_within_200m_of_catalogue": 0.0,
+   "min_dist_to_catalogue_m": 223.60679774997897,
+   "max_overlap_vs_other_9_sites_3px": 0.9757811293560509,
+   "unique_vs_other_9_sites": false,
+   "overlap_with_new_file_3px": 0.2372790285315136
+  }
+ ],
+ "nine_site_pairs_over_70pct": [
+  {
+   "a": "GEMSDOE24",
+   "b": "GEMSDOE25",
+   "overlap_3px": 1.0
+  },
+  {
+   "a": "GEMSDOE24",
+   "b": "GEMSDOE27",
+   "overlap_3px": 1.0
+  },
+  {
+   "a": "GEMSDOE24",
+   "b": "GEMSDOE28",
+   "overlap_3px": 0.9347916562619654
+  },
+  {
+   "a": "GEMSDOE24",
+   "b": "GEMSDOE30",
+   "overlap_3px": 1.0
+  },
+  {
+   "a": "GEMSDOE24",
+   "b": "GEMSDOE31",
+   "overlap_3px": 0.9407847641878506
+  },
+  {
+   "a": "GEMSDOE24",
+   "b": "GEMSDOE32",
+   "overlap_3px": 0.88476585260284
+  },
+  {
+   "a": "GEMSDOE24",
+   "b": "GEMSDOE33",
+   "overlap_3px": 0.9623932477650702
+  },
+  {
+   "a": "GEMSDOE24",
+   "b": "GEMSDOE36",
+   "overlap_3px": 0.8856148762256738
+  },
+  {
+   "a": "GEMSDOE25",
+   "b": "GEMSDOE27",
+   "overlap_3px": 1.0
+  },
+  {
+   "a": "GEMSDOE25",
+   "b": "GEMSDOE28",
+   "overlap_3px": 0.9318212746654571
+  },
+  {
+   "a": "GEMSDOE25",
+   "b": "GEMSDOE30",
+   "overlap_3px": 1.0
+  },
+  {
+   "a": "GEMSDOE25",
+   "b": "GEMSDOE31",
+   "overlap_3px": 0.937151281469721
+  },
+  {
+   "a": "GEMSDOE25",
+   "b": "GEMSDOE32",
+   "overlap_3px": 0.8817192107053754
+  },
+  {
+   "a": "GEMSDOE25",
+   "b": "GEMSDOE33",
+   "overlap_3px": 0.9605806305284645
+  },
+  {
+   "a": "GEMSDOE25",
+   "b": "GEMSDOE36",
+   "overlap_3px": 0.8826491267861193
+  },
+  {
+   "a": "GEMSDOE27",
+   "b": "GEMSDOE28",
+   "overlap_3px": 0.9161557526741456
+  },
+  {
+   "a": "GEMSDOE27",
+   "b": "GEMSDOE30",
+   "overlap_3px": 0.9801558831202714
+  },
+  {
+   "a": "GEMSDOE27",
+   "b": "GEMSDOE31",
+   "overlap_3px": 0.9220910513957735
+  },
+  {
+   "a": "GEMSDOE27",
+   "b": "GEMSDOE32",
+   "overlap_3px": 0.8671895382207149
+  },
+  {
+   "a": "GEMSDOE27",
+   "b": "GEMSDOE33",
+   "overlap_3px": 0.9432885468301592
+  },
+  {
+   "a": "GEMSDOE27",
+   "b": "GEMSDOE36",
+   "overlap_3px": 0.8680374380380903
+  },
+  {
+   "a": "GEMSDOE28",
+   "b": "GEMSDOE30",
+   "overlap_3px": 1.0
+  },
+  {
+   "a": "GEMSDOE28",
+   "b": "GEMSDOE31",
+   "overlap_3px": 0.9975570897503983
+  },
+  {
+   "a": "GEMSDOE28",
+   "b": "GEMSDOE32",
+   "overlap_3px": 0.9547265002655337
+  },
+  {
+   "a": "GEMSDOE28",
+   "b": "GEMSDOE33",
+   "overlap_3px": 0.9984067976633032
+  },
+  {
+   "a": "GEMSDOE28",
+   "b": "GEMSDOE36",
+   "overlap_3px": 0.9552044609665428
+  },
+  {
+   "a": "GEMSDOE30",
+   "b": "GEMSDOE31",
+   "overlap_3px": 0.937151281469721
+  },
+  {
+   "a": "GEMSDOE30",
+   "b": "GEMSDOE32",
+   "overlap_3px": 0.8817192107053754
+  },
+  {
+   "a": "GEMSDOE30",
+   "b": "GEMSDOE33",
+   "overlap_3px": 0.9605806305284645
+  },
+  {
+   "a": "GEMSDOE30",
+   "b": "GEMSDOE36",
+   "overlap_3px": 0.8826491267861193
+  },
+  {
+   "a": "GEMSDOE31",
+   "b": "GEMSDOE32",
+   "overlap_3px": 0.9539043259782581
+  },
+  {
+   "a": "GEMSDOE31",
+   "b": "GEMSDOE33",
+   "overlap_3px": 0.9990547028533048
+  },
+  {
+   "a": "GEMSDOE31",
+   "b": "GEMSDOE36",
+   "overlap_3px": 0.9544018507923082
+  },
+  {
+   "a": "GEMSDOE32",
+   "b": "GEMSDOE33",
+   "overlap_3px": 0.9998406543793488
+  },
+  {
+   "a": "GEMSDOE32",
+   "b": "GEMSDOE36",
+   "overlap_3px": 1.0
+  },
+  {
+   "a": "GEMSDOE33",
+   "b": "GEMSDOE36",
+   "overlap_3px": 0.9271228950197062
+  }
+ ],
+ "nine_site_pairwise_matrix": {
+  "names": [
+   "GEMSDOE24",
+   "GEMSDOE25",
+   "GEMSDOE27",
+   "GEMSDOE28",
+   "GEMSDOE30",
+   "GEMSDOE31",
+   "GEMSDOE32",
+   "GEMSDOE33",
+   "GEMSDOE36"
+  ],
+  "matrix": {
+   "GEMSDOE24|GEMSDOE24": 1.0,
+   "GEMSDOE24|GEMSDOE25": 1.0,
+   "GEMSDOE24|GEMSDOE27": 1.0,
+   "GEMSDOE24|GEMSDOE28": 0.9347916562619654,
+   "GEMSDOE24|GEMSDOE30": 1.0,
+   "GEMSDOE24|GEMSDOE31": 0.9407847641878506,
+   "GEMSDOE24|GEMSDOE32": 0.88476585260284,
+   "GEMSDOE24|GEMSDOE33": 0.9623932477650702,
+   "GEMSDOE24|GEMSDOE36": 0.8856148762256738,
+   "GEMSDOE25|GEMSDOE24": 1.0,
+   "GEMSDOE25|GEMSDOE25": 1.0,
+   "GEMSDOE25|GEMSDOE27": 1.0,
+   "GEMSDOE25|GEMSDOE28": 0.9318212746654571,
+   "GEMSDOE25|GEMSDOE30": 1.0,
+   "GEMSDOE25|GEMSDOE31": 0.937151281469721,
+   "GEMSDOE25|GEMSDOE32": 0.8817192107053754,
+   "GEMSDOE25|GEMSDOE33": 0.9605806305284645,
+   "GEMSDOE25|GEMSDOE36": 0.8826491267861193,
+   "GEMSDOE27|GEMSDOE24": 0.9801884946517089,
+   "GEMSDOE27|GEMSDOE25": 0.9801558831202714,
+   "GEMSDOE27|GEMSDOE27": 1.0,
+   "GEMSDOE27|GEMSDOE28": 0.9161557526741456,
+   "GEMSDOE27|GEMSDOE30": 0.9801558831202714,
+   "GEMSDOE27|GEMSDOE31": 0.9220910513957735,
+   "GEMSDOE27|GEMSDOE32": 0.8671895382207149,
+   "GEMSDOE27|GEMSDOE33": 0.9432885468301592,
+   "GEMSDOE27|GEMSDOE36": 0.8680374380380903,
+   "GEMSDOE28|GEMSDOE24": 1.0,
+   "GEMSDOE28|GEMSDOE25": 1.0,
+   "GEMSDOE28|GEMSDOE27": 1.0,
+   "GEMSDOE28|GEMSDOE28": 1.0,
+   "GEMSDOE28|GEMSDOE30": 1.0,
+   "GEMSDOE28|GEMSDOE31": 0.9975570897503983,
+   "GEMSDOE28|GEMSDOE32": 0.9547265002655337,
+   "GEMSDOE28|GEMSDOE33": 0.9984067976633032,
+   "GEMSDOE28|GEMSDOE36": 0.9552044609665428,
+   "GEMSDOE30|GEMSDOE24": 1.0,
+   "GEMSDOE30|GEMSDOE25": 1.0,
+   "GEMSDOE30|GEMSDOE27": 1.0,
+   "GEMSDOE30|GEMSDOE28": 0.9318212746654571,
+   "GEMSDOE30|GEMSDOE30": 1.0,
+   "GEMSDOE30|GEMSDOE31": 0.937151281469721,
+   "GEMSDOE30|GEMSDOE32": 0.8817192107053754,
+   "GEMSDOE30|GEMSDOE33": 0.9605806305284645,
+   "GEMSDOE30|GEMSDOE36": 0.8826491267861193,
+   "GEMSDOE31|GEMSDOE24": 1.0,
+   "GEMSDOE31|GEMSDOE25": 1.0,
+   "GEMSDOE31|GEMSDOE27": 1.0,
+   "GEMSDOE31|GEMSDOE28": 0.9956217816363591,
+   "GEMSDOE31|GEMSDOE30": 1.0,
+   "GEMSDOE31|GEMSDOE31": 1.0,
+   "GEMSDOE31|GEMSDOE32": 0.9539043259782581,
+   "GEMSDOE31|GEMSDOE33": 0.9990547028533048,
+   "GEMSDOE31|GEMSDOE36": 0.9544018507923082,
+   "GEMSDOE32|GEMSDOE24": 1.0,
+   "GEMSDOE32|GEMSDOE25": 1.0,
+   "GEMSDOE32|GEMSDOE27": 1.0,
+   "GEMSDOE32|GEMSDOE28": 0.9987517926382323,
+   "GEMSDOE32|GEMSDOE30": 1.0,
+   "GEMSDOE32|GEMSDOE31": 1.0,
+   "GEMSDOE32|GEMSDOE32": 1.0,
+   "GEMSDOE32|GEMSDOE33": 0.9998406543793488,
+   "GEMSDOE32|GEMSDOE36": 1.0,
+   "GEMSDOE33|GEMSDOE24": 0.9970619849516302,
+   "GEMSDOE33|GEMSDOE25": 0.997038098650424,
+   "GEMSDOE33|GEMSDOE27": 0.9970858712528365,
+   "GEMSDOE33|GEMSDOE28": 0.9705004180102711,
+   "GEMSDOE33|GEMSDOE30": 0.997038098650424,
+   "GEMSDOE33|GEMSDOE31": 0.9747999522273976,
+   "GEMSDOE33|GEMSDOE32": 0.9264301922847247,
+   "GEMSDOE33|GEMSDOE33": 1.0,
+   "GEMSDOE33|GEMSDOE36": 0.9271228950197062,
+   "GEMSDOE36|GEMSDOE24": 0.9756781798527822,
+   "GEMSDOE36|GEMSDOE25": 0.9749832707057189,
+   "GEMSDOE36|GEMSDOE27": 0.9757811293560509,
+   "GEMSDOE36|GEMSDOE28": 0.9731301796468832,
+   "GEMSDOE36|GEMSDOE30": 0.9749832707057189,
+   "GEMSDOE36|GEMSDOE31": 0.9745714726926442,
+   "GEMSDOE36|GEMSDOE32": 0.9740309878004839,
+   "GEMSDOE36|GEMSDOE33": 0.9750347454573531,
+   "GEMSDOE36|GEMSDOE36": 1.0
+  }
+ },
+ "b2_vs_base_0_2708_file": {
+  "base_site_file": "docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+  "b2_site_file": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+  "base_dots": 40199,
+  "b2_dots": 37654,
+  "b2_subset_of_base": true,
+  "removed_dots": 2545,
+  "removed_dist_min_m": 141.4213562373095,
+  "removed_dist_max_m": 200.0,
+  "removed_all_within_200m": true
+ },
+ "leaderboard_pinned": {
+  "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "fetched": "2026-10-29",
+  "rows": [
+   [
+    "#1",
+    "xiaofanhu",
+    0.4544
+   ],
+   [
+    "#2",
+    "cfld__",
+    0.3916
+   ],
+   [
+    "#3",
+    "Batik Shirt Brothers",
+    0.3911
+   ]
+  ],
+  "prompt_supplied_values_not_matching_live_page": [
+   0.4413,
+   0.3195
+  ]
+ },
+ "experiments": [
+  {
+   "id": "E1",
+   "status": "SUPERSEDED - gate bug (axis-aligned traces emitted zero rays)",
+   "dots": 10193,
+   "pooled_dti": 0.00028679254097022566,
+   "ci95": [
+    8.85950460988303e-05,
+    0.0005323025216067977
+   ]
+  },
+  {
+   "id": "E1b",
+   "status": "VALID - run card",
+   "dots": 18611,
+   "pooled_dti": 0.000434423478349204,
+   "ci95": [
+    0.00014180732734647778,
+    0.0007933620332133572
+   ]
+  }
+ ],
+ "budget": {
+  "experiments_used": 2,
+  "experiments_allowed": 3,
+  "time_note": "under 2 hours of working time"
+ },
+ "irregularities": [
+  "Leaderboard top value differs across sources: prompt lists 0.4413 and 0.3195; the live DrivenData page (fetched 2026-10-29) shows #1 0.4544 and #2 0.3916.",
+  "AGENTS.md described WBG-6 as APPROVED; its own audit fails the literal 70% gate (3 px overlap 0.99677 vs r13-lattice-s5). Corrected in this session.",
+  "GEMSDOE25 and GEMSDOE30 top files have identical positive pixel sets (44,090 dots, all shared) though listed as separate sites, both at 0.2600.",
+  "Portal error 'Predicted values must be in range [0, 1]' is unexplained. The official text allows null or NaN outside the footprint; the shared writer defaults to zeros on an unverified claim that NaN is rejected.",
+  "The 0.2778 value is USER-REPORTED. No organizer receipt for that file exists in the sources reviewed.",
+  "The GEMSDOE32 audit calls B2 a prune of a '0.2708 base'. That base is measured as the GEMSDOE31 h27-4-solo-d28 file (40,199 dots), but the GEMSDOE33 repo's forensic note says the 0.2708 file association is unsupported: no organizer receipt, and the GEMSDOE28 owner page labels H27-4 unscored.",
+  "training_features.tif (about 419 MB) is not in the repository and DrivenData requires login; no holdout uses the full feature stack.",
+  "The shared holdout collar (15 px) withholds only truth at least 15 px from visible faults. Rays up to 15 px from a visible tip are structurally unable to earn credit. Flagged for review; the shared evaluator was not redesigned.",
+  "The literal 70% gate is degenerate against dense lattice rasters: the 206,895-dot r13-lattice-s5 overlaps the new file at 99.9%, where chance expectation is 69.4%."
+ ],
+ "limitations": [
+  "No organizer score is available for any file in this repository. Every number here is a HOLDOUT-DTI, USER-REPORTED, or a measured local property.",
+  "The sandbox cannot reach DrivenData, Dropbox, OpenEI, or the NLR PDF directly. The official rules were read through the page-fetch tool. GitHub and PyPI were reachable.",
+  "Holdout uses catalogue segments as stand-in truth. The competition's hidden labels are NEW faults that are not in the catalogue, so a catalogue holdout does not measure the competition target."
+ ],
+ "sources": [
+  {
+   "label": "Official rules PDF (NLR), sections 3 and submission format",
+   "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+   "checked": "2026-10-29"
+  },
+  {
+   "label": "DrivenData problem description (metric, submission format)",
+   "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+   "checked": "2026-10-29"
+  },
+  {
+   "label": "DrivenData leaderboard",
+   "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+   "checked": "2026-10-29"
+  },
+  {
+   "label": "GEMSDOE32 audit receipt (0.2778 file)",
+   "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/main/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-audit.json",
+   "checked": "2026-10-29"
+  },
+  {
+   "label": "Competition repo reference solution",
+   "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
+   "checked": "2026-10-29"
+  }
+ ]
+}

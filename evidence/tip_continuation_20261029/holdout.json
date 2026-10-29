@@ -1,0 +1,80 @@
+{
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "WBGGEMSDOE1-HIDE-RECOVER-v1.0",
+  "withheld_positives": 60161,
+  "pooled_dti": 0.000434423478349204,
+  "ci95": [
+    0.00014180732734647778,
+    0.0007933620332133572
+  ],
+  "per_fold": {
+    "NW": {
+      "dti": 0.0006262225388499844,
+      "tp": 6.937695800960519,
+      "fp": 15314.276142374914,
+      "n_truth": 10018,
+      "emitted": 15318,
+      "coverage": 0.0006925230386265242
+    },
+    "NE": {
+      "dti": 0.0004159970462651689,
+      "tp": 5.342414316299072,
+      "fp": 14566.824045318333,
+      "n_truth": 12410,
+      "emitted": 14569,
+      "coverage": 0.00043049269269130317
+    },
+    "SW": {
+      "dti": 0.0004021466106882388,
+      "tp": 7.4254854485453325,
+      "fp": 11403.688165034082,
+      "n_truth": 20228,
+      "emitted": 11407,
+      "coverage": 0.00036708945266686436
+    },
+    "SE": {
+      "dti": 0.0003578375927488194,
+      "tp": 6.037883494209109,
+      "fp": 14340.21676051329,
+      "n_truth": 17505,
+      "emitted": 14344,
+      "coverage": 0.0003449233644221142
+    }
+  },
+  "matched_random_null": {
+    "seeds": 20,
+    "dti_min": 0.023736676062214218,
+    "dti_p2_5": 0.023981835590771227,
+    "dti_median": 0.025332605801884914,
+    "dti_p97_5": 0.02702550996831924,
+    "dti_max": 0.02730759943221602
+  },
+  "leakage_canary": {
+    "feature": "distance_to_visible_fault_px",
+    "auc_hidden_vs_active": 0.8287477893614651,
+    "threshold": 0.9,
+    "pass": true
+  },
+  "fold_rows": [
+    {
+      "fold": "NW",
+      "n_hidden_positives": 10018,
+      "candidate_dots": 15409
+    },
+    {
+      "fold": "NE",
+      "n_hidden_positives": 12410,
+      "candidate_dots": 14615
+    },
+    {
+      "fold": "SW",
+      "n_hidden_positives": 20228,
+      "candidate_dots": 11538
+    },
+    {
+      "fold": "SE",
+      "n_hidden_positives": 17505,
+      "candidate_dots": 14421
+    }
+  ]
+}

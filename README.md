@@ -74,7 +74,7 @@ The historical WBG-6 approval is superseded: its archived maximum 3-pixel regist
 
 A newer concurrently added candidate [`WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif`](docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif) records HOLDOUT-DTI 0.4657, 95% CI [0.4563, 0.4748], evaluator `WBGGEMSDOE1-HIDE-RECOVER-v1.0`, n=60,161. **This is NEGATIVE / DO NOT SUBMIT (2026-10-29 per-fold re-check: 0.0069, leakage confirmed):** its own run card states it used the full catalogue during placement (holdout leakage risk) and checked only 6 champion rasters, not the full registry. Re-evaluate with per-fold visible catalogues and complete registry checks before promotion.
 
-See [current review](docs/repo-review-current-20261028.md), [Focus-9 site comparison](docs/executive-summary.html), and [the standing brief](PROMPT.md). Core values: **Maximize P(Win)** and **Own the Outcome**. Read `PROMPT.md` at the start of every working session.
+See [latest review (29 Oct 2026)](docs/repo-review-20261029.md), [Focus-9 site comparison](docs/executive-summary.html), and [the standing brief](PROMPT.md). Core values: **Maximize P(Win)** and **Own the Outcome**. Read `PROMPT.md` at the start of every working session; it preserves the operating requirements and links.
 
 > Historical approval claims and frozen receipts below are retained for provenance only; these no-go notices supersede them.
 

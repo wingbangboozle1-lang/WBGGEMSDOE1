@@ -33,9 +33,7 @@ FETCH = ROOT / "registry/focus_raster_fetch.json"
 REF = ROOT / "data/bridge/sample_submission.tif"
 LATTICE = ROOT / ".cache/focus_rasters/GEMSDOE24__13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
 OUT_JSON = ROOT / "docs/data/focus_nine_site_20261029.json"
-OUT_EXEC = ROOT / "docs/executive-summary-20261029.html"
-OUT_HOW = ROOT / "docs/how-to-submit-20261029.html"
-INDEX = ROOT / "docs/index.html"
+OUT_EXEC = ROOT / "docs/focus-unique-attempt-20261029.html"
 IRR = ROOT / "registry/irregularities.json"  # source of truth; build_site.py copies it to docs/data
 ARMS = {
     "E1": "wbggemsdoe1-novel-band3to8-s5-e1-k33884-20261029-zeros",
@@ -200,8 +198,8 @@ HEAD = (
     f"{CSS_LINK}</head>\n<body><a class=\"skip\" href=\"#main\">Skip to content</a>\n"
     '<header class="masthead"><div class="wrap"><nav class="nav" aria-label="Main navigation">'
     '<a class="brand" href="index.html">GEMS research desk</a><div class="navlinks">'
-    '<a href="index.html">Overview</a><a class="active" href="how-to-submit-20261029.html">How to submit</a>'
-    '<a href="executive-summary-20261029.html">Executive summary</a></div></nav></div></header>\n'
+    '<a href="index.html">Overview</a><a class="active" href="focus-unique-attempt-20261029.html">Focus lane · 29 Oct</a>'
+    '<a href="how-to-submit-20261029.html">How to submit · 29 Oct</a></div></nav></div></header>\n'
     '<main id="main" class="wrap">'
 )
 FOOT = "</main></body></html>\n"
@@ -276,66 +274,38 @@ def write_exec(rows, cands):
         '<li><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">GEMS Prize Official Rules (NLR, Sept 2026)</a></li>'
         '<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData competition 306 problem page</a></li>'
         '<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference solution (writes float probabilities; CRS and transform from labels.tif)</a></li>'
-        '</ul></section>' + FOOT
+        '</ul></section>' + how_sections() + FOOT
     )
     OUT_EXEC.write_text(body)
 
 
-def write_how():
+def how_sections() -> str:
     body = (
-        HEAD +
-        '<div class="breadcrumb">GEMS prize challenge <span>/</span> How to submit <span>/</span> 29 OCT 2026</div>'
-        '<h1>How to submit (read first)</h1>'
+        '<section class="section"><h2>9. How to validate and name a candidate in this lane</h2>'
         '<div class="alert" role="note"><b>Status now:</b> no file is cleared for portal submission. '
         'The research TIFs are format-valid; the lane-gate decision is open (see the executive summary).</div>'
-        '<section class="section"><h2>1. What the portal requires (official rules)</h2><ul>'
+        '<section class="section"><h3>9.1 What the portal requires (official rules)</h3><ul>'
         '<li>Single-band float32 GeoTIFF, EPSG:32611, 100 m grid. Shape 3730 x 3292. Transform (100, 0, 243350, 0, -100, 4508550), matching <code>data/bridge/sample_submission.tif</code>.</li>'
         '<li>Predicted values in [0, 1]; no inf; no NaN inside the footprint. Outside the footprint the rules allow null or NaN.</li>'
         '<li>Source: <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official Rules</a>.</li></ul></section>'
-        '<section class="section"><h2>2. The "Predicted values must be in range [0, 1]" error - status</h2>'
+        '<section class="section"><h3>9.2 The "Predicted values must be in range [0, 1]" error: status</h3>'
         '<p><b>Root cause: not verified.</b> Verified facts only:</p><ul>'
         '<li>Every research TIF here passes the format checks, with zeros outside the footprint.</li>'
         '<li>Both zeros-outside and NaN-outside files have USER-REPORTED scores, so the outside convention alone is not the proven cause.</li>'
         '<li><code>GEMSDOE31 csdu-stepover-nan</code> has 2,610,312 NaN cells inside the footprint. That breaks an explicit rule, but this is not proven to cause the portal error.</li>'
         '<li><code>14GEMSDOE horse-ensemble</code> has a transform that differs from the reference grid.</li></ul></section>'
-        '<section class="section"><h2>3. Steps</h2><ol>'
+        '<section class="section"><h3>9.3 Steps</h3><ol>'
         '<li>Write the raster as float32, zeros outside the footprint, values in [0, 1].</li>'
         '<li>Validate: <code>python scripts/validate_candidate_tif.py FILE.tif</code>. It prints JSON and exits 0 only if every check passes.</li>'
         '<li>Name the file uniquely: <code>&lt;method&gt;-&lt;arm&gt;-&lt;date&gt;-&lt;k-dots&gt;-zeros.tif</code>. Example: <code>wbggemsdoe1-novel-band3to8-s5-e1-k33884-20261029-zeros.tif</code>.</li>'
         '<li>Write a submission note of 140 characters or fewer. Example (98 characters): "Novelty band 3-8 px off catalogue, 33884 dots, zeros outside; no score claimed; gates in run card."</li>'
         '<li>Submit only if the run card says <code>ok_to_submit: true</code>. Never submit a file marked NOT-SUBMITTED.</li></ol></section>'
-        '<section class="section"><h2>4. Gates before any submission</h2><ul>'
+        '<section class="section"><h3>9.4 Gates before any submission</h3><ul>'
         '<li>Format and range: all checks pass.</li>'
         '<li>Lane gate: overlap within 3 px at most 0.70 and |rho| at most 0.90 against distinct registry rasters. Currently FAILS for all candidates.</li>'
         '<li>Holdout DTI is a sanity check only, never a gate or a score.</li></ul></section>'
-        + FOOT
     )
-    OUT_HOW.write_text(body)
-
-
-BANNER_START = "<!-- decision-banner:start -->"
-BANNER_END = "<!-- decision-banner:end -->"
-
-
-def patch_index():
-    text = INDEX.read_text()
-    banner = (
-        BANNER_START +
-        '<section class="section" style="border:2px solid #b00;padding:12px"><h2>Start here: how to submit, and the decision</h2>'
-        '<p><b>Submit: NO.</b> No candidate passes the lane gate. Research TIFs are format-valid and sit in <code>docs/research/</code>. '
-        'Estimated score: none. <a href="how-to-submit-20261029.html">How to submit</a> · '
-        '<a href="executive-summary-20261029.html">Executive summary</a></p></section>' +
-        BANNER_END
-    )
-    if BANNER_START in text:
-        a = text.index(BANNER_START); b = text.index(BANNER_END) + len(BANNER_END)
-        text = text[:a] + banner + text[b:]
-    else:
-        anchor = '<main id="main" class="wrap">'
-        if anchor not in text:
-            raise RuntimeError("index.html anchor missing")
-        text = text.replace(anchor, anchor + banner, 1)
-    INDEX.write_text(text)
+    return body
 
 
 IR_ITEMS = [
@@ -378,7 +348,6 @@ def main() -> int:
     cands = candidates()
     write_json(rows, cands, audit)
     write_exec(rows, cands)
-    write_how()
     n_ir = patch_irregularities()
     print(json.dumps({"rows": len(rows), "candidates": [(c["arm"], c["dots"], c["lane_overlap_gate"]) for c in cands], "irregularities_added": n_ir}, indent=1))
     return 0

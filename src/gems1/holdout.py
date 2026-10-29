@@ -104,8 +104,17 @@ def evaluate_mask(
     n_boot: int = 1000,
     seed: int = 20261026,
     name: str = "candidate",
+    pred_by_fold: dict | None = None,
 ) -> dict:
-    """Pooled hide-and-recover DTI. Catalogue features/gates use visible faults only."""
+    """Pooled hide-and-recover DTI. Catalogue features/gates use visible faults only.
+
+    ``pred_by_fold`` (added 2026-10-29) maps fold index -> prediction built from
+    that fold's visible faults only. When given it replaces the single ``pred``
+    inside each fold's active region, so catalogue-derived candidates are never
+    scored with dots generated from withheld faults. ``pred`` is then ignored.
+    """
+    if pred_by_fold is not None:
+        pred = np.zeros(ctx.foot.shape, bool)
     pred = np.asarray(pred, bool) & ctx.foot
     tp = fp = 0.0
     n_truth = 0
@@ -119,7 +128,8 @@ def evaluate_mask(
 
     for fold in ctx.folds:
         gate = fold.d_visible > float(b_visible_px)
-        p = pred & fold.active & gate
+        base = pred_by_fold.get(fold.index, np.zeros_like(pred)) if pred_by_fold is not None else pred
+        p = np.asarray(base, bool) & ctx.foot & fold.active & gate
         g = fold.hidden & fold.active
         n_t = int(g.sum())
         n_e = int(p.sum())

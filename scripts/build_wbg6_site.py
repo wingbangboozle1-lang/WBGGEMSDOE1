@@ -43,7 +43,7 @@ code {{ background:#f3f6f4; padding:1px 4px; border-radius:4px }}
 .wrap {{ max-width:1040px; margin:0 auto; padding:24px }}
 .small {{ font-size:13px; color:#4b5d59 }}
 </style></head><body><div class="wrap">
-<p class="small"><a href="../index.html">← Evidence desk</a> · <a href="how-to-submit.html">How to submit</a>{extra_nav}</p>
+<p class="small"><a href="../index.html">← Evidence desk</a> · <a href="how-to-submit.html">WBG-6 no-submit decision</a>{extra_nav}</p>
 {body}
 </div></body></html>"""
 
@@ -63,18 +63,12 @@ def main() -> int:
               f"<td>{hab['budget_spearman']['p']:.2g}</td></tr>")
     sc = load("evidence/score_consistency.json")
     name = audit["name"]
-    val = load(f"docs/downloads/{name}.validator.json")
     tif = name + ".tif"
     zipf = name + ".zip"
     me = est["model_estimate"]
-    nf = est["null_floor"]
-    up = est["uplift_history"]
     d = audit["duplicate_screen"]
     K = cal["K_star"]
     champ = next(r for r in nine["rows"] if r["site"] == "GEMSDOE32")
-    b2 = next(r for r in cal["validation"]
-              if r["name"].startswith("h33-h33-2-b2")) if any(
-        r["name"].startswith("h33-h33-2-b2") for r in cal["validation"]) else None
 
     rows = []
     for r in nine["rows"]:
@@ -96,40 +90,35 @@ def main() -> int:
 <strong>OWNER-REPORTED</strong>, <strong>MODEL-ESTIMATE</strong> or
 <strong>NULL-FLOOR</strong>. No ORGANIZER-CONFIRMED value exists for any file.</p>
 
-<div class="hero-ok">
-<h2 style="margin-top:0">DOWNLOAD &amp; SUBMIT: <span class="ok">YES</span></h2>
-<p><b>File to download:</b><br>
-<span class="file"><a href="../downloads/{escape(tif)}" download>{escape(tif)}</a></span><br>
-<span class="small">or the one-TIFF ZIP: <a href="../downloads/{escape(zipf)}" download>{escape(zipf)}</a>
-&nbsp;·&nbsp; SHA-256 <code>{escape(audit['sha256'])}</code></span></p>
-<p><b>Estimated leaderboard score:</b> {me['central']:.3f}
-&nbsp;<span class="small">MODEL-ESTIMATE, plausible range {me['low']:.3f} – {me['high']:.3f};
-no-localisation floor {nf['mean']:.4f}. This is an estimate under an explicit model, not an organizer result.</span></p>
-<p><b>Unique?</b> Yes — not a byte copy of any of the 118 hash-verified historical rasters, and its
-surface rank correlation with every one of them is at most
-<strong>{abs(d['max_abs_surface_spearman']):.4f}</strong>. It is built from a different construction
-(quantile-matched habitat + kernel-disjoint emission), so it does not reuse any historical dot set.</p>
-<p><b>Format:</b> single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, all values in
-[0, 1], all finite, zero outside the scored footprint, zero dots on the mapped catalogue — all
-{sum(1 for v in audit['format_checks'].values() if v is True)} local checks pass and the shared
-<code>gems57</code> format gate reports ok={audit['shared_format_report'].get('ok')}.</p>
+<div class="hero-no" role="alert">
+<h2 style="margin-top:0">DOWNLOAD: <span class="no">RESEARCH ONLY</span> · SUBMIT: <span class="no">NO</span></h2>
+<p><strong>Do not upload this file.</strong> The archived final-dot audit records a maximum 3-pixel
+registry overlap of <strong>{d['max_forward_overlap_3px']:.6f} ({d['max_forward_overlap_3px']*100:.4f}%)</strong>,
+which exceeds the active 70% stop threshold. The earlier density-adjusted approval is superseded.</p>
+<p><b>Research artifact:</b> <a href="../downloads/{escape(tif)}" download>{escape(tif)}</a>
+&nbsp;·&nbsp; <a href="../downloads/{escape(zipf)}" download>one-TIFF ZIP</a>
+&nbsp;·&nbsp; SHA-256 <code>{escape(audit['sha256'])}</code></p>
+<p><b>Score:</b> {me['central']:.3f} is a historical <strong>MODEL-ESTIMATE</strong> only
+(range {me['low']:.3f}–{me['high']:.3f}); it is neither HOLDOUT-DTI nor ORGANIZER-CONFIRMED.
+The estimate's holdout proxy failed external validation, so it must not be used as a leaderboard forecast.</p>
+<p><b>Format:</b> archived local checks report a single-band float32 GeoTIFF, EPSG:32611,
+3730 × 3292, values in [0,1], all finite; this is not proof of organizer acceptance.
+No file is cleared for a submission slot.</p>
 <p class="small"><b>Name:</b> <code>{escape(name)}</code><br>
-<b>Note (≤140 chars):</b> <code>WBG-6 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue, uniform-null estimator</code></p>
+<b>Note (≤140 chars, for identification only):</b> <code>WBG-6 research-only artifact; fails literal 3-pixel registry-overlap gate; DO NOT SUBMIT</code></p>
 </div>
 
-<div class="hero-no">
-<b>Read this before you spend a slot.</b> The estimate ({me['central']:.3f}) is statistically
-indistinguishable from the best nine-site history value ({champ['reported_historical_value']:.4f}):
-the reported-score noise floor measured on nearly identical pairs is ±{sc['bands'][-1]['median_gap']:.4f}
-(median) and up to {sc['bands'][-1]['max_gap']:.4f}. The current public leaderboard leader is
-<b>0.4544</b>. This file is a legitimate, unique, format-valid entry; it is <b>not</b> a top-20
-contender and nothing in the analysis below claims otherwise.
+<div class="hero-no" role="note">
+<b>Decision basis.</b> The reported nine-site value {champ['reported_historical_value']:.4f} is OWNER-REPORTED,
+not receipt-verified. The WBG-6 {me['central']:.3f} value is a MODEL-ESTIMATE; its construction inherits
+unverified historical uplift and the holdout proxy does not rank the recovered submissions. Neither
+value establishes this file's organizer score, leaderboard rank, or submission eligibility.
 </div>
 
 <h2>1. The table the brief asked for</h2>
 <p>One row per focus site: the best <em>historical</em> file there, and whether it may be reused.
-None of them may: every one is a copy of an already-submitted raster, and the brief forbids that.
-<b>There is exactly one new file to download — the one in the green box above.</b></p>
+These are history-only references; their supplied values are OWNER-REPORTED and not organizer receipts.
+The WBG-6 raster below is available only as a research artifact and is not cleared for upload.</p>
 <div style="overflow-x:auto"><table class="data">
 <thead><tr><th>Site</th><th>Best historical file (learning only)</th><th>Reported score</th>
 <th>Unique submission?</th><th>Download &amp; submit?</th></tr></thead>
@@ -137,106 +126,74 @@ None of them may: every one is a copy of an already-submitted raster, and the br
 <p class="small">Reachability check on {len(nine['rows'])}/9 site files. Values are the owner's
 historical numbers; no submission-page receipt binds those bytes to those values.</p>
 <div style="overflow-x:auto"><table class="data">
-<thead><tr><th>What to download</th><th>Estimated score</th><th>Unique vs the nine sites and all 118 scored rasters</th><th>Decision</th></tr></thead>
+<thead><tr><th>Research artifact</th><th>Score estimate</th><th>Registry uniqueness</th><th>Decision</th></tr></thead>
 <tbody><tr>
 <td class="file">{escape(tif)}</td>
-<td><b>{me['central']:.3f}</b><br><span class="small">range {me['low']:.3f} – {me['high']:.3f}</span></td>
-<td>Yes — max surface |Spearman| {abs(d['max_abs_surface_spearman']):.4f}; no byte copy; overlap lift
-{d['max_lift']:.2f}× over a density-matched independent field</td>
-<td class="ok">SUBMIT</td></tr></tbody></table></div>
+<td><b>{me['central']:.3f} MODEL-ESTIMATE</b><br><span class="small">range {me['low']:.3f}–{me['high']:.3f}; invalidated as leaderboard forecast by failed holdout-proxy validation</span></td>
+<td><b>FAIL</b> — literal 3-pixel overlap {d['max_forward_overlap_3px']*100:.4f}% exceeds 70%; density-adjusted lift does not override the protocol</td>
+<td class="no">DOWNLOAD FOR RESEARCH · DO NOT SUBMIT</td></tr></tbody></table></div>
 
-<h2>2. Why the GEMSDOE32 file got 0.2778, and how far that is from the top</h2>
-<p>The official metric is a distance-weighted Tversky index with α = 0.2 on false positives and
-β = 0.8 on false negatives, over a 300 m triangular kernel ({PROBLEM}). Two structural facts drive
-everything:</p>
-<ol>
-<li><b>The truth is defined as faults that are <em>not</em> in the public catalogue.</b> The prompt
-page says the experts "manually identified faults that are not contained within the current public
-USGS database"; those are the test set. So a dot sitting on a mapped fault cannot be a true positive.
-Measured consequence: pruning catalogue-near dots is exactly what raised the score
-0.2600 → 0.2708 → 0.2778 (44,090 → 40,199 → 37,654 dots; the file lineage is in
-<code>evidence/nine_site_audit.json</code>).</li>
-<li><b>False positives are cheap, misses are expensive, but only up to a point.</b> The marginal-DTI
-algebra in <code>src/wbg6/truth_model.py</code> shows one extra dot helps whenever its expected kernel
-credit exceeds α·DTI ≈ 0.06, so a fault-like dot always pays and a stray dot always costs. The
-uniform 5-px lattice with 206,895 dots scored only 0.0904 — over-budget emission is punished.</li>
-</ol>
-<p><b>The calibrated measurement.</b> Using the one submission whose geometry is provably spatially
-uniform (that 5-px lattice — its distance-to-catalogue quantiles match the footprint's to within
-0.1 px), an ensemble over {K:,}-cell random fault sets reproduces its reported score to within
-0.0002 (see <code>evidence/wbg6_null_calibration.json</code>). That fixes the size of the hidden
-truth: <b>K ≈ {K:,} cells</b>. Against that null, a raster with no localisation skill scores
-<b>{nf['mean']:.4f}</b>. The 0.2778 file scores {b2['reported']:.4f} on the same null — a
-<b>{b2['reported']/b2['predicted']:.1f}× localisation uplift</b>.</p>
-<p><b>So the answer to "why 0.2778?" is:</b> about
-{(b2['reported']/b2['predicted']):.0f}× localisation skill over chance, at a near-optimal dot budget,
-with the waste removed. It is <em>not</em> a dominant geological discovery: the same history contains
-five other entries within 0.013 of it, and near-identical rasters differ by up to
-{sc['bands'][-1]['max_gap']:.3f}.</p>
-<p><b>Can we beat it?</b> In principle yes, and the algebra says how: the score is set almost entirely
-by the fraction of dots that land within 300 m of a <em>new</em> fault. Reaching the leaderboard's
-0.33–0.45 band needs a prior roughly twice as precise as the best geometric heuristic. That requires
-the 19-band feature stack and a supervised model ({REFSOL}); the stack is a 419 MB login-gated
-download and is <b>not available in this environment</b> (Dropbox egress is blocked and it is not
-mirrored in any of the 204 public sites). That is the honest blocker, not a modelling choice.</p>
+<h2>2. What can and cannot be inferred about GEMSDOE32 B2's reported 0.2778</h2>
+<p>The official problem description defines a distance-weighted Tversky score (α=0.2, β=0.8) with a
+300 m triangular kernel and hidden fault labels; see the <a href="{PROBLEM}">official problem page</a>.
+The value 0.2778 for GEMSDOE32 B2 and the comparison values in the table are OWNER-REPORTED, not tied
+to an organizer receipt in this repository.</p>
+<p>Local raster forensics record B2 as a subset of the D2.8 parent with 6,436 fewer dots, none added,
+and the removed dots near the mapped catalogue. This establishes a pixel-level relationship, not why
+the reported score changed. Fewer redundant or catalogue-adjacent predictions could reduce false-positive
+penalty while retaining some kernel coverage; hidden labels are unavailable here, so this remains a
+plausible mechanism, not a causal result.</p>
+<p>The archived score-inversion exercise reproduces one reported lattice value under an assumed random
+truth model. Its inferred K≈{K:,} and null/“uplift” figures are MODEL OUTPUTS conditional on the assumed
+truth distribution and an unverified score; they do not measure the hidden truth size or B2's localization
+skill. Separately, the recovered submission archive contains correlated variants; its leave-one-family
+validation and the hide-and-recover comparison do not validate a leaderboard ranker. No score projection
+for a new raster is justified by those analyses.</p>
+<p><strong>Can a unique file beat 0.2778?</strong> That is unknown. The reported 0.2778 itself is not
+organizer-confirmed, and this repository has no validated prospective estimate or eligible candidate.
+A defensible claim would require authentic labels/inputs or a protocol-valid, leakage-controlled holdout
+that beats a same-evaluator comparator, plus exact final-file validation and the separate selector step.</p>
 
-<h2>2b. Where the hidden faults must be: the one axis the scores can identify</h2>
-<p>Without labels, the only thing a score can tell you is how a submission distributed its dots
-relative to the mapped catalogue. For all {hab['n']} recovered rasters we compute the ring share
-(dots per distance bin ÷ footprint share of that bin) — a <b>lift</b>, where 1.0 is "no different from
-a uniform sample of the map". Ranking those lifts against the reported scores gives one clean,
-monotone result:</p>
+<h2>2b. Historical score associations are exploratory, not a map of hidden truth</h2>
+<p>The following exploratory summaries compare distance-ring distributions across {hab['n']} recovered
+rasters with reported scores. They are not independent experiments: many rasters are close variants,
+reported scores lack artifact-linked organizer receipts, and grouped validation of these associations
+was weak. Treat the rows below as a descriptive audit of this archive only, not evidence that any distance
+ring contains more hidden faults or that a new prediction should be placed there.</p>
 <div style="overflow-x:auto"><table class="data">
-<thead><tr><th>Distance from the mapped faults</th><th>Spearman ρ with reported score</th><th>p</th></tr></thead>
+<thead><tr><th>Distance from mapped faults</th><th>Spearman with reported score</th><th>p (exploratory)</th></tr></thead>
 <tbody>{rings}</tbody></table></div>
-<p>The preference is for the <b>far field</b>: dots beyond ~40 px (4 km) of any mapped fault are worth
-more than dots next to one, and the immediate vicinity of a fault is worth least. A ridge fit on
-log-budget plus all ring lifts does <em>not</em> generalise across sites (leave-one-site-out
-R² = {hab['leave_one_site_out']['r2']:.3f}, ρ = {hab['leave_one_site_out']['spearman']:.3f}), so the
-per-ring coefficients are not trustworthy — but the univariate far-field trend survives every
-sub-grouping we tried and is the reason this file keeps a wide, far-field component instead of
-hugging the catalogue.</p>
-<p><b>One contradictory row is disclosed rather than dropped:</b> dots sitting <em>on</em> the mapped
-catalogue show a weak positive association (+0.15, p = 0.11). It is not significant, and it cannot mean
-what it looks like — the metric defines the truth as faults absent from that catalogue, so an
-on-catalogue dot can never be a true positive. It is a coverage proxy. The site's rule (never place a dot
-on the mapped catalogue) is unchanged.</p>
-<p class="small">This is the sharpest self-correction in the whole analysis: the site's earlier lanes
-optimised "be near but not on a mapped fault". The score history says the opposite end of the map is
-worth more, and the null calibration says why — a submission with no localisation skill scores
-{nf['mean']:.4f}, so the leaderboard is measuring <em>where the new faults are</em>, not how neatly
-your dots trace the old ones.</p>
+<p>These associations are vulnerable to family duplication, selection effects, and unobserved differences
+in modeling or submission conditions. The recorded leave-one-site-out model fit is weak
+(R²={hab['leave_one_site_out']['r2']:.3f}, ρ={hab['leave_one_site_out']['spearman']:.3f}); no causal
+interpretation or emission rule follows from the table.</p>
 
-<h2>3. What this file is, and why it should score near the top of your own history</h2>
+<h2>3. WBG-6 artifact properties and limits</h2>
 <ul>
-<li><b>Quantile-matched habitat.</b> Its distance-to-catalogue profile is inherited from the best
-reported file (this file: median {val['distance_to_catalogue_px']['median']:.1f} px,
-p90 {val['distance_to_catalogue_px']['p90']:.1f} px; the 0.2778 reference file: 19.6 px / 68.0 px),
-so it searches the same places, but every dot position is new.</li>
-<li><b>Kernel-disjoint emission.</b> Dots are at least 5 px apart, so no two share kernel support:
-distinct coverage per dot is 9.37 of a theoretical maximum 9.38, versus 8.05 for the 0.2778 file and
-7.10 for the 0.2478 file. Same search profile with 20% fewer dots — 7,654 fewer false-positive candidates — and 16% more
-distinct coverage per dot (9.37 vs 8.05), i.e. the same reach for less false-positive mass.</li>
-<li><b>Never on the catalogue.</b> {audit['gates']['dots_on_catalogue']} dots on mapped faults; all dots
-are off-catalogue by construction.</li>
-<li><b>30,000 dots</b>, the measured direction of improvement for this family (pruning raised the
-score) while staying inside the band where recall is still being bought.</li>
+<li>Its generator used an archived catalogue-distance profile and kernel-spacing rule. These describe
+the construction, not independent geological evidence for hidden faults.</li>
+<li>The archived raster has 30,000 positive cells and reports zero on the mapped catalogue. Local
+format validity does not establish uniqueness, scientific value, portal acceptance, or an organizer score.</li>
+<li>The explicit active registry rule is literal: stop if over 70% of candidate dots lie within 3 px of
+any registry raster. Its recorded maximum is {d['max_forward_overlap_3px']*100:.4f}%, so WBG-6 fails.
+A density-adjusted statistic is not authorized to waive this threshold.</li>
+<li>There is no current leaderboard estimate supported by a validated model. The archived MODEL-ESTIMATE
+is retained only for provenance and must not be used to choose a slot.</li>
 </ul>
 
-<h2>4. Duplicate screen — and why the old 70% rule had to be fixed</h2>
-<p>Compared against all {d['n_compared']} hash-verified historical rasters:</p>
+<h2>4. Registry comparison — literal rule governs</h2>
+<p>The archived audit compared {d['n_compared']} historical rasters. Byte novelty and surface correlation
+are not enough to clear the independent proximity stop:</p>
 <ul>
-<li>byte-identical: <b>no</b>;</li>
-<li>maximum surface |Spearman ρ|: <b>{abs(d['max_abs_surface_spearman']):.4f}</b> (limit 0.90);</li>
-<li>maximum forward 3-px overlap: {d['max_forward_overlap_3px']*100:.2f}% against
-<code>{escape(d['max_overlap_against'])}</code>;
-<li>overlap <em>lift</em> versus a density-matched independent field: <b>{d['max_lift']:.2f}×</b>.</li>
+<li>byte-identical among that archived scope: <b>no</b>;</li>
+<li>maximum archived surface |Spearman ρ|: <b>{abs(d['max_abs_surface_spearman']):.4f}</b>;</li>
+<li>maximum forward 3-px overlap: <b>{d['max_forward_overlap_3px']*100:.4f}%</b> against
+<code>{escape(d['max_overlap_against'])}</code> (active limit 70%);</li>
+<li>density-adjusted overlap lift was also recorded, but it does not replace or waive the literal rule.</li>
 </ul>
-<p>The literal ">70% of your dots within 3 px of a registry raster" rule is degenerate: a raster with
-200k dots at 5 px spacing puts ~99.7% of the map within 3 px of one of its dots, so it flags
-<em>every possible</em> submission, including one made of random noise. The invariant it was meant to
-protect — "are these the same predictions?" — is what the lift measures: 1.0 means no more similar
-than chance, and this file is {d['max_lift']:.2f}.</p>
+<p><strong>Decision: duplicate STOP under the stated protocol.</strong> Do not tune around registry
+coverage or reinterpret this historical comparison. Its scope is frozen and incomplete; a fresh complete
+registry audit would still be required for any future candidate.</p>
 
 <h2>5. Evidence index (every claim, and how to re-derive it)</h2>
 <div style="overflow-x:auto"><table class="data">
@@ -260,11 +217,11 @@ than chance, and this file is {d['max_lift']:.2f}.</p>
 {json.loads((ROOT/'evidence/consensus_partial.json').read_text())['family_spearman']:.3f})</td>
 <td><code>evidence/consensus_partial.json</code> · <code>evidence/consensus_test.json</code></td>
 <td><code>scripts/consensus_test.py</code>, <code>scripts/consensus_partial.py</code></td></tr>
-<tr><td>Hidden truth size K ≈ {K:,}; null reproduces the uniform lattice's 0.0904</td>
+<tr><td>Assumption-conditional null calibration (K≈{K:,}); not a measured hidden-truth size</td>
 <td><code>evidence/wbg6_null_calibration.json</code></td><td><code>scripts/calibrate_null_K.py</code></td></tr>
-<tr><td>This file's estimate {me['central']:.3f} [{me['low']:.3f}, {me['high']:.3f}]</td>
+<tr><td>Archived {me['central']:.3f} MODEL-ESTIMATE; not validated as a leaderboard forecast</td>
 <td><code>evidence/wbg6_score_estimate.json</code></td><td><code>scripts/estimate_wbg6_score.py</code></td></tr>
-<tr><td>Format + duplicate gates</td><td><code>evidence/wbg6_submission_audit.json</code></td>
+<tr><td>Archived format report and literal proximity STOP (fails active overlap gate)</td><td><code>evidence/wbg6_submission_audit.json</code></td>
 <td><code>scripts/audit_wbg6_submission.py</code></td></tr>
 </tbody></table></div>
 
@@ -285,9 +242,9 @@ observation, not a score for any project file.</li>
 fitted relationship has a very small effective sample. Both the descriptor model and the holdout
 proxy fail grouped validation, and this page says so rather than quoting the flattering in-sample
 number.</li>
-<li><b>The estimate inherits an assumption.</b> The uplift band ({min(up['min'], up['max']):.1f}× –
-{max(up['min'], up['max']):.1f}×) is measured on history files, not on this file. It is the dominant
-uncertainty, and it is why the range is wide.</li>
+<li><b>The MODEL-ESTIMATE is not validated.</b> Its uplift comes from historical score reports, not
+an independent experiment on this file; the held-out proxy did not validate ranking. Do not interpret
+its interval as a confidence interval for leaderboard performance.</li>
 <li><b>No feature stack, no 1 m DEM.</b> Both are egress-blocked here; without them a supervised
 prior cannot be trained, which caps achievable precision (see §2).</li>
 <li><b>Note text.</b> The competition allows a ≤140-character note; use
@@ -302,43 +259,33 @@ credentials.</p>
     (DOCS / "index.html").write_text(page("WBG-6 executive summary", body), encoding="utf-8")
 
     howto = f"""
-<h1>How to submit WBG-6</h1>
-<div class="hero-ok">
-<p><b>Step 1.</b> Download<br>
-<span class="file"><a href="../downloads/{escape(tif)}" download>{escape(tif)}</a></span>
-&nbsp;(or <a href="../downloads/{escape(zipf)}" download>{escape(zipf)}</a>)</p>
-<p><b>Step 2.</b> Verify the bytes (optional, 10 s):</p>
-<pre><code>sha256sum {escape(tif)}
-# expected: {escape(audit['sha256'])}</code></pre>
-<p><b>Step 3.</b> Open <a href="{SUBMIT}">{escape(SUBMIT)}</a>, choose the file, paste the note, submit.</p>
-<p><b>Note field (≤140 characters):</b><br>
-<code>WBG-6 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue</code></p>
+<h1>WBG-6 research artifact — do not submit</h1>
+<div class="hero-no" role="alert">
+<p><strong>DOWNLOAD: YES for research · SUBMIT: NO.</strong> The recorded final-dot registry overlap
+is {d['max_forward_overlap_3px']*100:.4f}% within 3 pixels, exceeding the active 70% stop threshold.
+The archived approval is superseded. Do not use a competition slot.</p>
+<p>Research file: <a href="../downloads/{escape(tif)}" download>{escape(tif)}</a>
+(or <a href="../downloads/{escape(zipf)}" download>one-TIFF ZIP</a>).</p>
+<p>SHA-256: <code>{escape(audit['sha256'])}</code></p>
 </div>
-<h2>What the portal checks, and what this file already satisfies</h2>
-<ul>
-<li>single-band <b>float32</b> GeoTIFF — yes;</li>
-<li>same CRS as the training data (<b>EPSG:32611</b>) — yes;</li>
-<li>same shape and geotransform as the sample submission (<b>3730 × 3292</b>, 100 m,
-origin 243350 / 4508550) — yes;</li>
-<li>values within <b>[0, 1]</b>, no NaN inside the footprint, null/zero outside — yes
-(the historical "Predicted values must be in range [0, 1]" error came from a file that violated
-this; this one is validated byte-by-byte in
-<code>evidence/wbg6_submission_audit.json</code>);</li>
-<li>a single GeoTIFF if you upload a ZIP — the ZIP contains exactly one member, identical to the TIFF.</li>
-</ul>
-<h2>Why the outside-footprint cells are 0 and not NaN</h2>
-<p>The sample submission masks the footprint with NaN, but the historically accepted best file
-(<code>gemsdoe32-h33-h33-2-b2-...-zeros</code>, reported 0.2778) is an <em>all-finite zeros-mode</em>
-export and the portal accepted it. Zero is a valid probability, cannot trigger
-"Predicted values must be in range [0, 1]", and survives validators that reject NaN. This file follows
-that empirically accepted convention.</p>
-<h2>Decision</h2>
-<p><span class="ok">DOWNLOAD: YES · SUBMIT: YES</span> — the file is unique, format-valid and
-history-independent. Estimated score {me['central']:.3f} (range {me['low']:.3f} – {me['high']:.3f}).</p>
-<p class="small">This project does not upload anything and never asks for credentials. Weekly slot
-allowance is shown on the submissions page and must be checked there.</p>
+<h2>What was checked locally</h2>
+<p>The archived validator reports a single-band float32 TIFF on the recorded grid, values in [0,1],
+finite pixels, and a one-member ZIP. These are local checks only; they do not establish portal acceptance.
+The original rejected submission and organizer error receipt are unavailable, so the cause of the prior
+“Predicted values must be in range [0, 1]” message is unknown.</p>
+<h2>Outside-footprint convention</h2>
+<p>This research artifact stores zero outside the footprint. The provided sample and official materials
+have been reported elsewhere as using null/NaN outside; organizer handling of this exact artifact has
+not been verified. Do not infer acceptance from another file's reported score.</p>
+<h2>Score label and disposition</h2>
+<p>The value {me['central']:.3f} (range {me['low']:.3f}–{me['high']:.3f}) is a MODEL-ESTIMATE based on
+historical reported-score uplift, not a HOLDOUT-DTI and not an ORGANIZER-CONFIRMED score. The local
+holdout proxy failed validation as a leaderboard ranker. Registry uniqueness fails the active literal
+rule. <strong>DOWNLOAD: YES for research · SUBMIT: NO.</strong></p>
+<p class="small">This project does not upload files or request credentials. The competition submission page
+requires account access; this repository cannot see current allowance or verify receipts.</p>
 """
-    (DOCS / "how-to-submit.html").write_text(page("How to submit WBG-6", howto), encoding="utf-8")
+    (DOCS / "how-to-submit.html").write_text(page("WBG-6 research-only status", howto), encoding="utf-8")
     print(f"wrote {DOCS/'index.html'} and {DOCS/'how-to-submit.html'}")
     return 0
 

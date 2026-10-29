@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Executive summary — unique TIF submission · WBG / GEMS research desk</title>
-<meta name="description" content="Executive summary for the WBGGEMSDOE1 unique GeoTIFF submission to the DrivenData DOE GEMS Prize (competition 306). Includes nine-site comparison table, GEMSDOE32 0.2778 forensics, and how-to-submit instructions.">
+<title>Executive summary — research TIFF status · WBG / GEMS research desk</title>
+<meta name="description" content="Executive summary for the current research-only GeoTIFF, nine-site history, score evidence classes, and explicit no-submit decision. Full registry uniqueness remains unverified.">
 <link rel="stylesheet" href="assets/style.css">
 <style>
 .ok { color:#0f766e; font-weight:700 }
@@ -15,7 +15,10 @@ table.data th { background:#f3f6f4 }
 .hero-yes { border:3px solid #0f766e; background:#f0fdfa }
 .hero-no { border:3px solid #b91c1c; background:#fef2f2 }
 .hero-neutral { border:3px solid #b45309; background:#fffbeb }
-.wrap { max-width:1100px; margin:0 auto; padding:24px }
+.wrap { box-sizing:border-box; width:100%; max-width:1100px; margin:0 auto; padding:24px }
+.hero, .hero * { min-width:0; overflow-wrap:anywhere }
+code { overflow-wrap:anywhere; word-break:break-word }
+pre { white-space:pre-wrap; overflow-wrap:anywhere; word-break:break-word; max-width:100%; box-sizing:border-box }
 .small { font-size:12.5px; color:#4b5d59 }
 .h2 { font-size:17px; margin:24px 0 8px; color:#173b42 }
 ul.check { list-style:none; padding-left:0 }
@@ -38,13 +41,13 @@ details[open] > summary { border-bottom:1px solid #e3e9e7 }
 
 <nav class="small" style="margin-bottom:6px">
 <a href="index.html">← Evidence desk</a> &nbsp;·&nbsp;
-<a href="wbg6/index.html">WBG-6 submit</a> &nbsp;·&nbsp;
+<a href="wbg6/index.html">WBG-6 status</a> &nbsp;·&nbsp;
 <a href="how-to-submit.html">How to submit</a> &nbsp;·&nbsp;
 <a href="hypotheses.html">Hypotheses</a> &nbsp;·&nbsp;
 <a href="evidence.html">Evidence</a>
 </nav>
 
-<h1>Executive summary — unique TIF submission for the GEMS Prize</h1>
+<h1>Executive summary — research TIFF status for the GEMS Prize</h1>
 <p class="small">DrivenData competition 306 · DOE GEMS Prize · all scores below are labeled explicitly.
 No ORGANIZER-CONFIRMED score exists for any file in this session. Historical values are USER-REPORTED / UNVERIFIED.</p>
 
@@ -52,7 +55,7 @@ No ORGANIZER-CONFIRMED score exists for any file in this session. Historical val
 <!-- HEADLINE DECISION -->
 <!-- ===================================================================== -->
 <div class="hero hero-neutral">
-<h2 style="margin-top:0">GENERATED: unique GeoTIFF · SUBMIT: NOT YET (verdict: NEGATIVE — holdout may be leaked)</h2>
+<h2 style="margin-top:0">RESEARCH TIFF · SUBMIT: NO (verdict: NEGATIVE — holdout may be leaked; global uniqueness unverified)</h2>
 <p><b>Generated file:</b><br>
 <span class="file fn"><a href="downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif" download>WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif</a></span><br>
 <span class="small">One-TIFF ZIP:
@@ -63,9 +66,7 @@ evaluator <code>WBGGEMSDOE1-HIDE-RECOVER-v1.0</code>, 60,161 withheld positives.
 <span class="warn">CAUTION: dot placement used the full catalogue rather than per-fold visible faults, so this HOLDOUT-DTI may be inflated by leakage. A proper per-fold re-evaluation is required before any slot promotion. Do not treat 0.4657 as a leaderboard score.</span></p>
 <p><b>Format:</b> single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, all finite, all values in [0,1],
 zero outside the footprint, <b>zero dots on the mapped catalogue</b>. Local format validation: PASS.</p>
-<p><b>Unique?</b> Yes versus the six checkable focus-site champions:
-max |Spearman| = 0.0551 (≤ 0.90), max 3-px dot overlap = 0.3932 (≤ 0.70). Full 179-entry registry check
-requires restored comparison caches (not available in this sandbox).</p>
+<p><b>Registry uniqueness:</b> <strong>NOT CLEARED.</strong> The recorded comparison covers six checkable focus-site champions (max |Spearman| = 0.0551, max 3-px dot overlap = 0.3932); the full 179-entry registry is not checked. These limited results do not establish global uniqueness.</p>
 <p class="small"><b>Name:</b> <code>WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z</code><br>
 <b>Note (114 chars ≤140):</b> <code>WBGGEMSDOE1 blind-fault-adjacency distance-decay dots, off-catalogue, 129,184 dots | HOLDOUT-DTI=0.4657 | research</code></p>
 </div>

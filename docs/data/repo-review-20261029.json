@@ -1,0 +1,85 @@
+{
+  "schema": "wbggemsdoe1-repository-review-v1",
+  "reviewed_utc": "2026-10-29T20:46:32Z",
+  "hypothesis": "Governance finding: WBG-6's older positive upload status was stale and conflicted with the active literal 70% registry proximity STOP; the current checkout has no authorized, validated lane.",
+  "mechanism": "The archived WBG-6 final-dot audit records maximum within-3-pixel overlap above the hard threshold. The former density-adjusted exception is not authorized. The 0.247 figure is a MODEL-ESTIMATE whose holdout proxy failed external validation, not a HOLDOUT-DTI or organizer score.",
+  "named_non_fault_mimic": "Not applicable to this governance review; no new geological predictor was tested. For the highest-priority prospective terrain/potential-field lag hypothesis, a dike or intrusive/lithologic contact could mimic a buried-fault edge offset.",
+  "holdout_dti": {
+    "evidence_class": null,
+    "status": "HOLDOUT-DTI not run in this review",
+    "evaluator_version": null,
+    "withheld_positive_pixels": null,
+    "value": null,
+    "ci95": null
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_scope": "archived WBG-6 audit only; not freshly recomputed and not a complete current registry census",
+    "max_abs_surface_spearman": 0.014830953454224638,
+    "max_forward_3px_overlap": 0.9967666666666667,
+    "threshold_forward_3px_overlap": 0.7,
+    "overlap_verdict": "STOP; exceeds the literal threshold",
+    "full_current_registry_check": false
+  },
+  "raster_sha256": "e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9",
+  "validator_output": {
+    "validator": "scripts/validate_submission.py using pinned shared gems57 validator",
+    "validation_scope": "fresh local invocation against the pinned owner-mirror grid and catalogue; format pass only",
+    "all_local_format_checks_passed": true,
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "ok_to_submit": false,
+    "organizer_acceptance": false,
+    "registry_gate": "FAIL: recorded 99.6767% exceeds 70%"
+  },
+  "submission_name": "wbg6-qmh-kdisjoint-30000-20261028",
+  "submission_note": "WBG-6 research-only artifact; fails literal 3-pixel registry-overlap gate; DO NOT SUBMIT",
+  "verdict": "negative",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "experiments_completed": 0,
+  "submission_slots_used": 0,
+  "limitations": [
+    "Core competition rasters and cached feature stack are missing from the current checkout.",
+    "The required single-method paragraph is absent; the prior lane is stopped.",
+    "No fresh holdout, full registry scan, official leaderboard refresh, or organizer submission receipt was available in this review.",
+    "Existing historical scores remain OWNER-REPORTED / UNVERIFIED unless an artifact-linked organizer receipt is supplied."
+  ],
+  "verification": {
+    "pytest": {
+      "result": "passed",
+      "tests_passed": 241,
+      "warnings": 15
+    },
+    "ruff": {
+      "result": "passed",
+      "scope": "scripts src tests --select E9,F --exclude test_template_evaluator.py"
+    },
+    "release_review": {
+      "result": "passed",
+      "any_ok_to_submit": false
+    },
+    "browser": {
+      "result": "passed",
+      "pages_checked": 24,
+      "viewports": {
+        "desktop": [
+          1440,
+          1100
+        ],
+        "mobile": [
+          390,
+          844
+        ]
+      },
+      "javascript_page_errors": 0,
+      "body_overflow": false,
+      "wbg7_research_download_sha256": "701ff7a4d916dd843da402ecf5f95126dc3ecfce0597ab71933ccacb16689e3a",
+      "wbg7_download_identity": "passed",
+      "wbg7_scope_disclosure": "passed",
+      "wbg4_feed_requests": "200",
+      "executive_summary_uniqueness_disclosure": "passed; mobile overflow fixed"
+    },
+    "no_experiments_or_slots": true
+  }
+}

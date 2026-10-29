@@ -130,6 +130,7 @@ def main():
     known_negative = "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3"
     s2_negative = "6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880"
     focus9_negative = "e8c4bf7607cec72c54981b90aa60e7e85163b429b58ebd6f2a7c3126e8c1e351"
+    wbg6_negative = "e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9"
     paths = ("registry/run_card.json", "evidence/wbg2/run_card.json", "evidence/wbg_s2/run_card.json",
              "evidence/wbg3_spipmr/run_card.json", "evidence/focus9_exec/run_card.json",
              "evidence/wbg6_run_card.json")
@@ -150,6 +151,19 @@ def main():
     report["run_card_path"] = card_name
     report["promotion_verdict"] = card["verdict"] if identity_matches else "untracked"
     report["ok_to_submit"] = approval_matches(card, report, identity_matches)
+    if report["sha256"] == wbg6_negative:
+        # The archived WBG-6 card says "promote", but the later active literal
+        # 70% gate supersedes it. Exact-byte recognition must remain fail-closed.
+        safety_path = ROOT / "evidence/wbg6_submission_audit.json"
+        safety = json.loads(safety_path.read_text())
+        overlap = safety["duplicate_screen"]["max_forward_overlap_3px"]
+        if (not identity_matches or card_name != "evidence/wbg6_run_card.json"
+                or safety.get("sha256") != wbg6_negative or overlap <= .70):
+            raise ValueError("WBG-6 active literal-overlap STOP evidence missing or inconsistent")
+        report["ok_to_submit"] = False
+        report["promotion_verdict"] = "negative (active literal registry gate supersedes archived promote card)"
+        report["known_negative_registry_overlap"] = overlap
+        report["active_literal_gate"] = "FAIL: forward 3-pixel overlap exceeds 70%"
     if report["sha256"] == known_negative:
         if (not identity_matches or card_name != "evidence/wbg2/run_card.json"
                 or card.get("verdict") != "negative" or card.get("decision", {}).get("ok_to_submit") is not False):

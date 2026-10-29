@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-28T20:24:15.536Z",
+  "generated_utc": "2026-10-29T20:46:32.063Z",
   "browser": "153.0.8010.0",
   "checked": [
     {
@@ -29,6 +29,16 @@
     },
     {
       "file": "focus9-executive-summary.html",
+      "desktop": "passed",
+      "mobile": "passed"
+    },
+    {
+      "file": "executive-summary-focus-sites.html",
+      "desktop": "passed",
+      "mobile": "passed"
+    },
+    {
+      "file": "executive-summary-unique.html",
       "desktop": "passed",
       "mobile": "passed"
     },
@@ -135,6 +145,9 @@
   "focus9_no_submit_copy": "passed",
   "wbg4_download_sha256": "e650894d4d1b39c57b2207561b033c98492085fec21be44615d249d9336745e6",
   "wbg4_download_identity": "passed",
+  "wbg7_research_download_sha256": "701ff7a4d916dd843da402ecf5f95126dc3ecfce0597ab71933ccacb16689e3a",
+  "wbg7_download_identity": "passed",
+  "wbg7_scope_disclosure": "passed",
   "body_overflow": false,
   "all_passed": true,
   "no_model_training_or_slot_use": true

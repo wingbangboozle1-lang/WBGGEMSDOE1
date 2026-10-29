@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How to submit WBG-6 · WBG-6</title>
+<title>WBG-6 research-only status · WBG-6</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
 .ok { color:#0f766e; font-weight:700 }
@@ -16,42 +16,32 @@ code { background:#f3f6f4; padding:1px 4px; border-radius:4px }
 .wrap { max-width:1040px; margin:0 auto; padding:24px }
 .small { font-size:13px; color:#4b5d59 }
 </style></head><body><div class="wrap">
-<p class="small"><a href="../index.html">← Evidence desk</a> · <a href="how-to-submit.html">How to submit</a></p>
+<p class="small"><a href="../index.html">← Evidence desk</a> · <a href="how-to-submit.html">WBG-6 no-submit decision</a></p>
 
-<h1>How to submit WBG-6</h1>
-<div class="hero-ok">
-<p><b>Step 1.</b> Download<br>
-<span class="file"><a href="../downloads/wbg6-qmh-kdisjoint-30000-20261028.tif" download>wbg6-qmh-kdisjoint-30000-20261028.tif</a></span>
-&nbsp;(or <a href="../downloads/wbg6-qmh-kdisjoint-30000-20261028.zip" download>wbg6-qmh-kdisjoint-30000-20261028.zip</a>)</p>
-<p><b>Step 2.</b> Verify the bytes (optional, 10 s):</p>
-<pre><code>sha256sum wbg6-qmh-kdisjoint-30000-20261028.tif
-# expected: e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9</code></pre>
-<p><b>Step 3.</b> Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/</a>, choose the file, paste the note, submit.</p>
-<p><b>Note field (≤140 characters):</b><br>
-<code>WBG-6 quantile-matched habitat, kernel-disjoint 30k dots, off-catalogue</code></p>
+<h1>WBG-6 research artifact — do not submit</h1>
+<div class="hero-no" role="alert">
+<p><strong>DOWNLOAD: YES for research · SUBMIT: NO.</strong> The recorded final-dot registry overlap
+is 99.6767% within 3 pixels, exceeding the active 70% stop threshold.
+The archived approval is superseded. Do not use a competition slot.</p>
+<p>Research file: <a href="../downloads/wbg6-qmh-kdisjoint-30000-20261028.tif" download>wbg6-qmh-kdisjoint-30000-20261028.tif</a>
+(or <a href="../downloads/wbg6-qmh-kdisjoint-30000-20261028.zip" download>one-TIFF ZIP</a>).</p>
+<p>SHA-256: <code>e9111de909c6c9669baf71321539e2b30e742334a7dbc66c8ea021d5539401e9</code></p>
 </div>
-<h2>What the portal checks, and what this file already satisfies</h2>
-<ul>
-<li>single-band <b>float32</b> GeoTIFF — yes;</li>
-<li>same CRS as the training data (<b>EPSG:32611</b>) — yes;</li>
-<li>same shape and geotransform as the sample submission (<b>3730 × 3292</b>, 100 m,
-origin 243350 / 4508550) — yes;</li>
-<li>values within <b>[0, 1]</b>, no NaN inside the footprint, null/zero outside — yes
-(the historical "Predicted values must be in range [0, 1]" error came from a file that violated
-this; this one is validated byte-by-byte in
-<code>evidence/wbg6_submission_audit.json</code>);</li>
-<li>a single GeoTIFF if you upload a ZIP — the ZIP contains exactly one member, identical to the TIFF.</li>
-</ul>
-<h2>Why the outside-footprint cells are 0 and not NaN</h2>
-<p>The sample submission masks the footprint with NaN, but the historically accepted best file
-(<code>gemsdoe32-h33-h33-2-b2-...-zeros</code>, reported 0.2778) is an <em>all-finite zeros-mode</em>
-export and the portal accepted it. Zero is a valid probability, cannot trigger
-"Predicted values must be in range [0, 1]", and survives validators that reject NaN. This file follows
-that empirically accepted convention.</p>
-<h2>Decision</h2>
-<p><span class="ok">DOWNLOAD: YES · SUBMIT: YES</span> — the file is unique, format-valid and
-history-independent. Estimated score 0.247 (range 0.142 – 0.286).</p>
-<p class="small">This project does not upload anything and never asks for credentials. Weekly slot
-allowance is shown on the submissions page and must be checked there.</p>
+<h2>What was checked locally</h2>
+<p>The archived validator reports a single-band float32 TIFF on the recorded grid, values in [0,1],
+finite pixels, and a one-member ZIP. These are local checks only; they do not establish portal acceptance.
+The original rejected submission and organizer error receipt are unavailable, so the cause of the prior
+“Predicted values must be in range [0, 1]” message is unknown.</p>
+<h2>Outside-footprint convention</h2>
+<p>This research artifact stores zero outside the footprint. The provided sample and official materials
+have been reported elsewhere as using null/NaN outside; organizer handling of this exact artifact has
+not been verified. Do not infer acceptance from another file's reported score.</p>
+<h2>Score label and disposition</h2>
+<p>The value 0.247 (range 0.142–0.286) is a MODEL-ESTIMATE based on
+historical reported-score uplift, not a HOLDOUT-DTI and not an ORGANIZER-CONFIRMED score. The local
+holdout proxy failed validation as a leaderboard ranker. Registry uniqueness fails the active literal
+rule. <strong>DOWNLOAD: YES for research · SUBMIT: NO.</strong></p>
+<p class="small">This project does not upload files or request credentials. The competition submission page
+requires account access; this repository cannot see current allowance or verify receipts.</p>
 
 </div></body></html>

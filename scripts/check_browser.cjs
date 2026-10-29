@@ -24,6 +24,7 @@ const chromium = importedChromium.default || importedChromium;
   const wbg3 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg3_spipmr/run_card.json")));
   const focus9 = JSON.parse(fs.readFileSync(path.join(root, "evidence/focus9_exec/run_card.json")));
   const wbg4 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg4/run_card.json")));
+  const wbg7 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg7/run_card.json")));
   if (process.env.BROWSER_COMPAT_LIBS === "1") {
     // Minimal Linux containers may lack NSS/NSPR. Use the dependency's own
     // bundled compatibility libraries instead of downloading system packages.
@@ -66,6 +67,32 @@ const chromium = importedChromium.default || importedChromium;
     assert.equal(focus9Download.suggestedFilename(), path.basename(focus9.artifact));
     assert.equal(crypto.createHash("sha256").update(fs.readFileSync(await focus9Download.path())).digest("hex"), focus9.raster_sha256);
 
+    await page.goto(new URL("executive-summary-focus-sites.html", base).href, { waitUntil: "networkidle" });
+    const focusSitesText = await page.locator("main").innerText();
+    assert.match(focusSitesText, /Download: YES for research\. Submit: NO\./);
+    assert.match(focusSitesText, /UNIQUENESS INCOMPLETE/);
+    assert.match(focusSitesText, /uniqueness is therefore not fully established/i);
+    assert.match(focusSitesText, /do not submit WBG-7/i);
+    assert.doesNotMatch(focusSitesText, /WBG-7 unique submission|genuine, unique, format-valid entry/i);
+    assert.equal(await page.evaluate(() => document.body.scrollWidth > window.innerWidth), false, "desktop focus-sites summary overflow");
+    checked.push({ file: "executive-summary-focus-sites.html", desktop: "passed" });
+    const runCardResponse = await page.request.get(new URL("evidence/wbg7/run_card.json", base).href);
+    assert.equal(runCardResponse.status(), 200);
+    const wbg7DownloadPromise = page.waitForEvent("download");
+    await page.locator(`a[download][href*="${path.basename(wbg7.submission_name)}.tif"]`).click();
+    const wbg7Download = await wbg7DownloadPromise;
+    assert.equal(wbg7Download.suggestedFilename(), `${wbg7.submission_name}.tif`);
+    assert.equal(crypto.createHash("sha256").update(fs.readFileSync(await wbg7Download.path())).digest("hex"), wbg7.raster_sha256);
+
+    await page.goto(new URL("executive-summary-unique.html", base).href, { waitUntil: "networkidle" });
+    const mainExecutiveText = await page.locator("body").innerText();
+    assert.match(mainExecutiveText, /SUBMIT: NO/);
+    assert.match(mainExecutiveText, /REGISTRY UNIQUENESS: NOT CLEARED/i);
+    assert.match(mainExecutiveText, /full 179-entry registry is not checked/i);
+    assert.doesNotMatch(mainExecutiveText, /GENERATED: unique GeoTIFF/i);
+    assert.equal(await page.evaluate(() => document.body.scrollWidth > window.innerWidth), false, "desktop main executive summary overflow");
+    checked.push({ file: "executive-summary-unique.html", desktop: "passed" });
+
     await page.goto(new URL("executive-summary.html", base).href, { waitUntil: "networkidle" });
     assert.equal(await page.locator("#site-table tbody tr:visible").count(), 9);
     await page.locator("#site-filter").fill("GEMSDOE32");
@@ -80,7 +107,7 @@ const chromium = importedChromium.default || importedChromium;
     await page.goto(new URL("index.html", base).href, { waitUntil: "networkidle" });
     await page.screenshot({ path: path.join(artifacts, "desktop.png"), fullPage: true });
     await page.setViewportSize({ width: 390, height: 844 });
-    for (const file of ["index.html", "focus9-executive-summary.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"]) {
+    for (const file of ["index.html", "focus9-executive-summary.html", "executive-summary-focus-sites.html", "executive-summary-unique.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"]) {
       await page.goto(new URL(file, base).href, { waitUntil: "networkidle" });
       const overflow = await page.evaluate(() => document.body.scrollWidth > window.innerWidth);
       assert.equal(overflow, false, `mobile body overflow: ${file}`);
@@ -202,6 +229,9 @@ const chromium = importedChromium.default || importedChromium;
       focus9_demo_download_identity: "passed", focus9_no_submit_copy: "passed",
       wbg4_download_sha256: wbg4.artifact.tif_sha256,
       wbg4_download_identity: "passed",
+      wbg7_research_download_sha256: wbg7.raster_sha256,
+      wbg7_download_identity: "passed",
+      wbg7_scope_disclosure: "passed",
       body_overflow: false, all_passed: true,
       no_model_training_or_slot_use: true };
     fs.writeFileSync(path.join(root, "evidence/browser_checks.json"), JSON.stringify(report, null, 2) + "\n");

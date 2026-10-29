@@ -45,6 +45,22 @@ def test_actual_tiff_and_zip_cli_format_pass_is_never_submission_approval(suffix
 
 @pytest.mark.parametrize("suffix,flags,code", [(".tif", (), 0), (".zip", (), 0),
     (".tif", ("--require-submit-ready",), 2), (".zip", ("--require-submit-ready",), 2)])
+def test_wbg6_exact_bytes_override_archived_positive_card_with_literal_stop(suffix, flags, code):
+    audit = json.loads((ROOT / "evidence/wbg6_submission_audit.json").read_text())
+    path = ROOT / audit["tif"]
+    result = cli(path.with_suffix(suffix), *flags)
+    assert result.returncode == code, result.stderr
+    report = json.loads(result.stdout)
+    assert report["all_checks_passed"] and report["run_card_matches_exact_tiff"]
+    assert report["run_card_path"] == "evidence/wbg6_run_card.json"
+    assert report["promotion_verdict"].startswith("negative")
+    assert not report["ok_to_submit"]
+    assert report["known_negative_registry_overlap"] == pytest.approx(.9967666666666667)
+    assert report["active_literal_gate"].startswith("FAIL")
+
+
+@pytest.mark.parametrize("suffix,flags,code", [(".tif", (), 0), (".zip", (), 0),
+    (".tif", ("--require-submit-ready",), 2), (".zip", ("--require-submit-ready",), 2)])
 def test_wbg2_exact_bytes_are_recognized_as_locked_negative(suffix, flags, code):
     card = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
     result = cli((ROOT / card["artifacts"]["tif"]).with_suffix(suffix), *flags)

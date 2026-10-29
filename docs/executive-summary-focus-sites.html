@@ -1,22 +1,22 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nine-site executive summary · WBG GEMS research desk</title>
-<meta name="description" content="Executive summary for GEMSDOE24, 25, 27, 28, 30, 31, 32, 33 and 36: best historical submission at each site, file to download, estimated score and uniqueness, plus the new WBG-7 unique submission.">
+<meta name="description" content="Executive summary for nine historical GEMSDOE sites and a WBG-7 research-only raster; scores are labeled by evidence class and registry scope limits are disclosed.">
 <meta name="theme-color" content="#173b42"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/style.css"><script defer src="assets/app.js"></script>
 </head><body><a class="skip" href="#main">Skip to content</a>
 <header class="masthead"><div class="wrap"><nav class="nav" aria-label="Main navigation">
 <a class="brand" href="index.html"><svg viewBox="0 0 36 38" fill="none" aria-hidden="true"><path d="M3 29C12 27 4 16 13 15S21 5 31 6M4 35C15 34 11 22 20 22S25 11 34 12M2 21C8 21 4 9 13 9S18 1 25 2" stroke="#23665f" stroke-width="2" stroke-linecap="round"/></svg><span>WBG / GEMS<small>FAULT MAPPING · RESEARCH DESK</small></span></a>
-<div class="navlinks"><a class="" href="index.html">Overview</a><a class="" href="wbg6/index.html">WBG-6 submit</a><a class="" href="wbg5/index.html">WBG-5</a><a class="" href="wbg4/index.html">WBG-4</a><a class="" href="wbg3/index.html">WBG-3</a><a class="" href="wbg2.html">WBG-2 audit</a><a class="active" href="executive-summary-focus-sites.html">Nine-site exec summary</a><a class="" href="executive-summary.html">Site comparison</a><a class="" href="how-to-submit.html">How to submit</a><a class="repo" href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Repository ↗</a></div></nav></div></header>
+<div class="navlinks"><a class="" href="index.html">Overview</a><a class="" href="wbg6/index.html">WBG-6 status</a><a class="" href="wbg5/index.html">WBG-5</a><a class="" href="wbg4/index.html">WBG-4</a><a class="" href="wbg3/index.html">WBG-3</a><a class="" href="wbg2.html">WBG-2 audit</a><a class="active" href="executive-summary-focus-sites.html">Nine-site exec summary</a><a class="" href="executive-summary.html">Site comparison</a><a class="" href="how-to-submit.html">How to submit</a><a class="repo" href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Repository ↗</a></div></nav></div></header>
 <main id="main" class="wrap"><div class="breadcrumb">GEMS prize challenge <span>/</span> Nine-site executive summary <span>/</span> 28 OCT 2026</div>
 
 <section class="subhero"><div><p class="eyebrow">Executive summary · decision memo</p>
 <h1>Which file scores highest?<br><em>GEMSDOE32 leads the supplied group.</em></h1>
-<p class="lead">Among the nine focus sites, the best <strong>supplied historical claim is GEMSDOE32 at 0.2778</strong>. It is <strong>USER-REPORTED, not organizer-confirmed</strong>, and no leaderboard estimate exists for any new file. The new WBG-7 file below is <strong>unique and format-valid</strong> (values in [0,1], so it will not trigger the "[0,1]" portal error), but its leaderboard score <strong>cannot be verified</strong> without DrivenData authentication.</p>
+<p class="lead">Among the nine focus sites, the best <strong>supplied historical claim is GEMSDOE32 at 0.2778</strong>. It is <strong>USER-REPORTED, not organizer-confirmed</strong>, and no leaderboard estimate exists for any new file. WBG-7 below passes local format/range checks, but its uniqueness audit is incomplete and it is <strong>not cleared to submit</strong>. Local [0,1] values do not prove organizer acceptance or explain the earlier range error.</p>
 </div><span class="pill no"><span class="dot" aria-hidden="true"></span>BEST HISTORICAL: GEMSDOE32 · 0.2778 (USER-REPORTED)</span></section>
 
 <div class="alert" role="note" style="border-left:6px solid var(--amber)">
-<p><strong>OK to download: YES (WB-7 research file). OK to submit: NOT CLEARED.</strong> The WBG-7 TIFF passes every local format check (single-band float32, EPSG:32611, 3730×3292, values in [0,1], no NaN/inf inside the footprint, exact CRS/shape/geotransform match) and is <strong>unique</strong> versus the obtainable GEMSDOE32 and GEMSDOE36 champions (|Spearman| ≈ 0.003, 3-px overlap ≈ 22%). But its holdout-DTI (catalogue-fault proxy) is 0.0149 — well below the 0.1661 same-evaluator best — and no organizer score receipt exists. <strong>Do not claim it beats 0.2778.</strong> A selector with authenticated DrivenData access must test any real slot.</p>
+<p><strong>OK to download: YES for research. OK to submit: NO.</strong> The WBG-7 TIFF passes local format checks (single-band float32, EPSG:32611, 3730×3292, finite values in [0,1], matching grid). Its recorded comparison includes GEMSDOE32 and GEMSDOE36; the companion audit covers only 6/9 focus-site champions and not the full current registry. Uniqueness is therefore <strong>not fully established</strong>. Its HOLDOUT-DTI (catalogue-fault proxy) is 0.0149, below the recorded 0.1661 same-evaluator result; it is not a leaderboard forecast. No organizer score receipt exists. <strong>Do not claim it beats 0.2778 and do not upload it.</strong></p>
 </div>
 
 <section class="content-section" id="table"><div class="section-heading"><div>
@@ -91,21 +91,21 @@
 <h3>Plausible mechanism (not proven)</h3>
 <p>The official metric is a distance-weighted Tversky index: each truth cell earns credit from the strongest nearby prediction, and redundant predictions add false-positive cost with little new credit. <strong>Sparse placement + pruning low-marginal-credit, catalogue-near dots can raise DTI.</strong> That makes 0.2778 plausible as a precision play — but hidden labels are unavailable, so this is a plausible mechanism, not a proved cause, and a 200 m exclusion is not an organizer rule.</p>
 <h3>Can it be beaten?</h3>
-<p><strong>We cannot verify this.</strong> There is no DrivenData authentication in this environment, no hidden-label access, and no organizer receipt for any project file. The public leaderboard is higher than 0.2778, but that is not a score for any project TIFF. A unique file <em>could</em> beat 0.2778 in principle, but nothing in this repo establishes it. WBG-7 below is a genuine, unique, format-valid entry; treat its leaderboard score as unknown.</p>
+<p><strong>We cannot verify this.</strong> There is no DrivenData authentication in this environment, no hidden-label access, and no organizer receipt for any project file. A unique file <em>could</em> beat 0.2778 in principle, but nothing in this repo establishes it. WBG-7 is a format-valid research raster with an incomplete registry comparison, not a cleared unique entry; its leaderboard score is unknown.</p>
 </div></article></div>
 </section>
 
 <section class="content-section" id="wbg7"><div class="section-heading"><div>
-<span class="section-num">03 / New unique submission: WBG-7 (this repo)</span>
+<span class="section-num">03 / WBG-7 research artifact (uniqueness scope incomplete)</span>
 <h2>wbg7-blind-tip-splay-relay-30000-20261028-zeros.tif</h2></div></div>
-<div class="download-card" aria-label="WBG-7 unique submission and decision"><div class="card-top"><div class="file-icon" aria-hidden="true">.TIF</div><div class="file-label">WBG-7 · Blind trace-tip splay<small>Unique format-valid research submission · 30,000 dots</small></div><span class="pill warn"><span class="dot" aria-hidden="true"></span>VALID · UNIQUE · NOT SLOT-CLEARED</span></div><div class="card-body">
+<div class="download-card" aria-label="WBG-7 research-only raster and decision"><div class="card-top"><div class="file-icon" aria-hidden="true">.TIF</div><div class="file-label">WBG-7 · Blind trace-tip splay<small>Format-valid research artifact · 30,000 dots</small></div><span class="pill warn"><span class="dot" aria-hidden="true"></span>FORMAT PASS · UNIQUENESS INCOMPLETE · DO NOT SUBMIT</span></div><div class="card-body">
 <div class="status-line"><span>Local file format</span><b style="color:var(--teal)">PASS · all hard checks</b></div>
-<div class="status-line"><span>Values in [0,1] (no portal [0,1] error)</span><b style="color:var(--teal)">PASS · all-finite zeros outside footprint</b></div>
+<div class="status-line"><span>Local range and finite-value check</span><b style="color:var(--teal)">PASS · [0,1], finite inside footprint</b></div>
 <div class="status-line"><span>NaN inside footprint</span><b style="color:var(--teal)">0 of 5,167,373</b></div>
 <div class="status-line"><span>CRS / shape / geotransform</span><b style="color:var(--teal)">EPSG:32611 · 3730×3292 · exact match</b></div>
 <div class="status-line"><span>Positive pixels (dots)</span><b style="color:var(--teal)">30,000 · zero on the catalogue</b></div>
 <div class="filename">wbg7-blind-tip-splay-relay-30000-20261028-zeros.tif</div>
-<a class="button" href="downloads/wbg7-blind-tip-splay-relay-30000-20261028-zeros.tif" download><span>Download WBG-7 TIFF to submit</span><span aria-hidden="true">↓</span></a>
+<a class="button" href="downloads/wbg7-blind-tip-splay-relay-30000-20261028-zeros.tif" download><span>Download WBG-7 research TIFF (not cleared)</span><span aria-hidden="true">↓</span></a>
 <a class="button secondary" href="downloads/wbg7-blind-tip-splay-relay-30000-20261028-zeros.zip" download><span>One-TIFF ZIP</span><span aria-hidden="true">↓</span></a>
 <div class="under-download"><span>134 KiB · float32 · EPSG:32611 · SHA-256 701ff7a4…</span><a class="" href="downloads/wbg7-blind-tip-splay-relay-30000-20261028-zeros.validator.json">Validator receipt ↗</a></div>
 <p class="micro" style="margin:15px 0 0"><strong>Submission name (71 chars):</strong> <code>wbg7-blind-tip-splay-relay-30000-20261028-zeros</code> &nbsp; <strong>Note (≤140 chars):</strong> "WBG-7 blind trace-tip splay off-catalogue kernel-disjoint 30k dots off the public fault catalogue, not a prior submission"</p>
@@ -114,10 +114,10 @@
 <p><strong>HOLDOUT-DTI 0.01491</strong>, 95% CI [0.01382, 0.01590], evaluator <code>gems-segment-pooled-v1</code>, 60,988 withheld positives (catalogue-fault proxy), α=0.2 β=0.8, 300 m triangular kernel, pooled TPw/FPw/FNw with 10 km spatial-block bootstrap. <strong>This is below the 0.1661 same-evaluator best</strong> and is <strong>not</strong> a leaderboard forecast: the holdout proxy measures catalogue-fault recovery, while WBG-7 deliberately targets off-catalogue blind faults.</p>
 <h3>Leakage canary · PASS</h3>
 <p>Single-feature AUC vs withheld truth: pooled 0.49998 (≤ 0.90 threshold in every fold). No leakage signal.</p>
-<h3>Registry uniqueness · PASS (vs obtainable champions)</h3>
-<p>vs GEMSDOE32: |Spearman| 0.0032, 3-px overlap 22%/21%. vs GEMSDOE36: |Spearman| 0.0034, 3-px overlap 22%/22%. Both well under the 0.90 / 70% lane gates. Not a byte or pixel copy of either champion.</p></div></article><article class="panel"><div class="panel-pad prose"><h3>Verdict</h3>
-<p><strong>Download: YES (research). Submit: NOT CLEARED for a real slot.</strong> The file is unique, format-valid, values in [0,1], and passes every automated gate — but holdout efficacy does not beat the 0.1661 benchmark, and no organizer score receipt or leaderboard verification exists. Do not claim it scores higher than 0.2778. Spend no weekly slot without an authenticated selector's approval.</p>
-<h3>Run card</h3><p><a class="text-link" href="../evidence/wbg7/run_card.json" target="_blank" rel="noopener">evidence/wbg7/run_card.json</a> — hypothesis, mechanism, non-fault mimic, holdout-DTI + CI, registry overlap, SHA-256, validator receipt, submission name + note and verdict.</p>
+<h3>Registry uniqueness · INCOMPLETE</h3>
+<p>The run card compares GEMSDOE32 and GEMSDOE36 (recorded |Spearman| 0.0032 / 0.0034; 3-px overlap about 21–22%). The companion audit checked only 6 of 9 focus-site champions; GEMSDOE24, 25, 27 and 28 were unavailable in that audit. The full 179-entry registry and current site snapshots were not checked. These results do not establish uniqueness under the user’s all-site rule.</p></div></article><article class="panel"><div class="panel-pad prose"><h3>Verdict</h3>
+<p><strong>Download: YES for research. Submit: NO.</strong> Local format/range/grid checks pass, but full registry uniqueness is unverified and the holdout-DTI does not beat the recorded same-evaluator best. The holdout is not a leaderboard forecast, and no organizer score receipt exists. Do not claim it scores higher than the user-reported 0.2778. Spend no weekly slot.</p>
+<h3>Run card</h3><p><a class="text-link" href="evidence/wbg7/run_card.json" target="_blank" rel="noopener">evidence/wbg7/run_card.json</a> — hypothesis, mechanism, non-fault mimic, holdout-DTI + CI, registry overlap, SHA-256, validator receipt, submission name + note and verdict.</p>
 </div></article></div>
 </section>
 
@@ -152,14 +152,15 @@
 <td>Bends and kinks localize strain and are where blind splays step off the mapped trace.</td>
 <td>Uncertain benefit / low cost — skeleton curvature; not yet implemented.</td></tr>
 </tbody></table></div>
-<p class="note">H1 is implemented in WBG-7 and validated (canary pass, uniqueness pass, format pass). H2 is the blended control. H3–H5 are documented, untested candidates requiring a future session: none need new external data, all use the local catalogue + grid. The named non-fault mimics for H1 are trace terminations without displacement continuation, lithologic contacts ending at the trace, and mapping edge artifacts.</p>
+<p class="note">H1 is implemented in WBG-7 and has a recorded feature canary and local-format pass; its registry comparison is incomplete and it is not slot-cleared. H2 is the blended control. H3–H5 are documented, untested candidates requiring a future session. The named non-fault mimics for H1 are trace terminations without displacement continuation, lithologic contacts ending at the trace, and mapping edge artifacts.</p>
 </section>
 
 <section class="content-section" id="howto"><div class="section-heading"><div>
 <span class="section-num">05 / How to make a submission into the contest</span>
 <h2>Step-by-step submission guide</h2></div></div>
 <ol class="prose">
-<li><strong>Pick an approved file.</strong> Only upload a single-band GeoTIFF (.tif), or a .zip containing exactly one GeoTIFF. The file must match the submission format's CRS (EPSG:32611), shape (3730×3292), 100 m geotransform and have every value in [0,1]. WBG-7 above meets these local checks.</li>
+<li><strong>Check approval first.</strong> Current status: <strong>no file is cleared; do not submit WBG-7</strong>. For a future file only, require an explicit current YES status and a separate selector decision before continuing. Local format validation alone is not approval.</li>
+<li><strong>Confirm the file contract for an approved future candidate.</strong> Use one single-band GeoTIFF (.tif), or a .zip containing exactly one GeoTIFF. Check CRS, shape, geotransform, finite values and [0,1] range with the shared validator. WBG-7 passes recorded local format checks but is not submission-cleared.</li>
 <li><strong>Verify locally before upload.</strong> Reopen the exact TIFF bytes, confirm no NaN/inf inside the footprint, values in [0,1] over the whole array, CRS/shape/transform match the reference grid, and that a ZIP contains exactly one identical TIFF. Do not open/resave the TIFF in software that changes pixels or metadata.</li>
 <li><strong>Use the contest's "New submission" form.</strong> Go to the DrivenData submissions page (login required), choose the .tif or its one-TIFF .zip, paste a short note (≤140 characters, e.g. the WBG-7 note above), respect your remaining weekly allowance, and submit.</li>
 <li><strong>Retain the organizer receipt.</strong> Record the submission identifier, exact artifact SHA-256, time, note and the result copied from the submission page. Only then label a result ORGANIZER-CONFIRMED. The public leaderboard alone does not identify your file.</li>

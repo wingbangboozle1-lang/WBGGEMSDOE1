@@ -465,6 +465,14 @@ DTI  = TP_w / (TP_w + 0.2 * FP_w + 0.8 * FN_w)</code></pre>
 
 def build() -> None:
     SUBDIR.mkdir(parents=True, exist_ok=True)
+    # The shared app.js fetches data/feed.json relative to each static subsite.
+    # WBG-4's evidence JSON lives in docs/data, so stage the live/retained feed
+    # locally rather than allowing a 404 on every WBG-4 page.
+    feed_source = DOCS / "data" / "feed.json"
+    if feed_source.is_file():
+        feed_target = SUBDIR / "data" / "feed.json"
+        feed_target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(feed_source, feed_target)
     rc = _load("evidence/wbg4/run_card.json")
     uniq = _load("evidence/wbg4/uniqueness_audit.json")
     ablation = _load("evidence/wbg4/ablation_results.json")

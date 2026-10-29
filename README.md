@@ -1,10 +1,12 @@
 ## ⛔ SUBMISSION STATUS: NO CURRENT TIFF CLEARED — DO NOT SUBMIT
 
+**Latest review (2026-10-29):** [repository review, tests, blockers, and run card](docs/repo-review-20261029.md). The WBG-6 how-to page now states research-only; do not submit.
+
 The historical WBG-6 approval is superseded: its archived maximum 3-pixel registry overlap is 99.6767%, exceeding the active 70% stop threshold. Its 0.247 value is a MODEL-ESTIMATE, not HOLDOUT-DTI or organizer-confirmed. **Research download only:** [`wbg6-qmh-kdisjoint-30000-20261028.tif`](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif).
 
 A newer concurrently added candidate [`WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif`](docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif) records HOLDOUT-DTI 0.4657, 95% CI [0.4563, 0.4748], evaluator `WBGGEMSDOE1-HIDE-RECOVER-v1.0`, n=60,161. **This is NEGATIVE / DO NOT SUBMIT:** its own run card states it used the full catalogue during placement (holdout leakage risk) and checked only 6 champion rasters, not the full registry. Re-evaluate with per-fold visible catalogues and complete registry checks before promotion.
 
-See [current review](docs/repo-review-current-20261028.md), [Focus-9 site comparison](docs/executive-summary.html), and [the standing brief](PROMPT.md). Core values: **Maximize P(Win)** and **Own the Outcome**. Read `PROMPT.md` at the start of every working session.
+See [latest review](docs/repo-review-20261029.md), [Focus-9 site comparison](docs/executive-summary.html), and [the standing brief](PROMPT.md). Core values: **Maximize P(Win)** and **Own the Outcome**. Read `PROMPT.md` at the start of every working session.
 
 > Historical approval claims and frozen receipts below are retained for provenance only; these no-go notices supersede them.
 

@@ -31,7 +31,7 @@ def link(url, text, cls=""):
 
 
 def page(name, title, body):
-    nav = [("index.html", "Overview"), ("wbg6/index.html", "WBG-6 submit"), ("wbg5/index.html", "WBG-5"), ("wbg4/index.html", "WBG-4"), ("wbg3/index.html", "WBG-3"), ("wbg2.html", "WBG-2 audit"),
+    nav = [("index.html", "Overview"), ("wbg6/index.html", "WBG-6 status"), ("wbg5/index.html", "WBG-5"), ("wbg4/index.html", "WBG-4"), ("wbg3/index.html", "WBG-3"), ("wbg2.html", "WBG-2 audit"),
            ("executive-summary-20261028.html", "Exec summary 10-28"),
            ("executive-summary.html", "Site comparison"),
            ("executive-summary-focus-sites.html", "Nine-site exec summary"),
@@ -48,7 +48,7 @@ def page(name, title, body):
 <header class="masthead"><div class="wrap"><nav class="nav" aria-label="Main navigation">
 <a class="brand" href="index.html"><svg viewBox="0 0 36 38" fill="none" aria-hidden="true"><path d="M3 29C12 27 4 16 13 15S21 5 31 6M4 35C15 34 11 22 20 22S25 11 34 12M2 21C8 21 4 9 13 9S18 1 25 2" stroke="#23665f" stroke-width="2" stroke-linecap="round"/></svg><span>WBG / GEMS<small>FAULT MAPPING · RESEARCH DESK</small></span></a>
 <div class="navlinks">{links}{link(REPO, 'Repository ↗', 'repo')}</div></nav></div></header>
-<main id="main" class="wrap"><div class="breadcrumb">GEMS prize challenge <span>/</span> {escape(title)} <span>/</span> 26 OCT 2026 frozen experiment</div><p class="micro"><a href="review-20261028.md">28 October review: no submission approved; frozen generator disabled →</a></p><p class="micro"><a href="portfolio-review.html">27 October follow-up: four earlier releases and trust corrections →</a></p><p class="micro"><a href="repo-review-20261027.html">27 October 2026 review: all 9 monitored heads changed; no file cleared →</a></p>{body}</main>
+<main id="main" class="wrap"><div class="breadcrumb">GEMS prize challenge <span>/</span> {escape(title)} <span>/</span> 26 OCT 2026 frozen experiment</div><p class="micro"><a href="repo-review-20261029.md">29 October review: no submission cleared; stale WBG-6 approval fixed; 241 tests pass →</a></p><p class="micro"><a href="review-20261028.md">28 October review: no submission approved; frozen generator disabled →</a></p><p class="micro"><a href="portfolio-review.html">27 October follow-up: four earlier releases and trust corrections →</a></p><p class="micro"><a href="repo-review-20261027.html">27 October 2026 review: all 9 monitored heads changed; no file cleared →</a></p>{body}</main>
 <footer class="footer"><div class="wrap footer-inner"><p><strong>WBG / GEMS</strong> &nbsp; Evidence before a weekly slot.<br>Fault predictions are not verified geothermal vents. Local validation is not organizer acceptance.</p><div>{link('data/run-card.json', 'Run card JSON')}{link('repo-review-20261027.html', 'Latest review')}{link('standing-prompt.md', 'Standing brief')}{link('parallel/main-b9a2d53/index.html', 'Parallel negative archives')}{link(REPO, 'Source code ↗')}</div></div></footer>
 <div id="toast" role="status" aria-live="polite"></div></body></html>'''
 
@@ -234,22 +234,22 @@ def wbg6_banner():
     overlap = audit["duplicate_screen"]["max_forward_overlap_3px"]
     return (f'''<div class="alert" role="alert" style="border-left:6px solid #a32626">'''
             f'''<p><strong>NO CURRENT TIFF IS CLEARED TO SUBMIT.</strong> The prior WBG-6 approval is withdrawn under the explicit 70% proximity gate: the archived maximum 3 px registry overlap is {overlap:.4%}. Its 0.247 figure is a MODEL-ESTIMATE, not HOLDOUT-DTI or organizer-confirmed. This TIFF is <strong>research download only — DO NOT UPLOAD</strong>. '''
-            f'''<a href="repo-review-current-20261028.md">Read the current review →</a> · '''
+            f'''<a href="repo-review-20261029.md">Read the latest review →</a> · '''
             f'''<a href="downloads/{tif}" download>Download research artifact →</a> · '''
-            f'''<a href="wbg6/how-to-submit.html">Submission instructions / gates →</a></p></div>''')
+            f'''<a href="wbg6/how-to-submit.html">WBG-6 research-only status (do not submit) →</a></p></div>''')
 
 
 def wbg7_banner():
-    """WBG-7 unique submission: fail-checked, never oversold.
+    """WBG-7 research artifact: local format pass, limited uniqueness scope, no slot clearance.
 
-    Publishes the format/canary/uniqueness receipts and an unambiguous
-    download slot.  Refuses to claim a leaderboard score or a cleared slot.
+    Publishes existing format/canary/limited-comparison receipts and a research
+    download. Refuses to claim complete registry uniqueness or a leaderboard score.
     """
     card = load("evidence/wbg7/run_card.json")
     v = card["validator"]
     h = card["holdout"]
     tif = card["submission_name"] + ".tif"
-    return f'''<div class="alert" role="note" style="border-left:6px solid var(--amber)"><p><strong>NEW · WBG-7 unique submission:</strong> <strong>OK to download</strong> — <a href="downloads/{tif}" download>{tif}</a> · <a href="downloads/{card['submission_name']}.zip" download>ZIP ↓</a>. Single-band float32, EPSG:32611, 3730×3292, <strong>values in [0,1] (no "[0,1]" portal error)</strong>, {v['in_footprint_positive_pixels']:,} off-catalogue dots, SHA-256 {card['raster_sha256'][:12]}…. <strong>OK to submit: NOT CLEARED</strong> — holdout-DTI {h['dti']:.4f} does not beat the 0.1661 same-evaluator best and no organizer score receipt exists; do not claim it beats 0.2778. <a href="executive-summary-focus-sites.html">Nine-site executive summary →</a> · <a href="evidence/wbg7/run_card.json">Run card →</a></p></div>'''
+    return f'''<div class="alert" role="note" style="border-left:6px solid var(--amber)"><p><strong>WBG-7 research TIFF (DOWNLOAD: research only · SUBMIT: NO):</strong> <a href="downloads/{tif}" download>{tif}</a> · <a href="downloads/{card['submission_name']}.zip" download>ZIP ↓</a>. Local format checks report single-band float32, EPSG:32611, 3730×3292, values in [0,1], {v['in_footprint_positive_pixels']:,} off-catalogue dots; SHA-256 {card['raster_sha256'][:12]}…. <strong>Uniqueness not fully cleared:</strong> the run card checks GEMSDOE32 and GEMSDOE36; its companion audit checks only 6/9 focus-site champions and does not cover the full current registry. HOLDOUT-DTI {h['dti']:.4f} is below the recorded same-evaluator benchmark and is not a leaderboard forecast. No organizer score receipt exists; do not claim it beats 0.2778. <a href="executive-summary-focus-sites.html">Nine-site executive summary →</a> · <a href="evidence/wbg7/run_card.json">Run card →</a></p></div>'''
 
 
 def focus9_banner():
@@ -368,6 +368,7 @@ def main():
         "parallel-main-integration.json": "evidence/parallel_main_integration.json",
         "followup-run-card.json": "evidence/followup_run_card_20261027.json",
         "source-review-20261027.json": "evidence/source_review_20261027.json",
+        "repo-review-20261029.json": "evidence/repo_review_20261029.json",
         "official-source-audit-20261027.json": "evidence/official_source_audit_20261027.json",
         "session-review-20261027.json": "evidence/repo_review_session_20261027.json",
         "wbg2-review-passes-20261027.json": "evidence/wbg2/review_passes_20261027.json",

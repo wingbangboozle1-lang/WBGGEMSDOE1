@@ -108,6 +108,19 @@ def test_shipped_artifact_matches_its_receipt():
                                            "never_on_catalogue",
                                            "not_dense_over_budget"))
 
+def test_wbg6_pages_fail_closed_under_literal_registry_gate():
+    """Archived density-adjusted approval must not survive in public WBG-6 pages."""
+    for relative in ("docs/wbg6/index.html", "docs/wbg6/how-to-submit.html"):
+        text = (ROOT / relative).read_text(encoding="utf-8")
+        upper = text.upper()
+        assert "DO NOT SUBMIT" in upper
+        assert "70%" in text
+        assert "DOWNLOAD:" in text
+        assert "NO" in text
+        assert "SUBMIT: YES" not in upper
+        assert "DOWNLOAD &AMP; SUBMIT: <SPAN CLASS=\"OK\">YES" not in upper
+
+
 def test_habitat_profile_receipt_is_internally_consistent():
     """The ring-lift analysis must describe all recovered rasters and its own verdict."""
     import json

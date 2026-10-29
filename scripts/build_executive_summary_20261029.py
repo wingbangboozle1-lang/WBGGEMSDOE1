@@ -224,9 +224,9 @@ def main() -> int:
         ],
     }
     (ROOT / "docs/data").mkdir(parents=True, exist_ok=True)
-    (ROOT / "docs/data/executive_summary_20261029.json").write_text(json.dumps(summary, indent=1, allow_nan=False, default=str) + "\n")
-    (ROOT / "docs/executive-summary-20261029.html").write_text(render(summary))
-    print("wrote docs/executive-summary-20261029.html and docs/data/executive_summary_20261029.json")
+    (ROOT / "docs/data/tipcont_experiment_20261029.json").write_text(json.dumps(summary, indent=1, allow_nan=False, default=str) + "\n")
+    (ROOT / "docs/tipcont-experiment-20261029.html").write_text(render(summary))
+    print("wrote docs/tipcont-experiment-20261029.html and docs/data/tipcont_experiment_20261029.json")
     return 0
 
 
@@ -274,7 +274,7 @@ def render(s: dict) -> str:
     src = "".join(f"<li><a href=\"{e(x['url'])}\">{e(x['label'])}</a> <small>(checked {e(x['checked'])})</small></li>" for x in s["sources"])
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GEMS executive summary · 29 Oct 2026</title>
+<title>WBGGEMSDOE1 tip-continuation experiment · 29 Oct 2026</title>
 <style>
 body{{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#f7f8fa;color:#1d2330;line-height:1.5}}
 main{{max-width:1180px;margin:0 auto;padding:24px}}
@@ -287,6 +287,7 @@ section{{background:#fff;border:1px solid #d7dce5;border-radius:8px;padding:16px
 code{{background:#eef2f7;padding:1px 4px;border-radius:4px}}
 small{{color:#5b6472}}
 </style></head><body><main>
+<p><a href="executive-summary-20261029.html">← 29 Oct decision page (nine-site table, why 0.2778, blockers)</a> · <a href="index.html">research desk</a></p>
 <div class="verdict">
 <h1>DOWNLOAD: RESEARCH ONLY &nbsp;·&nbsp; SUBMIT: NO</h1>
 <p><b>{e(s['decision']['headline'])}</b></p>

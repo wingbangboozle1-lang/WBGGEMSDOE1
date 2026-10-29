@@ -1,21 +1,9 @@
 ## 🟥 DECISION 2026-10-29 · DOWNLOAD RESEARCH ONLY · SUBMIT NO
 
 - **Executive summary and how-to-submit:** [executive-summary-20261029.html](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/executive-summary-20261029.html) (source: [docs/executive-summary-20261029.html](docs/executive-summary-20261029.html)).
-- **New TIFF (research only):** [`wbggemsdoe1-tipcont-catalogue-strike-20261029-1c5b292c-zeros.zip`](docs/downloads/wbggemsdoe1-tipcont-catalogue-strike-20261029-1c5b292c-zeros.zip), SHA-256 `9e5df9f7a02cad153b1d84c89cfc96a83bddea8b9752b3eca49210b98f814c32`, 18,611 binary dots. Run card: [evidence/tip_continuation_20261029/run_card.json](evidence/tip_continuation_20261029/run_card.json).
-- **Why not submit:** HOLDOUT-DTI (catalogue proxy, WBGGEMSDOE1-HIDE-RECOVER-v1.0) 0.000434, 95% CI [0.000142, 0.000793], against a matched random null of 0.0240–0.0270. Lane duplicate: 35 GEMSDOE25-family rasters exceed 70% 3 px overlap (2.9–3.4× chance).
-- **Estimated leaderboard score: UNAVAILABLE.** No organizer receipt exists for any file here. The live leaderboard top is 0.4544 (fetched 2026-10-29).
-
-## Standing brief (condensed from [PROMPT.md](PROMPT.md); read it at the start of every session)
-
-- **Goal:** place a unique, portal-valid GeoTIFF on DrivenData competition 306 without spending a weekly slot unless the holdout beats the current same-evaluator best.
-- **Lane rule:** stop and log a duplicate if rank correlation with any registry raster exceeds 0.90, or if more than 70% of dots fall within 3 px of one registry raster.
-- **Reuse:** hide-and-recover holdout with whole-segment withholding and a 15 px collar; catalogue features from visible faults only; pooled DTI (α=0.2, β=0.8, 300 m triangular kernel).
-- **Label every number** HOLDOUT-DTI (evaluator version, withheld positives, 95% CI), ORGANIZER-CONFIRMED, or USER-REPORTED. A projection is never a score.
-- **Leakage canary:** test each feature alone; AUC above 0.90 means leakage until proven otherwise.
-- **Run card:** hypothesis, mechanism, named non-fault mimic, holdout DTI and CI, overlap against registry, sha256, validator output, name and note (140 characters or fewer), verdict.
-- **Budget:** 3 experiments or 2 hours. No live slot is picked by an agent.
-- **Submission contract:** single-band float32 GeoTIFF, EPSG:32611, 3730×3292, 100 m, sample geotransform, values in [0, 1], unique name and short note. Validation is automatic; there is no human inspector.
-- **Core values:** Maximize P(Win). Own the Outcome.
+- **New TIFF (research only):** [`wbggemsdoe1-tipcont-catalogue-strike-20261029-1c5b292c-zeros.zip`](docs/downloads/wbggemsdoe1-tipcont-catalogue-strike-20261029-1c5b292c-zeros.zip) · TIF [`wbggemsdoe1-tipcont-catalogue-strike-20261029-1c5b292c-zeros.tif`](docs/downloads/wbggemsdoe1-tipcont-catalogue-strike-20261029-1c5b292c-zeros.tif), SHA-256 `9e5df9f7a02cad153b1d84c89cfc96a83bddea8b9752b3eca49210b98f814c32`, 18,611 binary dots. Run card: [evidence/tip_continuation_20261029/run_card.json](evidence/tip_continuation_20261029/run_card.json).
+- **Why not submit:** HOLDOUT-DTI (catalogue proxy, `WBGGEMSDOE1-HIDE-RECOVER-v1.0`) 0.000434, 95% CI [0.000142, 0.000793], against a matched random null of 0.0240–0.0270. Lane STOP: 35 GEMSDOE25-family rasters exceed the 70% 3 px gate (2.9–3.4× chance).
+- **Estimated leaderboard score: UNAVAILABLE.** No organizer receipt exists for any file here. The live leaderboard top is 0.4544 (fetched 2026-10-29), not a score for any project TIFF.
 
 ## ⛔ SUBMISSION STATUS: NO CURRENT TIFF CLEARED — DO NOT SUBMIT
 

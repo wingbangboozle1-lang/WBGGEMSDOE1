@@ -26,6 +26,24 @@ See [current review](docs/repo-review-current-20261028.md), [Focus-9 site compar
 
 """
 
+def decision_20261029_readme_block():
+    """Top-of-README decision for 2026-10-29, from the measured summary JSON."""
+    summ = json.loads((ROOT / "docs/data/executive_summary_20261029.json").read_text())
+    nf = summ["new_file"]
+    h = nf["holdout_dti_catalogue_proxy"]
+    u = nf["uniqueness"]
+    zip_name = Path(nf["zeros_zip"]).name
+    tif_name = Path(nf["zeros_tif"]).name
+    return f"""## 🟥 DECISION 2026-10-29 · DOWNLOAD RESEARCH ONLY · SUBMIT NO
+
+- **Executive summary and how-to-submit:** [executive-summary-20261029.html](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/executive-summary-20261029.html) (source: [docs/executive-summary-20261029.html](docs/executive-summary-20261029.html)).
+- **New TIFF (research only):** [`{zip_name}`](docs/downloads/{zip_name}) · TIF [`{tif_name}`](docs/downloads/{tif_name}), SHA-256 `{nf['sha256_zeros_tif']}`, {nf['dots']:,} binary dots. Run card: [evidence/tip_continuation_20261029/run_card.json](evidence/tip_continuation_20261029/run_card.json).
+- **Why not submit:** HOLDOUT-DTI (catalogue proxy, `{h['evaluator']}`) {h['pooled_dti']:.6f}, 95% CI [{h['ci95'][0]:.6f}, {h['ci95'][1]:.6f}], against a matched random null of {h['matched_random_null_dti_2_5_97_5'][0]:.4f}–{h['matched_random_null_dti_2_5_97_5'][1]:.4f}. Lane STOP: {u['of_which_GEMSDOE25_family']} GEMSDOE25-family rasters exceed the 70% 3 px gate ({u['GEMSDOE25_family_lift_over_chance'][0]:.1f}–{u['GEMSDOE25_family_lift_over_chance'][1]:.1f}× chance).
+- **Estimated leaderboard score: UNAVAILABLE.** No organizer receipt exists for any file here. The live leaderboard top is 0.4544 (fetched 2026-10-29), not a score for any project TIFF.
+
+"""
+
+
 def main():
     card = json.loads((ROOT / "registry/run_card.json").read_text())
     wbg_h1_rc = json.loads((ROOT / "evidence/wbg_h1/run_card.json").read_text())
@@ -78,7 +96,7 @@ def main():
     w5_comp = w5["correlation_overlap_vs_registry"]["final_dots_competing_method"]
     w5_lit = w5["correlation_overlap_vs_registry"]["final_dots_literal"]
     w5_bench = w5["benchmark"]["dti"]
-    header = wbg6_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
+    header = decision_20261029_readme_block() + wbg6_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
 
 **[28 October review of earlier lanes](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · No file is cleared; WBG-6 fails the active literal overlap gate.
 

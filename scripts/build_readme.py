@@ -88,6 +88,7 @@ def main():
     w5_bench = w5["benchmark"]["dti"]
     header = wbg6_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
 
+**[START HERE — 29 Oct 2026 executive summary (download / submit verdicts, estimates, nine-site table)](docs/start-here-20261029.html)** · No file is cleared for submission under the 70% protocol.
 **[Repository review (2026-10-29)](docs/repo-review-current-20261029.md)** · no new TIFF approved; core competition inputs are absent and the active method lane is unspecified. Local tests and lint pass. Treat all existing candidate downloads according to their individual negative/STOP decisions.
 
 **[28 October review of earlier lanes](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · No file is cleared; WBG-6 fails the active literal overlap gate.

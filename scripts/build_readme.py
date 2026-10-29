@@ -51,6 +51,23 @@ def brief_20261029_block():
 """
 
 
+def tipcont_experiment_readme_block():
+    """WBGGEMSDOE1 tip-continuation experiment (29 Oct 2026): research only, numbers from the measured JSON."""
+    summ = json.loads((ROOT / "docs/data/tipcont_experiment_20261029.json").read_text())
+    nf = summ["new_file"]
+    h = nf["holdout_dti_catalogue_proxy"]
+    u = nf["uniqueness"]
+    zip_name = Path(nf["zeros_zip"]).name
+    return f"""## WBGGEMSDOE1 tip-continuation experiment (29 Oct 2026) · research only · negative
+
+- **Experiment page:** [tipcont-experiment-20261029.html](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/tipcont-experiment-20261029.html) (source [docs/tipcont-experiment-20261029.html](docs/tipcont-experiment-20261029.html)).
+- **Research ZIP:** [`{zip_name}`](docs/downloads/{zip_name}) · SHA-256 `{nf['sha256_zeros_tif']}` · {nf['dots']:,} binary dots · run card [evidence/tip_continuation_20261029/run_card.json](evidence/tip_continuation_20261029/run_card.json).
+- **Catalogue-proxy HOLDOUT-DTI** (`{h['evaluator']}`): {h['pooled_dti']:.6f}, 95% CI [{h['ci95'][0]:.6f}, {h['ci95'][1]:.6f}]; matched random null {h['matched_random_null_dti_2_5_97_5'][0]:.4f}–{h['matched_random_null_dti_2_5_97_5'][1]:.4f}. Lane STOP: {u['of_which_GEMSDOE25_family']} GEMSDOE25-family rasters exceed the 70% 3 px gate.
+- **Estimated leaderboard score: UNAVAILABLE.** Not a submission candidate.
+
+"""
+
+
 def main():
     card = json.loads((ROOT / "registry/run_card.json").read_text())
     wbg_h1_rc = json.loads((ROOT / "evidence/wbg_h1/run_card.json").read_text())
@@ -103,7 +120,7 @@ def main():
     w5_comp = w5["correlation_overlap_vs_registry"]["final_dots_competing_method"]
     w5_lit = w5["correlation_overlap_vs_registry"]["final_dots_literal"]
     w5_bench = w5["benchmark"]["dti"]
-    header = brief_20261029_block() + wbg6_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
+    header = brief_20261029_block() + wbg6_readme_block() + tipcont_experiment_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
 
 **[START HERE — 29 Oct 2026 executive summary (download / submit verdicts, estimates, nine-site table)](docs/start-here-20261029.html)** · No file is cleared for submission under the 70% protocol.
 **[Repository review (2026-10-29)](docs/repo-review-current-20261029.md)** · no new TIFF approved; core competition inputs are absent and the active method lane is unspecified. Local tests and lint pass. Treat all existing candidate downloads according to their individual negative/STOP decisions.

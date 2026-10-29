@@ -38,6 +38,8 @@ jobs:
           python scripts/validate_submission.py docs/downloads/wbggemsdoe1-wbg3-spipmr-wcs-36800-20261027-1458d60c-zeros.zip
           python scripts/validate_submission.py docs/downloads/wbggemsdoe1-wbg4-csjf1-edti-35135-20261027-b3dacd59-zeros.tif
           python scripts/validate_submission.py docs/downloads/wbggemsdoe1-wbg4-csjf1-edti-35135-20261027-b3dacd59-zeros.zip
+          python scripts/validate_submission.py docs/downloads/wbggemsdoe1-tipcont-catalogue-strike-20261029-1c5b292c-zeros.tif
+          python scripts/validate_submission.py docs/downloads/wbggemsdoe1-tipcont-catalogue-strike-20261029-1c5b292c-zeros.zip
       - name: Revalidate all four frozen research downloads and decision-report identity
         run: python scripts/review_releases.py --check
       - name: Verify stopped WBG-2 and WBG-S2 literal registry witnesses

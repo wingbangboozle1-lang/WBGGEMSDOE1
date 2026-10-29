@@ -1,0 +1,87 @@
+{
+  "run_card_version": "gems-run-card-v1",
+  "date_utc": "2026-10-29",
+  "experiment": "E1 catalogue tip-continuation vs matched random null",
+  "hypothesis": "Unmapped strike-continuations of mapped fault traces lie along the strike of elongated traces beyond their mapped ends.",
+  "mechanism": "Elongated catalogue traces (PCA eigenvalue ratio >=3, >=8 px) are extended outward from each end in 0.5 px steps from 2 px to 15 px, stopped at footprint edge or within 2 px of a visible fault; thinned to non-8-adjacent dots.",
+  "named_non_fault_mimic": "Strike-parallel cultural or hydrological lineaments (roads, pipelines, canals, drainage, claim boundaries) and stratigraphic contacts that share the trace trend and end where the mapped fault ends.",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "WBGGEMSDOE1-HIDE-RECOVER-v1.0",
+    "withheld_positives": 60161,
+    "pooled_dti": 0.000434423478349204,
+    "ci95": [
+      0.00014180732734647778,
+      0.0007933620332133572
+    ]
+  },
+  "matched_null": {
+    "seeds": 20,
+    "dti_min": 0.023736676062214218,
+    "dti_p2_5": 0.023981835590771227,
+    "dti_median": 0.025332605801884914,
+    "dti_p97_5": 0.02702550996831924,
+    "dti_max": 0.02730759943221602
+  },
+  "leakage_canary_auc": 0.8287477893614651,
+  "correlation_overlap_vs_registry": "see evidence/tip_continuation_20261029/uniqueness.json (produced by scripts/focus_inventory_20261029.py)",
+  "raster_sha256": {
+    "zeros_tif": "9e5df9f7a02cad153b1d84c89cfc96a83bddea8b9752b3eca49210b98f814c32",
+    "nan_tif": "6c171eaedab99d87528637f145b6d2f2b3df7ce714fdf998a7c54580cf0a9601"
+  },
+  "artifact": {
+    "tif_sha256": "9e5df9f7a02cad153b1d84c89cfc96a83bddea8b9752b3eca49210b98f814c32",
+    "nan_tif_sha256": "6c171eaedab99d87528637f145b6d2f2b3df7ce714fdf998a7c54580cf0a9601",
+    "name": "wbggemsdoe1-tipcont-catalogue-strike-20261029-1c5b292c"
+  },
+  "decision": {
+    "verdict": "negative",
+    "ok_to_submit": false,
+    "eligible_for_separate_selector": false,
+    "approved_for_weekly_slot": false
+  },
+  "registry": {
+    "passes_literal_uniqueness": false,
+    "rule": "70% 3 px overlap; rho 0.90"
+  },
+  "dots": 18611,
+  "validator": {
+    "zeros": {
+      "official_template_grid_and_footprint": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "crs_epsg_32611": true,
+      "shape_matches_template": true,
+      "geotransform_matches_template": true,
+      "footprint_all_finite": true,
+      "footprint_range_0_1": true,
+      "outside_is_nan_official_text": false,
+      "nodata_tag_is_nan": false,
+      "variant_nan_aware_whole_array": true,
+      "variant_masked_read": true,
+      "variant_strict_whole_array_no_nan_allowed": true,
+      "profile_matches_official_sample": false
+    },
+    "nan": {
+      "official_template_grid_and_footprint": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "crs_epsg_32611": true,
+      "shape_matches_template": true,
+      "geotransform_matches_template": true,
+      "footprint_all_finite": true,
+      "footprint_range_0_1": true,
+      "outside_is_nan_official_text": true,
+      "nodata_tag_is_nan": true,
+      "variant_nan_aware_whole_array": true,
+      "variant_masked_read": true,
+      "variant_strict_whole_array_no_nan_allowed": false,
+      "profile_matches_official_sample": true
+    }
+  },
+  "submission_name": "wbggemsdoe1-tipcont-catalogue-strike-20261029-1c5b292c",
+  "submission_note": "WBG-8 catalogue strike-tip rays 200m-1.5km, >200m off catalogue; holdout-only; no organizer score; not approved",
+  "note_length": 111,
+  "verdict": "negative",
+  "submit_recommendation": "NOT CLEARED. Holdout is catalogue-proxy only; no organizer receipt."
+}

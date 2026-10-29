@@ -24,6 +24,13 @@ See [latest review (29 Oct 2026)](docs/repo-review-20261029.md), [Focus-9 site c
 
 > Historical approval claims and frozen receipts below are retained for provenance only; these no-go notices supersede them.
 
+## WBGGEMSDOE1 tip-continuation experiment (29 Oct 2026) · research only · negative
+
+- **Experiment page:** [tipcont-experiment-20261029.html](https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/tipcont-experiment-20261029.html) (source [docs/tipcont-experiment-20261029.html](docs/tipcont-experiment-20261029.html)).
+- **Research ZIP:** [`wbggemsdoe1-tipcont-catalogue-strike-20261029-1c5b292c-zeros.zip`](docs/downloads/wbggemsdoe1-tipcont-catalogue-strike-20261029-1c5b292c-zeros.zip) · SHA-256 `9e5df9f7a02cad153b1d84c89cfc96a83bddea8b9752b3eca49210b98f814c32` · 18,611 binary dots · run card [evidence/tip_continuation_20261029/run_card.json](evidence/tip_continuation_20261029/run_card.json).
+- **Catalogue-proxy HOLDOUT-DTI** (`WBGGEMSDOE1-HIDE-RECOVER-v1.0`): 0.000434, 95% CI [0.000142, 0.000793]; matched random null 0.0240–0.0270. Lane STOP: 35 GEMSDOE25-family rasters exceed the 70% 3 px gate.
+- **Estimated leaderboard score: UNAVAILABLE.** Not a submission candidate.
+
 # WBG GEMS — evidence-first fault mapping
 
 **[START HERE — 29 Oct 2026 executive summary (download / submit verdicts, estimates, nine-site table)](docs/start-here-20261029.html)** · No file is cleared for submission under the 70% protocol.

@@ -1,0 +1,97 @@
+{
+  "schema": "gemsdoe1-focus-candidate-run-card-v1",
+  "arm": "E3",
+  "name": "wbggemsdoe1-novel-band3to8-s3-e3-k37654-20261029-zeros",
+  "file": ".cache/focus_candidate/wbggemsdoe1-novel-band3to8-s3-e3-k37654-20261029-zeros.tif",
+  "hypothesis": "Matched-budget placement at 3-8/12 px from the mapped catalogue, dots chosen where the fewest distinct earlier rasters have a dot within 3 px.",
+  "mechanism": "DTI credit is per truth cell via a 300 m kernel; a dot is emitted only inside the catalogue-adjacent band where the prior is nonzero, and novelty placement lowers the literal overlap with any single earlier raster.",
+  "named_non_fault_mimic": "Unmapped lithologic/alteration contacts or shared gridding artefacts that run parallel to mapped faults within 300-800 m.",
+  "budget_dots": 37654,
+  "dots_emitted": 37654,
+  "band_px": [
+    3.0,
+    8.0
+  ],
+  "min_spacing_px": 3.0,
+  "pool_distinct_refs_checked": 465,
+  "pool_degenerate_refs_excluded": "see evidence/focus_uniqueness/pool_audit.json (coverage3px >= 0.70)",
+  "gates": {
+    "format_and_range": {
+      "pass": true,
+      "detail": {
+        "file_exists": true,
+        "crs_epsg_32611": true,
+        "shape_3730x3292": true,
+        "transform_match": true,
+        "dtype_float32": true,
+        "single_band": true,
+        "zero_dots_on_catalogue": true,
+        "finite_inside_footprint": true,
+        "values_in_0_1_inside_footprint": true,
+        "no_nan_inside_footprint": true,
+        "all_cells_finite": true,
+        "all_cells_in_0_1": true
+      }
+    },
+    "zero_dots_on_catalogue": {
+      "pass": true,
+      "dots_on_catalogue": 0
+    },
+    "literal_overlap_max": {
+      "value": 0.7647527487119562,
+      "limit": 0.7,
+      "pass": false,
+      "worst_ref": "GEMSDOE77__gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif"
+    },
+    "rho_abs_max": {
+      "value": 0.0645590830377715,
+      "limit": 0.9,
+      "pass": true,
+      "worst_ref": "GEMSDOE30__GEMSDOE30-nearslay-annulus-d3-offcat-20261025T235837Z-662af003-nan.tif"
+    },
+    "portal_strict_local_policy": {
+      "pass": true,
+      "source": "check_variants format_valid and variant_strict_whole_array_no_nan_allowed",
+      "post_hoc_correction": "The builder originally read a key that only submission_writer.py adds, so this gate was recorded as False. Recomputed from check_variants on the unchanged bytes (2026-10-29); the candidate bytes were not regenerated."
+    }
+  },
+  "unique_under_literal_gate": false,
+  "holdout_dti_sanity_only": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "WBGGEMSDOE1-HIDE-RECOVER-v1.0",
+    "pooled_dti": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "n_withheld_positives": 60161,
+    "note": "Not a gate and not a score: the holdout has Spearman 0.140 (p=0.13) vs owner scores on 118 rasters."
+  },
+  "estimated_leaderboard_score": null,
+  "estimate_status": "UNAVAILABLE. No validated estimator exists; no organizer receipt; holdout rejected as a ranking tool.",
+  "raster_sha256": "02ad3f4c700c64e3fbe1b96745311229157d983080831bff96e14dbe7fb90777",
+  "validator": {
+    "pass": true,
+    "n_pass": 12,
+    "n_checks": 12,
+    "min": 0.0,
+    "max": 1.0,
+    "nan_anywhere": 0,
+    "dots": 37654,
+    "on_catalogue": 0
+  },
+  "distance_to_catalogue_px": {
+    "min": 3.0,
+    "median": 6.324555320336759,
+    "p90": 7.810249675906654,
+    "max": 8.0
+  },
+  "submission_name": "wbggemsdoe1-novel-band3to8-s3-e3-k37654-20261029-zeros",
+  "submission_note": "Novelty band 3-8 px off catalogue, 37654 dots, zeros outside; no score claimed; gates in run card.",
+  "verdict": "negative",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "submission_slots_used": 0,
+  "note": "Automated gates only. No organizer acceptance, no leaderboard score. Do not treat as a higher-score claim.",
+  "published_copy": "docs/research/wbggemsdoe1-novel-band3to8-s3-e3-k37654-20261029-zeros-NOT-SUBMITTED.tif"
+}

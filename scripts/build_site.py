@@ -31,7 +31,7 @@ def link(url, text, cls=""):
 
 
 def page(name, title, body):
-    nav = [("start-here.html", "START HERE"), ("unique-lane-summary-20261029.html", "Unique lane · 29 Oct"), ("how-to-submit-20261029.html", "How to submit · 29 Oct"), ("index.html", "Overview"), ("wbg6/index.html", "WBG-6 submit"), ("wbg5/index.html", "WBG-5"), ("wbg4/index.html", "WBG-4"), ("wbg3/index.html", "WBG-3"), ("wbg2.html", "WBG-2 audit"),
+    nav = [("start-here.html", "START HERE"), ("unique-lane-summary-20261029.html", "Unique lane · 29 Oct"), ("how-to-submit-20261029.html", "How to submit · 29 Oct"), ("focus-unique-attempt-20261029.html", "Focus lane · 29 Oct"), ("index.html", "Overview"), ("wbg6/index.html", "WBG-6 submit"), ("wbg5/index.html", "WBG-5"), ("wbg4/index.html", "WBG-4"), ("wbg3/index.html", "WBG-3"), ("wbg2.html", "WBG-2 audit"),
            ("executive-summary-20261028.html", "Exec summary 10-28"),
            ("executive-summary.html", "Site comparison"),
            ("executive-summary-focus-sites.html", "Nine-site exec summary"),

@@ -18,6 +18,8 @@ def wbg6_readme_block():
 
 **Start here:** [29 Oct executive summary — nine-site decision table, why GEMSDOE32 B2 scored 0.2778, blockers, ranked hypotheses](docs/executive-summary-20261029.html) · [verified nine-site audit](docs/data/nine_site_audit_20261029.json) · [irregularities flagged for review](docs/executive-summary-20261029.html#irregularities).
 
+**Focus lane (three pre-registered arms E1 to E3, nine-site duplicate audit, gate decision):** [focus-unique-attempt-20261029.html](docs/focus-unique-attempt-20261029.html). Research-only TIFs are in [`docs/research/`](docs/research/). All three arms are format-valid and not copies, but each fails the 70% lane gate (overlap 0.739 to 0.765 vs GEMSDOE77). The literal lane rule cannot be passed by any dot field (r13 lattice).
+
 Estimated leaderboard score: **UNAVAILABLE** for every file here (no holdout or organizer score is computable in this sandbox). Live public leaderboard #1 is **0.4544**; the 50th row read this session is **0.3169** (the board moves: another read recorded 0.3167) (DrivenData page retrieved 2026-10-29). GEMSDOE32 B2 (0.2778, USER-REPORTED) is already in the competition: re-uploading it is a duplicate.
 
 ---

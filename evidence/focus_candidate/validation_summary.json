@@ -1,0 +1,50 @@
+[
+  {
+    "file": "docs/research/wbggemsdoe1-novel-band3to12-s4-e2-k37654-20261029-zeros-NOT-SUBMITTED.tif",
+    "sha256": "b73cc38a83ac2437a557193942aa0540b9f19ab5444d36e4a902f4126305fb94",
+    "positives_in_footprint": 37654,
+    "checks": {
+      "single_band_float32": true,
+      "crs_epsg_32611": true,
+      "shape_matches_reference": true,
+      "transform_matches_reference": true,
+      "no_inf_anywhere": true,
+      "no_nan_inside_footprint": true,
+      "values_in_0_1_inside_footprint": true,
+      "outside_footprint_zero_or_nan": true
+    },
+    "all_pass": true
+  },
+  {
+    "file": "docs/research/wbggemsdoe1-novel-band3to8-s3-e3-k37654-20261029-zeros-NOT-SUBMITTED.tif",
+    "sha256": "02ad3f4c700c64e3fbe1b96745311229157d983080831bff96e14dbe7fb90777",
+    "positives_in_footprint": 37654,
+    "checks": {
+      "single_band_float32": true,
+      "crs_epsg_32611": true,
+      "shape_matches_reference": true,
+      "transform_matches_reference": true,
+      "no_inf_anywhere": true,
+      "no_nan_inside_footprint": true,
+      "values_in_0_1_inside_footprint": true,
+      "outside_footprint_zero_or_nan": true
+    },
+    "all_pass": true
+  },
+  {
+    "file": "docs/research/wbggemsdoe1-novel-band3to8-s5-e1-k33884-20261029-zeros-NOT-SUBMITTED.tif",
+    "sha256": "8212c0e268a6782e4704fc28b0334b99e6936bce135229b8527e1d12450c0dd0",
+    "positives_in_footprint": 33884,
+    "checks": {
+      "single_band_float32": true,
+      "crs_epsg_32611": true,
+      "shape_matches_reference": true,
+      "transform_matches_reference": true,
+      "no_inf_anywhere": true,
+      "no_nan_inside_footprint": true,
+      "values_in_0_1_inside_footprint": true,
+      "outside_footprint_zero_or_nan": true
+    },
+    "all_pass": true
+  }
+]

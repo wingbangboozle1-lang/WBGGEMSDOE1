@@ -37,7 +37,7 @@ The `0.2778` historical claim is not organizer-confirmed; the local high 0.4657 
 
 - `python scripts/check_readiness.py`: exits 2 and records `BLOCKED_INPUTS` (expected, due to the missing three core TIFFs).
 - `.venv/bin/python -m pytest -q`: **232 passed**, 15 Rasterio pending-deprecation warnings.
-- `.venv/bin/python -m ruff check scripts src tests --select E9,F --exclude test_template_evaluator.py`: **failed on one pre-existing F401** (`dti_score_fast` unused in `scripts/build_wbg7_submission.py:61`). No unrelated code was changed to hide or silently fix it.
+- `.venv/bin/python -m ruff check scripts src tests --select E9,F --exclude test_template_evaluator.py`: **passed** after removing an unused `dti_score_fast` import from `scripts/build_wbg7_submission.py`.
 - No training, holdout experiment, feature extraction, TIFF generation, raster placement, upload, or selector step was performed.
 
 ## Run card (this review only)

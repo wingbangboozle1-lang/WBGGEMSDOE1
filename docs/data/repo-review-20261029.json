@@ -71,14 +71,20 @@
     {
       "id": "IR-20261029-LEADERBOARD",
       "severity": "high",
-      "finding": "Prompt-listed public leaderboard values 0.3195 and 0.4413 conflict with the retained project feed observation 0.4544 dated 2026-10-27.",
-      "status": "Not refreshed in this review; none is asserted as the current verified leaderboard score or a score for this project's TIFF."
+      "finding": "Prompt-listed public leaderboard values 0.3195 and 0.4413 differ from the official public page read on 2026-10-29, which displayed rank 1 at 0.4544 and rank 2 at 0.3916.",
+      "status": "OFFICIAL PUBLIC LEADERBOARD OBSERVATION, not a receipt or score for any project TIFF."
     },
     {
       "id": "IR-20261029-SUBMISSION-FOOTPRINT",
       "severity": "high",
       "finding": "Official submission format specifies null/NaN outside bounds, while some archived research rasters use zeros outside.",
       "status": "No current file is cleared; local format validation is not organizer acceptance."
+    },
+    {
+      "id": "IR-20261029-RECHECK-BENCHMARK-VERSION",
+      "severity": "high",
+      "finding": "The inherited per-fold recheck uses WBGGEMSDOE1-HIDE-RECOVER-v1.0, while its cited 0.166060 HOLDOUT-DTI comparator is recorded under gems-segment-pooled-v1.",
+      "status": "Do not call this a same-evaluator comparison; the numeric difference is not an efficacy claim."
     },
     {
       "id": "IR-20261029-DATA-ACCESS",
@@ -93,6 +99,35 @@
       "status": "No new lane, experiment, raster placement, or slot authorized."
     }
   ],
+  "inherited_blind_adjacency_recheck": {
+    "evidence_source": "evidence/per_fold_recheck_blind_adjacency.json",
+    "archived_leaky_holdout_dti": {
+      "evidence_class": "HOLDOUT-DTI (full-catalogue placement; leakage confirmed)",
+      "evaluator_version": "WBGGEMSDOE1-HIDE-RECOVER-v1.0",
+      "dti": 0.46570455816360007,
+      "withheld_positive_pixels": 60161,
+      "ci95": [0.45625939157121076, 0.4747908528873552]
+    },
+    "visible_only_per_fold_holdout_dti": {
+      "evidence_class": "HOLDOUT-DTI (visible-only per-fold placement)",
+      "evaluator_version": "WBGGEMSDOE1-HIDE-RECOVER-v1.0",
+      "dti": 0.006945589801501288,
+      "withheld_positive_pixels": 60161,
+      "ci95": null,
+      "ci_status": "not recomputed; fold-level pooled counts retained",
+      "verdict": "negative; cited 0.166060 comparator uses a different evaluator version, so not a like-for-like comparison"
+    },
+    "cited_benchmark": {
+      "evidence_class": "HOLDOUT-DTI benchmark receipt (separate evaluator; not directly comparable)",
+      "dti": 0.16606013635163805,
+      "evaluator_version": "gems-segment-pooled-v1",
+      "withheld_positive_pixels": 60988,
+      "ci95": [0.15185839118988828, 0.18033886456990444],
+      "source": "evidence/wbg5/diff1_run_card.json"
+    },
+    "comparison_status": "NOT LIKE-FOR-LIKE: candidate uses WBGGEMSDOE1-HIDE-RECOVER-v1.0; cited benchmark uses gems-segment-pooled-v1",
+    "new_experiment_in_this_review": false
+  },
   "holdout_dti": {
     "evidence_class": "NOT RUN",
     "evaluator_version": null,
@@ -123,6 +158,7 @@
   "sources_checked": [
     "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
     "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
     "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
     "https://www.usgs.gov/data/heat-flow-maps-and-supporting-data-great-basin-usa",
     "https://www.usgs.gov/3d-elevation-program",

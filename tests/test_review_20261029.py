@@ -62,6 +62,22 @@ def test_readme_and_agent_instructions_link_current_review_and_avoid_stale_appro
     assert "WBG-7 (this branch)" not in agents
 
 
+def test_inherited_leakage_recheck_does_not_claim_cross_evaluator_comparability():
+    card = json.loads((ROOT / "docs/data/repo-review-20261029.json").read_text())
+    inherited = card["inherited_blind_adjacency_recheck"]
+    recheck = inherited["visible_only_per_fold_holdout_dti"]
+    benchmark = inherited["cited_benchmark"]
+    assert recheck["evaluator_version"] == "WBGGEMSDOE1-HIDE-RECOVER-v1.0"
+    assert recheck["ci95"] is None
+    assert benchmark["evaluator_version"] == "gems-segment-pooled-v1"
+    assert benchmark["ci95"] == [0.15185839118988828, 0.18033886456990444]
+    assert inherited["comparison_status"].startswith("NOT LIKE-FOR-LIKE")
+    report = (ROOT / "docs/repo-review-current-20261029.md").read_text()
+    assert "not a like-for-like benchmark comparison" in report
+    summary = json.loads((ROOT / "docs/data/focus9_summary_20261029.json").read_text())
+    assert summary["leakage_recheck"]["same_evaluator_comparison"] is False
+
+
 def test_homepage_does_not_label_wbg7_as_unique_submission_clearance():
     source = (ROOT / "scripts/build_site.py").read_text()
     page = (ROOT / "docs/index.html").read_text()

@@ -2,7 +2,7 @@
 
 The historical WBG-6 approval is superseded: its archived maximum 3-pixel registry overlap is 99.6767%, exceeding the active 70% stop threshold. Its 0.247 value is a MODEL-ESTIMATE, not HOLDOUT-DTI or organizer-confirmed. **Research download only:** [`wbg6-qmh-kdisjoint-30000-20261028.tif`](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif).
 
-A newer concurrently added candidate [`WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif`](docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif) records HOLDOUT-DTI 0.4657, 95% CI [0.4563, 0.4748], evaluator `WBGGEMSDOE1-HIDE-RECOVER-v1.0`, n=60,161. **This is NEGATIVE / DO NOT SUBMIT:** its own run card states it used the full catalogue during placement (holdout leakage risk) and checked only 6 champion rasters, not the full registry. Re-evaluate with per-fold visible catalogues and complete registry checks before promotion.
+The archived candidate [`WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif`](docs/downloads/WBGGEMSDOE1-blind-fault-adjacency-distance-decay-20261028T202056Z.tif) has a reproduced but **leaked** full-catalogue HOLDOUT-DTI 0.4657, 95% CI [0.4563, 0.4748], evaluator `WBGGEMSDOE1-HIDE-RECOVER-v1.0`, n=60,161. A separate visible-only per-fold recheck now records **HOLDOUT-DTI 0.006946** (evaluator `WBGGEMSDOE1-HIDE-RECOVER-v1.0`, n=60,161; CI not recomputed). Its numeric value is below the cited HOLDOUT-DTI 0.166060 comparator (`gems-segment-pooled-v1`, n=60,988, 95% CI [0.151858, 0.180339]), but evaluator versions differ, so this is not a like-for-like benchmark comparison. The archived run card checked only 6 champion rasters, not the complete registry. **NEGATIVE / DO NOT SUBMIT; no leaderboard estimate.** See `evidence/per_fold_recheck_blind_adjacency.json`.
 
 See [current review (29 Oct 2026)](docs/repo-review-current-20261029.md), [ranked hypotheses and blockers](docs/data/repo-review-20261029.json), [Focus-9 site comparison](docs/executive-summary.html), and [the standing brief](PROMPT.md). The 0.2778 GEMSDOE32 value is owner-reported; no new TIFF is cleared. Core values: **Maximize P(Win)** and **Own the Outcome**. Read `PROMPT.md` at the start of every working session.
 
@@ -10,12 +10,14 @@ See [current review (29 Oct 2026)](docs/repo-review-current-20261029.md), [ranke
 
 # WBG GEMS — evidence-first fault mapping
 
+**[Repository review (2026-10-29)](docs/repo-review-current-20261029.md)** · no new TIFF approved; core competition inputs are absent and the active method lane is unspecified. Local tests and lint pass. Treat all existing candidate downloads according to their individual negative/STOP decisions.
+
 **[28 October review of earlier lanes](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · No file is cleared; WBG-6 fails the active literal overlap gate.
 
 **[Current repository review (2026-10-29)](docs/repo-review-current-20261029.md)** · [Ranked hypotheses + readiness card](docs/data/repo-review-20261029.json) · [Detailed repository review (2026-10-28)](docs/repo-review-20261028.md) · [Earlier repository review and ranked future hypotheses](docs/repo-review-20261027-session.md) ·
 [Session JSON card](evidence/repo_review_session_20261027.json) · [Current provenance feed](docs/data/feed.json)
 
-**Freshness check:** at `2026-10-28T16:19:05+00:00`, 9/9 monitored focus-site GitHub heads differed from the frozen raster audit. This is a head check, not a current raster/score audit. The official leaderboard status is `retained_observation_not_refreshed`; the last retained public observation is 0.4544 (2026-10-27), not a score for any project TIFF.
+**Freshness check:** at `2026-10-28T16:19:05+00:00`, 9/9 monitored focus-site GitHub heads differed from the frozen raster audit. This is a head check, not a current raster/score audit. The retained feed status is `retained_observation_not_refreshed`; its last retained public observation is 0.4544 (2026-10-27). Separately, the official public leaderboard was read on 2026-10-29 and displayed rank 1 at 0.4544 and rank 2 at 0.3916. These are **OFFICIAL PUBLIC LEADERBOARD OBSERVATIONS**, not scores for project TIFFs.
 
 ## FOCUS-9 EXECUTIVE SUMMARY — DOWNLOAD: RESEARCH ONLY · SUBMIT: NO
 

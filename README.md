@@ -1,4 +1,12 @@
-## ⛔ SUBMISSION STATUS: NO CURRENT TIFF CLEARED — DO NOT SUBMIT
+## ⛔ SUBMISSION STATUS (29 Oct 2026): SUBMIT NO — NO FILE IS CLEARED
+
+**Start here:** [29 Oct executive summary — nine-site decision table, why GEMSDOE32 B2 scored 0.2778, blockers, ranked hypotheses](docs/executive-summary-20261029.html) · [verified nine-site audit](docs/data/nine_site_audit_20261029.json) · [irregularities flagged for review](docs/executive-summary-20261029.html#irregularities).
+
+Estimated leaderboard score: **UNAVAILABLE** for every file here (no holdout or organizer score is computable in this sandbox). Live public leaderboard #1 is **0.4544**; the 50th row is **0.3167** (DrivenData page retrieved 2026-10-29). GEMSDOE32 B2 (0.2778, USER-REPORTED) is already in the competition: re-uploading it is a duplicate.
+
+---
+
+## ⛔ Earlier status (28 Oct 2026, retained for provenance): NO CURRENT TIFF CLEARED — DO NOT SUBMIT
 
 The historical WBG-6 approval is superseded: its archived maximum 3-pixel registry overlap is 99.6767%, exceeding the active 70% stop threshold. Its 0.247 value is a MODEL-ESTIMATE, not HOLDOUT-DTI or organizer-confirmed. **Research download only:** [`wbg6-qmh-kdisjoint-30000-20261028.tif`](docs/downloads/wbg6-qmh-kdisjoint-30000-20261028.tif).
 

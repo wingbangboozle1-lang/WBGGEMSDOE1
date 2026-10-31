@@ -13,9 +13,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main() -> int:
-    p = ROOT / "evidence/wbg8/run_card.json"
+    p = ROOT / "evidence/wbg8_mridge/run_card.json"
     card = json.loads(p.read_text())
-    u = json.loads((ROOT / "evidence/wbg8/uniqueness.json").read_text())
+    u = json.loads((ROOT / "evidence/wbg8_mridge/uniqueness.json").read_text())
     gates = card["decision"]["gates"]
     unique_ok = (u["passes_spearman_gate"] and u["passes_literal_nonlattice_gate"]
                  and u["passes_same_budget_gate"])

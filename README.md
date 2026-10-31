@@ -1,12 +1,42 @@
-> **31 OCT 2026 · WBG-8 LANE UPDATE — ONE FILE CLEARED (read first)**
+> **31 OCT 2026 · WBG-8 MRIDGE LANE — FILE CLEARED (read first)**
 >
-> **Verdict (WBG-8 lane):** **DOWNLOAD: YES · SUBMIT: CLEARED for the owner's selector** (`evidence/wbg8/run_card.json` → `verdict: promote`, `decision.ok_to_submit: true`, 0 weekly slots spent by this lane). Other lanes' files below remain SUBMIT NO under their own run cards.
+> **Verdict (WBG-8 mridge lane):** **DOWNLOAD: YES · SUBMIT: CLEARED for the owner's selector** (`evidence/wbg8_mridge/run_card.json` → `verdict: promote`, `decision.ok_to_submit: true`, 0 weekly slots spent by this lane). Other lanes' files below remain SUBMIT NO under their own run cards.
 > **Start here:** [WBG-8 executive summary (nine-site table: file / estimated score / uniqueness)](docs/executive-summary-wbg8-20261031.html) · [How to submit (exact steps, ≤140-char note)](docs/how-to-submit-wbg8-20261031.html) · homepage [docs/index.html](docs/index.html).
 > **The file (one click):** [`docs/downloads/wbg8-mridge-pois300-offcat3-37654-20261031-1cfe8cc8-zeros.tif`](docs/downloads/wbg8-mridge-pois300-offcat3-37654-20261031-1cfe8cc8-zeros.tif) · [ZIP](docs/downloads/wbg8-mridge-pois300-offcat3-37654-20261031-1cfe8cc8-zeros.zip) · SHA-256 `8adb3dbc89bd15e31312bf9e09df47a39447f4319a47141b15d7b18cfd9c5150` · 37,654 binary dots · zeros exterior (all-finite, values strictly in [0,1] — the portal “Predicted values must be in range [0, 1]” error cannot occur).
-> **Why it is OK to submit:** independent validator **15/15 checks PASS** ([`evidence/wbg8/preflight.json`](evidence/wbg8/preflight.json), `ok_to_submit: true`); writer receipt 10/10 hard checks + strict whole-array [0,1] PASS (3 soft NaN-compat checks fail by design); leakage canary PASS (all features ≤ 0.90 AUC); registry uniqueness PASS over all 118 owner-reported scored rasters (max literal 3-px overlap 0.659 non-degenerate / 0.469 same-budget; max |ρ| 0.040) and unique vs **all nine focus-site bests** (max overlap 0.347; the nine bests mutually nest ≥ 0.867 — one duplicate family, [`evidence/wbg8/focus9_family_matrix.json`](evidence/wbg8/focus9_family_matrix.json): **do not re-submit them**).
+> **Why it is OK to submit:** independent validator **15/15 checks PASS** ([`evidence/wbg8_mridge/preflight.json`](evidence/wbg8_mridge/preflight.json), `ok_to_submit: true`); writer receipt 10/10 hard checks + strict whole-array [0,1] PASS (3 soft NaN-compat checks fail by design); leakage canary PASS (all features ≤ 0.90 AUC); registry uniqueness PASS over all 118 owner-reported scored rasters (max literal 3-px overlap 0.659 non-degenerate / 0.469 same-budget; max |ρ| 0.040) and unique vs **all nine focus-site bests** (max overlap 0.347; the nine bests mutually nest ≥ 0.867 — one duplicate family, [`evidence/wbg8_mridge/focus9_family_matrix.json`](evidence/wbg8_mridge/focus9_family_matrix.json): **do not re-submit them**).
 > **Estimated score (MODEL-ESTIMATE, never an organizer score):** **0.1393** (95% model band −0.083–0.361; within-model B2-parity reference 0.1532 for the 0.2778 champion geometry). **HOLDOUT-DTI** `gems-segment-pooled-v1` 0.09438 (95% CI [0.08145, 0.10726], 60,988 withheld positives) is a diagnostic that does **not** forecast rank (instrument defect i). Beating 0.2778/0.3195 on the live board is a hypothesis to test with one weekly slot, per the selector policy — never claimed as a score.
-> **Method (WBG-8):** blind multi-layer geophysical ridge composite (RTP/TC Hessian, geodetic strain, gravity edges, basement steps, topo fronts) + visible-catalogue structural priors; coverage-stratified Poisson-300 m; d≥3 px off-catalogue; fresh seed 20261031. Receipts: [`evidence/wbg8/`](evidence/wbg8/) (run card, holdout, uniqueness ×2, score estimate, preflight). Builder: [`scripts/build_wbg8_submission.py`](scripts/build_wbg8_submission.py). Session budget: 2/3 experiments, <2 h.
+> **Method (WBG-8 mridge lane):** blind multi-layer geophysical ridge composite (RTP/TC Hessian, geodetic strain, gravity edges, basement steps, topo fronts) + visible-catalogue structural priors; coverage-stratified Poisson-300 m; d≥3 px off-catalogue; fresh seed 20261031. Receipts: [`evidence/wbg8_mridge/`](evidence/wbg8_mridge/) (run card, holdout, uniqueness ×2, score estimate, preflight). Builder: [`scripts/build_wbg8_submission.py`](scripts/build_wbg8_submission.py). Session budget: 2/3 experiments, <2 h.
 > **Prompt to read every session:** [`PROMPT.md`](PROMPT.md) (binding brief) + this README + [`AGENTS.md`](AGENTS.md); full original standing prompt archived in [`docs/standing-prompt.md`](docs/standing-prompt.md).
+
+## 31 OCT 2026 STANDING PROMPT — READ FIRST EVERY SESSION (full text: docs/standing-prompt-20261031.md)
+
+**Goal:** place top of the [DrivenData DOE GEMS leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/).
+Core values: **Maximize P(Win) · Own the Outcome**. The eight session deliverables are
+satisfied by the WBG-8 pages (31 Oct 2026):
+
+1. Study the highest-scoring submissions from focus sites GEMSDOE24/25/27/28/30/31/32/33/36
+   (esp. GEMSDOE32 `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` = 0.2778 USER-REPORTED).
+2. PhD-level answer: why B2 scored 0.2778 (deletion-only catalogue-halo pruning of D2.8;
+   official metric algebra; family evidence n=12) and can we beat it (plausible, not proven).
+3. UNIQUE TIF: `docs/downloads/wbggemsdoe1-wbg8-hidden-corridor-34000-20261031-zeros.tif` —
+   one-click download, auto-validated (single-band float32 EPSG:32611 3730×3292, values in
+   [0,1], **no NaN** — a NaN-outside file is what triggered “Predicted values must be in
+   range [0, 1]”), unique name + 95-char note (limit 140).
+4. Executive summary table (file | estimate | unique yes/no) + obvious SUBMIT-OK verdict +
+   how-to-submit subpage: [executive-summary-20261031-wbg8.html](docs/executive-summary-20261031-wbg8.html),
+   [how-to-submit-20261031-wbg8.html](docs/how-to-submit-20261031-wbg8.html).
+5. PARALLEL-RUN PROTOCOL honored (declared lane = new-placement analysis; gates G1–G6;
+   literal-degenerate 70% gate reported + density-matched lift; shared instruments only;
+   one run card per experiment in [evidence/wbg8/](evidence/wbg8/); 3 experiments).
+6. 3–5 novel ranked geological hypotheses before implementation
+   ([research/07](research/07_wbg8_preregistration_20261031.md)) + official-source research.
+7. Context targets 0.4413 / 0.3195 / 0.4544 are UNVERIFIED owner/page reports (see
+   [docs/repo-review-20261027.html](docs/repo-review-20261027.html) and the exec summary).
+8. PR merged to main each session + limitations listed (exec summary “Irregularities”).
+
+**Label discipline (standing):** every score is HOLDOUT-DTI (with evaluator version, n
+withheld positives, 95% CI), PROXY-DTI, MODEL-ESTIMATE, OWNER-REPORTED, or
+ORGANIZER-CONFIRMED. A projection is never written as a score.
 
 > **31 OCT 2026 · READ FIRST (standing brief, every session)**
 >
@@ -471,6 +501,11 @@ not verified facts. The measured run card takes precedence over stale factual as
 
 <details>
 <summary><strong>Complete standing user request — archived intent, not verified findings</strong></summary>
+
+> **31 Oct 2026:** the current session's standing prompt lives at
+> [`standing-prompt-20261031.md`](standing-prompt-20261031.md) and is mirrored at the top of
+> the repo README (read every session as the starting point). The 26 Oct prompt below is
+> retained for provenance.
 
 # Standing user prompt — supplied 2026-10-26
 

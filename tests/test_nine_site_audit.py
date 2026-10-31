@@ -121,7 +121,7 @@ def test_no_file_is_marked_approved_for_submission():
     readme = (ROOT / "README.md").read_text()
     assert "SUBMIT NO" in readme  # superseded artifacts keep their no-go notices
     # 31 Oct state: one candidate cleared for the owner's selector, receipt-linked
-    card = json.loads((ROOT / "evidence/wbg8/run_card.json").read_text())
+    card = json.loads((ROOT / "evidence/wbg8_mridge/run_card.json").read_text())
     if card["decision"]["ok_to_submit"]:
         assert "WBG-8" in readme and "CLEARED" in readme.upper()
         assert card["decision"]["ok_to_submit"] is True
@@ -135,7 +135,7 @@ def test_executive_summary_and_homepage_show_the_decision():
     assert "0.4544" in page and "0.3167" in page
     home = (ROOT / "docs" / "index.html").read_text()
     # The homepage headline must match the WBG-8 run-card receipt, both ways.
-    card = json.loads((ROOT / "evidence/wbg8/run_card.json").read_text())
+    card = json.loads((ROOT / "evidence/wbg8_mridge/run_card.json").read_text())
     if card["decision"]["ok_to_submit"]:
         assert "SUBMIT: CLEARED" in home
         assert card["submission_name"] in home or "WBG-8" in home

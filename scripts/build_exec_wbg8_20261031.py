@@ -3,11 +3,11 @@
 
 Every number on the pages is read from a machine receipt; nothing is typed
 in by hand (no-hallucination policy). Sources:
-  evidence/wbg8/run_card.json            candidate gates, hashes, verdict
-  evidence/wbg8/score_estimate.json      MODEL-ESTIMATE + B2 parity reference
-  evidence/wbg8/holdout.json             HOLDOUT-DTI + CI (never a forecast)
-  evidence/wbg8/uniqueness.json          118-raster registry gates
-  evidence/wbg8/uniqueness_vs_focus9.json site-specific overlaps
+  evidence/wbg8_mridge/run_card.json            candidate gates, hashes, verdict
+  evidence/wbg8_mridge/score_estimate.json      MODEL-ESTIMATE + B2 parity reference
+  evidence/wbg8_mridge/holdout.json             HOLDOUT-DTI + CI (never a forecast)
+  evidence/wbg8_mridge/uniqueness.json          118-raster registry gates
+  evidence/wbg8_mridge/uniqueness_vs_focus9.json site-specific overlaps
   docs/data/nine_site_audit_20261029.json nine-site champion facts
 """
 from __future__ import annotations
@@ -21,7 +21,7 @@ DOCS = ROOT / "docs"
 
 # publish evidence receipts under docs/ (site-link convention: everything reachable from docs/)
 import shutil  # noqa: E402
-pub = ROOT / "docs/evidence/wbg8"
+pub = ROOT / "docs/evidence/wbg8_mridge"
 pub.mkdir(parents=True, exist_ok=True)
 for j in sorted((ROOT / "evidence/wbg8").glob("*.json")):
     shutil.copy2(j, pub / j.name)
@@ -69,11 +69,11 @@ def page(title: str, crumb: str, body: str) -> str:
 
 
 def main() -> int:
-    card = load("evidence/wbg8/run_card.json")
-    est = load("evidence/wbg8/score_estimate.json")
-    hold = load("evidence/wbg8/holdout.json")
-    uniq = load("evidence/wbg8/uniqueness.json")
-    focus = load("evidence/wbg8/uniqueness_vs_focus9.json")
+    card = load("evidence/wbg8_mridge/run_card.json")
+    est = load("evidence/wbg8_mridge/score_estimate.json")
+    hold = load("evidence/wbg8_mridge/holdout.json")
+    uniq = load("evidence/wbg8_mridge/uniqueness.json")
+    focus = load("evidence/wbg8_mridge/uniqueness_vs_focus9.json")
     audit = load("docs/data/nine_site_audit_20261029.json")
 
     # best (highest owner-reported) file per site from the audit
@@ -94,7 +94,7 @@ def main() -> int:
             for m in members:
                 dup_of[m] = members
 
-    fam = load("evidence/wbg8/focus9_family_matrix.json")
+    fam = load("evidence/wbg8_mridge/focus9_family_matrix.json")
     dec = card["decision"]
     ok_submit = dec["ok_to_submit"]
     verdict_cls = "ok" if ok_submit else "stop"
@@ -133,7 +133,7 @@ def main() -> int:
 <td><strong>WBG-8<br>(this repo)</strong></td>
 <td class="mono"><a href="downloads/{esc(CANDIDATE)}.tif">{esc(CANDIDATE)}.tif</a><br>
 <a href="downloads/{esc(CANDIDATE)}.zip">(zip)</a> ·
-<a href="evidence/wbg8/run_card.json">run card</a></td>
+<a href="evidence/wbg8_mridge/run_card.json">run card</a></td>
 <td><strong>{est['estimate']:.4f}</strong> <span class="pill warn">MODEL-ESTIMATE</span><br>
 <span class="micro">95% model band {est['interval_95_model'][0]:.3f}–{est['interval_95_model'][1]:.3f}; B2-parity ref {est['family_parity_reference']['model_estimate']:.4f}</span></td>
 <td>{card['validator']['n_positive']:,} dots<br><span class="micro">0 on catalogue</span></td>
@@ -200,9 +200,9 @@ def main() -> int:
 <div class="panel panel-pad">
 <ul class="tight">
 <li><strong>Byte level:</strong> raster sha256 <code>{esc(card['artifact']['tif_sha256'])}</code>; positive-set sha256 <code>{esc(card['artifact']['positive_set_sha256'])}</code> — neither matches any of the 118 scored registry rasters.</li>
-<li><strong>Focus-9:</strong> max 3-px overlap {cand_overlap_max:.1%} (vs GEMSDOE27), max |ρ| {cand_rho_max:.3f} — both far inside the gates. Per-site rows: <a href="../evidence/wbg8/uniqueness_vs_focus9.json">uniqueness_vs_focus9.json</a>.</li>
-<li><strong>Full registry:</strong> literal direction (my dots within 3 px of theirs) max {uniq['max_literal_mine_on_theirs']:.1%} vs non-degenerate rasters and {uniq['max_literal_same_budget']:.1%} vs same-budget (n≤45k) competitors; reverse same-budget max {uniq['max_reverse_same_budget']:.1%}; max |ρ| {uniq['max_abs_spearman']:.3f} vs {esc(uniq['max_abs_spearman_vs'])}. Dense fields (103k–517k dots and the 206,895-dot r13 lattice) capture 0.68–0.99 of ANY 37k-dot field by pigeonhole — reported separately per the binding AGENTS.md defect (ii) review: <a href="../evidence/wbg8/uniqueness.json">uniqueness.json</a>.</li>
-<li><strong>Cross-site twins found:</strong> GEMSDOE25 D2.8 ≡ GEMSDOE30 D2.8 (identical dot set); GEMSDOE28 h27-4 ≡ GEMSDOE31 h27-4 (identical dot set). <strong>Computed family matrix ({len(fam['matrix'])}×{len(fam['matrix'])-1} ordered pairs): every one of the 72 site-pairs exceeds the 70% gate</strong> ({fam['min_per_site'][min(fam['min_per_site'], key=fam['min_per_site'].get)]:.1%} is the smallest pairwise overlap) — the nine "bests" are one nested lineage (h19-5/D2.8/B2), so re-submitting ANY of them duplicates ALL the others: <a href="../evidence/wbg8/focus9_family_matrix.json">focus9_family_matrix.json</a>.</li>
+<li><strong>Focus-9:</strong> max 3-px overlap {cand_overlap_max:.1%} (vs GEMSDOE27), max |ρ| {cand_rho_max:.3f} — both far inside the gates. Per-site rows: <a href="../evidence/wbg8_mridge/uniqueness_vs_focus9.json">uniqueness_vs_focus9.json</a>.</li>
+<li><strong>Full registry:</strong> literal direction (my dots within 3 px of theirs) max {uniq['max_literal_mine_on_theirs']:.1%} vs non-degenerate rasters and {uniq['max_literal_same_budget']:.1%} vs same-budget (n≤45k) competitors; reverse same-budget max {uniq['max_reverse_same_budget']:.1%}; max |ρ| {uniq['max_abs_spearman']:.3f} vs {esc(uniq['max_abs_spearman_vs'])}. Dense fields (103k–517k dots and the 206,895-dot r13 lattice) capture 0.68–0.99 of ANY 37k-dot field by pigeonhole — reported separately per the binding AGENTS.md defect (ii) review: <a href="../evidence/wbg8_mridge/uniqueness.json">uniqueness.json</a>.</li>
+<li><strong>Cross-site twins found:</strong> GEMSDOE25 D2.8 ≡ GEMSDOE30 D2.8 (identical dot set); GEMSDOE28 h27-4 ≡ GEMSDOE31 h27-4 (identical dot set). <strong>Computed family matrix ({len(fam['matrix'])}×{len(fam['matrix'])-1} ordered pairs): every one of the 72 site-pairs exceeds the 70% gate</strong> ({fam['min_per_site'][min(fam['min_per_site'], key=fam['min_per_site'].get)]:.1%} is the smallest pairwise overlap) — the nine "bests" are one nested lineage (h19-5/D2.8/B2), so re-submitting ANY of them duplicates ALL the others: <a href="../evidence/wbg8_mridge/focus9_family_matrix.json">focus9_family_matrix.json</a>.</li>
 </ul></div>
 <h2 id="how">How to submit (short form)</h2>
 <div class="panel panel-pad"><ol class="tight">
@@ -219,7 +219,7 @@ def main() -> int:
 
     # ---------------- how-to-submit page ----------------------------------
     note = esc(card["note"])
-    pre = load("evidence/wbg8/preflight.json")
+    pre = load("evidence/wbg8_mridge/preflight.json")
     n_checks = len(pre["checks"])
     n_passed = sum(1 for v in pre["checks"].values() if v)
     how_body = f"""
@@ -227,9 +227,9 @@ def main() -> int:
 <p><strong>File:</strong> <a href="downloads/{esc(CANDIDATE)}.tif"><code>{esc(CANDIDATE)}.tif</code></a> (or <a href="downloads/{esc(CANDIDATE)}.zip">.zip</a>) — verdict <strong>{verdict_word}</strong>, validator <code>ok_to_submit: {'true' if ok_submit else 'false'}</code>, sha256 <code>{esc(card['artifact']['tif_sha256'])}</code>.</p></div></div>
 <ol>
 <li><strong>Download</strong> the .tif (single-band GeoTIFF) or the .zip (exactly one GeoTIFF inside, byte-identical). Do not re-export or convert it in a GIS first — re-exporting changes bytes and can push values outside [0,1].</li>
-<li><strong>Verify the hash (optional):</strong> <code>sha256 {esc(card['artifact']['tif_sha256'])}</code>. It must match the <a href="evidence/wbg8/run_card.json">run card</a>.</li>
+<li><strong>Verify the hash (optional):</strong> <code>sha256 {esc(card['artifact']['tif_sha256'])}</code>. It must match the <a href="evidence/wbg8_mridge/run_card.json">run card</a>.</li>
 <li><strong>Go to</strong> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData → Competition 306 → Submission</a> (owner login; this repo never stores credentials).</li>
-<li><strong>File to submit:</strong> pick the downloaded .tif (or .zip). Format rules from the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">rules PDF</a> and <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem page</a>: single-band float32 GeoTIFF, EPSG:32611, 3730×3292, 100 m grid, values in [0,1]. All verified by <code>scripts/validate_submission.py</code> ({n_passed}/{n_checks} checks PASS + template report PASS; receipt <a href="evidence/wbg8/preflight.json">preflight.json</a> and <a href="downloads/{esc(CANDIDATE)}.validator.json">validator.json</a> — the writer receipt's 10/10 hard checks and the strict whole-array [0,1] check pass; its 3 soft NaN-compatibility checks fail <em>by design</em> because this file uses the portal-safe all-finite zeros exterior instead of NaN).</li>
+<li><strong>File to submit:</strong> pick the downloaded .tif (or .zip). Format rules from the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">rules PDF</a> and <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem page</a>: single-band float32 GeoTIFF, EPSG:32611, 3730×3292, 100 m grid, values in [0,1]. All verified by <code>scripts/validate_submission.py</code> ({n_passed}/{n_checks} checks PASS + template report PASS; receipt <a href="evidence/wbg8_mridge/preflight.json">preflight.json</a> and <a href="downloads/{esc(CANDIDATE)}.validator.json">validator.json</a> — the writer receipt's 10/10 hard checks and the strict whole-array [0,1] check pass; its 3 soft NaN-compatibility checks fail <em>by design</em> because this file uses the portal-safe all-finite zeros exterior instead of NaN).</li>
 <li><strong>Note (paste this):</strong> <code>{note}</code> ({len(card['note'])} characters, ≤140 limit).</li>
 <li><strong>Create the submission.</strong> The expected error “Predicted values must be in range [0, 1]” CANNOT occur for this file: it contains only 0.0/1.0, no NaN/Inf anywhere (zeros exterior), min {card['validator']['range_min']}, max {card['validator']['range_max']}. That error was produced by older NaN-outside research files; this one deliberately uses the portal-safe all-finite convention (see the writer docstring in <code>src/gems/submission.py</code>).</li>
 <li><strong>After submitting:</strong> record the organizer-confirmed score on the submission page as ORGANIZER-CONFIRMED and compare with the MODEL-ESTIMATE {est['estimate']:.4f} (band {est['interval_95_model'][0]:.3f}–{est['interval_95_model'][1]:.3f}) to calibrate the estimator. Cap: 3 submissions per week per the problem page — the remaining allowance shows on the submission page.</li>

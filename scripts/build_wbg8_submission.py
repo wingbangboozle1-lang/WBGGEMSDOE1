@@ -43,8 +43,8 @@ Protocol:
 
 Outputs:
   docs/downloads/<NAME>.tif .zip .validator.json
-  evidence/wbg8/run_card.json  evidence/wbg8/holdout.json
-  evidence/wbg8/uniqueness.json  evidence/wbg8/score_estimate.json
+  evidence/wbg8_mridge/run_card.json  evidence/wbg8_mridge/holdout.json
+  evidence/wbg8_mridge/uniqueness.json  evidence/wbg8_mridge/score_estimate.json
 """
 from __future__ import annotations
 

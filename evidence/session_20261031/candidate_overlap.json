@@ -1,0 +1,106 @@
+{
+  "evidence_class": "OVERLAP",
+  "candidate": "wbggemsdoe1-rtp-hgm-distal-37k-20261031-zeros.tif",
+  "candidate_sha256": "678970ad123c4b986bd77535323ebea933113efdfefe4892a29189877415c1ee",
+  "candidate_dots": 37000,
+  "registry_rasters_compared": 482,
+  "rule": "PROMPT.md LANE: >70% of dots within 3 px of one registry raster's dots = duplicate",
+  "max_literal_overlap": 0.999945945945946,
+  "n_rasters_over_70pct_literal": 11,
+  "median_literal_overlap": 0.22608108108108108,
+  "median_density_matched_lift": 1.320608299783109,
+  "max_phi": 0.19201524869430314,
+  "n_rasters_phi_over_0_90": 0,
+  "exact_positive_set_copies": [],
+  "worst_eight": [
+    {
+      "repo": "GEMSDOE24",
+      "path": "inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "n_dots": 206895,
+      "literal_overlap": 0.999945945945946,
+      "coverage": 0.9987132726822701,
+      "lift": 1.0012342614215644,
+      "phi": 6.517895653652911e-05,
+      "identical_positive_set": false
+    },
+    {
+      "repo": "13GEMSDOE",
+      "path": "docs/downloads/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "n_dots": 206895,
+      "literal_overlap": 0.999945945945946,
+      "coverage": 0.9987132726822701,
+      "lift": 1.0012342614215644,
+      "phi": 6.517895653652911e-05,
+      "identical_positive_set": false
+    },
+    {
+      "repo": "GEMSDOE25",
+      "path": "docs/downloads/gems25-gem1-blind-magnetics-20261025-279a305b80d2-nan.tif",
+      "sha256": "51d0b3414896a18de24de969467c6e8947678d80e32ab12d2812a1f6b2bed467",
+      "n_dots": 49373,
+      "literal_overlap": 0.7711081081081081,
+      "coverage": 0.12852449397401736,
+      "lift": 5.999697678358463,
+      "phi": 0.18522323127950693,
+      "identical_positive_set": false
+    },
+    {
+      "repo": "GEMSDOE25",
+      "path": "docs/downloads/gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-nan.tif",
+      "sha256": "ad4bc4933d0b7636f0f32918c1fd8b8b08cd1964aee32d69e45419a9b54178a7",
+      "n_dots": 46181,
+      "literal_overlap": 0.7706486486486487,
+      "coverage": 0.12249377004524349,
+      "lift": 6.291329333434729,
+      "phi": 0.19201524869430314,
+      "identical_positive_set": false
+    },
+    {
+      "repo": "GEMSDOE25",
+      "path": "docs/downloads/gems25-gem-fuse1-blind-magnetics-prune2-20261025-c2097a554ef2-zeros.tif",
+      "sha256": "307b15bc8b56266515382177bc98b5df4a9866c0c3e36f2e4f0a4f1830e0c58f",
+      "n_dots": 46181,
+      "literal_overlap": 0.7706486486486487,
+      "coverage": 0.12249377004524349,
+      "lift": 6.291329333434729,
+      "phi": 0.19201524869430314,
+      "identical_positive_set": false
+    },
+    {
+      "repo": "GEMSDOE3",
+      "path": "docs/downloads/pindrop-v4-discovery-20260925T152423Z-37f9d5b855.tif",
+      "sha256": "37f9d5b855ee1b6c302cb81cdae1414db94db427f5dc9da3538474df37cf1cad",
+      "n_dots": 155021,
+      "literal_overlap": 0.749054054054054,
+      "coverage": 0.7341343464077394,
+      "lift": 1.0203228574161114,
+      "phi": 0.0002825698751845504,
+      "identical_positive_set": false
+    },
+    {
+      "repo": "GEMSDOE42",
+      "path": "docs/downloads/gems42-xscale-worm-persistence-20261006T000541Z-nan.tif",
+      "sha256": "7de8f533e13a26c25aadd74852b920a6ef759d5beab5d453ba25cb2d9212b9c9",
+      "n_dots": 60069,
+      "literal_overlap": 0.7481891891891892,
+      "coverage": 0.19216572908516572,
+      "lift": 3.8934579685517186,
+      "phi": 0.013680363782453176,
+      "identical_positive_set": false
+    },
+    {
+      "repo": "GEMSDOE3",
+      "path": "docs/downloads/pindrop-v4-nodes-20260925T152420Z-f347b70daa.tif",
+      "sha256": "f347b70daa95170bfc967b1c0b6bbf951496c2b74764a7102848ad6178829aca",
+      "n_dots": 155021,
+      "literal_overlap": 0.7354054054054054,
+      "coverage": 0.7350464152674869,
+      "lift": 1.0004883911144413,
+      "phi": -0.00044399130591744423,
+      "identical_positive_set": false
+    }
+  ],
+  "organizer_confirmed": "NONE"
+}

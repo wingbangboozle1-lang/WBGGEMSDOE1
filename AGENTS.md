@@ -1,3 +1,5 @@
+> **31 Oct 2026 update:** start with [README §31 OCT START HERE](README.md) and [docs/executive-summary-20261031.html](docs/executive-summary-20261031.html). The verdict is DOWNLOAD (research only) · SUBMIT NO for every file.
+
 # Starting point for every session
 
 0-31oct. **31 Oct 2026: read `docs/executive-summary-h2-20261031.html` first.** DOWNLOAD YES (research) · SUBMIT NO. The literal 70% gate fails for every dot file (a random-dot control included). The holdout rewards catalogue proximity (exec summary §5), so it cannot test the B2 pruning mechanism.

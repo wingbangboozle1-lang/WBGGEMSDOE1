@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to submit · GEMS · 31 Oct 2026</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top"><h1>How to submit a GEMS file · 31 Oct 2026</h1>
+<p>Submission how-to · status: SUBMIT NO for every file in this repo</p></header>
+<main>
+
+<div class="verdict">
+<p><b>Nothing is cleared.</b> The research download
+<a href="downloads/wbggemsdoe1-rtp-hgm-distal-37k-20261031-zeros.tif">wbggemsdoe1-rtp-hgm-distal-37k-20261031-zeros.tif</a>
+is format-valid and unique among local registry rasters, but it fails the 70% lane rule against GEMSDOE25 gem1 magnetics (77.1%).
+Its holdout score was not measured. Estimated leaderboard score: <b>UNAVAILABLE</b>.
+Background: <a href="executive-summary-rtp-20261031.html">31 Oct executive summary</a>.</p>
+</div>
+
+<h2>1 · What the portal needs (as recorded in this repo)</h2>
+<table class="exec" style="width:100%;border-collapse:collapse">
+<tr><th style="text-align:left">Requirement</th><th style="text-align:left">Value used here</th><th style="text-align:left">Source</th></tr>
+<tr><td>File type</td><td>Single-band GeoTIFF, or a zip containing one .tif</td><td>Owner brief; <code>vendor/gems57/submission_writer.py</code></td></tr>
+<tr><td>CRS</td><td>EPSG:32611 (UTM 11N)</td><td><code>registry/data_manifest.json</code> grid</td></tr>
+<tr><td>Shape (rows × cols)</td><td>3730 × 3292</td><td>same</td></tr>
+<tr><td>Geotransform</td><td>[100, 0, 243350, 0, −100, 4508550]</td><td>same</td></tr>
+<tr><td>Values</td><td>float32 in [0, 1], all finite (no NaN)</td><td><code>vendor/gems57/validate.py</code> (project policy)</td></tr>
+<tr><td>Name and note</td><td>Unique name; note ≤140 characters</td><td><code>submission_writer.write_submission</code> (raises above 140)</td></tr>
+<tr><td>Weekly cap</td><td>3 submissions per week</td><td><code>docs/owner-brief-20261029.md</code>; rules PDF below</td></tr>
+</table>
+<p><small>Portal error seen by the owner: "Predicted values must be in range [0, 1]". The cause is not reproducible from any named file here (IR-57-NAN-02, open). The sample file's NaN outside the footprint is an unresolved convention question (section 4).</small></p>
+
+<h2>2 · Automatic gates (no human inspection step)</h2>
+<ol>
+<li><b>Format:</b> <code>gems57.gates.format_report</code> and <code>gems57.validate.validate</code>. Passes for the 31 Oct file.</li>
+<li><b>Exact copy:</b> no positive set identical to any of the 482 local registry rasters.</li>
+<li><b>Lane rule:</b> no more than 70% of the candidate's dots within 3 px of any one registry raster. <b>Fails</b> for the 31 Oct file (11 rasters, max 99.995% against the r13 lattice; 77.1% against GEMSDOE25 gem1 magnetics).</li>
+<li><b>Leakage canary:</b> AUC above 0.90 means leakage. The 31 Oct file: closeness to the visible catalogue alone AUC 0.887 (passes, close to the limit).</li>
+<li><b>Holdout DTI:</b> must beat the same-evaluator best. <b>Not measured</b> for the 31 Oct file (its eligibility used the full catalogue; a per-fold rebuild is needed first).</li>
+</ol>
+<p>A file that fails any gate is <b>research only</b>. Gate receipts: <code>evidence/session_20261031/candidate_overlap.json</code> and <code>candidate_run_card.json</code>.</p>
+
+<h2>3 · Steps for a future submission</h2>
+<ol>
+<li>Build the file with a pinned script, keeping the note and name within 140 characters.</li>
+<li>Run the automatic gates in section 2. Stop at the first failure.</li>
+<li>Pass the file to the separate selector step. Nothing is chosen automatically.</li>
+<li><b>Upload is a blocker for this sandbox:</b> it needs a DrivenData login, which Arena cannot use here. The owner must upload from the portal.</li>
+<li>Any upload must carry the generative-AI disclosure required by the rules (29 Oct owner note).</li>
+</ol>
+
+<h2>4 · Open questions for the owner</h2>
+<ul>
+<li>NaN outside the footprint (official sample, 7,111,787 cells) or zeros (this project's files)? Neither has been tested on the portal.</li>
+<li>Which gate governs: the literal 70% rule, or density-matched lift (median 1.32 for the 31 Oct file)?</li>
+<li>Is one weekly slot worth spending as an organizer test, knowing the file fails the lane rule?</li>
+</ul>
+
+<h2>5 · Official links (for manual review)</h2>
+<ul>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Competition page</a></li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Leaderboard</a></li>
+<li><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules (NLR PDF)</a></li>
+</ul>
+</main></body></html>

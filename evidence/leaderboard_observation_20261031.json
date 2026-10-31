@@ -1,0 +1,153 @@
+{
+ "observed_utc": "2026-10-31T01:12:00Z",
+ "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+ "observation_method": "research fetch of the official public leaderboard table (this session)",
+ "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-OBSERVATION",
+ "metric_column": "Best public DW-Tversky",
+ "not_a_project_submission_receipt": true,
+ "rows": [
+  {
+   "rank": 1,
+   "participant": "xiaofanhu",
+   "best_public_dw_tversky": 0.4544,
+   "submissions": 35
+  },
+  {
+   "rank": 2,
+   "participant": "cfld__",
+   "best_public_dw_tversky": 0.3925,
+   "submissions": 22
+  },
+  {
+   "rank": 3,
+   "participant": "Batik Shirt Brothers",
+   "best_public_dw_tversky": 0.3917,
+   "submissions": 61
+  },
+  {
+   "rank": 4,
+   "participant": "BrandenKMurray",
+   "best_public_dw_tversky": 0.386,
+   "submissions": 36
+  },
+  {
+   "rank": 5,
+   "participant": "op01",
+   "best_public_dw_tversky": 0.3642,
+   "submissions": 16
+  },
+  {
+   "rank": 6,
+   "participant": "No Fault of Our Own",
+   "best_public_dw_tversky": 0.3631,
+   "submissions": 53
+  },
+  {
+   "rank": 7,
+   "participant": "tommymaherregen",
+   "best_public_dw_tversky": 0.3558,
+   "submissions": 3
+  },
+  {
+   "rank": 8,
+   "participant": "sevenrights0",
+   "best_public_dw_tversky": 0.3557,
+   "submissions": 3
+  },
+  {
+   "rank": 9,
+   "participant": "luh.correia98",
+   "best_public_dw_tversky": 0.3544,
+   "submissions": 4
+  },
+  {
+   "rank": 10,
+   "participant": "jaydevelop111",
+   "best_public_dw_tversky": 0.3533,
+   "submissions": 3
+  },
+  {
+   "rank": 11,
+   "participant": "herculesschonfeldt6",
+   "best_public_dw_tversky": 0.3522,
+   "submissions": 1
+  },
+  {
+   "rank": 12,
+   "participant": "holandakrait",
+   "best_public_dw_tversky": 0.352,
+   "submissions": 4
+  },
+  {
+   "rank": 13,
+   "participant": "j234",
+   "best_public_dw_tversky": 0.35,
+   "submissions": 3
+  },
+  {
+   "rank": 14,
+   "participant": "xlgracias",
+   "best_public_dw_tversky": 0.348,
+   "submissions": 3
+  },
+  {
+   "rank": 15,
+   "participant": "mzoorob",
+   "best_public_dw_tversky": 0.3476,
+   "submissions": 50
+  },
+  {
+   "rank": 16,
+   "participant": "raulcbrooks0909",
+   "best_public_dw_tversky": 0.3467,
+   "submissions": 4
+  },
+  {
+   "rank": 17,
+   "participant": "joeyfezster",
+   "best_public_dw_tversky": 0.3447,
+   "submissions": 44
+  },
+  {
+   "rank": 18,
+   "participant": "liel93",
+   "best_public_dw_tversky": 0.344,
+   "submissions": 3
+  },
+  {
+   "rank": 19,
+   "participant": "JerryDataWorks",
+   "best_public_dw_tversky": 0.3418,
+   "submissions": 22
+  },
+  {
+   "rank": 20,
+   "participant": "jay398144",
+   "best_public_dw_tversky": 0.3417,
+   "submissions": 4
+  },
+  {
+   "rank": 21,
+   "participant": "alexoktaba",
+   "best_public_dw_tversky": 0.3416,
+   "submissions": 35
+  },
+  {
+   "rank": 22,
+   "participant": "DARD",
+   "best_public_dw_tversky": 0.3407,
+   "submissions": 32
+  }
+ ],
+ "derived_facts": [
+  "round-1 prize band: the Initial Prize Round pays the top 5 of the private-test scoring; the public leaderboard column observed here is the public test chunk only",
+  "top-20 public DW-Tversky threshold observed on 2026-10-31: 0.3417",
+  "public leader observed 2026-10-31: 0.4544 (0.4544 was also the value retained from the 2026-10-27 observation, so the leader has not improved)",
+  "the best focus-site value in the owner brief (0.2778) is 0.064 below the observed top-20 threshold",
+  "measured in this repo's sha256-verified copies: 18 of the 118 scored rasters carry exactly 37,654 dots and 7 carry exactly 44,090, so the 'independent' sibling sites reuse one emission template rather than one another's geology"
+ ],
+ "irregularities": [
+  "the owner brief states the current high score is 0.4413 in one block and 0.3195 in another; the observed public page shows 0.4544 at rank 1 and 0.3417 at rank 20 - the brief's numbers are stale or refer to different dates, and neither matches a receipt in this repo",
+  "the dot-count analysis (evidence/portfolio_descriptors.json recomputed 2026-10-31) shows 18/118 submissions with identical 37,654-dot budgets and 7/118 with identical 44,090, which is a shared-template signature; treat cross-site 'different method, same score' claims accordingly"
+ ]
+}

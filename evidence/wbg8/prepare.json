@@ -1,0 +1,38 @@
+{
+ "generated_utc": "2026-10-31T01:06:08Z",
+ "evidence_class": "DATA-MEASUREMENT",
+ "feature_raster_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+ "labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+ "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+ "grid": {
+  "shape": [
+   3730,
+   3292
+  ],
+  "crs": "EPSG:32611",
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ],
+  "footprint_cells": 5167373,
+  "catalogue_cells": 60988,
+  "cells_with_positive_susceptibility": 5152505
+ },
+ "habitat_weights": {
+  "w_strain": 0.25,
+  "w_basement": 0.35,
+  "floor": 0.0,
+  "max_raw": 1.4045532941818237
+ },
+ "susceptibility_edges": {
+  "n_bins": 96,
+  "min": 0.0012701061787083745,
+  "max": 1.0
+ },
+ "median_rank_of_distance_to_catalogue": 0.48673194646835327,
+ "note": "susceptibility is a ranking, not a probability and not a score; the probability field is fitted later from the 118 owner-reported scores"
+}

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ranked hypotheses &middot; WBG GEMS research desk</title>
+<meta name="description" content="Auditable GEMS Prize decision page: one unique generated GeoTIFF with an explicit download/submit verdict, nine-site table, calibrated score estimator, ranked hypotheses.">
+<link rel="stylesheet" href="assets/style.css"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script defer src="assets/app.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="masthead"><div class="wrap"><nav class="nav" aria-label="Main navigation">
+<a class="brand" href="index.html"><span>WBG / GEMS<small>FAULT MAPPING &middot; RESEARCH DESK</small></span></a>
+<div class="navlinks"><a href="index.html">Overview</a>
+<a class="active" href="wbg8-h3c-summary-20261031.html">Executive summary &middot; 31 Oct</a>
+<a href="wbg8-h3c-how-to-submit-20261031.html">How to submit &middot; 31 Oct</a>
+<a href="wbg8-h3c-hypotheses-20261031.html">Ranked hypotheses</a>
+<a href="wbg8-h3c-estimator-20261031.html">Score estimator</a>
+<a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Repository &#8599;</a></div>
+</nav></div></header>
+<main id="main" class="wrap">
+
+<p class="breadcrumb">GEMS prize challenge <span>/</span> Hypotheses <span>/</span> 31 October 2026</p>
+<section class="section"><div class="table-wrap"><table><caption class="sr-only">ranked by expected DTI improvement per implementation cost; H1 and H2 are the WBG-8 lane, and H1&#x27;s verdict is now &lt;em&gt;falsified&lt;/em&gt; - see the falsification panel</caption><thead><tr><th>Hypothesis</th><th>Layer(s)</th><th>Physical signature</th><th>Why it finds a <em>new</em> fault</th><th>Cost</th><th>Evidence / difference</th></tr></thead><tbody><tr><td><strong>H1 &middot; concealed-cover inter-field concordance (<strong>implemented in WBG-8</strong>)</strong></td><td>mag + gravity potential fields; detrended-elevation slope as the cover mask</td><td>both the analytic-signal amplitude of TMI &lt;em&gt;and&lt;/em&gt; the isostatic-gravity amplitude peak at the same cell, while det_elev_slope says the surface has no scarp</td><td>the catalogue was compiled from surface expression; a basement offset with no topographic expression is exactly the population experts added later. A single-field edge is usually a lithology contact, which is why two independent fields must agree</td><td>no sibling site or earlier lane tests inter-field <em>concordance &times; relief deficit</em>; WBG-C1 tested intra-field Hessian non-coaxiality, GEMSDOE24/30 tested ridge/scarphabitats</td><td>high expected gain per unit cost (one convolution over 100&nbsp;m bands), but the ranking cannot be validated beyond the catalogue proxy</td></tr><tr><td><strong>H2 &middot; prune-to-the-marginal-bar emission (implemented in WBG-8)</strong></td><td>metric algebra, not geology</td><td>dot budget is the fixed point of <code>dT &gt; &alpha;DTI(1&minus;k)</code> instead of a hand-set 37,654/44,090</td><td>every retained dot pays for itself; guaranteed-positive under the published formula for any truth</td><td>cheap (no new data)</td><td>the only lever with a controlled before/after in the registry (0.2600&rarr;0.2778)</td></tr><tr><td><strong>H3 &middot; basement-depth gradient threading</strong></td><td>depth_to_base_surf (officially the top-of-crustal magnetic source depth estimate)</td><td>|&#8711;| of the depth surface concentrated on a linear crest</td><td>a fault offsets the depth estimate itself; a lithology patch does not produce a step</td><td>cheap</td><td>used by GEMSDOE91 as a &#x27;listric dip&#x27; channel, never as a ridge thread with a relief mask</td></tr><tr><td><strong>H4 &middot; conductivity / hydrothermal-alteration weighting</strong></td><td>cond_surf + radiometrics (GEODAWN)</td><td>elevated surface conductivity along a damage zone</td><td>targets the geothermal objective directly; fluid pathway = permeable fault core</td><td>needs the external radiometric raster (free, USGS)</td><td><strong>expected DTI gain: small/negative</strong> &mdash; the registry already tried it: GEMSDOE15 conj_alteration 0.0782, GEMSDOE71 hydro-conduit 0.0558, GEMSDOE76 geotherm 0.1555</td></tr><tr><td><strong>H5 &middot; geodetic strain ridge (2nd invariant + dilatation)</strong></td><td>geod_2ndinv, geod_shearrate, geod_dilaterate</td><td>present-day strain rate concentration</td><td>only causally about &lt;em&gt;active&lt;/em&gt; faulting, so it should find the faults experts re-mapped</td><td>already in the provided raster (free)</td><td>the registry shows it is weak on its own: GEMSDOE33 seisdil 0.0963, GEMSDOE62 strain-gauge 0.0000, GEMSDOE84 kthm 0.0132 &mdash; kept in WBG-8 only as a 0.25-weight tilt</td></tr></tbody></table></div><p class="micro">ranked by expected DTI improvement per implementation cost; H1 and H2 are the WBG-8 lane, and H1's verdict is now <em>falsified</em> - see the falsification panel</p>
+<h2>Why these five, and what was rejected</h2>
+<p>The candidate list was screened against the measured 118-file portfolio, not against taste: a
+hypothesis whose mechanism is already represented in a <em>scored</em> sibling file has to clear that
+file's number, not a holdout. Radiometric/alteration and geodetic-strain primaries were demoted for
+exactly that reason (0.0782, 0.0558, 0.0963, 0.0000, 0.0132 owner-reported).</p>
+<h2>Non-fault mimics that must be argued against</h2>
+<ul><li>lithologic contacts offsetting both potential fields (the strongest confounder of H1);</li>
+<li>alluvial-channel and pediment boundaries, which create relief deficits with no structure;</li>
+<li>DEM/magnetic interpolation artifacts shared between derived bands;</li>
+<li>mining or seismicity-grid sampling footprints, which imprint on the geodetic and earthquake bands.</li></ul>
+</section></main>
+<footer class="footer"><div class="wrap footer-inner"><p><strong>WBG / GEMS</strong> &nbsp; Evidence before a weekly slot.
+A MODEL-ESTIMATE is never an organizer score; local validation is never portal acceptance.
+Fault predictions are not verified geothermal vents.</p>
+<div><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official problem description &#8599;</a>
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official leaderboard &#8599;</a>
+<a href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference solution &#8599;</a></div>
+</div></footer></body></html>

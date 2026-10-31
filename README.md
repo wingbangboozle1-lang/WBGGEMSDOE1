@@ -1,3 +1,17 @@
+## ⛔ SUBMISSION STATUS (31 Oct 2026): SUBMIT NO — WBG31-E1 CLOSED, NEGATIVE
+
+**Verdict:** the research file `wbg31-e1-euler4-dots37k-20261031-7a46504ca8.tif` is **DOWNLOAD: research only** and **SUBMIT: NO**. One-click file: [`wbg31-e1-euler4-dots37k-20261031-7a46504ca8.tif`](docs/downloads/wbg31-e1-euler4-dots37k-20261031-7a46504ca8.tif); verdict note and JSON sit beside it. `submission_slots_used` = 0 in this lane; promotion authorised: false.
+
+**Why no slot:** the primary efficacy gate failed. Paired dotted HOLDOUT-DTI delta (candidate minus control) = +0.000392, 95% CI [-0.004810, +0.005401] (evaluator `gems57-pooled-hide-v2`, n withheld positives 11,330). The CI includes zero. The continuous secondary arm also fails. The 19-band control reproduces the WBG-C1 anchor (0.014146; difference 0.0e+00).
+
+**Registry measurement (REGISTRY-MEASUREMENT; 453 of 454 accessible rasters):** G1 format PASS; G2 no exact copy PASS; G3 max Spearman 0.0570 PASS (limit < 0.90); G4 literal 3-px overlap max 0.9569 FAIL (limit 0.70); the r13 lattice (206,895 dots) has chance overlap 0.9987, so its literal test is degenerate (density-matched lift 0.958). Canary: passed (max orientation-invariant AUC 0.6124, limit 0.90).
+
+Attempt 1 failed closed on a missing bootstrap block (a registration omission); amendment 2 copied the WBG-C1 values verbatim and the same experiment was rerun. Full account: [`docs/hypotheses-20261031.md`](docs/hypotheses-20261031.md) · [`registry/wbg31/attempt1_failure_record.md`](registry/wbg31/attempt1_failure_record.md) · [`registry/experiment_ledger_wbg31_e1.json`](registry/experiment_ledger_wbg31_e1.json) (status `closed_negative_efficacy_gate_failed`).
+
+Estimated leaderboard score: **UNAVAILABLE**. HOLDOUT-DTI here is a different instrument from the leaderboard and from the 0.1661 `gems-segment-pooled-v1` benchmark; numbers are not comparable. GEMSDOE32 B2's 0.2778 remains OWNER-REPORTED and is already in the competition; re-uploading it is a duplicate.
+
+---
+
 ## 31 OCT 2026 — CURRENT STATUS / READ FIRST EVERY SESSION
 
 **SUBMIT: NO — no TIFF is cleared.** Read the [31 Oct repository review](docs/repo-review-20261031.md) before acting on historical content below. The review generated no TIFF; a separate parallel-branch [research-only TIFF](docs/downloads/WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.tif) is downloadable but fails the shared outside-footprint nodata check, has no registry comparison or holdout, so uniqueness is **unverified** and it is **not submit-cleared**. Required full inputs are absent, focus-site values are OWNER-REPORTED rather than ORGANIZER-CONFIRMED, new-file leaderboard estimates are unavailable, and no weekly slot was used.

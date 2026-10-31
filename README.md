@@ -11,7 +11,7 @@ satisfied by the WBG-8 pages (31 Oct 2026):
 3. UNIQUE TIF: `docs/downloads/wbggemsdoe1-wbg8-hidden-corridor-34000-20261031-zeros.tif` —
    one-click download, auto-validated (single-band float32 EPSG:32611 3730×3292, values in
    [0,1], **no NaN** — a NaN-outside file is what triggered “Predicted values must be in
-   range [0, 1]”), unique name + 114-char note.
+   range [0, 1]”), unique name + 95-char note (limit 140).
 4. Executive summary table (file | estimate | unique yes/no) + obvious SUBMIT-OK verdict +
    how-to-submit subpage: [executive-summary-20261031.html](docs/executive-summary-20261031.html),
    [how-to-submit-20261031.html](docs/how-to-submit-20261031.html).

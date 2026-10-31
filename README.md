@@ -16,6 +16,30 @@
 > 8. Core values: **Maximize P(Win)** and **Own the Outcome**.
 > 9. Method (parallel-run protocol, [`PROMPT.md`](PROMPT.md)): stay in the declared lane; reuse the shared holdout and writer; label every number; run the leakage canary; end each experiment with a run card; budget 3 experiments or 2 hours.
 
+## 31 OCT 2026 STANDING PROMPT — READ FIRST EVERY SESSION (condensed from the user's brief)
+
+**Mission:** WBGGEMSDOE1 for the DOE GEMS Prize (DrivenData competition 306). Core values: maximize P(Win); own the outcome; no manual input; no hallucinations (verify each line against an official link).
+
+**Standing requirements:**
+1. Executive summary per focus site (GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36): highest-scoring file to download, plus a score table (file, estimated score, unique vs other GEMSDOE sites). Every number is labelled **HOLDOUT-DTI** (evaluator, withheld-positive count, 95% CI) or **ORGANIZER-CONFIRMED** (submission-page receipt). User-reported numbers are labelled USER-REPORTED. No projection is written as a score.
+2. Produce a unique TIFF (not a copy of a prior submission, except for learning). It must be obvious whether it is OK to download and to submit. It must be validated automatically, and its values must lie in [0, 1].
+3. Explain why GEMSDOE32 B2 (0.2778, user-reported) scored highest and whether more is achievable. Leaderboard: #1 is 0.4544 on the page read 31 Oct; the brief's 0.4413 is not on the page, and 0.3195 is #50, not the leader.
+4. Three to five untested geological hypotheses, ranked by expected DTI gain and cost. The top candidate must pass a spatially blocked holdout before any submission slot is used.
+5. Parallel-run protocol: lane check (rank correlation above 0.90, or more than 70% of dots within 3 px of any registry raster, means duplicate and stop); reuse `scripts/evaluate_holdout.py` and `scripts/submission_writer.py`; leakage canary (AUC above 0.90 means leakage); run card JSON; budget of 3 experiments in 2 hours; no slot picking.
+6. Keep this prompt in the README and read it each session. Maintain the GitHub Pages site (clean UI, executive summary, how-to-submit subpage that addresses "Predicted values must be in range [0, 1]"), give official links, flag irregularities, run multi-pass review, open a PR and merge to `main`, and list the remaining work and limitations.
+
+**Current outputs (31 Oct 2026, fold-safe lane):**
+- Executive summary: [docs/executive-summary-20261031.html](docs/executive-summary-20261031.html) · How to submit: [docs/how-to-submit-20261031.html](docs/how-to-submit-20261031.html) · Overview: [docs/index.html](docs/index.html).
+- Research TIFF: [`docs/downloads/wbggemsdoe1-fs-hgbvisible-greedy-k12198-20261031.tif`](docs/downloads/wbggemsdoe1-fs-hgbvisible-greedy-k12198-20261031.tif). **DOWNLOAD: YES (research and learning only) · SUBMIT: NO** (run card `ok_to_submit` = false). Estimated leaderboard score: UNAVAILABLE.
+- HOLDOUT-DTI (evaluator `gems57-pooled-hide-v2`, withheld positives 22,893): candidate E2 **0.0536** (95% CI [0.0459, 0.0614]) against uniform null **0.0646** (paired difference -0.0110, 95% CI [-0.0182, -0.0035]). E3 top-N: 0.0249 against uniform 0.0451.
+- Literal registry overlap: 99.83% against the r13 lattice (gate G4 fails). Registry scan 117 of 118 (one CRS/transform error).
+- Negative results stand. The lane is closed as negative; the next experiment (spatially dispersed ranking) needs a written pre-registration first.
+- Receipts: [`evidence/fold_safe_20261031/`](evidence/fold_safe_20261031/) · irregularities [`evidence/fold_safe_20261031/irregularities_20261031.json`](evidence/fold_safe_20261031/irregularities_20261031.json).
+
+**Official links:** [Rules (NLR PDF)](https://docs.nlr.gov/docs/fy26osti/96647.pdf) · [HeroX rules page](https://www.herox.com/GEMSPrize/resource/2274) · [Problem page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) · [Leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) · [Competition](https://www.drivendata.org/competitions/306/competition-doe-gems/)
+
+**Flags for review (I1–I12 in the executive summary):** rules name two label sources (§2 vs §3.3); generative-AI disclosure is required by §3.2 before any submission; the shipped TIFF is not the exact object measured on holdout (I6).
+
 ## ⛔ SUBMISSION STATUS (31 Oct 2026): SUBMIT NO — WBG31-E1 CLOSED, NEGATIVE
 
 **Verdict:** the research file `wbg31-e1-euler4-dots37k-20261031-7a46504ca8.tif` is **DOWNLOAD: research only** and **SUBMIT: NO**. One-click file: [`wbg31-e1-euler4-dots37k-20261031-7a46504ca8.tif`](docs/downloads/wbg31-e1-euler4-dots37k-20261031-7a46504ca8.tif); verdict note and JSON sit beside it. `submission_slots_used` = 0 in this lane; promotion authorised: false.

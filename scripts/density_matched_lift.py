@@ -16,7 +16,6 @@ import argparse, json, sys
 from pathlib import Path
 import numpy as np
 import rasterio
-from scipy import ndimage
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "src"), str(ROOT / "vendor")]

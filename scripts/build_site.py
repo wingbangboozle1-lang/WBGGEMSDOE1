@@ -262,7 +262,7 @@ def parallel_artifact_banner():
             f'<strong>Parallel-branch TIFF · research only:</strong> '
             f'<a href="downloads/{escape(tif)}" download>{escape(tif)}</a> · '
             f'<a href="downloads/{escape(name)}.zip" download>one-TIFF ZIP ↓</a>. '
-            f'{card["n_dots"]:,} dots; SHA-256 <code>{card["raster_sha256"]}</code>. '
+            f'{card["n_dots"]:,} dots; SHA-256 <code style="word-break:break-all">{card["raster_sha256"]}</code>. '
             '<strong>DOWNLOAD: YES (research) · SUBMIT: NO.</strong> Holdout DTI is absent; zero registry rasters were checked, so uniqueness is NOT ESTABLISHED. '
             'The shared validator fails because finite zeros fill outside-footprint cells instead of null/NaN. No leaderboard estimate is available.</p></div>')
 

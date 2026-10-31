@@ -1,30 +1,33 @@
 #!/usr/bin/env python3
-"""Generate ONE final, unique, portal-valid GeoTIFF submission candidate.
+"""Generate ONE format-valid, research-only GeoTIFF baseline.
+
+This script does not establish holdout efficacy, registry uniqueness or portal acceptance.
 
 Method (learning from history, not copying it):
   GEMSDOE32's champion B2 (supplied 0.2778, USER-REPORTED) is the D2.8 dot
   field pruned to exclude dots near the public catalogue.  That is a
-  precision play: sparse, off-catalogue dots avoid wasting false-positive
-  credit on already-mapped traces.  This script realises the same *idea*
-  with a *different, unique dot field*: spatially stratified off-catalogue
-  dots, none on the catalogue, drawn with a fixed seed so the field is
-  reproducible but not identical to any history file.
+  precision hypothesis with a seeded, spatially stratified random field.
+  This is a null/baseline, not a geological detector. A fixed seed makes
+  this generated array reproducible; it does not establish uniqueness against
+  any registry raster.
 
-  It does NOT use catalogue-proximity emission (that feature leaked:
-  distance-to-visible-catalogue AUC = 1.0 vs withheld faults, and the
-  non-leaked holdout DTI = 0.0000).  No leaderboard score is claimed.
+  The eligibility mask excludes cells within 3 px of the local catalogue,
+  so the catalogue still conditions placement. This artifact has no
+  candidate-specific clean holdout result. Leakage and DTI results from a
+  different catalogue-distance feature experiment must not be attributed to
+  this random baseline. No leaderboard score is claimed.
 
 Outputs:
-    docs/downloads/<name>.tif            portal-safe float32 GeoTIFF (zeros outside)
+    docs/downloads/<name>.tif            local-format-valid float32 research GeoTIFF (zeros outside)
     docs/downloads/<name>.zip             one-TIFF ZIP
     docs/downloads/<name>.validator.json  format validation receipt
     docs/downloads/<name>.note.txt        submission name + <=140 char note
     docs/downloads/<name>.run-card.json   complete JSON run card
 
-Verdict: SUBMIT NOT CLEARED.  Format-valid and unique-by-construction, but
-no organizer score receipt exists and no clean holdout efficacy is
-established, so this file cannot be claimed to beat 0.2778.  Download for
-research; an authenticated selector must approve any real slot.
+Verdict: SUBMIT NOT CLEARED. Format-valid locally, but registry uniqueness,
+clean holdout efficacy and organizer acceptance are unverified. Do not claim
+this file beats 0.2778. Download for research only; any real slot requires a
+separate selector decision.
 """
 
 from __future__ import annotations
@@ -53,7 +56,7 @@ LABELS_PATH = BRIDGE / "existing_faults.tif"
 # catalogue pixel (target unmapped territory).  3 px = 300 m, the metric's
 # kernel radius; B2 used 200 m.  We use 3 px to stay clearly off-catalogue.
 MIN_DIST_PX = 3.0
-# Total dots (unique realization, well under footprint so dots stay isolated).
+# Total dots in this random baseline; this count does not imply registry uniqueness.
 N_DOTS = 40_000
 SEED = 20261031
 
@@ -87,7 +90,7 @@ def main() -> int:
     eligible = footprint & (d_cat > MIN_DIST_PX)
     print(f"Eligible off-catalogue px (> {MIN_DIST_PX} px from catalogue): {int(eligible.sum()):,}")
 
-    # ---- 3. Spatially stratified unique dot placement ---------------------
+    # ---- 3. Spatially stratified random dot placement --------------------
     rng = np.random.default_rng(SEED)
     yy, xx = np.nonzero(eligible)
     n_elig = yy.size
@@ -140,8 +143,9 @@ def main() -> int:
     val_path.write_text(json.dumps(receipt, indent=2, allow_nan=False) + "\n")
 
     # ---- 6. Submission name + note (<=140 chars) --------------------------
-    note = (f"WBGGEMSDOE1 off-catalogue stratified dots, {n_dots:,} dots >300m from "
-            f"public catalogue, unique realization | format-valid research | no score claimed")
+    note = (f"WBGGEMSDOE1 off-catalogue stratified {n_dots // 1000}k dots; "
+            "format-valid research; registry uniqueness and score unverified; "
+            "not cleared to submit")
     if len(note) > 140:
         note = note[:137] + "..."
     print(f"Name: {NAME}")
@@ -154,10 +158,9 @@ def main() -> int:
     run_card = {
         "schema": "gemsdoe1-run-card-v1",
         "generated_utc": datetime.now(timezone.utc).isoformat(),
-        "hypothesis": ("Sparse, spatially stratified off-catalogue dots avoid wasting "
-                       "false-positive credit on already-mapped catalogue traces "
-                       "(the GEMSDOE32 B2 precision idea, 0.2778 USER-REPORTED), "
-                       "realised as a unique dot field with a fixed seed."),
+        "hypothesis": ("A seeded, stratified random off-catalogue field is a null/baseline "
+                       "for the unverified idea that catalogue-halo removal reduces "
+                       "false-positive burden; it is not a geological detector."),
         "mechanism": ("Distance-to-catalogue eligibility (> 3 px / 300 m from any "
                       "catalogue pixel) -> equal per-quadrant random draw -> "
                       "binary GeoTIFF, zeros outside footprint."),
@@ -167,10 +170,9 @@ def main() -> int:
         "holdout_ci95": None,
         "n_withheld_positives": None,
         "evaluator_version": None,
-        "leakage_note": ("Catalogue-proximity emission was tested and leaked "
-                         "(AUC 1.0 vs withheld faults; clean holdout DTI 0.0000). "
-                         "This placement uses only a hard off-catalogue exclusion "
-                         "and makes no holdout efficacy claim."),
+        "leakage_note": ("No candidate-specific leakage canary or holdout result is present. "
+                         "AUC and DTI values from separate catalogue-distance experiments "
+                         "are not evidence for this raster."),
         "registry_unique": None,
         "registry_entries_available": 0,
         "registry_entries_total": 0,
@@ -189,11 +191,10 @@ def main() -> int:
         "submission_clear": {
             "ok_to_download": True,
             "ok_to_submit": False,
-            "reason": "Format VALID and unique-by-construction, but no organizer score "
-                      "receipt exists and no clean holdout efficacy is established "
-                      "(catalogue-proximity holdout leaked; clean holdout DTI 0.0000). "
-                      "Cannot claim it beats 0.2778. An authenticated selector must "
-                      "approve any real weekly slot.",
+            "reason": "Format valid locally, but this random baseline has no candidate-specific "
+                      "holdout result and no registry comparison receipt. Uniqueness, efficacy, "
+                      "organizer acceptance and score are unverified; cannot claim it beats "
+                      "0.2778. An authenticated selector must approve any real slot.",
         },
     }
     card_path = DOWNLOADS / f"{NAME}.run-card.json"

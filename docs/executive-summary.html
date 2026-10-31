@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Executive summary — GEMSDOE nine sites &amp; unique TIF submission · WBG GEMS</title>
-<meta name="description" content="Executive summary for GEMSDOE24, 25, 27, 28, 30, 31, 32, 33 and 36: best supplied file at each site, estimated score, uniqueness, plus the newly generated unique GeoTIFF submission and how to submit it.">
+<title>Executive summary — GEMSDOE nine sites &amp; research TIF status · WBG GEMS</title>
+<meta name="description" content="Executive summary for GEMSDOE24, 25, 27, 28, 30, 31, 32, 33 and 36: historical claims, unavailable new-score estimates, uniqueness status, and a research-only GeoTIFF with explicit no-submit gates.">
 <meta name="theme-color" content="#173b42"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/style.css"><script defer src="assets/app.js"></script>
 <style>
@@ -34,8 +34,10 @@ details[open]>summary{border-bottom:1px solid #e3e9e7}
 </style></head><body><a class="skip" href="#main">Skip to content</a>
 <header class="masthead"><div class="wrap"><nav class="nav" aria-label="Main navigation">
 <a class="brand" href="index.html"><svg viewBox="0 0 36 38" fill="none" aria-hidden="true"><path d="M3 29C12 27 4 16 13 15S21 5 31 6M4 35C15 34 11 22 20 22S25 11 34 12M2 21C8 21 4 9 13 9S18 1 25 2" stroke="#23665f" stroke-width="2" stroke-linecap="round"/></svg><span>WBG / GEMS<small>FAULT MAPPING · RESEARCH DESK</small></span></a>
-<div class="navlinks"><a class="" href="start-here.html">START HERE</a><a class="active" href="executive-summary.html">Executive summary</a><a class="" href="executive-summary-focus-sites.html">Nine-site table</a><a class="" href="how-to-submit.html">How to submit</a><a class="" href="hypotheses.html">Hypotheses</a><a class="" href="evidence.html">Evidence</a><a class="" href="index.html">Overview</a><a class="repo" href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Repository ↗</a></div></nav></div></header>
+<div class="navlinks"><a class="" href="start-here.html">START HERE</a><a class="" href="repo-review-20261031.md">Latest review · 31 Oct</a><a class="active" href="executive-summary.html">Executive summary</a><a class="" href="executive-summary-focus-sites.html">Nine-site table</a><a class="" href="how-to-submit.html">How to submit</a><a class="" href="hypotheses.html">Hypotheses</a><a class="" href="evidence.html">Evidence</a><a class="" href="index.html">Overview</a><a class="repo" href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Repository ↗</a></div></nav></div></header>
 <main id="main" class="wrap">
+
+<div class="hero hero-no"><b>31 OCT 2026 REVIEW — SUBMIT: NO.</b> No competition slot was used. The latest binary TIFF is for research only: local format/range checks pass, but no HOLDOUT-DTI or registry uniqueness result exists and the generic validator reports an untracked run-card binding. <a href="repo-review-20261031.md">Read the full review →</a></div>
 
 <div class="hero hero-neutral">
 <h1 style="margin-top:0">Executive summary — which file scores highest, and is it OK to submit?</h1>
@@ -44,25 +46,25 @@ Every historical value below is <strong>USER-REPORTED / NOT organizer-confirmed<
 </div>
 
 <!-- ================= HEADLINE DECISION ================= -->
-<div class="hero hero-no">
+<div class="hero hero-no" id="decision">
 <h2 style="margin-top:0">HEADLINE DECISION — read first</h2>
 <p><strong>Best supplied historical claim: GEMSDOE32 = 0.2778</strong> (file <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>). It is USER-REPORTED, not organizer-confirmed, and must <strong>not be copied</strong> as a new unique submission.</p>
-<p><strong>New unique TIF generated in this repo:</strong><br>
+<p><strong>Most recent binary research TIF in this repo (uniqueness unverified):</strong><br>
 <span class="file fn"><a class="download-btn" href="downloads/WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.tif" download>Download submission TIF ↓</a>
 <a class="download-btn secondary" href="downloads/WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.zip" download>One-TIFF ZIP ↓</a></span><br>
 SHA-256 <code>44e0f22fc78bfc5fbd0bf93efcb3ff454d1fc01085ae51b5661e6cf6eb16850e</code><br>
 <span class="file fn">WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.tif</span></p>
-<p><b>Format:</b> single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, all finite, every value in [0, 1] (will NOT trigger the "Predicted values must be in range [0, 1]" portal error), zero outside the scored footprint.<br>
-<b>Dots:</b> 40,000 off-catalogue dots, zero on the public USGS/INGENIOUS fault catalogue.<br>
-<b>Unique:</b> unique-by-construction (not a copy of any history file).</p>
-<p class="no"><b>SUBMIT: NOT CLEARED — DO NOT UPLOAD yet.</b> Local format validation passes, but there is <strong>no organizer score receipt</strong> and <strong>no clean holdout efficacy</strong> is established (catalogue-proximity holdout leaked; non-leaked holdout DTI = 0.0000). We therefore <strong>cannot claim this beats 0.2778</strong> or any leaderboard value. An authenticated DrivenData selector must approve any real weekly slot.<br>
+<p><b>Local format:</b> one float32 band, EPSG:32611, 3,730 × 3,292, 100 m, finite values in [0, 1], zero outside the scored footprint. This local preflight does not guarantee portal acceptance or explain the earlier range error.<br>
+<b>Dots:</b> 40,000 points selected from cells more than 3 px from the local owner-mirror catalogue mask; zero on that mask. This is not proof of geological targeting.<br>
+<b>Unique:</b> <strong>UNVERIFIED</strong> — the candidate run card reports 0 of 179 registry entries compared. A seeded random field is not evidence of full registry uniqueness.</p>
+<p class="no"><b>SUBMIT: NOT CLEARED — DO NOT UPLOAD.</b> The candidate has <strong>no organizer score receipt</strong> and no candidate-specific HOLDOUT-DTI (its holdout score, evaluator, withheld-positive count and CI are null). The run card reports 0/0 registry entries checked, so uniqueness is unverified. A separate prior catalogue-distance canary is not evidence for this raster. We <strong>cannot claim this beats 0.2778</strong> or any leaderboard value. An authenticated selector must approve any weekly slot.<br>
 <b>Download: YES (research). Submit: NO (not cleared).</b></p>
 <p class="small"><b>Submission name (65 chars):</b> <code>WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z</code><br>
-<b>Note (140 chars):</b> <code>WBGGEMSDOE1 off-catalogue stratified dots, 40,000 dots &gt;300m from public catalogue, unique realization | format-valid research | no score claimed</code></p>
+<b>Note (133 chars):</b> <code>WBGGEMSDOE1 off-catalogue stratified 40k dots; format-valid research; registry uniqueness and score unverified; not cleared to submit</code></p>
 </div>
 
 <!-- ================= NINE-SITE TABLE ================= -->
-<h2 class="h2">1. Nine focus sites — best supplied file, score, and uniqueness</h2>
+<h2 class="h2" id="comparison">1. Nine focus sites — best supplied file, score, and uniqueness</h2>
 <p class="small">One row per site. Values are the best <strong>supplied historical claims</strong> from each site's GitHub page. None are organizer-confirmed; none carry a leaderboard estimate for a new file. <b>GEMSDOE32's 0.2778 is the highest supplied claim.</b> Every row is marked "DO NOT SUBMIT — copy" because these are existing history, not unique new submissions.</p>
 <div style="overflow-x:auto"><table class="data">
 <thead><tr>
@@ -136,7 +138,7 @@ SHA-256 <code>44e0f22fc78bfc5fbd0bf93efcb3ff454d1fc01085ae51b5661e6cf6eb16850e</
 <td class="file fn"><a class="download-btn" style="padding:4px 10px;font-size:12px" href="downloads/WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.tif" download>WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.tif</a></td>
 <td><span class="no">No organizer score</span></td>
 <td><span class="no">UNAVAILABLE</span> — no organizer receipt</td>
-<td><span class="ok">Yes</span> — unique-by-construction, 40,000 off-catalogue dots</td>
+<td><span class="warn">Unverified</span> — 0 registry rasters checked</td>
 <td class="warn">DOWNLOAD YES · SUBMIT NOT CLEARED</td>
 </tr>
 </tbody></table></div>
@@ -146,7 +148,7 @@ SHA-256 <code>44e0f22fc78bfc5fbd0bf93efcb3ff454d1fc01085ae51b5661e6cf6eb16850e</
 <h2 class="h2">2. Why did GEMSDOE32 B2 score 0.2778, and can it be beaten?</h2>
 <p><strong>Short answer:</strong> GEMSDOE32 B2 is the inherited D2.8 dot field pruned by catalogue distance: D2.8 (44,090 dots, shared with GEMSDOE30) → GEMSDOE31 B1 removes dots within 100 m of the public catalogue (40,199 dots) → GEMSDOE32 B2 removes another 2,545 dots within 200 m of the catalogue (37,654 dots). The reported 0.2778 is <strong>USER-REPORTED, not organizer-confirmed</strong>; no submission-page receipt binds those bytes to that value.</p>
 <p><strong>Plausible mechanism (not proved):</strong> the official metric is a distance-weighted Tversky index (α = 0.2 false positives, β = 0.8 false negatives, 300 m triangular kernel). Under max-cover credit, each truth cell earns credit from the single strongest prediction within 300 m. Redundant dots near already-covered faults add false-positive cost without new coverage, so pruning low-marginal-credit, catalogue-near dots can raise DTI. That makes 0.2778 plausible as a precision play — but hidden labels are unavailable, so this is a plausible mechanism, not a proved causal account, and a 200 m exclusion is not an organizer rule.</p>
-<p><strong>Can it be beaten?</strong> In principle yes — the public leaderboard shows higher values — but <strong>nothing in this repo establishes a higher project result</strong>, and we cannot verify any claim without DrivenData authentication. The new TIF above is genuine and unique; treat its leaderboard score as unknown. Do not copy GEMSDOE32 B2.</p>
+<p><strong>Can it be beaten?</strong> In principle yes, but <strong>nothing in this repo establishes a higher project result</strong>, and we cannot verify any claim without DrivenData authentication. This TIF's registry uniqueness is unverified and its leaderboard score is unknown. Do not copy GEMSDOE32 B2.</p>
 
 <!-- ================= HOW TO SUBMIT ================= -->
 <h2 class="h2">3. How to make a submission into the contest</h2>
@@ -181,7 +183,7 @@ SHA-256 <code>44e0f22fc78bfc5fbd0bf93efcb3ff454d1fc01085ae51b5661e6cf6eb16850e</
 <ul>
 <li><strong>No DrivenData authentication:</strong> the data page and submissions page redirect to login. Training rasters, hidden labels, the true leaderboard score, and the remaining weekly allowance cannot be obtained from this sandbox.</li>
 <li><strong>No organizer score receipt:</strong> no submission-page receipt binds any generated file to a leaderboard value. All estimates are unavailable.</li>
-<li><strong>Holdout efficacy not established:</strong> catalogue-proximity placement leaked (leakage canary AUC = 1.0 vs withheld faults); the non-leaked holdout DTI is 0.0000. No clean holdout beats the current benchmark.</li>
+<li><strong>Holdout efficacy not established for this TIFF:</strong> its candidate run card has null holdout fields; no candidate-specific DTI, evaluator, withheld-positive count or interval is reported. Leakage results from a separate catalogue-distance experiment do not apply to this raster.</li>
 <li><strong>Registry uniqueness not fully confirmed locally:</strong> registry comparison caches are not restored in this sandbox, so uniqueness vs all 179 registry rasters cannot be locally completed.</li>
 <li><strong>Weekly cap unknown:</strong> submissions page redirects to login; remaining allowance cannot be verified.</li>
 </ul>

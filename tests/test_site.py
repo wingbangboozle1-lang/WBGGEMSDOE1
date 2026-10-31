@@ -50,6 +50,9 @@ def test_all_site_local_links_resolve_and_decision_is_unmistakable(name):
     assert "download: yes" in text and "submit: no" in text
     if name == "wbg2.html":
         assert "no weekly slot was used" in text and "retrospective" in text
+    elif name == "executive-summary.html":
+        assert "no competition slot was used" in text
+        assert "holdout-dti" in text and "unverified" in text
     elif name in {"release-review.html", "wbg-h1-dpgf1/index.html", "wbg-h1-dpgf1/executive-summary.html"}:
         assert "no competition slot" in text
     else:
@@ -109,7 +112,7 @@ def test_focus9_null_download_is_visible_and_fail_closed_in_generated_homepage_a
 def test_wbg2_negative_decision_and_download_are_prominent():
     card = json.loads((ROOT / "evidence/wbg2/run_card.json").read_text())
     name = Path(card["artifacts"]["tif"]).name
-    for file in ("index.html", "executive-summary.html", "wbg2.html"):
+    for file in ("index.html", "wbg2.html"):
         html = (DOCS / file).read_text()
         assert f'href="downloads/{name}" download' in html
         assert "DO NOT SUBMIT" in html
@@ -144,9 +147,12 @@ def test_current_research_markdown_local_links_resolve(file):
 def test_exact_primary_download_has_no_generate_or_upload_simulation():
     card = json.loads((ROOT / "registry/run_card.json").read_text())
     name = Path(card["artifact"]).name
-    for file in ("index.html", "executive-summary.html", "how-to-submit.html"):
+    for file in ("index.html", "how-to-submit.html"):
         html = (DOCS / file).read_text()
         assert f'href="downloads/{name}" download' in html
+    summary = (DOCS / "executive-summary.html").read_text()
+    assert "WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.tif" in summary
+    assert "UNVERIFIED" in summary and "DO NOT UPLOAD" in summary
     script = (DOCS / "assets/app.js").read_text()
     assert "localhost" not in re.sub(r"//[^\n]*", "", script)
     assert 'fetch("data/feed.json"' in script

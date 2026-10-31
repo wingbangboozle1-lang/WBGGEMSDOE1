@@ -55,6 +55,25 @@ def brief_20261029_block():
 """
 
 
+def review_20261031_readme_block():
+    """Prominent current review status; sourced from the review receipt."""
+    review = json.loads((ROOT / "evidence/repo_review_20261031.json").read_text())
+    candidate = review["latest_binary_candidate_from_upstream_pr_68"]
+    tif = Path(candidate["path"]).name
+    candidate_name = candidate["submission_name"]
+    return f"""## 31 OCT 2026 REPOSITORY REVIEW — CURRENT DECISION: NO-GO
+
+**No TIFF is cleared for a competition slot.** The latest 40,000-dot TIFF is downloadable for research and passes local format/range checks, but has no holdout or registry comparison and is not linked to the active run card; **SUBMIT: NO**. The older C1 continuous research surface also failed its recorded literal-overlap gate. No new raster or experiment was run in this review. See the [31 Oct repository review](docs/repo-review-20261031.md) and [machine-readable review record](evidence/repo_review_20261031.json).
+
+The Focus-9 historical score table remains **OWNER-REPORTED / UNVERIFIED**; GEMSDOE32 B2's 0.2778 has no artifact-linked organizer receipt. New leaderboard estimates are unavailable. The user's 0.3195 current-leader claim conflicts with the repository's stale last public-page observation of 0.4544 (observed 27 Oct 2026); neither is freshly verified as current on 31 Oct. No submission slot was used.
+
+**Most recent binary research TIFF:** [`{tif}`](docs/downloads/{tif}) · `{candidate_name}` — DOWNLOAD: YES (research only); SUBMIT: NO. Local format/range check passes, but this raster has no HOLDOUT-DTI, no registry uniqueness receipt (0 of 179 frozen entries compared), and no organizer score. The generic validator reports `run_card_matches_exact_tif: false`; **uniqueness is UNVERIFIED**. Not a leaderboard estimate.
+
+---
+
+"""
+
+
 def tipcont_experiment_readme_block():
     """WBGGEMSDOE1 tip-continuation experiment (29 Oct 2026): research only, numbers from the measured JSON."""
     summ = json.loads((ROOT / "docs/data/tipcont_experiment_20261029.json").read_text())
@@ -124,7 +143,7 @@ def main():
     w5_comp = w5["correlation_overlap_vs_registry"]["final_dots_competing_method"]
     w5_lit = w5["correlation_overlap_vs_registry"]["final_dots_literal"]
     w5_bench = w5["benchmark"]["dti"]
-    header = brief_20261029_block() + wbg6_readme_block() + tipcont_experiment_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
+    header = review_20261031_readme_block() + brief_20261029_block() + wbg6_readme_block() + tipcont_experiment_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
 
 **[START HERE — 29 Oct 2026 executive summary (download / submit verdicts, estimates, nine-site table)](docs/start-here-20261029.html)** · No file is cleared for submission under the 70% protocol.
 **[Repository review (2026-10-29)](docs/repo-review-current-20261029.md)** · no new TIFF approved; core competition inputs are absent and the active method lane is unspecified. Local tests and lint pass. Treat all existing candidate downloads according to their individual negative/STOP decisions.

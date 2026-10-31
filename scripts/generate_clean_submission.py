@@ -43,7 +43,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
-from scipy.ndimage import distance_transform_edt
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
@@ -54,7 +53,6 @@ from gems1.holdout import (
     evaluate_mask,
     EVALUATOR_VERSION as HOLDOUT_VERSION,
 )  # noqa: E402
-from gems1.metric import ALPHA, BETA  # noqa: E402
 from gems.submission import check_variants  # noqa: E402
 
 # ---------------------------------------------------------------------------

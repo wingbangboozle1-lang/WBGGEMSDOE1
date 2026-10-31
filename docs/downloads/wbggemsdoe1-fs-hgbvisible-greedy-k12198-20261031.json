@@ -1,0 +1,125 @@
+{
+  "file": "wbggemsdoe1-fs-hgbvisible-greedy-k12198-20261031.tif",
+  "sha256": "99819233fbedc05c7d522051f81c7062354add21dcc7f4ec67eec56893a38b8f",
+  "bytes": 75261,
+  "submission_name": "wbggemsdoe1-fs-hgbvisible-greedy-k12198-20261031",
+  "note": "RESEARCH ONLY, do not submit. Fold-safe HGB + greedy dots; holdout DTI 0.0536 < uniform null 0.0646.",
+  "note_chars": 100,
+  "validator": {
+    "file": "/home/user/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-fs-hgbvisible-greedy-k12198-20261031.tif",
+    "bytes": 75261,
+    "sha256": "99819233fbedc05c7d522051f81c7062354add21dcc7f4ec67eec56893a38b8f",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0027605309151113033,
+    "emitted_positive_pixels": 33897,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 33897,
+    "footprint_fraction": 0.006559812887515571
+  },
+  "template_report": {
+    "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-fs-hgbvisible-greedy-k12198-20261031.tif",
+    "bytes": 75261,
+    "sha256": "99819233fbedc05c7d522051f81c7062354add21dcc7f4ec67eec56893a38b8f",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0027605309151113033,
+    "n_nonzero": 33897,
+    "mass": 33897.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "wbggemsdoe1-fs-hgbvisible-greedy-k12198-20261031.zip",
+  "zip_sha256": "8ca51bbbf9512735db9f261dae3250805669c8a812cb995853d9fcbeeb3db015",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "method": "E2 fold-safe HGB (19 bands) + greedy exact-marginal allocation",
+    "k_truth_assumed": 12197.6,
+    "dots": 33897,
+    "holdout_receipt": "evidence/fold_safe_20261031/E2-hgb-visible-only.json"
+  }
+}

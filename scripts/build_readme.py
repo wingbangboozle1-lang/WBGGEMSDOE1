@@ -38,6 +38,42 @@ See [latest review (29 Oct 2026)](docs/repo-review-20261029.md), [Focus-9 site c
 
 """
 
+def fs_block():
+    """31 Oct 2026 fold-safe lane: every number is read from its receipt (HOLDOUT-DTI / DATA-MEASUREMENT)."""
+    e2 = json.loads((ROOT / "evidence/fold_safe_20261031/E2-hgb-visible-only.json").read_text())["holdout"]["paired_summary"]
+    e3 = json.loads((ROOT / "evidence/fold_safe_20261031/E3-hgb-visible-topn3x.json").read_text())["holdout"]["paired_summary"]
+    rc = json.loads((ROOT / "evidence/fold_safe_20261031/final_run_card_20261031.json").read_text())
+    c, u = e2["scores"]["candidate"], e2["scores"]["uniform_null"]
+    d = e2["paired_differences"]["uniform_null"]
+    e3c, e3u = e3["scores"]["candidate"], e3["scores"]["uniform_null"]
+    tif = Path(rc["raster"]).name if isinstance(rc.get("raster"), str) else "wbggemsdoe1-fs-hgbvisible-greedy-k12198-20261031.tif"
+    return f"""## 31 OCT 2026 STANDING PROMPT — READ FIRST EVERY SESSION (condensed from the user's brief)
+
+**Mission:** WBGGEMSDOE1 for the DOE GEMS Prize (DrivenData competition 306). Core values: maximize P(Win); own the outcome; no manual input; no hallucinations (verify each line against an official link).
+
+**Standing requirements:**
+1. Executive summary per focus site (GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36): highest-scoring file to download, plus a score table (file, estimated score, unique vs other GEMSDOE sites). Every number is labelled **HOLDOUT-DTI** (evaluator, withheld-positive count, 95% CI) or **ORGANIZER-CONFIRMED** (submission-page receipt). User-reported numbers are labelled USER-REPORTED. No projection is written as a score.
+2. Produce a unique TIFF (not a copy of a prior submission, except for learning). It must be obvious whether it is OK to download and to submit. It must be validated automatically, and its values must lie in [0, 1].
+3. Explain why GEMSDOE32 B2 (0.2778, user-reported) scored highest and whether more is achievable. Leaderboard: #1 is 0.4544 on the page read 31 Oct; the brief's 0.4413 is not on the page, and 0.3195 is #50, not the leader.
+4. Three to five untested geological hypotheses, ranked by expected DTI gain and cost. The top candidate must pass a spatially blocked holdout before any submission slot is used.
+5. Parallel-run protocol: lane check (rank correlation above 0.90, or more than 70% of dots within 3 px of any registry raster, means duplicate and stop); reuse `scripts/evaluate_holdout.py` and `scripts/submission_writer.py`; leakage canary (AUC above 0.90 means leakage); run card JSON; budget of 3 experiments in 2 hours; no slot picking.
+6. Keep this prompt in the README and read it each session. Maintain the GitHub Pages site (clean UI, executive summary, how-to-submit subpage that addresses "Predicted values must be in range [0, 1]"), give official links, flag irregularities, run multi-pass review, open a PR and merge to `main`, and list the remaining work and limitations.
+
+**Current outputs (31 Oct 2026, fold-safe lane):**
+- Executive summary: [docs/executive-summary-20261031.html](docs/executive-summary-20261031.html) · How to submit: [docs/how-to-submit-20261031.html](docs/how-to-submit-20261031.html) · Overview: [docs/index.html](docs/index.html).
+- Research TIFF: [`docs/downloads/wbggemsdoe1-fs-hgbvisible-greedy-k12198-20261031.tif`](docs/downloads/wbggemsdoe1-fs-hgbvisible-greedy-k12198-20261031.tif). **DOWNLOAD: YES (research and learning only) · SUBMIT: NO** (run card `ok_to_submit` = {str(rc['ok_to_submit']).lower()}). Estimated leaderboard score: UNAVAILABLE.
+- HOLDOUT-DTI (evaluator `{e2['evaluator_version']}`, withheld positives {c['withheld_positive_pixels']:,}): candidate E2 **{c['dti']:.4f}** (95% CI [{c['ci95'][0]:.4f}, {c['ci95'][1]:.4f}]) against uniform null **{u['dti']:.4f}** (paired difference {d['delta']:+.4f}, 95% CI [{d['ci95'][0]:+.4f}, {d['ci95'][1]:+.4f}]). E3 top-N: {e3c['dti']:.4f} against uniform {e3u['dti']:.4f}.
+- Literal registry overlap: {rc['registry_comparison']['summary']['worst_dot_overlap']*100:.2f}% against the r13 lattice (gate G4 fails). Registry scan {rc['registry_comparison']['registry_rasters_checked']} of {rc['registry_comparison']['registry_rasters_expected']} (one CRS/transform error).
+- Negative results stand. The lane is closed as negative; the next experiment (spatially dispersed ranking) needs a written pre-registration first.
+- Receipts: [`evidence/fold_safe_20261031/`](evidence/fold_safe_20261031/) · irregularities [`evidence/fold_safe_20261031/irregularities_20261031.json`](evidence/fold_safe_20261031/irregularities_20261031.json).
+
+**Official links:** [Rules (NLR PDF)](https://docs.nlr.gov/docs/fy26osti/96647.pdf) · [HeroX rules page](https://www.herox.com/GEMSPrize/resource/2274) · [Problem page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) · [Leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) · [Competition](https://www.drivendata.org/competitions/306/competition-doe-gems/)
+
+**Flags for review (I1–I12 in the executive summary):** rules name two label sources (§2 vs §3.3); generative-AI disclosure is required by §3.2 before any submission; the shipped TIFF is not the exact object measured on holdout (I6).
+
+"""
+
+
 def wbg31_block():
     """31 Oct 2026 WBG31-E1 status; every number is read from its receipt (HOLDOUT-DTI / REGISTRY-MEASUREMENT)."""
     e1 = json.loads((ROOT / "evidence/wbg31/e1_experiment.json").read_text())
@@ -178,7 +214,7 @@ def main():
     w5_comp = w5["correlation_overlap_vs_registry"]["final_dots_competing_method"]
     w5_lit = w5["correlation_overlap_vs_registry"]["final_dots_literal"]
     w5_bench = w5["benchmark"]["dti"]
-    header = wbg31_block() + brief_20261029_block() + wbg6_readme_block() + tipcont_experiment_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
+    header = fs_block() + wbg31_block() + brief_20261029_block() + wbg6_readme_block() + tipcont_experiment_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
 
 **[START HERE — 29 Oct 2026 executive summary (download / submit verdicts, estimates, nine-site table)](docs/start-here-20261029.html)** · No file is cleared for submission under the 70% protocol.
 **[Repository review (2026-10-29)](docs/repo-review-current-20261029.md)** · no new TIFF approved; core competition inputs are absent and the active method lane is unspecified. Local tests and lint pass. Treat all existing candidate downloads according to their individual negative/STOP decisions.

@@ -1,0 +1,274 @@
+{
+ "generated_utc": "2026-10-31T01:47:50Z",
+ "lane": "WBG-8 registry-inverted truth model + metric-optimal emission",
+ "hypothesis": "H3: hidden faults follow the same coarse structural habitat that produced the 0.26-0.278 plateau; the sub-ridge placement, not the region, is where new information can enter",
+ "mechanism": "score-weighted dot density of the 40 best owner-reported registry rasters smoothed to 2 km, modulated by the H1 habitat field, then greedy max-packing at 2R+1=7px separation, truncated at the registry's own 38-44k count-score peak",
+ "non_fault_mimic": "inherits the registry's blind spots: if every published field misses a class of blind faults, so does a consensus of them; also inherits GEMS-57 label bias because the consensus is built from rasters scored against that label set",
+ "submission_name": "wbg8-h3-consensus-packing-40000-20261031",
+ "submission_note": "H3 probe: 40,000 kernel-disjoint dots on score-weighted 2 km registry consensus, >=2 px off catalogue. MODEL-ESTIMATE 0.07-0.32, not a promise.",
+ "note_within_140_chars": false,
+ "artifacts": {
+  "tif": "docs/downloads/wbg8-h3-consensus-packing-40000-20261031.tif",
+  "tif_sha256": "f800ec6d8669575b54e7f20d959c341e549381a0199cfea94cfa2482ce8071b5",
+  "zip": "docs/downloads/wbg8-h3-consensus-packing-40000-20261031.zip",
+  "zip_sha256": "7afcb3a3e55342a08a64a77c224cd7d8f68478412fd0f6ed6d2de4f2fb072f25",
+  "nan_variant": "docs/downloads/wbg8-h3-consensus-packing-40000-20261031-nanoutside.tif",
+  "nan_variant_sha256": "aad3f24e1e7b984606194df1709c3c2690f56c9b9a94b32fab8d4c5d2aa949ea",
+  "writer_returncode": 0
+ },
+ "validator": {
+  "file": "wbg8-h3-consensus-packing-40000-20261031.tif",
+  "bytes": 830552,
+  "sha256": "f800ec6d8669575b54e7f20d959c341e549381a0199cfea94cfa2482ce8071b5",
+  "format_valid": true,
+  "ok_to_upload": false,
+  "upload_authorization": "not evaluated by a format validator; separate scientific selector required",
+  "format_acceptable": true,
+  "submission_authorized": false,
+  "scope": "Format only; this does not certify bias audit, holdout promotion or weekly-slot eligibility",
+  "hard_failures": [],
+  "official_format_compliant": false,
+  "in_footprint_positive_pixels": 40000,
+  "in_footprint_mass": 40000.0,
+  "checks": {
+   "official_template_grid_and_footprint": {
+    "pass": true,
+    "detail": "Template must be the pinned organizer grid, not just a self-consistent arbitrary raster",
+    "hard_requirement": true
+   },
+   "single_band": {
+    "pass": true,
+    "detail": "count=1",
+    "hard_requirement": true
+   },
+   "dtype_float32": {
+    "pass": true,
+    "detail": "dtypes=('float32',)",
+    "hard_requirement": true
+   },
+   "crs_epsg_32611": {
+    "pass": true,
+    "detail": "EPSG:32611",
+    "hard_requirement": true
+   },
+   "shape_matches_template": {
+    "pass": true,
+    "detail": "(3730, 3292) vs (3730, 3292)",
+    "hard_requirement": true
+   },
+   "geotransform_matches_template": {
+    "pass": true,
+    "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+    "hard_requirement": true
+   },
+   "footprint_all_finite": {
+    "pass": true,
+    "detail": "0 NaN/Inf inside the 5,167,373-pixel footprint",
+    "hard_requirement": true
+   },
+   "footprint_range_0_1": {
+    "pass": true,
+    "detail": "finite=5167373/5167373; range=0.0 to 1.0",
+    "hard_requirement": true
+   },
+   "outside_is_nan_official_text": {
+    "pass": false,
+    "detail": "0 of 7,111,787 outside pixels are NaN",
+    "hard_requirement": false
+   },
+   "nodata_tag_is_nan": {
+    "pass": false,
+    "detail": "nodata=None",
+    "hard_requirement": false
+   },
+   "variant_nan_aware_whole_array": {
+    "pass": true,
+    "detail": "np.nanmin/np.nanmax over the whole array",
+    "hard_requirement": true
+   },
+   "variant_masked_read": {
+    "pass": true,
+    "detail": "rasterio read(masked=True).compressed()",
+    "hard_requirement": true
+   },
+   "variant_strict_whole_array_no_nan_allowed": {
+    "pass": true,
+    "detail": "((a>=0)&(a<=1)).all() over the whole array - fails for ANY NaN, including the official sample's NaN outside",
+    "hard_requirement": false
+   },
+   "profile_matches_official_sample": {
+    "pass": false,
+    "detail": "driver/dtype/nodata/size/crs/transform equal to template; compress=lzw (template lzw)",
+    "hard_requirement": false
+   }
+  },
+  "portal_safe_local_policy": true
+ },
+ "shared_validator": {
+  "returncode": 0,
+  "tail": [
+   "  \"ok_to_submit\": false,",
+   "  \"warning\": \"FORMAT PASS is not uniqueness, scientific efficacy, organizer acceptance or slot approval.\"",
+   "}"
+  ],
+  "stderr_tail": []
+ },
+ "descriptors": {
+  "n_dots": 40000,
+  "frac_on_catalogue": 0.0,
+  "frac_within_3px_of_catalogue": 0.10105,
+  "frac_within_5px_of_catalogue": 0.182175,
+  "dist_to_catalogue_median_px": 17.11724276862369,
+  "dist_to_catalogue_p90_px": 60.53180976858371,
+  "n_components": 40000,
+  "cluster_frac": 0.0,
+  "mean_neighbour_dots_in_6px": 0.0,
+  "roi_coverage_frac": 0.7441527832420846
+ },
+ "reference_profile_comparison": {
+  "champion_file": "docs/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+  "champion_reported_owner": 0.2778,
+  "champion_n_dots": 37654,
+  "champion_dist_median_px": 19.6,
+  "candidate_dist_median_px": 17.11724276862369
+ },
+ "registry_uniqueness": {
+  "rasters_checked": 118,
+  "max_overlap_3px": 0.99905,
+  "max_overlap_against": "20261001_r13-lattice-s5_v2_nan-outside",
+  "literal_gate_overlap_limit": 0.7,
+  "literal_gate_pass": false,
+  "max_abs_surface_spearman": 1.0,
+  "spearman_limit": 0.9,
+  "spearman_gate_pass": false,
+  "expected_overlap_of_an_independent_field_at_same_density": 0.19657235478382507,
+  "density_matched_overlap_lift": 5.082352506275245,
+  "known_instrument_defect": "the literal >70% within-3px rule is degenerate against dense registries (documented in AGENTS.md 0b(ii)); the density-matched lift is the informative number",
+  "worst_five": [
+   {
+    "name": "20261001_r13-lattice-s5_v2_nan-outside",
+    "overlap_3px": 0.99905,
+    "abs_spearman": 0.976558056462739,
+    "their_n": 206895
+   },
+   {
+    "name": "pindrop-v4-discovery-20260925T152423Z-37f9d5b855",
+    "overlap_3px": 0.743525,
+    "abs_spearman": 0.9745518985850461,
+    "their_n": 155021
+   },
+   {
+    "name": "h23-b-dti-optimal-emission-10pct-20261002-86176698-nan",
+    "overlap_3px": 0.73615,
+    "abs_spearman": 0.9102004058526936,
+    "their_n": 516738
+   },
+   {
+    "name": "pindrop-v4-nodes-20260925T152420Z-f347b70daa",
+    "overlap_3px": 0.727275,
+    "abs_spearman": 0.9804805984615217,
+    "their_n": 155021
+   },
+   {
+    "name": "ovtr-ml-cover-tau3p0-20261012-nan",
+    "overlap_3px": 0.711225,
+    "abs_spearman": 0.9737472531483495,
+    "their_n": 167597
+   }
+  ]
+ },
+ "holdout": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide (seeds 20,21 modes all)",
+  "dti": 0.010025723412115573,
+  "coverage_ci95_on_truth_mass": [
+   0.013281772504050798,
+   0.016428724202712377
+  ],
+  "withheld_positive_pixels": 22641,
+  "tpw": 334.4740143825115,
+  "fpw": 75909.4462890625,
+  "fnw": 22306.52598561749,
+  "on_visible_catalogue": 0,
+  "percentile_vs_118_owner_reported": 0.3559322033898305,
+  "same_instrument_best_of_118": 0.332616098482388,
+  "instrument_defect": "this catalogue proxy is documented NOT to rank real submissions (Spearman 0.144, p=0.12, n=118); it is a diagnostic, never a score estimate"
+ },
+ "leakage_canary": {
+  "evidence_class": "HOLDOUT-DTI",
+  "definition": "AUC of each habitat field alone, withheld catalogue pixels vs fold background",
+  "auc_by_field": {
+   "susceptibility": {
+    "mean": 0.5035682183824199,
+    "max": 0.5194197636144318,
+    "folds": 8
+   }
+  },
+  "leakage_if_above": 0.9,
+  "suspected_leakage": false
+ },
+ "score_estimate": {
+  "evidence_class": "MODEL-ESTIMATE",
+  "value": 0.09052630123789752,
+  "interval": [
+   0.0,
+   0.2985994257066396
+  ],
+  "uncertainty_source": "leave-one-family-out MAE of the same estimator on the 118 owner-reported scores",
+  "model_fit": {
+   "s_tilt": 1.0,
+   "c_catalogue_px": 2.0,
+   "K_truth_cells": 150000,
+   "k_total_realised": 122689.703125
+  },
+  "components": {
+   "tpw": 9638.690613725747,
+   "fpw": 31972.122173176398,
+   "n_dots": 40000,
+   "K": 122689.703125
+  },
+  "not_a_leaderboard_prediction": true,
+  "champion_reference": {
+   "name": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+   "owner_reported": 0.2778,
+   "estimator_value_for_champion": 0.06793467419800005
+  }
+ },
+ "null_floor": {
+  "evidence_class": "MODEL-ESTIMATE",
+  "definition": "same estimator applied to a density-matched random off-catalogue field",
+  "value": 0.07802990182951428,
+  "lift_over_null": 1.1601488546747931
+ },
+ "gates": {
+  "format_valid": true,
+  "values_in_0_1_no_nan_inside": true,
+  "unique_surface_spearman": false,
+  "unique_literal_overlap": false,
+  "density_matched_lift_below_2x": false,
+  "no_leakage_canary_failure": true,
+  "beats_holdout_instrument_best_of_118": false,
+  "model_estimate_above_champion": false,
+  "model_estimate_interval_excludes_champion": false,
+  "note_length_ok": false
+ },
+ "decision": {
+  "ok_to_download": false,
+  "ok_to_submit_under_project_gates": false,
+  "eligible_for_separate_selector": false,
+  "approved_for_weekly_slot": false,
+  "submission_slots_used": 0,
+  "reasons": [
+   "unique_surface_spearman",
+   "unique_literal_overlap",
+   "density_matched_lift_below_2x",
+   "beats_holdout_instrument_best_of_118",
+   "model_estimate_above_champion",
+   "model_estimate_interval_excludes_champion",
+   "note_length_ok"
+  ],
+  "explicit": "the organizer portal is the only authority on a score; this project never uploads"
+ },
+ "verdict": "negative",
+ "artifact_note": "the .tif/.zip for this run were deleted on purpose: this is the falsified H3b (concentrated-budget) design kept only as a receipt, so that exactly one GeoTIFF in this directory is a candidate submission; reproduce it with scripts/wbg8_emit4.py + scripts/wbg8_finalize.py"
+}

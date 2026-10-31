@@ -1,0 +1,100 @@
+{
+ "generated_utc": "2026-10-31T01:24:50Z",
+ "evidence_class": "MODEL-ESTIMATE for every predicted number",
+ "calibration": {
+  "anchor_raster": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+  "anchor_owner_reported": 0.2778,
+  "anchor_reproduced_by_model": 0.0729196571567263,
+  "level_multiplier": 10000000.0,
+  "susceptibility_mass": 0.916325670310778,
+  "K_modelled_truth_cells": 9163256.70310778,
+  "tilt_s": 1.0,
+  "note": "level solved by bisection so the foreign champion raster is predicted at its reported value; K follows, it is not free"
+ },
+ "design_rules": {
+  "separation_px": 7.0,
+  "separation_rationale": "2R+1 at R=3 px makes the kernels disjoint, so no two dots compete for one truth cell",
+  "catalogue_buffer_px": 2,
+  "budget": "argmax of the predicted-DTI curve over N",
+  "shared_allocator_status": "measured and rejected for this field; see evidence/wbg8/emit.json"
+ },
+ "budget_curve": [
+  {
+   "n_dots": 152,
+   "predicted_dti": 0.0014896239562435212,
+   "tpw": 10923.09962390194,
+   "fpw": 0.0,
+   "K_modelled_truth_cells": 9163256.70310778
+  },
+  {
+   "n_dots": 305,
+   "predicted_dti": 0.0029879912350928212,
+   "tpw": 21916.88206133324,
+   "fpw": 0.0,
+   "K_modelled_truth_cells": 9163256.70310778
+  },
+  {
+   "n_dots": 610,
+   "predicted_dti": 0.005934582063190215,
+   "tpw": 43555.77616212877,
+   "fpw": 0.0,
+   "K_modelled_truth_cells": 9163256.70310778
+  },
+  {
+   "n_dots": 1067,
+   "predicted_dti": 0.010087602046562743,
+   "tpw": 74097.72332625417,
+   "fpw": 0.0,
+   "K_modelled_truth_cells": 9163256.70310778
+  },
+  {
+   "n_dots": 1524,
+   "predicted_dti": 0.01385541283322358,
+   "tpw": 101850.80059261022,
+   "fpw": 0.0,
+   "K_modelled_truth_cells": 9163256.70310778
+  },
+  {
+   "n_dots": 1981,
+   "predicted_dti": 0.0173419146766292,
+   "tpw": 127569.19153125687,
+   "fpw": 0.0,
+   "K_modelled_truth_cells": 9163256.70310778
+  },
+  {
+   "n_dots": 2438,
+   "predicted_dti": 0.020674003828154836,
+   "tpw": 152182.20643039639,
+   "fpw": 0.0,
+   "K_modelled_truth_cells": 9163256.70310778
+  },
+  {
+   "n_dots": 3048,
+   "predicted_dti": 0.024930236542990498,
+   "tpw": 183669.51055888986,
+   "fpw": 0.0,
+   "K_modelled_truth_cells": 9163256.70310778
+  }
+ ],
+ "emission": {
+  "n_dots": 3048,
+  "candidate_pool_top_n": 120000,
+  "nn_min_px": 0.0,
+  "nn_median_px": 1526.5,
+  "habitat_percentile_mean": 99.04150262467192,
+  "habitat_percentile_p10": 98.0,
+  "coverage_2km_dilation": 0.15529747900915997,
+  "dist_to_catalogue_median_px": 28.844410203711913,
+  "dist_to_catalogue_p90_px": 76.49044636480404,
+  "frac_within_5px_of_catalogue": 0.008858267716535433,
+  "footprint_cells": 5167373
+ },
+ "predicted": {
+  "own_design_upper_bound": 0.024930236542990498,
+  "tpw": 183669.51055888986,
+  "fpw": 0.0,
+  "champion_same_model": 0.0729196571567263,
+  "warning": "upper bound: the truth field is built from the same ranking used to place these dots, so the estimator cannot see our own placement error. Not a leaderboard prediction."
+ },
+ "runtime_seconds": 16.5921573638916
+}

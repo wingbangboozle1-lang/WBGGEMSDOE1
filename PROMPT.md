@@ -54,3 +54,20 @@ Question this repo must answer: why that file scored 0.2778, and whether a *uniq
 ## Core values
 
 Maximize P(Win). Own the Outcome. A negative unique result that prevents a wasted slot is a win relative to a duplicate upload.
+
+## 31 OCT 2026 additions (binding, same force as everything above)
+
+- Read `README.md`'s `## 31 OCT 2026 STANDING BRIEF` before anything else; it re-ranks the older
+  briefs rather than deleting them.
+- The metric reduces to `DTI = TP_w / (0.2 N + 0.8 K + 0.2(TP_w - A))`, `A` = each dot's own best
+  credit, and to `TP_w / (0.2 N + 0.8 K)` to better than 1% when one dot claims about one truth cell
+  (verified with `metric.py:dti_exact`: 0.014296 exact vs 0.014309 naive). Use it as a test: any design
+  change must be argued as a change in `TP_w`, in `N`, or in neither.
+- Submission verdicts are three-state, never binary: `DOWNLOAD: YES|NO`, `SUBMIT: CLEARED|PROBE ONLY|NO`,
+  and `slots used`. A file may be valid-and-unique (download/submission-ready) while the score gate says
+  it is not a credible improvement; say both in those words.
+- No prior assembled from published dot buffers may be used to rank the files it was assembled from
+  (self-reference trap, `evidence/wbg8/emit3.json`). State the anchor raster whenever a level is fitted.
+- External layers need `evidence/external_fetch.json` with `url`, `bytes`, `sha256`, `retrieved_utc`
+  before any number derived from them loses the **UNVERIFIED-FETCH** label
+  (`docs/research-hypotheses-20261031.md` §4).

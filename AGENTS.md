@@ -50,3 +50,28 @@ DO NOT SUBMIT. See `docs/executive-summary-unique.html` for the full table.
 
 Maximize P(Win). Own the Outcome. A negative unique result that prevents a wasted slot is a win relative
 to a duplicate upload.
+
+## 31 OCT 2026 instrument and protocol amendments
+
+Binding defects found in this session, fixed once in this repo — do not re-fix, do not fork:
+
+1. **IR-WBG8-02.** `gems57.uniqueness.surface_rho` between two 0/1 dot surfaces is a monotone function
+   of their 3-px overlap. On binary submissions it therefore cannot identify copying and must be
+   *reported*, not used alone to block. Jaccard of the dot sets plus byte/pixel identity is the copy
+   test; the literal limits stay in the table for the owner's protocol.
+2. `scripts/wbg8_finalize.py` and `scripts/wbg8_estimate.py` derived `cluster_frac` /
+   `n_components` from a **dilated** dot mask, so a perfect lattice reported `cluster_frac 1.0`.
+   Canonical definitions live in `scripts/fit_scored_portfolio.py` (neighbours > 3 in a 7×7 window;
+   8-connected components of the undilated dots) and both scripts now match them.
+3. `scipy.spatial.cKDTree.query(...)` returns `(distances, indices)`. Taking `[1]` publishes neighbour
+   *indices* as `nn_min_px`. The blob rejection in `evidence/wbg8/emit.json` did not depend on it
+   (connected components and area coverage were measured directly) and stands.
+4. 3 GB sandbox: loading all 118 registry rasters as float32 is 5.8 GB and gets OOM-killed without a
+   traceback (`exit 137`). `scripts/wbg8_estimate.py` now stores packed dot masks; keep that pattern in
+   any new lane script that scans the registry.
+5. The pooled hide-and-recover holdout must never gate a submission by itself (documented Spearman
+   0.144, p = 0.12 vs real submissions; it rewards catalogue overlap, which every plateau file avoids
+   deliberately). Keep it as the leakage/canary screen.
+6. `scripts/wbg8_emit5.py` writes `.cache/wbg8/emit_surface.npy`, which
+   `scripts/wbg8_finalize.py` reads: run the emitter last, and never re-run `emit`, `emit2` or `emit3`
+   to "check" them — their verdicts are final and their receipts are the record.

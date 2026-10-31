@@ -1,0 +1,99 @@
+{
+ "packing_H3b": {
+  "n_dots": 40000,
+  "n_target": 40000,
+  "pool_cells": 4862825,
+  "nn_min_px": 8.0,
+  "nn_median_px": 8.0,
+  "frac_nn_lt_3px": 0.0,
+  "frac_within_3px_of_champion": 0.24105,
+  "jaccard_dot_sets_vs_champion": 0.0065457750586527365,
+  "coverage_2km_dilation": 0.7441527832420846,
+  "dist_to_catalogue_median_px": 17.11724276862369,
+  "frac_within_5px_of_catalogue": 0.182175,
+  "habitat_percentile_mean": 71.0876625,
+  "predicted_central": 0.07050007340138867,
+  "budget_source": "registry count-score curve (OWNER-REPORTED), not a model"
+ },
+ "generated_utc": "2026-10-31T01:41:49Z",
+ "hypothesis": "H3: structure at moderate catalogue distance is real; the coarse registry consensus locates it, kernel-disjoint placement and a plateau-scale budget keep it cheap, and only the sub-ridge choice is new",
+ "prior": {
+  "kind": "score-weighted dot density of the top 40 registry rasters, Gaussian sigma 20 px (2 km), multiplied by (1 + 0.2 * H1 habitat) as a sub-ridge modulator",
+  "scale_note": "coarse by construction: 2 km >> the 3 px metric radius, so the region is informed and the exact cells are ours"
+ },
+ "rejected_priors": {
+  "H1_geophysics_only": "falsified: champion captures 4.6% of its mass vs 5.9% of a uniform field (evidence/wbg8/emit2.json)",
+  "fine_registry_coverage_field": "degenerate: 99.98% of dots landed within 3 px of the champion and 0.008% outside the top-25 buffers (evidence/wbg8/emit3.json)"
+ },
+ "calibration": {
+  "anchor_raster": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+  "anchor_owner_reported": 0.2778,
+  "prior_implied_ceiling_for_champion": 0.1171,
+  "ceiling_reading": "the champion captures only this share of ANY broad field, so under this prior no level can reach 0.2778; that is a statement about the prior, not about the metric",
+  "anchor_reproduced": 0.06735787180202492,
+  "reachable": false,
+  "level_multiplier": 0.008217242818365124,
+  "K_implied_truth_cells": 12395.0,
+  "champion_coverage_of_prior_mass": 0.095941461622715,
+  "champion_coverage_of_uniform_field": 0.05861549451947212,
+  "enrichment": 1.6367934942245483
+ },
+ "design_rules": {
+  "separation_px": 7.0,
+  "catalogue_buffer_px": 2,
+  "allocator": "vendor/gems57/emit.py greedy_allocate (shared, not forked)",
+  "K_used_for_the_bar": 12395,
+  "K_note": "12,395 is the WBG-6 null-calibration scale of the truth support, HOLDOUT side evidence, and the bar's only free knob"
+ },
+ "emission": {
+  "n_dots": 28618,
+  "rounds": 4,
+  "surrogate_dti": 0.015872537137251595,
+  "expected_covered_credit": 242.9909074902802,
+  "expected_self_credit": 1896.5464405752718,
+  "nn_min_px": 1.0,
+  "nn_median_px": 1.0,
+  "frac_nn_lt_3px": 0.9999301139143196,
+  "coverage_2km_dilation": 0.025618433196132735,
+  "dist_to_catalogue_median_px": 12.727922061357855,
+  "frac_within_5px_of_catalogue": 0.11129359144594311,
+  "habitat_percentile_mean": 99.87179397581941
+ },
+ "bracket_geometry_only": {
+  "reference": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros (n=37654, S=3968, score 0.2778)",
+  "identity": "TP_ours = TP_ref - |G & lost| + |G & gained|; FP_ours = n_ours - hits",
+  "cells_lost": 687202,
+  "cells_gained": 37953,
+  "cells_covered_by_reference": 708357,
+  "truth_density_in_reference_buffer": 0.00560169519041952,
+  "tp_lost_worst_case": 3849.496138246675,
+  "tp_gain_best_case": 212.60113756199203,
+  "lo_all_dots_false": 0.0,
+  "central_geometric_estimate": 0.021170937831870188,
+  "hi_all_gained_are_truth": 0.31681156828904755,
+  "reading": "no fitted surface enters this bracket: it is the champion's own measured precision plus the two dot geometries. It still spans the champion score, so the honest statement is 'indistinguishable', not 'better'."
+ },
+ "duplicate_gate": {
+  "frac_within_3px_of_champion": 0.6160109022293662,
+  "uniqueness_vs_champion": {
+   "spearman_on_dot_union": -0.9690252268076455,
+   "n_dot_union": 65265,
+   "jaccard_dot_sets": 0.015429403202328967,
+   "spearman_full_footprint": 0.02448072792412789
+  },
+  "limit_within_3px": 0.7,
+  "limit_surface_rho": 0.9
+ },
+ "predicted_at_anchor_level": 0.01571514665839778,
+ "allocator_receipt": {
+  "n_dots": 28618
+ },
+ "measurement_corrections": {
+  "nn_px_in_emit2_emit3": "those receipts report KD-tree neighbour INDICES under the name nn_min_px/nn_median_px (an upstream copy-paste in scripts/wbg8_emit2.py); the corrected statistic is used here, and no conclusion in this lane changes because the blob verdict rested on connected components and area coverage, which were measured directly"
+ },
+ "bracket_packing_vs_greedy": {
+  "greedy_n": 28618,
+  "packing_n": 40000,
+  "note": "the greedy allocator truncates at the marginal-value bar; the packing variant spends the whole plateau-scale budget instead"
+ }
+}

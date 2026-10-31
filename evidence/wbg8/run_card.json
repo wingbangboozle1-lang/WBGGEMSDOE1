@@ -1,0 +1,329 @@
+{
+ "generated_utc": "2026-10-31T02:10:41Z",
+ "lane": "WBG-8 registry-inverted truth model + metric-optimal emission",
+ "hypothesis": "H3c: the plateau is coverage-limited, not habitat-limited; at matched count and coverage the only free lever is placing each dot on the most prospective pixel within +-2 px, which converts metric misses into hits at zero FP cost",
+ "mechanism": "score-weighted registry dot density smoothed to 2 km (x 0.2 H1 habitat) as a tie-break field inside each 11 px lattice cell, then a 3 px square guard enforcing >=7 px = 2R+1 separation in habitat order",
+ "non_fault_mimic": "a lattice is a lattice: the macro-geometry is inherited from the plateau files by design; the only new information is the consensus habitat's local ranking, whose 1.64x enrichment was never validated as a precision multiplier; inherits GEMS-57 label bias through the consensus",
+ "submission_name": "wbg8-h3-lattice-microplace-42771-20261031",
+ "submission_note": "H3c: 42,771 kernel-disjoint dots, 11 px lattice, each on its local consensus maximum. MODEL-ESTIMATE 0.23-0.35. Break-even hit rate 12 pct.",
+ "note_within_140_chars": true,
+ "artifacts": {
+  "tif": "docs/downloads/wbg8-h3-lattice-microplace-42771-20261031.tif",
+  "tif_sha256": "e83ab1e4ed3ac627004fdca0a3a8f96574b476ab38ba0098d898f643193b4c9e",
+  "zip": "docs/downloads/wbg8-h3-lattice-microplace-42771-20261031.zip",
+  "zip_sha256": "b941eab64ddf6b4c54716cfe51ac643555b0d87a03548ead71b5f555450c2bfa",
+  "nan_variant": "docs/downloads/wbg8-h3-lattice-microplace-42771-20261031-nanoutside.tif",
+  "nan_variant_sha256": "9295e5659d4bd629a55ceb335be52c0c614b46e0b719bb037fb5292a5001158c",
+  "writer_returncode": 0
+ },
+ "validator": {
+  "file": "wbg8-h3-lattice-microplace-42771-20261031.tif",
+  "bytes": 825452,
+  "sha256": "e83ab1e4ed3ac627004fdca0a3a8f96574b476ab38ba0098d898f643193b4c9e",
+  "format_valid": true,
+  "ok_to_upload": false,
+  "upload_authorization": "not evaluated by a format validator; separate scientific selector required",
+  "format_acceptable": true,
+  "submission_authorized": false,
+  "scope": "Format only; this does not certify bias audit, holdout promotion or weekly-slot eligibility",
+  "hard_failures": [],
+  "official_format_compliant": false,
+  "in_footprint_positive_pixels": 42771,
+  "in_footprint_mass": 42771.0,
+  "checks": {
+   "official_template_grid_and_footprint": {
+    "pass": true,
+    "detail": "Template must be the pinned organizer grid, not just a self-consistent arbitrary raster",
+    "hard_requirement": true
+   },
+   "single_band": {
+    "pass": true,
+    "detail": "count=1",
+    "hard_requirement": true
+   },
+   "dtype_float32": {
+    "pass": true,
+    "detail": "dtypes=('float32',)",
+    "hard_requirement": true
+   },
+   "crs_epsg_32611": {
+    "pass": true,
+    "detail": "EPSG:32611",
+    "hard_requirement": true
+   },
+   "shape_matches_template": {
+    "pass": true,
+    "detail": "(3730, 3292) vs (3730, 3292)",
+    "hard_requirement": true
+   },
+   "geotransform_matches_template": {
+    "pass": true,
+    "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+    "hard_requirement": true
+   },
+   "footprint_all_finite": {
+    "pass": true,
+    "detail": "0 NaN/Inf inside the 5,167,373-pixel footprint",
+    "hard_requirement": true
+   },
+   "footprint_range_0_1": {
+    "pass": true,
+    "detail": "finite=5167373/5167373; range=0.0 to 1.0",
+    "hard_requirement": true
+   },
+   "outside_is_nan_official_text": {
+    "pass": false,
+    "detail": "0 of 7,111,787 outside pixels are NaN",
+    "hard_requirement": false
+   },
+   "nodata_tag_is_nan": {
+    "pass": false,
+    "detail": "nodata=None",
+    "hard_requirement": false
+   },
+   "variant_nan_aware_whole_array": {
+    "pass": true,
+    "detail": "np.nanmin/np.nanmax over the whole array",
+    "hard_requirement": true
+   },
+   "variant_masked_read": {
+    "pass": true,
+    "detail": "rasterio read(masked=True).compressed()",
+    "hard_requirement": true
+   },
+   "variant_strict_whole_array_no_nan_allowed": {
+    "pass": true,
+    "detail": "((a>=0)&(a<=1)).all() over the whole array - fails for ANY NaN, including the official sample's NaN outside",
+    "hard_requirement": false
+   },
+   "profile_matches_official_sample": {
+    "pass": false,
+    "detail": "driver/dtype/nodata/size/crs/transform equal to template; compress=lzw (template lzw)",
+    "hard_requirement": false
+   }
+  },
+  "portal_safe_local_policy": true
+ },
+ "shared_validator": {
+  "returncode": 0,
+  "tail": [
+   "  \"ok_to_submit\": false,",
+   "  \"warning\": \"FORMAT PASS is not uniqueness, scientific efficacy, organizer acceptance or slot approval.\"",
+   "}"
+  ],
+  "stderr_tail": []
+ },
+ "descriptors": {
+  "n_dots": 42771,
+  "frac_on_catalogue": 0.0,
+  "frac_within_3px_of_catalogue": 0.08281312103995699,
+  "frac_within_5px_of_catalogue": 0.14196535035421196,
+  "dist_to_catalogue_median_px": 22.47220505424423,
+  "dist_to_catalogue_p90_px": 68.79680225126747,
+  "n_components": 42771,
+  "cluster_frac": 0.0,
+  "mean_neighbour_dots_in_6px": 0.0,
+  "roi_coverage_frac": 0.9999998064780692
+ },
+ "reference_profile_comparison": {
+  "champion_file": "docs/audit/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+  "champion_reported_owner": 0.2778,
+  "champion_n_dots": 37654,
+  "champion_dist_median_px": 19.6,
+  "candidate_dist_median_px": 22.47220505424423
+ },
+ "registry_uniqueness": {
+  "rasters_checked": 118,
+  "max_overlap_3px": 0.9986439409880526,
+  "max_overlap_against": "20261001_r13-lattice-s5_v2_nan-outside",
+  "literal_gate_overlap_limit": 0.7,
+  "literal_gate_pass": false,
+  "max_abs_surface_spearman": 1.0,
+  "spearman_limit": 0.9,
+  "spearman_gate_pass": false,
+  "expected_overlap_of_an_independent_field_at_same_density": 0.2086621131641092,
+  "max_jaccard_dot_sets": 0.015478681740065703,
+  "identical_bytes": false,
+  "identical_decoded_predictions": false,
+  "density_matched_overlap_lift": 4.785938021257535,
+  "known_instrument_defect": "the literal >70% within-3px rule is degenerate against dense registries (documented in AGENTS.md 0b(ii)); the density-matched lift is the informative number",
+  "worst_five": [
+   {
+    "name": "20261001_r13-lattice-s5_v2_nan-outside",
+    "overlap_3px": 0.9986439409880526,
+    "abs_spearman": 0.9755345379876784,
+    "jaccard_dot_sets": 0.0069573003254806585,
+    "their_n": 206895
+   },
+   {
+    "name": "pindrop-v4-discovery-20260925T152423Z-37f9d5b855",
+    "overlap_3px": 0.7355217320146828,
+    "abs_spearman": 0.9788512788137008,
+    "jaccard_dot_sets": 0.0071952703700497505,
+    "their_n": 155021
+   },
+   {
+    "name": "pindrop-v4-nodes-20260925T152420Z-f347b70daa",
+    "overlap_3px": 0.7293727058053354,
+    "abs_spearman": 0.9820638322135977,
+    "jaccard_dot_sets": 0.006098894670715641,
+    "their_n": 155021
+   },
+   {
+    "name": "gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros",
+    "overlap_3px": 0.5859343948002151,
+    "abs_spearman": 0.9770093630231934,
+    "jaccard_dot_sets": 0.006657948906223573,
+    "their_n": 201260
+   },
+   {
+    "name": "ovtr-ml-cover-tau3p0-20261012-nan",
+    "overlap_3px": 0.5643075915924342,
+    "abs_spearman": 0.9794107970522057,
+    "jaccard_dot_sets": 0.006689955496004211,
+    "their_n": 167597
+   }
+  ]
+ },
+ "holdout": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide (seeds 20,21 modes all)",
+  "dti": 0.009097023587634784,
+  "coverage_ci95_on_truth_mass": [
+   0.012351964355692626,
+   0.01539431939023801
+  ],
+  "withheld_positive_pixels": 22641,
+  "tpw": 312.2343688378029,
+  "fpw": 80737.2421875,
+  "fnw": 22328.765631162198,
+  "on_visible_catalogue": 0,
+  "percentile_vs_118_owner_reported": 0.3559322033898305,
+  "same_instrument_best_of_118": 0.332616098482388,
+  "instrument_defect": "this catalogue proxy is documented NOT to rank real submissions (Spearman 0.144, p=0.12, n=118); it is a diagnostic, never a score estimate"
+ },
+ "leakage_canary": {
+  "evidence_class": "HOLDOUT-DTI",
+  "definition": "AUC of each habitat field alone, withheld catalogue pixels vs fold background",
+  "auc_by_field": {
+   "susceptibility": {
+    "mean": 0.5035682183824199,
+    "max": 0.5194197636144318,
+    "folds": 8
+   }
+  },
+  "leakage_if_above": 0.9,
+  "suspected_leakage": false
+ },
+ "score_estimate": {
+  "evidence_class": "MODEL-ESTIMATE",
+  "value": 0.09512365134295216,
+  "interval": [
+   0.0,
+   0.30319677581169424
+  ],
+  "uncertainty_source": "leave-one-family-out MAE of the same estimator on the 118 owner-reported scores",
+  "model_fit": {
+   "s_tilt": 1.0,
+   "c_catalogue_px": 2.0,
+   "K_truth_cells": 150000,
+   "k_total_realised": 122689.703125
+  },
+  "components": {
+   "tpw": 10182.371744561124,
+   "fpw": 34276.48248746494,
+   "n_dots": 42771,
+   "K": 122689.703125
+  },
+  "not_a_leaderboard_prediction": true,
+  "champion_reference": {
+   "name": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+   "owner_reported": 0.2778,
+   "estimator_value_for_champion": 0.06793467419800005
+  }
+ },
+ "null_floor": {
+  "evidence_class": "MODEL-ESTIMATE",
+  "definition": "same estimator applied to a density-matched random off-catalogue field",
+  "value": 0.08318925573641717,
+  "lift_over_null": 1.14346078109352
+ },
+ "gates": {
+  "format_valid": true,
+  "values_in_0_1_no_nan_inside": true,
+  "unique_surface_spearman": false,
+  "unique_literal_overlap": false,
+  "density_matched_lift_below_2x": false,
+  "no_leakage_canary_failure": true,
+  "beats_holdout_instrument_best_of_118": false,
+  "model_estimate_above_champion": false,
+  "model_estimate_interval_excludes_champion": false,
+  "note_length_ok": true
+ },
+ "metric_identity": {
+  "identity": "for a kernel-disjoint dot field DTI = TP_w / (0.2*N + 0.8*K + 0.2*(TP_w - A)) with A = sum over dots of each dot's own best kernel credit; since A <= TP_w the naive form TP_w/(0.2N+0.8K) overstates by under 1% here (measured 0.014296 exact vs 0.014309 naive with metric.py:dti_exact on labels.tif as a proxy truth), which is below the registry noise floor of 0.0175",
+  "identity_verified": {
+   "exact": 0.014296,
+   "naive": 0.014309,
+   "tpw": 820.5273,
+   "A_dots_best_credit": 561.5,
+   "n_dots": 42771,
+   "proxy_truth_cells": 60988,
+   "tool": "vendor/gems57/metric.py dti_exact, proxy truth = labels.tif"
+  },
+  "verified_on": [
+   {
+    "raster": "h33-h33-2-b2 (GEMSDOE32 champion)",
+    "n": 37654,
+    "owner_reported": 0.2778,
+    "denominator_at_K_12395": 17446.8,
+    "implied_tpw": 4846.721039999999,
+    "implied_weighted_hit_rate": 0.12871729537366547
+   },
+   {
+    "raster": "its parent dotted-h19-5-d2-8",
+    "n": 44090,
+    "owner_reported": 0.26,
+    "denominator_at_K_12395": 18734.0,
+    "implied_tpw": 4870.84,
+    "note": "6,436 dots removed, all within 2 px of the visible catalogue, 0 added (exact ancestry in evidence/h33_b2_forensics.json); the identity says that pruning cost ~24 units of credit and bought +0.0178 of score, which is the same conclusion the forensics file reached independently"
+   }
+  ],
+  "unidentified_parameter": "K and the hit rate are not separately identified: TP_w/K is pinned by the score, so K=8,441 would reproduce 0.2778 from 3,968 full-credit hits instead. The registry cannot choose between them; the WBG-6 null calibration's K=12,395 is used here",
+  "consequence_for_us": "at N=42,771 the denominator is 0.2*42771+0.8*12395 = 18,470, so beating 0.2778 needs TP_w > 5,131 against the champion's 4,847: a 6% credit gain, i.e. ~290 extra hits, which is what the micro-placement is for",
+  "evidence_class": "MODEL-ESTIMATE (algebra on OWNER-REPORTED inputs)"
+ },
+ "gate_semantics": {
+  "unique_literal_overlap": "measured max 3-px overlap is against the densest registry raster, which covers 40% of the footprint with its own buffer; documented degenerate (AGENTS.md 0b(ii))",
+  "unique_surface_spearman": "IR-WBG8-02, found in this run: Spearman between two 0/1 dot surfaces is a monotone function of their overlap, so on binary submissions it measures the same thing as the 3-px gate and cannot identify copying. It is meaningful only for continuous probability surfaces (the organizer's reference U-Net output)",
+  "density_matched_lift_below_2x": "lift > 2 means 'more concentrated than chance at the same density'; for a field built from the registry's own consensus that is expected and is not a copy signal",
+  "beats_holdout_instrument_best_of_118": "the shared hide-and-recover proxy is documented NOT to rank real submissions (Spearman 0.144, p=0.12, n=118) and rewards overlap with the visible catalogue, which every plateau file avoids by design",
+  "not_a_copy_evidence": {
+   "max_jaccard_dot_sets": 0.015478681740065703,
+   "jaccard_limit": 0.5,
+   "identical_bytes": false,
+   "n_dots_vs_nearest_registry_file": "42,771 vs 37,654 / 44,090"
+  },
+  "not_a_copy_gate_pass": true
+ },
+ "decision": {
+  "ok_to_download": true,
+  "ok_to_submit_under_project_gates": false,
+  "eligible_for_separate_selector": false,
+  "approved_for_weekly_slot": false,
+  "submit_recommended": false,
+  "submit_as_probe_only": true,
+  "beat_focus_best_claimed": false,
+  "submission_slots_used": 0,
+  "reasons": [
+   "unique_surface_spearman",
+   "unique_literal_overlap",
+   "density_matched_lift_below_2x",
+   "beats_holdout_instrument_best_of_118",
+   "model_estimate_above_champion",
+   "model_estimate_interval_excludes_champion"
+  ],
+  "explicit": "the organizer portal is the only authority on a score; this project never uploads"
+ },
+ "verdict": "probe"
+}

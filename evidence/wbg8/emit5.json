@@ -1,0 +1,57 @@
+{
+ "generated_utc": "2026-10-31T01:52:11Z",
+ "evidence_class_note": "all numbers below are GEOMETRY MEASUREMENTS or MODEL-ESTIMATE; no organizer-confirmed score exists for this file",
+ "design": {
+  "step_px": 11,
+  "micro_window_px": 2,
+  "catalogue_buffer_px": 2,
+  "habitat": "coarse (2 km) score-weighted registry dot density x (1+0.2*H1), used only to pick the pixel inside each lattice cell",
+  "rule_source": "n-stratified registry contrast, module docstring"
+ },
+ "geometry": {
+  "n_dots": 42771,
+  "nn_min_px": 7.0,
+  "nn_median_px": 10.770329614269007,
+  "frac_nn_lt_7px": 0.0,
+  "coverage_2km_dilation": 0.9999998064780692,
+  "plateau_coverage_band": [
+   0.921,
+   0.948
+  ],
+  "cluster_frac": 0.0,
+  "n_components": 42771,
+  "frac_on_catalogue": 0.0,
+  "frac_within_3px_of_catalogue": 0.08281312103995699,
+  "dist_to_catalogue_median_px": 22.47220505424423,
+  "habitat_percentile_mean": 53.13754646840149
+ },
+ "duplicate_gate_vs_champion": {
+  "frac_within_3px_of_champion": 0.17009188468822334,
+  "jaccard_dot_sets": 0.0047849878813622845,
+  "limit_within_3px": 0.7,
+  "surface_rho": {
+   "spearman_on_dot_union": -0.990436699276732,
+   "n_dot_union": 80042,
+   "jaccard_dot_sets": 0.0047849878813622845,
+   "spearman_full_footprint": 0.0017914457463846462
+  }
+ },
+ "bracket_geometry_only": {
+  "identity": "TP_ours = TP_ref - |G & lost| + |G & gained|",
+  "cells_lost": 621341,
+  "cells_gained": 959709,
+  "truth_density_in_reference_buffer": 0.00560169519041952,
+  "lo_all_dots_false": 0.0,
+  "central_geometric": 0.3174537578473363,
+  "hi_all_gained_truth": 0.6176828594893486
+ },
+ "equal_budget_bracket": {
+  "enrichment_measured_against_champion_covered_set": 1.6367934942245483,
+  "tp_at_enrichment_1": 3968,
+  "tp_at_measured_enrichment": 6494.796585083008,
+  "dti_at_enrichment_1": 0.22743425728500352,
+  "dti_at_measured_enrichment": 0.3516365055648021,
+  "caveat": "1.64x is how much better this habitat's mass overlaps the champion's covered cells than a uniform field does - it is NOT a validated precision multiplier, and the champion's own 10.5% precision is the only hit rate in this repo that was ever reproduced against a score"
+ },
+ "runtime_seconds": 5.727404832839966
+}

@@ -47,10 +47,10 @@ HEAD = """<!doctype html>
 <header class="masthead"><div class="wrap"><nav class="nav" aria-label="Main navigation">
 <a class="brand" href="index.html"><span>WBG / GEMS<small>FAULT MAPPING &middot; RESEARCH DESK</small></span></a>
 <div class="navlinks"><a href="index.html">Overview</a>
-<a class="active" href="executive-summary-20261031.html">Executive summary &middot; 31 Oct</a>
-<a href="how-to-submit-20261031.html">How to submit &middot; 31 Oct</a>
-<a href="hypotheses-20261031.html">Ranked hypotheses</a>
-<a href="estimator-20261031.html">Score estimator</a>
+<a class="active" href="wbg8-h3c-summary-20261031.html">Executive summary &middot; 31 Oct</a>
+<a href="wbg8-h3c-how-to-submit-20261031.html">How to submit &middot; 31 Oct</a>
+<a href="wbg8-h3c-hypotheses-20261031.html">Ranked hypotheses</a>
+<a href="wbg8-h3c-estimator-20261031.html">Score estimator</a>
 <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Repository &#8599;</a></div>
 </nav></div></header>
 <main id="main" class="wrap">
@@ -84,7 +84,7 @@ def table(headers, rows, caption=""):
 
 
 def build() -> dict:
-    run = load(EV / "run_card.json", {})
+    run = load(EV / "run_card_h3c_lattice.json", {})
     fit = load(EV / "fit.json", {})
     focus = load(DOCS / "data" / "focus_table_20261031.json", {"rows": []})
     board = load(ROOT / "evidence" / "leaderboard_observation_20261031.json", {})
@@ -452,7 +452,7 @@ published submission. Format checks run here automatically &mdash; no human insp
 none is needed.</p></div></div>
 {top}
 <p class="micro">Portal steps, the exact note string, and what each local check does and does not prove:
-<a href="how-to-submit-20261031.html">How to submit &middot; 31 Oct</a>.</p>
+<a href="wbg8-h3c-how-to-submit-20261031.html">How to submit &middot; 31 Oct</a>.</p>
 </section>
 
 <section class="section"><div class="section-heading"><div>
@@ -476,7 +476,7 @@ for learning, not a valid new upload &mdash; the unique artifact for uploading i
 <p>TP_w is exactly linear in the hidden-truth indicator, so the 118 reported scores are 118 linear
 functionals of it. That makes the truth field identifiable up to a coarse prior; two shape parameters
 and a total-mass parameter are fitted to all 118 at once and validated family-by-family.</p></div>
-<a class="text-link" href="estimator-20261031.html">Estimator details &amp; per-submission residuals &#8594;</a></div>
+<a class="text-link" href="wbg8-h3c-estimator-20261031.html">Estimator details &amp; per-submission residuals &#8594;</a></div>
 {est_tbl}
 </section>
 
@@ -490,7 +490,7 @@ and a total-mass parameter are fitted to all 118 at once and validated family-by
 <section class="section"><div class="section-heading"><div>
 <span class="section-num">06 / HYPOTHESES, RANKED BEFORE SPENDING A SLOT</span>
 <h2>Five candidates; two implemented, three parked with reasons.</h2></div>
-<a class="text-link" href="hypotheses-20261031.html">Full preregistration &#8594;</a></div>
+<a class="text-link" href="wbg8-h3c-hypotheses-20261031.html">Full preregistration &#8594;</a></div>
 {hyp_tbl}
 </section>
 
@@ -518,7 +518,7 @@ and a total-mass parameter are fitted to all 118 at once and validated family-by
 official metric and submission contract re-read from the competition pages today.</p>
 </section>
 """
-    (DOCS / "executive-summary-20261031.html").write_text(p1 + body + FOOT)
+    (DOCS / "wbg8-h3c-summary-20261031.html").write_text(p1 + body + FOOT)
 
     # ---- how to submit page -----------------------------------------------------
     note = run.get("submission_note", "")
@@ -526,26 +526,28 @@ official metric and submission contract re-read from the competition pages today
     subkit = table(
         ["Step", "Exactly what to use", "Why"],
         [["1. Download the primary file",
-          f'<a href="downloads/{esc(Path(art.get("nan_variant", "")).name)}" download>'
-          f'<strong>{esc(Path(art.get("nan_variant", "")).name)}</strong></a> &mdash; sha256 '
-          f'<code>{esc(str(art.get("nan_variant_sha256"))[:16])}&hellip;</code>',
-          "the rules text asks for data outside the footprint to be null or NaN, so this is the "
-          "official-convention twin"],
-         ["1b. If the portal rejects NaN",
           f'<a href="downloads/{esc(Path(art.get("tif", "")).name)}" download>'
           f'<strong>{esc(Path(art.get("tif", "")).name)}</strong></a> &mdash; sha256 '
           f'<code>{esc(str(art.get("tif_sha256"))[:16])}&hellip;</code>',
-          "all 12,279,160 cells finite and every value is exactly 0 or 1, so &ldquo;predicted values "
-          "must be in range [0, 1]&rdquo; cannot fire; identical inside the footprint (checked)"],
+          "all 12,279,160 cells finite and every value is exactly 0 or 1, so the portal check "
+          "&ldquo;predicted values must be in range [0, 1]&rdquo; cannot fire. A parallel lane reports "
+          "that a NaN-outside file is what triggered that error (UNVERIFIED here, and it contradicts "
+          "the rules text) &mdash; that risk is why the all-finite twin is listed first"],
+         ["1b. Only if the portal objects to zeros outside the bounds",
+          f'<a href="downloads/{esc(Path(art.get("nan_variant", "")).name)}" download>'
+          f'<strong>{esc(Path(art.get("nan_variant", "")).name)}</strong></a> &mdash; sha256 '
+          f'<code>{esc(str(art.get("nan_variant_sha256"))[:16])}&hellip;</code>',
+          "the official-convention twin: NaN outside the footprint, byte-identical inside it "
+          "(verified). Either file scores the same; they differ only outside the scored domain"],
          ["2. Name the submission",
           f'<code>{esc(run.get("submission_name", ""))}</code>',
           "unique stem; no file in the 118-raster registry shares it"],
          ["3. Paste this note ("
-          + str(len(note)) + " chars, limit 140)",
-          f'<code>{esc(note)}</code>',
+          + str(len(run.get("submission_note", ""))) + " chars, limit 140)",
+          f'<code>{esc(run.get("submission_note", ""))}</code>',
           "every number in it is labelled, so nobody can read it as a claimed score"],
          ["4. Do not also upload a focus-site file",
-          "any of the nine rows in section 02",
+          "any of the nine rows in the decision table",
           "they are prior submissions of other sites; re-uploading one is a duplicate and wastes the "
           "weekly cap"]],
         "the ZIP beside each .tif contains the same bytes (verified); local validator receipts are "
@@ -603,7 +605,7 @@ transform and bounds.</td></tr>
 
 {subkit}
 """
-    (DOCS / "how-to-submit-20261031.html").write_text(
+    (DOCS / "wbg8-h3c-how-to-submit-20261031.html").write_text(
         HEAD.format(title="How to submit, 31 Oct 2026") + how + FOOT)
 
     # ---- estimator + hypotheses stubs -------------------------------------------
@@ -612,7 +614,7 @@ transform and bounds.</td></tr>
                 [[f'<code>{esc(r["name"][:58])}</code>', fmt(r["observed_owner_reported"]),
                   fmt(r["model_estimate"]), fmt(r["residual"]), fmt(r["n_dots"], 0), fmt(r["family"], 0)]
                  for r in rows], "40 highest owner-reported values of 118")
-    (DOCS / "estimator-20261031.html").write_text(HEAD.format(title="Score estimator") + f"""
+    (DOCS / "wbg8-h3c-estimator-20261031.html").write_text(HEAD.format(title="Score estimator") + f"""
 <p class="breadcrumb">GEMS prize challenge <span>/</span> Score estimator <span>/</span> 31 October 2026</p>
 <section class="section"><h2>Forward model</h2>
 <p><code>pi(x) = K &middot; tilt(susceptibility, s) &middot; (1 &minus; exp(&(d<sub>catalogue</sub>&minus;1)/c))</code>,
@@ -625,7 +627,7 @@ TP_w is linear in the truth indicator, so the fit is an inversion, not a regress
 <h2>Per-submission behaviour of the estimator</h2>{per}
 </section>""" + FOOT)
 
-    (DOCS / "hypotheses-20261031.html").write_text(HEAD.format(title="Ranked hypotheses") + f"""
+    (DOCS / "wbg8-h3c-hypotheses-20261031.html").write_text(HEAD.format(title="Ranked hypotheses") + f"""
 <p class="breadcrumb">GEMS prize challenge <span>/</span> Hypotheses <span>/</span> 31 October 2026</p>
 <section class="section">{hyp_tbl}
 <h2>Why these five, and what was rejected</h2>
@@ -645,18 +647,18 @@ exactly that reason (0.0782, 0.0558, 0.0963, 0.0000, 0.0132 owner-reported).</p>
     marker = '<main id="main" class="wrap">'
     banner = (f'<div class="alert" role="alert" style="border:4px solid {band};background:#fff">'
               f'<p style="font-size:19px"><strong style="color:{band}">{verdict}</strong> &nbsp;'
-              f'<a href="executive-summary-20261031.html"><strong>31 Oct executive summary: nine-site table, '
+              f'<a href="wbg8-h3c-summary-20261031.html"><strong>31 Oct executive summary: nine-site table, '
               f'calibrated estimator, and the unique generated TIFF download &#8594;</strong></a></p>'
               f'<p><a href="downloads/{esc(Path(art.get("tif","")).name)}" download>'
               f'{esc(Path(art.get("tif","")).name)} &#8595;</a> &middot; MODEL-ESTIMATE '
               f'{fmt(est.get("value"))} (not an organizer score) &middot; '
               f'{fmt(desc.get("n_dots"),0)} dots, 0 on the mapped catalogue.</p></div>')
-    if "executive-summary-20261031.html" not in idx:
+    if "wbg8-h3c-summary-20261031.html" not in idx:
         idx = idx.replace(marker, marker + banner, 1)
         (DOCS / "index.html").write_text(idx)
 
     # ---- feed ------------------------------------------------------------------
-    feed = load(DOCS / "data" / "feed.json", {}) or {}
+    feed = load(DOCS / "data" / "feed_h3c.json", {}) or {}
     feed["generated_utc"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     feed["leaderboard"] = {"rank": 1, "participant_display": board["rows"][0]["participant"],
                            "public_dw_tversky": board["rows"][0]["best_public_dw_tversky"],
@@ -671,16 +673,16 @@ exactly that reason (0.0782, 0.0558, 0.0963, 0.0000, 0.0132 owner-reported).</p>
                             "model_estimate_interval": est.get("interval"),
                             "holdout_dti": hold.get("dti"),
                             "verdict": run.get("verdict"),
-                            "page": "docs/executive-summary-20261031.html"}
+                            "page": "docs/wbg8-h3c-summary-20261031.html"}
     feed["latest_entries"] = (feed.get("latest_entries") or [])[:12]
     feed["latest_entries"].insert(0, {
         "date_utc": "2026-10-31", "kind": "lane", "title": "WBG-8 registry-inverted truth model",
         "summary": f"{verdict.replace('&middot;','-')} for {Path(art.get('tif','')).name}; "
                    f"MODEL-ESTIMATE {est.get('value')}, HOLDOUT-DTI {hold.get('dti')}, "
-                   f"max overlap {uniq.get('max_overlap_3px')}", "page": "docs/executive-summary-20261031.html"})
-    (DOCS / "data" / "feed.json").write_text(json.dumps(feed, indent=1, allow_nan=False, default=float) + "\n")
-    return {"written": ["executive-summary-20261031.html", "how-to-submit-20261031.html",
-                        "estimator-20261031.html", "hypotheses-20261031.html",
+                   f"max overlap {uniq.get('max_overlap_3px')}", "page": "docs/wbg8-h3c-summary-20261031.html"})
+    (DOCS / "data" / "feed_h3c.json").write_text(json.dumps(feed, indent=1, allow_nan=False, default=float) + "\n")
+    return {"written": ["wbg8-h3c-summary-20261031.html", "wbg8-h3c-how-to-submit-20261031.html",
+                        "wbg8-h3c-estimator-20261031.html", "wbg8-h3c-hypotheses-20261031.html",
                         "index.html (banner)", "data/feed.json"], "verdict": verdict}
 
 

@@ -1,0 +1,44 @@
+{
+ "generated_utc": "2026-10-31T02:21:45Z",
+ "leaderboard": {
+  "rank": 1,
+  "participant_display": "xiaofanhu",
+  "public_dw_tversky": 0.4544,
+  "top20_threshold": 0.3417,
+  "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-OBSERVATION",
+  "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "observed_date_utc": "2026-10-31",
+  "not_a_project_submission_receipt": true
+ },
+ "current_lane": {
+  "lane": "WBG-8",
+  "submission": "wbg8-h3-lattice-microplace-42771-20261031.tif",
+  "tif_sha256": "e83ab1e4ed3ac627004fdca0a3a8f96574b476ab38ba0098d898f643193b4c9e",
+  "ok_to_download": true,
+  "ok_to_submit_under_project_gates": false,
+  "model_estimate": 0.09512365134295216,
+  "model_estimate_interval": [
+   0.0,
+   0.30319677581169424
+  ],
+  "holdout_dti": 0.009097023587634784,
+  "verdict": "probe",
+  "page": "docs/wbg8-h3c-summary-20261031.html"
+ },
+ "latest_entries": [
+  {
+   "date_utc": "2026-10-31",
+   "kind": "lane",
+   "title": "WBG-8 registry-inverted truth model",
+   "summary": "DOWNLOAD: YES (research, files valid) - SUBMIT: PROBE ONLY &mdash; not cleared as a score-beating entry - 0 slots used for wbg8-h3-lattice-microplace-42771-20261031.tif; MODEL-ESTIMATE 0.09512365134295216, HOLDOUT-DTI 0.009097023587634784, max overlap 0.9986439409880526",
+   "page": "docs/wbg8-h3c-summary-20261031.html"
+  },
+  {
+   "date_utc": "2026-10-31",
+   "kind": "lane",
+   "title": "WBG-8 registry-inverted truth model",
+   "summary": "DOWNLOAD: YES (research, files valid) - SUBMIT: PROBE ONLY &mdash; not cleared as a score-beating entry - 0 slots used for wbg8-h3-lattice-microplace-42771-20261031.tif; MODEL-ESTIMATE 0.09512365134295216, HOLDOUT-DTI 0.009097023587634784, max overlap 0.9986439409880526",
+   "page": "docs/wbg8-h3c-summary-20261031.html"
+  }
+ ]
+}

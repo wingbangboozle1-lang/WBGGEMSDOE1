@@ -1,3 +1,8 @@
+> **31 Oct 2026:** the current session's standing prompt lives at
+> [`standing-prompt-20261031.md`](standing-prompt-20261031.md) and is mirrored at the top of
+> the repo README (read every session as the starting point). The 26 Oct prompt below is
+> retained for provenance.
+
 # Standing user prompt — supplied 2026-10-26
 
 > **CURRENT STATE — updated 2026-10-27.** The prior WBG-2 upload recommendation and

@@ -1,0 +1,155 @@
+{
+ "generated_utc": "2026-10-31T01:27:17Z",
+ "evidence_class": "MODEL-ESTIMATE for every predicted number; OWNER-REPORTED for anchors",
+ "prior": {
+  "kind": "score-weighted consensus of the 25 highest owner-reported registry rasters",
+  "rasters_used": [
+   "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+   "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
+   "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
+   "h27-4-solo-d28-20261004-8acb75e1-nan",
+   "h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan",
+   "h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan",
+   "h32-1-prethin-tip-euler-d2-8-20261003-31e35eee884e-nan",
+   "h33d-analog-tip-stepover-r30-20261004-cb490425926e",
+   "dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+   "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca",
+   "efd28-repro-20261003-1cc7dc534d51-nan",
+   "wormrank-d28-20261003-59dcaf6fdd11d-zeros",
+   "gems70-p5-dual-submod300-oof38k-20261020",
+   "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+   "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+   "gate_ortho_w0.25-40k-20261006T213721Z-nan",
+   "gems76-ptcf-tiltworm-submod39k-20261021T034000Z-6316481d-zeros",
+   "cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-zeros",
+   "h59-cover-ds-belief-b2xh33d-20261008T184547Z-b79c4c61d8d8",
+   "h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan",
+   "gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros",
+   "h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan",
+   "h19-4-reference-20260930-691e4dfa",
+   "h20-1-sarnnpu-powerlaw-pi0363-tilt-wingcrack-20260930-be0e8f6b-nan",
+   "gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros"
+  ],
+  "median_registry_score": 0.08495,
+  "replaced": "H1 concealed-cover concordance, falsified as a concentration prior by the anchor test (see module docstring; the numbers are the calibration block below)"
+ },
+ "calibration": {
+  "anchor_raster": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+  "anchor_owner_reported": 0.2778,
+  "anchor_reproduced": 0.27779999999999655,
+  "anchor_reachable_by_any_level": true,
+  "level_multiplier": 0.030700608334938567,
+  "K_modelled_truth_cells": 9765.081170619453,
+  "champion_coverage_of_prior_mass": 0.4567084225540927,
+  "champion_coverage_of_uniform_field": 0.05861549451947212,
+  "note": "level solved so the FOREIGN champion raster is predicted at its reported value; K follows from the level and is not free"
+ },
+ "design_rules": {
+  "separation_px": 7.0,
+  "catalogue_buffer_px": 2,
+  "budget": "argmax of the predicted-DTI curve over N",
+  "occupancy_penalty": 0.75,
+  "unoccupied_target_fraction": 0.5
+ },
+ "budget_curve": [
+  {
+   "n_dots": 258,
+   "predicted_dti": 0.004711823694682589,
+   "tpw": 37.08414554828787,
+   "fpw": 254.812255859375,
+   "frac_unoccupied_vs_top25": 0.0
+  },
+  {
+   "n_dots": 645,
+   "predicted_dti": 0.011855450078791217,
+   "tpw": 94.34824807235,
+   "fpw": 636.4136352539062,
+   "frac_unoccupied_vs_top25": 0.0
+  },
+  {
+   "n_dots": 1290,
+   "predicted_dti": 0.023294825921033616,
+   "tpw": 188.78670195258243,
+   "fpw": 1272.0546875,
+   "frac_unoccupied_vs_top25": 0.0
+  },
+  {
+   "n_dots": 2258,
+   "predicted_dti": 0.03943823701303727,
+   "tpw": 328.2383696693148,
+   "fpw": 2225.66650390625,
+   "frac_unoccupied_vs_top25": 0.0
+  },
+  {
+   "n_dots": 3226,
+   "predicted_dti": 0.05464406698056541,
+   "tpw": 466.7239226774496,
+   "fpw": 3178.77001953125,
+   "frac_unoccupied_vs_top25": 0.0
+  },
+  {
+   "n_dots": 4516,
+   "predicted_dti": 0.07330640512808248,
+   "tpw": 647.3905535289913,
+   "fpw": 4448.76416015625,
+   "frac_unoccupied_vs_top25": 0.0
+  },
+  {
+   "n_dots": 5806,
+   "predicted_dti": 0.0903436952579381,
+   "tpw": 823.9869083717983,
+   "fpw": 5718.5888671875,
+   "frac_unoccupied_vs_top25": 0.0
+  },
+  {
+   "n_dots": 7097,
+   "predicted_dti": 0.10561941891937311,
+   "tpw": 993.7458037608051,
+   "fpw": 6989.63671875,
+   "frac_unoccupied_vs_top25": 0.0
+  },
+  {
+   "n_dots": 9032,
+   "predicted_dti": 0.12525214094891518,
+   "tpw": 1232.170557228132,
+   "fpw": 8895.109375,
+   "frac_unoccupied_vs_top25": 0.0
+  },
+  {
+   "n_dots": 10968,
+   "predicted_dti": 0.14110162278835098,
+   "tpw": 1447.968744008773,
+   "fpw": 10801.1357421875,
+   "frac_unoccupied_vs_top25": 9.117432530999271e-05
+  },
+  {
+   "n_dots": 12903,
+   "predicted_dti": 0.153774956170666,
+   "tpw": 1642.6500346529351,
+   "fpw": 12707.869140625,
+   "frac_unoccupied_vs_top25": 7.750135627373479e-05
+  }
+ ],
+ "emission": {
+  "n_dots": 12903,
+  "candidate_pool": 200000,
+  "nn_min_px": 0.0,
+  "nn_median_px": 6451.0,
+  "consensus_percentile_mean": 94.96024180423157,
+  "consensus_percentile_p10": 90.5,
+  "frac_unoccupied_vs_top25": 7.750135627373479e-05,
+  "frac_within_3px_of_champion_dots": 0.9998449972874526,
+  "coverage_2km_dilation": 0.6159839825768335,
+  "dist_to_catalogue_median_px": 22.360679774997898,
+  "dist_to_catalogue_p90_px": 69.0463606895605,
+  "frac_within_5px_of_catalogue": 0.04533829342013485
+ },
+ "predicted": {
+  "own_design_upper_bound": 0.153774956170666,
+  "tpw": 1642.6500346529351,
+  "fpw": 12707.869140625,
+  "champion_under_same_model": 0.27779999999999655,
+  "warning": "upper bound: the prior is the consensus that produced the plateau, so this cannot see our own placement error. Not a leaderboard prediction."
+ },
+ "runtime_seconds": 52.23850393295288
+}

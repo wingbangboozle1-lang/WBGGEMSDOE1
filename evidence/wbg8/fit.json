@@ -1,0 +1,1660 @@
+{
+ "generated_utc": "2026-10-31T01:20:11Z",
+ "evidence_class": "MODEL-ESTIMATE",
+ "score_label": "OWNER-REPORTED (dependent variable; no organizer receipt)",
+ "truth_model": "pi(x) = K * tilt(susceptibility, s) * (1 - exp(-(d_catalogue-1)/c)) on 96 susceptibility x 9 catalogue-distance bins; TP_w is exact-linear in pi, FP_w uses the exp(-L) occupancy form",
+ "fitted": {
+  "s_tilt": 1.0,
+  "c_catalogue_px": 2.0,
+  "K_truth_cells": 150000,
+  "k_total_realised": 122689.703125
+ },
+ "in_sample": {
+  "n": 118,
+  "rmse": 0.09496910254296201,
+  "mae": 0.06828696830424616,
+  "pearson": 0.18910313792973074,
+  "spearman": 0.4580945807266844,
+  "loss_mean_abs_logit": 0.8762382931237245
+ },
+ "grouped_holdout_family": {
+  "n_families": 22,
+  "mae_mean_heldout": 0.10615975738201126,
+  "rmse_mean_heldout": 0.1358509043162046
+ },
+ "grid_top": [
+  {
+   "s": 1.0,
+   "c": 2.0,
+   "K": 150000,
+   "loss_logit": 0.8762382931237245,
+   "rmse": 0.09496910254296201,
+   "pearson": 0.18910313792973074,
+   "k_total": 122689.703125
+  },
+  {
+   "s": 1.0,
+   "c": 4.0,
+   "K": 150000,
+   "loss_logit": 0.8831832688765866,
+   "rmse": 0.0951750868819791,
+   "pearson": 0.21095359659977994,
+   "k_total": 93257.0859375
+  },
+  {
+   "s": 1.0,
+   "c": 2.0,
+   "K": 90000,
+   "loss_logit": 0.8842833518210056,
+   "rmse": 0.09433174890012463,
+   "pearson": 0.21532344590704355,
+   "k_total": 73613.8203125
+  },
+  {
+   "s": 1.0,
+   "c": 7.0,
+   "K": 150000,
+   "loss_logit": 0.9021149664908761,
+   "rmse": 0.0958009295172276,
+   "pearson": 0.23454118197251883,
+   "k_total": 66257.78125
+  },
+  {
+   "s": 1.5,
+   "c": 2.0,
+   "K": 150000,
+   "loss_logit": 0.9051796259270478,
+   "rmse": 0.09622478082863482,
+   "pearson": 0.17233859932716258,
+   "k_total": 122728.6015625
+  },
+  {
+   "s": 1.0,
+   "c": 4.0,
+   "K": 90000,
+   "loss_logit": 0.9069608897724475,
+   "rmse": 0.09570249692963377,
+   "pearson": 0.240634210201914,
+   "k_total": 55954.25390625
+  },
+  {
+   "s": 1.0,
+   "c": 2.0,
+   "K": 55000,
+   "loss_logit": 0.9147042781345092,
+   "rmse": 0.09569123925761754,
+   "pearson": 0.24538582943178872,
+   "k_total": 44986.2265625
+  },
+  {
+   "s": 1.5,
+   "c": 4.0,
+   "K": 150000,
+   "loss_logit": 0.9150216122375249,
+   "rmse": 0.09652051301452146,
+   "pearson": 0.19247679216111474,
+   "k_total": 93324.46875
+  },
+  {
+   "s": 1.5,
+   "c": 2.0,
+   "K": 90000,
+   "loss_logit": 0.9162599443845468,
+   "rmse": 0.09570509928289983,
+   "pearson": 0.19497437444378707,
+   "k_total": 73637.15625
+  },
+  {
+   "s": 1.5,
+   "c": 7.0,
+   "K": 150000,
+   "loss_logit": 0.9385099582407239,
+   "rmse": 0.09719290113057621,
+   "pearson": 0.21345869676454,
+   "k_total": 66325.703125
+  },
+  {
+   "s": 2.0,
+   "c": 2.0,
+   "K": 150000,
+   "loss_logit": 0.9402043084071436,
+   "rmse": 0.09786416766774897,
+   "pearson": 0.1505618235757681,
+   "k_total": 122821.5
+  },
+  {
+   "s": 1.0,
+   "c": 12.0,
+   "K": 150000,
+   "loss_logit": 0.940558993915565,
+   "rmse": 0.0976075877111528,
+   "pearson": 0.2630094696827366,
+   "k_total": 44130.2734375
+  }
+ ],
+ "cv_rows": [
+  {
+   "family": 0,
+   "held_out": 95,
+   "chosen": {
+    "s": 30.0,
+    "c": 25.0,
+    "K": 4000
+   },
+   "pred_mean": 0.0015076136912048372,
+   "obs_mean": 0.12777684210526316,
+   "pred": [
+    0.0008477753989673392,
+    0.0011135062837803174,
+    0.0008362537282506482,
+    0.0008087455038874794,
+    0.0008087455038874794,
+    0.0008433273443594773,
+    0.0007772972992733156,
+    0.0008968441532162858,
+    0.0007500847811452214,
+    0.0007500847811452214,
+    0.0007500847811452214,
+    0.0007558948200288516,
+    0.00038294920817375037,
+    0.0006507197816352227,
+    0.0006765635540957804,
+    0.000825334727543052,
+    0.0010162629842151933,
+    0.004114253618711843,
+    0.0011140610606228292,
+    0.0004042763877245073,
+    0.005048340437044025,
+    0.00039696743509909973,
+    0.00039696743509909973,
+    0.0004064735358903904,
+    0.0008409160659066896,
+    0.00041425963228462276,
+    0.0004419007210906692,
+    0.0031904796462637075,
+    0.002591995611580007,
+    0.001297155241253733,
+    0.0010299608987653806,
+    0.002208135796116894,
+    0.0014378166426215163,
+    0.0018646415223904037,
+    0.0018646415223904037,
+    0.001764202869800455,
+    0.001392407065985646,
+    0.0005810297879640384,
+    0.003424465053333308,
+    0.00200839222568359,
+    0.0016182764628065074,
+    0.00224641908095168,
+    0.00224641908095168,
+    0.0014374197705386014,
+    0.0024095732671892164,
+    0.0048373611859135945,
+    0.0026559265555972152,
+    0.00014674981904943724,
+    0.005171268626446278,
+    0.002286316013778984,
+    0.002127488138240597,
+    0.00038302739115492744,
+    0.0008741634856559691,
+    0.0003518397639003885,
+    0.002747583089303216,
+    0.002758523163099195,
+    0.0008799130147526857,
+    0.005732570836439483,
+    0.0009324854816295737,
+    0.0005266482335021271,
+    0.0051009182130839084,
+    0.004564282473612736,
+    0.002065733501047845,
+    0.00022089512164802426,
+    0.0019960306528805398,
+    0.0020102789293603746,
+    0.0003612716968610049,
+    0.0004446005578935598,
+    0.00035740873263942637,
+    0.00220238683602314,
+    0.0003529189515601557,
+    0.0020363181747853364,
+    0.0008556171211208377,
+    0.0006732115158049262,
+    0.00034805070946526315,
+    0.0023306707958290498,
+    0.0001321608823528479,
+    0.0022678043666086905,
+    0.0004550680790753244,
+    0.0003215782745799748,
+    0.002275321976745161,
+    0.0015019579504460768,
+    0.0001817851673260537,
+    0.00015864735674838614,
+    0.003446815651808151,
+    0.0009828689350076362,
+    0.00019162377835201381,
+    0.0005983348784393087,
+    0.00034515594567365515,
+    7.965337127649949e-05,
+    0.002742483603145916,
+    0.004594536805366605,
+    0.001383743196320837,
+    0.0013329053220654335,
+    0.00021607383023074757
+   ],
+   "obs": [
+    0.2778,
+    0.275,
+    0.271,
+    0.2708,
+    0.2708,
+    0.2707,
+    0.2649,
+    0.2632,
+    0.26,
+    0.26,
+    0.26,
+    0.256,
+    0.2478,
+    0.2477,
+    0.2449,
+    0.2376,
+    0.2343,
+    0.2303,
+    0.2296,
+    0.1922,
+    0.1917,
+    0.1894,
+    0.1894,
+    0.189,
+    0.1886,
+    0.1859,
+    0.1855,
+    0.1839,
+    0.1823,
+    0.1627,
+    0.1589,
+    0.1564,
+    0.1563,
+    0.1563,
+    0.1563,
+    0.156,
+    0.1555,
+    0.1461,
+    0.1426,
+    0.1367,
+    0.1352,
+    0.1294,
+    0.1294,
+    0.128,
+    0.1223,
+    0.1193,
+    0.1193,
+    0.1152,
+    0.1152,
+    0.111,
+    0.1047,
+    0.1002,
+    0.0984,
+    0.0976,
+    0.0964,
+    0.0943,
+    0.0921,
+    0.0904,
+    0.0856,
+    0.0843,
+    0.083,
+    0.0782,
+    0.0778,
+    0.0764,
+    0.0763,
+    0.0751,
+    0.0749,
+    0.0748,
+    0.0715,
+    0.0573,
+    0.0558,
+    0.0532,
+    0.0512,
+    0.0492,
+    0.0461,
+    0.0439,
+    0.043,
+    0.0424,
+    0.0418,
+    0.036,
+    0.0356,
+    0.0351,
+    0.0343,
+    0.0339,
+    0.0301,
+    0.0297,
+    0.0286,
+    0.0245,
+    0.0202,
+    0.0187,
+    0.0159,
+    0.0132,
+    0.0041,
+    0.0041,
+    0.0005
+   ]
+  },
+  {
+   "family": 1,
+   "held_out": 1,
+   "chosen": {
+    "s": 1.0,
+    "c": 2.0,
+    "K": 150000
+   },
+   "pred_mean": 0.06907670538948694,
+   "obs_mean": 0.0669,
+   "pred": [
+    0.06907670538948694
+   ],
+   "obs": [
+    0.0669
+   ]
+  },
+  {
+   "family": 2,
+   "held_out": 1,
+   "chosen": {
+    "s": 1.0,
+    "c": 2.0,
+    "K": 150000
+   },
+   "pred_mean": 0.08260927142355537,
+   "obs_mean": 0.0658,
+   "pred": [
+    0.08260927142355537
+   ],
+   "obs": [
+    0.0658
+   ]
+  },
+  {
+   "family": 3,
+   "held_out": 1,
+   "chosen": {
+    "s": 1.0,
+    "c": 2.0,
+    "K": 150000
+   },
+   "pred_mean": 0.1016856193919698,
+   "obs_mean": 0.0581,
+   "pred": [
+    0.1016856193919698
+   ],
+   "obs": [
+    0.0581
+   ]
+  },
+  {
+   "family": 4,
+   "held_out": 1,
+   "chosen": {
+    "s": 1.0,
+    "c": 2.0,
+    "K": 150000
+   },
+   "pred_mean": 0.06629855943247431,
+   "obs_mean": 0.05,
+   "pred": [
+    0.06629855943247431
+   ],
+   "obs": [
+    0.05
+   ]
+  },
+  {
+   "family": 5,
+   "held_out": 1,
+   "chosen": {
+    "s": 1.0,
+    "c": 2.0,
+    "K": 150000
+   },
+   "pred_mean": 0.05426610473779267,
+   "obs_mean": 0.0499,
+   "pred": [
+    0.05426610473779267
+   ],
+   "obs": [
+    0.0499
+   ]
+  },
+  {
+   "family": 6,
+   "held_out": 1,
+   "chosen": {
+    "s": 1.0,
+    "c": 2.0,
+    "K": 150000
+   },
+   "pred_mean": 0.0416923365166218,
+   "obs_mean": 0.0449,
+   "pred": [
+    0.0416923365166218
+   ],
+   "obs": [
+    0.0449
+   ]
+  },
+  {
+   "family": 7,
+   "held_out": 2,
+   "chosen": {
+    "s": 1.0,
+    "c": 2.0,
+    "K": 150000
+   },
+   "pred_mean": 0.06899903075656802,
+   "obs_mean": 0.0437,
+   "pred": [
+    0.06899903075656802,
+    0.06899903075656802
+   ],
+   "obs": [
+    0.0437,
+    0.0437
+   ]
+  },
+  {
+   "family": 8,
+   "held_out": 1,
+   "chosen": {
+    "s": 1.0,
+    "c": 2.0,
+    "K": 150000
+   },
+   "pred_mean": 0.06847353294561437,
+   "obs_mean": 0.0431,
+   "pred": [
+    0.06847353294561437
+   ],
+   "obs": [
+    0.0431
+   ]
+  },
+  {
+   "family": 9,
+   "held_out": 2,
+   "chosen": {
+    "s": 1.0,
+    "c": 2.0,
+    "K": 150000
+   },
+   "pred_mean": 0.0881831105802367,
+   "obs_mean": 0.037599999999999995,
+   "pred": [
+    0.0881831105802367,
+    0.0881831105802367
+   ],
+   "obs": [
+    0.0397,
+    0.0355
+   ]
+  },
+  {
+   "family": 10,
+   "held_out": 1,
+   "chosen": {
+    "s": 1.0,
+    "c": 2.0,
+    "K": 150000
+   },
+   "pred_mean": 0.05795887886233711,
+   "obs_mean": 0.0383,
+   "pred": [
+    0.05795887886233711
+   ],
+   "obs": [
+    0.0383
+   ]
+  },
+  {
+   "family": 11,
+   "held_out": 1,
+   "chosen": {
+    "s": 1.0,
+    "c": 2.0,
+    "K": 150000
+   },
+   "pred_mean": 0.023449101784709134,
+   "obs_mean": 0.0356,
+   "pred": [
+    0.023449101784709134
+   ],
+   "obs": [
+    0.0356
+   ]
+  },
+  {
+   "family": 12,
+   "held_out": 1,
+   "chosen": {
+    "s": 1.0,
+    "c": 2.0,
+    "K": 150000
+   },
+   "pred_mean": 0.041817544451591374,
+   "obs_mean": 0.029,
+   "pred": [
+    0.041817544451591374
+   ],
+   "obs": [
+    0.029
+   ]
+  },
+  {
+   "family": 13,
+   "held_out": 1,
+   "chosen": {
+    "s": 1.0,
+    "c": 2.0,
+    "K": 150000
+   },
+   "pred_mean": 0.09966623525878913,
+   "obs_mean": 0.0255,
+   "pred": [
+    0.09966623525878913
+   ],
+   "obs": [
+    0.0255
+   ]
+  },
+  {
+   "family": 14,
+   "held_out": 1,
+   "chosen": {
+    "s": 1.0,
+    "c": 2.0,
+    "K": 150000
+   },
+   "pred_mean": 0.0631232312337452,
+   "obs_mean": 0.0254,
+   "pred": [
+    0.0631232312337452
+   ],
+   "obs": [
+    0.0254
+   ]
+  },
+  {
+   "family": 15,
+   "held_out": 1,
+   "chosen": {
+    "s": 1.0,
+    "c": 2.0,
+    "K": 150000
+   },
+   "pred_mean": 0.009501847586647651,
+   "obs_mean": 0.018,
+   "pred": [
+    0.009501847586647651
+   ],
+   "obs": [
+    0.018
+   ]
+  },
+  {
+   "family": 16,
+   "held_out": 1,
+   "chosen": {
+    "s": 1.0,
+    "c": 2.0,
+    "K": 150000
+   },
+   "pred_mean": 0.04786094887691083,
+   "obs_mean": 0.0107,
+   "pred": [
+    0.04786094887691083
+   ],
+   "obs": [
+    0.0107
+   ]
+  },
+  {
+   "family": 17,
+   "held_out": 1,
+   "chosen": {
+    "s": 1.0,
+    "c": 2.0,
+    "K": 150000
+   },
+   "pred_mean": 0.04363537864292864,
+   "obs_mean": 0.0106,
+   "pred": [
+    0.04363537864292864
+   ],
+   "obs": [
+    0.0106
+   ]
+  },
+  {
+   "family": 18,
+   "held_out": 1,
+   "chosen": {
+    "s": 1.0,
+    "c": 2.0,
+    "K": 150000
+   },
+   "pred_mean": 0.010945265456841867,
+   "obs_mean": 0.0053,
+   "pred": [
+    0.010945265456841867
+   ],
+   "obs": [
+    0.0053
+   ]
+  },
+  {
+   "family": 19,
+   "held_out": 1,
+   "chosen": {
+    "s": 1.0,
+    "c": 2.0,
+    "K": 90000
+   },
+   "pred_mean": 0.019244586076980562,
+   "obs_mean": 0.002,
+   "pred": [
+    0.019244586076980562
+   ],
+   "obs": [
+    0.002
+   ]
+  },
+  {
+   "family": 20,
+   "held_out": 1,
+   "chosen": {
+    "s": 1.0,
+    "c": 2.0,
+    "K": 90000
+   },
+   "pred_mean": 0.009476878277976239,
+   "obs_mean": 0.0009,
+   "pred": [
+    0.009476878277976239
+   ],
+   "obs": [
+    0.0009
+   ]
+  },
+  {
+   "family": 21,
+   "held_out": 1,
+   "chosen": {
+    "s": 1.0,
+    "c": 2.0,
+    "K": 90000
+   },
+   "pred_mean": 0.0010149344971634225,
+   "obs_mean": 0.0,
+   "pred": [
+    0.0010149344971634225
+   ],
+   "obs": [
+    0.0
+   ]
+  }
+ ],
+ "per_submission": [
+  {
+   "name": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+   "observed_owner_reported": 0.2778,
+   "model_estimate": 0.06793467419800005,
+   "residual": -0.20986532580199996,
+   "n_dots": 37654,
+   "family": 0
+  },
+  {
+   "name": "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
+   "observed_owner_reported": 0.275,
+   "model_estimate": 0.07008949826530052,
+   "residual": -0.2049105017346995,
+   "n_dots": 38854,
+   "family": 0
+  },
+  {
+   "name": "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
+   "observed_owner_reported": 0.271,
+   "model_estimate": 0.0667867984401683,
+   "residual": -0.20421320155983172,
+   "n_dots": 37660,
+   "family": 0
+  },
+  {
+   "name": "h27-4-solo-d28-20261004-8acb75e1-nan",
+   "observed_owner_reported": 0.2708,
+   "model_estimate": 0.06875764463182821,
+   "residual": -0.20204235536817178,
+   "n_dots": 40199,
+   "family": 0
+  },
+  {
+   "name": "h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan",
+   "observed_owner_reported": 0.2708,
+   "model_estimate": 0.06875764463182821,
+   "residual": -0.20204235536817178,
+   "n_dots": 40199,
+   "family": 0
+  },
+  {
+   "name": "h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan",
+   "observed_owner_reported": 0.2707,
+   "model_estimate": 0.06709295586402093,
+   "residual": -0.20360704413597908,
+   "n_dots": 37860,
+   "family": 0
+  },
+  {
+   "name": "h32-1-prethin-tip-euler-d2-8-20261003-31e35eee884e-nan",
+   "observed_owner_reported": 0.2649,
+   "model_estimate": 0.06898324201241977,
+   "residual": -0.19591675798758024,
+   "n_dots": 42294,
+   "family": 0
+  },
+  {
+   "name": "h33d-analog-tip-stepover-r30-20261004-cb490425926e",
+   "observed_owner_reported": 0.2632,
+   "model_estimate": 0.06996005467405562,
+   "residual": -0.19323994532594435,
+   "n_dots": 41865,
+   "family": 0
+  },
+  {
+   "name": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+   "observed_owner_reported": 0.26,
+   "model_estimate": 0.06895543308967737,
+   "residual": -0.19104456691032262,
+   "n_dots": 44090,
+   "family": 0
+  },
+  {
+   "name": "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca",
+   "observed_owner_reported": 0.26,
+   "model_estimate": 0.06895543308967737,
+   "residual": -0.19104456691032262,
+   "n_dots": 44090,
+   "family": 0
+  },
+  {
+   "name": "efd28-repro-20261003-1cc7dc534d51-nan",
+   "observed_owner_reported": 0.26,
+   "model_estimate": 0.06895543308967737,
+   "residual": -0.19104456691032262,
+   "n_dots": 44090,
+   "family": 0
+  },
+  {
+   "name": "wormrank-d28-20261003-59dcaf6fdd11d-zeros",
+   "observed_owner_reported": 0.256,
+   "model_estimate": 0.0666247302516738,
+   "residual": -0.1893752697483262,
+   "n_dots": 41338,
+   "family": 0
+  },
+  {
+   "name": "gems70-p5-dual-submod300-oof38k-20261020",
+   "observed_owner_reported": 0.2478,
+   "model_estimate": 0.05021612290607301,
+   "residual": -0.197583877093927,
+   "n_dots": 37654,
+   "family": 0
+  },
+  {
+   "name": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+   "observed_owner_reported": 0.2477,
+   "model_estimate": 0.07554954627700947,
+   "residual": -0.17215045372299054,
+   "n_dots": 60069,
+   "family": 0
+  },
+  {
+   "name": "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+   "observed_owner_reported": 0.2449,
+   "model_estimate": 0.07701367047025513,
+   "residual": -0.16788632952974486,
+   "n_dots": 61328,
+   "family": 0
+  },
+  {
+   "name": "gate_ortho_w0.25-40k-20261006T213721Z-nan",
+   "observed_owner_reported": 0.2376,
+   "model_estimate": 0.05761393795946117,
+   "residual": -0.17998606204053885,
+   "n_dots": 40000,
+   "family": 0
+  },
+  {
+   "name": "gems76-ptcf-tiltworm-submod39k-20261021T034000Z-6316481d-zeros",
+   "observed_owner_reported": 0.2343,
+   "model_estimate": 0.06133061421672219,
+   "residual": -0.1729693857832778,
+   "n_dots": 39200,
+   "family": 0
+  },
+  {
+   "name": "cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-zeros",
+   "observed_owner_reported": 0.2303,
+   "model_estimate": 0.10562092971441307,
+   "residual": -0.12467907028558693,
+   "n_dots": 54864,
+   "family": 0
+  },
+  {
+   "name": "h59-cover-ds-belief-b2xh33d-20261008T184547Z-b79c4c61d8d8",
+   "observed_owner_reported": 0.2296,
+   "model_estimate": 0.06775846334955297,
+   "residual": -0.16184153665044704,
+   "n_dots": 37723,
+   "family": 0
+  },
+  {
+   "name": "h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan",
+   "observed_owner_reported": 0.1922,
+   "model_estimate": 0.081098314288516,
+   "residual": -0.11110168571148402,
+   "n_dots": 121131,
+   "family": 0
+  },
+  {
+   "name": "gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros",
+   "observed_owner_reported": 0.1917,
+   "model_estimate": 0.0687075780696389,
+   "residual": -0.12299242193036111,
+   "n_dots": 37654,
+   "family": 0
+  },
+  {
+   "name": "h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan",
+   "observed_owner_reported": 0.1894,
+   "model_estimate": 0.08326114271777979,
+   "residual": -0.10613885728222022,
+   "n_dots": 123779,
+   "family": 0
+  },
+  {
+   "name": "h19-4-reference-20260930-691e4dfa",
+   "observed_owner_reported": 0.1894,
+   "model_estimate": 0.08326114271777979,
+   "residual": -0.10613885728222022,
+   "n_dots": 123779,
+   "family": 0
+  },
+  {
+   "name": "h20-1-sarnnpu-powerlaw-pi0363-tilt-wingcrack-20260930-be0e8f6b-nan",
+   "observed_owner_reported": 0.189,
+   "model_estimate": 0.08321909781234589,
+   "residual": -0.10578090218765411,
+   "n_dots": 123829,
+   "family": 0
+  },
+  {
+   "name": "gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros",
+   "observed_owner_reported": 0.1886,
+   "model_estimate": 0.05678198891857895,
+   "residual": -0.13181801108142105,
+   "n_dots": 37654,
+   "family": 0
+  },
+  {
+   "name": "h20-5-continuous-pu-proxy-unverified-20260930-824ce73a-nan",
+   "observed_owner_reported": 0.1859,
+   "model_estimate": 0.0805925023187663,
+   "residual": -0.10530749768123371,
+   "n_dots": 121258,
+   "family": 0
+  },
+  {
+   "name": "h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan",
+   "observed_owner_reported": 0.1855,
+   "model_estimate": 0.08584232594556114,
+   "residual": -0.09965767405443886,
+   "n_dots": 123939,
+   "family": 0
+  },
+  {
+   "name": "h28-dotted-ridge-20260928T020256236880Z-6452ae1d00",
+   "observed_owner_reported": 0.1839,
+   "model_estimate": 0.10262670693607576,
+   "residual": -0.08127329306392425,
+   "n_dots": 69281,
+   "family": 0
+  },
+  {
+   "name": "gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros",
+   "observed_owner_reported": 0.1823,
+   "model_estimate": 0.057355437059343886,
+   "residual": -0.1249445629406561,
+   "n_dots": 37654,
+   "family": 0
+  },
+  {
+   "name": "gems75-trlt-radon-loco-ridge-20261021-zeros",
+   "observed_owner_reported": 0.1627,
+   "model_estimate": 0.06470077897648642,
+   "residual": -0.09799922102351359,
+   "n_dots": 36800,
+   "family": 0
+  },
+  {
+   "name": "r11f-scarp-radiometric-fusion-00e049b51218-zeros",
+   "observed_owner_reported": 0.1589,
+   "model_estimate": 0.07473951077273772,
+   "residual": -0.0841604892272623,
+   "n_dots": 44090,
+   "family": 0
+  },
+  {
+   "name": "gems78-h78sigx-fuse-b5-44090dots-20261022T021932Z-zeros",
+   "observed_owner_reported": 0.1564,
+   "model_estimate": 0.07607199596127383,
+   "residual": -0.08032800403872618,
+   "n_dots": 44090,
+   "family": 0
+  },
+  {
+   "name": "Hedge-v2_submission",
+   "observed_owner_reported": 0.1563,
+   "model_estimate": 0.09481348469757862,
+   "residual": -0.06148651530242137,
+   "n_dots": 227507,
+   "family": 0
+  },
+  {
+   "name": "gems-submission-20260925T001403Z-7f00890a",
+   "observed_owner_reported": 0.1563,
+   "model_estimate": 0.10062310145765203,
+   "residual": -0.05567689854234796,
+   "n_dots": 172974,
+   "family": 0
+  },
+  {
+   "name": "gems-submission-20260926T175114Z-7f00890a",
+   "observed_owner_reported": 0.1563,
+   "model_estimate": 0.10062310145765203,
+   "residual": -0.05567689854234796,
+   "n_dots": 172974,
+   "family": 0
+  },
+  {
+   "name": "gemsdoe2-dual-family-union-20260925T160406Z-f68e590f",
+   "observed_owner_reported": 0.156,
+   "model_estimate": 0.10060830546008002,
+   "residual": -0.055391694539919975,
+   "n_dots": 183642,
+   "family": 0
+  },
+  {
+   "name": "gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros",
+   "observed_owner_reported": 0.1555,
+   "model_estimate": 0.05967137467970785,
+   "residual": -0.09582862532029215,
+   "n_dots": 37654,
+   "family": 0
+  },
+  {
+   "name": "lidarscarp-ridge-top2pct-36c3a3f341c8",
+   "observed_owner_reported": 0.1461,
+   "model_estimate": 0.06394872698252203,
+   "residual": -0.08215127301747797,
+   "n_dots": 76859,
+   "family": 0
+  },
+  {
+   "name": "ovtr-ml-cover-tau3p0-20261012-nan",
+   "observed_owner_reported": 0.1426,
+   "model_estimate": 0.22513736757813724,
+   "residual": 0.08253736757813723,
+   "n_dots": 167597,
+   "family": 0
+  },
+  {
+   "name": "gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros",
+   "observed_owner_reported": 0.1367,
+   "model_estimate": 0.07044269786343171,
+   "residual": -0.06625730213656827,
+   "n_dots": 37654,
+   "family": 0
+  },
+  {
+   "name": "h30-arrangement-matched-habitat-20261002-0d4e02e8-nan",
+   "observed_owner_reported": 0.1352,
+   "model_estimate": 0.13573395849338799,
+   "residual": 0.0005339584933879982,
+   "n_dots": 91533,
+   "family": 0
+  },
+  {
+   "name": "r7-nms3-dem10-scarp_0c9199f14e62",
+   "observed_owner_reported": 0.1294,
+   "model_estimate": 0.1349811637765044,
+   "residual": 0.005581163776504416,
+   "n_dots": 103347,
+   "family": 0
+  },
+  {
+   "name": "r7-nms3-dem10-scarp_0c9199f14e62_allfinite",
+   "observed_owner_reported": 0.1294,
+   "model_estimate": 0.1349811637765044,
+   "residual": 0.005581163776504416,
+   "n_dots": 103347,
+   "family": 0
+  },
+  {
+   "name": "H25-ctx-ridge-20260927T232947704150Z-6452ae1d00",
+   "observed_owner_reported": 0.128,
+   "model_estimate": 0.09943981210365052,
+   "residual": -0.02856018789634948,
+   "n_dots": 174232,
+   "family": 0
+  },
+  {
+   "name": "dilcond-oof-v1-20261003-47629f496133-nan",
+   "observed_owner_reported": 0.1223,
+   "model_estimate": 0.07843831934840854,
+   "residual": -0.04386168065159146,
+   "n_dots": 60068,
+   "family": 0
+  },
+  {
+   "name": "pindrop-v4-nodes-20260925T152420Z-f347b70daa",
+   "observed_owner_reported": 0.1193,
+   "model_estimate": 0.24918561094854405,
+   "residual": 0.12988561094854406,
+   "n_dots": 155021,
+   "family": 0
+  },
+  {
+   "name": "h6-physics-dotted-80k-20261005T055000Z-0bef9211631c",
+   "observed_owner_reported": 0.1193,
+   "model_estimate": 0.11617445334009115,
+   "residual": -0.0031255466599088566,
+   "n_dots": 80000,
+   "family": 0
+  },
+  {
+   "name": "pindrop-v4-ridge-20260925T152422Z-4e03fc9705",
+   "observed_owner_reported": 0.1152,
+   "model_estimate": 0.06062654253897126,
+   "residual": -0.054573457461028735,
+   "n_dots": 155021,
+   "family": 0
+  },
+  {
+   "name": "gems66-lidar03-cvretrain-reliefdecile-37654dots-20261020T190152Z-zeros",
+   "observed_owner_reported": 0.1152,
+   "model_estimate": 0.0719446504273539,
+   "residual": -0.043255349572646096,
+   "n_dots": 37654,
+   "family": 0
+  },
+  {
+   "name": "gemsdoe85-hjcd-ventbridge-submod-zeros",
+   "observed_owner_reported": 0.111,
+   "model_estimate": 0.038297041916455214,
+   "residual": -0.0727029580835448,
+   "n_dots": 21334,
+   "family": 0
+  },
+  {
+   "name": "h53-twostage-20261008T040951Z-9a0b32c871",
+   "observed_owner_reported": 0.1047,
+   "model_estimate": 0.054325990371238635,
+   "residual": -0.05037400962876137,
+   "n_dots": 44069,
+   "family": 0
+  },
+  {
+   "name": "h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan",
+   "observed_owner_reported": 0.1002,
+   "model_estimate": 0.14104305306577355,
+   "residual": 0.04084305306577356,
+   "n_dots": 335879,
+   "family": 0
+  },
+  {
+   "name": "h45-eulerdepthreadcluster-20261006-f28e5cff6826-zeros",
+   "observed_owner_reported": 0.0984,
+   "model_estimate": 0.07857712927882438,
+   "residual": -0.019822870721175626,
+   "n_dots": 43038,
+   "family": 0
+  },
+  {
+   "name": "h18-3a-topo-geophys-x-complexity-prior-20260930-c502dfab-nan",
+   "observed_owner_reported": 0.0976,
+   "model_estimate": 0.06888212175485833,
+   "residual": -0.028717878245141673,
+   "n_dots": 122120,
+   "family": 0
+  },
+  {
+   "name": "gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros",
+   "observed_owner_reported": 0.0964,
+   "model_estimate": 0.23848585033130956,
+   "residual": 0.14208585033130955,
+   "n_dots": 201260,
+   "family": 0
+  },
+  {
+   "name": "gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros",
+   "observed_owner_reported": 0.0943,
+   "model_estimate": 0.07584407758561301,
+   "residual": -0.018455922414386983,
+   "n_dots": 51667,
+   "family": 0
+  },
+  {
+   "name": "h20-dem10-scarp-thin-20260927T155223039488Z-ffc91a1686",
+   "observed_owner_reported": 0.0921,
+   "model_estimate": 0.06591732035939288,
+   "residual": -0.026182679640607123,
+   "n_dots": 153957,
+   "family": 0
+  },
+  {
+   "name": "20261001_r13-lattice-s5_v2_nan-outside",
+   "observed_owner_reported": 0.0904,
+   "model_estimate": 0.32642370254652,
+   "residual": 0.23602370254652,
+   "n_dots": 206895,
+   "family": 0
+  },
+  {
+   "name": "h97b-candidate",
+   "observed_owner_reported": 0.0856,
+   "model_estimate": 0.05982905853361436,
+   "residual": -0.025770941466385637,
+   "n_dots": 25400,
+   "family": 0
+  },
+  {
+   "name": "r12-scarp-rad-concordance-23e807e2de9f-zeros",
+   "observed_owner_reported": 0.0843,
+   "model_estimate": 0.06120804033632027,
+   "residual": -0.02309195966367973,
+   "n_dots": 37654,
+   "family": 0
+  },
+  {
+   "name": "pindrop-v4-discovery-20260925T152423Z-37f9d5b855",
+   "observed_owner_reported": 0.083,
+   "model_estimate": 0.2498669194446035,
+   "residual": 0.16686691944460352,
+   "n_dots": 155021,
+   "family": 0
+  },
+  {
+   "name": "gems-tso1-20260929T005627Z-conj_alteration_mag",
+   "observed_owner_reported": 0.0782,
+   "model_estimate": 0.16780313511252573,
+   "residual": 0.08960313511252573,
+   "n_dots": 99999,
+   "family": 0
+  },
+  {
+   "name": "h34-scatter-q50-arr-matched-20261004T223317Z",
+   "observed_owner_reported": 0.0778,
+   "model_estimate": 0.06301973017513406,
+   "residual": -0.014780269824865938,
+   "n_dots": 37654,
+   "family": 0
+  },
+  {
+   "name": "h59-sharpened-scarp-scatter-90k-20261007T171954Z-allfinite",
+   "observed_owner_reported": 0.0764,
+   "model_estimate": 0.08597203022432624,
+   "residual": 0.009572030224326247,
+   "n_dots": 90000,
+   "family": 0
+  },
+  {
+   "name": "D-step-3p0-07pct-tipProt-20261005-ecfbf59e2b48-zero",
+   "observed_owner_reported": 0.0763,
+   "model_estimate": 0.054298256463828784,
+   "residual": -0.022001743536171223,
+   "n_dots": 36171,
+   "family": 0
+  },
+  {
+   "name": "h61o-vardepth-none-40000dots-20261011T160711Z-28d4fac611ea-zeros-zeros",
+   "observed_owner_reported": 0.0751,
+   "model_estimate": 0.059621120964425664,
+   "residual": -0.015478879035574336,
+   "n_dots": 40000,
+   "family": 0
+  },
+  {
+   "name": "gems90-cnc-35000dots-20261024T084324Z",
+   "observed_owner_reported": 0.0749,
+   "model_estimate": 0.01963052994379391,
+   "residual": -0.05526947005620608,
+   "n_dots": 35000,
+   "family": 0
+  },
+  {
+   "name": "h23-b-dti-optimal-emission-10pct-20261002-86176698-nan",
+   "observed_owner_reported": 0.0748,
+   "model_estimate": 0.16457532570299935,
+   "residual": 0.08977532570299934,
+   "n_dots": 516738,
+   "family": 0
+  },
+  {
+   "name": "h46-twostageAB_20261006T160000Z_b0cfe956-zeros",
+   "observed_owner_reported": 0.0715,
+   "model_estimate": 0.05246979207162577,
+   "residual": -0.019030207928374225,
+   "n_dots": 42000,
+   "family": 0
+  },
+  {
+   "name": "gemsdoe74-triregime-radon-piedmont-37654-20261021T051000Z-zeros",
+   "observed_owner_reported": 0.0669,
+   "model_estimate": 0.06907670538948694,
+   "residual": 0.0021767053894869437,
+   "n_dots": 37654,
+   "family": 1
+  },
+  {
+   "name": "h56-final-dotted-ridge-d2p8-20261009T190421Z",
+   "observed_owner_reported": 0.0658,
+   "model_estimate": 0.08260927142355537,
+   "residual": 0.016809271423555372,
+   "n_dots": 37654,
+   "family": 2
+  },
+  {
+   "name": "xscale-worm-persistence-20261006T000541Z-nan",
+   "observed_owner_reported": 0.0581,
+   "model_estimate": 0.1016856193919698,
+   "residual": 0.043585619391969796,
+   "n_dots": 60069,
+   "family": 3
+  },
+  {
+   "name": "gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros",
+   "observed_owner_reported": 0.0573,
+   "model_estimate": 0.06622861353430104,
+   "residual": 0.008928613534301043,
+   "n_dots": 37654,
+   "family": 0
+  },
+  {
+   "name": "gems71-hydro-conduit-38800-20261020T120000Z-zeros",
+   "observed_owner_reported": 0.0558,
+   "model_estimate": 0.04846229623769463,
+   "residual": -0.007337703762305373,
+   "n_dots": 38800,
+   "family": 0
+  },
+  {
+   "name": "wormsurv-filter-20261003-921f10960d6e-zeros",
+   "observed_owner_reported": 0.0532,
+   "model_estimate": 0.05747337009600163,
+   "residual": 0.004273370096001636,
+   "n_dots": 38907,
+   "family": 0
+  },
+  {
+   "name": "sgmc-off-catalogue-44k-20261003-c8dcd780e3fd-nan",
+   "observed_owner_reported": 0.0512,
+   "model_estimate": 0.04841984648481612,
+   "residual": -0.002780153515183882,
+   "n_dots": 44090,
+   "family": 0
+  },
+  {
+   "name": "h87-h87-cmgep-20261022T060000Z-8f394f43",
+   "observed_owner_reported": 0.05,
+   "model_estimate": 0.06629855943247431,
+   "residual": 0.01629855943247431,
+   "n_dots": 35200,
+   "family": 4
+  },
+  {
+   "name": "h59j-coherence-consensus-dotted-20261011T043000Z",
+   "observed_owner_reported": 0.0499,
+   "model_estimate": 0.05426610473779267,
+   "residual": 0.00436610473779267,
+   "n_dots": 30815,
+   "family": 5
+  },
+  {
+   "name": "gemsdoe72-h72-1-sgmc-offcatalogue-20261020T195456Z-6e6525e5-zeros",
+   "observed_owner_reported": 0.0492,
+   "model_estimate": 0.03255354958988173,
+   "residual": -0.016646450410118273,
+   "n_dots": 27823,
+   "family": 0
+  },
+  {
+   "name": "h16-continuation-20260927T065521077735Z-3431b83c7c",
+   "observed_owner_reported": 0.0461,
+   "model_estimate": 0.05285389349318473,
+   "residual": 0.006753893493184726,
+   "n_dots": 310042,
+   "family": 0
+  },
+  {
+   "name": "h54c-manifest-edge-20261009T025732Z-73454bc5",
+   "observed_owner_reported": 0.0449,
+   "model_estimate": 0.0416923365166218,
+   "residual": -0.003207663483378205,
+   "n_dots": 18880,
+   "family": 6
+  },
+  {
+   "name": "xfit-c0-habitat-20261003-ca879db0089a-zeros",
+   "observed_owner_reported": 0.0439,
+   "model_estimate": 0.05056796397106761,
+   "residual": 0.006667963971067607,
+   "n_dots": 33766,
+   "family": 0
+  },
+  {
+   "name": "gems68-autoctx-s3-strands-35000dots-20261020T210000Z-849a0f04-nan",
+   "observed_owner_reported": 0.0437,
+   "model_estimate": 0.06899903075656802,
+   "residual": 0.025299030756568017,
+   "n_dots": 35000,
+   "family": 7
+  },
+  {
+   "name": "gems68-autoctx-s3-strands-35000dots-20261020T210000Z-849a0f04-zeros",
+   "observed_owner_reported": 0.0437,
+   "model_estimate": 0.06899903075656802,
+   "residual": 0.025299030756568017,
+   "n_dots": 35000,
+   "family": 7
+  },
+  {
+   "name": "sar-em-propensity-half-20261011T223500Z-5e4660cd-zeros",
+   "observed_owner_reported": 0.0431,
+   "model_estimate": 0.06847353294561437,
+   "residual": 0.02537353294561437,
+   "n_dots": 39802,
+   "family": 8
+  },
+  {
+   "name": "h60-lidarscarp-s2p0-20261007-nanoutside",
+   "observed_owner_reported": 0.043,
+   "model_estimate": 0.03556286860519587,
+   "residual": -0.0074371313948041265,
+   "n_dots": 37654,
+   "family": 0
+  },
+  {
+   "name": "sup01-hgb21-sep40-n40000-20261006-bc2e4e9a8d6f-nan",
+   "observed_owner_reported": 0.0424,
+   "model_estimate": 0.06481070148612664,
+   "residual": 0.022410701486126637,
+   "n_dots": 40000,
+   "family": 0
+  },
+  {
+   "name": "h35-06-aaa86efb25-20261004T225420098147Z-candidate",
+   "observed_owner_reported": 0.0418,
+   "model_estimate": 0.013282942217129858,
+   "residual": -0.02851705778287014,
+   "n_dots": 39530,
+   "family": 0
+  },
+  {
+   "name": "h8-euler-lineament-depthcluster-20261006-785c4f5d5ce1-hard",
+   "observed_owner_reported": 0.0397,
+   "model_estimate": 0.0881831105802367,
+   "residual": 0.0484831105802367,
+   "n_dots": 40000,
+   "family": 9
+  },
+  {
+   "name": "h64-lidar-scarp-cv-20261011T220000Z",
+   "observed_owner_reported": 0.0383,
+   "model_estimate": 0.05795887886233711,
+   "residual": 0.01965887886233711,
+   "n_dots": 37654,
+   "family": 10
+  },
+  {
+   "name": "h18-4-usgs-geologic-map-faults-gap-20260930-aef8f42c-nan",
+   "observed_owner_reported": 0.036,
+   "model_estimate": 0.031384126957510326,
+   "residual": -0.004615873042489671,
+   "n_dots": 57783,
+   "family": 0
+  },
+  {
+   "name": "xfit-h41-union-qfaults-20261003-9edb34b99e3a-zeros",
+   "observed_owner_reported": 0.0356,
+   "model_estimate": 0.050168326558758955,
+   "residual": 0.014568326558758955,
+   "n_dots": 33739,
+   "family": 0
+  },
+  {
+   "name": "h67a-orientip-lane-29447dots-20261012T021226Z-allfinite",
+   "observed_owner_reported": 0.0356,
+   "model_estimate": 0.023449101784709134,
+   "residual": -0.012150898215290865,
+   "n_dots": 29447,
+   "family": 11
+  },
+  {
+   "name": "h8-euler-lineament-depthcluster-20261006-785c4f5d5ce1",
+   "observed_owner_reported": 0.0355,
+   "model_estimate": 0.0881831105802367,
+   "residual": 0.052683110580236704,
+   "n_dots": 40000,
+   "family": 9
+  },
+  {
+   "name": "h73-chi-coherent-corridor-12000-20261011T195818Z-zeros",
+   "observed_owner_reported": 0.0351,
+   "model_estimate": 0.01962229052796282,
+   "residual": -0.01547770947203718,
+   "n_dots": 12000,
+   "family": 0
+  },
+  {
+   "name": "gems-submission-20260926T163915Z-237f0063",
+   "observed_owner_reported": 0.0343,
+   "model_estimate": 0.04954800644267831,
+   "residual": 0.015248006442678312,
+   "n_dots": 264247,
+   "family": 0
+  },
+  {
+   "name": "h40-e-disc-h40e-30k-zeros",
+   "observed_owner_reported": 0.0339,
+   "model_estimate": 0.026350436287478556,
+   "residual": -0.007549563712521443,
+   "n_dots": 30000,
+   "family": 0
+  },
+  {
+   "name": "gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros",
+   "observed_owner_reported": 0.0301,
+   "model_estimate": 0.06252246031362768,
+   "residual": 0.03242246031362768,
+   "n_dots": 37654,
+   "family": 0
+  },
+  {
+   "name": "H19-C_20260930T212401Z_c11e495e",
+   "observed_owner_reported": 0.0297,
+   "model_estimate": 0.08941716421460365,
+   "residual": 0.059717164214603644,
+   "n_dots": 513786,
+   "family": 0
+  },
+  {
+   "name": "tensor_full-n16000-sep3-20261009T211747Z-nan",
+   "observed_owner_reported": 0.029,
+   "model_estimate": 0.041817544451591374,
+   "residual": 0.012817544451591372,
+   "n_dots": 16000,
+   "family": 12
+  },
+  {
+   "name": "gems6_hgb88-topk03_33cec71ff0",
+   "observed_owner_reported": 0.0286,
+   "model_estimate": 0.021384203628344728,
+   "residual": -0.0072157963716552725,
+   "n_dots": 155021,
+   "family": 0
+  },
+  {
+   "name": "gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros",
+   "observed_owner_reported": 0.0255,
+   "model_estimate": 0.09966623525878913,
+   "residual": 0.07416623525878914,
+   "n_dots": 37654,
+   "family": 13
+  },
+  {
+   "name": "h57r-joint-strata-38000dots-20261010T214547Z-00cf5b2066f1-zeros",
+   "observed_owner_reported": 0.0254,
+   "model_estimate": 0.0631232312337452,
+   "residual": 0.03772323123374521,
+   "n_dots": 38000,
+   "family": 14
+  },
+  {
+   "name": "h42-submission-primary",
+   "observed_owner_reported": 0.0245,
+   "model_estimate": 0.06955908301499647,
+   "residual": 0.04505908301499647,
+   "n_dots": 40000,
+   "family": 0
+  },
+  {
+   "name": "gems-structural-area06-v1",
+   "observed_owner_reported": 0.0202,
+   "model_estimate": 0.05105154570463341,
+   "residual": 0.03085154570463341,
+   "n_dots": 343526,
+   "family": 0
+  },
+  {
+   "name": "17GEMSDOE_F-ensemble-2pct_20260930T050626Z",
+   "observed_owner_reported": 0.0187,
+   "model_estimate": 0.014384721898186417,
+   "residual": -0.004315278101813584,
+   "n_dots": 103347,
+   "family": 0
+  },
+  {
+   "name": "ml-binary-ridge-20261012T000000Z",
+   "observed_owner_reported": 0.018,
+   "model_estimate": 0.009501847586647651,
+   "residual": -0.008498152413352347,
+   "n_dots": 45355,
+   "family": 15
+  },
+  {
+   "name": "h8-tiprelay-ridgeconcord-pr2-n80000-20261009-49bec522-zeros",
+   "observed_owner_reported": 0.0159,
+   "model_estimate": 0.08935176520198475,
+   "residual": 0.07345176520198475,
+   "n_dots": 80000,
+   "family": 0
+  },
+  {
+   "name": "gems84-h84-kthm-tworegime-58000px-20261022T235900Z-zeros",
+   "observed_owner_reported": 0.0132,
+   "model_estimate": 0.09525717509262036,
+   "residual": 0.08205717509262035,
+   "n_dots": 58000,
+   "family": 0
+  },
+  {
+   "name": "2314b599",
+   "observed_owner_reported": 0.0107,
+   "model_estimate": 0.04786094887691083,
+   "residual": 0.03716094887691083,
+   "n_dots": 147684,
+   "family": 16
+  },
+  {
+   "name": "h51-km-faultzone-20261006-zeros",
+   "observed_owner_reported": 0.0106,
+   "model_estimate": 0.04363537864292864,
+   "residual": 0.033035378642928645,
+   "n_dots": 37654,
+   "family": 17
+  },
+  {
+   "name": "gems69-joint-relayramp-pullapart-38669-20261020T201504Z-f29b6df5",
+   "observed_owner_reported": 0.0053,
+   "model_estimate": 0.010945265456841867,
+   "residual": 0.005645265456841867,
+   "n_dots": 38669,
+   "family": 18
+  },
+  {
+   "name": "repo-c0-habitat-emission-20261003-a4d439b07426-nan",
+   "observed_owner_reported": 0.0041,
+   "model_estimate": 0.030377910442358918,
+   "residual": 0.02627791044235892,
+   "n_dots": 37913,
+   "family": 0
+  },
+  {
+   "name": "gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros",
+   "observed_owner_reported": 0.0041,
+   "model_estimate": 0.0372558025050366,
+   "residual": 0.0331558025050366,
+   "n_dots": 44090,
+   "family": 0
+  },
+  {
+   "name": "GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f",
+   "observed_owner_reported": 0.002,
+   "model_estimate": 0.02172755727459157,
+   "residual": 0.01972755727459157,
+   "n_dots": 116225,
+   "family": 19
+  },
+  {
+   "name": "h61a-basement-step-20000dots-20261011T012029Z-eb2ae4bb024b-zeros",
+   "observed_owner_reported": 0.0009,
+   "model_estimate": 0.009780234683557583,
+   "residual": 0.008880234683557583,
+   "n_dots": 25285,
+   "family": 20
+  },
+  {
+   "name": "gems79-tilt-ring-100000dots-20261022T212135Z-50a5d7498c71-zeros",
+   "observed_owner_reported": 0.0005,
+   "model_estimate": 0.01106501884385327,
+   "residual": 0.01056501884385327,
+   "n_dots": 100000,
+   "family": 0
+  },
+  {
+   "name": "datum-lahontan-strain-gauge-defensible-440dots-zeros",
+   "observed_owner_reported": 0.0,
+   "model_estimate": 0.001015525309382912,
+   "residual": 0.001015525309382912,
+   "n_dots": 440,
+   "family": 21
+  }
+ ],
+ "champion_check": {
+  "name": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+  "observed": 0.2778,
+  "model_estimate": 0.06793467419800005
+ },
+ "limitations": [
+  "the 118 dependent values are owner-reported, not organizer receipts",
+  "reported scores of near-identical rasters differ by up to 0.086 (evidence/score_consistency.json), which bounds any estimator's accuracy",
+  "cells with zero susceptibility are pinned to zero truth probability, so the inferred K is a lower bound on the hidden-truth size",
+  "the estimator calibrates budget and catalogue clearance; it cannot invent a better ranking than the susceptibility prior it is given"
+ ]
+}

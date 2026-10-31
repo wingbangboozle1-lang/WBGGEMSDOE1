@@ -1,0 +1,21 @@
+{
+ "generated_utc": "2026-10-31T01:21:58Z",
+ "n_dots": 27356,
+ "rounds": 4,
+ "surrogate_dti": 0.0031030435139760173,
+ "expected_covered_credit": 388.117226064942,
+ "expected_self_credit": 2362.5775910690427,
+ "params": {
+  "s": 1.0,
+  "c": 2.0,
+  "K": 150000,
+  "k_total": 122689.703125,
+  "rmse": 0.09496910254296201,
+  "grouped_mae": 0.10615975738201126,
+  "K_used_for_emission": 12395.0,
+  "K_free_fit": 150000
+ },
+ "allowed_cells": 4862825,
+ "allocator": "vendor/gems57/emit.greedy_allocate (shared, unmodified)",
+ "k_policy_rationale": "K=12,395 is the only value in this repository reproduced against a scored file; the free fit's K=150,000 saturates TP and is reported but not used for the emission"
+}

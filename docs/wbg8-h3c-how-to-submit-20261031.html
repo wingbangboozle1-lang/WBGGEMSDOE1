@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to submit, 31 Oct 2026 &middot; WBG GEMS research desk</title>
+<meta name="description" content="Auditable GEMS Prize decision page: one unique generated GeoTIFF with an explicit download/submit verdict, nine-site table, calibrated score estimator, ranked hypotheses.">
+<link rel="stylesheet" href="assets/style.css"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script defer src="assets/app.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="masthead"><div class="wrap"><nav class="nav" aria-label="Main navigation">
+<a class="brand" href="index.html"><span>WBG / GEMS<small>FAULT MAPPING &middot; RESEARCH DESK</small></span></a>
+<div class="navlinks"><a href="index.html">Overview</a>
+<a class="active" href="wbg8-h3c-summary-20261031.html">Executive summary &middot; 31 Oct</a>
+<a href="wbg8-h3c-how-to-submit-20261031.html">How to submit &middot; 31 Oct</a>
+<a href="wbg8-h3c-hypotheses-20261031.html">Ranked hypotheses</a>
+<a href="wbg8-h3c-estimator-20261031.html">Score estimator</a>
+<a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Repository &#8599;</a></div>
+</nav></div></header>
+<main id="main" class="wrap">
+
+<p class="breadcrumb">GEMS prize challenge <span>/</span> How to submit <span>/</span> 31 October 2026</p>
+<div class="alert" role="alert" style="border:4px solid #a32626;background:#fff">
+<p style="font-size:19px"><strong style="color:#a32626">DOWNLOAD: YES (research, files valid) &middot; SUBMIT: PROBE ONLY &mdash; not cleared as a score-beating entry &middot; 0 slots used</strong></p>
+<p>Do not upload anything from section &ldquo;nine focus sites&rdquo;: those bytes are already in the
+competition. The only file this project generates for upload is the one below.</p></div>
+<section class="section"><h2>1. The file</h2>
+<p><a href="downloads/wbg8-h3-lattice-microplace-42771-20261031.tif" download><strong>wbg8-h3-lattice-microplace-42771-20261031.tif &#8595;</strong></a>
+&middot; <a href="downloads/wbg8-h3-lattice-microplace-42771-20261031.zip" download>ZIP with the same single GeoTIFF &#8595;</a></p>
+<ul>
+<li>SHA-256 <code>e83ab1e4ed3ac627004fdca0a3a8f96574b476ab38ba0098d898f643193b4c9e</code></li>
+<li>single band, float32, EPSG:32611, 3730&times;3292, 100&nbsp;m cells, geotransform identical to
+<code>sample_submission.tif</code></li>
+<li>values: 1.0 at each emitted dot, 0.0 everywhere else inside the scored footprint, no NaN inside it
+(the NaN-exterior twin is provided because the official text says data outside the bounds should be
+null/NaN; the [0,1] portal check is satisfied by both)</li>
+</ul></section>
+<section class="section"><h2>2. Portal steps (no local step substitutes for them)</h2>
+<ol>
+<li>Open the submissions page of
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition 306</a> and log in.</li>
+<li>Click <em>New submission</em> &rarr; <em>File to submit</em> and pick the <code>.tif</code> (or the
+<code>.zip</code> containing exactly that one GeoTIFF).</li>
+<li>Set the name/note field to <code>H3c: 42,771 kernel-disjoint dots, 11 px lattice, each on its local consensus maximum. MODEL-ESTIMATE 0.23-0.35. Break-even hit rate 12 pct.</code> (the portal allows a short comment; it must not be empty
+if you want the receipt to be attributable).</li>
+<li>Press <em>Create submission</em>. The portal scores it against the public test chunk and writes a row into
+your submission history; that row is the only ORGANIZER-CONFIRMED number that will ever exist for this file.</li>
+<li>Record the score back into this repository (add it to <code>registry/registry.json</code> with the file's
+SHA-256) so the estimator can be calibrated on a real receipt instead of an owner-reported value.</li>
+</ol>
+<p class="micro">Weekly limits and the one-selected-submission rule are enforced by the portal, not by this
+project; this repository has no uploader and never spends a slot.</p></section>
+<section class="section"><h2>3. Which error messages mean what</h2>
+<table><thead><tr><th>Portal message</th><th>Verified cause in our files</th><th>Fix applied here</th></tr></thead><tbody>
+<tr><td>Predicted values must be in range [0, 1]</td>
+<td>a cell with a value &gt; 1, a negative value, or a NaN/Inf inside the raster array. The raw
+susceptibility and credit fields this project computes are unnormalised, so an exported intermediate
+trips the check immediately.</td>
+<td>the writer clips into [0,1] only after an explicit assertion that no finite value was outside it,
+then reopens the file and re-checks; the receipt
+<code>wbg8-h3-lattice-microplace-42771-20261031.tif.validator.json</code> records
+<code>portal_safe_local_policy: true</code> before the file is offered for download.</td></tr>
+<tr><td>shape / CRS / geotransform mismatch</td><td>reprojected or resampled output, or a 3-band RGB
+GeoTIFF.</td><td>writer copies the template profile verbatim and the validator compares CRS, shape,
+transform and bounds.</td></tr>
+<tr><td>file too large / wrong container</td><td>a multi-band or BigTIFF export.</td>
+<td>classic single-band TIFF; the ZIP holds exactly one member.</td></tr>
+</tbody></table></section>
+
+<div class="table-wrap"><table><caption class="sr-only">the ZIP beside each .tif contains the same bytes (verified); local validator receipts are &lt;code&gt;downloads/wbg8-h3-lattice-microplace-42771-20261031.tif.validator.json&lt;/code&gt; and the run card &lt;code&gt;downloads/wbg8-h3-lattice-microplace-42771-20261031.run-card.json&lt;/code&gt;</caption><thead><tr><th>Step</th><th>Exactly what to use</th><th>Why</th></tr></thead><tbody><tr><td>1. Download the primary file</td><td><a href="downloads/wbg8-h3-lattice-microplace-42771-20261031.tif" download><strong>wbg8-h3-lattice-microplace-42771-20261031.tif</strong></a> &mdash; sha256 <code>e83ab1e4ed3ac627&hellip;</code></td><td>all 12,279,160 cells finite and every value is exactly 0 or 1, so the portal check &ldquo;predicted values must be in range [0, 1]&rdquo; cannot fire. A parallel lane reports that a NaN-outside file is what triggered that error (UNVERIFIED here, and it contradicts the rules text) &mdash; that risk is why the all-finite twin is listed first</td></tr><tr><td>1b. Only if the portal objects to zeros outside the bounds</td><td><a href="downloads/wbg8-h3-lattice-microplace-42771-20261031-nanoutside.tif" download><strong>wbg8-h3-lattice-microplace-42771-20261031-nanoutside.tif</strong></a> &mdash; sha256 <code>9295e5659d4bd629&hellip;</code></td><td>the official-convention twin: NaN outside the footprint, byte-identical inside it (verified). Either file scores the same; they differ only outside the scored domain</td></tr><tr><td>2. Name the submission</td><td><code>wbg8-h3-lattice-microplace-42771-20261031</code></td><td>unique stem; no file in the 118-raster registry shares it</td></tr><tr><td>3. Paste this note (139 chars, limit 140)</td><td><code>H3c: 42,771 kernel-disjoint dots, 11 px lattice, each on its local consensus maximum. MODEL-ESTIMATE 0.23-0.35. Break-even hit rate 12 pct.</code></td><td>every number in it is labelled, so nobody can read it as a claimed score</td></tr><tr><td>4. Do not also upload a focus-site file</td><td>any of the nine rows in the decision table</td><td>they are prior submissions of other sites; re-uploading one is a duplicate and wastes the weekly cap</td></tr></tbody></table></div><p class="micro">the ZIP beside each .tif contains the same bytes (verified); local validator receipts are <code>downloads/wbg8-h3-lattice-microplace-42771-20261031.tif.validator.json</code> and the run card <code>downloads/wbg8-h3-lattice-microplace-42771-20261031.run-card.json</code></p>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><p><strong>WBG / GEMS</strong> &nbsp; Evidence before a weekly slot.
+A MODEL-ESTIMATE is never an organizer score; local validation is never portal acceptance.
+Fault predictions are not verified geothermal vents.</p>
+<div><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official problem description &#8599;</a>
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official leaderboard &#8599;</a>
+<a href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference solution &#8599;</a></div>
+</div></footer></body></html>

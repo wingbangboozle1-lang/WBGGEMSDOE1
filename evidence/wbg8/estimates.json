@@ -1,0 +1,84 @@
+{
+ "generated_utc": "2026-10-31T02:02:21Z",
+ "model": {
+  "fitted": {
+   "s": 1.0,
+   "c": 2.0,
+   "K": 150000,
+   "k_total": 122689.703125,
+   "rmse": 0.09496910254296201,
+   "grouped_mae": 0.10615975738201126
+  },
+  "truth_model": "pi(x) = K * tilt(susceptibility, s) * (1 - exp(-(d_catalogue-1)/c)) on 96 susceptibility x 9 catalogue-distance bins; TP_w is exact-linear in pi, FP_w uses the exp(-L) occupancy form",
+  "champion_owner_reported": 0.2778,
+  "estimator_value_for_champion": 0.06793467419800005
+ },
+ "results": [
+  {
+   "file": "wbg8-h3-lattice-microplace-42771-20261031.tif",
+   "sha256": "e83ab1e4ed3ac627004fdca0a3a8f96574b476ab38ba0098d898f643193b4c9e",
+   "registry_overlap": {
+    "max_frac_within_3px": 0.9986439409880526,
+    "against": "20261001_r13-lattice-s5_v2_nan-outside",
+    "jaccard_dot_sets_against_that_file": 0.0069573003254806585,
+    "literal_limit": 0.7,
+    "note": "dense registry rasters make the literal 3 px rule degenerate (AGENTS.md 0b(ii)); Jaccard is the copy test"
+   },
+   "grid": {
+    "crs": "EPSG:32611",
+    "transform": [
+     100.0,
+     0.0,
+     243350.0,
+     0.0,
+     -100.0,
+     4508550.0
+    ],
+    "shape": [
+     3730,
+     3292
+    ],
+    "grid_matches_official_template": true
+   },
+   "format": {
+    "bands": 1,
+    "dtype": "float32",
+    "values_in_0_1": true,
+    "value_min": 0.0,
+    "value_max": 1.0,
+    "nan_inside_footprint": 0,
+    "outside_footprint_nonzero": 0
+   },
+   "emission": {
+    "n_dots": 42771,
+    "frac_on_catalogue": 0.0,
+    "frac_within_3px_of_catalogue": 0.08281312103995699,
+    "dist_median_px": 22.47220505424423,
+    "dist_p90_px": 68.79680225126747,
+    "cluster_frac": 0.0,
+    "n_components": 42771
+   },
+   "score_estimate": {
+    "evidence_class": "MODEL-ESTIMATE",
+    "value": 0.09512365100748262,
+    "interval": [
+     0.0,
+     0.20128340838949388
+    ],
+    "uncertainty_source": "leave-one-family-out MAE on the 118 owner-reported scores",
+    "components": {
+     "tpw": 10182.371744561124,
+     "fpw": 34276.484375,
+     "K_truth_cells_modelled": 122689.703125
+    },
+    "not_an_organizer_score": true
+   },
+   "nearest_registry_file": {
+    "name": "20261001_r13-lattice-s5_v2_nan-outside",
+    "overlap_3px": 0.9986439409880526,
+    "owner_reported": 0.0904
+   },
+   "unique_vs_owner_scored_portfolio": false
+  }
+ ]
+}

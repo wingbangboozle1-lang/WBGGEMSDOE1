@@ -3,25 +3,46 @@
 **Mission:** WBGGEMSDOE1 for the DOE GEMS Prize (DrivenData competition 306). Core values: maximize P(Win); own the outcome; no manual input; no hallucinations (verify each line against an official link).
 
 **Standing requirements:**
-1. Executive summary per focus site (GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36): highest-scoring file to download, a score table (file, estimated score, unique vs other GEMSDOE sites). Every number is labelled **HOLDOUT-DTI** (evaluator, withheld-positive count, 95% CI) or **ORGANIZER-CONFIRMED** (submission-page receipt). A user-reported number is labelled USER-REPORTED, and no projection is written as a score.
-2. Produce a unique TIFF (not a copy of a prior submission, except for learning). It must be obvious whether it is OK to download and to submit. It must be validated automatically and have values in [0, 1].
-3. Explain why GEMSDOE32 B2 (0.2778, user-reported) scored highest and whether more is achievable. Leaderboard: #1 is 0.4544 on the page read 31 Oct; the brief's 0.4413 and 0.3195 are flagged (0.3195 is #50, not the leader).
-4. Three to five untested geological hypotheses, ranked by expected DTI gain and cost. Validate the top candidate on a spatially blocked holdout before spending any submission slot.
-5. Parallel-run protocol: lane check (rank correlation > 0.90, or > 70% of dots within 3 px of any registry raster, means duplicate and stop); reuse `scripts/evaluate_holdout.py` and `scripts/submission_writer.py`; leakage canary (AUC > 0.90 means leakage); run card JSON; budget of 3 experiments in 2 hours; no slot picking.
-6. Keep this prompt in the README. Maintain the GitHub Pages site: clean UI, executive summary, and a how-to-submit subpage that addresses "Predicted values must be in range [0, 1]". Give official links, flag irregularities, run multi-pass review, open a PR and merge to `main`, and list the remaining work and limitations.
+1. Executive summary per focus site (GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36): highest-scoring file to download, plus a score table (file, estimated score, unique vs other GEMSDOE sites). Every number is labelled **HOLDOUT-DTI** (evaluator, withheld-positive count, 95% CI) or **ORGANIZER-CONFIRMED** (submission-page receipt). User-reported numbers are labelled USER-REPORTED. No projection is written as a score.
+2. Produce a unique TIFF (not a copy of a prior submission, except for learning). It must be obvious whether it is OK to download and to submit. It must be validated automatically, and its values must lie in [0, 1].
+3. Explain why GEMSDOE32 B2 (0.2778, user-reported) scored highest and whether more is achievable. Leaderboard: #1 is 0.4544 on the page read 31 Oct; the brief's 0.4413 is not on the page, and 0.3195 is #50, not the leader.
+4. Three to five untested geological hypotheses, ranked by expected DTI gain and cost. The top candidate must pass a spatially blocked holdout before any submission slot is used.
+5. Parallel-run protocol: lane check (rank correlation above 0.90, or more than 70% of dots within 3 px of any registry raster, means duplicate and stop); reuse `scripts/evaluate_holdout.py` and `scripts/submission_writer.py`; leakage canary (AUC above 0.90 means leakage); run card JSON; budget of 3 experiments in 2 hours; no slot picking.
+6. Keep this prompt in the README and read it each session. Maintain the GitHub Pages site (clean UI, executive summary, how-to-submit subpage that addresses "Predicted values must be in range [0, 1]"), give official links, flag irregularities, run multi-pass review, open a PR and merge to `main`, and list the remaining work and limitations.
 
-**Current outputs (31 Oct 2026):**
-- Executive summary: [docs/executive-summary-20261031.html](docs/executive-summary-20261031.html) (site overview: [docs/index.html](docs/index.html)).
-- How to submit: [docs/how-to-submit-20261031.html](docs/how-to-submit-20261031.html) (range-error fix, automated check).
-- Research TIFF: [docs/downloads/wbggemsdoe1-fs-hgbvisible-greedy-k12198-20261031.tif](docs/downloads/wbggemsdoe1-fs-hgbvisible-greedy-k12198-20261031.tif). **DOWNLOAD: YES (research and learning only) · SUBMIT: NO.** HOLDOUT-DTI 0.0536 (CI [0.0459, 0.0614], n = 22,893) against a uniform null of 0.0646. Literal overlap 99.83%. Estimated leaderboard score: UNAVAILABLE.
-- Run card: [evidence/fold_safe_20261031/final_run_card_20261031.json](evidence/fold_safe_20261031/final_run_card_20261031.json). Experiment receipts: `evidence/fold_safe_20261031/E2-…json`, `E3-…json`.
-- Negative results stand. The lane is closed as negative. The next experiment (H1, spatially dispersed ranking) needs a written pre-registration first.
+**Current outputs (31 Oct 2026, fold-safe lane):**
+- Executive summary: [docs/executive-summary-20261031.html](docs/executive-summary-20261031.html) · How to submit: [docs/how-to-submit-20261031.html](docs/how-to-submit-20261031.html) · Overview: [docs/index.html](docs/index.html).
+- Research TIFF: [`docs/downloads/wbggemsdoe1-fs-hgbvisible-greedy-k12198-20261031.tif`](docs/downloads/wbggemsdoe1-fs-hgbvisible-greedy-k12198-20261031.tif). **DOWNLOAD: YES (research and learning only) · SUBMIT: NO** (run card `ok_to_submit` = false). Estimated leaderboard score: UNAVAILABLE.
+- HOLDOUT-DTI (evaluator `gems57-pooled-hide-v2`, withheld positives 22,893): candidate E2 **0.0536** (95% CI [0.0459, 0.0614]) against uniform null **0.0646** (paired difference -0.0110, 95% CI [-0.0182, -0.0035]). E3 top-N: 0.0249 against uniform 0.0451.
+- Literal registry overlap: 99.83% against the r13 lattice (gate G4 fails). Registry scan 117 of 118 (one CRS/transform error).
+- Negative results stand. The lane is closed as negative; the next experiment (spatially dispersed ranking) needs a written pre-registration first.
+- Receipts: [`evidence/fold_safe_20261031/`](evidence/fold_safe_20261031/) · irregularities [`evidence/fold_safe_20261031/irregularities_20261031.json`](evidence/fold_safe_20261031/irregularities_20261031.json).
 
 **Official links:** [Rules (NLR PDF)](https://docs.nlr.gov/docs/fy26osti/96647.pdf) · [HeroX rules page](https://www.herox.com/GEMSPrize/resource/2274) · [Problem page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) · [Leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) · [Competition](https://www.drivendata.org/competitions/306/competition-doe-gems/)
 
-**Irregularities and limitations:** see §7 and §8 of the executive summary (I1–I12). In particular: the rules name two label sources (§2 vs §3.3); the generative-AI disclosure is required by §3.2; the registry scan is 117 of 118; the holdout does not describe the shipped file exactly (I6).
+**Flags for review (I1–I12 in the executive summary):** rules name two label sources (§2 vs §3.3); generative-AI disclosure is required by §3.2 before any submission; the shipped TIFF is not the exact object measured on holdout (I6).
 
-## 29 OCT 2026 STANDING BRIEF — READ FIRST EVERY SESSION
+## ⛔ SUBMISSION STATUS (31 Oct 2026): SUBMIT NO — WBG31-E1 CLOSED, NEGATIVE
+
+**Verdict:** the research file `wbg31-e1-euler4-dots37k-20261031-7a46504ca8.tif` is **DOWNLOAD: research only** and **SUBMIT: NO**. One-click file: [`wbg31-e1-euler4-dots37k-20261031-7a46504ca8.tif`](docs/downloads/wbg31-e1-euler4-dots37k-20261031-7a46504ca8.tif); verdict note and JSON sit beside it. `submission_slots_used` = 0 in this lane; promotion authorised: false.
+
+**Why no slot:** the primary efficacy gate failed. Paired dotted HOLDOUT-DTI delta (candidate minus control) = +0.000392, 95% CI [-0.004810, +0.005401] (evaluator `gems57-pooled-hide-v2`, n withheld positives 11,330). The CI includes zero. The continuous secondary arm also fails. The 19-band control reproduces the WBG-C1 anchor (0.014146; difference 0.0e+00).
+
+**Registry measurement (REGISTRY-MEASUREMENT; 453 of 454 accessible rasters):** G1 format PASS; G2 no exact copy PASS; G3 max Spearman 0.0570 PASS (limit < 0.90); G4 literal 3-px overlap max 0.9569 FAIL (limit 0.70); the r13 lattice (206,895 dots) has chance overlap 0.9987, so its literal test is degenerate (density-matched lift 0.958). Canary: passed (max orientation-invariant AUC 0.6124, limit 0.90).
+
+Attempt 1 failed closed on a missing bootstrap block (a registration omission); amendment 2 copied the WBG-C1 values verbatim and the same experiment was rerun. Full account: [`docs/hypotheses-20261031.md`](docs/hypotheses-20261031.md) · [`registry/wbg31/attempt1_failure_record.md`](registry/wbg31/attempt1_failure_record.md) · [`registry/experiment_ledger_wbg31_e1.json`](registry/experiment_ledger_wbg31_e1.json) (status `closed_negative_efficacy_gate_failed`).
+
+Estimated leaderboard score: **UNAVAILABLE**. HOLDOUT-DTI here is a different instrument from the leaderboard and from the 0.1661 `gems-segment-pooled-v1` benchmark; numbers are not comparable. GEMSDOE32 B2's 0.2778 remains OWNER-REPORTED and is already in the competition; re-uploading it is a duplicate.
+
+---
+
+## 31 OCT 2026 — CURRENT STATUS / READ FIRST EVERY SESSION
+
+**SUBMIT: NO — no TIFF is cleared.** Read the [31 Oct repository review](docs/repo-review-20261031.md) before acting on historical content below. The review generated no TIFF; a separate parallel-branch [research-only TIFF](docs/downloads/WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.tif) is downloadable but fails the shared outside-footprint nodata check, has no registry comparison or holdout, so uniqueness is **unverified** and it is **not submit-cleared**. Required full inputs are absent, focus-site values are OWNER-REPORTED rather than ORGANIZER-CONFIRMED, new-file leaderboard estimates are unavailable, and no weekly slot was used.
+
+Read [`PROMPT.md`](PROMPT.md), this README, and [`AGENTS.md`](AGENTS.md) at the start of every session. The full archived request is also in [`docs/standing-prompt.md`](docs/standing-prompt.md). Core values: **Maximize P(Win)** and **Own the Outcome**.
+
+## 29 OCT 2026 STANDING BRIEF — HISTORICAL CONTEXT
 
 **Owner brief (condensed, official links kept):** [`docs/owner-brief-20261029.md`](docs/owner-brief-20261029.md). Read it at the start of every session, together with this README and [`AGENTS.md`](AGENTS.md).
 
@@ -35,7 +56,7 @@
 
 **Focus lane (three pre-registered arms E1 to E3, nine-site duplicate audit, gate decision):** [focus-unique-attempt-20261029.html](docs/focus-unique-attempt-20261029.html). Research-only TIFs are in [`docs/research/`](docs/research/). All three arms are format-valid and not copies, but each fails the 70% lane gate (overlap 0.739 to 0.765 vs GEMSDOE77). The literal lane rule cannot be passed by any dot field (r13 lattice).
 
-Estimated leaderboard score: **UNAVAILABLE** for every file here (no holdout or organizer score is computable in this sandbox). Live public leaderboard #1 is **0.4544**; the 50th row read this session is **0.3169** (the board moves: another read recorded 0.3167) (DrivenData page retrieved 2026-10-29). GEMSDOE32 B2 (0.2778, USER-REPORTED) is already in the competition: re-uploading it is a duplicate.
+A new-file leaderboard estimate is **UNAVAILABLE**: existing HOLDOUT-DTI results are not a validated leaderboard-score estimator, and no organizer receipt is present. The 0.4544 top-row and 0.3169 / 0.3167 rank-50 values are dated public-page observations from 27–29 Oct, not current live values. GEMSDOE32 B2 (0.2778, OWNER-REPORTED) is listed as a previous submission in the supplied history; re-uploading the same pixels would not be unique.
 
 ---
 

@@ -1,0 +1,105 @@
+{
+  "channels": [
+    "euler_mag_N0_density",
+    "euler_mag_N1_density",
+    "euler_grav_N0_density",
+    "euler_grav_N1_density"
+  ],
+  "receipts": [
+    {
+      "structural_index": 0.0,
+      "window_cells": 7,
+      "attempted_solutions": 5047941,
+      "accepted_solutions": 1966820,
+      "acceptance_fraction": 0.3896281672071841,
+      "depth_median_m": 138.4162140700368,
+      "depth_p10_m": 62.614679932051914,
+      "depth_p90_m": 378.9604625010448,
+      "finite_inside_footprint": true,
+      "max_value": 90.41133880615234,
+      "depth_window_m": [
+        50.0,
+        3000.0
+      ],
+      "interior_fraction_of_footprint": 0.9768872887635555,
+      "channel": "euler_mag_N0_density",
+      "source_band": 14,
+      "vertical_band": 9,
+      "valid_footprint_cells": 5164312
+    },
+    {
+      "structural_index": 1.0,
+      "window_cells": 7,
+      "attempted_solutions": 5047941,
+      "accepted_solutions": 1516790,
+      "acceptance_fraction": 0.3004769667474323,
+      "depth_median_m": 328.2038702818649,
+      "depth_p10_m": 163.5458568983044,
+      "depth_p90_m": 672.6629261749512,
+      "finite_inside_footprint": true,
+      "max_value": 99.2514877319336,
+      "depth_window_m": [
+        50.0,
+        3000.0
+      ],
+      "interior_fraction_of_footprint": 0.9768872887635555,
+      "channel": "euler_mag_N1_density",
+      "source_band": 14,
+      "vertical_band": 9,
+      "valid_footprint_cells": 5164312
+    },
+    {
+      "structural_index": 0.0,
+      "window_cells": 7,
+      "attempted_solutions": 5047941,
+      "accepted_solutions": 0,
+      "acceptance_fraction": 0.0,
+      "depth_median_m": null,
+      "depth_p10_m": null,
+      "depth_p90_m": null,
+      "finite_inside_footprint": true,
+      "max_value": 0.0,
+      "depth_window_m": [
+        50.0,
+        3000.0
+      ],
+      "interior_fraction_of_footprint": 0.9768872887635555,
+      "channel": "euler_grav_N0_density",
+      "source_band": 13,
+      "vertical_band": 11,
+      "valid_footprint_cells": 5164312
+    },
+    {
+      "structural_index": 1.0,
+      "window_cells": 7,
+      "attempted_solutions": 5047941,
+      "accepted_solutions": 9,
+      "acceptance_fraction": 1.7829051488517795e-06,
+      "depth_median_m": 71.1167763928849,
+      "depth_p10_m": 52.90770197942178,
+      "depth_p90_m": 88.9716919374252,
+      "finite_inside_footprint": true,
+      "max_value": 1.8949470520019531,
+      "depth_window_m": [
+        50.0,
+        3000.0
+      ],
+      "interior_fraction_of_footprint": 0.9768872887635555,
+      "channel": "euler_grav_N1_density",
+      "source_band": 13,
+      "vertical_band": 11,
+      "valid_footprint_cells": 5164312
+    }
+  ],
+  "cell_m": 100.0,
+  "window_cells": 7,
+  "sigma_cells": 3.0,
+  "depth_window_m": [
+    50.0,
+    3000.0
+  ],
+  "catalogue_read": false,
+  "vertical_unit_verified": false,
+  "channel_file": ".cache/wbg31/euler_channels.npy",
+  "channel_sha256": "c06059b7aa0d6a97a68f03722a5ea59a42e67355ff8b4f0dcd84a2c7897decaf"
+}

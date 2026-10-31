@@ -20,7 +20,7 @@ def wbg6_readme_block():
 
 **Focus lane (three pre-registered arms E1 to E3, nine-site duplicate audit, gate decision):** [focus-unique-attempt-20261029.html](docs/focus-unique-attempt-20261029.html). Research-only TIFs are in [`docs/research/`](docs/research/). All three arms are format-valid and not copies, but each fails the 70% lane gate (overlap 0.739 to 0.765 vs GEMSDOE77). The literal lane rule cannot be passed by any dot field (r13 lattice).
 
-Estimated leaderboard score: **UNAVAILABLE** for every file here (no holdout or organizer score is computable in this sandbox). Live public leaderboard #1 is **0.4544**; the 50th row read this session is **0.3169** (the board moves: another read recorded 0.3167) (DrivenData page retrieved 2026-10-29). GEMSDOE32 B2 (0.2778, USER-REPORTED) is already in the competition: re-uploading it is a duplicate.
+A new-file leaderboard estimate is **UNAVAILABLE**: existing HOLDOUT-DTI results are not a validated leaderboard-score estimator, and no organizer receipt is present. The 0.4544 top-row and 0.3169 / 0.3167 rank-50 values are dated public-page observations from 27–29 Oct, not current live values. GEMSDOE32 B2 (0.2778, OWNER-REPORTED) is listed as a previous submission in the supplied history; re-uploading the same pixels would not be unique.
 
 ---
 
@@ -38,13 +38,24 @@ See [latest review (29 Oct 2026)](docs/repo-review-20261029.md), [Focus-9 site c
 
 """
 
+def readme_31oct_block():
+    """31 Oct READ FIRST block (verdict, executive summary, candidate, standing requirements)."""
+    return "> **31 OCT 2026 · READ FIRST (standing brief, every session)**\n>\n> **Verdict:** DOWNLOAD: YES (research TIFF) · SUBMIT: **NO** · Estimated leaderboard score: **UNAVAILABLE**.\n> **Start here:** [Executive summary, 31 Oct 2026](docs/executive-summary-20261031.html) — nine-site table (file to download, owner-reported score, uniqueness), the candidate TIFF, why GEMSDOE32 B2 scored 0.2778, and all irregularities.\n> **Second 31 Oct research TIFF (parallel branch, also SUBMIT NO):** see the status block below and [`docs/repo-review-20261031.md`](docs/repo-review-20261031.md).\n> **Candidate:** [`wbggemsdoe1-h2-edgecorr-avoid3-37654-20261031.tif`](docs/downloads/wbggemsdoe1-h2-edgecorr-avoid3-37654-20261031.tif) · [run card](evidence/h2_lag/run_card_20261031.json) · [experiment](scripts/run_h2_lag_corroboration.py)\n>\n> **Standing requirements (condensed from the owner's 31 Oct brief; full transcription in [`docs/owner-brief-20261029.md`](docs/owner-brief-20261029.md)):**\n> 1. Goal: place first on the DrivenData DOE GEMS Prize ([competition](https://www.drivendata.org/competitions/306/competition-doe-gems/), [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)). Produce a **unique, format-valid GeoTIFF** that can be downloaded with one click, with a clear DOWNLOAD and SUBMIT verdict.\n> 2. Unique: not a byte or pixel copy of any earlier submission. Copies are allowed only for learning.\n> 3. Format (official, [problem page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/); [rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf)): single-band float32 GeoTIFF, EPSG:32611, 100 m, training-grid bounds, values in [0,1]. Outside the bounds the official text says null/NaN; see the irregularity on this in the executive summary.\n> 4. Validation runs in the project (no human inspector). Each file has a unique name and a note of at most 140 characters.\n> 5. Executive summary table: file to download, estimated score with its label (HOLDOUT-DTI, ORGANIZER-CONFIRMED, or OWNER-REPORTED), and whether the file is unique.\n> 6. No manual input. Anything needing a human (DrivenData login, weekly slot selection) is listed as a blocker, not worked around.\n> 7. Every claim is traced to an official source with a link. Irregularities are flagged. No hallucinated values.\n> 8. Core values: **Maximize P(Win)** and **Own the Outcome**.\n> 9. Method (parallel-run protocol, [`PROMPT.md`](PROMPT.md)): stay in the declared lane; reuse the shared holdout and writer; label every number; run the leakage canary; end each experiment with a run card; budget 3 experiments or 2 hours.\n\n"
+
+
 def brief_20261029_block():
     """Top-of-README pointer to the 29 Oct 2026 owner brief, executive summary and live verdict."""
     run = json.loads((ROOT / "evidence/candidates/wbggemsdoe1-tipgap2km-K12395-20261029.run_card.json").read_text())
     name = run["name"]
     canary = run["leakage_canary"]["detached_max_auc"]
     dup = run["registry_comparison"]["duplicate_count"]
-    return f"""## 29 OCT 2026 STANDING BRIEF — READ FIRST EVERY SESSION
+    return f"""## 31 OCT 2026 — CURRENT STATUS / READ FIRST EVERY SESSION
+
+**SUBMIT: NO — no TIFF is cleared.** Read the [31 Oct repository review](docs/repo-review-20261031.md) before acting on historical content below. The review generated no TIFF; a separate parallel-branch [research-only TIFF](docs/downloads/WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.tif) is downloadable but fails the shared outside-footprint nodata check, has no registry comparison or holdout, so uniqueness is **unverified** and it is **not submit-cleared**. Required full inputs are absent, focus-site values are OWNER-REPORTED rather than ORGANIZER-CONFIRMED, new-file leaderboard estimates are unavailable, and no weekly slot was used.
+
+Read [`PROMPT.md`](PROMPT.md), this README, and [`AGENTS.md`](AGENTS.md) at the start of every session. The full archived request is also in [`docs/standing-prompt.md`](docs/standing-prompt.md). Core values: **Maximize P(Win)** and **Own the Outcome**.
+
+## 29 OCT 2026 STANDING BRIEF — HISTORICAL CONTEXT
 
 **Owner brief (condensed, official links kept):** [`docs/owner-brief-20261029.md`](docs/owner-brief-20261029.md). Read it at the start of every session, together with this README and [`AGENTS.md`](AGENTS.md).
 
@@ -124,7 +135,7 @@ def main():
     w5_comp = w5["correlation_overlap_vs_registry"]["final_dots_competing_method"]
     w5_lit = w5["correlation_overlap_vs_registry"]["final_dots_literal"]
     w5_bench = w5["benchmark"]["dti"]
-    header = brief_20261029_block() + wbg6_readme_block() + tipcont_experiment_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
+    header = readme_31oct_block() + brief_20261029_block() + wbg6_readme_block() + tipcont_experiment_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
 
 **[START HERE — 29 Oct 2026 executive summary (download / submit verdicts, estimates, nine-site table)](docs/start-here-20261029.html)** · No file is cleared for submission under the 70% protocol.
 **[Repository review (2026-10-29)](docs/repo-review-current-20261029.md)** · no new TIFF approved; core competition inputs are absent and the active method lane is unspecified. Local tests and lint pass. Treat all existing candidate downloads according to their individual negative/STOP decisions.

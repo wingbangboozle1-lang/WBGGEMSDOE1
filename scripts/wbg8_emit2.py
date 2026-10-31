@@ -38,6 +38,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "src"), str(ROOT / "vendor")]
 from wbg8 import estimator as EST  # noqa: E402
 
+r = int(np.ceil(EST.RADIUS_PX))
+
 CACHE = ROOT / ".cache" / "wbg8"
 EV = ROOT / "evidence" / "wbg8"
 SEPARATION_PX = 7.0
@@ -50,7 +52,6 @@ def shift_max(a: np.ndarray, k: float) -> np.ndarray:
     """max over the kernel neighbourhood of ``a`` (no wraparound, unlike np.roll)."""
     H, W = a.shape
     out = np.zeros_like(a)
-    r = int(np.ceil(EST.RADIUS_PX))
     for dy in range(-r, r + 1):
         for dx in range(-r, r + 1):
             d = float(np.hypot(dy, dx))
@@ -130,12 +131,10 @@ def main() -> int:
                 lo = mid
         level = 0.5 * (lo + hi)
     anchor = predict(cdots, level, Cc)
-    K_model = anchor[3]
 
     # ---- rank cells by expected kernel credit, then thin to kernel-disjointness ---
     pi_full = weight.astype(np.float32)
     ek = np.zeros_like(pi_full)
-    r = int(np.ceil(EST.RADIUS_PX))
     for dy, dx, kw in zip(EST.DY, EST.DX, EST.KW):
         y0, y1 = max(0, dy), min(foot.shape[0], foot.shape[0] + dy)
         x0, x1 = max(0, dx), min(foot.shape[1], foot.shape[1] + dx)

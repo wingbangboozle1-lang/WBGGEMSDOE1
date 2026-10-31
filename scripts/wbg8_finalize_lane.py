@@ -273,7 +273,6 @@ def main() -> int:
     # ---- model estimate --------------------------------------------------------
     fit = json.loads((EV / "fit.json").read_text())
     params = json.loads((CACHE / "fit_params.json").read_text())
-    b = np.load(CACHE / "bins.npz")
     z, db = g["z"], g["dcat_band"]
     C_me = EST.coverage_field(dots).ravel()
     nz = np.flatnonzero(C_me > 0)

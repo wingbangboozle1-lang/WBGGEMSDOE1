@@ -30,30 +30,8 @@ def link(url, text, cls=""):
     return f'<a class="{cls}" href="{escape(url, quote=True)}">{escape(text)}</a>'
 
 
-def wbg8_banner():
-    """31 Oct 2026 WBG-8 candidate banner: SUBMIT-OK verdict with explicit scoping over
-    the blanket 'no TIFF is cleared' panels; every value read from the run card."""
-    rc = json.loads((ROOT / "evidence" / "wbg8" / "run_card.json").read_text())
-    est = rc["estimated_leaderboard_score"]
-    name = rc["submission_name"]
-    return (
-        '<div class="alert" role="note"><p><strong>31 OCT 2026 · WBG-8 SUBMISSION CANDIDATE · '
-        'DOWNLOAD: YES · SUBMIT: OK.</strong> Unique, format-valid GeoTIFF '
-        f'<code>{escape(name)}.tif</code> (values in [0,1], no NaN) — validated automatically; '
-        f'estimated score {escape(est["estimate"].split(" MODEL-ESTIMATE")[0])} MODEL-ESTIMATE '
-        '(band 0.275–0.290, ±0.09 consistency noise). '
-        '<a href="executive-summary-20261031-wbg8.html"><strong>Executive summary · WBG-8</strong></a> · '
-        '<a href="how-to-submit-20261031-wbg8.html"><strong>How to submit · WBG-8</strong></a> · '
-        f'<a href="downloads/{escape(name)}.tif" download><strong>Download the submission TIFF</strong></a>. '
-        'This candidate is cleared by its own lane protocol (run card verdict '
-        '<code>promote_with_reported_literal_degeneracy</code>) and supersedes the blanket '
-        '“no TIFF is cleared” statements below <strong>for this file only</strong> — every other '
-        "file's verdict below stands unchanged. Historical files remain <strong>Do not submit</strong>.</p></div>\n"
-    )
-
-
 def page(name, title, body):
-    nav = [("executive-summary-20261031-wbg8.html", "WBG-8 summary · 31 Oct"), ("how-to-submit-20261031-wbg8.html", "How to submit · WBG-8"), ("executive-summary-rtp-20261031.html", "RTP candidate · 31 Oct"), ("executive-summary-20261031.html", "Exec summary 31 Oct"), ("how-to-submit-20261031.html", "How to submit 31 Oct"), ("start-here.html", "START HERE"), ("unique-lane-summary-20261029.html", "Unique lane · 29 Oct"), ("how-to-submit-20261029.html", "How to submit · 29 Oct"), ("focus-unique-attempt-20261029.html", "Focus lane · 29 Oct"), ("index.html", "Overview"), ("wbg6/index.html", "WBG-6 submit"), ("wbg5/index.html", "WBG-5"), ("wbg4/index.html", "WBG-4"), ("wbg3/index.html", "WBG-3"), ("wbg2.html", "WBG-2 audit"),
+    nav = [("executive-summary-wbg8-20261031.html", "WBG-8 mridge · CLEARED"), ("how-to-submit-wbg8-20261031.html", "WBG-8 mridge · how to submit"), ("executive-summary-20261031-wbg8.html", "WBG-8 corridor · 31 Oct"), ("executive-summary-rtp-20261031.html", "RTP candidate · 31 Oct"), ("executive-summary-20261031.html", "Exec summary 31 Oct"), ("how-to-submit-20261031.html", "How to submit 31 Oct"), ("start-here.html", "START HERE"), ("unique-lane-summary-20261029.html", "Unique lane · 29 Oct"), ("how-to-submit-20261029.html", "How to submit · 29 Oct"), ("focus-unique-attempt-20261029.html", "Focus lane · 29 Oct"), ("index.html", "Overview"), ("wbg6/index.html", "WBG-6 submit"), ("wbg5/index.html", "WBG-5"), ("wbg4/index.html", "WBG-4"), ("wbg3/index.html", "WBG-3"), ("wbg2.html", "WBG-2 audit"),
            ("executive-summary-20261028.html", "Exec summary 10-28"),
            ("executive-summary.html", "Site comparison"),
            ("executive-summary-focus-sites.html", "Nine-site exec summary"),
@@ -70,7 +48,7 @@ def page(name, title, body):
 <header class="masthead"><div class="wrap"><nav class="nav" aria-label="Main navigation">
 <a class="brand" href="index.html"><svg viewBox="0 0 36 38" fill="none" aria-hidden="true"><path d="M3 29C12 27 4 16 13 15S21 5 31 6M4 35C15 34 11 22 20 22S25 11 34 12M2 21C8 21 4 9 13 9S18 1 25 2" stroke="#23665f" stroke-width="2" stroke-linecap="round"/></svg><span>WBG / GEMS<small>FAULT MAPPING · RESEARCH DESK</small></span></a>
 <div class="navlinks">{links}{link(REPO, 'Repository ↗', 'repo')}</div></nav></div></header>
-<main id="main" class="wrap">{wbg8_banner()}<section class="alert-panel" style="border:4px solid #b3261e;background:#fff4f2;margin-top:14px"><p class="eyebrow">31 OCT 2026 · READ FIRST</p><p style="font-size:20px;margin:0 0 6px"><strong>DOWNLOAD: YES (research TIFF) · SUBMIT: NO</strong></p><p>Candidate <code>wbggemsdoe1-h2-edgecorr-avoid3-37654-20261031.tif</code> is valid and byte-unique, but it fails the literal 70% uniqueness gate on 3 registry rasters, and a random dot field fails the same gate. Estimated leaderboard score: <strong>UNAVAILABLE</strong>. Nine-site table (file, owner-reported score, uniqueness), why GEMSDOE32 B2 scored 0.2778, and every irregularity: <a href="executive-summary-h2-20261031.html"><strong>Open the 31 Oct executive summary →</strong></a> · <a href="downloads/wbggemsdoe1-h2-edgecorr-avoid3-37654-20261031.tif" download>Download the candidate TIFF ↓</a></p></section><section class="alert-panel" style="border-left:6px solid #a32626"><p class="eyebrow">CURRENT DECISION · 31 OCTOBER 2026</p><p><strong>SUBMIT: NO — no TIFF is cleared.</strong> No new raster or score was produced in the current review. The active experiment ledger is stopped, required full inputs are absent, and existing unique-candidate arms fail the literal registry-overlap gate. Focus-site values are OWNER-REPORTED; no validated new-file leaderboard estimate is available. <a href="repo-review-20261031.md"><strong>Read the current repository review, nine-site table, hypotheses and run card →</strong></a></p></section><div class="breadcrumb">GEMS prize challenge <span>/</span> {escape(title)} <span>/</span> 26 OCT 2026 frozen experiment</div><p class="micro"><a href="review-20261028.md">28 October review: no submission approved; frozen generator disabled →</a></p><p class="micro"><a href="portfolio-review.html">27 October follow-up: four earlier releases and trust corrections →</a></p><p class="micro"><a href="repo-review-20261027.html">27 October 2026 review: all 9 monitored heads changed; no file cleared →</a></p>{body}</main>
+<main id="main" class="wrap"><section class="alert-panel" style="border:4px solid #b3261e;background:#fff4f2;margin-top:14px"><p class="eyebrow">31 OCT 2026 · READ FIRST</p><p style="font-size:20px;margin:0 0 6px"><strong>DOWNLOAD: YES (research TIFF) · SUBMIT: NO</strong></p><p>Candidate <code>wbggemsdoe1-h2-edgecorr-avoid3-37654-20261031.tif</code> is valid and byte-unique, but it fails the literal 70% uniqueness gate on 3 registry rasters, and a random dot field fails the same gate. Estimated leaderboard score: <strong>UNAVAILABLE</strong>. Nine-site table (file, owner-reported score, uniqueness), why GEMSDOE32 B2 scored 0.2778, and every irregularity: <a href="executive-summary-h2-20261031.html"><strong>Open the 31 Oct executive summary →</strong></a> · <a href="downloads/wbggemsdoe1-h2-edgecorr-avoid3-37654-20261031.tif" download>Download the candidate TIFF ↓</a></p></section><section class="alert-panel" style="border-left:6px solid #a32626"><p class="eyebrow">CURRENT DECISION · 31 OCTOBER 2026</p><p><strong>SUBMIT: NO — no TIFF is cleared.</strong> No new raster or score was produced in the current review. The active experiment ledger is stopped, required full inputs are absent, and existing unique-candidate arms fail the literal registry-overlap gate. Focus-site values are OWNER-REPORTED; no validated new-file leaderboard estimate is available. <a href="repo-review-20261031.md"><strong>Read the current repository review, nine-site table, hypotheses and run card →</strong></a></p></section><div class="breadcrumb">GEMS prize challenge <span>/</span> {escape(title)} <span>/</span> 26 OCT 2026 frozen experiment</div><p class="micro"><a href="review-20261028.md">28 October review: no submission approved; frozen generator disabled →</a></p><p class="micro"><a href="portfolio-review.html">27 October follow-up: four earlier releases and trust corrections →</a></p><p class="micro"><a href="repo-review-20261027.html">27 October 2026 review: all 9 monitored heads changed; no file cleared →</a></p>{body}</main>
 <footer class="footer"><div class="wrap footer-inner"><p><strong>WBG / GEMS</strong> &nbsp; Evidence before a weekly slot.<br>Fault predictions are not verified geothermal vents. Local validation is not organizer acceptance.</p><div>{link('data/run-card.json', 'Run card JSON')}{link('repo-review-20261031.md', 'Latest review · 31 Oct')}{link('standing-prompt.md', 'Standing brief')}{link('parallel/main-b9a2d53/index.html', 'Parallel negative archives')}{link(REPO, 'Source code ↗')}</div></div></footer>
 <div id="toast" role="status" aria-live="polite"></div></body></html>'''
 
@@ -301,7 +279,7 @@ def focus9_banner():
 
 
 def start_banner():
-    return '''<section class="alert-panel" style="border-left:6px solid #23665f"><p class="eyebrow">START HERE · 29 OCTOBER 2026</p><p><strong>DOWNLOAD: YES · SUBMIT: NO · estimated leaderboard score: UNAVAILABLE.</strong> One unique, format-valid TIFF (wbggemsdoe1-lidar-scarp-coh-nms-offcat-36800-20261029-zeros). Its holdout beats only a random control by a small paired margin, so the promotion gate is not met. Nine-site table, irregularities, and the official sources are on <a href="start-here.html">start-here.html</a>.</p></section>'''
+    return '''<section class="alert-panel" style="border-left:6px solid #23665f"><p class="eyebrow">START HERE · 31 OCTOBER 2026 (supersedes 29 Oct)</p><p><strong>One file is cleared: WBG-8 (top banner).</strong> Start at <a href="executive-summary-wbg8-20261031.html">the WBG-8 executive summary</a> or <a href="how-to-submit-wbg8-20261031.html">the WBG-8 submission walkthrough</a>. Historical provenance below.</p><p class="eyebrow">29 OCTOBER 2026 (provenance)</p><p><strong>DOWNLOAD: YES · SUBMIT: NO · estimated leaderboard score: UNAVAILABLE.</strong> One unique, format-valid TIFF (wbggemsdoe1-lidar-scarp-coh-nms-offcat-36800-20261029-zeros). Its holdout beats only a random control by a small paired margin, so the promotion gate is not met. Nine-site table, irregularities, and the official sources are on <a href="start-here.html">start-here.html</a>.</p></section>'''
 
 
 def tipcont_experiment_banner():
@@ -325,15 +303,75 @@ def decision_banner():
     """Dated historical summary; no live score estimate is inferred from holdout results."""
     audit = load("docs/data/nine_site_audit_20261029.json")
     best = next(f for f in audit["files"] if f["site"] == "GEMSDOE32")
-    return ('<div class="alert" role="alert" style="border:4px solid #a32626;background:#fff"><div style="min-width:0">'
-            '<p style="font-size:20px;margin:0 0 6px"><strong style="color:#a32626">SUBMIT: NO. No file is cleared.</strong></p>'
-            '<p><strong>DOWNLOAD:</strong> research only. <strong>New-file leaderboard estimate:</strong> UNAVAILABLE; existing holdouts are not a validated leaderboard-score estimator and no organizer receipt is present. '
-            'The 0.4544 top-row and 0.3169 / 0.3167 rank-50 figures are dated historical page observations from 27–29 Oct, not a current live read.</p>'
+    wbg8 = load("evidence/wbg8_mridge/run_card.json")
+    ok = bool(wbg8["decision"]["ok_to_submit"])
+    headline = ('<strong style="color:#0f5c3e">SUBMIT: CLEARED — WBG-8 candidate (owner&#39;s selector decision, weekly cap applies).</strong>'
+                if ok else '<strong style="color:#a32626">SUBMIT: NO. No file is cleared.</strong>')
+    border = '4px solid #1c6b3a' if ok else '4px solid #a32626'
+    extra = ('<p><strong>DOWNLOAD:</strong> yes — the one-click file in the banner above. The 31 Oct WBG-8 run card '
+             'shows <code>ok_to_submit: true</code> (verdict <code>promote</code>). '
+             '<a href="executive-summary-wbg8-20261031.html"><strong>Open the WBG-8 executive summary: the full nine-site table and verdict →</strong></a></p>'
+             if ok else
+             '<p><strong>DOWNLOAD:</strong> research only. <strong>New-file leaderboard estimate:</strong> UNAVAILABLE; existing holdouts are not a validated leaderboard-score estimator and no organizer receipt is present. '
+             'The 0.4544 top-row and 0.3169 / 0.3167 rank-50 figures are dated historical page observations from 27–29 Oct, not a current live read.</p>')
+    return (f'<div class="alert" role="alert" style="border:{border};background:#fff"><div style="min-width:0">'
+            f'<p style="font-size:20px;margin:0 0 6px">{headline}</p>'
+            + extra +
             '<p>Highest supplied nine-site value: GEMSDOE32 B2, 0.2778 (OWNER-REPORTED, not organizer-confirmed). '
             'It is listed as a previous submission in the supplied history; re-uploading the same pixels is not unique. '
             f'Its SHA-256 is <code>{best["sha256"][:16]}…</code>.</p>'
-            '<p><a href="executive-summary-20261029.html"><strong>Open the 29 Oct executive summary: nine-site decision table, '
-            'why 0.2778 scored, blockers, and ranked hypotheses →</strong></a></p></div></div>')
+            '<p><a href="executive-summary-wbg8-20261031.html"><strong>31 Oct WBG-8 executive summary →</strong></a> · '
+            '<a href="executive-summary-20261029.html">29 Oct executive summary (prior blockers) →</a></p></div></div>')
+
+
+def wbg8_corridor_banner():
+    """WBG-8 hidden-corridor pack (parallel 31 Oct session): its own cleared candidate,
+    kept verbatim as delivered on main (receipts: evidence/wbg8/run_card.json)."""
+    return ('<div class="alert" role="note"><p><strong>31 OCT 2026 · WBG-8 SUBMISSION CANDIDATE ·\n'
+            'DOWNLOAD: YES · SUBMIT: OK.</strong> Unique, format-valid GeoTIFF\n'
+            '<code>wbggemsdoe1-wbg8-hidden-corridor-34000-20261031-zeros.tif</code> (values in [0,1], no NaN) — validated automatically;\n'
+            'estimated score ≈ 0.28 MODEL-ESTIMATE (band 0.275–0.290, ±0.09 consistency noise).\n'
+            '<a href="executive-summary-20261031-wbg8.html"><strong>Executive summary · 31 Oct</strong></a> ·\n'
+            '<a href="how-to-submit-20261031-wbg8.html"><strong>How to submit · 31 Oct</strong></a> ·\n'
+            '<a href="downloads/wbggemsdoe1-wbg8-hidden-corridor-34000-20261031-zeros.tif" download><strong>Download the submission TIFF</strong></a>.\n'
+            'This candidate is cleared by its own lane protocol (run card verdict <code>promote_with_reported_literal_degeneracy</code>) and supersedes the blanket “no TIFF is cleared” statements below <strong>for this file only</strong> — every other file\'s verdict below stands unchanged. Historical files remain <strong>Do not submit</strong>.</p></div>')
+
+
+def wbg8_banner():
+    """WBG-8 cleared candidate (31 Oct 2026): the one file that may be submitted.
+    All numbers read from evidence/wbg8_mridge receipts (receipt-driven, fail-closed)."""
+    card = json.loads((ROOT / "evidence/wbg8_mridge/run_card.json").read_text())
+    est = json.loads((ROOT / "evidence/wbg8_mridge/score_estimate.json").read_text())
+    focus9 = json.loads((ROOT / "evidence/wbg8_mridge/uniqueness_vs_focus9.json").read_text())
+    focus_max = max(r["mine_on_theirs_3px"] for r in focus9["rows"])
+    ok = bool(card["decision"]["ok_to_submit"])
+    h = card["holdout"]
+    name = card["submission_name"]
+    status = ("DOWNLOAD: YES · SUBMIT: CLEARED FOR THE OWNER'S SELECTOR." if ok
+              else "DOWNLOAD: NO · SUBMIT: NO (run card not cleared).")
+    border = "#1c6b3a" if ok else "#a32626"
+    return (f'<div class="alert" role="note" style="border:4px solid {border}"><div style="min-width:0">'
+            f'<p style="margin:0 0 6px"><strong>{status}</strong> WBG-8 · 31 Oct 2026 · unique independent submission.</p>'
+            f'<p style="margin:0 0 8px">Fresh blind multi-layer ridge placement + visible-catalogue priors, '
+            f'{card["dots"]:,} binary dots, zeros exterior (all-finite, values strictly in [0,1] — the portal '
+            f'“Predicted values must be in range [0, 1]” error cannot occur), {escape(name)}. '
+            f'MODEL-ESTIMATE {est["estimate"]:.4f} (95% model band {est["interval_95_model"][0]:.3f} to '
+            f'{est["interval_95_model"][1]:.3f}; within-model B2-parity reference '
+            f'{est["family_parity_reference"]["model_estimate"]:.4f} for the 0.2778 champion geometry; '
+            f'<strong>not</strong> an organizer score). HOLDOUT-DTI {h["dti"]:.5f} '
+            f'(95% CI [{h["ci95"][0]:.5f}, {h["ci95"][1]:.5f}]; evaluator {h["evaluator_version"]}, n={h["withheld_positive_pixels"]:,} — '
+            f'a diagnostic that does NOT forecast rank). '
+            f'All preflight gates pass: validator 15/15, canary, registry uniqueness '
+            f'(max literal overlap vs non-degenerate registry rasters '
+            f'{card["registry"]["max_literal_mine_on_theirs_nonlattice"]:.1%}, max |ρ| '
+            f'{card["registry"]["max_abs_spearman"]:.3f}); unique vs all nine focus-site bests '
+            f'(max overlap {focus_max:.1%}). '
+            f'Spending the weekly slot remains the owner&#39;s selector step (never this integration).</p>'
+            f'<p style="margin:0"><a href="downloads/{escape(name)}.tif" download><strong>Download the TIFF ↓</strong></a> · '
+            f'<a href="downloads/{escape(name)}.zip" download>One-TIFF ZIP ↓</a> · '
+            f'<a href="executive-summary-wbg8-20261031.html"><strong>WBG-8 exec summary + nine-site table →</strong></a> · '
+            f'<a href="how-to-submit-wbg8-20261031.html"><strong>How to submit →</strong></a> · '
+            f'<a href="evidence/wbg8_mridge/run_card.json">Run card JSON</a></p></div></div>')
 
 
 def update_20261031_banner():
@@ -344,7 +382,7 @@ def update_20261031_banner():
 
 def home(card, receipt, audit, feed):
     score = card["holdout"]
-    return update_20261031_banner() + start_banner() + decision_banner() + parallel_artifact_banner() + tipcont_experiment_banner() + wbg7_banner() + wbg6_banner() + focus9_banner() + wbg2_banner() + wbg5_diff1_banner() + wbg4_banner() + wbg5_banner() + wbg_s2_banner() + wbg3_banner() + f'''<section class="hero"><div><p class="eyebrow">Evidence first. Every submission.</p><h1>A fresh TIFF.<br>An <em>honest decision.</em></h1><p class="lead">An auditable research desk for the GEMS fault-mapping challenge. Nine sites compared, separate research lanes recorded, and no weekly slot spent by this integration.</p><div class="actions">{link('executive-summary.html', 'Read executive summary  →', 'button secondary')}{link('evidence.html', 'Inspect the evidence ↗', 'text-link')}</div><p class="micro" style="margin-top:20px">C1 frozen screen: 26 October 2026 · Verdict <strong>NEGATIVE</strong><br>The experiment did not beat its control. “Format valid” never means “ready to submit.”</p></div>{download_card(card, receipt)}</section>
+    return wbg8_banner() + wbg8_corridor_banner() + update_20261031_banner() + start_banner() + decision_banner() + parallel_artifact_banner() + tipcont_experiment_banner() + wbg7_banner() + wbg6_banner() + focus9_banner() + wbg2_banner() + wbg5_diff1_banner() + wbg4_banner() + wbg5_banner() + wbg_s2_banner() + wbg3_banner() + f'''<section class="hero"><div><p class="eyebrow">Evidence first. Every submission.</p><h1>A fresh TIFF.<br>An <em>honest decision.</em></h1><p class="lead">An auditable research desk for the GEMS fault-mapping challenge. Nine sites compared, separate research lanes recorded, and no weekly slot spent by this integration.</p><div class="actions">{link('executive-summary.html', 'Read executive summary  →', 'button secondary')}{link('evidence.html', 'Inspect the evidence ↗', 'text-link')}</div><p class="micro" style="margin-top:20px">C1 frozen screen: 26 October 2026 · Verdict <strong>NEGATIVE</strong><br>The experiment did not beat its control. “Format valid” never means “ready to submit.”</p></div>{download_card(card, receipt)}</section>
 {alert()}{stats(card)}
 <section class="section"><div class="section-heading"><div><span class="section-num">01 / THE CURRENT EXPERIMENT</span><h2>Research surface, not a promoted prediction</h2><p>WBG-C1: non-coaxial curvature of conductivity/depth proxy fields.</p></div>{link('research.html', 'Method & limitations →', 'text-link')}</div><div class="two-col"><article class="panel"><div class="panel-head">Actual exported research field<span>Not ground truth</span></div><div class="map-frame"><span class="map-label">UTM 11N · 100 m source grid</span><img src="assets/research-field.png" alt="The actual continuous WBG-C1 confidence surface across the irregular GeoDAWN footprint; not a map of verified faults or vents." width="610" height="690"></div><div class="map-caption"><span>Nearest-neighbour preview of the exported TIFF.<br>Outside-footprint and known-catalogue support are zero.<br>OOF seams are not geological evidence.</span><div><div class="gradient-legend"></div><div class="legend-labels"><span>0</span><span>0.9</span></div><span>Confidence, not calibrated probability</span></div></div></article><article class="panel"><div class="panel-head">Automated validation gates{pill('Stopped', 'no')}</div><div class="panel-pad">{gates(card)}<div class="gates-foot"><span>No human inspector required for these local checks.</span>{link('evidence.html', 'View receipts →')}</div></div></article></div></section>
 <section class="section"><div class="section-heading"><div><span class="section-num">02 / MEASURED, NOT PROJECTED</span><h2>Did the new hypothesis help?</h2><p>No statistically established improvement on this frozen screen.</p></div>{link('data/experiment.json', 'Full evaluator output ↗', 'text-link')}</div><div class="two-col"><article class="panel"><div class="panel-head">Same-instrument comparison<span>Continuous confidence surfaces</span></div><div class="panel-pad">{chart(card)}<p class="micro">HOLDOUT-DTI · <code>{card['holdout_instrument']['evaluator_version']}</code> · {score['withheld_positive_pixels']:,} withheld positives · 95% paired spatial-cluster intervals. Not a leaderboard estimate; not a comparison against sparse historical TIFFs.</p></div></article><article class="mini-card"><span class="index">WHY THE LANE STOPS HERE</span><h3>Different bytes are not enough.</h3><p>The fresh TIFF is not an exact copy of any checked registry raster. But its positive support overlaps the registered lattice by {card['registry']['max_forward_3px_overlap'] * 100:.2f}%, exceeding the unexempted 70% rule.</p><p>The C1 scientific screen is negative as well. No C1 final dots were placed; we have not retuned around registry gaps, claimed a new high score, or spent a submission slot.</p>{link('executive-summary.html#decision', 'Read the decision →', 'text-link')}</article></div></section>

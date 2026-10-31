@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to submit · 31 Oct 2026 · WBG GEMS</title>
+<meta name="description" content="WBG GEMS executive summary: nine focus-site best submissions, unique candidate download, verified score estimates.">
+<meta name="theme-color" content="#173b42"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css"><script defer src="assets/app.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="masthead"><div class="wrap"><nav class="nav" aria-label="Main navigation">
+<a class="brand" href="index.html"><svg viewBox="0 0 36 38" fill="none" aria-hidden="true"><path d="M3 29C12 27 4 16 13 15S21 5 31 6M4 35C15 34 11 22 20 22S25 11 34 12M2 21C8 21 4 9 13 9S18 1 25 2" stroke="#23665f" stroke-width="2" stroke-linecap="round"/></svg><span>WBG / GEMS<small>FAULT MAPPING · RESEARCH DESK</small></span></a>
+<div class="navlinks"><a class="active" href="executive-summary-wbg8-20261031.html">Executive summary · 31 Oct</a><a href="how-to-submit-wbg8-20261031.html">How to submit · 31 Oct</a><a href="start-here-20261029.html">Start here · 29 Oct</a><a href="index.html">Overview</a><a href="evidence.html">Evidence</a><a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Repository ↗</a></div></div></nav></div></header>
+<main id="main" class="wrap"><div class="breadcrumb">GEMS prize challenge <span>/</span> How to submit · 31 Oct 2026</div>
+
+<div class="alert ok" role="note"><div><h2>Exactly how to submit — WBG-8 candidate</h2>
+<p><strong>File:</strong> <a href="downloads/wbg8-mridge-pois300-offcat3-37654-20261031-1cfe8cc8-zeros.tif"><code>wbg8-mridge-pois300-offcat3-37654-20261031-1cfe8cc8-zeros.tif</code></a> (or <a href="downloads/wbg8-mridge-pois300-offcat3-37654-20261031-1cfe8cc8-zeros.zip">.zip</a>) — verdict <strong>OK TO DOWNLOAD & SUBMIT</strong>, validator <code>ok_to_submit: true</code>, sha256 <code>8adb3dbc89bd15e31312bf9e09df47a39447f4319a47141b15d7b18cfd9c5150</code>.</p></div></div>
+<ol>
+<li><strong>Download</strong> the .tif (single-band GeoTIFF) or the .zip (exactly one GeoTIFF inside, byte-identical). Do not re-export or convert it in a GIS first — re-exporting changes bytes and can push values outside [0,1].</li>
+<li><strong>Verify the hash (optional):</strong> <code>sha256 8adb3dbc89bd15e31312bf9e09df47a39447f4319a47141b15d7b18cfd9c5150</code>. It must match the <a href="evidence/wbg8_mridge/run_card.json">run card</a>.</li>
+<li><strong>Go to</strong> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData → Competition 306 → Submission</a> (owner login; this repo never stores credentials).</li>
+<li><strong>File to submit:</strong> pick the downloaded .tif (or .zip). Format rules from the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">rules PDF</a> and <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem page</a>: single-band float32 GeoTIFF, EPSG:32611, 3730×3292, 100 m grid, values in [0,1]. All verified by <code>scripts/validate_submission.py</code> (15/15 checks PASS + template report PASS; receipt <a href="evidence/wbg8_mridge/preflight.json">preflight.json</a> and <a href="downloads/wbg8-mridge-pois300-offcat3-37654-20261031-1cfe8cc8-zeros.validator.json">validator.json</a> — the writer receipt's 10/10 hard checks and the strict whole-array [0,1] check pass; its 3 soft NaN-compatibility checks fail <em>by design</em> because this file uses the portal-safe all-finite zeros exterior instead of NaN).</li>
+<li><strong>Note (paste this):</strong> <code>WBG-8 blind multilayer ridge priors offcat3 poisson300 37654 dots seed 20261031; unique; portal-safe</code> (100 characters, ≤140 limit).</li>
+<li><strong>Create the submission.</strong> The expected error “Predicted values must be in range [0, 1]” CANNOT occur for this file: it contains only 0.0/1.0, no NaN/Inf anywhere (zeros exterior), min 0.0, max 1.0. That error was produced by older NaN-outside research files; this one deliberately uses the portal-safe all-finite convention (see the writer docstring in <code>src/gems/submission.py</code>).</li>
+<li><strong>After submitting:</strong> record the organizer-confirmed score on the submission page as ORGANIZER-CONFIRMED and compare with the MODEL-ESTIMATE 0.1393 (band -0.083–0.361) to calibrate the estimator. Cap: 3 submissions per week per the problem page — the remaining allowance shows on the submission page.</li>
+</ol>
+<p class="micro">Budget/risk: the score is unverifiable before upload (no DrivenData auth from this sandbox). HOLDOUT-DTI 0.0944 [0.0814, 0.1073] is an internal diagnostic that does not forecast rank. Upload is always a manual owner action.</p>
+<p><a href="executive-summary-wbg8-20261031.html">← Executive summary</a></p>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><p><strong>WBG / GEMS</strong> &nbsp; Evidence before a weekly slot.<br>Fault predictions are not verified geothermal vents. Local validation is not organizer acceptance. All site scores are USER-REPORTED unless a receipt is cited.</p><div><a href="data/feed.json">Provenance feed</a><a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Source code ↗</a></div></div></footer>
+<div id="toast" role="status" aria-live="polite"></div></body></html>

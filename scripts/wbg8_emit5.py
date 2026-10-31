@@ -154,7 +154,6 @@ def main() -> int:
                            "precision multiplier, and the champion's own 10.5% precision is the "
                            "only hit rate in this repo that was ever reproduced against a score"}
 
-    uniq = []
     for rec in fetch:
         if not (ROOT / rec["local"]).exists() or rec["name"] == CHAMP:
             continue

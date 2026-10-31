@@ -12,3 +12,12 @@
 
 /* Allow the top navigation to wrap instead of overflowing when links accumulate. */
 @media(min-width:731px){.navlinks{flex-wrap:wrap;row-gap:7px}}
+
+/* WBG-8 31 Oct additions */
+.alert.ok{border-color:#8fd0ab;background:#e7f6ee;color:#14523a}
+.alert.ok strong,.alert.ok h2{color:#0f5c3e}
+.alert.stop{border-color:#e6b3ab;background:#fbeae6;color:#7a2418}
+.alert.stop strong,.alert.stop h2{color:#8c1f14}
+.alert>div{flex:1}
+tr.cand{background:#eef6f0}
+tr.cand:hover{background:#e3f1e7}

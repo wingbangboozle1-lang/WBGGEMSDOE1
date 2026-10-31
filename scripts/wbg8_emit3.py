@@ -107,7 +107,6 @@ def main() -> int:
     Cc = EST.coverage_field(cdots)
     tp_unit = float((weight * Cc).sum())
     hmax = shift_max(weight.astype(np.float32), 1.0).astype(np.float32)
-    n_champ = int(cdots.sum())
 
     def dti_of(tp, fp, K):
         return tp / (tp + 0.2 * fp + 0.8 * max(K - tp, 0.0) + 1e-12)
@@ -134,7 +133,6 @@ def main() -> int:
                 lo = mid
         level, reachable = 0.5 * (lo + hi), True
     anchor = predict(cdots, level, Cc)
-    K_model = anchor[3]
 
     # ---- rank by consensus with a bounded penalty for already-occupied cells -------
     pi = (weight * level).astype(np.float32)
@@ -191,7 +189,6 @@ def main() -> int:
     nn = cKDTree(np.c_[fy, fx]).query(np.c_[fy, fx], k=2)[1][:, 1]
     qs = np.quantile(G.ravel()[allowed.ravel()], np.linspace(0, 1, 201))
     pct = np.searchsorted(qs, G.ravel()[final.ravel()]) / 2.0
-    overlap_all = []
     out = {
         "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "evidence_class": "MODEL-ESTIMATE for every predicted number; OWNER-REPORTED for anchors",

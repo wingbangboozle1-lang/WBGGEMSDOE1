@@ -91,7 +91,6 @@ def dti(tp: float, fp: float, k: float) -> float:
 
 
 def main() -> int:
-    t0 = time.time()
     fetch = json.loads((ROOT / "evidence" / "scored_raster_fetch.json").read_text())["entries"]
     with rasterio.open(ROOT / "data" / "sample_submission.tif") as ds:
         foot = np.isfinite(ds.read(1))

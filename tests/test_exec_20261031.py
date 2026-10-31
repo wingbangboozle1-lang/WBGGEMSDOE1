@@ -75,7 +75,7 @@ def test_run_card_verdict_is_not_submit(card):
 
 
 def test_summary_labels_and_no_scores(card):
-    s = json.loads((DATA / "executive_summary_20261031.json").read_text())
+    s = json.loads((DATA / "executive_summary_focus_20261031.json").read_text())
     rows = s["nine_site_rows"]
     assert [r["site"] for r in rows].count("GEMSDOE32") == 1
     assert len(rows) == 10  # nine sites, GEMSDOE24 contributes two headline rows
@@ -89,7 +89,7 @@ def test_summary_labels_and_no_scores(card):
 
 
 def test_exec_page_shows_both_verdicts():
-    page = (ROOT / "docs/executive-summary-20261031.html").read_text()
+    page = (ROOT / "docs/executive-summary-focus-20261031.html").read_text()
     assert "Download: YES - research file only" in page
     assert "Submit: NO - not cleared" in page
     assert "Estimated leaderboard score: UNAVAILABLE" in page

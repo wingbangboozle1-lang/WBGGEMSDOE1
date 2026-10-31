@@ -1,0 +1,16 @@
+[
+  {
+    "trial": 0,
+    "duplicate_count": 3,
+    "worst_dot_overlap": 0.9987253027405991,
+    "worst_overlap_submission": "20261001_r13-lattice-s5_v2_nan-outside",
+    "worst_rho": "h18-3a-topo-geophys-x-complexity-prior-20260930-c502dfab-nan"
+  },
+  {
+    "trial": 1,
+    "duplicate_count": 3,
+    "worst_dot_overlap": 0.998698746547695,
+    "worst_overlap_submission": "20261001_r13-lattice-s5_v2_nan-outside",
+    "worst_rho": "h8-tiprelay-ridgeconcord-pr2-n80000-20261009-49bec522-zeros"
+  }
+]

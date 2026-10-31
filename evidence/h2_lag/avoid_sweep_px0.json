@@ -1,0 +1,51 @@
+{
+  "experiment": "H2 potential-field edge corroboration",
+  "date_utc": "2026-10-31",
+  "evaluator": "gems57-pooled-hide-v2 (vendor/gems57/holdout.py score_cell + pooled formula)",
+  "budget_dots": 37654,
+  "avoid_px": 0,
+  "note": "AVOID_PX=0 disables catalogue avoidance (ablation)",
+  "spacing_chebyshev_radius": 2,
+  "holdout": "H.build_holdout: seeds (20,21) x quadrants x modes (all, detached); 16 cells",
+  "n_cells": 16,
+  "arms": {
+    "random": {
+      "pooled_dti": 0.047796680383062375,
+      "tp": 3093.7072889923224,
+      "fp": 139498.3173828125,
+      "fn": 42166.29271100768,
+      "n_truth": 45260,
+      "ci95_bootstrap_over_16_cells": [
+        0.04442922908433205,
+        0.05147434594881949
+      ],
+      "per_cell": {
+        "draw20_foldNW_all": 0.04237263129869773,
+        "draw20_foldNW_detached": 0.047241846031892354,
+        "draw20_foldNE_all": 0.04105828364824105,
+        "draw20_foldNE_detached": 0.04199042054237702,
+        "draw20_foldSW_all": 0.047469950294367486,
+        "draw20_foldSW_detached": 0.04789999900670584,
+        "draw20_foldSE_all": 0.060793720388662854,
+        "draw20_foldSE_detached": 0.06087788749066698,
+        "draw21_foldNW_all": 0.0424838089292128,
+        "draw21_foldNW_detached": 0.03962865790572338,
+        "draw21_foldNE_all": 0.041062511000973065,
+        "draw21_foldNE_detached": 0.03869039312403325,
+        "draw21_foldSW_all": 0.045746811230606664,
+        "draw21_foldSW_detached": 0.04607676465138466,
+        "draw21_foldSE_all": 0.058664997310399446,
+        "draw21_foldSE_detached": 0.05396029546623978
+      }
+    }
+  },
+  "canary_alone_auc": {
+    "edge_mag": 0.537,
+    "edge_grav": 0.529,
+    "coherence": 0.5068,
+    "max_alone_auc": 0.537,
+    "leakage_alarm_gt_0_90": false
+  },
+  "scores_use_catalogue": false,
+  "label": "HOLDOUT-DTI"
+}

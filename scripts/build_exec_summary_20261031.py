@@ -9,8 +9,8 @@ Every number on the page is read from a JSON receipt written by one of:
     docs/data/focus_nine_site_20261029.json    (registry rows, USER-REPORTED scores)
 
 Outputs:
-    docs/executive-summary-20261031.html   (the decision page, linked from the site front page)
-    docs/data/executive_summary_20261031.json  (machine-readable table + run card)
+    docs/executive-summary-focus-20261031.html   (the decision page, linked from the site front page)
+    docs/data/executive_summary_focus_20261031.json  (machine-readable table + run card)
 """
 from __future__ import annotations
 
@@ -169,7 +169,7 @@ summary = {
     },
     "run_card": card,
 }
-(D / "executive_summary_20261031.json").write_text(json.dumps(summary, indent=1, allow_nan=False) + "\n")
+(D / "executive_summary_focus_20261031.json").write_text(json.dumps(summary, indent=1, allow_nan=False) + "\n")
 
 
 # ----------------------------------------------------------------- HTML
@@ -342,5 +342,5 @@ The next step that could change the answer is an official organizer receipt for 
 <p><small>Source archives: codeload.github.com (buffedlizard55-lab/GEMSDOE{{24,25,27,28,30,31,32,33,36}}, default branch). Retrieved 31 Oct 2026.</small></p>
 </main></body></html>
 """
-(ROOT / "docs/executive-summary-20261031.html").write_text(page)
-print("wrote docs/executive-summary-20261031.html and docs/data/executive_summary_20261031.json")
+(ROOT / "docs/executive-summary-focus-20261031.html").write_text(page)
+print("wrote docs/executive-summary-focus-20261031.html and docs/data/executive_summary_focus_20261031.json")

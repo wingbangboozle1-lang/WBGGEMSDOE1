@@ -1,5 +1,7 @@
 # Starting point for every session
 
+0. **Current review (31 Oct 2026):** read `docs/repo-review-20261031.md` and `evidence/repo_review_20261031.json` before any work. They record the current negative decision and checks; no file is cleared to submit.
+
 0a. **Read `docs/owner-brief-20261029.md` at the start of every session** (owner standing requirements, official links). Then read `README.md`. The 29 Oct executive summary is `docs/executive-summary-20261029.html`; no file is cleared unless its run card shows `ok_to_submit: true`.
 
 0. **Current artifacts (read before any session work):**

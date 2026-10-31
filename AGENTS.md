@@ -1,5 +1,6 @@
 # Starting point for every session
 
+0-. **31 Oct 2026 decision page:** `docs/executive-summary-20261031.html` (DOWNLOAD: YES research file · SUBMIT: NO · estimate UNAVAILABLE). Receipts in `docs/data/*20261031*`.
 0a. **Read `docs/owner-brief-20261029.md` at the start of every session** (owner standing requirements, official links). Then read `README.md`. The 29 Oct executive summary is `docs/executive-summary-20261029.html`; no file is cleared unless its run card shows `ok_to_submit: true`.
 
 0. **Current artifacts (read before any session work):**

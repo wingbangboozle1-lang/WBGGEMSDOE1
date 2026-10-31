@@ -1,3 +1,17 @@
+## 31 OCT 2026 — SUBMISSION DECISION (read first)
+
+**Executive summary:** [docs/executive-summary-20261031.html](docs/executive-summary-20261031.html) — one table for the nine focus sites (file to download, labelled estimate, uniqueness) and the new unique file.
+
+- **New file:** [`wbggemsdoe1-band4to10-null-37654-20261031.tif`](docs/downloads/wbggemsdoe1-band4to10-null-37654-20261031.tif) (ZIP alongside). **DOWNLOAD: YES (research file).** **SUBMIT: NO.**
+- **Why not submit:** the literal 70% overlap gate (PROMPT.md LANE) is failed by every dot field (the r13 lattice matches 99.79% of this file; a uniform random field matches 99.87%). This needs an owner decision.
+- **Estimated leaderboard score: UNAVAILABLE.** The off-catalogue proxy does not rank the reported focus scores (Spearman 0.057, n = 21), so no estimator is validated. All numbers are labelled OWNER-REPORTED, PROXY-DTI, or HOLDOUT-DTI (not computed this session).
+- **Focus-site files:** every headline file is byte-verified against its GitHub archive, but none is unique versus the other focus sites (3-px dot overlap ≥ 0.87 across the family).
+- **Official leaderboard (read 31 Oct 2026):** #1 = 0.4544, #50 = 0.3195. The 0.4413 figure and the claim that 0.3195 is the top score do not match the page.
+
+Receipts: `docs/data/executive_summary_20261031.json`, `docs/data/focus_proxy_audit_20261031.json`, `docs/data/focus_codeload_manifest_20261031.json`, `docs/data/band_null_run_card_20261031.json`, `docs/data/uniqueness_band_null_20261031.json`. Scripts: `scripts/focus_codeload_proxy_audit.py`, `scripts/build_band_null_20261031.py`, `scripts/uniqueness_and_lattice_20261031.py`, `scripts/build_exec_summary_20261031.py`.
+
+---
+
 ## 29 OCT 2026 STANDING BRIEF — READ FIRST EVERY SESSION
 
 **Owner brief (condensed, official links kept):** [`docs/owner-brief-20261029.md`](docs/owner-brief-20261029.md). Read it at the start of every session, together with this README and [`AGENTS.md`](AGENTS.md).

@@ -38,6 +38,54 @@ See [latest review (29 Oct 2026)](docs/repo-review-20261029.md), [Focus-9 site c
 
 """
 
+def wbg31_block():
+    """31 Oct 2026 WBG31-E1 status; every number is read from its receipt (HOLDOUT-DTI / REGISTRY-MEASUREMENT)."""
+    e1 = json.loads((ROOT / "evidence/wbg31/e1_experiment.json").read_text())
+    uq = json.loads((ROOT / "evidence/wbg31/uniqueness_e1_dots.json").read_text())
+    lf = json.loads((ROOT / "evidence/wbg31/density_matched_lift_e1.json").read_text())
+    ledger = json.loads((ROOT / "registry/experiment_ledger_wbg31_e1.json").read_text())
+    d = e1["primary_dotted"]["summary"]
+    dd = d["paired_differences"]["control_19band_hgb"]
+    ctl = d["scores"]["control_19band_hgb"]
+    n = ctl["withheld_positive_pixels"]
+    rep = e1["reproduction_check_vs_wbg_c1"]
+    g = uq["gates"]
+    fname = Path(e1["candidate_file"]).name
+    lattice = [r for r in lf["rows"] if r["their_dots"] > 200000]
+    lat_txt = ""
+    if lattice:
+        lat = lattice[0]
+        lat_txt = (f"; the r13 lattice ({lat['their_dots']:,} dots) has chance overlap "
+                   f"{lat['chance_overlap_same_footprint']:.4f}, so its literal test is degenerate "
+                   f"(density-matched lift {lat['lift']:.3f})")
+    p = lambda ok: "PASS" if ok else "FAIL"
+    return (
+        "## ⛔ SUBMISSION STATUS (31 Oct 2026): SUBMIT NO — WBG31-E1 CLOSED, NEGATIVE\n\n"
+        f"**Verdict:** the research file `{fname}` is **DOWNLOAD: research only** and **SUBMIT: NO**. "
+        f"One-click file: [`{fname}`](docs/downloads/{fname}); verdict note and JSON sit beside it. "
+        "`submission_slots_used` = 0 in this lane; promotion authorised: false.\n\n"
+        "**Why no slot:** the primary efficacy gate failed. Paired dotted HOLDOUT-DTI delta (candidate minus control) "
+        f"= {dd['delta']:+.6f}, 95% CI [{dd['ci95'][0]:+.6f}, {dd['ci95'][1]:+.6f}] "
+        f"(evaluator `{d['evaluator_version']}`, n withheld positives {n:,}). The CI includes zero. "
+        "The continuous secondary arm also fails. The 19-band control reproduces the WBG-C1 anchor "
+        f"({rep['this_run_control_dti']:.6f}; difference {rep['absolute_difference']:.1e}).\n\n"
+        f"**Registry measurement (REGISTRY-MEASUREMENT; {uq['registry_rasters_compared']} of "
+        f"{uq['registry_index_rasters']} accessible rasters):** G1 format {p(g['G1_format_all_checks'])}; "
+        f"G2 no exact copy {p(g['G2_no_exact_copy'])}; G3 max Spearman {uq['max_spearman_full_footprint']:.4f} "
+        f"{p(g['G3_spearman_max_lt_0_90'])} (limit < 0.90); G4 literal 3-px overlap max "
+        f"{uq['max_literal_3px_overlap']:.4f} {p(g['G4_literal_overlap_max_lt_0_70'])} (limit 0.70)"
+        f"{lat_txt}. Canary: passed (max orientation-invariant AUC 0.6124, limit 0.90).\n\n"
+        "Attempt 1 failed closed on a missing bootstrap block (a registration omission); amendment 2 copied the "
+        "WBG-C1 values verbatim and the same experiment was rerun. Full account: "
+        "[`docs/hypotheses-20261031.md`](docs/hypotheses-20261031.md) · "
+        "[`registry/wbg31/attempt1_failure_record.md`](registry/wbg31/attempt1_failure_record.md) · "
+        f"[`registry/experiment_ledger_wbg31_e1.json`](registry/experiment_ledger_wbg31_e1.json) (status `{ledger['status']}`).\n\n"
+        "Estimated leaderboard score: **UNAVAILABLE**. HOLDOUT-DTI here is a different instrument from the leaderboard "
+        "and from the 0.1661 `gems-segment-pooled-v1` benchmark; numbers are not comparable. GEMSDOE32 B2's 0.2778 "
+        "remains OWNER-REPORTED and is already in the competition; re-uploading it is a duplicate.\n\n---\n\n"
+    )
+
+
 def readme_31oct_block():
     """31 Oct READ FIRST block (verdict, executive summary, candidate, standing requirements)."""
     return "> **31 OCT 2026 · READ FIRST (standing brief, every session)**\n>\n> **Verdict:** DOWNLOAD: YES (research TIFF) · SUBMIT: **NO** · Estimated leaderboard score: **UNAVAILABLE**.\n> **Start here:** [Executive summary, 31 Oct 2026](docs/executive-summary-20261031.html) — nine-site table (file to download, owner-reported score, uniqueness), the candidate TIFF, why GEMSDOE32 B2 scored 0.2778, and all irregularities.\n> **Second 31 Oct research TIFF (parallel branch, also SUBMIT NO):** see the status block below and [`docs/repo-review-20261031.md`](docs/repo-review-20261031.md).\n> **Candidate:** [`wbggemsdoe1-h2-edgecorr-avoid3-37654-20261031.tif`](docs/downloads/wbggemsdoe1-h2-edgecorr-avoid3-37654-20261031.tif) · [run card](evidence/h2_lag/run_card_20261031.json) · [experiment](scripts/run_h2_lag_corroboration.py)\n>\n> **Standing requirements (condensed from the owner's 31 Oct brief; full transcription in [`docs/owner-brief-20261029.md`](docs/owner-brief-20261029.md)):**\n> 1. Goal: place first on the DrivenData DOE GEMS Prize ([competition](https://www.drivendata.org/competitions/306/competition-doe-gems/), [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)). Produce a **unique, format-valid GeoTIFF** that can be downloaded with one click, with a clear DOWNLOAD and SUBMIT verdict.\n> 2. Unique: not a byte or pixel copy of any earlier submission. Copies are allowed only for learning.\n> 3. Format (official, [problem page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/); [rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf)): single-band float32 GeoTIFF, EPSG:32611, 100 m, training-grid bounds, values in [0,1]. Outside the bounds the official text says null/NaN; see the irregularity on this in the executive summary.\n> 4. Validation runs in the project (no human inspector). Each file has a unique name and a note of at most 140 characters.\n> 5. Executive summary table: file to download, estimated score with its label (HOLDOUT-DTI, ORGANIZER-CONFIRMED, or OWNER-REPORTED), and whether the file is unique.\n> 6. No manual input. Anything needing a human (DrivenData login, weekly slot selection) is listed as a blocker, not worked around.\n> 7. Every claim is traced to an official source with a link. Irregularities are flagged. No hallucinated values.\n> 8. Core values: **Maximize P(Win)** and **Own the Outcome**.\n> 9. Method (parallel-run protocol, [`PROMPT.md`](PROMPT.md)): stay in the declared lane; reuse the shared holdout and writer; label every number; run the leakage canary; end each experiment with a run card; budget 3 experiments or 2 hours.\n\n"
@@ -135,7 +183,7 @@ def main():
     w5_comp = w5["correlation_overlap_vs_registry"]["final_dots_competing_method"]
     w5_lit = w5["correlation_overlap_vs_registry"]["final_dots_literal"]
     w5_bench = w5["benchmark"]["dti"]
-    header = readme_31oct_block() + brief_20261029_block() + wbg6_readme_block() + tipcont_experiment_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
+    header = readme_31oct_block() + wbg31_block() + brief_20261029_block() + wbg6_readme_block() + tipcont_experiment_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
 
 **[START HERE — 29 Oct 2026 executive summary (download / submit verdicts, estimates, nine-site table)](docs/start-here-20261029.html)** · No file is cleared for submission under the 70% protocol.
 **[Repository review (2026-10-29)](docs/repo-review-current-20261029.md)** · no new TIFF approved; core competition inputs are absent and the active method lane is unspecified. Local tests and lint pass. Treat all existing candidate downloads according to their individual negative/STOP decisions.

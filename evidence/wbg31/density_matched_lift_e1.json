@@ -1,0 +1,72 @@
+{
+  "schema": "density-matched-lift-v1",
+  "candidate": "docs/downloads/wbg31-e1-euler4-dots37k-20261031-7a46504ca8.tif",
+  "candidate_dots": 36864,
+  "rows": [
+    {
+      "submission": "20261001_r13-lattice-s5_v2_nan-outside",
+      "repo": "13GEMSDOE",
+      "literal_overlap": 0.956868,
+      "chance_overlap_same_footprint": 0.998713,
+      "lift": 0.9581,
+      "their_dots": 206895
+    },
+    {
+      "submission": "pindrop-v4-nodes-20260925T152420Z-f347b70daa",
+      "repo": "GEMSDOE3",
+      "literal_overlap": 0.812446,
+      "chance_overlap_same_footprint": 0.735046,
+      "lift": 1.1053,
+      "their_dots": 155021
+    },
+    {
+      "submission": "ovtr-ml-cover-tau3p0-20261012-nan",
+      "repo": "GEMSDOE67",
+      "literal_overlap": 0.76747,
+      "chance_overlap_same_footprint": 0.548147,
+      "lift": 1.4001,
+      "their_dots": 167597
+    },
+    {
+      "submission": "pindrop-v4-discovery-20260925T152423Z-37f9d5b855",
+      "repo": "GEMSDOE3",
+      "literal_overlap": 0.757948,
+      "chance_overlap_same_footprint": 0.734134,
+      "lift": 1.0324,
+      "their_dots": 155021
+    },
+    {
+      "submission": "h23-b-dti-optimal-emission-10pct-20261002-86176698-nan",
+      "repo": "GEMSDOE22",
+      "literal_overlap": 0.753065,
+      "chance_overlap_same_footprint": 0.534328,
+      "lift": 1.4094,
+      "their_dots": 516738
+    },
+    {
+      "submission": "gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros",
+      "repo": "GEMSDOE77",
+      "literal_overlap": 0.712484,
+      "chance_overlap_same_footprint": 0.55368,
+      "lift": 1.2868,
+      "their_dots": 201260
+    },
+    {
+      "submission": "h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan",
+      "repo": "GEMSDOE22",
+      "literal_overlap": 0.644857,
+      "chance_overlap_same_footprint": 0.413134,
+      "lift": 1.5609,
+      "their_dots": 335879
+    },
+    {
+      "submission": "r7-nms3-dem10-scarp_0c9199f14e62",
+      "repo": "12GEMSDOE",
+      "literal_overlap": 0.622477,
+      "chance_overlap_same_footprint": 0.322444,
+      "lift": 1.9305,
+      "their_dots": 103347
+    }
+  ],
+  "note": "diagnostic only; literal G4 is still reported and not waived"
+}

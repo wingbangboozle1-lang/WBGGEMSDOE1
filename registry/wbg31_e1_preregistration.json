@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "registered_utc": "2026-10-31T01:03:00Z",
+  "hypothesis_id": "WBG31-E1",
+  "status": "PREREGISTERED_BEFORE_EXECUTION",
+  "hypothesis": "Multi-structural-index Euler deconvolution solution density, computed from the total magnetic intensity (band 14, with vertical gradient band 9) and the isostatic gravity anomaly (band 13, with vertical gradient band 11), marks buried magnetic/density contacts and thin-sheet edges that the mapped catalogue does not contain. Its four density channels are added to the otherwise unchanged 19-band spatially cross-fitted HistGradientBoosting model.",
+  "physical_signature": "Euler's homogeneity equation with structural index N (magnetic N=0 contact, N=1 thin-sheet/dike edge; gravity N=0 thin sheet edge, N=1 thin bed fault; per Reid and Thurston 2014 Table 1 and Reid et al. 2013 Table 1). Solutions are kept only when they fall inside their own 7x7-cell (700 m) window, at depth 50 m to 3000 m, and the window determinant is nonsingular. Density is a Gaussian (sigma 3 cells) of accepted solutions per structural index and per field.",
+  "why_it_could_find_a_missing_fault": "Potential-field contacts from a fault juxtaposition can be visible even where no scarp is mapped. Euler solutions localize the source edge, and their alignment is a geometry cue that is independent of the catalogue.",
+  "named_non_fault_mimic": "Intrusive dike and sill margins, lithologic and basin-margin contacts, and survey-line leveling seams or gridding artifacts, which all produce Euler solutions along straight edges. Euler is also noise-amplifying at low signal-to-noise.",
+  "units_and_sign_policy": "Positions are in metres (100 m cells). Derivatives are per metre; x is east (column), y is north (negative row). Depth is |z0| in metres. Because the sign of the vertical derivative only flips the sign of z0, depth magnitude is used. The vertical-derivative unit of bands 9 and 11 is UNVERIFIED; any unit error scales depth, so the depth acceptance band is a stated limitation.",
+  "novelty_scope": "Searched src/, vendor/ and scripts/ of this checkout for euler, Euler deconvolution, structural index, Spector, Radon, Hough, tilt-depth, Hurst or fractal, wavelet and related terms on 31 Oct 2026. Euler appears only in site names and comments, not in any implemented feature. Implemented neighbours that differ: WBG-C1 Hessian commutator (cond_surf and depth_to_base_surf); WBG-S2 CGMD Gallardo-Meju cross-gradient; WBG-3 SPI local wavenumber and monogenic phase congruency; WBG-5 contour-relative texture anisotropy; PJMF Frangi ridge anisotropy. This is novelty within this repository only and does not establish world novelty.",
+  "input_policy": "Only the 19-band shared cache and the four Euler channels computed from those bands. No catalogue, visible-fault, withheld-fault, prior-submission or leaderboard values enter any feature. Catalogue-derived holdout masks apply only at scoring time.",
+  "holdout": {
+    "shared_template_repository": "buffedlizard55-lab/57GEMSDOE",
+    "shared_template_commit": "822a0ce5546c7b6749cdd82eb145b6b3e616603d",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "split_function": "gems57.holdout.buffered_component_draw",
+    "split_seed": 71614,
+    "hide_fraction": 0.2,
+    "feature_buffer_px": 3,
+    "quadrant_boundary_erosion_px": 12,
+    "training_collar_px": 80,
+    "truth": "Identical to the WBG-C1 registration (registry/preregistration.json): whole catalogue components withheld globally; visible catalogue pixel-exactly masked from scoring.",
+    "bootstrap": {
+      "method": "shared paired physical 20 km cluster percentile",
+      "draws": 1000,
+      "seed": 71614,
+      "confidence": 0.95,
+      "source": "copied verbatim from registry/preregistration.json (WBG-C1) holdout.bootstrap"
+    }
+  },
+  "arms": [
+    "control_19band_hgb",
+    "candidate_19band_plus_euler4_hgb"
+  ],
+  "fixed_model": {
+    "max_iter": 80,
+    "max_leaf_nodes": 15,
+    "learning_rate": 0.08,
+    "l2_regularization": 5.0,
+    "early_stopping": false,
+    "max_training_negatives": 160000,
+    "positive_sample_weight": "negative sample count / positive count"
+  },
+  "representations": {
+    "primary_dotted": {
+      "description": "Global top-N dot field from each arm's out-of-fold surface. Visible catalogue cells (masked_known) are excluded before selection. A dot is a local maximum within a 7x7-cell window (3 px radius). Top N=37000 by surface value. Weight 1.0 per dot, zero elsewhere.",
+      "dots": 37000,
+      "nms_window_cells": 7,
+      "reason": "Competition files are sparse dot fields (about 37k to 44k dots in the nine focus files). Continuous surfaces are penalised by the metric's false-positive mass, so a continuous comparison is secondary."
+    },
+    "secondary_continuous": {
+      "description": "The unplaced continuous OOF probability surface, identical to the WBG-C1 representation."
+    }
+  },
+  "efficacy_gate": {
+    "primary": "Candidate minus control paired HOLDOUT-DTI on the dotted representation: 95% paired CI lower bound > 0 under the same bootstrap (seed 71614, 1000 draws) as WBG-C1.",
+    "secondary": "The same test on the continuous representation.",
+    "reproduction_check": "The control_19band_hgb continuous DTI must reproduce evidence/experiment.json (WBG-C1) to within 1e-6, because the feature stack, splits and model settings are identical."
+  },
+  "canary": {
+    "rule": "Each of the 23 channels (19 bands plus 4 Euler channels) is tested alone in each held quadrant on all withheld positives and up to 50000 sampled active negatives. Any orientation-invariant AUC > 0.90 stops efficacy claims (leakage until proven otherwise).",
+    "implementation": "wbggems.audit.single_feature_canary, the same as scripts/run_experiment.py"
+  },
+  "registry_gate": {
+    "rank_correlation_limit": 0.9,
+    "strictly_greater_than": true,
+    "literal_overlap_limit": 0.7,
+    "radius_px": 3,
+    "note": "The literal 70% dot-overlap rule is degenerate against dense registry rasters (documented in AGENTS.md item 0b). It is reported, not waived."
+  },
+  "budget": {
+    "maximum_experiments": 3,
+    "maximum_wall_hours": 2,
+    "planned_experiments": 2,
+    "experiment_2": "Only if E1 passes the primary efficacy gate: an untouched confirmation on split_seed 71615 with identical settings, reported separately.",
+    "experiment_3": "Reserved; not planned."
+  },
+  "promotion": {
+    "authorized": false,
+    "submission_slots_used": 0,
+    "rule": "A positive holdout result alone never authorises a weekly-slot submission. Promotion is a separate selector step that needs a fully passing registry gate and a human-owned decision."
+  },
+  "score_policy": "All numbers are HOLDOUT-DTI with evaluator version, withheld-positive count and 95% CI. No leaderboard projection is written as a score. Historical user-reported numbers are USER-REPORTED.",
+  "amendments": [
+    {
+      "utc": "2026-10-31T01:08:00Z",
+      "before_any_holdout_or_candidate_scoring": true,
+      "pre_amendment_sha256": "8baa12287bcfc51fc941467f2dd6fa84ab016ee3161e1a25b04cd99999e83ebf",
+      "reason": "Implementation defect found in a feature-only dry run (no holdout, no model fit): for N=0 the base-level column and row are identically zero, so the 4x4 system was singular and every window was discarded (accepted solutions 0). Fixed by solving the 3x3 system for (x0, y0, z0) when N=0.",
+      "change": "src/wbg31/euler.py only. Thresholds, window (7 cells), depth window (50-3000 m), channels, holdout, bootstrap, model, dotted representation and primary endpoint are UNCHANGED.",
+      "dry_run_feature_diagnostics_seen": {
+        "euler_mag_N0_density": {
+          "accepted_fraction_after_fix": 0.39,
+          "depth_median_m": 138.4
+        },
+        "euler_mag_N1_density": {
+          "accepted_fraction": 0.3,
+          "depth_median_m": 328.2
+        },
+        "euler_grav_N0_density": {
+          "accepted_solutions": 0
+        },
+        "euler_grav_N1_density": {
+          "accepted_solutions": 9,
+          "note": "effectively empty under the unverified vertical-derivative units; kept, as preregistered, and flagged"
+        }
+      },
+      "consequence_stated_before_run": "The two gravity channels are expected to be effectively zero. The primary test is therefore mainly a magnetic-Euler test. Reported as such.",
+      "note": "Timestamp corrected from a placeholder (10:30Z) to the approximate real time."
+    },
+    {
+      "utc": "2026-10-31T01:10Z",
+      "before_any_holdout_or_candidate_scoring": false,
+      "after_failed_closed_attempt_1": true,
+      "reason": "Attempt 1 (process wbg31-e1-screen-euler-channels-c2b52d92) ran feature extraction, canary (leakage_suspected=false, max orientation-invariant AUC 0.6124) and per-fold continuous holdout scoring, then raised KeyError 'bootstrap' in the pooled summary because this registration omitted the holdout.bootstrap block that WBG-C1 carries. The run failed closed; no pooled result, no dotted arm and no endpoint were produced or read. Per-fold continuous DTI printed by attempt 1 (NW/NE/SW/SE control and candidate) is disclosed in the ledger and will be reproduced by attempt 2; it was not used to change anything.",
+      "change": "Adds holdout.bootstrap = {method, draws 1000, seed 71614, confidence 0.95}, copied verbatim from WBG-C1. No other field changed. Attempt 2 counts as the same experiment E1 (not a new experiment) in the budget.",
+      "sha256_before_this_amendment": "334d911f7f8a28c5edb3f42391db7cc7b00987dae6651acc9e0cee874cae9931"
+    }
+  ],
+  "registered_utc_note": "registered_utc corrected on 2026-10-31 ~01:08Z; the first value (09:00Z) was a placeholder typed before the clock was checked."
+}

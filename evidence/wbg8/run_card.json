@@ -567,5 +567,6 @@
     "experiments_max": 3,
     "detail": "E1 blind multi-layer placement (coverage 0.721, estimate 0.0696) archived as archive_E1_*; E2 coverage-stratified re-placement (this card) with corrected protocol-faithful registry gates; one deterministic re-derivation of E2 receipts (identical dots). Wall time < 2 h. submission_slots_used = 0.",
     "wall_hours_max": 2
-  }
+  },
+  "dots": 37654
 }

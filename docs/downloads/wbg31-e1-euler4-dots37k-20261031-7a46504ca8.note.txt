@@ -1,0 +1,1 @@
+WBG31-E1 Euler4+HGB dots, research only. Efficacy gate FAILED (dotted paired CI -0.0048..+0.0054). SUBMIT NO.

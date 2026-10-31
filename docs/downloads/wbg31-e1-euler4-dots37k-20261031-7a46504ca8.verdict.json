@@ -1,0 +1,23 @@
+{
+  "file": "docs/downloads/wbg31-e1-euler4-dots37k-20261031-7a46504ca8.tif",
+  "name": "wbg31-e1-euler4-dots37k-20261031-7a46504ca8",
+  "DOWNLOAD": "research only (one-click download in docs/downloads)",
+  "SUBMIT": "NO",
+  "ok_to_submit": false,
+  "reasons": [
+    "Primary efficacy gate failed: candidate minus control, dotted, HOLDOUT-DTI gems57-pooled-hide-v2, delta +0.000392, 95% CI [-0.004810, +0.005401], n withheld positives 11330.",
+    "Literal G4 failed: 6 registry rasters above 70% literal 3-px overlap (worst 0.9569 = 13GEMSDOE r13 lattice, density-matched lift 0.958, i.e. degenerate; next worst non-lattice GEMSDOE67 0.7675, lift 1.40; 12GEMSDOE r7 0.6225, lift 1.93).",
+    "Registry comparison incomplete: 14GEMSDOE r5 horse-ensemble not compared (grid origin differs; offsets not whole cells).",
+    "Format G1 passes (validate.py all checks); G2 no exact copy; G3 max Spearman 0.0570 < 0.90.",
+    "No organizer receipt; OWNER-MIRROR-INTEGRITY inputs only; no slot used."
+  ],
+  "gate_receipts": [
+    "evidence/wbg31/uniqueness_e1_dots.json",
+    "evidence/wbg31/density_matched_lift_e1.json",
+    "evidence/wbg31/e1_experiment.json",
+    "registry/experiment_ledger_wbg31_e1.json"
+  ],
+  "candidate_file_sha256": "5703ac072a697edd39d0b08bea4eff0791a33c61e9da3e746a3749cbc16aaade",
+  "estimated_leaderboard_score": "UNAVAILABLE (no organizer receipt; HOLDOUT-DTI is a different instrument from the leaderboard)",
+  "classes": "HOLDOUT-DTI (gems57-pooled-hide-v2, n withheld 11330) for the efficacy numbers; REGISTRY-MEASUREMENT for overlap/Spearman; OWNER-REPORTED for registry scores (none quoted here)."
+}

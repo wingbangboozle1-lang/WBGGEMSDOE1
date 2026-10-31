@@ -1,0 +1,90 @@
+{
+ "schema_version": "gemsdoe1-irregularities-20261031-v1",
+ "reviewed_utc": "2026-10-31",
+ "items": [
+  {
+   "id": "I1",
+   "title": "Leaderboard premise",
+   "detail": "Brief cites 0.4413 as top; official page read 31 Oct shows #1 xiaofanhu 0.4544. Brief's 0.3195 is #50 (kpomazi), not the leader.",
+   "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+   "status": "flagged"
+  },
+  {
+   "id": "I2",
+   "title": "Unverified focus scores",
+   "detail": "All nine focus-site scores are USER-REPORTED. No HOLDOUT-DTI or ORGANIZER-CONFIRMED value exists for any focus file.",
+   "source": "docs/data/nine_site_audit_20261029.json",
+   "status": "flagged"
+  },
+  {
+   "id": "I3",
+   "title": "Label-source conflict in official rules",
+   "detail": "Rules section 2 names USGS Quaternary Fault and Fold Database labels plus expert-labelled new faults; section 3.3 names the INGENIOUS Great Basin compilation as the training-label source.",
+   "source": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+   "status": "owner-review"
+  },
+  {
+   "id": "I4",
+   "title": "Generative-AI disclosure",
+   "detail": "Rules section 3.2 requires disclosure of generative-AI use in the submission narrative. This lane used AI-assisted coding and analysis; disclosure is needed before any submission.",
+   "source": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+   "status": "owner-action-before-submit"
+  },
+  {
+   "id": "I5",
+   "title": "Registry scan incomplete",
+   "detail": "117 of 118 registry rasters checked. 14GEMSDOE GEMS_r5-geom-horse-ensemble failed: registry CRS/transform differs from reference. complete_accessible_scan=false.",
+   "source": "evidence/fold_safe_20261031/final_run_card_20261031.json",
+   "status": "flagged"
+  },
+  {
+   "id": "I6",
+   "title": "Shipped file differs from measured method",
+   "detail": "E2 emitted 50,000-87,000 dots per holdout fold (about 1.2M cells per quadrant). The full-map run at K=12,198 emitted 33,897 dots on about 5.1M cells. The holdout does not directly measure the shipped TIFF. Cause unexplained (hypothesis: allocator sensitivity to probability spread).",
+   "source": "evidence/fold_safe_20261031/E2-hgb-visible-only.json",
+   "status": "flagged"
+  },
+  {
+   "id": "I7",
+   "title": "Template defect",
+   "detail": "vendor/template57/prepare_data.py main() resolves ROOT to vendor/ when run in place. Functions called unchanged with ROOT=repo root. Reported; not forked.",
+   "source": "vendor/template57/prepare_data.py",
+   "status": "owner-action"
+  },
+  {
+   "id": "I8",
+   "title": "Missing external inputs",
+   "detail": "data/external/ lacks sgmc_faults_100m.tif, derived_sgmc_faults_100m.tif, trace_segments_utm11.csv, qfault_attributes.csv. Template PIN check fails.",
+   "source": "data/README.md",
+   "status": "limitation"
+  },
+  {
+   "id": "I9",
+   "title": "Unexplained NaN pixels",
+   "detail": "About 1,521 NaN pixels per band inside the footprint are unexplained.",
+   "source": "evidence/data_restore.json",
+   "status": "open"
+  },
+  {
+   "id": "I10",
+   "title": "Two writer paths",
+   "detail": "vendor/gems57/submission_writer.py (fail-closed, 0 slots) and scripts/submission_writer.py (wraps src/gems/submission). The fail-closed path was used for the holdout.",
+   "source": "vendor/gems57/submission_writer.py",
+   "status": "flagged"
+  },
+  {
+   "id": "I11",
+   "title": "Literal 70% gate is degenerate",
+   "detail": "A dense lattice captures about 99.7% of any field. The gate is the lab's protocol, not an official rule: the official rules text reviewed (sections 1-3.6 and the start of Appendix A) has no duplicate test. Appendix A chunks 4-6 not read.",
+   "source": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+   "status": "flagged"
+  },
+  {
+   "id": "I12",
+   "title": "Time budget not re-verified",
+   "detail": "The 2-hour window was not re-checked after the data restore; no fourth experiment was run.",
+   "source": "session log",
+   "status": "flagged"
+  }
+ ]
+}

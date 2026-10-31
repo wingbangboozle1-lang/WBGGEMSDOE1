@@ -1,0 +1,46 @@
+{
+  "started_utc": "2026-10-31T01:10:09+00:00",
+  "hypothesis_id": "WBG31-E1",
+  "experiments_started": 1,
+  "maximum_experiments": 3,
+  "maximum_wall_hours": 2,
+  "preregistration_sha256": "817d1eb21e808b2ef697e5d73535e024787f8b3f9bae01763abe8949eb2802da",
+  "status": "closed_negative_efficacy_gate_failed",
+  "submission_slots_used": 0,
+  "finished_utc": "2026-10-31T01:13:29+00:00",
+  "elapsed_seconds": 199.78011048099984,
+  "experiments_completed": 1,
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "failed_closed",
+      "reason": "KeyError 'bootstrap' (registration omitted holdout.bootstrap); see registry/wbg31/attempt1_failure_record.md; ledger preserved at registry/wbg31/ledger_attempt1_failed_closed.json"
+    },
+    {
+      "attempt": 2,
+      "status": "screen_complete",
+      "note": "Same experiment E1 after amendment 2 (bootstrap copied verbatim from WBG-C1). Counted once toward the 3-experiment budget."
+    }
+  ],
+  "result": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 11330,
+    "control_reproduction_abs_diff": 0.0,
+    "primary_dotted_delta_candidate_minus_control": 0.0003923811452909501,
+    "primary_dotted_ci95": [
+      -0.004809732781535606,
+      0.005401258258482244
+    ],
+    "secondary_continuous_delta": -6.985491116819412e-05,
+    "secondary_continuous_ci95": [
+      -0.00021302684008265237,
+      7.05425214179487e-05
+    ],
+    "efficacy_gate": "FAILED (candidate paired CI lower bound not > 0 for dotted primary or continuous secondary)",
+    "canary": "PASSED (leakage_suspected false; max orientation-invariant AUC 0.6124)",
+    "registry_gate": "NOT RUN (efficacy gate failed; no candidate promoted)"
+  },
+  "decision": "No slot. Research file not approved. Negative result counts as a win for slot protection.",
+  "closed_utc": "2026-10-31T01:13:44Z"
+}

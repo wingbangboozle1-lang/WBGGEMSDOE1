@@ -45,6 +45,7 @@ def main() -> int:
     }
     card["verdict"] = "promote" if ok else "negative"
     card["note"] = card["note"][:140]
+    card["dots"] = int(card["submission_name"].split("-")[4])
     card["session_budget"] = {
         "session_date": "2026-10-31",
         "experiments_used": 2,

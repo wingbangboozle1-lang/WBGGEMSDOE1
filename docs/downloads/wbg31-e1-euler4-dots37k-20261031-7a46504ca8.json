@@ -1,0 +1,126 @@
+{
+  "file": "wbg31-e1-euler4-dots37k-20261031-7a46504ca8.tif",
+  "sha256": "5703ac072a697edd39d0b08bea4eff0791a33c61e9da3e746a3749cbc16aaade",
+  "bytes": 132897,
+  "submission_name": "wbg31-e1-euler4-dots37k-20261031-7a46504ca8",
+  "note": "WBG31-E1 Euler SI-density + 19-band HGB; 37k OOF dots; research only, NOT approved for submission.",
+  "note_chars": 98,
+  "validator": {
+    "file": "/home/user/WBGGEMSDOE1/docs/downloads/wbg31-e1-euler4-dots37k-20261031-7a46504ca8.tif",
+    "bytes": 132897,
+    "sha256": "5703ac072a697edd39d0b08bea4eff0791a33c61e9da3e746a3749cbc16aaade",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030021597631275654,
+    "emitted_positive_pixels": 36864,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 36864,
+    "footprint_fraction": 0.007133992456128094
+  },
+  "template_report": {
+    "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbg31-e1-euler4-dots37k-20261031-7a46504ca8.tif",
+    "bytes": 132897,
+    "sha256": "5703ac072a697edd39d0b08bea4eff0791a33c61e9da3e746a3749cbc16aaade",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030021597631275654,
+    "n_nonzero": 36864,
+    "mass": 36864.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "wbg31-e1-euler4-dots37k-20261031-7a46504ca8.zip",
+  "zip_sha256": "1d0b6b417f88344cfc28d590905f21a3c24525875dd3cc23adc682cc2c9b77ae",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "artifact_role": "research dot field, NOT a promoted competition submission",
+    "hypothesis_id": "WBG31-E1",
+    "preregistration_sha256": "817d1eb21e808b2ef697e5d73535e024787f8b3f9bae01763abe8949eb2802da",
+    "organizer_origin_authenticated": false,
+    "submission_slots_used": 0
+  }
+}

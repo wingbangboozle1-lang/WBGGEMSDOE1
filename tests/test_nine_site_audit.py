@@ -139,17 +139,17 @@ def test_executive_summary_and_homepage_show_the_decision():
     if card["decision"]["ok_to_submit"]:
         assert "SUBMIT: CLEARED" in home
         assert card["submission_name"] in home or "WBG-8" in home
-        assert "executive-summary-20261031.html" in home
-        assert "how-to-submit-20261031.html" in home
+        assert "executive-summary-wbg8-20261031.html" in home
+        assert "how-to-submit-wbg8-20261031.html" in home
     else:
         assert "SUBMIT: NO. No file is cleared." in home
     assert "executive-summary-20261029.html" in home
     # 31 Oct pages must exist and carry the required table columns
-    exec31 = (ROOT / "docs" / "executive-summary-20261031.html").read_text()
+    exec31 = (ROOT / "docs" / "executive-summary-wbg8-20261031.html").read_text()
     for needle in ("What to download", "estimated score", "0.2778",
                    card["submission_name"], "MODEL-ESTIMATE"):
         assert needle.lower() in exec31.lower(), needle
-    how31 = (ROOT / "docs" / "how-to-submit-20261031.html").read_text()
+    how31 = (ROOT / "docs" / "how-to-submit-wbg8-20261031.html").read_text()
     assert "[0, 1]" in how31 or "[0,1]" in how31
     assert card["note"][:40] in how31
 

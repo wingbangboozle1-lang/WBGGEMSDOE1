@@ -1,0 +1,45 @@
+{
+  "evidence_class": "MODEL-ESTIMATE",
+  "model": "wbg6-score-model-v2 (family-grouped OLS on owner-reported scores)",
+  "terms": [
+    "log_n",
+    "coverage",
+    "log_p90",
+    "log_cluster",
+    "frac_cat3",
+    "cat_density"
+  ],
+  "feature_values": {
+    "log_n": 10.536194469284657,
+    "coverage": 0.9029932617598924,
+    "log_p90": 3.748013496398926,
+    "log_cluster": 1.7993968725204468,
+    "frac_cat3": 0.071625856482711,
+    "cat_density": 0.02831299602985382
+  },
+  "estimate": 0.1393,
+  "family_parity_reference": {
+    "name": "h33-h33-2-b2 (owner-reported 0.2778)",
+    "model_estimate": 0.1532,
+    "feature_values": {
+      "log_n": 10.536194469284657,
+      "coverage": 0.9207161937022932,
+      "log_p90": 4.234213089298476,
+      "log_cluster": 1.7883635838002019,
+      "frac_cat3": 0.057656557072289796,
+      "cat_density": 0.012125925160944462
+    }
+  },
+  "within_model_gap_vs_b2_geometry": -0.0139,
+  "interval_68_model": [
+    0.026,
+    0.2525
+  ],
+  "interval_95_model": [
+    -0.0826,
+    0.3612
+  ],
+  "model_grouped_rmse": 0.11321785039144218,
+  "model_grouped_spearman": 0.25141888784077804,
+  "caveat": "Projection from geometry-descriptor regression on USER-REPORTED scores; grouped CV is weak (Spearman 0.25), and the model UNDER-predicts the 0.24-0.28 champion family (B2's own model estimate is far below its reported 0.2778). Read estimates within-model via the family-parity reference. NOT a HOLDOUT-DTI and NOT ORGANIZER-CONFIRMED."
+}

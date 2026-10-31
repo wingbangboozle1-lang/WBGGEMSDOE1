@@ -1,0 +1,30 @@
+{
+  "file": "data/external/sgmc_faults_100m.tif",
+  "sha256": "26d142c4c93282cd94f6950ab96f22aeff59fbbea523d43d662e76fa1b161b5c",
+  "bytes": 213034,
+  "derivation": "proxy = (sgmc_faults_100m > 0) & ~catalogue & footprint",
+  "crs": "EPSG:32611",
+  "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+  ],
+  "shape": [
+    3730,
+    3292
+  ],
+  "sgmc_pixels": 82151,
+  "sgmc_pixels_on_catalogue": 3718,
+  "proxy_pixels": 78433,
+  "proxy_fraction_of_footprint": 0.015178505596557477,
+  "irregularity_IR_57_SGMC_01": {
+    "described_as": "SGMC minus the mapped union (data/README.md)",
+    "measured": "derived_sgmc_faults_100m.tif has 83593 px, 1442 more than SGMC, and still contains 260 catalogue px; it is a ~1 px dilation",
+    "action": "this instrument rebuilds the proxy from the pinned SGMC bytes"
+  },
+  "evidence_class": "EXTERNAL-AUXILIARY-LAYER (proxy population, not organizer truth)",
+  "declared_limit": "public state/geologic fault compilation minus the competition catalogue; a proxy for newly mapped faults, never an organizer label and never a score"
+}

@@ -1,0 +1,142 @@
+{
+  "k_grid": [
+    {
+      "k": 30000,
+      "dots": 30000,
+      "proxy_dti": 0.09471122256943938
+    },
+    {
+      "k": 34000,
+      "dots": 34000,
+      "proxy_dti": 0.09715522740783519
+    },
+    {
+      "k": 37654,
+      "dots": 36626,
+      "proxy_dti": 0.09747472771250816
+    },
+    {
+      "k": 42000,
+      "dots": 36626,
+      "proxy_dti": 0.09747472771250816
+    },
+    {
+      "k": 50000,
+      "dots": 36626,
+      "proxy_dti": 0.09747472771250816
+    }
+  ],
+  "rule": "R3 max selection PROXY-DTI, ties at 3 dp prefer smaller K",
+  "selected_k": 34000,
+  "selected_surface": "ch2_basement_lineament",
+  "report_draw": {
+    "seed": 21,
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "evidence_class": "HOLDOUT-DTI",
+    "candidate": {
+      "dti": 0.052658120313668504,
+      "ci95": [
+        0.04489607564306307,
+        0.05993506001545392
+      ],
+      "withheld_positive_pixels": 11572,
+      "per_fold": [
+        {
+          "fold": "NW",
+          "budget": 7224,
+          "withheld_positive_px": 1918,
+          "dti_fold": 0.044967
+        },
+        {
+          "fold": "NE",
+          "budget": 8956,
+          "withheld_positive_px": 2361,
+          "dti_fold": 0.037737
+        },
+        {
+          "fold": "SW",
+          "budget": 8842,
+          "withheld_positive_px": 3813,
+          "dti_fold": 0.05626
+        },
+        {
+          "fold": "SE",
+          "budget": 7125,
+          "withheld_positive_px": 3480,
+          "dti_fold": 0.066966
+        }
+      ]
+    },
+    "control_poisson_same_mask": {
+      "dti": 0.04257036230648577,
+      "ci95": [
+        0.03695792984183242,
+        0.04831341562406759
+      ],
+      "per_fold": [
+        {
+          "fold": "NW",
+          "budget": 7224,
+          "dti_fold": 0.04217
+        },
+        {
+          "fold": "NE",
+          "budget": 8956,
+          "dti_fold": 0.028199
+        },
+        {
+          "fold": "SW",
+          "budget": 8842,
+          "dti_fold": 0.045699
+        },
+        {
+          "fold": "SE",
+          "budget": 7125,
+          "dti_fold": 0.0518
+        }
+      ]
+    },
+    "paired_difference": {
+      "control_poisson_same_mask": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.010087758007182736,
+        "ci95": [
+          0.0011411524626164901,
+          0.017989304604593033
+        ],
+        "withheld_positive_pixels": 11572
+      }
+    },
+    "b2_reference_fixed_field": {
+      "holdout_dti": 0.004069373427417734,
+      "ci95": [
+        0.0032975654936400135,
+        0.004846094020783266
+      ],
+      "proxy_dti": {
+        "dti": 0.09127839557978852,
+        "tp": 6483.068366284124,
+        "fp": 34911.044724580075,
+        "fn": 71949.93163371588,
+        "n_proxy": 78433
+      },
+      "caveat": "B2 placement used the full catalogue; its fold score is not fold-safe replay."
+    },
+    "candidate_proxy_dti": {
+      "dti": 0.09715522740783519,
+      "tp": 6843.415760296334,
+      "fp": 31614.370774259092,
+      "fn": 71589.58423970366,
+      "n_proxy": 78433
+    },
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 159,
+      "draws": 1000,
+      "seed": 520810,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    }
+  }
+}

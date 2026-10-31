@@ -1,3 +1,33 @@
+## 31 OCT 2026 STANDING PROMPT — READ FIRST EVERY SESSION (full text: docs/standing-prompt-20261031.md)
+
+**Goal:** place top of the [DrivenData DOE GEMS leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/).
+Core values: **Maximize P(Win) · Own the Outcome**. The eight session deliverables are
+satisfied by the WBG-8 pages (31 Oct 2026):
+
+1. Study the highest-scoring submissions from focus sites GEMSDOE24/25/27/28/30/31/32/33/36
+   (esp. GEMSDOE32 `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` = 0.2778 USER-REPORTED).
+2. PhD-level answer: why B2 scored 0.2778 (deletion-only catalogue-halo pruning of D2.8;
+   official metric algebra; family evidence n=12) and can we beat it (plausible, not proven).
+3. UNIQUE TIF: `docs/downloads/wbggemsdoe1-wbg8-hidden-corridor-34000-20261031-zeros.tif` —
+   one-click download, auto-validated (single-band float32 EPSG:32611 3730×3292, values in
+   [0,1], **no NaN** — a NaN-outside file is what triggered “Predicted values must be in
+   range [0, 1]”), unique name + 95-char note (limit 140).
+4. Executive summary table (file | estimate | unique yes/no) + obvious SUBMIT-OK verdict +
+   how-to-submit subpage: [executive-summary-20261031-wbg8.html](docs/executive-summary-20261031-wbg8.html),
+   [how-to-submit-20261031-wbg8.html](docs/how-to-submit-20261031-wbg8.html).
+5. PARALLEL-RUN PROTOCOL honored (declared lane = new-placement analysis; gates G1–G6;
+   literal-degenerate 70% gate reported + density-matched lift; shared instruments only;
+   one run card per experiment in [evidence/wbg8/](evidence/wbg8/); 3 experiments).
+6. 3–5 novel ranked geological hypotheses before implementation
+   ([research/07](research/07_wbg8_preregistration_20261031.md)) + official-source research.
+7. Context targets 0.4413 / 0.3195 / 0.4544 are UNVERIFIED owner/page reports (see
+   [docs/repo-review-20261027.html](docs/repo-review-20261027.html) and the exec summary).
+8. PR merged to main each session + limitations listed (exec summary “Irregularities”).
+
+**Label discipline (standing):** every score is HOLDOUT-DTI (with evaluator version, n
+withheld positives, 95% CI), PROXY-DTI, MODEL-ESTIMATE, OWNER-REPORTED, or
+ORGANIZER-CONFIRMED. A projection is never written as a score.
+
 > **31 OCT 2026 · READ FIRST (standing brief, every session)**
 >
 > **Verdict:** DOWNLOAD: YES (research TIFF) · SUBMIT: **NO** · Estimated leaderboard score: **UNAVAILABLE**.
@@ -461,6 +491,11 @@ not verified facts. The measured run card takes precedence over stale factual as
 
 <details>
 <summary><strong>Complete standing user request — archived intent, not verified findings</strong></summary>
+
+> **31 Oct 2026:** the current session's standing prompt lives at
+> [`standing-prompt-20261031.md`](standing-prompt-20261031.md) and is mirrored at the top of
+> the repo README (read every session as the starting point). The 26 Oct prompt below is
+> retained for provenance.
 
 # Standing user prompt — supplied 2026-10-26
 

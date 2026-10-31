@@ -84,7 +84,6 @@ def main() -> int:
     user = np.array([r["user_reported_score"] for r in rows])
     hold = np.array([r["holdout_dti"] for r in rows])
     rho, p = spearmanr(user, hold)
-    catalogue_share = []
     summary = dict(
         spearman_user_vs_holdout=float(rho), spearman_p=float(p), n_files=len(rows),
         note=("Spearman between user-reported scores and holdout DTI across the 11 named files. "

@@ -113,7 +113,6 @@ def main() -> int:
              "GEMSDOE30 poisson": "d28-poisson300m", "GEMSDOE24 H25-1": "h25-1-dotted",
              "GEMSDOE27 topo-gap": "topo-gap-closure"}
     all_keys = {p[k] for p in NINE["pairwise"] for k in ("a", "b")}
-    tails_missing = None
     for site, tail in tails.items():
         hits = sorted(k for k in all_keys if tail in k)
         if len(hits) != 1:

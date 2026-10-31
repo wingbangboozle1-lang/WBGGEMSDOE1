@@ -1,7 +1,7 @@
 {
   "schema": "gemsdoe1-exec-summary-20261031-v1",
   "generated_by": "scripts/build_exec_20261031.py",
-  "verdict_page": "docs/executive-summary-20261031.html",
+  "verdict_page": "docs/executive-summary-h2-20261031.html",
   "submission_slots_used": 0,
   "nine_site_table": [
     {

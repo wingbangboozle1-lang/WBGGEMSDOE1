@@ -153,7 +153,7 @@ def main() -> int:
     summary = {
         "schema": "gemsdoe1-exec-summary-20261031-v1",
         "generated_by": "scripts/build_exec_20261031.py",
-        "verdict_page": "docs/executive-summary-20261031.html",
+        "verdict_page": "docs/executive-summary-h2-20261031.html",
         "submission_slots_used": 0,
         "nine_site_table": table,
         "candidate": candidate,
@@ -312,8 +312,8 @@ uniqueness gate on {len(cand_dups)} registry rasters. A uniformly random dot fie
 <p><small>Machine-readable: <a href="data/executive_summary_20261031.json">docs/data/executive_summary_20261031.json</a> · <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/arena/0c266855-wbggemsdoe1/evidence/h2_lag/run_card_20261031.json">run card</a> · <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/arena/0c266855-wbggemsdoe1/scripts/run_h2_lag_corroboration.py">experiment script</a> · <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/arena/0c266855-wbggemsdoe1/scripts/build_h2_candidate_20261031.py">candidate script</a></small></p>
 </body></html>
 """
-    (ROOT / "docs/executive-summary-20261031.html").write_text(page)
-    print("wrote docs/executive-summary-20261031.html, docs/data/executive_summary_20261031.json, evidence/h2_lag/run_card_20261031.json")
+    (ROOT / "docs/executive-summary-h2-20261031.html").write_text(page)
+    print("wrote docs/executive-summary-h2-20261031.html, docs/data/executive_summary_20261031.json, evidence/h2_lag/run_card_20261031.json")
     return 0
 
 

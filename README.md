@@ -1,7 +1,7 @@
 > **31 OCT 2026 · READ FIRST (standing brief, every session)**
 >
 > **Verdict:** DOWNLOAD: YES (research TIFF) · SUBMIT: **NO** · Estimated leaderboard score: **UNAVAILABLE**.
-> **Start here:** [Executive summary, 31 Oct 2026](docs/executive-summary-20261031.html) — nine-site table (file to download, owner-reported score, uniqueness), the candidate TIFF, why GEMSDOE32 B2 scored 0.2778, and all irregularities.
+> **Start here:** [Executive summary, 31 Oct 2026](docs/executive-summary-h2-20261031.html) — nine-site table (file to download, owner-reported score, uniqueness), the candidate TIFF, why GEMSDOE32 B2 scored 0.2778, and all irregularities.
 > **Second 31 Oct research TIFF (parallel branch, also SUBMIT NO):** see the status block below and [`docs/repo-review-20261031.md`](docs/repo-review-20261031.md).
 > **Candidate:** [`wbggemsdoe1-h2-edgecorr-avoid3-37654-20261031.tif`](docs/downloads/wbggemsdoe1-h2-edgecorr-avoid3-37654-20261031.tif) · [run card](evidence/h2_lag/run_card_20261031.json) · [experiment](scripts/run_h2_lag_corroboration.py)
 >

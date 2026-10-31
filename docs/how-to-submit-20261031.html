@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to submit · 31 Oct 2026 · WBG GEMS research desk</title>
+<meta name="description" content="Exact, validated steps to submit the WBG-8 GeoTIFF to the DOE GEMS prize challenge.">
+<meta name="theme-color" content="#173b42"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css"><script defer src="assets/app.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="masthead"><div class="wrap"><nav class="nav" aria-label="Main navigation">
+<a class="brand" href="index.html"><svg viewBox="0 0 36 38" fill="none" aria-hidden="true"><path d="M3 29C12 27 4 16 13 15S21 5 31 6M4 35C15 34 11 22 20 22S25 11 34 12M2 21C8 21 4 9 13 9S18 1 25 2" stroke="#23665f" stroke-width="2" stroke-linecap="round"/></svg><span>WBG / GEMS<small>FAULT MAPPING · RESEARCH DESK</small></span></a>
+<div class="navlinks"><a class="" href="start-here.html">START HERE</a><a class="" href="executive-summary-20261031.html">Exec summary · 31 Oct</a><a class="active" href="how-to-submit-20261031.html">How to submit · 31 Oct</a><a class="" href="index.html">Overview</a><a class="" href="executive-summary-unique.html">Nine-site history</a><a class="" href="research.html">Research</a><a class="" href="evidence.html">Evidence</a><a class="" href="how-to-submit.html">How to submit (archive)</a><a class="repo" href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Repository ↗</a></div></nav></div></header>
+<main id="main" class="wrap">
+
+<section class="content-section" id="how">
+<h1>How to submit the 31 Oct 2026 candidate</h1>
+<div class="alert" role="note"><p><strong>DOWNLOAD: YES · SUBMIT: OK.</strong>
+<code>wbggemsdoe1-wbg8-hidden-corridor-34000-20261031-zeros</code> is format-valid, unique and validated automatically by this project.
+Read the <a href="executive-summary-20261031.html">executive summary</a> first; the run card is
+<a href="../evidence/wbg8/run_card.json">evidence/wbg8/run_card.json</a>.</p></div>
+<ol>
+<li><strong>Download the file.</strong> Use the one-click link on the
+<a href="executive-summary-20261031.html">executive summary</a>:
+<code>wbggemsdoe1-wbg8-hidden-corridor-34000-20261031-zeros.tif</code> (or the single-GeoTIFF <code>.zip</code>). Verify SHA-256
+<code>cae1cc990da31a36373faebcb1d0cef729e50892cb59e30066d60da09d5f9448</code> if you want byte-level certainty.</li>
+<li><strong>Open the submission form.</strong>
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData · New submission</a>
+(requires your login; this project never stores or requests credentials).</li>
+<li><strong>Choose the file.</strong> The form accepts a single-band GeoTIFF (.tif) or a .zip
+containing a single GeoTIFF. This file is a single-band float32 GeoTIFF on the exact submission
+grid (EPSG:32611, 3730 × 3292, the training geotransform) with every value in [0, 1] and zeros
+outside the footprint. <strong>Do not upload NaN-outside variants</strong> — NaN values are read
+as out of range and produce the error “Predicted values must be in range [0, 1]”.</li>
+<li><strong>File name on the form:</strong> <code>wbggemsdoe1-wbg8-hidden-corridor-34000-20261031-zeros.tif</code> (unique; no earlier
+submission carries it).</li>
+<li><strong>Note (optional but recommended):</strong> copy this note
+(95 characters, within the 140-character limit):
+<blockquote><code>WBG-8 lidar+basement+pf+rad corridors; 34,000 catalogue-neutral dots; MODEL-ESTIMATE ~0.26-0.29</code></blockquote></li>
+<li><strong>Submit.</strong> Keep the receipt page: the returned score is the only
+ORGANIZER-CONFIRMED number. Report it back to this project so the executive summary can be
+upgraded from MODEL-ESTIMATE to ORGANIZER-CONFIRMED.</li>
+<li><strong>Weekly cap.</strong> The official rules (§3.2) limit submissions per week; the
+remaining allowance is visible only on your submissions page. This project has used no slot;
+promotion is deliberately left to you as the selector step.</li>
+</ol>
+<p class="micro">Validation performed automatically before this file was published: format/range
+validator (all checks passed), exact-copy and pixel hash uniqueness against
+473 registry
+rasters, Spearman ≤ 0.042 vs every registry raster, leakage canary AUC ≤ 0.55 on all channels,
+and the shared hide-and-recover holdout with paired confidence intervals. Local validation is
+not organizer acceptance.</p>
+<p class="micro"><a href="executive-summary-20261031.html">← Executive summary · 31 Oct</a> ·
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem page</a> ·
+<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Rules (PDF)</a></p>
+</section>
+
+</main>
+<footer class="footer"><div class="wrap footer-inner"><p><strong>WBG / GEMS</strong> &nbsp; Evidence before a weekly slot.<br>Fault predictions are not verified geothermal vents. Local validation is not organizer acceptance.</p><div><a href="../evidence/wbg8/run_card.json">Run card JSON</a><a href="standing-prompt.md">Standing brief</a><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Competition ↗</a></div></div></footer>
+<div id="toast" role="status" aria-live="polite"></div></body></html>

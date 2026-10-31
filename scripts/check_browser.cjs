@@ -24,6 +24,7 @@ const chromium = importedChromium.default || importedChromium;
   const wbg3 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg3_spipmr/run_card.json")));
   const focus9 = JSON.parse(fs.readFileSync(path.join(root, "evidence/focus9_exec/run_card.json")));
   const wbg4 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg4/run_card.json")));
+  const pftl1 = JSON.parse(fs.readFileSync(path.join(root, "evidence/pfterlag_20261031/run_card.json")));
   if (process.env.BROWSER_COMPAT_LIBS === "1") {
     // Minimal Linux containers may lack NSS/NSPR. Use the dependency's own
     // bundled compatibility libraries instead of downloading system packages.
@@ -42,16 +43,27 @@ const chromium = importedChromium.default || importedChromium;
     const context = await browser.newContext({ viewport: { width: 1440, height: 1100 }, acceptDownloads: true });
     const page = await context.newPage();
     page.on("pageerror", error => errors.push(String(error)));
-    for (const file of ["index.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"]) {
+    for (const file of ["index.html", "repo-review-20261031.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"]) {
       const response = await page.goto(new URL(file, base).href, { waitUntil: "networkidle" });
       assert.equal(response.status(), 200);
       const text = await page.locator("main").innerText();
-      assert.match(text, /Download: YES, for research\. Submit: NO\./);
-      assert.match(text, /No final dots were placed/);
+      assert.match(text, /CURRENT STATUS · DOWNLOAD: YES \(RESEARCH ONLY\) · SUBMIT: NO\. DO NOT SUBMIT\./);
+      assert.match(text, /PFTL-1 failed the literal pre-placement registry gate; no final dots or slot were used\./);
       const overflow = await page.evaluate(() => document.body.scrollWidth > window.innerWidth);
       assert.equal(overflow, false, `desktop body overflow: ${file}`);
       checked.push({ file, desktop: "passed" });
     }
+    await page.goto(new URL("repo-review-20261031.html", base).href, { waitUntil: "networkidle" });
+    const pftlText = await page.locator("main").innerText();
+    assert.match(pftlText, /HOLDOUT-DTI/);
+    assert.match(pftlText, /0\.027858/);
+    assert.match(pftlText, /99\.8442%/);
+    assert.match(pftlText, /OWNER-REPORTED/);
+    const pftlDownloadPromise = page.waitForEvent("download");
+    await page.locator(`a[download][href*="${path.basename(pftl1.artifact.path)}"]`).click();
+    const pftlDownload = await pftlDownloadPromise;
+    assert.equal(pftlDownload.suggestedFilename(), path.basename(pftl1.artifact.path));
+    assert.equal(crypto.createHash("sha256").update(fs.readFileSync(await pftlDownload.path())).digest("hex"), pftl1.artifact.sha256);
     await page.goto(new URL("focus9-executive-summary.html", base).href, { waitUntil: "networkidle" });
     const focus9Text = await page.locator("main").innerText();
     assert.match(focus9Text, /DO NOT SUBMIT/);
@@ -80,7 +92,7 @@ const chromium = importedChromium.default || importedChromium;
     await page.goto(new URL("index.html", base).href, { waitUntil: "networkidle" });
     await page.screenshot({ path: path.join(artifacts, "desktop.png"), fullPage: true });
     await page.setViewportSize({ width: 390, height: 844 });
-    for (const file of ["index.html", "focus9-executive-summary.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"]) {
+    for (const file of ["index.html", "repo-review-20261031.html", "focus9-executive-summary.html", "executive-summary.html", "research.html", "evidence.html", "how-to-submit.html"]) {
       await page.goto(new URL(file, base).href, { waitUntil: "networkidle" });
       const overflow = await page.evaluate(() => document.body.scrollWidth > window.innerWidth);
       assert.equal(overflow, false, `mobile body overflow: ${file}`);
@@ -202,6 +214,9 @@ const chromium = importedChromium.default || importedChromium;
       focus9_demo_download_identity: "passed", focus9_no_submit_copy: "passed",
       wbg4_download_sha256: wbg4.artifact.tif_sha256,
       wbg4_download_identity: "passed",
+      pftl1_download_sha256: pftl1.artifact.sha256,
+      pftl1_download_identity: "passed",
+      current_review_page: "passed",
       body_overflow: false, all_passed: true,
       no_model_training_or_slot_use: true };
     fs.writeFileSync(path.join(root, "evidence/browser_checks.json"), JSON.stringify(report, null, 2) + "\n");

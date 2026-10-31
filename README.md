@@ -124,10 +124,17 @@ that. Promotion remains a separate selector decision under the weekly cap; no sl
    checked in `docs/research-hypotheses-20261031.md`): USGS GeoDAWN aeromag/radiometric grids, OpenEI
    GDR submission 1391, GBCGE INGENIOUS. Use it to rank *within* lattice cells, not to redefine the
    habitat — §2 says the habitat is not the binding constraint at plateau counts.
-3. If the owner wants a second probe in the band, the cheap variation is `STEP_PX`/`MICRO_PX` in
+3. **Stale receipt, re-run before quoting it:** `evidence/wbg8/fit.json` was produced *before* two
+   corrections landed in `scripts/wbg8_lane.py` (measured dcat-band representatives replacing the
+   band-index proxies, and the leave-one-family-out `argmin` bug). The code is fixed; the receipt is
+   not. Re-run `.venv/bin/python scripts/wbg8_lane.py fit` **after** any finalize step (they share
+   `.cache/wbg8`) and re-derive the H2 verdict — if the grouped LOFO MAE comes back below the score sd
+   0.0833, the "absolute scores are not predictable" conclusion must be revisited, and `combos.npz`
+   plus the `sensitivity_in_K` block will finally exist.
+4. If the owner wants a second probe in the band, the cheap variation is `STEP_PX`/`MICRO_PX` in
    `scripts/wbg8_emit5.py` (n ∈ [37.6k, 44.1k]) — a count-only ablation of the plateau, not a new
    hypothesis. Do not re-run `emit`, `emit2` or `emit3`; their verdicts are final.
-4. Portal-side open item: the reported "Predicted values must be in range [0, 1]" error is still
+5. Portal-side open item: the reported "Predicted values must be in range [0, 1]" error is still
    unreproduced. Both twins pass all hard checks locally, so if the portal rejects one, submit the
    other; keep the receipts beside the files.
 

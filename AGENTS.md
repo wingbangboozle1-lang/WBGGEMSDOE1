@@ -2,6 +2,8 @@
 
 # Starting point for every session
 
+0-31oct. **31 Oct 2026: read `docs/executive-summary-h2-20261031.html` first.** DOWNLOAD YES (research) · SUBMIT NO. The literal 70% gate fails for every dot file (a random-dot control included). The holdout rewards catalogue proximity (exec summary §5), so it cannot test the B2 pruning mechanism.
+
 0a. **Read `docs/owner-brief-20261029.md` at the start of every session** (owner standing requirements, official links). Then read `README.md`. The 29 Oct executive summary is `docs/executive-summary-20261029.html`; no file is cleared unless its run card shows `ok_to_submit: true`.
 
 0. **Current artifacts (read before any session work):**

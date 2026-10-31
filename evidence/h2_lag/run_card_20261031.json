@@ -1,0 +1,76 @@
+{
+  "schema": "wbggemsdoe1-run-card-v1",
+  "date_utc": "2026-10-31",
+  "candidate": "wbggemsdoe1-h2-edgecorr-avoid3-37654-20261031",
+  "hypothesis": "Potential-field edges co-located in magnetic (rtp) AND gravity (iso_grav_anom) fields, on coherent magnetic fabric, mark concealed faults missing from the USGS/INGENIOUS catalogue.",
+  "mechanism": "A fault offsets both magnetic basement fabric and gravity contacts at the same place; joint edges with high structure-tensor coherence are fault-like.",
+  "named_non_fault_mimic": "Lithologic contacts and intrusive margins (magnetic/gravity edges without offset), plus flight-line/levelling artifacts that appear in magnetics only.",
+  "holdout_dti_ci": {
+    "label": "HOLDOUT-DTI",
+    "evaluator": "gems57-pooled-hide-v2 (vendor/gems57/holdout.py score_cell + pooled formula)",
+    "withheld_truth_cells_summed": 45260,
+    "dti": 0.039259,
+    "ci95": [
+      0.035051,
+      0.044261
+    ],
+    "random_null_dti": 0.037446,
+    "random_null_ci95": [
+      0.03499,
+      0.040068
+    ],
+    "paired_full_minus_random": 0.00192,
+    "paired_ci95": [
+      -0.001034,
+      0.004839
+    ],
+    "mag_only_dti": 0.038781,
+    "grav_only_dti": 0.034627
+  },
+  "leakage_canary_alone_auc": {
+    "edge_mag": 0.537,
+    "edge_grav": 0.529,
+    "coherence": 0.5068,
+    "max_alone_auc": 0.537,
+    "leakage_alarm_gt_0_90": false
+  },
+  "registry_correlation_overlap": {
+    "byte_unique_among_checked": true,
+    "pixel_unique_among_checked": true,
+    "registry_rasters_checked": 117,
+    "max_spearman_vs_registry": 0.0205,
+    "max_overlap_vs_registry": 0.9782,
+    "duplicates_over_70pct": [
+      "pindrop-v4-nodes-20260925T152420Z-f347b70daa",
+      "20261001_r13-lattice-s5_v2_nan-outside",
+      "pindrop-v4-discovery-20260925T152423Z-37f9d5b855"
+    ],
+    "unique": false
+  },
+  "raster_sha256": "16a6ebe8ac6ac3ffa755cf288f284193f761316d99cd53acafa483aafe4aeda8",
+  "validator_output": {
+    "shared_validator_all_checks_passed": true,
+    "writer_checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    }
+  },
+  "submission_name": "wbggemsdoe1-h2-edgecorr-avoid3-37654-20261031",
+  "submission_note": "H2 potential-field edge corroboration, 3px catalogue avoidance; research only, NOT approved for upload",
+  "note_chars": 102,
+  "verdict": "negative for promotion: holdout gain over matched random null not established (paired CI includes 0); literal 70% uniqueness gate fails (random control fails too). DOWNLOAD: research only. SUBMIT: NO.",
+  "submission_slots_used": 0
+}

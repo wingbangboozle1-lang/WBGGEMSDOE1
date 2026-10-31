@@ -1,0 +1,129 @@
+{
+  "file": "wbggemsdoe1-band4to10-null-37654-20261031.tif",
+  "sha256": "c28b2e8492a0b112bc44030a2428d91aa7e09c134864d284287b01cb434a0c43",
+  "bytes": 148422,
+  "submission_name": "wbggemsdoe1-band4to10-null-37654-20261031",
+  "note": "Distance-only null: 37654 dots in 4-10px catalogue band, seed 20261031, no geology. Research control, not a model.",
+  "note_chars": 114,
+  "validator": {
+    "file": "/home/user/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-band4to10-null-37654-20261031.tif",
+    "bytes": 148422,
+    "sha256": "c28b2e8492a0b112bc44030a2428d91aa7e09c134864d284287b01cb434a0c43",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "template_report": {
+    "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-band4to10-null-37654-20261031.tif",
+    "bytes": 148422,
+    "sha256": "c28b2e8492a0b112bc44030a2428d91aa7e09c134864d284287b01cb434a0c43",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "n_nonzero": 37654,
+    "mass": 37654.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "wbggemsdoe1-band4to10-null-37654-20261031.zip",
+  "zip_sha256": "cb9023e1d5e0e19e6dfac046d924bf1e87874ec55f447b9a154cbec2adbc7781",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "experiment": "E3 distance-band null",
+    "seed": 20261031,
+    "band_px": [
+      4.0,
+      10.0
+    ],
+    "thin_px": 4.0,
+    "evidence_class": "RESEARCH-NULL (no organizer or holdout score)"
+  }
+}

@@ -6,9 +6,8 @@
 (+ identical one-member `.zip`)
 **sha256:** `30901f894a84f6150a65a86e6556d3b4d3b3f5054dd4f8f3b597d754115447c1`
 **Portal note (≤140 chars):** `WBG-3 supervised multi-physics detector, dotted clear2 37654, zeros no NaN`
-**Format (automated validator, no human inspector):** single-band float32, EPSG:32611,
-3730×3292, 100 m, values in [0,1], **no NaN anywhere** (zeros mode — will not trigger
-"Predicted values must be in range [0, 1]"), 37,654 positive pixels. All checks PASS.
+**Archived format receipt (automated local checks only):** single-band float32, EPSG:32611,
+3730×3292, 100 m, values in [0,1], **no NaN anywhere**, 37,654 positive pixels. Local range/finite checks passed for this historical file; portal acceptance and the cause of the reported “Predicted values must be in range [0, 1]” error remain unverified. Local checks are not organizer approval.
 
 **Why not submit:** on the shared hide-and-recover evaluator the file's detector scored
 **HOLDOUT-DTI 0.1382** (95% CI [0.1257, 0.1520], `gems-segment-pooled-v1`, 60,988 withheld

@@ -1,65 +1,68 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How to submit · GEMS · 31 Oct 2026</title>
-<link rel="stylesheet" href="styles.css">
-</head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to submit · 31 Oct 2026 · WBG GEMS research desk</title>
+<meta name="description" content="How to check, download and (when cleared) submit a GEMS Prize GeoTIFF, including the fix for the 'Predicted values must be in range [0, 1]' error. Current status: SUBMIT NO.">
+<style>
+:root{--ink:#16262b;--muted:#5d6e72;--line:#d9e1e2;--teal:#23665f;--red:#a32626;--bg:#f6f8f8}
+*{box-sizing:border-box}body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:#fff}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+header{background:#173b42;color:#fff;padding:14px 0}header a{color:#fff;text-decoration:none;margin-right:16px;font-size:14px}header .brand{font-weight:700;margin-right:24px}
+h1{font-size:28px;line-height:1.2;margin:28px 0 6px}h2{font-size:21px;margin:34px 0 8px;border-bottom:2px solid var(--line);padding-bottom:5px}
+.eyebrow{color:var(--teal);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;margin:0}
+.status{border:3px solid var(--red);border-radius:10px;padding:14px 16px;margin:16px 0}
+.status p{margin:4px 0}
+pre{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow:auto;font-size:13px}
+code{font-size:13px;background:var(--bg);padding:1px 4px;border-radius:4px;word-break:break-all}
+.note{color:var(--muted);font-size:14px}
+a{color:var(--teal)}ol li,ul li{margin:6px 0}
+.cta a{display:inline-block;margin:4px 10px 4px 0;padding:7px 12px;border-radius:6px;background:var(--teal);color:#fff;text-decoration:none;font-size:14px}
+.cta a.alt{background:#fff;color:var(--teal);border:1px solid var(--teal)}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;vertical-align:top;padding:7px 8px;border-bottom:1px solid var(--line)}th{background:var(--bg)}
+footer{margin:36px 0;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:12px}
+</style></head>
 <body>
-<header class="top"><h1>How to submit a GEMS file · 31 Oct 2026</h1>
-<p>Submission how-to · status: SUBMIT NO for every file in this repo</p></header>
-<main>
+<header><div class="wrap"><a class="brand" href="index.html">WBG / GEMS research desk</a><a href="executive-summary-20261031.html">Executive summary</a><a href="index.html">Overview</a><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData competition 306 ↗</a></div></header>
+<main class="wrap">
+<p class="eyebrow">How to submit · 31 October 2026</p>
+<h1>Submitting a GeoTIFF, and the “Predicted values must be in range [0, 1]” error</h1>
 
-<div class="verdict">
-<p><b>Nothing is cleared.</b> The research download
-<a href="downloads/wbggemsdoe1-rtp-hgm-distal-37k-20261031-zeros.tif">wbggemsdoe1-rtp-hgm-distal-37k-20261031-zeros.tif</a>
-is format-valid and unique among local registry rasters, but it fails the 70% lane rule against GEMSDOE25 gem1 magnetics (77.1%).
-Its holdout score was not measured. Estimated leaderboard score: <b>UNAVAILABLE</b>.
-Background: <a href="executive-summary-20261031.html">31 Oct executive summary</a>.</p>
-</div>
+<section class="status" aria-label="Status">
+<p><strong>Current status for <code>wbggemsdoe1-fs-hgbvisible-greedy-k12198-20261031.tif</code>: DOWNLOAD: YES (research and learning only) · SUBMIT: NO.</strong></p>
+<p>Do not upload it to the competition. Its holdout (<span>HOLDOUT-DTI</span> 0.0536, CI [0.0459, 0.0614], n = 22,893 withheld positives) is below the matched uniform null (0.0646), and the literal registry overlap is 99.83%. No organizer score exists for it. Read the <a href="executive-summary-20261031.html">executive summary</a> first.</p>
+</section>
 
-<h2>1 · What the portal needs (as recorded in this repo)</h2>
-<table class="exec" style="width:100%;border-collapse:collapse">
-<tr><th style="text-align:left">Requirement</th><th style="text-align:left">Value used here</th><th style="text-align:left">Source</th></tr>
-<tr><td>File type</td><td>Single-band GeoTIFF, or a zip containing one .tif</td><td>Owner brief; <code>vendor/gems57/submission_writer.py</code></td></tr>
-<tr><td>CRS</td><td>EPSG:32611 (UTM 11N)</td><td><code>registry/data_manifest.json</code> grid</td></tr>
-<tr><td>Shape (rows × cols)</td><td>3730 × 3292</td><td>same</td></tr>
-<tr><td>Geotransform</td><td>[100, 0, 243350, 0, −100, 4508550]</td><td>same</td></tr>
-<tr><td>Values</td><td>float32 in [0, 1], all finite (no NaN)</td><td><code>vendor/gems57/validate.py</code> (project policy)</td></tr>
-<tr><td>Name and note</td><td>Unique name; note ≤140 characters</td><td><code>submission_writer.write_submission</code> (raises above 140)</td></tr>
-<tr><td>Weekly cap</td><td>3 submissions per week</td><td><code>docs/owner-brief-20261029.md</code>; rules PDF below</td></tr>
-</table>
-<p><small>Portal error seen by the owner: "Predicted values must be in range [0, 1]". The cause is not reproducible from any named file here (IR-57-NAN-02, open). The sample file's NaN outside the footprint is an unresolved convention question (section 4).</small></p>
+<h2>1 · Download and verify the file</h2>
+<div class="cta"><a href="downloads/wbggemsdoe1-fs-hgbvisible-greedy-k12198-20261031.tif" download>Download TIFF ↓</a><a class="alt" href="downloads/wbggemsdoe1-fs-hgbvisible-greedy-k12198-20261031.zip" download>ZIP ↓</a><a class="alt" href="downloads/wbggemsdoe1-fs-hgbvisible-greedy-k12198-20261031.json">Validator receipt ↗</a></div>
+<p>Expected SHA-256 (TIFF): <code>99819233fbedc05c7d522051f81c7062354add21dcc7f4ec67eec56893a38b8f</code></p>
+<p>Automated format check, run from the repository root (no human inspection needed):</p>
+<pre>.venv/bin/python scripts/validate_candidate_tif.py docs/downloads/wbggemsdoe1-fs-hgbvisible-greedy-k12198-20261031.tif --out /tmp/validator.json
+# exit 0 and "all_pass": true = format checks passed</pre>
+<p class="note">This run passed on 31 Oct 2026: 33,897 positives, values in [0, 1], no NaN or Inf, zeros outside the footprint, EPSG:32611, 3730×3292, the sample transform. A local pass is a format check, not organizer acceptance.</p>
 
-<h2>2 · Automatic gates (no human inspection step)</h2>
-<ol>
-<li><b>Format:</b> <code>gems57.gates.format_report</code> and <code>gems57.validate.validate</code>. Passes for the 31 Oct file.</li>
-<li><b>Exact copy:</b> no positive set identical to any of the 482 local registry rasters.</li>
-<li><b>Lane rule:</b> no more than 70% of the candidate's dots within 3 px of any one registry raster. <b>Fails</b> for the 31 Oct file (11 rasters, max 99.995% against the r13 lattice; 77.1% against GEMSDOE25 gem1 magnetics).</li>
-<li><b>Leakage canary:</b> AUC above 0.90 means leakage. The 31 Oct file: closeness to the visible catalogue alone AUC 0.887 (passes, close to the limit).</li>
-<li><b>Holdout DTI:</b> must beat the same-evaluator best. <b>Not measured</b> for the 31 Oct file (its eligibility used the full catalogue; a per-fold rebuild is needed first).</li>
-</ol>
-<p>A file that fails any gate is <b>research only</b>. Gate receipts: <code>evidence/session_20261031/candidate_overlap.json</code> and <code>candidate_run_card.json</code>.</p>
-
-<h2>3 · Steps for a future submission</h2>
-<ol>
-<li>Build the file with a pinned script, keeping the note and name within 140 characters.</li>
-<li>Run the automatic gates in section 2. Stop at the first failure.</li>
-<li>Pass the file to the separate selector step. Nothing is chosen automatically.</li>
-<li><b>Upload is a blocker for this sandbox:</b> it needs a DrivenData login, which Arena cannot use here. The owner must upload from the portal.</li>
-<li>Any upload must carry the generative-AI disclosure required by the rules (29 Oct owner note).</li>
-</ol>
-
-<h2>4 · Open questions for the owner</h2>
+<h2>2 · The range error, and what fixes it</h2>
+<p>The organizer’s check requires every predicted value to lie in <code>[0, 1]</code>, with no NaN, Inf or sentinel values inside the study area. The error means the file held a value outside that range, or NaN or Inf inside the footprint. The repo does not record which earlier upload triggered it, so this page does not name a cause.</p>
+<p>The fix is to write the file as follows. The validator above checks each point automatically:</p>
 <ul>
-<li>NaN outside the footprint (official sample, 7,111,787 cells) or zeros (this project's files)? Neither has been tested on the portal.</li>
-<li>Which gate governs: the literal 70% rule, or density-matched lift (median 1.32 for the 31 Oct file)?</li>
-<li>Is one weekly slot worth spending as an organizer test, knowing the file fails the lane rule?</li>
+<li>One band, <code>float32</code>, EPSG:32611, 100 m cells, 3730×3292, the sample transform.</li>
+<li>Inside the sample footprint: every value is finite and in [0, 1]. This file uses only 0.0 and 1.0.</li>
+<li>Outside the footprint: 0 or NaN, matching the official sample.</li>
+<li>No Inf and no sentinel values anywhere.</li>
 </ul>
 
-<h2>5 · Official links (for manual review)</h2>
+<h2>3 · Submitting (only after a clearance)</h2>
+<p>Do not follow these steps until the run card for the file reads <code>ok_to_submit: true</code> and the owner has approved it. No file in this repo has that status. The rules allow up to three submissions a week (<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official Rules §3.2, §3.4</a>).</p>
+<ol>
+<li>Confirm the run card: <code>evidence/fold_safe_20261031/final_run_card_20261031.json</code> must show <code>ok_to_submit: true</code>. Confirm the weekly slot is free.</li>
+<li>Confirm the narrative includes the generative-AI disclosure required by Rules §3.2 (irregularity I4 on the executive summary).</li>
+<li>Sign in to DrivenData, open the competition submissions page, and upload the single <code>.tif</code>, not the ZIP.</li>
+<li>Record the organizer receipt (score, submission ID, timestamp) in <code>docs/data/</code> and label it ORGANIZER-CONFIRMED. Do not label it earlier.</li>
+</ol>
+
+<h2>4 · Do not submit these</h2>
 <ul>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Competition page</a></li>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Leaderboard</a></li>
-<li><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules (NLR PDF)</a></li>
+<li>GEMSDOE32 B2 (0.2778, user-reported). It is already in the competition; resubmitting is a duplicate.</li>
+<li>Any file that fails the registry gate or the holdout benchmark (see the executive summary, sections 1–5).</li>
 </ul>
+
+<footer>Source links: <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official Rules (NLR PDF)</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem page</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Leaderboard</a> · <a href="executive-summary-20261031.html">Executive summary</a></footer>
 </main></body></html>

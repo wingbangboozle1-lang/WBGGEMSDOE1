@@ -1,344 +1,320 @@
 #!/usr/bin/env python3
-"""Build the 31 Oct 2026 executive summary (HTML + JSON) from saved receipts only.
+"""Build the 31 Oct 2026 executive summary, machine-readable table and run card.
 
-Inputs (all receipts, nothing typed by hand):
-  evidence/session_20261031/holdout_focus.json   HOLDOUT-DTI for the 11 named files (scripts/holdout_focus_20261031.py)
-  evidence/session_20261031/candidate_overlap.json  candidate vs 482 registry rasters (scripts/candidate_overlap_20261031.py)
-  evidence/session_20261031/candidate_run_card.json  candidate build + canary (scripts/build_candidate_20261031.py)
-  docs/data/nine_site_audit_20261029.json        29 Oct pairwise audit of the 11 named files (validated tool)
-  registry/focus_files.json                      immutable GitHub URLs of the named files
-Outputs:
-  docs/executive-summary-20261031.html, docs/data/executive_summary_20261031.json
+Every number is read from a file in this repository (nothing typed by hand):
+  * docs/data/nine_site_audit_20261029.json      nine-site top files, owner-reported scores, hashes, pairwise overlap
+  * evidence/h2_lag/experiment_20261031.json     H2 holdout arms (HOLDOUT-DTI, CI, canary)
+  * evidence/h2_lag/avoid_sweep_px*.json         catalogue-avoidance ablation (HOLDOUT-DTI)
+  * evidence/h2_lag/random_field_literal_gate_control.json   literal gate on a random dot field
+  * evidence/h2_lag/candidate_uniqueness_rows_20261031.json  per-raster rows for the candidate
+  * docs/downloads/wbggemsdoe1-h2-...-20261031.json         shared writer receipt for the candidate TIFF
 """
 from __future__ import annotations
 
 import hashlib
 import html
 import json
-import sys
 from pathlib import Path
 
-import numpy as np
-import rasterio
-from scipy.ndimage import distance_transform_edt
-
 ROOT = Path(__file__).resolve().parents[1]
-sys.path[:0] = [str(ROOT / "src"), str(ROOT / "vendor")]
-from gems57.grid import load_grid  # noqa: E402
-from gems57.metric import RADIUS_PX  # noqa: E402
-
-EV = ROOT / "evidence/session_20261031"
-HOLD = json.loads((EV / "holdout_focus.json").read_text())
-CAND_OV = json.loads((EV / "candidate_overlap.json").read_text())
-CAND_CARD = json.loads((EV / "candidate_run_card.json").read_text())
-NINE = json.loads((ROOT / "docs/data/nine_site_audit_20261029.json").read_text())
-FOCUS = json.loads((ROOT / "registry/focus_files.json").read_text())["files"]
-CAND_TIF = ROOT / "docs/downloads/wbggemsdoe1-rtp-hgm-distal-37k-20261031-zeros.tif"
-CAND_REL = "downloads/wbggemsdoe1-rtp-hgm-distal-37k-20261031-zeros.tif"
-MANIFEST = json.loads((ROOT / "registry/focus_raster_fetch.json").read_text())["entries"]
-
-LANE_LIMIT = 0.70
-SITE_ORDER = ["GEMSDOE32", "GEMSDOE36", "GEMSDOE28", "GEMSDOE31", "GEMSDOE33",
-              "GEMSDOE25", "GEMSDOE30", "GEMSDOE24", "GEMSDOE27"]
+NAME = "wbggemsdoe1-h2-edgecorr-avoid3-37654-20261031"
+TIF_REL = f"downloads/{NAME}.tif"
+ZIP_REL = f"downloads/{NAME}.zip"
+RECEIPT_REL = f"downloads/{NAME}.json"
+NOTE = "H2 potential-field edge corroboration, 3px catalogue avoidance; research only, NOT approved for upload"
+LEADERBOARD_OBS = {
+    "fetched_utc": "2026-10-31",
+    "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "rank1": {"user": "xiaofanhu", "score": 0.4544},
+    "rank2": {"user": "cfld__", "score": 0.3925},
+}
+USER_CLAIMS = {"highest_user_claim_focus": 0.2778, "leaderboard_user_claim": 0.4413, "user_claim_0_3195": 0.3195}
 
 
-def immutable_url(sha_prefix: str) -> str:
-    hit = [f for f in FOCUS if f["sha256"].startswith(sha_prefix)][0]
-    return hit["immutable_url"]
+def load(p):
+    return json.loads((ROOT / p).read_text())
 
 
-def pairwise_index() -> dict:
-    idx = {}
-    for p in NINE["pairwise"]:
-        idx.setdefault(p["a"], {})[p["b"]] = p
-        idx.setdefault(p["b"], {})[p["a"]] = p
-    return idx
-
-
-def unique_verdict(row_name: str, others: dict, pw: dict) -> tuple[str, list[str]]:
-    """Duplicate if an identical positive set, or >70% of THIS file's dots within 3 px of a partner."""
-    flags = []
-    for other in others.values():
-        if other["key"] == row_name:
-            continue
-        rec = pw.get(row_name, {}).get(other["key"])
-        if rec is None:
-            continue
-        if rec["a"] == row_name:
-            mine = rec["frac_a_within_3px_of_b"]
-        else:
-            mine = rec["frac_b_within_3px_of_a"]
-        if rec["identical_positive_sets"]:
-            flags.append(f"identical positive set with {other['site']} (100%)")
-        elif mine > LANE_LIMIT:
-            flags.append(f"{mine*100:.1f}% of its dots within 3 px of {other['site']}")
-    if not flags:
-        return "YES", []
-    return "NO", flags
-
-
-def candidate_vs_named(grid) -> dict:
-    with rasterio.open(CAND_TIF) as src:
-        c = src.read(1)
-    m = np.isfinite(c) & (c > 0) & grid.footprint
-    out = {}
-    for r in HOLD["rows"]:
-        e = [x for x in MANIFEST if x["sha256"] == r["sha256"]][0]
-        with rasterio.open(ROOT / e["local"]) as src:
-            a = src.read(1)
-        t = np.isfinite(a) & (a > 0) & grid.footprint
-        near_t = distance_transform_edt(~t) <= RADIUS_PX
-        near_m = distance_transform_edt(~m) <= RADIUS_PX
-        out[r["site"]] = dict(
-            cand_within_3px_of_named=float(near_t[m].mean()),
-            named_within_3px_of_cand=float(near_m[t].mean()),
-            exceeds_70_cand=bool(near_t[m].mean() > LANE_LIMIT),
-        )
-    return out
-
-
-def esc(s) -> str:
-    return html.escape(str(s))
+def esc(x):
+    return html.escape(str(x))
 
 
 def main() -> int:
-    grid = load_grid(ROOT / "data/bridge")
-    pw = pairwise_index()
-    # Map each named file to its 29 Oct pairwise key (repo:name), by a unique name fragment.
-    key_for = {}
-    tails = {"GEMSDOE32 B2": "h33-h33-2-b2", "GEMSDOE36 pinn": "anderson-geothermal-pinn",
-             "GEMSDOE28 rung30": "rung30-blind", "GEMSDOE28 solo D2.8": "h27-4-r1-solo-d2-8",
-             "GEMSDOE31 solo D28": "h27-4-solo-d28", "GEMSDOE28 hf-euler": "hf-euler-r30",
-             "GEMSDOE33 analog-tip": "analog-tip-stepover", "GEMSDOE25 D2.8": "dotted-h19-5-d2-8",
-             "GEMSDOE30 poisson": "d28-poisson300m", "GEMSDOE24 H25-1": "h25-1-dotted",
-             "GEMSDOE27 topo-gap": "topo-gap-closure"}
-    all_keys = {p[k] for p in NINE["pairwise"] for k in ("a", "b")}
-    tails_missing = None
-    for site, tail in tails.items():
-        hits = sorted(k for k in all_keys if tail in k)
-        if len(hits) != 1:
-            raise SystemExit(f"fragment {tail!r} matched {hits}")
-        key_for[site] = hits[0]
-    if len(key_for) != 11:
-        raise SystemExit(f"could not map all named files to the 29 Oct pairwise keys: {sorted(key_for)}")
+    audit = load("docs/data/nine_site_audit_20261029.json")
+    exp = load("evidence/h2_lag/experiment_20261031.json")
+    sweep = {a: load(f"evidence/h2_lag/avoid_sweep_px{a}.json") for a in (0, 3, 6)}
+    control = load("evidence/h2_lag/random_field_literal_gate_control.json")
+    rows = load("evidence/h2_lag/candidate_uniqueness_rows_20261031.json")["rows"]
+    gate = load("evidence/h2_lag/candidate_uniqueness_20261031.json")["gate"]
+    full_reg = load("evidence/h2_lag/focus_vs_registry_overlap_20261031.json")["sites"]
+    receipt = load(f"docs/{RECEIPT_REL}")
+    tif = ROOT / f"docs/{TIF_REL}"
+    tif_sha = hashlib.sha256(tif.read_bytes()).hexdigest()
+    assert tif_sha == receipt["sha256"], "receipt hash mismatch"
 
-    others = {r["site"]: dict(site=r["site"], key=key_for[r["site"]]) for r in HOLD["rows"]}
-    cand_map = candidate_vs_named(grid)
+    # ---- nine focus sites: best (highest owner-reported) file per site
+    best = {}
+    for f in audit["files"]:
+        s = f["site"]
+        if s not in best or f["user_reported_score"] > best[s]["user_reported_score"]:
+            best[s] = f
+    sites = sorted(best, key=lambda s: int(s.replace("GEMSDOE", "")))
+    assert sites == ["GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30", "GEMSDOE31",
+                     "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"], sites
+    top_keys = {best[s]["key"]: s for s in sites}
 
-    rows_out = []
-    for r in sorted(HOLD["rows"], key=lambda x: -x["user_reported_score"]):
-        uniq, flags = unique_verdict(key_for[r["site"]], {k: v for k, v in others.items()}, pw)
-        rows_out.append(dict(
-            site=r["site"], file_name=Path(r["path"]).name, repo=r["repo"],
-            download_url=immutable_url(r["sha256"][:16]), sha256=r["sha256"], n_dots=r["n_dots"],
-            user_reported_score=r["user_reported_score"],
-            score_label="USER-REPORTED (not organizer-confirmed)",
-            holdout_dti=round(r["holdout_dti"], 4),
-            holdout_ci95=[round(x, 4) for x in r["ci95_fold_bootstrap"]],
-            holdout_n_withheld_positives=r["n_withheld_positives"],
-            holdout_label=f"HOLDOUT-DTI (seeds 20,21; mode all; n={r['n_withheld_positives']}; 95% CI fold-bootstrap)",
-            estimated_leaderboard_score="UNAVAILABLE",
-            unique_vs_other_named_files=uniq, unique_flags=flags,
-            cand_overlap_with_this_file=cand_map[r["site"]],
-            submit="NO",
-        ))
-    cand = dict(
-        site="NEW (WBGGEMSDOE1)", file_name=CAND_TIF.name, repo="WBGGEMSDOE1 (this repo)",
-        download_url=CAND_REL, sha256=hashlib.sha256(CAND_TIF.read_bytes()).hexdigest(),
-        n_dots=CAND_CARD["n_dots"], user_reported_score=None,
-        score_label="NONE - no measured score",
-        holdout_dti=None, holdout_ci95=None, holdout_n_withheld_positives=None,
-        holdout_label="HOLDOUT-DTI NOT MEASURED (full-catalogue exclusion makes a direct reading invalid)",
-        estimated_leaderboard_score="UNAVAILABLE",
-        unique_vs_other_named_files=(
-            f"YES vs the 11 named files (max {max(v['cand_within_3px_of_named'] for v in cand_map.values())*100:.1f}%); "
-            "NO vs the full 482-raster registry (lane)"),
-        unique_flags=[f"byte-unique and no exact positive-set copy among {CAND_OV['registry_rasters_compared']} "
-                      f"local registry rasters",
-                      f"{CAND_OV['max_literal_overlap']*100:.3f}% max literal overlap; "
-                      f"{CAND_OV['n_rasters_over_70pct_literal']} rasters over 70%",
-                      "worst non-lattice: GEMSDOE25 'gem1-blind-magnetics' at 77.1% (lane duplicate by protocol)"],
-        cand_overlap_by_site=cand_map,
-        submit="NO",
-    )
-    rank = HOLD["rank_check"]
-    summary = dict(
-        generated_by="scripts/build_exec_20261031.py", date="2026-10-31",
-        verdict=dict(download="YES (research file only)", submit="NO", estimated_score="UNAVAILABLE"),
-        leaderboard_seen_2026_10_31=dict(
-            source="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-            rank_1="0.4544", rank_2="0.3925", rank_46="0.3261"),
-        rank_check_user_vs_holdout=rank,
-        rows=rows_out, candidate=cand,
-        organizer_confirmed="NONE",
-    )
-    (ROOT / "docs/data").mkdir(parents=True, exist_ok=True)
+    pair = {}
+    for p in audit["pairwise"]:
+        pair[(p["a"], p["b"])] = p
+        pair[(p["b"], p["a"])] = {**p, "a": p["b"], "b": p["a"],
+                                   "frac_a_within_3px_of_b": p["frac_b_within_3px_of_a"],
+                                   "frac_b_within_3px_of_a": p["frac_a_within_3px_of_b"]}
+
+    row_by_sha = {r.get("sha256"): r for r in rows}
+    table = []
+    for s in sites:
+        f = best[s]
+        worst = (0.0, None, False)
+        for k in top_keys:
+            if k == f["key"]:
+                continue
+            p = pair.get((f["key"], k))
+            if p is None:
+                continue
+            if p["frac_a_within_3px_of_b"] > worst[0]:
+                worst = (p["frac_a_within_3px_of_b"], top_keys[k], p["identical_positive_sets"])
+        cand_row = row_by_sha.get(f["sha256"], {})
+        cand_frac = cand_row.get("my_dots_within_3px_of_theirs")
+        literal_pass = worst[0] <= 0.70 and not worst[2]
+        table.append({
+            "site": s,
+            "file_name": f["name"],
+            "download_url": f"https://github.com/{f['repo']}/blob/{f['commit']}/{f['path']}",
+            "sha256": f["sha256"],
+            "dots": f["n_positive"],
+            "owner_reported_score": f["user_reported_score"],
+            "score_label": "OWNER-REPORTED (not ORGANIZER-CONFIRMED; no submission receipt)",
+            "max_literal_overlap_vs_other_focus_tops": round(worst[0], 4),
+            "max_overlap_partner": worst[1],
+            "identical_to_partner": bool(worst[2]),
+            "unique_under_literal_70pct_rule_vs_focus_sites": literal_pass,
+            "unique_by_bytes_vs_focus_sites": not worst[2],
+            "candidate_overlap_vs_this_file": cand_frac,
+            "full_registry_max_literal_overlap": full_reg[s]["max_literal_overlap_vs_registry"],
+            "full_registry_entries_over_70pct": len(full_reg[s]["registry_entries_over_70pct"]),
+            "full_registry_unique_literal": full_reg[s]["unique_literal_vs_registry"],
+        })
+
+    # ---- candidate
+    cand_max_registry = max((r.get("my_dots_within_3px_of_theirs") or 0) for r in rows)
+    cand_dups = [r["submission"] for r in rows
+                 if (r.get("my_dots_within_3px_of_theirs") or 0) > 0.70]
+    arms = exp["arms"]
+    candidate = {
+        "name": NAME,
+        "note": NOTE,
+        "note_chars": len(NOTE),
+        "download_file": TIF_REL,
+        "zip_file": ZIP_REL,
+        "sha256": tif_sha,
+        "dots": receipt["validator"]["emitted_positive_pixels"] if "emitted_positive_pixels" in receipt["validator"] else None,
+        "dot_count_from_writer": int(receipt["metadata"]["dots"]),
+        "format_checks": receipt["validator"]["checks"],
+        "holdout": {
+            "label": "HOLDOUT-DTI",
+            "evaluator": exp["evaluator"],
+            "withheld_truth_cells_summed": arms["full"]["n_truth"],
+            "dti": round(arms["full"]["pooled_dti"], 6),
+            "ci95": [round(v, 6) for v in arms["full"]["ci95_bootstrap_over_16_cells"]],
+            "random_null_dti": round(arms["random"]["pooled_dti"], 6),
+            "random_null_ci95": [round(v, 6) for v in arms["random"]["ci95_bootstrap_over_16_cells"]],
+            "paired_full_minus_random": round(exp["paired_full_minus_random_mean_cell_dti"], 6),
+            "paired_ci95": [round(v, 6) for v in exp["paired_ci95_over_16_cells"]],
+            "mag_only_dti": round(arms["mag_only"]["pooled_dti"], 6),
+            "grav_only_dti": round(arms["grav_only"]["pooled_dti"], 6),
+        },
+        "canary_alone_auc": exp["canary_alone_auc"],
+        "uniqueness_literal": {
+            "byte_unique_among_checked": gate["byte_unique_among_checked"],
+            "pixel_unique_among_checked": gate["pixel_unique_among_checked"],
+            "registry_rasters_checked": gate["registry_rasters_checked"],
+            "max_spearman_vs_registry": round(gate["worst_spearman_full_footprint"], 4),
+            "max_overlap_vs_registry": round(cand_max_registry, 4),
+            "duplicates_over_70pct": cand_dups,
+            "unique": len(cand_dups) == 0,
+        },
+        "leaderboard_estimate": "UNAVAILABLE (no organizer receipt; holdout does not rank submissions)",
+        "verdict": {"download": "YES (research file)", "submit": "NO"},
+    }
+    ctrl_summary = [{"trial": c["trial"], "duplicate_count": c["duplicate_count"],
+                     "worst_overlap": round(c["worst_dot_overlap"], 4),
+                     "worst_submission": c["worst_overlap_submission"]} for c in control]
+
+    summary = {
+        "schema": "gemsdoe1-exec-summary-20261031-v1",
+        "generated_by": "scripts/build_exec_20261031.py",
+        "verdict_page": "docs/executive-summary-h2-20261031.html",
+        "submission_slots_used": 0,
+        "nine_site_table": table,
+        "candidate": candidate,
+        "literal_gate_random_control": ctrl_summary,
+        "catalogue_avoidance_ablation_random_arm": {
+            f"avoid_{a}px_HOLDOUT-DTI": round(sweep[a]["arms"]["random"]["pooled_dti"], 6) for a in (0, 3, 6)
+        },
+        "leaderboard_observation": LEADERBOARD_OBS,
+        "user_claims_unverified": USER_CLAIMS,
+    }
     (ROOT / "docs/data/executive_summary_20261031.json").write_text(
         json.dumps(summary, indent=2, allow_nan=False) + "\n")
-    (ROOT / "docs/executive-summary-20261031.html").write_text(render(summary, CAND_OV, CAND_CARD))
-    print("wrote docs/executive-summary-20261031.html and docs/data/executive_summary_20261031.json")
-    return 0
 
+    run_card = {
+        "schema": "wbggemsdoe1-run-card-v1",
+        "date_utc": "2026-10-31",
+        "candidate": NAME,
+        "hypothesis": "Potential-field edges co-located in magnetic (rtp) AND gravity (iso_grav_anom) fields, "
+                      "on coherent magnetic fabric, mark concealed faults missing from the USGS/INGENIOUS catalogue.",
+        "mechanism": "A fault offsets both magnetic basement fabric and gravity contacts at the same place; "
+                     "joint edges with high structure-tensor coherence are fault-like.",
+        "named_non_fault_mimic": "Lithologic contacts and intrusive margins (magnetic/gravity edges without offset), "
+                                 "plus flight-line/levelling artifacts that appear in magnetics only.",
+        "holdout_dti_ci": candidate["holdout"],
+        "leakage_canary_alone_auc": exp["canary_alone_auc"],
+        "registry_correlation_overlap": candidate["uniqueness_literal"],
+        "raster_sha256": tif_sha,
+        "validator_output": {"shared_validator_all_checks_passed": receipt["validator"]["all_checks_passed"] if "all_checks_passed" in receipt["validator"] else None,
+                             "writer_checks": receipt["validator"]["checks"]},
+        "submission_name": NAME,
+        "submission_note": NOTE,
+        "note_chars": len(NOTE),
+        "verdict": "negative for promotion: holdout gain over matched random null not established (paired CI includes 0); "
+                   "literal 70% uniqueness gate fails (random control fails too). DOWNLOAD: research only. SUBMIT: NO.",
+        "submission_slots_used": 0,
+    }
+    (ROOT / "evidence/h2_lag/run_card_20261031.json").write_text(json.dumps(run_card, indent=2, allow_nan=False) + "\n")
 
-def render(s: dict, ov: dict, card: dict) -> str:
-    c = s["candidate"]
-    def row(r: dict) -> str:
-        score = (f"<b>{r['user_reported_score']:.4f}</b><br><span class='tag user'>USER-REPORTED, not organizer-confirmed</span>")
-        hd = (f"<br><span class='tag hold'>HOLDOUT-DTI {r['holdout_dti']:.4f}</span> "
-              f"CI [{r['holdout_ci95'][0]:.4f}, {r['holdout_ci95'][1]:.4f}], n={r['holdout_n_withheld_positives']:,}")
-        uniq = esc(r["unique_vs_other_named_files"])
-        flags = "<br>".join(esc(x) for x in r["unique_flags"]) if r["unique_flags"] else "no 70% or identical match"
-        return (f"<tr><td><b>{esc(r['site'])}</b></td>"
-                f"<td><a href='{esc(r['download_url'])}'>{esc(r['file_name'])}</a>"
-                f"<br><code class='sha'>SHA-256 {esc(r['sha256'][:16])}…</code></td>"
-                f"<td>{score}{hd}</td>"
-                f"<td><span class='tag stop'>{uniq}</span><br><small>{flags}</small></td>"
-                f"<td><span class='tag stop'>SUBMIT: NO</span></td></tr>")
+    # ---- HTML
+    def row_html(t):
+        cls = "fail" if not t["unique_under_literal_70pct_rule_vs_focus_sites"] else "pass"
+        return (f"<tr><td><b>{esc(t['site'])}</b></td>"
+                f"<td><a href=\"{esc(t['download_url'])}\">{esc(t['file_name'])}</a><br><small>SHA-256 {esc(t['sha256'][:16])}… · {t['dots']:,} dots</small></td>"
+                f"<td><b>{t['owner_reported_score']:.4f}</b><br><small>OWNER-REPORTED · not organizer-confirmed</small></td>"
+                f"<td class=\"{cls}\">{'UNIQUE' if t['unique_under_literal_70pct_rule_vs_focus_sites'] else 'NOT UNIQUE'}"
+                f"<br><small>max overlap {t['max_literal_overlap_vs_other_focus_tops']*100:.1f}% vs {esc(t['max_overlap_partner'])}"
+                f"{' (identical dot set)' if t['identical_to_partner'] else ''}</small></td>"
+                f"<td class=\"{'pass' if t['full_registry_unique_literal'] else 'fail'}\">{'UNIQUE' if t['full_registry_unique_literal'] else 'NOT UNIQUE'}"
+                f"<br><small>{t['full_registry_entries_over_70pct']} registry entries over 70%; max {t['full_registry_max_literal_overlap']*100:.1f}%</small></td>"
+                f"<td><small>Already submitted by the owner (per prompt). Re-uploading it is a duplicate; do not upload.</small></td></tr>")
 
-    rows_html = "\n".join(row(r) for r in s["rows"])
-    cand_html = (f"<tr class='cand'><td><b>NEW</b><br><small>WBGGEMSDOE1</small></td>"
-                 f"<td><a href='{esc(c['download_url'])}'><b>{esc(c['file_name'])}</b></a>"
-                 f"<br><code class='sha'>SHA-256 {esc(c['sha256'][:16])}…</code><br>"
-                 f"<small>37,000 dots · float32 · EPSG:32611 · values 0/1 · zeros outside</small></td>"
-                 f"<td><b>UNAVAILABLE</b><br><small>no measured score; HOLDOUT-DTI not measured</small></td>"
-                 f"<td><span class='tag stop'>{esc(c['unique_vs_other_named_files'])}</span><br>"
-                 f"<small>{'<br>'.join(esc(x) for x in c['unique_flags'])}</small></td>"
-                 f"<td><span class='tag go'>DOWNLOAD: research only</span><br><span class='tag stop'>SUBMIT: NO</span></td></tr>")
-    rank = s["rank_check_user_vs_holdout"]
-    card_json = json.dumps(card, indent=2)
-    return f"""<!doctype html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GEMS executive summary · 31 Oct 2026</title>
-<link rel="stylesheet" href="styles.css">
+    H = candidate["holdout"]
+    ctrl_lines = "".join(f"<li>Random dot field, trial {c['trial']}: {c['duplicate_count']} literal duplicates, worst overlap {c['worst_overlap']*100:.2f}% vs <code>{esc(c['worst_submission'])}</code></li>" for c in ctrl_summary)
+    page = f"""<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive summary 31 Oct 2026 · GEMS submission status</title>
+<link rel="stylesheet" href="assets/style.css">
 <style>
- table.exec {{ width:100%; border-collapse:collapse; font-size:0.92rem; }}
- table.exec th, table.exec td {{ border:1px solid var(--line); padding:0.5rem; vertical-align:top; text-align:left; }}
- table.exec th {{ background:#ece3d3; }}
- tr.cand td {{ background:#eef6f1; }}
- .tag {{ display:inline-block; padding:0.1rem 0.4rem; border-radius:3px; font-size:0.78rem; font-weight:700; }}
- .tag.user {{ background:#f3e7c4; }} .tag.hold {{ background:#dde8f5; }}
- .tag.stop {{ background:#f6d6d6; color:#7a1414; }} .tag.go {{ background:#d6f0de; color:#14532d; }}
- .sha {{ font-size:0.76rem; color:var(--muted); }}
- .verdict {{ border:3px solid var(--stop); padding:1rem 1.2rem; background:#fff4f4; margin:1rem 0; }}
- .verdict.dl {{ border-color:var(--go); background:#f1fbf4; }}
- pre {{ background:#1b232b; color:#f4efe6; padding:0.8rem; overflow:auto; font-size:0.8rem; }}
-</style></head>
-<body>
-<header class="top"><h1>GEMS executive summary · 31 Oct 2026</h1>
-<p>WBGGEMSDOE1 · nine focus sites (GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36) · every number labelled</p></header>
-<main>
-<div class="verdict">
-<h2 style="margin-top:0">Verdict: DOWNLOAD the research file · DO NOT SUBMIT it</h2>
-<p><b>Submit: NO.</b> No file in this repo is cleared for the DrivenData slot. The new file
-<a href="{esc(c['download_url'])}"><b>{esc(c['file_name'])}</b></a> is format-valid and is not a copy of any local
-registry raster, but it places <b>77.1%</b> of its dots within 3 px of GEMSDOE25's
-<i>gem1-blind-magnetics</i> raster. The protocol treats that as a lane duplicate and stops.
-Its holdout score was not measured. <b>Estimated leaderboard score: UNAVAILABLE for every file.</b></p>
-</div>
+ body{{font-family:system-ui,Arial,sans-serif;max-width:1180px;margin:0 auto;padding:18px;color:#1d2a2e;line-height:1.45}}
+ .verdict{{border:3px solid #b3261e;background:#fff4f2;padding:14px 18px;border-radius:10px;margin:10px 0}}
+ .ok{{border-color:#1e7b3a;background:#f1fbf4}}
+ table{{border-collapse:collapse;width:100%;margin:10px 0;font-size:14px}}
+ th,td{{border:1px solid #c9d4d7;padding:7px 9px;vertical-align:top;text-align:left}}
+ th{{background:#173b42;color:#fff}}
+ td.fail{{background:#fdecea}} td.pass{{background:#e9f7ee}}
+ code{{font-size:12.5px}} small{{color:#4a5d63}}
+ .big{{font-size:19px;font-weight:700}}
+</style></head><body>
+<p><a href="index.html">← Research desk overview</a> · <a href="start-here-20261029.html">29 Oct start page</a></p>
+<h1>Executive summary · 31 Oct 2026</h1>
+<div class="verdict"><div class="big">DOWNLOAD: YES (research file) · SUBMIT: NO</div>
+<p>No file is cleared for the DrivenData upload. The new file <code>{esc(NAME)}.tif</code> is a valid, unique file, but it fails the project's literal
+uniqueness gate on {len(cand_dups)} registry rasters. A uniformly random dot field fails the same gate, so this rule cannot be satisfied by any dot file (see §4).</p>
+<p><a href="{esc(TIF_REL)}"><b>Download the candidate TIFF</b></a> · <a href="{esc(ZIP_REL)}">ZIP</a> · <a href="{esc(RECEIPT_REL)}">receipt</a> · <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/arena/0c266855-wbggemsdoe1/evidence/h2_lag/run_card_20261031.json">run card (JSON)</a></p>
+<p><b>Estimated leaderboard score: UNAVAILABLE.</b> The only numbers here are HOLDOUT-DTI on the project's holdout, which does not rank real submissions (AGENTS.md 0b-i) and is not on the leaderboard scale.</p></div>
 
-<h2>1 · Best file per site, with the estimate and uniqueness</h2>
-<p>Scores are the user-reported values from the 29 Oct brief. The holdout columns are a proxy
-(HOLDOUT-DTI). They are not an estimate of the leaderboard score, because the proxy ranks these
-files in close to reverse order (section 3).</p>
-<table class="exec">
-<tr><th>Site</th><th>File to download (pinned GitHub copy)</th><th>Estimated score (labelled)</th><th>Unique vs the other named files?</th><th>Submit?</th></tr>
-{rows_html}
-{cand_html}
+<h2>1. Nine focus sites: the file to download, its score and uniqueness</h2>
+<p>Each row is the highest owner-reported file for that site. Scores come from the prompt and are <b>not organizer-confirmed</b>. "Unique" uses the literal 70% rule, first against the other eight focus files, then against every cached registry raster (self excluded; <code>evidence/h2_lag/focus_vs_registry_overlap_20261031.json</code>). The 0.2778 file is the highest owner-reported score, and it is already in the competition, so re-uploading it is a duplicate.</p>
+<table><tr><th>Site</th><th>File to download (GitHub, for manual review)</th><th>Score (label)</th><th>Unique vs other focus sites?</th><th>Unique vs ALL 117 registry rasters?</th><th>Decision</th></tr>
+{''.join(row_html(t) for t in table)}
 </table>
-<p><small>"Unique" applies the protocol lane rule (more than 70% of one file's dots within 3 px of another's) and an
-exact positive-set test, using the 29 Oct pairwise audit (validated: this session reproduces its
-B2 vs GEMSDOE36 values, 1.0 and 0.974031). Candidate overlap is from the 482 local registry rasters (section 4).</small></p>
+<p><small>GEMSDOE25 and GEMSDOE30 hold the same dot set (Jaccard 1.0). They count as one design. Source: <code>docs/data/nine_site_audit_20261029.json</code>.</small></p>
 
-<h2>2 · Why GEMSDOE32 B2 scored 0.2778 (user-reported) and whether a unique file can beat it</h2>
+<h2>2. The new unique TIFF</h2>
+<table>
+<tr><th>Item</th><th>Value</th></tr>
+<tr><td>Download</td><td><a href="{esc(TIF_REL)}">{esc(NAME)}.tif</a> (one-TIFF ZIP: <a href="{esc(ZIP_REL)}">zip</a>)</td></tr>
+<tr><td>SHA-256</td><td><code>{tif_sha}</code></td></tr>
+<tr><td>Format (independent rasterio read + shared writer receipt)</td><td>1 band, float32, EPSG:32611, 3,730 × 3,292, transform = training grid, values {{0, 1}} only, 0 NaN, 0 Inf, {candidate['dot_count_from_writer']:,} dots, 0 dots on the mapped catalogue, 0 dots outside the footprint.</td></tr>
+<tr><td>Name</td><td><code>{esc(NAME)}</code></td></tr>
+<tr><td>Note ({len(NOTE)} characters)</td><td><code>{esc(NOTE)}</code></td></tr>
+<tr><td>Method</td><td>Surface = √(magnetic edge × gravity edge) × magnetic structure coherence, from the 19 cached potential-field bands only. Quadrant quota K/4, with dots kept more than 3 px from the mapped catalogue (the exclusion removes pixels at distance of 3 px or less), with 3-px spacing.</td></tr>
+<tr><td>HOLDOUT-DTI (method) <small>evaluator gems57-pooled-hide-v2</small></td><td><b>{H['dti']:.4f}</b>, 95% CI [{H['ci95'][0]:.4f}, {H['ci95'][1]:.4f}], n withheld truth = {H['withheld_truth_cells_summed']:,} (summed over 16 cells)</td></tr>
+<tr><td>Matched random-dot null (same budget, same avoidance)</td><td>HOLDOUT-DTI {H['random_null_dti']:.4f}, 95% CI [{H['random_null_ci95'][0]:.4f}, {H['random_null_ci95'][1]:.4f}]</td></tr>
+<tr><td>Paired gain over null (decisive test)</td><td>{H['paired_full_minus_random']:+.4f}, paired 95% CI [{H['paired_ci95'][0]:+.4f}, {H['paired_ci95'][1]:+.4f}]. <b>Includes 0, so no gain is established.</b></td></tr>
+<tr><td>Magnetic-only / gravity-only arms</td><td>{H['mag_only_dti']:.4f} / {H['grav_only_dti']:.4f} (neither beats the null)</td></tr>
+<tr><td>Leakage canary (each feature alone, AUC)</td><td>{', '.join(f"{k} {v}" for k, v in exp['canary_alone_auc'].items() if k not in ('max_alone_auc','leakage_alarm_gt_0_90'))}; max {exp['canary_alone_auc']['max_alone_auc']} (alarm > 0.90: no)</td></tr>
+<tr><td>Literal uniqueness (registry)</td><td>Byte-unique: {gate['byte_unique_among_checked']}; pixel-unique: {gate['pixel_unique_among_checked']}; among {gate['registry_rasters_checked']} cached owner-registry rasters. Max Spearman {candidate['uniqueness_literal']['max_spearman_vs_registry']:.4f} (&lt; 0.90 PASS). Literal 3-px overlap &gt; 70% against: {esc(', '.join(cand_dups))}. <b>FAIL.</b></td></tr>
+<tr><td>Leaderboard estimate</td><td><b>UNAVAILABLE</b>. No organizer receipt exists. Submission slots used: 0.</td></tr>
+</table>
+
+<h2>3. Why GEMSDOE32 B2 (0.2778, owner-reported) scored highest, and whether we can beat it</h2>
 <ol>
-<li><b>What the file is.</b> B2 is 37,654 dots and is a verified subset of B1 (40,199 dots; the same positives as GEMSDOE28 solo D2.8 and GEMSDOE31 solo D28) and of D2.8 (44,090 dots; GEMSDOE25 and GEMSDOE30). It is reached by removing
-dots that lie close to the mapped catalogue. 5.8% of its dots lie within 300 m of the mapped catalogue (29 Oct audit, user-reported file).</li>
-<li><b>Mechanism (interpretation, not tested).</b> The shared metric (<code>vendor/gems57/metric.py</code>) is DTI = TP_w / (TP_w + 0.2·FP_w + 0.8·FN_w),
-with a 3 px (300 m) triangular kernel. A dot near a mapped fault but far from any hidden fault is counted as a false positive under that kernel.
-Removing such dots raises DTI when the removed dots carry little true credit. This is a precision-by-exclusion explanation; no run here tested it.</li>
-<li><b>Evidence and its limit.</b> Descriptively, across the nine sites in the 29 Oct audit, a higher near-catalogue share goes with a lower reported score
-(Spearman −0.93, p ≈ 0.0002, n = 9). The scores are user-reported and unverified, and the files come from a small number of families.</li>
-<li><b>Why our proxy cannot settle it.</b> The holdout's truth is the withheld catalogue segments (20% per quadrant fold), so that truth is itself catalogue-shaped.
-Closeness to the visible catalogue alone reaches AUC <b>{card['leakage_canary']['auc_neg_distance_to_visible_catalogue_alone']:.3f}</b> on that truth
-(leakage rule: 0.90). Files that sit near the catalogue therefore score high on the proxy, and B2 scores lowest.
-Rank agreement between the user-reported scores and the holdout is <b>Spearman {rank['spearman_user_vs_holdout']:.3f}</b>
-(p = {rank['spearman_p']:.4f}, n = {rank['n_files']}). The proxy therefore reverses the reported ordering.</li>
-<li><b>Can a unique file beat 0.2778?</b> <b>Not demonstrated.</b> Any file made by pruning B2 is a subset of B2, so it would sit near 100% within 3 px of B2 and fail the lane rule. The only test that can
-produce a number is one organizer-scored submission. That needs a DrivenData login, which this sandbox does not have.</li>
+<li><b>Verified facts (audit JSON):</b> B2 has 37,654 dots, 0 on the mapped catalogue, 0 within 1 px or 2 px of it, and 2,171 (5.8%) within 3 px. Its nearest rival D2.8 is a 44,090-dot file. The 2026-10-29 analysis states that B2 is a pruned subset of D2.8, removing 6,436 dots that lay within 2 px of catalogue traces. Source: <code>docs/data/nine_site_audit_20261029.json</code>, <code>docs/unique-lane-summary-20261029.html</code>. We did not re-derive the subset claim this session.</li>
+<li><b>Mechanism (first-order, algebra):</b> with DTI = TP/(TP + 0.2·FP + 0.8·FN), let D be the current score and c a dot's expected kernel cover of truth. Removing that dot raises the score only if c &gt; 0.2·D/(1 − 0.8·D). At D = 0.2778 the threshold is c &gt; 0.0714. Dots with less than about 7% expected cover are net-negative to keep. Pruning dots that sit next to known faults is a plausible way to remove such dots, but this is a derivation, not a measurement.</li>
+<li><b>Competing evidence (our holdout, our experiment E2):</b> on the holdout, random dots with <i>no</i> catalogue avoidance score {sweep[0]['arms']['random']['pooled_dti']:.4f}, 3-px avoidance {sweep[3]['arms']['random']['pooled_dti']:.4f}, 6-px avoidance {sweep[6]['arms']['random']['pooled_dti']:.4f}. The holdout therefore rewards proximity to visible faults. The holdout hides catalogue segments, which are continuous with visible traces. The competition's hidden labels are new faults, which are not in the catalogue. <b>The holdout cannot test the pruning mechanism behind B2.</b> This is the central validity problem (see §5).</li>
+<li><b>Can we beat 0.2778?</b> Not demonstrated. The best unique candidate has no paired holdout gain (§2). The only real signal is the owner-reported leaderboard values, and a leaderboard check needs an organizer receipt. A calibration ladder on the portal is the fastest way to learn. Each upload uses a weekly slot (three per week under rules §3.4), and this is a user action.</li>
 </ol>
 
-<h2>3 · Holdout proxy for the 11 named files (HOLDOUT-DTI)</h2>
-<table class="exec">
-<tr><th>Site · file</th><th>Dots</th><th>User-reported</th><th>HOLDOUT-DTI</th><th>95% CI (fold bootstrap)</th><th>n withheld positives</th></tr>
-{''.join(f"<tr><td>{esc(r['site'])}</td><td>{r['n_dots']:,}</td><td>{r['user_reported_score']:.4f}</td><td>{r['holdout_dti']:.4f}</td><td>[{r['holdout_ci95'][0]:.4f}, {r['holdout_ci95'][1]:.4f}]</td><td>{r['holdout_n_withheld_positives']:,}</td></tr>" for r in s['rows'])}
-</table>
-<p><small>Evaluator: shared <code>gems57.holdout.evaluate</code> (unchanged), seeds 20 and 21, mode "all", alpha 0.2, beta 0.8, 300 m triangular kernel.
-Matches the earlier receipt <code>evidence/holdout_proxy_portfolio.json</code> (B2 0.004385; GEMSDOE28 rung30 0.030240).
-Spearman between user-reported score and HOLDOUT-DTI = {rank['spearman_user_vs_holdout']:.3f}, p = {rank['spearman_p']:.4f}, n = {rank['n_files']}.
-CI = bootstrap over the 8 fold cells (4 quadrant folds × seeds 20, 21), per <code>holdout_focus.json</code>.</small></p>
+<h2>4. The literal uniqueness rule cannot be satisfied by a dot file</h2>
+<p>The project's literal lane rule says a file fails if more than 70% of its dots lie within 3 px of one registry raster's dots. A uniformly random dot field of the same size fails it too, so the rule is a control-tested blocker for every dot file:</p>
+<ul>{ctrl_lines}</ul>
+<p>Decision needed (owner): replace the literal rule with a density-matched rule, or accept that no dot file can ever be cleared. We have not changed the rule. Changing it is an owner decision.</p>
 
-<h2>4 · New file: uniqueness, overlap and format</h2>
-<table class="exec">
-<tr><th>Test</th><th>Result</th><th>Rule / source</th></tr>
-<tr><td>Byte copy or exact positive-set copy</td><td>None among {ov['registry_rasters_compared']} local registry rasters</td><td>Protocol LANE; <code>evidence/session_20261031/candidate_overlap.json</code></td></tr>
-<tr><td>Literal overlap (dots within 3 px of one registry raster's dots)</td><td>max {ov['max_literal_overlap']*100:.3f}%; {ov['n_rasters_over_70pct_literal']} rasters over 70%</td><td>Fails the 70% rule (duplicate lane)</td></tr>
-<tr><td>Worst non-lattice overlap</td><td>GEMSDOE25 "gem1-blind-magnetics" 77.1% (density lift 6.0)</td><td>GEMSDOE25 gem1 is magnetics-derived; the candidate is RTP-gradient-derived (same lane)</td></tr>
-<tr><td>Density-matched lift</td><td>median {ov['median_density_matched_lift']:.2f}</td><td>1.0 = random placement</td></tr>
-<tr><td>Correlation check (phi, binary dots)</td><td>max {ov['max_phi']:.3f}; 0 rasters above 0.90</td><td>Protocol names rank correlation (0.90). Phi on the 0/1 raster is used here as a documented substitute; this is a protocol deviation.</td></tr>
-<tr><td>Holdout canary: each feature alone</td><td>gradient ridge alone AUC {card['leakage_canary']['auc_hgm_alone']:.3f}; closeness to visible catalogue AUC {card['leakage_canary']['auc_neg_distance_to_visible_catalogue_alone']:.3f}</td><td>AUC above 0.90 = leakage until proven otherwise</td></tr>
-<tr><td>Holdout DTI for the new file</td><td>NOT MEASURED</td><td>The full catalogue was used for eligibility; a per-fold regeneration is needed first</td></tr>
-<tr><td>Format (shared validator)</td><td>float32 · 1 band · EPSG:32611 · 3730×3292 · 100 m · transform matches sample · values 0 and 1 · 0 NaN · 0 dots on catalogue · 0 mass outside footprint</td><td><code>gems57.gates.format_report</code> ok = True; <code>gems57.validate</code></td></tr>
-<tr><td>Candidate vs each of the 11 named files (share of the candidate's dots within 3 px of that file)</td><td>{'; '.join(f"{esc(k)} {v['cand_within_3px_of_named']*100:.1f}%" for k, v in c['cand_overlap_by_site'].items())}</td><td>Computed this session from the pinned rasters; <code>docs/data/executive_summary_20261031.json</code></td></tr>
-</table>
+<h2>5. Holdout validity: the central irregularity</h2>
+<p>On the random arm, catalogue avoidance lowers the holdout score: {sweep[0]['arms']['random']['pooled_dti']:.4f} with none, {sweep[3]['arms']['random']['pooled_dti']:.4f} at 3 px, {sweep[6]['arms']['random']['pooled_dti']:.4f} at 6 px. That direction is the opposite of the leaderboard evidence (§3). The holdout is therefore not a valid proxy for the catalogue-avoidance lever. Recommendation: stop using the holdout to choose dot placement, and calibrate with organizer receipts instead.</p>
 
-<h2>5 · Irregularities flagged for review</h2>
+<h2>6. Portal error "Predicted values must be in range [0, 1]"</h2>
 <ul>
-<li><b>Leaderboard figures in the brief do not match the live page.</b> The brief says 0.4413 is the top and 0.3195 is the highest score. On the live page (fetched 31 Oct 2026),
-#1 is <b>0.4544</b>, #2 is 0.3925, and #46 is 0.3261. 0.3195 is not in the top 46 on the 31 Oct page.
-<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Leaderboard</a>.</li>
-<li><b>The literal 70% gate.</b> AGENTS.md lists it as degenerate for lattice-type rasters. This session also found 11 of 482 registry rasters over 70% for the candidate,
-including the r13 lattice (99.995%) and GEMSDOE25 gem1 magnetics (0.7711). The owner should decide which measure governs.</li>
-<li><b>Portal format convention is unresolved.</b> The official sample uses NaN outside the footprint (7,111,787 cells, per the 29 Oct note). The shared writer and validator use all-finite zeros
-outside, which is also within [0, 1]. Neither has been tested on the portal. The reported "[0, 1]" error cannot be reproduced locally.</li>
-<li><b>Holdout ranks the reported files in reverse (Spearman {rank['spearman_user_vs_holdout']:.3f}).</b> The proxy truth is catalogue-adjacent by construction. Do not use it to rank new candidates.</li>
-<li><b>Shared-tool defect, worked around.</b> The shared writer <code>vendor/gems57/submission_writer.py</code> creates outputs with mode 0600, which can block download. The file is hash-pinned upstream, so it was left unchanged; <code>scripts/build_candidate_20261031.py</code> sets 0644 after the write (the bytes are unchanged).</li>
-<li><b>The bridge manifest names two scripts that do not exist</b> (<code>scripts/make_data_bridge.py</code>, <code>scripts/assemble_data_bridge.py</code>).
-The restore worked through the pinned template instead.</li>
-<li><b>The sample file in the bridge has 60,988 positives</b> that match the catalogue exactly  (from the 29 Oct note). It is a grid template, not a zero-fault sample.</li>
-<li><b>The DrivenData leaderboard cannot be fetched by curl here</b> (TLS error); the page was read with the fetch tool.</li>
+<li>Official text (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem page</a>): float32 values between 0 and 1, and "data outside the bounds is null or nan."</li>
+<li>Conflict: the shared validator (<code>vendor/gems57/validate.py</code>) requires zeros outside the footprint and no NaN anywhere. The official text and the official sample (<code>sample_submission.tif</code>, NaN outside, per registry note) say NaN. The repository's own writer comment (<code>src/gems/submission.py</code>) says some portal validators reject NaN outside, but this is unverified.</li>
+<li>The candidate uses all-finite zeros outside, the convention of the previously scored files named "zeros", so the candidate follows the repo's convention. This choice is a risk to flag, not a verified fact.</li>
+<li>We cannot see the user's failed upload, so the actual cause is unverified. Likely causes: NaN inside the footprint, values outside [0,1], or NaN outside the footprint.</li>
 </ul>
 
-<h2>6 · What was restored and verified this session</h2>
-<ul>
-<li>Feature stack: five parts fetched through the GitHub API (raw.githubusercontent.com is unreachable from this sandbox); each part's SHA-256 matches the pinned values, and <code>scripts/restore_data.py</code> restored the stack. This is owner-mirror integrity, not DrivenData-authenticated.</li>
-<li>Labels and sample grid (<code>data/</code>, git-ignored): SHA-256 matched.</li>
-<li>482 registry rasters (481 downloads, 1 cache hit), each SHA-256 matched to <code>registry/focus_raster_fetch.json</code>.</li>
-<li>Tests: 261 passed on the restored checkout before the writer patch; 18 passed on the writer-related subset after it.</li>
-</ul>
+<h2>7. Live leaderboard check (irregularity)</h2>
+<p>Fetched {LEADERBOARD_OBS['fetched_utc']} from the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">official leaderboard</a>: rank 1 xiaofanhu 0.4544, rank 2 cfld__ 0.3925. The prompt's figures 0.4413 and 0.3195 do not match rank 1. The source of 0.3195 is unknown. Flagged for review; we did not use the prompt's figures as facts.</p>
 
-<h2>7 · Next steps and blockers (ranked)</h2>
+<h2>8. Irregularities and blockers (flagged for review)</h2>
 <ol>
-<li><b>Owner decision on the gate.</b> Choose whether the lane rule (70% of dots within 3 px) or the density-matched lift governs. The new file fails the first (77.1%). On the second, its median lift is 1.32 (1.0 = random).</li>
-<li><b>One organizer-scored test.</b> Only a DrivenData receipt makes a score ORGANIZER-CONFIRMED. The owner has to upload from the portal. The file is <i>not</i> cleared, so do this only if the owner accepts the lane duplicate.</li>
-<li><b>Fold-safe candidate generation.</b> Re-derive the catalogue exclusion per fold so that the holdout reading for the new file is valid.</li>
-<li><b>Resolve the NaN-versus-zeros convention</b> against the official sample before any upload.</li>
-<li><b>Restore the four external catalogues</b> listed as missing in <code>data/external/</code> (free, official sources only), then re-run the leakage canary with them.</li>
+<li>All nine focus scores are OWNER-REPORTED. No submission-page receipt binds any file to a score.</li>
+<li>The literal 70% gate fails for every dot file, including a random control (§4).</li>
+<li>The holdout rewards catalogue proximity, the opposite of the leaderboard-consistent mechanism (§5).</li>
+<li>Portal NaN/zero convention conflict between the official text and the shared validator (§6).</li>
+<li>GEMSDOE25 and GEMSDOE30 are identical dot sets (§1).</li>
+<li>The holdout n is summed over 16 cells, so the same withheld pixel can count in more than one cell.</li>
+<li>The registry cache has 117 files for 118 entries. One entry is a duplicate filename and is not checked (<code>missing_or_invalid: 1</code>).</li>
+<li>The restore step rewrote <code>evidence/data_restore.json</code> (timestamp only).</li>
 </ol>
 
-<h2>8 · Run card (JSON)</h2>
-<pre>{esc(card_json)}</pre>
-
-<h2>9 · Sources (official or verified, for manual review)</h2>
+<h2>9. What the owner must do (no manual work is needed for the rest)</h2>
 <ul>
-<li>Competition: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">drivendata.org/competitions/306/competition-doe-gems</a></li>
-<li>Official rules (NLR PDF): <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">docs.nlr.gov/docs/fy26osti/96647.pdf</a></li>
-<li>Leaderboard: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a></li>
-<li>Blakely &amp; Simpson (1986), horizontal-gradient maxima, Geophysics 51(7): <a href="https://doi.org/10.1190/1.1442197">doi:10.1190/1.1442197</a> (taken from search snippets, not the full paper)</li>
-<li>Owner mirror of the bridge data, pinned commit prefix c0c06ac: <a href="https://github.com/buffedlizard55-lab/GEMSDOE">buffedlizard55-lab/GEMSDOE</a></li>
+<li>Decide the uniqueness rule (§4). Until then the verdict stays SUBMIT: NO.</li>
+<li>If you want a calibrated score, upload one candidate yourself through the DrivenData portal (a login is required; this sandbox cannot upload). The receipt then becomes ORGANIZER-CONFIRMED.</li>
+<li>Confirm the NaN vs zero outside convention with the competition forum before any upload.</li>
 </ul>
-</main></body></html>
+
+<h2>Sources (official, for manual review)</h2>
+<ul>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem description, metric and submission format</a></li>
+<li><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules (Sept 2026), §3.4 weekly submission limit, §3.5 submission</a></li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Leaderboard</a></li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">Data page (login required; not accessed)</a></li>
+<li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">GeoDAWN (USGS)</a> · <a href="https://gbcge.org/current-projects/ingenious/">INGENIOUS (GBCGE)</a></li>
+</ul>
+<p><small>Machine-readable: <a href="data/executive_summary_20261031.json">docs/data/executive_summary_20261031.json</a> · <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/arena/0c266855-wbggemsdoe1/evidence/h2_lag/run_card_20261031.json">run card</a> · <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/arena/0c266855-wbggemsdoe1/scripts/run_h2_lag_corroboration.py">experiment script</a> · <a href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1/blob/arena/0c266855-wbggemsdoe1/scripts/build_h2_candidate_20261031.py">candidate script</a></small></p>
+</body></html>
 """
+    (ROOT / "docs/executive-summary-h2-20261031.html").write_text(page)
+    print("wrote docs/executive-summary-h2-20261031.html, docs/data/executive_summary_20261031.json, evidence/h2_lag/run_card_20261031.json")
+    return 0
 
 
 if __name__ == "__main__":

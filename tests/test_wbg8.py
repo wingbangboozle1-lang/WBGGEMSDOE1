@@ -128,7 +128,7 @@ def test_estimate_methods_are_labelled_projections():
 
 
 def test_exec_summary_and_howto_pages_resolve_and_state_the_verdict():
-    for name in ("executive-summary-20261031.html", "how-to-submit-20261031.html"):
+    for name in ("executive-summary-20261031-wbg8.html", "how-to-submit-20261031-wbg8.html"):
         text = (DOCS / name).read_text()
         assert "<html lang=\"en\">" in text
         assert "DOWNLOAD: YES" in text and "SUBMIT: OK" in text
@@ -146,8 +146,8 @@ def test_index_banner_points_at_the_new_candidate():
     text = (DOCS / "index.html").read_text()
     assert "31 OCT 2026 · WBG-8 SUBMISSION CANDIDATE" in text
     assert f"downloads/{card['submission_name']}.tif" in text
-    assert "executive-summary-20261031.html" in text
-    assert "how-to-submit-20261031.html" in text
+    assert "executive-summary-20261031-wbg8.html" in text
+    assert "how-to-submit-20261031-wbg8.html" in text
 
 
 def test_preregistration_exists_and_fixes_the_budget():

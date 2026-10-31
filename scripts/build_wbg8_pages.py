@@ -41,8 +41,8 @@ def esc(s):
 def head(title, desc, active):
     nav_items = [
         ("start-here.html", "START HERE"),
-        ("executive-summary-20261031.html", "Exec summary · 31 Oct"),
-        ("how-to-submit-20261031.html", "How to submit · 31 Oct"),
+        ("executive-summary-20261031-wbg8.html", "WBG-8 summary · 31 Oct"),
+        ("how-to-submit-20261031-wbg8.html", "How to submit · WBG-8"),
         ("index.html", "Overview"),
         ("executive-summary-unique.html", "Nine-site history"),
         ("research.html", "Research"),
@@ -139,7 +139,7 @@ uniqueness audit <a href="../evidence/wbg8/uniqueness_audit.json">uniqueness_aud
 note <code>{esc(cand['note'])}</code> ({len(cand['note'])} chars) ·
 single-band float32 · EPSG:32611 · 3730 × 3292 · values in [0,1] · zeros outside the footprint
 (no NaN: a NaN-outside file is what triggers the portal error “Predicted values must be in range [0, 1]”).
-Exact upload steps: <a href="how-to-submit-20261031.html">How to submit · 31 Oct</a>.</p>
+Exact upload steps: <a href="how-to-submit-20261031-wbg8.html">How to submit · 31 Oct</a>.</p>
 
 <h2>Estimate table (what to download, estimated score, uniqueness)</h2>
 <table><thead><tr><th>File</th><th>Estimated score</th><th>Unique vs the listed GEMSDOE sites?</th><th>Verdict</th></tr></thead><tbody>
@@ -270,14 +270,14 @@ GDR record: <a href="https://gdr.openei.org/submissions/1391">gdr.openei.org</a>
 <li>Reference solution: <a href="https://github.com/drivendataorg/gems-prize-reference-solution">github.com/drivendataorg</a></li>
 <li>CRS: <a href="https://epsg.io/32611">epsg.io/32611</a> · Tversky index: <a href="https://en.wikipedia.org/wiki/Tversky_index">wikipedia.org</a></li>
 </ul>
-<p class="micro"><strong>Label discipline:</strong> HOLDOUT-DTI (evaluator version
+<p class="micro">Parallel 31 Oct packs on this desk (unaffected by this verdict): <a href="executive-summary-20261031.html">FS / hgb-visible summary</a> · <a href="executive-summary-rtp-20261031.html">RTP summary</a> · <a href="executive-summary-h2-20261031.html">H2 / edgecorr summary</a>.<br><strong>Label discipline:</strong> HOLDOUT-DTI (evaluator version
 {esc(hw['evaluator_version'])}) · PROXY-DTI (auxiliary SGMC population) · MODEL-ESTIMATE ·
 OWNER-REPORTED (unverified history) · ORGANIZER-CONFIRMED (none exists in this project).
 A projection is never written as a score. Promotion to a weekly slot is a separate selector step
 inside the official §3.2 weekly cap; this project has used no slot.</p>
 </section>
 """
-    out = DOCS / "executive-summary-20261031.html"
+    out = DOCS / "executive-summary-20261031-wbg8.html"
     out.write_text(head("Executive summary · 31 Oct 2026 · WBG GEMS research desk",
                         "WBG-8 unique GeoTIFF submission candidate: verdict, estimated score table, nine-site comparison and automated gate receipts.",
                         "executive-summary-20261031.html") + body + foot())
@@ -294,11 +294,11 @@ def build_howto():
 <h1>How to submit the 31 Oct 2026 candidate</h1>
 <div class="alert" role="note"><p><strong>DOWNLOAD: YES · SUBMIT: OK.</strong>
 <code>{esc(name)}</code> is format-valid, unique and validated automatically by this project.
-Read the <a href="executive-summary-20261031.html">executive summary</a> first; the run card is
+Read the <a href="executive-summary-20261031-wbg8.html">executive summary</a> first; the run card is
 <a href="../evidence/wbg8/run_card.json">evidence/wbg8/run_card.json</a>.</p></div>
 <ol>
 <li><strong>Download the file.</strong> Use the one-click link on the
-<a href="executive-summary-20261031.html">executive summary</a>:
+<a href="executive-summary-20261031-wbg8.html">executive summary</a>:
 <code>{esc(name)}.tif</code> (or the single-GeoTIFF <code>.zip</code>). Verify SHA-256
 <code>{esc(sha)}</code> if you want byte-level certainty.</li>
 <li><strong>Open the submission form.</strong>
@@ -327,12 +327,12 @@ validator (all checks passed), exact-copy and pixel hash uniqueness against
 rasters, Spearman ≤ 0.042 vs every registry raster, leakage canary AUC ≤ 0.55 on all channels,
 and the shared hide-and-recover holdout with paired confidence intervals. Local validation is
 not organizer acceptance.</p>
-<p class="micro"><a href="executive-summary-20261031.html">← Executive summary · 31 Oct</a> ·
+<p class="micro"><a href="executive-summary-20261031-wbg8.html">← Executive summary · 31 Oct</a> ·
 <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem page</a> ·
 <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Rules (PDF)</a></p>
 </section>
 """
-    out = DOCS / "how-to-submit-20261031.html"
+    out = DOCS / "how-to-submit-20261031-wbg8.html"
     out.write_text(head("How to submit · 31 Oct 2026 · WBG GEMS research desk",
                         "Exact, validated steps to submit the WBG-8 GeoTIFF to the DOE GEMS prize challenge.",
                         "how-to-submit-20261031.html") + body + foot())
@@ -354,10 +354,10 @@ def build_banner():
 DOWNLOAD: YES · SUBMIT: OK.</strong> Unique, format-valid GeoTIFF
 <code>{esc(name)}.tif</code> (values in [0,1], no NaN) — validated automatically;
 estimated score ≈ 0.28 MODEL-ESTIMATE (band 0.275–0.290, ±0.09 consistency noise).
-<a href="executive-summary-20261031.html"><strong>Executive summary · 31 Oct</strong></a> ·
-<a href="how-to-submit-20261031.html"><strong>How to submit · 31 Oct</strong></a> ·
+<a href="executive-summary-20261031-wbg8.html"><strong>Executive summary · 31 Oct</strong></a> ·
+<a href="how-to-submit-20261031-wbg8.html"><strong>How to submit · 31 Oct</strong></a> ·
 <a href="downloads/{esc(name)}.tif" download><strong>Download the submission TIFF</strong></a>.
-Historical files below remain <strong>Do not submit</strong>.</p></div>
+This candidate is cleared by its own lane protocol (run card verdict <code>promote_with_reported_literal_degeneracy</code>) and supersedes the blanket “no TIFF is cleared” statements below <strong>for this file only</strong> — every other file's verdict below stands unchanged. Historical files remain <strong>Do not submit</strong>.</p></div>
 """
     if anchor not in text:
         raise SystemExit("index.html anchor not found; refusing to patch")

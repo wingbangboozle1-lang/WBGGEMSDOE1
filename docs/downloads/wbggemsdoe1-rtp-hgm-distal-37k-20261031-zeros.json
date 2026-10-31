@@ -1,0 +1,123 @@
+{
+  "file": "wbggemsdoe1-rtp-hgm-distal-37k-20261031-zeros.tif",
+  "sha256": "678970ad123c4b986bd77535323ebea933113efdfefe4892a29189877415c1ee",
+  "bytes": 136753,
+  "submission_name": "wbggemsdoe1-rtp-hgm-distal-37k-20261031",
+  "note": "Research only, NOT cleared: RTP gradient ridges >=400 m from mapped faults, 37k dots, 3px spacing.",
+  "note_chars": 98,
+  "validator": {
+    "file": "/home/user/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-rtp-hgm-distal-37k-20261031-zeros.tif",
+    "bytes": 136753,
+    "sha256": "678970ad123c4b986bd77535323ebea933113efdfefe4892a29189877415c1ee",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.00301323551684618,
+    "emitted_positive_pixels": 37000,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37000,
+    "footprint_fraction": 0.0071603114387136365
+  },
+  "template_report": {
+    "path": "/home/user/WBGGEMSDOE1/docs/downloads/wbggemsdoe1-rtp-hgm-distal-37k-20261031-zeros.tif",
+    "bytes": 136753,
+    "sha256": "678970ad123c4b986bd77535323ebea933113efdfefe4892a29189877415c1ee",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.00301323551684618,
+    "n_nonzero": 37000,
+    "mass": 37000.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "wbggemsdoe1-rtp-hgm-distal-37k-20261031-zeros.zip",
+  "zip_sha256": "a3500a0bb21e0ebd2bdfe00fdf2a49295cf8643c120f596b4c0a78b588e0258b",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "method": "RTP Blakely-Simpson horizontal-gradient maxima, catalogue-distal",
+    "source": "data/official/training_features.tif band 'rtp' (owner mirror, hash-verified)"
+  }
+}

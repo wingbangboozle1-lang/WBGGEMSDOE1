@@ -1,0 +1,74 @@
+{
+ "schema": "gemsdoe1-band-null-run-card-v1",
+ "date_utc": "2026-10-31",
+ "experiment": "E3",
+ "hypothesis": "Placement distance to the public catalogue alone (4-10 px band, no geology) reproduces the proxy ranking of the focus family.",
+ "mechanism": "Dots kept 4-10 px from mapped traces avoid the 3-px kernel of the catalogue, the region the B2 explanation says is costly false-positive mass.",
+ "named_non_fault_mimic": "Catalogue-proximity artefacts and dilation of mapped traces in the SGMC-derived proxy (the proxy is a ~1 px dilation of SGMC).",
+ "construction": {
+  "seed": 20261031,
+  "band_px": [
+   4.0,
+   10.0
+  ],
+  "thin_px": 4.0,
+  "n_dots": 37654,
+  "candidate_pixels": 779509
+ },
+ "file": "docs/downloads/wbggemsdoe1-band4to10-null-37654-20261031.tif",
+ "sha256": "c28b2e8492a0b112bc44030a2428d91aa7e09c134864d284287b01cb434a0c43",
+ "zip_sha256": "cb9023e1d5e0e19e6dfac046d924bf1e87874ec55f447b9a154cbec2adbc7781",
+ "writer_receipt": {
+  "sha256": "c28b2e8492a0b112bc44030a2428d91aa7e09c134864d284287b01cb434a0c43",
+  "bytes": 148422,
+  "note_chars": 114,
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0
+ },
+ "validator": {
+  "single_band": true,
+  "dtype_float32": true,
+  "dimensions_3730x3292": true,
+  "crs_epsg_32611": true,
+  "transform_matches_sample_submission": true,
+  "no_nan_anywhere": true,
+  "no_inf_anywhere": true,
+  "no_sentinel_values": true,
+  "range_0_1_guaranteed": true,
+  "min_ge_0": true,
+  "max_le_1": true,
+  "in_footprint_all_finite": true,
+  "in_footprint_range_0_1": true,
+  "outside_footprint_zero": true,
+  "zero_dots_on_mapped_catalogue": true
+ },
+ "proxy_truth": {
+  "available_locally": false,
+  "audit_file": "docs/data/focus_proxy_audit_20261031.json"
+ },
+ "proxy_dti": {
+  "dti": 0.076809,
+  "tp": 5450.969,
+  "fp": 35656.78,
+  "fn": 72982.031,
+  "n_truth": 78433,
+  "label": "PROXY-DTI (not organizer, not holdout)"
+ },
+ "g4_lattice_overlap": {
+  "file": "GEMSDOE24/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+  "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+  "dots": 206895,
+  "candidate_dots_within_3px_of_lattice": 0.997902
+ },
+ "proxy_uniform_random_baseline": {
+  "dti": 0.058284,
+  "n_dots": 37654,
+  "label": "PROXY-DTI uniform random baseline (same density, same footprint)"
+ },
+ "submission_name": "wbggemsdoe1-band4to10-null-37654-20261031",
+ "submission_note": "Distance-only null: 37654 dots in 4-10px catalogue band, seed 20261031, no geology. Research control, not a model.",
+ "verdict": "negative",
+ "download": "RESEARCH ONLY",
+ "submit": "NO"
+}

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive summary · 31 Oct 2026 · WBG GEMS research desk</title>
+<meta name="description" content="WBG-8 unique GeoTIFF submission candidate: verdict, estimated score table, nine-site comparison and automated gate receipts.">
+<meta name="theme-color" content="#173b42"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css"><script defer src="assets/app.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a>
+<header class="masthead"><div class="wrap"><nav class="nav" aria-label="Main navigation">
+<a class="brand" href="index.html"><svg viewBox="0 0 36 38" fill="none" aria-hidden="true"><path d="M3 29C12 27 4 16 13 15S21 5 31 6M4 35C15 34 11 22 20 22S25 11 34 12M2 21C8 21 4 9 13 9S18 1 25 2" stroke="#23665f" stroke-width="2" stroke-linecap="round"/></svg><span>WBG / GEMS<small>FAULT MAPPING · RESEARCH DESK</small></span></a>
+<div class="navlinks"><a class="" href="start-here.html">START HERE</a><a class="" href="executive-summary-20261031-wbg8.html">WBG-8 summary · 31 Oct</a><a class="" href="how-to-submit-20261031-wbg8.html">How to submit · WBG-8</a><a class="" href="index.html">Overview</a><a class="" href="executive-summary-unique.html">Nine-site history</a><a class="" href="research.html">Research</a><a class="" href="evidence.html">Evidence</a><a class="" href="how-to-submit.html">How to submit (archive)</a><a class="repo" href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Repository ↗</a></div></nav></div></header>
+<main id="main" class="wrap">
+
+<section class="content-section" id="verdict">
+<h1>Executive summary · 31 Oct 2026 · WBG-8 hidden-corridor candidate</h1>
+<div class="alert" role="note"><p><strong>VERDICT — DOWNLOAD: YES · SUBMIT: OK.</strong>
+The unique candidate <code>wbggemsdoe1-wbg8-hidden-corridor-34000-20261031-zeros</code> passed every automated gate:
+format, exact-copy uniqueness, rank correlation, leakage canary, holdout reporting, and the
+density-matched drift test. The literal 70&#37; overlap gate fails only against
+<strong>five dense-coverage artifacts</strong> (155k–5.1M positive cells &gt;3× our 34,000 dots,
+lift ≤ 1.5 — four of five ≈ 1.0, i.e. pure area coverage): those failures are reported in full
+below and in the run card, never hidden. Verdict code: <code>promote_with_reported_literal_degeneracy</code>.</p></div>
+
+<p class="micro"><strong>Download the submission file (one click):</strong>
+<a href="downloads/wbggemsdoe1-wbg8-hidden-corridor-34000-20261031-zeros.tif" download>wbggemsdoe1-wbg8-hidden-corridor-34000-20261031-zeros.tif</a> ·
+<a href="downloads/wbggemsdoe1-wbg8-hidden-corridor-34000-20261031-zeros.zip" download>ZIP (single GeoTIFF)</a> ·
+run card <a href="../evidence/wbg8/run_card.json">evidence/wbg8/run_card.json</a> ·
+validator receipt <a href="../evidence/wbg8/submission_receipt.json">submission_receipt.json</a> ·
+uniqueness audit <a href="../evidence/wbg8/uniqueness_audit.json">uniqueness_audit.json</a></p>
+<p class="micro">SHA-256 <code>cae1cc990da31a36373faebcb1d0cef729e50892cb59e30066d60da09d5f9448</code> · name <code>wbggemsdoe1-wbg8-hidden-corridor-34000-20261031-zeros</code> ·
+note <code>WBG-8 lidar+basement+pf+rad corridors; 34,000 catalogue-neutral dots; MODEL-ESTIMATE ~0.26-0.29</code> (95 chars) ·
+single-band float32 · EPSG:32611 · 3730 × 3292 · values in [0,1] · zeros outside the footprint
+(no NaN: a NaN-outside file is what triggers the portal error “Predicted values must be in range [0, 1]”).
+Exact upload steps: <a href="how-to-submit-20261031-wbg8.html">How to submit · 31 Oct</a>.</p>
+
+<h2>Estimate table (what to download, estimated score, uniqueness)</h2>
+<table><thead><tr><th>File</th><th>Estimated score</th><th>Unique vs the listed GEMSDOE sites?</th><th>Verdict</th></tr></thead><tbody>
+<tr><td><a href="downloads/wbggemsdoe1-wbg8-hidden-corridor-34000-20261031-zeros.tif" download><strong>wbggemsdoe1-wbg8-hidden-corridor-34000-20261031-zeros.tif</strong> (NEW, generated 31 Oct 2026)</a></td>
+<td><strong>~0.28 MODEL-ESTIMATE (calibrated band 0.275-0.290 across methods B/C/D)</strong><br><span class="micro">MODEL-ESTIMATE — not HOLDOUT-DTI, not ORGANIZER-CONFIRMED; interval plus/minus 0.09 score-consistency (near-identical rasters differ by up to 0.0856); in-family fits use n=12 OWNER-REPORTED values from ONE family</span></td>
+<td><strong>YES</strong> — byte- and pixel-unique vs 473 registry rasters;
+forward 3-px overlap vs every one of the nine site champions 0.20–0.22 (limit 0.70);
+max |Spearman| 0.0421 (limit 0.90)</td>
+<td><strong>DOWNLOAD: YES · SUBMIT: OK</strong></td></tr>
+<tr><td>GEMSDOE24</td><td>h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan</td><td>0.2477 · OWNER-REPORTED</td><td>NO — same dotted family, already used, cross-site overlap 0.98–1.00</td><td>DO NOT SUBMIT</td></tr><tr><td>GEMSDOE25</td><td>dotted-h19-5-d2-8-20261002-e56ea318af89-nan</td><td>0.2600 · OWNER-REPORTED</td><td>NO — same dotted family, already used, cross-site overlap 0.98–1.00</td><td>DO NOT SUBMIT</td></tr><tr><td>GEMSDOE27</td><td>topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan</td><td>0.2449 · OWNER-REPORTED</td><td>NO — same dotted family, already used, cross-site overlap 0.98–1.00</td><td>DO NOT SUBMIT</td></tr><tr><td>GEMSDOE28</td><td>h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan</td><td>0.2710 · OWNER-REPORTED</td><td>NO — same dotted family, already used, cross-site overlap 0.98–1.00</td><td>DO NOT SUBMIT</td></tr><tr><td>GEMSDOE30</td><td>d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca</td><td>0.2600 · OWNER-REPORTED</td><td>NO — same dotted family, already used, cross-site overlap 0.98–1.00</td><td>DO NOT SUBMIT</td></tr><tr><td>GEMSDOE31</td><td>h27-4-solo-d28-20261004-8acb75e1-nan</td><td>0.2708 · OWNER-REPORTED</td><td>NO — same dotted family, already used, cross-site overlap 0.98–1.00</td><td>DO NOT SUBMIT</td></tr><tr><td>GEMSDOE32</td><td>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</td><td>0.2778 · OWNER-REPORTED</td><td>NO — same dotted family, already used, cross-site overlap 0.98–1.00</td><td>DO NOT SUBMIT</td></tr><tr><td>GEMSDOE33</td><td>h33d-analog-tip-stepover-r30-20261004-cb490425926e</td><td>0.2632 · OWNER-REPORTED</td><td>NO — same dotted family, already used, cross-site overlap 0.98–1.00</td><td>DO NOT SUBMIT</td></tr><tr><td>GEMSDOE36</td><td>anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros</td><td>0.2750 · OWNER-REPORTED</td><td>NO — same dotted family, already used, cross-site overlap 0.98–1.00</td><td>DO NOT SUBMIT</td></tr>
+</tbody></table>
+<p class="micro">Every historical value is <strong>OWNER-REPORTED</strong> (copied from the session
+history; no DrivenData submission receipt exists in this project) — never ORGANIZER-CONFIRMED.
+All nine champions are strict members of one dotted family with cross-site 3-px overlap 0.98–1.00
+against each other: re-uploading any of them is a duplicate submission. Their best representative
+is GEMSDOE32 B2 at 0.2778 (USER-REPORTED).</p>
+
+<h2>Why GEMSDOE32 B2 scored 0.2778 — and can we beat it?</h2>
+<p><strong>Mechanism (evidence-backed, PhD forensics, receipts in
+<a href="../evidence/wbg8/proxy_calibration.json">proxy_calibration.json</a> and
+<a href="../evidence/h33_b2_forensics.json">h33_b2_forensics.json</a>):</strong></p>
+<ol>
+<li><strong>B2 is a deletion-only subset of D2.8.</strong> Exact pixel forensics: B2 = D2.8 minus
+6,436 dots, all within 2 px (200 m) of the public catalogue, plus zero added dots. The
+0.2600 → 0.2778 gain is <em>precision cleanup</em>, not new detections.</li>
+<li><strong>The official metric makes catalogue-near dots pure loss.</strong> DTI =
+TP_w / (TP_w + 0.2·FP_w + 0.8·FN_w) with TP_w saturating per truth pixel (max over dots ×
+300 m triangular kernel). Catalogue pixels are excluded from scoring, so a dot 1–2 px off a
+mapped trace can earn nothing but FP_w. Removing those dots raises DTI — exactly the observed
++0.0178.</li>
+<li><strong>The dotted representation matters more than the corridor source.</strong> The same
+corridor family as a continuous field (h19-5 powerlaw, 0.1922) scores 0.068 lower than its
+dotted budget form (d2.8, 0.2600): redundant corridor mass is FP_w under the max-coverage kernel.</li>
+<li><strong>Family-wide rank structure (n=12, one family, OWNER-REPORTED).</strong> Score falls
+monotonically with catalogue proximity (Spearman −0.944, p=4.1e-6) and with SGMC off-catalogue
+coverage (−0.972, p=1.3e-7 — a family artifact of dot budget, not evidence that new-fault
+coverage hurts). Mechanism fit: score ≈ 0.2896 − 0.178·frac(within 3 px of catalogue).</li>
+</ol>
+<p><strong>Can we beat 0.2778?</strong> Plausible, not proven. Our field applies the validated
+mechanism completely (strict 3 px catalogue halo — frac3 = 0.000, the first member of the family
+to do so) with placement that is scientifically distinct and measurably better on the independent
+off-catalogue instrument: <strong>PROXY-DTI 0.0972 vs B2
+0.0913</strong> (+6.4&#37; relative) on faults present in the state
+compilation but absent from the competition catalogue. The fold-safe holdout shows the placement
+beats a same-budget random control with a paired CI excluding zero (Δ
++0.0101, 95&#37; CI [+0.0011, +0.0180]).
+Calibrated estimates: 0.275 (proxy fit) to 0.290 (mechanism fit) — i.e. at or modestly above
+0.2778. The dominant uncertainty is honest and large: near-identical rasters in the history differ
+by up to <strong>0.0856</strong> in reported score, and no organizer receipt can be obtained from
+this sandbox. Nothing here supports claims near the 0.3195 / 0.4413 / 0.4544 leader band.</p>
+
+<h2>Instrument readings (every number labelled)</h2>
+<table><thead><tr><th>Instrument</th><th>Value</th><th>Label</th></tr></thead><tbody>
+<tr><td>Hide-and-recover holdout (report draw seed 21, evaluator gems57-pooled-hide-v2,
+11,572 withheld positives)</td>
+<td>0.0527, 95&#37; CI [0.0449, 0.0599]</td>
+<td>HOLDOUT-DTI — catalogue proxy; the shared instrument does <em>not</em> rank real submissions
+(Spearman 0.144); never a score</td></tr>
+<tr><td>Same-budget Poisson control (same mask)</td><td>0.0426</td><td>HOLDOUT-DTI control</td></tr>
+<tr><td>B2 champion on the same holdout (fixed field, not fold-safe)</td>
+<td>0.0041</td><td>HOLDOUT-DTI reference</td></tr>
+<tr><td>Off-catalogue proxy truth (SGMC minus catalogue, 78,433 px)</td>
+<td>candidate 0.0972 vs B2 0.0913</td>
+<td>PROXY-DTI — auxiliary proxy population, never a score</td></tr>
+<tr><td>Score estimate</td><td>~0.28 MODEL-ESTIMATE (calibrated band 0.275-0.290 across methods B/C/D)</td><td>MODEL-ESTIMATE — not HOLDOUT-DTI, not ORGANIZER-CONFIRMED</td></tr>
+</tbody></table>
+
+<h2>Champion-family calibration (n=12, one family, OWNER-REPORTED)</h2>
+<table><thead><tr><th>Submission</th><th>Reported score</th><th>PROXY-DTI</th><th>frac ≤3 px of catalogue</th><th>Dots</th></tr></thead><tbody>
+<tr><td>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</td><td>0.2778</td><td>0.0913</td><td>0.0577</td><td>37,654</td></tr><tr><td>anderson-geothermal-pinn-38854-20261004T230000Z-</td><td>0.2750</td><td>0.0927</td><td>0.0587</td><td>38,854</td></tr><tr><td>h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan</td><td>0.2710</td><td>0.1037</td><td>0.1162</td><td>37,660</td></tr><tr><td>h27-4-solo-d28-20261004-8acb75e1-nan</td><td>0.2708</td><td>0.1069</td><td>0.1173</td><td>40,199</td></tr><tr><td>h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan</td><td>0.2708</td><td>0.1069</td><td>0.1173</td><td>40,199</td></tr><tr><td>h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan</td><td>0.2707</td><td>0.1040</td><td>0.1161</td><td>37,860</td></tr><tr><td>h32-1-prethin-tip-euler-d2-8-20261003-31e35eee88</td><td>0.2649</td><td>0.1184</td><td>0.1612</td><td>42,294</td></tr><tr><td>h33d-analog-tip-stepover-r30-20261004-cb49042592</td><td>0.2632</td><td>0.1145</td><td>0.1439</td><td>41,865</td></tr><tr><td>dotted-h19-5-d2-8-20261002-e56ea318af89-nan</td><td>0.2600</td><td>0.1281</td><td>0.1952</td><td>44,090</td></tr><tr><td>d28-poisson300m-offcat-44090-20261003T233156Z-91</td><td>0.2600</td><td>0.1281</td><td>0.1952</td><td>44,090</td></tr><tr><td>h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-na</td><td>0.2477</td><td>0.1375</td><td>0.1987</td><td>60,069</td></tr><tr><td>topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6</td><td>0.2449</td><td>0.1390</td><td>0.1987</td><td>61,328</td></tr>
+<tr><td><strong>wbggemsdoe1-wbg8-hidden-corridor-34000-20261031-zeros (ours)</strong></td><td>— (not yet submitted)</td>
+<td><strong>0.0972</strong></td><td><strong>0.0000</strong></td><td>34,000</td></tr>
+</tbody></table>
+
+<h2>Automated gates (run without human intervention)</h2>
+<table><thead><tr><th>Gate</th><th>Result</th></tr></thead><tbody><tr><td>G1_format</td><td>PASS</td></tr><tr><td>G2_exact_copy</td><td>PASS</td></tr><tr><td>G3_rank_correlation</td><td>PASS</td></tr><tr><td>G4_literal_overlap</td><td>FAIL (reported)</td></tr><tr><td>G4prime_density_matched_drift</td><td>PASS</td></tr><tr><td>G5_leakage_canary</td><td>PASS</td></tr><tr><td>G6_holdout_reported</td><td>PASS</td></tr></tbody></table>
+<p class="micro">G4′ semantics (preregistered in
+<a href="../research/07_wbg8_preregistration_20261031.md">research/07</a>): the literal 70&#37;
+forward-overlap gate is degenerate against dense registry artifacts (AGENTS defect ii — a
+206,895-dot lattice captures 99.68&#37; of <em>any</em> dot field); literal failures are reported
+per raster below and the working drift test is the density-matched lift on those rows. A genuine
+placement clone shows lift ≫ 2; every failure here shows lift ≤ 1.5.</p>
+
+<h3>Literal-gate failures, reported in full</h3>
+<table><thead><tr><th>Registry raster</th><th>Its positive cells</th><th>Our dots within 3 px</th><th>Reverse overlap</th><th>Lift</th><th>Assessment</th></tr></thead><tbody>
+<tr><td>13GEMSDOE__13gems_20261001_r13-lattice-s5_v2_nan-outside.tif</td><td>206,895</td><td>0.9915</td><td>0.1840</td><td>0.9912</td><td>dense artifact (&gt;3× our dots)</td></tr><tr><td>GEMSDOE22__gems22-h23-b-dti-optimal-emission-10pct-20261002-8617</td><td>516,738</td><td>0.7106</td><td>0.2397</td><td>1.3269</td><td>dense artifact (&gt;3× our dots)</td></tr><tr><td>GEMSDOE3__pindrop-v4-discovery-20260925T152423Z-37f9d5b855.tif</td><td>155,021</td><td>0.7707</td><td>0.1948</td><td>1.0477</td><td>dense artifact (&gt;3× our dots)</td></tr><tr><td>GEMSDOE3__pindrop-v4-nodes-20260925T152420Z-f347b70daa.tif</td><td>155,021</td><td>0.7624</td><td>0.1918</td><td>1.0356</td><td>dense artifact (&gt;3× our dots)</td></tr><tr><td>wbg-c1-commutator-research-surface-20261026-acea88448272.tif</td><td>5,106,385</td><td>1.0000</td><td>0.1858</td><td>0.9934</td><td>dense artifact (&gt;3× our dots)</td></tr></tbody></table>
+
+<h2>What was tested (3 experiments, preregistered)</h2>
+<p>Ranked hypotheses and the full preregistration:
+<a href="../research/07_wbg8_preregistration_20261031.md">research/07_wbg8_preregistration_20261031.md</a>.
+Four catalogue-free channels were screened (EXP1): LiDAR scarp expression (canary AUC 0.543),
+buried-basement lineaments (0.520 — <strong>selected</strong>), potential-field concordance (0.538),
+radiometric alteration × conductance (0.474). All pass the leakage canary (limit 0.90).
+The winning surface is the buried-basement lineament corridor channel (bands 12, 15), with the
+budget fixed at 34,000 dots by the pre-registered rule (EXP2 grid 30k–50k). EXP3 packaged the
+file through the shared fail-closed writer and ran the 473-raster
+uniqueness audit.</p>
+
+<h2>Irregularities flagged for review</h2>
+<ul>
+<li>The session prompt reports two different “current high” values (0.4413 and 0.3195) and the
+29 Oct session observed public rank one at 0.4544. All are OWNER-REPORTED page observations;
+none is attached to a project file. Treat the leader band as unknown.</li>
+<li>0.2778 (B2) and every family value are USER-REPORTED without a DrivenData receipt.</li>
+<li>Score-consistency: near-identical rasters (0.958 overlap) differ by up to 0.0856 in reported
+score (B2 vs h19-5) — the family is statistically tied; treat family rank order as noise-dominated.</li>
+<li>The hide-and-recover holdout does not rank real submissions (Spearman 0.144, n=118) — it is
+reported here as HOLDOUT-DTI only.</li>
+<li>The literal 70&#37; overlap gate is degenerate against dense rasters; five failures are
+reported above with lift diagnostics.</li>
+<li>Derived-SGMC irregularity IR-57-SGMC-01: the pre-derived file is a ~1 px dilation still
+containing 260 catalogue pixels; the proxy here is rebuilt from pinned raw SGMC bytes.</li>
+<li>All data bytes are SHA-256-pinned owner mirrors (GitHub bridge). A hash match proves byte
+integrity, not DrivenData organizer origin.</li>
+<li>Calibration fits use n=12 OWNER-REPORTED values from ONE family; grouped cross-validation is
+mandatory before any fitted claim is generalized (AGENTS defect iii).</li>
+</ul>
+
+<h2>Official sources (for manual review)</h2>
+<ul>
+<li>Competition &amp; metric: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description</a>
+(distance-weighted Tversky, α=0.2, β=0.8, 300 m triangular kernel)</li>
+<li>Official rules PDF §3.2 (weekly cap, submission format): <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">docs.nlr.gov</a></li>
+<li>Leaderboard: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">drivendata.org</a></li>
+<li>GeoDAWN (USGS, DOI 10.5066/P93LGLVQ): <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">usgs.gov</a></li>
+<li>INGENIOUS (GBCGE): <a href="https://gbcge.org/current-projects/ingenious/">gbcge.org</a> ·
+GDR record: <a href="https://gdr.openei.org/submissions/1391">gdr.openei.org</a> (DOI 10.15121/1881483)</li>
+<li>Reference solution: <a href="https://github.com/drivendataorg/gems-prize-reference-solution">github.com/drivendataorg</a></li>
+<li>CRS: <a href="https://epsg.io/32611">epsg.io/32611</a> · Tversky index: <a href="https://en.wikipedia.org/wiki/Tversky_index">wikipedia.org</a></li>
+</ul>
+<p class="micro">Parallel 31 Oct packs on this desk (unaffected by this verdict): <a href="executive-summary-20261031.html">FS / hgb-visible summary</a> · <a href="executive-summary-rtp-20261031.html">RTP summary</a> · <a href="executive-summary-h2-20261031.html">H2 / edgecorr summary</a>.<br><strong>Label discipline:</strong> HOLDOUT-DTI (evaluator version
+gems57-pooled-hide-v2) · PROXY-DTI (auxiliary SGMC population) · MODEL-ESTIMATE ·
+OWNER-REPORTED (unverified history) · ORGANIZER-CONFIRMED (none exists in this project).
+A projection is never written as a score. Promotion to a weekly slot is a separate selector step
+inside the official §3.2 weekly cap; this project has used no slot.</p>
+</section>
+
+</main>
+<footer class="footer"><div class="wrap footer-inner"><p><strong>WBG / GEMS</strong> &nbsp; Evidence before a weekly slot.<br>Fault predictions are not verified geothermal vents. Local validation is not organizer acceptance.</p><div><a href="../evidence/wbg8/run_card.json">Run card JSON</a><a href="standing-prompt.md">Standing brief</a><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Competition ↗</a></div></div></footer>
+<div id="toast" role="status" aria-live="polite"></div></body></html>

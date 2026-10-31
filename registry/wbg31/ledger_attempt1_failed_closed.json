@@ -1,0 +1,13 @@
+{
+  "started_utc": "2026-10-31T01:06:04+00:00",
+  "hypothesis_id": "WBG31-E1",
+  "experiments_started": 1,
+  "maximum_experiments": 3,
+  "maximum_wall_hours": 2,
+  "preregistration_sha256": "334d911f7f8a28c5edb3f42391db7cc7b00987dae6651acc9e0cee874cae9931",
+  "status": "failed_closed",
+  "submission_slots_used": 0,
+  "finished_utc": "2026-10-31T01:09:38+00:00",
+  "error": "'bootstrap'",
+  "elapsed_seconds": 213.49764598699994
+}

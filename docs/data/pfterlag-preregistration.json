@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "status": "PREREGISTERED_BEFORE_EXECUTION",
+  "preregistered_date_utc": "2026-10-31",
+  "candidate_id": "PFTL-1",
+  "candidate_name": "potential-field / terrain edge-lag coherence",
+  "authorization": {
+    "assigned_method_paragraph_supplied": false,
+    "status": "provisional research screen only; not an assigned competition lane",
+    "competition_slot_selection_authorized": false,
+    "competition_slot_used": false
+  },
+  "hypothesis": "At some buried normal-fault or basement-contact boundaries, gravity and magnetic gradient ridges may be displaced coherently from the detrended-elevation gradient at 300 m and 800 m smoothing scales. A cross-sensor, cross-scale lag-coherence score may therefore recover withheld fault segments more often than a probability-mass-matched uniform null.",
+  "mechanism": "For each of the cached detrended-elevation, isostatic-gravity-anomaly and total-magnetic-intensity layers, robust-scale values using footprint-only median/MAD. Compute scale-normalized Gaussian gradient vectors at sigma 3 and 8 pixels. At each scale, compare absolute gradient-vector cosine alignment of gravity and magnetic gradients shifted by one of eight 3-pixel cardinal/diagonal offsets against zero-shift alignment with the elevation gradient. Retain positive alignment gain only; combine gravity and magnetic gains only when their preferred offsets agree, and require offset-direction consistency between scales. Weight by the geometric mean of the local 300 m-scale gradient magnitudes for all three fields, each clipped after division by its footprint-only 99th percentile. Normalize the nonnegative response by its footprint-only 99th percentile and clip to [0,1]. No catalogue, registry, labels, or site score enters feature construction.",
+  "named_non_fault_mimics": [
+    "Cenozoic dike swarms and intrusive contacts",
+    "alluvial basin-fill or lithologic boundaries",
+    "flight-line leveling or gridding seams"
+  ],
+  "inputs": [
+    {
+      "band": 12,
+      "literal_name": "det_elev",
+      "use": "terrain-gradient reference"
+    },
+    {
+      "band": 13,
+      "literal_name": "iso_grav_anom",
+      "use": "potential-field gradient"
+    },
+    {
+      "band": 14,
+      "literal_name": "tmi",
+      "use": "potential-field gradient"
+    }
+  ],
+  "fixed_parameters": {
+    "grid": "shared 100 m EPSG:32611 template grid",
+    "gaussian_sigma_pixels": [3, 8],
+    "scale_normalized_first_derivative": true,
+    "offset_vectors_yx_pixels": [
+      [-3, 0],
+      [-2, -2],
+      [0, -3],
+      [2, -2],
+      [3, 0],
+      [2, 2],
+      [0, 3],
+      [-2, 2]
+    ],
+    "orientation_alignment": "absolute cosine",
+    "zero_shift_comparator": true,
+    "response_normalization": "score / footprint-only 99th percentile, clipped to [0,1]",
+    "no_parameter_tuning_after_holdout": true
+  },
+  "holdout": {
+    "shared_module": "vendor/gems57/holdout.py::buffered_component_draw",
+    "shared_evaluator": "vendor/gems57/evaluate_holdout.py",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "split": "four spatial quadrants; whole 8-connected catalogue components withheld; 12 px quadrant-boundary erosion; 3 px feature-context buffer around withheld components",
+    "seed": 71614,
+    "hide_fraction": 0.2,
+    "feature_buffer_pixels": 3,
+    "boundary_buffer_pixels": 12,
+    "catalogue_derived_features": "none; all candidate features are independent cached rasters",
+    "visible_catalogue_masking": "pixel-exact via shared evaluator",
+    "metric": {
+      "alpha": 0.2,
+      "beta": 0.8,
+      "triangular_kernel_radius_m": 300
+    },
+    "uncertainty": {
+      "method": "shared paired spatial-block bootstrap over evaluator additive terms",
+      "block_side_pixels": 200,
+      "block_size_m": 20000,
+      "draws": 2000,
+      "seed": 20261031
+    },
+    "control": "uniform probability within each fold's active evaluation region, set to the candidate surface's mean probability in that same region"
+  },
+  "leakage_canary": {
+    "features_tested_individually": [
+      "det_elev",
+      "iso_grav_anom",
+      "tmi",
+      "det_elev_gradient_magnitude_sigma3",
+      "iso_grav_anom_gradient_magnitude_sigma3",
+      "tmi_gradient_magnitude_sigma3",
+      "det_elev_gradient_magnitude_sigma8",
+      "iso_grav_anom_gradient_magnitude_sigma8",
+      "tmi_gradient_magnitude_sigma8",
+      "iso_grav_anom_lag_gain_sigma3",
+      "iso_grav_anom_lag_gain_sigma8",
+      "tmi_lag_gain_sigma3",
+      "tmi_lag_gain_sigma8",
+      "iso_grav_anom_offset_scale_coherence",
+      "tmi_offset_scale_coherence",
+      "gravity_magnetic_offset_coherence_sigma3",
+      "gravity_magnetic_offset_coherence_sigma8",
+      "edge_strength",
+      "PFTL1_final_score"
+    ],
+    "failure_rule": "If any fold-specific two-sided ROC AUC (max(AUC,1-AUC)) exceeds 0.90, treat as leakage until resolved; do not interpret DTI or promote."
+  },
+  "uniqueness": {
+    "shared_comparator": "vendor/gems57/uniqueness.py::compare_array_to_registry",
+    "indexed_registry": "registry/registry.json; 179 unique restored rasters from 231 immutable public-owner source rows; 0 rejected",
+    "scope_limit": "indexed public owner repositories only; not a complete organizer registry",
+    "stop_rules": {
+      "spearman_full_footprint": "> 0.90",
+      "forward_positive_support_within_3px": "> 0.70"
+    },
+    "phases": [
+      "pre-placement continuous score surface",
+      "final dots only if pre-placement screen passes"
+    ],
+    "no_lattice_gap_tuning": true
+  },
+  "budget": {
+    "max_experiments": 3,
+    "max_elapsed_hours": 2,
+    "planned_experiments": 1
+  },
+  "expected_direction": "Qualitatively positive versus the probability-mass-matched uniform null if the geological mechanism generalizes; no numerical DTI or leaderboard projection is preregistered.",
+  "data_readiness": {
+    "shared_19_band_cache_available": true,
+    "bands_12_13_14_hash_verified_against_pinned_public_owner_mirror": true,
+    "organizer_origin_authenticated": false,
+    "physical_band_metadata_independently_authenticated": false
+  },
+  "stop_and_artifact_policy": "Run the feature-only leakage canaries and one shared spatial holdout screen. Write only the continuous research surface with the shared submission writer; do not emit final dots unless the pre-placement uniqueness gate passes. Any failed gate produces a negative run card. Never select or spend a competition slot."
+}

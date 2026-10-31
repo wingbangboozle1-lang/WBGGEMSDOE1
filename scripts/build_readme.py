@@ -38,8 +38,34 @@ See [latest review (29 Oct 2026)](docs/repo-review-20261029.md), [Focus-9 site c
 
 """
 
+def pfterlag_readme_block():
+    """Current 31 Oct PFTL-1 result; numbers are taken from its canonical run card."""
+    run = json.loads((ROOT / "evidence/pfterlag_20261031/run_card.json").read_text())
+    holdout = run["holdout_dti"]
+    candidate = holdout["pooled_candidate"]
+    null = holdout["mass_matched_uniform_null"]
+    delta = holdout["paired_candidate_minus_null"]
+    registry = run["preplacement_registry_comparison"]
+    validator = run["validator"]
+    tif = Path(run["artifact"]["path"]).name
+    zip_name = Path(tif).with_suffix(".zip").name
+    return f"""## CURRENT STATUS · 31 OCT 2026 — DOWNLOAD: RESEARCH ONLY · SUBMIT: NO
+
+**[31 Oct executive summary and three-pass review](docs/repo-review-20261031.html)** · [full Markdown review](docs/repo-review-20261031.md) · [Focus-9 site comparison](docs/executive-summary-20261029.html) · [standing prompt](PROMPT.md) · [session instructions](docs/standing-prompt.md).
+
+**DOWNLOAD: YES (research only):** [`{tif}`](docs/downloads/{tif}) · [ZIP](docs/downloads/{zip_name}) · SHA-256 `{run["artifact"]["sha256"]}` · [canonical run card](evidence/pfterlag_20261031/run_card.json) · [preregistration](registry/pfterlag_preregistration_20261031.json).
+
+**SUBMIT: NO.** PFTL-1 is a new continuous research surface, not final dots. Pre-placement: `{registry["registry_rasters_checked"]}/{registry["registry_rasters_expected"]}` indexed owner rasters checked; max Spearman {registry["max_signed_spearman_full_footprint"]:.4f}, but positive-support overlap **{registry["max_candidate_support_within_3px_of_registry"]:.4%}** against the retained lattice (>70% STOP). No final dots were placed. Local grid/range/finite checks pass, but the full validator fails mapped-catalogue exclusion ({validator["cli_preflight"]["on_catalogue_positive_pixels"]:,} positive surface pixels); organizer acceptance is not established. No slot was used.
+
+**HOLDOUT-DTI** (`{candidate["evaluator_version"]}`, n={candidate["withheld_positive_pixels"]:,} withheld positives): {candidate["dti"]:.6f}, 95% CI [{candidate["ci95"][0]:.6f}, {candidate["ci95"][1]:.6f}]. Matched uniform null {null["dti"]:.6f}; paired delta {delta["delta"]:+.6f}, 95% CI [{delta["ci95"][0]:+.6f}, {delta["ci95"][1]:+.6f}]. Leakage canary max AUC {run["leakage_canary"]["max_two_sided_auc"]:.4f}. This soft-surface holdout is **not a leaderboard estimate** and is not like-for-like with sparse dot fields. The supplied GEMSDOE32 B2 0.2778 remains OWNER-REPORTED, without an artifact-linked organizer receipt.
+
+---
+
+"""
+
+
 def brief_20261029_block():
-    """Top-of-README pointer to the 29 Oct 2026 owner brief, executive summary and live verdict."""
+    """Archived 29 Oct owner brief and results; superseded by the 31 Oct status above."""
     run = json.loads((ROOT / "evidence/candidates/wbggemsdoe1-tipgap2km-K12395-20261029.run_card.json").read_text())
     name = run["name"]
     canary = run["leakage_canary"]["detached_max_auc"]
@@ -50,7 +76,7 @@ def brief_20261029_block():
 
 **Unique-lane summary:** [Unique-lane results, 29 Oct 2026](docs/unique-lane-summary-20261029.html) (holdout arms, canary, the candidate file) · [How to submit](docs/how-to-submit-20261029.html) · [29 Oct executive summary](docs/executive-summary-20261029.html)
 
-**Verdict now:** the new research TIFF `{name}` is **DOWNLOAD: {"YES (research)" if run["ok_to_download"] else "NO"}** and **SUBMIT: {"YES" if run["ok_to_submit"] else "NO"}**. Failed gates: leakage canary (detached max AUC {canary:.4f}, above the 0.90 limit) and the literal 70% uniqueness rule ({dup} registry rasters). No slot has been used. GEMSDOE32 B2's 0.2778 is USER-REPORTED, not organizer-confirmed.
+**Archived 29 Oct verdict (superseded by the current status above):** the research TIFF `{name}` was **DOWNLOAD: {"YES (research)" if run["ok_to_download"] else "NO"}** and **SUBMIT: {"YES" if run["ok_to_submit"] else "NO"}**. Its recorded gates were leakage canary (detached max AUC {canary:.4f}) and the literal 70% uniqueness rule ({dup} registry rasters). No slot was used. GEMSDOE32 B2's 0.2778 is OWNER-REPORTED, not organizer-confirmed.
 
 """
 
@@ -124,10 +150,10 @@ def main():
     w5_comp = w5["correlation_overlap_vs_registry"]["final_dots_competing_method"]
     w5_lit = w5["correlation_overlap_vs_registry"]["final_dots_literal"]
     w5_bench = w5["benchmark"]["dti"]
-    header = brief_20261029_block() + wbg6_readme_block() + tipcont_experiment_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
+    header = pfterlag_readme_block() + brief_20261029_block() + wbg6_readme_block() + tipcont_experiment_readme_block() + f'''# WBG GEMS — evidence-first fault mapping
 
 **[START HERE — 29 Oct 2026 executive summary (download / submit verdicts, estimates, nine-site table)](docs/start-here-20261029.html)** · No file is cleared for submission under the 70% protocol.
-**[Repository review (2026-10-29)](docs/repo-review-current-20261029.md)** · no new TIFF approved; core competition inputs are absent and the active method lane is unspecified. Local tests and lint pass. Treat all existing candidate downloads according to their individual negative/STOP decisions.
+**[Repository review (2026-10-31)](docs/repo-review-20261031.md)** · PFTL-1 is a new research-only continuous surface; core inputs are restored/hash-verified from an owner mirror, but organizer origin is not authenticated. No current TIFF is cleared. Treat the remaining download pages as historical research artifacts with their individual negative/STOP decisions.
 
 **[28 October review of earlier lanes](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · No file is cleared; WBG-6 fails the active literal overlap gate.
 
@@ -449,9 +475,7 @@ and never hand an unapproved file to the user as an upload recommendation.
 
 ## Starting point for every future session
 
-Read this current status, `registry/run_card.json`, `registry/irregularities.json`, and the full
-standing request below before work. Historical claims and intended capabilities in the prompt are
-not verified facts. The measured run card takes precedence over stale factual assumptions.
+Read this current status, [`PROMPT.md`](PROMPT.md), [`AGENTS.md`](AGENTS.md), [`docs/standing-prompt.md`](docs/standing-prompt.md), `evidence/pfterlag_20261031/run_card.json`, `registry/run_card.json`, `registry/irregularities.json`, and the full standing request below before work. Historical claims and intended capabilities in the prompt are not verified facts. The newest measured run card takes precedence over stale factual assumptions.
 
 <details>
 <summary><strong>Complete standing user request — archived intent, not verified findings</strong></summary>

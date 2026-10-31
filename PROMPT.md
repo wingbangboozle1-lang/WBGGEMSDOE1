@@ -2,6 +2,10 @@
 
 This file is the standing brief for WBGGEMSDOE1. The original user message is longer (many GEMSDOE URLs). The requirements that actually bind work are here.
 
+## Current verified workspace state — 31 Oct 2026
+
+Read the current status at the top of `README.md` and [`docs/repo-review-20261031.md`](docs/repo-review-20261031.md) before starting. No file is cleared to submit and no competition slot has been used. PFTL-1 was preregistered and screened once using the shared `gems57` holdout; its continuous research surface fails the literal pre-placement registry-support overlap gate and the full CLI preflight, so no final dots were placed. The research TIFF is downloadable for study only; its holdout result is not a leaderboard estimate. Core rasters and all 19 feature-cache band hashes are locally verified against a pinned public owner mirror, not an authenticated organizer receipt. The indexed 179-raster public-owner registry was restored; it is not the complete organizer registry.
+
 ## Goal
 
 Place a **unique**, portal-valid GeoTIFF on the DrivenData DOE GEMS Prize (competition 306) path — but **do not spend a weekly slot** unless hide-and-recover DTI beats the current same-evaluator best.

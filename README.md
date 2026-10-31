@@ -1,10 +1,22 @@
+## CURRENT STATUS · 31 OCT 2026 — DOWNLOAD: RESEARCH ONLY · SUBMIT: NO
+
+**[31 Oct executive summary and three-pass review](docs/repo-review-20261031.html)** · [full Markdown review](docs/repo-review-20261031.md) · [Focus-9 site comparison](docs/executive-summary-20261029.html) · [standing prompt](PROMPT.md) · [session instructions](docs/standing-prompt.md).
+
+**DOWNLOAD: YES (research only):** [`wbggemsdoe1-pfterlag-pftl1-surface-20261031.tif`](docs/downloads/wbggemsdoe1-pfterlag-pftl1-surface-20261031.tif) · [ZIP](docs/downloads/wbggemsdoe1-pfterlag-pftl1-surface-20261031.zip) · SHA-256 `5b5cb362517694d690bd8375d60e4c64690803d7e8ec398f662368e064c77746` · [canonical run card](evidence/pfterlag_20261031/run_card.json) · [preregistration](registry/pfterlag_preregistration_20261031.json).
+
+**SUBMIT: NO.** PFTL-1 is a new continuous research surface, not final dots. Pre-placement: `179/179` indexed owner rasters checked; max Spearman 0.0102, but positive-support overlap **99.8442%** against the retained lattice (>70% STOP). No final dots were placed. Local grid/range/finite checks pass, but the full validator fails mapped-catalogue exclusion (6,938 positive surface pixels); organizer acceptance is not established. No slot was used.
+
+**HOLDOUT-DTI** (`gems57-pooled-hide-v2`, n=11,330 withheld positives): 0.027858, 95% CI [0.023254, 0.032746]. Matched uniform null 0.009655; paired delta +0.018203, 95% CI [+0.014439, +0.022150]. Leakage canary max AUC 0.6151. This soft-surface holdout is **not a leaderboard estimate** and is not like-for-like with sparse dot fields. The supplied GEMSDOE32 B2 0.2778 remains OWNER-REPORTED, without an artifact-linked organizer receipt.
+
+---
+
 ## 29 OCT 2026 STANDING BRIEF — READ FIRST EVERY SESSION
 
 **Owner brief (condensed, official links kept):** [`docs/owner-brief-20261029.md`](docs/owner-brief-20261029.md). Read it at the start of every session, together with this README and [`AGENTS.md`](AGENTS.md).
 
 **Unique-lane summary:** [Unique-lane results, 29 Oct 2026](docs/unique-lane-summary-20261029.html) (holdout arms, canary, the candidate file) · [How to submit](docs/how-to-submit-20261029.html) · [29 Oct executive summary](docs/executive-summary-20261029.html)
 
-**Verdict now:** the new research TIFF `wbggemsdoe1-tipgap2km-K12395-20261029` is **DOWNLOAD: YES (research)** and **SUBMIT: NO**. Failed gates: leakage canary (detached max AUC 0.9143, above the 0.90 limit) and the literal 70% uniqueness rule (19 registry rasters). No slot has been used. GEMSDOE32 B2's 0.2778 is USER-REPORTED, not organizer-confirmed.
+**Archived 29 Oct verdict (superseded by the current status above):** the research TIFF `wbggemsdoe1-tipgap2km-K12395-20261029` was **DOWNLOAD: YES (research)** and **SUBMIT: NO**. Its recorded gates were leakage canary (detached max AUC 0.9143) and the literal 70% uniqueness rule (19 registry rasters). No slot was used. GEMSDOE32 B2's 0.2778 is OWNER-REPORTED, not organizer-confirmed.
 
 ## ⛔ SUBMISSION STATUS (29 Oct 2026): SUBMIT NO — NO FILE IS CLEARED
 
@@ -38,7 +50,7 @@ See [latest review (29 Oct 2026)](docs/repo-review-20261029.md), [Focus-9 site c
 # WBG GEMS — evidence-first fault mapping
 
 **[START HERE — 29 Oct 2026 executive summary (download / submit verdicts, estimates, nine-site table)](docs/start-here-20261029.html)** · No file is cleared for submission under the 70% protocol.
-**[Repository review (2026-10-29)](docs/repo-review-current-20261029.md)** · no new TIFF approved; core competition inputs are absent and the active method lane is unspecified. Local tests and lint pass. Treat all existing candidate downloads according to their individual negative/STOP decisions.
+**[Repository review (2026-10-31)](docs/repo-review-20261031.md)** · PFTL-1 is a new research-only continuous surface; core inputs are restored/hash-verified from an owner mirror, but organizer origin is not authenticated. No current TIFF is cleared. Treat the remaining download pages as historical research artifacts with their individual negative/STOP decisions.
 
 **[28 October review of earlier lanes](docs/review-20261028.md)** · [Review run card](docs/data/review-20261028.json) · No file is cleared; WBG-6 fails the active literal overlap gate.
 
@@ -360,22 +372,18 @@ and never hand an unapproved file to the user as an upload recommendation.
 
 ## Starting point for every future session
 
-Read this current status, `registry/run_card.json`, `registry/irregularities.json`, and the full
-standing request below before work. Historical claims and intended capabilities in the prompt are
-not verified facts. The measured run card takes precedence over stale factual assumptions.
+Read this current status, [`PROMPT.md`](PROMPT.md), [`AGENTS.md`](AGENTS.md), [`docs/standing-prompt.md`](docs/standing-prompt.md), `evidence/pfterlag_20261031/run_card.json`, `registry/run_card.json`, `registry/irregularities.json`, and the full standing request below before work. Historical claims and intended capabilities in the prompt are not verified facts. The newest measured run card takes precedence over stale factual assumptions.
 
 <details>
 <summary><strong>Complete standing user request — archived intent, not verified findings</strong></summary>
 
 # Standing user prompt — supplied 2026-10-26
 
-> **CURRENT STATE — updated 2026-10-27.** The prior WBG-2 upload recommendation and
-> numerical projection were withdrawn. The exact TIFF is a local-format-passing **research-only**
-> artifact and fails the literal 70% registry rule: 99.8972% of its existing dots are within
-> 3 pixels of the pinned lattice. Its prior surface also fails a retrospective test. No verified
-> holdout result or organizer receipt is available. **DO NOT SUBMIT.** See `docs/wbg2.html`
-> and `evidence/wbg2/safety_audit_20261027.json`. This status supersedes any prior approval.
-> The user request below is archived intent, not independently verified evidence.
+> **CURRENT STATE — updated 2026-10-31.** No file is cleared to submit and no competition slot has been selected or spent. PFTL-1 was preregistered and screened once on the shared spatially blocked holdout; its new continuous TIFF is a research download only. Its HOLDOUT-DTI is not a leaderboard estimate. The pre-placement surface-support comparison fails the literal 70% registry rule; no final dots were placed. The full local submission preflight also fails the mapped-catalogue-exclusion check. See [`docs/repo-review-20261031.md`](repo-review-20261031.md) and [`evidence/pfterlag_20261031/run_card.json`](../evidence/pfterlag_20261031/run_card.json).
+>
+> Core competition rasters and all 19 feature-cache band hashes are verified against a pinned public owner mirror, **not authenticated as organizer-origin**. The indexed public-owner registry contains 179 unique raster contents from 231 source rows, with no rejected rows; this is not the complete organizer registry. No credentials were requested or stored. The PFTL-1 TIFF and run card are new research artifacts, not a promoted competition submission. This current status supersedes stale approval or access claims below.
+>
+> Historical negative decisions remain binding: WBG-2 and earlier WBG-C1/TIP1/MVGZ/WBG-S2/WBG-3/WBG-4/WBG-5/WBG-6/WBG-7 artifacts remain research-only under their individual run cards. The archived user request below expresses intent, not independently verified evidence.
 
 
 ## Active follow-up instructions (2026-10-27 summary, not a verbatim transcript)

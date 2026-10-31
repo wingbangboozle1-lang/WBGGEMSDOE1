@@ -1,12 +1,10 @@
 # Standing user prompt — supplied 2026-10-26
 
-> **CURRENT STATE — updated 2026-10-27.** The prior WBG-2 upload recommendation and
-> numerical projection were withdrawn. The exact TIFF is a local-format-passing **research-only**
-> artifact and fails the literal 70% registry rule: 99.8972% of its existing dots are within
-> 3 pixels of the pinned lattice. Its prior surface also fails a retrospective test. No verified
-> holdout result or organizer receipt is available. **DO NOT SUBMIT.** See `docs/wbg2.html`
-> and `evidence/wbg2/safety_audit_20261027.json`. This status supersedes any prior approval.
-> The user request below is archived intent, not independently verified evidence.
+> **CURRENT STATE — updated 2026-10-31.** No file is cleared to submit and no competition slot has been selected or spent. PFTL-1 was preregistered and screened once on the shared spatially blocked holdout; its new continuous TIFF is a research download only. Its HOLDOUT-DTI is not a leaderboard estimate. The pre-placement surface-support comparison fails the literal 70% registry rule; no final dots were placed. The full local submission preflight also fails the mapped-catalogue-exclusion check. See [`docs/repo-review-20261031.md`](repo-review-20261031.md) and [`evidence/pfterlag_20261031/run_card.json`](../evidence/pfterlag_20261031/run_card.json).
+>
+> Core competition rasters and all 19 feature-cache band hashes are verified against a pinned public owner mirror, **not authenticated as organizer-origin**. The indexed public-owner registry contains 179 unique raster contents from 231 source rows, with no rejected rows; this is not the complete organizer registry. No credentials were requested or stored. The PFTL-1 TIFF and run card are new research artifacts, not a promoted competition submission. This current status supersedes stale approval or access claims below.
+>
+> Historical negative decisions remain binding: WBG-2 and earlier WBG-C1/TIP1/MVGZ/WBG-S2/WBG-3/WBG-4/WBG-5/WBG-6/WBG-7 artifacts remain research-only under their individual run cards. The archived user request below expresses intent, not independently verified evidence.
 
 
 ## Active follow-up instructions (2026-10-27 summary, not a verbatim transcript)

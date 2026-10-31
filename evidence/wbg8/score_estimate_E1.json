@@ -1,0 +1,32 @@
+{
+  "evidence_class": "MODEL-ESTIMATE",
+  "model": "wbg6-score-model-v2 (family-grouped OLS on owner-reported scores)",
+  "terms": [
+    "log_n",
+    "coverage",
+    "log_p90",
+    "log_cluster",
+    "frac_cat3",
+    "cat_density"
+  ],
+  "feature_values": {
+    "log_n": 10.536194469284657,
+    "coverage": 0.7208771265399265,
+    "log_p90": 3.2305657863616943,
+    "log_cluster": 1.826589584350586,
+    "frac_cat3": 0.09093323418494716,
+    "cat_density": 0.03417529910802841
+  },
+  "estimate": 0.0696,
+  "interval_68_model": [
+    -0.0436,
+    0.1829
+  ],
+  "interval_95_model": [
+    -0.1523,
+    0.2915
+  ],
+  "model_grouped_rmse": 0.11321785039144218,
+  "model_grouped_spearman": 0.25141888784077804,
+  "caveat": "Projection from geometry-descriptor regression on USER-REPORTED scores; grouped CV is weak (Spearman 0.25). NOT a HOLDOUT-DTI and NOT ORGANIZER-CONFIRMED. The dependent variable itself is unverified."
+}

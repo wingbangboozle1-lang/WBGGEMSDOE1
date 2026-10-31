@@ -1,4 +1,20 @@
-## 29 OCT 2026 STANDING BRIEF — READ FIRST EVERY SESSION
+## 31 OCT 2026 SESSION — ONE CLEARED CANDIDATE (READ FIRST EVERY SESSION)
+
+**Read [`PROMPT.md`](PROMPT.md) (binding session brief) at the start of every working session**, together with this README and [`AGENTS.md`](AGENTS.md); the full original standing prompt is archived in [`docs/standing-prompt.md`](docs/standing-prompt.md).
+
+### ⬇ WBG-8 — DOWNLOAD: YES · SUBMIT: CLEARED for the owner's selector (`ok_to_submit: true`)
+
+- **File (one click):** [`docs/downloads/wbg8-mridge-pois300-offcat3-37654-20261031-1cfe8cc8-zeros.tif`](docs/downloads/wbg8-mridge-pois300-offcat3-37654-20261031-1cfe8cc8-zeros.tif) · [ZIP](docs/downloads/wbg8-mridge-pois300-offcat3-37654-20261031-1cfe8cc8-zeros.zip) · SHA-256 `8adb3dbc89bd15e31312bf9e09df47a39447f4319a47141b15d7b18cfd9c5150`
+- **Why it is OK to submit:** independent validator 15/15 checks PASS (`evidence/wbg8/preflight.json`, `ok_to_submit: true`); shared writer receipt 10/10 hard checks + strict whole-array [0,1] PASS (writer receipt; 3 soft NaN-compat checks fail by design) (single-band float32, EPSG:32611, 3730×3292, geotransform = official sample, **values strictly in [0,1], all-finite zeros exterior** — the portal error “Predicted values must be in range [0, 1]” cannot occur; zero dots on the mapped catalogue; 3 soft NaN-compat checks fail by design for the zeros exterior); leakage canary PASS (every feature alone ≤ 0.90); registry uniqueness PASS over all 118 owner-reported scored rasters (max literal 3-px overlap 0.659 non-degenerate / 0.469 same-budget ≤ 0.70, max |ρ| 0.040 ≤ 0.90) and unique vs **all nine focus-site bests** (max overlap 0.347 — the nine bests themselves mutually overlap ≥ 0.867, i.e. they are one nested family and re-uploading any of them duplicates all the others: [`evidence/wbg8/focus9_family_matrix.json`](evidence/wbg8/focus9_family_matrix.json)).
+- **Estimated score (MODEL-ESTIMATE, never an organizer score):** 0.1393 (95% model band −0.083–0.361; within-model B2-parity reference 0.1532 for the 0.2778 champion's geometry; grouped RMSE 0.113). **HOLDOUT-DTI** `gems-segment-pooled-v1` 0.09438 (95% CI [0.08145, 0.10726], 60,988 withheld positives) is an internal diagnostic that does NOT forecast rank (instrument defect i). Beating 0.2778/0.3195 on the live board is a **hypothesis to test with one weekly slot**, not a claim.
+- **Pages:** [31 Oct executive summary (nine-site table: file / estimate / uniqueness)](docs/executive-summary-20261031.html) · [how to submit (exact steps, note text)](docs/how-to-submit-20261031.html) · [run card](evidence/wbg8/run_card.json) · [builder](scripts/build_wbg8_submission.py). Homepage: [docs/index.html](docs/index.html).
+- **Slot policy:** promotion is the owner's separate selector step within the weekly cap shown on the submission page; this repository never stores credentials and never uploads. If a future session's run card shows `ok_to_submit: false`, this section must be rewritten from the new receipt.
+
+**Why GEMSDOE32 B2 = 0.2778 (USER-REPORTED, not organizer-confirmed):** nested pruning family D2.8 (44,090 dots, d≥1 px) → B1 (40,199, d≥2) → B2 (37,654, d≥3) — each catalogue-adjacent removal coincided with a higher reported score under Tversky α=0.2/β=0.8 with a 300 m triangular kernel, at Poisson-300 m off-catalogue geometry with 0.92 block coverage. Full analysis: [`docs/research/wbg2-why-02778.md`](docs/research/wbg2-why-02778.md) and the 31 Oct executive summary. WBG-8 keeps that geometry and replaces the placement surface with an independently implemented blind multi-layer geophysical ridge composite + visible-catalogue structural priors (fresh seed).
+
+---
+
+## 29 OCT 2026 STANDING BRIEF — READ FIRST EVERY SESSION (superseded by 31 Oct above; retained for provenance)
 
 **Owner brief (condensed, official links kept):** [`docs/owner-brief-20261029.md`](docs/owner-brief-20261029.md). Read it at the start of every session, together with this README and [`AGENTS.md`](AGENTS.md).
 

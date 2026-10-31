@@ -132,7 +132,8 @@ def main():
     focus9_negative = "e8c4bf7607cec72c54981b90aa60e7e85163b429b58ebd6f2a7c3126e8c1e351"
     paths = ("registry/run_card.json", "evidence/wbg2/run_card.json", "evidence/wbg_s2/run_card.json",
              "evidence/wbg3_spipmr/run_card.json", "evidence/focus9_exec/run_card.json",
-             "evidence/wbg6_run_card.json", "evidence/tip_continuation_20261029/run_card.json")
+             "evidence/wbg6_run_card.json", "evidence/tip_continuation_20261029/run_card.json",
+             "evidence/wbg8/run_card.json")
     matches = []
     for name in paths:
         card_path = ROOT / name

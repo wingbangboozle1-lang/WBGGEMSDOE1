@@ -114,11 +114,19 @@ def test_official_sample_footprint_counts():
 
 
 def test_no_file_is_marked_approved_for_submission():
+    """Never claim organizer approval; the current decision must cite the receipt."""
     text = (ROOT / "AGENTS.md").read_text()
     assert "APPROVED FOR SUBMISSION" not in text
-    assert "NOT APPROVED" in text
+    assert "NOT APPROVED" in text  # historical artifacts remain not approved
     readme = (ROOT / "README.md").read_text()
-    assert "SUBMIT NO" in readme and "NO FILE IS CLEARED" in readme.upper()
+    assert "SUBMIT NO" in readme  # superseded artifacts keep their no-go notices
+    # 31 Oct state: one candidate cleared for the owner's selector, receipt-linked
+    card = json.loads((ROOT / "evidence/wbg8/run_card.json").read_text())
+    if card["decision"]["ok_to_submit"]:
+        assert "WBG-8" in readme and "CLEARED" in readme.upper()
+        assert card["decision"]["ok_to_submit"] is True
+    else:
+        assert "NO FILE IS CLEARED" in readme.upper()
 
 
 def test_executive_summary_and_homepage_show_the_decision():
@@ -126,8 +134,24 @@ def test_executive_summary_and_homepage_show_the_decision():
     assert "SUBMIT: NO" in page and "UNAVAILABLE" in page and "0.2778" in page
     assert "0.4544" in page and "0.3167" in page
     home = (ROOT / "docs" / "index.html").read_text()
-    assert "SUBMIT: NO. No file is cleared." in home
+    # The homepage headline must match the WBG-8 run-card receipt, both ways.
+    card = json.loads((ROOT / "evidence/wbg8/run_card.json").read_text())
+    if card["decision"]["ok_to_submit"]:
+        assert "SUBMIT: CLEARED" in home
+        assert card["submission_name"] in home or "WBG-8" in home
+        assert "executive-summary-20261031.html" in home
+        assert "how-to-submit-20261031.html" in home
+    else:
+        assert "SUBMIT: NO. No file is cleared." in home
     assert "executive-summary-20261029.html" in home
+    # 31 Oct pages must exist and carry the required table columns
+    exec31 = (ROOT / "docs" / "executive-summary-20261031.html").read_text()
+    for needle in ("What to download", "estimated score", "0.2778",
+                   card["submission_name"], "MODEL-ESTIMATE"):
+        assert needle.lower() in exec31.lower(), needle
+    how31 = (ROOT / "docs" / "how-to-submit-20261031.html").read_text()
+    assert "[0, 1]" in how31 or "[0,1]" in how31
+    assert card["note"][:40] in how31
 
 
 def test_bridge_pins_match_local_files_when_present():

@@ -34,7 +34,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "vendor"))
 sys.path.insert(0, str(ROOT / "scripts"))
 from gems57 import emit as EM  # noqa: E402
-from gems57 import grid as GR  # noqa: E402
+from gems57 import grid as GR  # noqa: E402,F401
 from gems57 import gates as GT  # noqa: E402
 from gems57 import uniqueness as UQ  # noqa: E402
 from gems57 import submission_writer as SW  # noqa: E402

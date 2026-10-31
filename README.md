@@ -1,3 +1,21 @@
+> **31 OCT 2026 · READ FIRST (standing brief, every session)**
+>
+> **Verdict:** DOWNLOAD: YES (research TIFF) · SUBMIT: **NO** · Estimated leaderboard score: **UNAVAILABLE**.
+> **Start here:** [Executive summary, 31 Oct 2026](docs/executive-summary-h2-20261031.html) — nine-site table (file to download, owner-reported score, uniqueness), the candidate TIFF, why GEMSDOE32 B2 scored 0.2778, and all irregularities.
+> **Second 31 Oct research TIFF (parallel branch, also SUBMIT NO):** see the status block below and [`docs/repo-review-20261031.md`](docs/repo-review-20261031.md).
+> **Candidate:** [`wbggemsdoe1-h2-edgecorr-avoid3-37654-20261031.tif`](docs/downloads/wbggemsdoe1-h2-edgecorr-avoid3-37654-20261031.tif) · [run card](evidence/h2_lag/run_card_20261031.json) · [experiment](scripts/run_h2_lag_corroboration.py)
+>
+> **Standing requirements (condensed from the owner's 31 Oct brief; full transcription in [`docs/owner-brief-20261029.md`](docs/owner-brief-20261029.md)):**
+> 1. Goal: place first on the DrivenData DOE GEMS Prize ([competition](https://www.drivendata.org/competitions/306/competition-doe-gems/), [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)). Produce a **unique, format-valid GeoTIFF** that can be downloaded with one click, with a clear DOWNLOAD and SUBMIT verdict.
+> 2. Unique: not a byte or pixel copy of any earlier submission. Copies are allowed only for learning.
+> 3. Format (official, [problem page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/); [rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf)): single-band float32 GeoTIFF, EPSG:32611, 100 m, training-grid bounds, values in [0,1]. Outside the bounds the official text says null/NaN; see the irregularity on this in the executive summary.
+> 4. Validation runs in the project (no human inspector). Each file has a unique name and a note of at most 140 characters.
+> 5. Executive summary table: file to download, estimated score with its label (HOLDOUT-DTI, ORGANIZER-CONFIRMED, or OWNER-REPORTED), and whether the file is unique.
+> 6. No manual input. Anything needing a human (DrivenData login, weekly slot selection) is listed as a blocker, not worked around.
+> 7. Every claim is traced to an official source with a link. Irregularities are flagged. No hallucinated values.
+> 8. Core values: **Maximize P(Win)** and **Own the Outcome**.
+> 9. Method (parallel-run protocol, [`PROMPT.md`](PROMPT.md)): stay in the declared lane; reuse the shared holdout and writer; label every number; run the leakage canary; end each experiment with a run card; budget 3 experiments or 2 hours.
+
 ## 31 OCT 2026 STANDING PROMPT — READ FIRST EVERY SESSION (condensed from the user's brief)
 
 **Mission:** WBGGEMSDOE1 for the DOE GEMS Prize (DrivenData competition 306). Core values: maximize P(Win); own the outcome; no manual input; no hallucinations (verify each line against an official link).

@@ -87,7 +87,6 @@ def euler_solution_density(field, vertical, footprint, structural_index, *, wind
         p0 = max(0, r0 - HALO)
         p1 = min(height, r1 + HALO)
         sl = slice(p0, p1)
-        keep = slice(r0 - p0, r0 - p0 + (r1 - r0))
         rows = np.arange(p0, p1, dtype=np.float64)[:, None]
         cols = np.arange(width, dtype=np.float64)[None, :]
         x = np.broadcast_to(cols * CELL_M, f0[sl].shape)

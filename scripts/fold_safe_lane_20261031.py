@@ -44,7 +44,7 @@ from gems57 import emit as EM  # noqa: E402
 from gems57 import evaluate_holdout as EH  # noqa: E402
 from gems57 import grid as GR  # noqa: E402
 from gems57 import holdout as HO  # noqa: E402
-from gems57 import metric as MT  # noqa: E402
+from gems57 import metric as MT  # noqa: E402,F401
 
 CACHE = ROOT / ".cache/features"
 OUT = ROOT / "evidence/fold_safe_20261031"

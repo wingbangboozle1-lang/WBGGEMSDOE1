@@ -1,4 +1,10 @@
-## 29 OCT 2026 STANDING BRIEF — READ FIRST EVERY SESSION
+## 31 OCT 2026 — CURRENT STATUS / READ FIRST EVERY SESSION
+
+**SUBMIT: NO — no TIFF is cleared.** Read the [31 Oct repository review](docs/repo-review-20261031.md) before acting on historical content below. The review generated no TIFF; a separate parallel-branch [research-only TIFF](docs/downloads/WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.tif) is downloadable but fails the shared outside-footprint nodata check, has no registry comparison or holdout, so uniqueness is **unverified** and it is **not submit-cleared**. Required full inputs are absent, focus-site values are OWNER-REPORTED rather than ORGANIZER-CONFIRMED, new-file leaderboard estimates are unavailable, and no weekly slot was used.
+
+Read [`PROMPT.md`](PROMPT.md), this README, and [`AGENTS.md`](AGENTS.md) at the start of every session. The full archived request is also in [`docs/standing-prompt.md`](docs/standing-prompt.md). Core values: **Maximize P(Win)** and **Own the Outcome**.
+
+## 29 OCT 2026 STANDING BRIEF — HISTORICAL CONTEXT
 
 **Owner brief (condensed, official links kept):** [`docs/owner-brief-20261029.md`](docs/owner-brief-20261029.md). Read it at the start of every session, together with this README and [`AGENTS.md`](AGENTS.md).
 
@@ -12,7 +18,7 @@
 
 **Focus lane (three pre-registered arms E1 to E3, nine-site duplicate audit, gate decision):** [focus-unique-attempt-20261029.html](docs/focus-unique-attempt-20261029.html). Research-only TIFs are in [`docs/research/`](docs/research/). All three arms are format-valid and not copies, but each fails the 70% lane gate (overlap 0.739 to 0.765 vs GEMSDOE77). The literal lane rule cannot be passed by any dot field (r13 lattice).
 
-Estimated leaderboard score: **UNAVAILABLE** for every file here (no holdout or organizer score is computable in this sandbox). Live public leaderboard #1 is **0.4544**; the 50th row read this session is **0.3169** (the board moves: another read recorded 0.3167) (DrivenData page retrieved 2026-10-29). GEMSDOE32 B2 (0.2778, USER-REPORTED) is already in the competition: re-uploading it is a duplicate.
+A new-file leaderboard estimate is **UNAVAILABLE**: existing HOLDOUT-DTI results are not a validated leaderboard-score estimator, and no organizer receipt is present. The 0.4544 top-row and 0.3169 / 0.3167 rank-50 values are dated public-page observations from 27–29 Oct, not current live values. GEMSDOE32 B2 (0.2778, OWNER-REPORTED) is listed as a previous submission in the supplied history; re-uploading the same pixels would not be unique.
 
 ---
 
@@ -1289,60 +1295,3 @@ Do not stop after the first pass. Each pass must build on the previous one. Befo
 Go ahead and create a pull request and then merge the pull request onto the main. Make suggestions for what work still needs to be done and any limitations that is in the way of a successful project.  It should be worked on in this next session or the next session.  Work line by line verify everything no hallucinations.
 
 </details>
-
-# STANDING OPERATING PROMPT — read at the start of every session
-
-## Goal
-Place a **unique, portal-valid GeoTIFF** on the DrivenData DOE GEMS Prize (competition 306) and obtain a **high score on the leaderboard** — aiming to beat the best supplied historical claim (GEMSDOE32 B2 = 0.2778, USER-REPORTED, not organizer-confirmed) and place top of the leaderboard (current reference high: 0.3195–0.4413 depending on read; public leaderboard observed 0.4544 on 2026-10-27).
-
-Competition: https://www.drivendata.org/competitions/306/competition-doe-gems/
-Problem: https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
-About: https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/
-Leaderboard: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
-Reference: https://github.com/drivendataorg/gems-prize-reference-solution
-Rules PDF: https://docs.nlr.gov/docs/fy26osti/96647.pdf
-
-## Focus sites (executive summary table required)
-GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33, GEMSDOE36.
-The executive summary must list, per site: the file to download, its estimated score (explicitly labelled), and whether it is a unique new submission unlike any previous submission. It must be clear and obvious which is the best submission to submit for a high score.
-
-## Mandatory deliverable — unique TIF submission
-MUST generate a unique TIF submission for the competition. Do not copy a previous submission unless for learning and education. A unique TIF must be generated. It must be obvious whether it is OK to download and submit the generated TIF submission.
-- Easy one-click download of the submission TIF (and ZIP twin) in the executive summary / at the top of the site.
-- Single-band float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, training-grid geotransform, values in [0, 1], nothing outside bounds except null/NaN (fixes the "Predicted values must be in range [0, 1]" portal error).
-- Unique name + short note (≤ 140 characters).
-- Obvious verdict per downloadable file: DOWNLOAD and SUBMIT. SUBMIT: OK only when it passes every gate; otherwise SUBMIT: NOT CLEARED / DO NOT SUBMIT, stated plainly.
-- Validation automatic through the project (scripts/validate_submission.py), not a human inspector.
-
-## GEMSDOE32 question (PhD-level answer required)
-Study https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html — h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros = 0.2778.
-- Why and how it scored 0.2778: it is the inherited D2.8 field pruned by catalogue distance (>200 m exclusion removes low-marginal-credit, catalogue-near dots under the max-cover distance-weighted Tversky metric). Plausible precision mechanism, not proved; USER-REPORTED, no organizer receipt.
-- Whether a unique submission can beat it: in principle yes, but nothing in this repo establishes it; no organizer score receipt or leaderboard verification exists. Cannot claim a generated file beats 0.2778 without authenticated DrivenData access.
-
-## Parallel-run protocol (binding)
-1. LANE — stay in the declared method; rank correlation > 0.90 or > 70% of dots within 3 px of one registry raster = duplicate: log and stop. Check surface before placement AND final dots.
-2. REUSE — use scripts/evaluate_holdout.py and scripts/submission_writer.py; hide-and-recover holdout (withhold whole fault segments with buffer, catalogue features from visible faults only, pixel-exact mask, pooled DTI α=0.2 β=0.8, 300 m triangular kernel). Fix shared tools once, never private forks.
-3. LABEL every number: HOLDOUT-DTI (evaluator version, n withheld positives, 95% CI) or ORGANIZER-CONFIRMED (submission-page receipt). A projection is never a score.
-4. LEAKAGE CANARY — test each feature alone on holdout; AUC > 0.90 = leakage until proven otherwise.
-5. RUN CARD — one JSON card: hypothesis, mechanism, named non-fault mimic, holdout DTI + CI, correlation/overlap vs registry, raster SHA-256, validator output (no NaN in footprint, values [0,1], CRS/shape/transform match), submission name + ≤140 char note, verdict promote/negative. Negative results are deliverables.
-6. BUDGET — stop after 3 experiments or 2 hours. Do not pick live slots; promotion is a separate selector step within the weekly cap (3/week per rules §3.2).
-
-## Blockers (do not work around; list, do not manual-input)
-- No DrivenData authentication: cannot auto-download training_features.tif / labels.tif / sample_submission.tif / 1m_DEM_links.csv; submissions page redirects to login. Never request or store credentials.
-- Cannot verify leaderboard scores or obtain organizer receipts from this sandbox.
-
-## Core values
-Maximize P(Win). Own the Outcome. A negative unique result that prevents a wasted slot is a win relative to a duplicate upload.
-
-## Official / verified sources (for manual review; no hallucinated values)
-- Competition problem & metric: https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
-- About: https://www.drivendata.org/competitions/306/competitions/306/competition-doe-gems/page/968/
-- Leaderboard: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
-- Rules PDF: https://docs.nlr.gov/docs/fy26osti/96647.pdf
-- Reference solution: https://github.com/drivendataorg/gems-prize-reference-solution
-- USGS GeoDAWN: https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and
-- INGENIOUS: https://gbcge.org/current-projects/ingenious/
-- CRS: https://epsg.io/32611
-- Tversky index: https://en.wikipedia.org/wiki/Tversky_index
-
-Work line by line, verifying from official verified trusted sources, provide links for manual review. No manual input. Flag irregularities for review. No hallucinations. Verify no hallucinations.

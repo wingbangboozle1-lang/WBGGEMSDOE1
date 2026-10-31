@@ -1,0 +1,344 @@
+{
+ "schema": "gemsdoe1-exec-summary-20261031-v1",
+ "date_utc": "2026-10-31",
+ "headline": {
+  "download": "DOWNLOAD: YES (research file only)",
+  "submit": "SUBMIT: NO",
+  "reason": "The new file is unique and format-valid. It cannot be cleared because the literal 70% 3-px overlap gate (G4) is failed by every dot field: the r13 lattice matches 99.79% of its dots and a uniform random field matches 99.87%. That is a gate defect, which needs an owner decision."
+ },
+ "nine_site_rows": [
+  {
+   "site": "GEMSDOE32",
+   "file_to_download": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+   "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/HEAD/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+   "download_path_in_repo": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+   "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+   "reported_score": 0.2778,
+   "reported_score_label": "OWNER-REPORTED (no organizer receipt)",
+   "estimated_score": "UNAVAILABLE - no validated estimator (proxy vs reported rho = 0.0572, n=21)",
+   "proxy_dti": 0.091278,
+   "proxy_dti_label": "PROXY-DTI (SGMC-minus-catalogue proxy; NOT a score)",
+   "bytes_found_in_sites": [
+    "GEMSDOE32"
+   ],
+   "byte_unique_to_one_site": true,
+   "max_dot_overlap_3px_vs_other_focus_file": 1.0,
+   "max_overlap_partner": "GEMSDOE36:gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+   "dot_set_unique_vs_focus_sites": false,
+   "verdict_download": "DOWNLOAD: NO (not a candidate; duplicate family)",
+   "verdict_submit": "SUBMIT: NO - duplicate of the focus family"
+  },
+  {
+   "site": "GEMSDOE36",
+   "file_to_download": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+   "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/HEAD/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+   "download_path_in_repo": "docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+   "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+   "reported_score": 0.275,
+   "reported_score_label": "OWNER-REPORTED (no organizer receipt)",
+   "estimated_score": "UNAVAILABLE - no validated estimator (proxy vs reported rho = 0.0572, n=21)",
+   "proxy_dti": 0.092719,
+   "proxy_dti_label": "PROXY-DTI (SGMC-minus-catalogue proxy; NOT a score)",
+   "bytes_found_in_sites": [
+    "GEMSDOE32",
+    "GEMSDOE36"
+   ],
+   "byte_unique_to_one_site": false,
+   "max_dot_overlap_3px_vs_other_focus_file": 0.9758,
+   "max_overlap_partner": "GEMSDOE27:gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+   "dot_set_unique_vs_focus_sites": false,
+   "verdict_download": "DOWNLOAD: NO (not a candidate; duplicate family)",
+   "verdict_submit": "SUBMIT: NO - duplicate of the focus family"
+  },
+  {
+   "site": "GEMSDOE28",
+   "file_to_download": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+   "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/HEAD/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+   "download_path_in_repo": "docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+   "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+   "reported_score": 0.271,
+   "reported_score_label": "OWNER-REPORTED (no organizer receipt)",
+   "estimated_score": "UNAVAILABLE - no validated estimator (proxy vs reported rho = 0.0572, n=21)",
+   "proxy_dti": 0.103736,
+   "proxy_dti_label": "PROXY-DTI (SGMC-minus-catalogue proxy; NOT a score)",
+   "bytes_found_in_sites": [
+    "GEMSDOE28",
+    "GEMSDOE32"
+   ],
+   "byte_unique_to_one_site": false,
+   "max_dot_overlap_3px_vs_other_focus_file": 1.0,
+   "max_overlap_partner": "GEMSDOE25:gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "dot_set_unique_vs_focus_sites": false,
+   "verdict_download": "DOWNLOAD: NO (not a candidate; duplicate family)",
+   "verdict_submit": "SUBMIT: NO - duplicate of the focus family"
+  },
+  {
+   "site": "GEMSDOE31",
+   "file_to_download": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+   "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/HEAD/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+   "download_path_in_repo": "docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+   "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+   "reported_score": 0.2708,
+   "reported_score_label": "OWNER-REPORTED (no organizer receipt)",
+   "estimated_score": "UNAVAILABLE - no validated estimator (proxy vs reported rho = 0.0572, n=21)",
+   "proxy_dti": 0.106852,
+   "proxy_dti_label": "PROXY-DTI (SGMC-minus-catalogue proxy; NOT a score)",
+   "bytes_found_in_sites": [
+    "GEMSDOE31",
+    "GEMSDOE32"
+   ],
+   "byte_unique_to_one_site": false,
+   "max_dot_overlap_3px_vs_other_focus_file": 1.0,
+   "max_overlap_partner": "GEMSDOE25:gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "dot_set_unique_vs_focus_sites": false,
+   "verdict_download": "DOWNLOAD: NO (not a candidate; duplicate family)",
+   "verdict_submit": "SUBMIT: NO - duplicate of the focus family"
+  },
+  {
+   "site": "GEMSDOE33",
+   "file_to_download": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
+   "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/HEAD/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
+   "download_path_in_repo": "docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
+   "sha256": "bc3af2a5fcb4b49bc5845a2d7dc3da23daf41ce75e4c64da3337c0c8c93cc12c",
+   "reported_score": 0.2632,
+   "reported_score_label": "OWNER-REPORTED (no organizer receipt)",
+   "estimated_score": "UNAVAILABLE - no validated estimator (proxy vs reported rho = 0.0572, n=21)",
+   "proxy_dti": 0.114459,
+   "proxy_dti_label": "PROXY-DTI (SGMC-minus-catalogue proxy; NOT a score)",
+   "bytes_found_in_sites": [
+    "GEMSDOE33"
+   ],
+   "byte_unique_to_one_site": true,
+   "max_dot_overlap_3px_vs_other_focus_file": 0.9971,
+   "max_overlap_partner": "GEMSDOE24:gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+   "dot_set_unique_vs_focus_sites": false,
+   "verdict_download": "DOWNLOAD: NO (not a candidate; duplicate family)",
+   "verdict_submit": "SUBMIT: NO - duplicate of the focus family"
+  },
+  {
+   "site": "GEMSDOE25",
+   "file_to_download": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/HEAD/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "download_path_in_repo": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+   "reported_score": 0.26,
+   "reported_score_label": "OWNER-REPORTED (no organizer receipt)",
+   "estimated_score": "UNAVAILABLE - no validated estimator (proxy vs reported rho = 0.0572, n=21)",
+   "proxy_dti": 0.12807,
+   "proxy_dti_label": "PROXY-DTI (SGMC-minus-catalogue proxy; NOT a score)",
+   "bytes_found_in_sites": [
+    "GEMSDOE24",
+    "GEMSDOE25",
+    "GEMSDOE30",
+    "GEMSDOE32"
+   ],
+   "byte_unique_to_one_site": false,
+   "max_dot_overlap_3px_vs_other_focus_file": 1.0,
+   "max_overlap_partner": "GEMSDOE30:gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+   "dot_set_unique_vs_focus_sites": false,
+   "verdict_download": "DOWNLOAD: NO (not a candidate; duplicate family)",
+   "verdict_submit": "SUBMIT: NO - duplicate of the focus family"
+  },
+  {
+   "site": "GEMSDOE30",
+   "file_to_download": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+   "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/HEAD/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+   "download_path_in_repo": "docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+   "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+   "reported_score": 0.26,
+   "reported_score_label": "OWNER-REPORTED (no organizer receipt)",
+   "estimated_score": "UNAVAILABLE - no validated estimator (proxy vs reported rho = 0.0572, n=21)",
+   "proxy_dti": 0.12807,
+   "proxy_dti_label": "PROXY-DTI (SGMC-minus-catalogue proxy; NOT a score)",
+   "bytes_found_in_sites": [
+    "GEMSDOE30",
+    "GEMSDOE32"
+   ],
+   "byte_unique_to_one_site": false,
+   "max_dot_overlap_3px_vs_other_focus_file": 1.0,
+   "max_overlap_partner": "GEMSDOE25:gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "dot_set_unique_vs_focus_sites": false,
+   "verdict_download": "DOWNLOAD: NO (not a candidate; duplicate family)",
+   "verdict_submit": "SUBMIT: NO - duplicate of the focus family"
+  },
+  {
+   "site": "GEMSDOE24",
+   "file_to_download": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+   "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/HEAD/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+   "download_path_in_repo": "docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+   "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+   "reported_score": 0.2477,
+   "reported_score_label": "OWNER-REPORTED (no organizer receipt)",
+   "estimated_score": "UNAVAILABLE - no validated estimator (proxy vs reported rho = 0.0572, n=21)",
+   "proxy_dti": 0.137477,
+   "proxy_dti_label": "PROXY-DTI (SGMC-minus-catalogue proxy; NOT a score)",
+   "bytes_found_in_sites": [
+    "GEMSDOE24",
+    "GEMSDOE32"
+   ],
+   "byte_unique_to_one_site": false,
+   "max_dot_overlap_3px_vs_other_focus_file": 1.0,
+   "max_overlap_partner": "GEMSDOE25:gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "dot_set_unique_vs_focus_sites": false,
+   "verdict_download": "DOWNLOAD: NO (not a candidate; duplicate family)",
+   "verdict_submit": "SUBMIT: NO - duplicate of the focus family"
+  },
+  {
+   "site": "GEMSDOE24",
+   "file_to_download": "gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/HEAD/docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "download_path_in_repo": "docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+   "reported_score": 0.26,
+   "reported_score_label": "OWNER-REPORTED (no organizer receipt)",
+   "estimated_score": "UNAVAILABLE - no validated estimator (proxy vs reported rho = 0.0572, n=21)",
+   "proxy_dti": 0.12807,
+   "proxy_dti_label": "PROXY-DTI (SGMC-minus-catalogue proxy; NOT a score)",
+   "bytes_found_in_sites": [
+    "GEMSDOE24",
+    "GEMSDOE25",
+    "GEMSDOE30",
+    "GEMSDOE32"
+   ],
+   "byte_unique_to_one_site": false,
+   "max_dot_overlap_3px_vs_other_focus_file": 1.0,
+   "max_overlap_partner": "GEMSDOE25:gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "dot_set_unique_vs_focus_sites": false,
+   "verdict_download": "DOWNLOAD: NO (not a candidate; duplicate family)",
+   "verdict_submit": "SUBMIT: NO - duplicate of the focus family"
+  },
+  {
+   "site": "GEMSDOE27",
+   "file_to_download": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+   "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/HEAD/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+   "download_path_in_repo": "docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+   "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+   "reported_score": 0.2449,
+   "reported_score_label": "OWNER-REPORTED (no organizer receipt)",
+   "estimated_score": "UNAVAILABLE - no validated estimator (proxy vs reported rho = 0.0572, n=21)",
+   "proxy_dti": 0.138961,
+   "proxy_dti_label": "PROXY-DTI (SGMC-minus-catalogue proxy; NOT a score)",
+   "bytes_found_in_sites": [
+    "GEMSDOE27",
+    "GEMSDOE28",
+    "GEMSDOE32"
+   ],
+   "byte_unique_to_one_site": false,
+   "max_dot_overlap_3px_vs_other_focus_file": 0.9802,
+   "max_overlap_partner": "GEMSDOE25:gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+   "dot_set_unique_vs_focus_sites": false,
+   "verdict_download": "DOWNLOAD: NO (not a candidate; duplicate family)",
+   "verdict_submit": "SUBMIT: NO - duplicate of the focus family"
+  }
+ ],
+ "new_candidate_row": {
+  "site": "NEW (this session)",
+  "file_to_download": "wbggemsdoe1-band4to10-null-37654-20261031.tif",
+  "download_url": "docs/downloads/wbggemsdoe1-band4to10-null-37654-20261031.tif",
+  "download_path_in_repo": "docs/downloads/wbggemsdoe1-band4to10-null-37654-20261031.tif",
+  "sha256": "c28b2e8492a0b112bc44030a2428d91aa7e09c134864d284287b01cb434a0c43",
+  "reported_score": null,
+  "reported_score_label": "none - never submitted",
+  "estimated_score": "UNAVAILABLE for the leaderboard. Research null: PROXY-DTI 0.0768 vs uniform random 0.0583.",
+  "proxy_dti": 0.076809,
+  "proxy_dti_label": "PROXY-DTI (not organizer, not holdout)",
+  "bytes_found_in_sites": [],
+  "byte_unique_to_one_site": true,
+  "max_dot_overlap_3px_vs_other_focus_file": 0.9979,
+  "max_overlap_partner": "GEMSDOE24/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+  "dot_set_unique_vs_focus_sites": false,
+  "verdict_download": "DOWNLOAD: YES - research file only (not a copy; format-valid; fails literal dot-overlap gate G4)",
+  "verdict_submit": "SUBMIT: NO - literal 70% gate (G4) fails for every dot field"
+ },
+ "experiments": {
+  "E1_calibration": {
+   "what": "Does the off-catalogue proxy rank the user-reported focus scores?",
+   "result": {
+    "rho": 0.0572,
+    "p": 0.8054,
+    "n": 21,
+    "note": "user-reported scores are OWNER-REPORTED; ties and near-identical files included"
+   }
+  },
+  "E2_mechanism": {
+   "what": "Does the B2 deletion raise proxy DTI over its parent?",
+   "result": {
+    "parent_dots": 44090,
+    "b2_dots": 37654,
+    "b2_is_subset_of_parent": true,
+    "removed_dots": 6436,
+    "removed_dist_to_catalogue_px_min": 1.0,
+    "removed_dist_to_catalogue_px_max": 2.0,
+    "proxy_delta_b2_minus_parent": -0.036792
+   },
+   "b2_proxy_dti": 0.091278,
+   "parent_proxy_dti": 0.12807
+  },
+  "E3_band_null": {
+   "what": "Does distance-band placement alone reproduce proxy DTI?",
+   "result": {
+    "band_null_proxy_dti": 0.076809,
+    "uniform_random_proxy_dti": 0.058284
+   }
+  }
+ },
+ "run_card": {
+  "schema": "gemsdoe1-run-card-20261031-v1",
+  "date_utc": "2026-10-31",
+  "hypothesis": "Placement distance to the public USGS/INGENIOUS catalogue alone, with no geology, accounts for the proxy ranking of the focus family; the B2 deletion explanation for 0.2778 can be tested on the proxy.",
+  "mechanism": "Dots 4-10 px from mapped traces avoid the catalogue 3-px kernel; B2 removed 6,436 parent dots 1-2 px from it.",
+  "named_non_fault_mimic": "catalogue-proximity artefacts; the SGMC-derived proxy is a ~1 px dilation of SGMC (IR-57-SGMC-01)",
+  "holdout_dti": "NOT COMPUTED this session (no HOLDOUT-DTI number is reported)",
+  "proxy_dti_candidate": {
+   "value": 0.076809,
+   "label": "PROXY-DTI (metric.dti_exact, n_truth=78433, no CI)"
+  },
+  "proxy_dti_uniform_random_baseline": {
+   "value": 0.058284,
+   "label": "PROXY-DTI (same density, seed 20261031)"
+  },
+  "registry_overlap_and_correlation": {
+   "G2_exact_copy": "absent among 466 distinct prediction rasters",
+   "G3_max_abs_spearman_vs_9_headline": 0.0029,
+   "G4_max_candidate_overlap_3px": {
+    "value": 0.9979,
+    "file": "GEMSDOE24/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif"
+   },
+   "G4_lattice_saturation": {
+    "lattice_file": "13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "lattice_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "lattice_dots": 206895,
+    "candidate_band_null_within_3px_of_lattice": 0.9979,
+    "uniform_random_same_density_within_3px_of_lattice": 0.99865,
+    "b2_within_3px_of_lattice": 0.99915,
+    "d28_parent_within_3px_of_lattice": 0.99916
+   }
+  },
+  "raster_sha256": "c28b2e8492a0b112bc44030a2428d91aa7e09c134864d284287b01cb434a0c43",
+  "zip_sha256": "cb9023e1d5e0e19e6dfac046d924bf1e87874ec55f447b9a154cbec2adbc7781",
+  "validator": {
+   "single_band": true,
+   "dtype_float32": true,
+   "dimensions_3730x3292": true,
+   "crs_epsg_32611": true,
+   "transform_matches_sample_submission": true,
+   "no_nan_anywhere": true,
+   "no_inf_anywhere": true,
+   "no_sentinel_values": true,
+   "range_0_1_guaranteed": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "in_footprint_all_finite": true,
+   "in_footprint_range_0_1": true,
+   "outside_footprint_zero": true,
+   "zero_dots_on_mapped_catalogue": true
+  },
+  "submission_name": "wbggemsdoe1-band4to10-null-37654-20261031",
+  "submission_note": "Distance-only null: 37654 dots in 4-10px catalogue band, seed 20261031, no geology. Research control, not a model.",
+  "submission_note_chars": 114,
+  "verdict": "negative (research only)",
+  "download": "DOWNLOAD: YES (research file)",
+  "submit": "SUBMIT: NO",
+  "slots_used": 0
+ }
+}

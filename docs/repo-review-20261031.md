@@ -4,7 +4,7 @@
 
 **No current TIFF is cleared for a competition slot.** The repository does contain generated, downloadable TIFFs, but they are research artifacts with explicit negative gates. I did not create a new raster, run a geological experiment, choose a submission, or use a slot: the assigned method paragraph is missing, the active WBG-C1 surface lane has a recorded duplicate STOP, the required full training inputs are absent, and the protocol explicitly separates promotion from slot selection.
 
-**Do not download any file from this repo and upload it as a competition submission.** The C1 file linked below is locally format-valid and can be downloaded for research, but it is a continuous research surface—not a promoted final candidate—and is marked **DOWNLOAD: research only · SUBMIT: NO**.
+**Do not upload any file from this repo.** The most recent binary candidate, `WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z`, is downloadable for research and passes local format/range checks, but its holdout score is absent and registry uniqueness is unverified (0 of the 179 entries in the frozen registry were compared). It is marked **DOWNLOAD: research only · SUBMIT: NO**. The older C1 file is also research-only and failed its recorded literal-overlap gate.
 
 ## Executive decision table: requested nine sites
 
@@ -54,41 +54,49 @@ These are ranked proposals, not score projections. A method paragraph and explic
 
 No new data source is asserted available solely because a link appears in a research note. No external source was freshly fetched from this restricted environment on this review date.
 
-## Current downloadable research artifact (not approved)
+## Current downloadable TIFF candidate (not approved)
 
-- File: [`wbg-c1-commutator-research-surface-20261026-acea88448272.tif`](downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif)
-- SHA-256: `8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875`
-- Status: **DOWNLOAD: YES (research only) · SUBMIT: NO**. It is a continuous research surface, not a final dotted or selector-promoted submission.
-- Recorded science result: **HOLDOUT-DTI 0.014045**, evaluator `gems57-pooled-hide-v2`, 11,330 withheld positive pixels, 95% CI [0.011831, 0.016396]. Paired with its control: **HOLDOUT-DTI delta −0.000101**, same evaluator and withheld positives, 95% CI [−0.000232, +0.000030]; no improvement established. These are frozen prior measurements, not rerun in this review.
-- Recorded surface comparison: maximum |Spearman ρ| = 0.152331; maximum forward 3 px overlap = 99.8724%; checked inventory was 360 unique rasters from nine frozen snapshots and was explicitly incomplete relative to the full owner-listed sites. The literal overlap gate failed. No final dots were generated after the surface STOP.
-- Local validation was rerun in this review: one float32 band, EPSG:32611, 3,730 × 3,292, transform matching the local sample-submission mirror, all array values finite and in [0,1] (observed min 0, max 0.880929), no NaN in the footprint. The validator explicitly classifies this as a local preflight—not organizer acceptance.
-- No authenticated organizer receipt, complete all-site uniqueness proof, current account allowance, or approved lane is present.
+- File: [`WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.tif`](downloads/WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.tif) · [one-TIFF ZIP](downloads/WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.zip)
+- SHA-256: `44e0f22fc78bfc5fbd0bf93efcb3ff454d1fc01085ae51b5661e6cf6eb16850e`
+- Status: **DOWNLOAD: YES (research only) · SUBMIT: NO**. This is a stratified random off-catalogue baseline, not an evidence-backed geological detector.
+- Locally revalidated: one float32 band, EPSG:32611, shape 3,730 × 3,292, exact local sample-submission mirror transform, finite values in [0,1], min 0, max 1, 40,000 positive pixels, no positive pixels on the local catalogue mask, and zeros outside the scored footprint. This is local format/range preflight, not portal acceptance.
+- **HOLDOUT-DTI: unavailable** for this TIFF: its candidate run card has null evaluator/score/CI/positive count. The adjacent text about a leaked catalogue-distance canary and DTI 0.0000 refers to another feature experiment, not this raster; it must not be attributed to this artifact.
+- **Registry uniqueness: NOT VERIFIED.** Candidate run card says 0 registry comparisons; the frozen `registry/registry.json` indexes 179 entries, but none was compared against this TIFF, and `registry_unique` is null. A seeded random realization and a different hash do not prove the required <70% 3 px overlap or Spearman threshold against the full registry. The generic validator also reports `run_card_matches_exact_tiff: false` because no registered current run-card binding exists.
+- No organizer score receipt, complete registry comparison, authenticated account allowance, or approved lane is present. The current claim is research-only; do not upload.
+
+### Older C1 continuous surface — separate frozen negative result
+
+- File: [`wbg-c1-commutator-research-surface-20261026-acea88448272.tif`](downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif) · SHA-256 `8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875`.
+- **HOLDOUT-DTI 0.014045**, evaluator `gems57-pooled-hide-v2`, n=11,330 withheld positives, 95% CI [0.011831, 0.016396]; paired **HOLDOUT-DTI delta −0.000101**, same evaluator/n, 95% CI [−0.000232, +0.000030]. Frozen prior result, not rerun in this review.
+- Its frozen surface screen measured maximum |Spearman ρ| 0.152331 and maximum forward 3 px overlap 99.8724% over 360 rasters in nine snapshots. Literal overlap STOP; incomplete all-site scope; no final dots.
+- **DOWNLOAD: YES (research only) · SUBMIT: NO**. Not the newest binary candidate and not an upload-ready submission.
 
 ## Three-pass review and verification
 
 ### Pass 1 — inspect repo and frozen evidence
 
 - Read `AGENTS.md`, `PROMPT.md`, `README.md`, the owner brief, the 29 Oct repository review, the Focus-9 audit, WBG-C1 run card, shared-template pins, and the WBG-32 forensics.
-- Confirmed the working branch is `arena/bd5d22f3-wbggemsdoe1`; the starting tree was clean and at the supplied base commit.
+- Confirmed the working branch is `arena/bd5d22f3-wbggemsdoe1`; the starting tree was clean and at the supplied base commit. Upstream `main` advanced during this review when PR #68 merged; I fetched and audited its new 40,000-dot artifact before integrating the update.
 - Confirmed the README already contains the user's standing prompt, the Arena Core Values, and the instruction to read the prompt each session. This review adds a current-status summary/link rather than duplicating the whole prompt again.
+- Audited the PR #68 candidate run card and generator: the card has null holdout fields and no registry comparison; the frozen inventory lists 179 entries. Its original "unique-by-construction" language is not evidence of cross-registry uniqueness. The 40,000-dot file is therefore treated as research-only, with uniqueness and efficacy unverified.
 - Recorded irreconcilable provenance caveats: the user's current leaderboard figure **0.3195** is not accompanied by a receipt; the project feed's last dated official public-page observation is **0.4544 observed 2026-10-27**, refreshed in the feed on 2026-10-28 and explicitly marked retained/not refreshed. Neither should be represented as a verified 2026-10-31 current leaderboard value. No DrivenData login or submission receipt is available here.
 
 ### Pass 2 — run code and artifact checks
 
 - Installed exact versions from `requirements-lock.txt` in ignored `.venv` after the system Python correctly rejected global package installation under PEP 668.
-- `.venv/bin/python -m pytest -q`: **261 passed**, 15 Rasterio `PendingDeprecationWarning`s, in 41.79 seconds.
-- `.venv/bin/ruff check scripts src tests --select E9,F --exclude test_template_evaluator.py`: **passed**.
+- `.venv/bin/python -m pytest -q`: **266 passed**, 15 Rasterio `PendingDeprecationWarning`s, in 39.29 seconds.
+- `.venv/bin/ruff check scripts src tests --select E9,F --exclude test_template_evaluator.py`: **passed**. Removed three unused imports from the newly merged, unexecuted clean-candidate generator; no scientific or raster behavior changed.
 - `.venv/bin/python -m compileall -q scripts src tests`: **passed**.
-- Re-ran `scripts/validate_submission.py` on the C1 TIFF and ZIP: all local format/range checks passed; both point back to the stored negative promotion verdict. This is not an upload acceptance test.
+- Re-ran `scripts/validate_submission.py` on the C1 TIFF and ZIP: all local format/range checks passed and the stored negative verdict remains. Revalidated the PR #68 40,000-dot TIFF: all local format/range checks passed, but the generic validator reports `run_card_matches_exact_tiff: false` / `promotion_verdict: untracked` because it is not bound to the active registry run card. These are not upload-acceptance tests.
 - `scripts/validate_release.py`: passed the historical TIP1 package’s integrity checks while reporting `ok_to_submit: false`. It validates a frozen archive, not permission to submit.
 - `scripts/check_readiness.py`: correctly returned `BLOCKED_INPUTS` (exit 2). The required full `training_features.tif`, core `labels.tif`, `sample_submission.tif`, and feature cache are absent. The small bridge files do not satisfy those inputs. Shared-template file pins match; organizer provenance is not authenticated.
 
 ### Pass 3 — reconcile with the full user request and governance
 
 - Verified the Focus-9 table’s exact nine rows and historical values from the stored machine-readable audit; all are labeled owner-reported and none has a receipt. No historical raster is recommended for re-submission.
-- Confirmed the run card's negative verdict: low recorded holdout relative to its control, a literal pre-placement overlap STOP, incomplete nine-snapshot registry coverage, no final dot clearance, no assigned lane, and no slot approval.
-- Did not run a new geological experiment because doing so would conflict with the missing lane assignment, the active STOP, and the explicit instruction not to pick a submission or spend a slot.
-- Did not create a new TIFF. The already-generated download linked above satisfies the requirement that there be an easily downloadable **research** TIFF, but does not satisfy the user's desired outcome of a new high-scoring, submit-cleared file. This distinction is intentional and visible.
+- Confirmed the older C1 run card's negative verdict: low recorded holdout relative to its control, literal pre-placement overlap STOP, incomplete nine-snapshot registry coverage, no final dot clearance, no assigned lane, and no slot approval.
+- Reviewed the 40,000-dot artifact already merged into main in PR #68. It is easy to download and passes local format/range checks, but has no candidate-specific HOLDOUT-DTI, no registry comparison (0 entries checked), and generic run-card binding is untracked. Its "unique-by-construction" label is downgraded to **uniqueness unverified**. Do not upload.
+- Did not run a new geological experiment or generate a new raster in this review because doing so would conflict with the missing lane assignment, the active STOP, and the explicit instruction not to pick a submission or spend a slot.
 - Did not freshly fetch DrivenData, USGS, GDR, or the public leaderboard: outbound access is restricted to GitHub, codeload, npm and PyPI hosts. Official source links are retained for later manual review; the fresh-access limitation is not hidden.
 
 ## Limitations, irregularities, and next work
@@ -104,30 +112,28 @@ No new data source is asserted available solely because a link appears in a rese
 
 ```json
 {
-  "hypothesis": "Do not promote a candidate until a newly authorized, non-leaking candidate beats a same-evaluator baseline and clears the full registry rules.",
-  "mechanism": "The method lane is unspecified and the previous WBG-C1 surface already triggered the literal registry overlap STOP; further placement or tuning is not authorized. The current downloadable C1 file is retained for research and does not qualify for promotion.",
-  "named_non_fault_mimic": "Oblique saline-clay basin fill or lithologic contacts and shared inversion/interpolation artifacts can produce the WBG-C1 curvature signature without a geothermal fault.",
+  "hypothesis": "The stratified random off-catalogue field is only a null/baseline for the intuition that avoiding mapped catalogue pixels might reduce false-positive burden; no geological discovery hypothesis or efficacy claim is established.",
+  "mechanism": "Draw 40,000 points with a fixed seed across four quadrants from cells more than 3 pixels from the local catalogue mask; write a binary float32 raster with zeros outside the footprint. The method uses catalogue geometry for eligibility and has no candidate-specific holdout result.",
+  "named_non_fault_mimic": "Incidental alignments of random points with linear DEM scarps, drainage margins, roads, or lithologic contacts unrelated to faults.",
   "holdout_dti": {
-    "status": "NOT RUN IN THIS REVIEW; frozen prior measurement only",
-    "evidence_class": "HOLDOUT-DTI",
-    "evaluator_version": "gems57-pooled-hide-v2",
-    "dti": 0.01404466519440323,
-    "withheld_positive_pixels": 11330,
-    "95_percent_ci": [0.01183137469362976, 0.01639563940835171],
-    "paired_control_delta": -0.00010087213406997399,
-    "paired_delta_95_percent_ci": [-0.00023195991478308924, 0.00003045384564565667],
-    "source": "registry/run_card.json"
+    "status": "NOT AVAILABLE for this raster; no evaluator, withheld-positive count, DTI or CI in its candidate run card",
+    "evidence_class": null,
+    "evaluator_version": null,
+    "dti": null,
+    "withheld_positive_pixels": null,
+    "95_percent_ci": null,
+    "separate_prior_catalogue-distance-canary": "Not evidence for this artifact and not used as its score"
   },
   "correlation_overlap_vs_registry": {
-    "status": "frozen pre-placement surface check; registry coverage incomplete",
-    "max_abs_spearman_rho": 0.15233060870020235,
-    "max_forward_3px_overlap": 0.9987243421716145,
-    "checked_unique_rasters": 360,
-    "snapshots": 9,
-    "literal_gate": "FAIL: overlap exceeds 70%; stop recorded",
-    "final_dots": "NOT GENERATED after STOP"
+    "status": "NOT CHECKED",
+    "registry_entries_checked": 0,
+    "frozen_registry_entries": 179,
+    "spearman_rho": null,
+    "forward_3px_overlap": null,
+    "uniqueness_verdict": "UNVERIFIED; no registry comparison receipt",
+    "final_dots": "40,000 points exist in the candidate raster; no completed registry novelty audit"
   },
-  "raster_sha256": "8e6f25053116fca1220a9fd9a7a16c081478d79e6ba93ac142ee8c80a111e875",
+  "raster_sha256": "44e0f22fc78bfc5fbd0bf93efcb3ff454d1fc01085ae51b5661e6cf6eb16850e",
   "validator_output": {
     "source": "fresh local scripts/validate_submission.py run on 2026-10-31",
     "single_band_float32": true,
@@ -138,10 +144,11 @@ No new data source is asserted available solely because a link appears in a rese
     "shape": [3730, 3292],
     "transform_matches_local_sample_submission_mirror": true,
     "local_format_checks": "PASS; not organizer acceptance",
-    "promotion": "FAIL / negative"
+    "generic_validator_run_card_matches_exact_tif": false,
+    "promotion": "FAIL / untracked; negative"
   },
-  "submission_name": "wbg-c1-commutator-research-surface-20261026-acea88448272",
-  "submission_note": "WBG-C1 curvature non-coaxiality; spatial OOF research surface; no dot placement; NOT approved for submission.",
+  "submission_name": "WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z",
+  "submission_note": "WBGGEMSDOE1 off-catalogue stratified 40k dots; format-valid research; registry uniqueness and score unverified; not cleared to submit",
   "verdict": "negative"
 }
 ```

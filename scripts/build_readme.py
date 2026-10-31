@@ -58,16 +58,16 @@ def brief_20261029_block():
 def review_20261031_readme_block():
     """Prominent current review status; sourced from the review receipt."""
     review = json.loads((ROOT / "evidence/repo_review_20261031.json").read_text())
-    artifact = review["current_research_artifact"]
-    tif = Path(artifact["path"]).name
-    holdout = artifact["holdout_dti"]
+    candidate = review["latest_binary_candidate_from_upstream_pr_68"]
+    tif = Path(candidate["path"]).name
+    candidate_name = candidate["submission_name"]
     return f"""## 31 OCT 2026 REPOSITORY REVIEW — CURRENT DECISION: NO-GO
 
-**No TIFF is cleared for a competition slot.** The existing C1 GeoTIFF is downloadable for research and passes local format/range checks, but it is a continuous research surface with a recorded literal-registry overlap STOP; **SUBMIT: NO**. No new raster or experiment was run in this review. See the [31 Oct repository review](docs/repo-review-20261031.md) and [machine-readable review record](evidence/repo_review_20261031.json).
+**No TIFF is cleared for a competition slot.** The latest 40,000-dot TIFF is downloadable for research and passes local format/range checks, but has no holdout or registry comparison and is not linked to the active run card; **SUBMIT: NO**. The older C1 continuous research surface also failed its recorded literal-overlap gate. No new raster or experiment was run in this review. See the [31 Oct repository review](docs/repo-review-20261031.md) and [machine-readable review record](evidence/repo_review_20261031.json).
 
 The Focus-9 historical score table remains **OWNER-REPORTED / UNVERIFIED**; GEMSDOE32 B2's 0.2778 has no artifact-linked organizer receipt. New leaderboard estimates are unavailable. The user's 0.3195 current-leader claim conflicts with the repository's stale last public-page observation of 0.4544 (observed 27 Oct 2026); neither is freshly verified as current on 31 Oct. No submission slot was used.
 
-**Current research download:** [`{tif}`](docs/downloads/{tif}) — DOWNLOAD: research only; SUBMIT: NO. Recorded prior **HOLDOUT-DTI {holdout['value']:.6f}** (`{holdout['evaluator_version']}`, n={holdout['withheld_positive_pixels']:,}, 95% CI [{holdout['ci95'][0]:.6f}, {holdout['ci95'][1]:.6f}]); not rerun in this review and not a leaderboard estimate.
+**Most recent binary research TIFF:** [`{tif}`](docs/downloads/{tif}) · `{candidate_name}` — DOWNLOAD: YES (research only); SUBMIT: NO. Local format/range check passes, but this raster has no HOLDOUT-DTI, no registry uniqueness receipt (0 of 179 frozen entries compared), and no organizer score. The generic validator reports `run_card_matches_exact_tif: false`; **uniqueness is UNVERIFIED**. Not a leaderboard estimate.
 
 ---
 

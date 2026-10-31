@@ -22,7 +22,7 @@
       "status": "complete",
       "focus": "Regression, lint, compile, readiness and raster validation",
       "results": {
-        "pytest": "261 passed, 15 Rasterio PendingDeprecationWarning, 41.79 seconds",
+        "pytest": "266 passed, 15 Rasterio PendingDeprecationWarning, 39.29 seconds",
         "ruff_e9_f": "passed",
         "compileall": "passed",
         "c1_tif_local_validator": "passed; local format/range only; promotion negative",
@@ -97,6 +97,20 @@
       "transform_matches_local_sample_mirror": true
     },
     "note": "WBG-C1 curvature non-coaxiality; spatial OOF research surface; no dot placement; NOT approved for submission."
+  },
+  "latest_binary_candidate_from_upstream_pr_68": {
+    "submission_name": "WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z",
+    "path": "docs/downloads/WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.tif",
+    "sha256": "44e0f22fc78bfc5fbd0bf93efcb3ff454d1fc01085ae51b5661e6cf6eb16850e",
+    "download": "research-only",
+    "submit": false,
+    "holdout_dti": null,
+    "registry_unique": null,
+    "registry_entries_checked": 0,
+    "frozen_registry_entries_total": 179,
+    "generic_validator_run_card_matches_exact_tif": false,
+    "format_validation": "PASS local only; not organizer acceptance",
+    "note": "WBGGEMSDOE1 off-catalogue stratified 40k dots; format-valid research; registry uniqueness and score unverified; not cleared to submit"
   },
   "experiment_count_this_review": 0,
   "new_rasters_this_review": 0,

@@ -1,6 +1,7 @@
 # Starting point for every session
 
 0. **Current review (31 Oct 2026):** read `docs/repo-review-20261031.md` and `evidence/repo_review_20261031.json` before any work. They record the current negative decision and checks; no file is cleared to submit.
+   - Latest binary artifact from merged PR #68: `docs/downloads/WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.tif` (SHA-256 `44e0f22fc78bfc5fbd0bf93efcb3ff454d1fc01085ae51b5661e6cf6eb16850e`). **DOWNLOAD: research only · SUBMIT: NO.** Local format/range checks pass; holdout is absent, no candidate-to-registry comparisons were made against the frozen 179-entry inventory; uniqueness is unverified, and generic run-card binding is untracked. Do not claim it is unique or score-ready.
 
 0a. **Read `docs/owner-brief-20261029.md` at the start of every session** (owner standing requirements, official links). Then read `README.md`. The 29 Oct executive summary is `docs/executive-summary-20261029.html`; no file is cleared unless its run card shows `ok_to_submit: true`.
 

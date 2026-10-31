@@ -6,6 +6,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 PAGES = [
     DOCS / "index.html",
+    DOCS / "executive-summary.html",
     DOCS / "research.html",
     DOCS / "methodology.html",
     DOCS / "submission-instructions.html",

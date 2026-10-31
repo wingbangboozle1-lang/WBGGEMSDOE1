@@ -50,6 +50,25 @@ def test_focus9_historical_claims_are_all_unverified_and_no_go():
     assert summary["leaderboard_claim_irregularity"]["status"] == "UNVERIFIED-OWNER-REPORT"
 
 
+def test_latest_binary_candidate_is_research_only_and_uniqueness_is_not_claimed():
+    review = load("evidence/repo_review_20261031.json")
+    candidate = review["latest_binary_candidate_from_upstream_pr_68"]
+    path = ROOT / candidate["path"]
+    digest = hashlib.file_digest(path.open("rb"), "sha256").hexdigest()
+    page = (ROOT / "docs/executive-summary.html").read_text()
+
+    assert digest == candidate["sha256"]
+    assert candidate["submit"] is False
+    assert candidate["holdout_dti"] is None
+    assert candidate["registry_unique"] is None
+    assert candidate["registry_entries_checked"] == 0
+    assert candidate["frozen_registry_entries_total"] == 179
+    assert "UNVERIFIED" in page
+    assert "0 of 179 registry entries compared" in page
+    assert "unique-by-construction" not in page
+    assert "repo-review-20261031.md" in page
+
+
 def test_report_run_card_does_not_claim_new_holdout_or_current_leaderboard():
     review = load("evidence/repo_review_20261031.json")
     report = (ROOT / "docs/repo-review-20261031.md").read_text()

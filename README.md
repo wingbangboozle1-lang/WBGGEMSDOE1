@@ -1,10 +1,10 @@
 ## 31 OCT 2026 REPOSITORY REVIEW — CURRENT DECISION: NO-GO
 
-**No TIFF is cleared for a competition slot.** The existing C1 GeoTIFF is downloadable for research and passes local format/range checks, but it is a continuous research surface with a recorded literal-registry overlap STOP; **SUBMIT: NO**. No new raster or experiment was run in this review. See the [31 Oct repository review](docs/repo-review-20261031.md) and [machine-readable review record](evidence/repo_review_20261031.json).
+**No TIFF is cleared for a competition slot.** The latest 40,000-dot TIFF is downloadable for research and passes local format/range checks, but has no holdout or registry comparison and is not linked to the active run card; **SUBMIT: NO**. The older C1 continuous research surface also failed its recorded literal-overlap gate. No new raster or experiment was run in this review. See the [31 Oct repository review](docs/repo-review-20261031.md) and [machine-readable review record](evidence/repo_review_20261031.json).
 
 The Focus-9 historical score table remains **OWNER-REPORTED / UNVERIFIED**; GEMSDOE32 B2's 0.2778 has no artifact-linked organizer receipt. New leaderboard estimates are unavailable. The user's 0.3195 current-leader claim conflicts with the repository's stale last public-page observation of 0.4544 (observed 27 Oct 2026); neither is freshly verified as current on 31 Oct. No submission slot was used.
 
-**Current research download:** [`wbg-c1-commutator-research-surface-20261026-acea88448272.tif`](docs/downloads/wbg-c1-commutator-research-surface-20261026-acea88448272.tif) — DOWNLOAD: research only; SUBMIT: NO. Recorded prior **HOLDOUT-DTI 0.014045** (`gems57-pooled-hide-v2`, n=11,330, 95% CI [0.011831, 0.016396]); not rerun in this review and not a leaderboard estimate.
+**Most recent binary research TIFF:** [`WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.tif`](docs/downloads/WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.tif) · `WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z` — DOWNLOAD: YES (research only); SUBMIT: NO. Local format/range check passes, but this raster has no HOLDOUT-DTI, no registry uniqueness receipt (0 of 179 frozen entries compared), and no organizer score. The generic validator reports `run_card_matches_exact_tif: false`; **uniqueness is UNVERIFIED**. Not a leaderboard estimate.
 
 ---
 

@@ -1,6 +1,6 @@
 ## 31 OCT 2026 — CURRENT STATUS / READ FIRST EVERY SESSION
 
-**SUBMIT: NO — no TIFF is cleared.** Read the [31 Oct repository review](docs/repo-review-20261031.md) before acting on historical content below. No TIFF or leaderboard score was generated in that review; the inherited lane is stopped, required full inputs are absent, and the focus-site values are OWNER-REPORTED rather than ORGANIZER-CONFIRMED. New-file leaderboard estimates are unavailable; no weekly slot was used.
+**SUBMIT: NO — no TIFF is cleared.** Read the [31 Oct repository review](docs/repo-review-20261031.md) before acting on historical content below. The review generated no TIFF; a separate parallel-branch [research-only TIFF](docs/downloads/WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.tif) is downloadable but fails the shared outside-footprint nodata check, has no registry comparison or holdout, so uniqueness is **unverified** and it is **not submit-cleared**. Required full inputs are absent, focus-site values are OWNER-REPORTED rather than ORGANIZER-CONFIRMED, new-file leaderboard estimates are unavailable, and no weekly slot was used.
 
 Read [`PROMPT.md`](PROMPT.md), this README, and [`AGENTS.md`](AGENTS.md) at the start of every session. The full archived request is also in [`docs/standing-prompt.md`](docs/standing-prompt.md). Core values: **Maximize P(Win)** and **Own the Outcome**.
 

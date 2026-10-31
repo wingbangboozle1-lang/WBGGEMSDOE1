@@ -24,7 +24,13 @@ The values below are the supplied historical values recorded in `registry/focus_
 | GEMSDOE33 | [`GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif`](https://github.com/buffedlizard55-lab/GEMSDOE33/blob/1d99d73fe14d9a87126ffca2db52c69336d6099b/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif) | **NONE — no candidate cleared** | OWNER-REPORTED **0.2632** | UNAVAILABLE | No exact duplicate reported in the nine-site audit; very high 3-px overlap with another focus winner | Historical reference only; do not re-upload |
 | GEMSDOE36 | [`gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif`](https://github.com/buffedlizard55-lab/GEMSDOE36/blob/05979971df4775aadad34ae6749b0a7ac56d7832/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif) | **NONE — no candidate cleared** | OWNER-REPORTED **0.2750** | UNAVAILABLE | No exact duplicate reported in the nine-site audit; 3-px overlap with at least one focus winner is 97.58% | Historical reference only; do not re-upload |
 
-Audit provenance: nine frozen GitHub snapshots, raster inventory, scores, and the score labels are in [`registry/focus_inventory.json`](../registry/focus_inventory.json), [`registry/focus_user_reported_scores.json`](../registry/focus_user_reported_scores.json), and [`evidence/nine_site_audit.json`](../evidence/nine_site_audit.json). The frozen audit says its scope is the nine site snapshots at the listed commits, not every unlisted/private/current artifact. The immutable links above are for research/inspection, **not a recommendation to submit**.
+Audit provenance: nine frozen GitHub snapshots, raster inventory, scores, and the score labels are in [`registry/focus_inventory.json`](../registry/focus_inventory.json), [`registry/focus_user_reported_scores.json`](../registry/focus_user_reported_scores.json), and [`evidence/nine_site_audit.json`](../evidence/nine_site_audit.json). The frozen audit says its scope is the nine site snapshots at the listed commits, not every unlisted/private/current artifact. The immutable links above are for research/inspection, **not a recommendation to submit**. The current file-to-submit column is intentionally **NONE** for all nine.
+
+### Separate research TIFF now present in the checkout (not cleared)
+
+A parallel main-branch update added [`WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.tif`](downloads/WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.tif), with a one-TIFF ZIP and receipts. **DOWNLOAD: YES for research only. SUBMIT: NO.** Its recorded SHA-256 is `44e0f22fc78bfc5fbd0bf93efcb3ff454d1fc01085ae51b5661e6cf6eb16850e`. Its run card leaves registry uniqueness, holdout DTI, confidence interval, and evaluator version null; it records zero registry rasters checked. Thus “unique realization” means only a generated random realization here, not verified uniqueness against previous submissions.
+
+I reopened this exact file using `scripts/validate_submission.py` with the available bridge reference. CRS, shape, transform, one-band float32, footprint values and in-footprint range pass; overall shared format/nodata validation **FAILS** because the 7,111,787 cells outside the reference footprint are finite zeros rather than null/NaN. The reference is an owner-mirror bridge, not an organizer-authenticated download. Therefore this TIFF is not cleared by either format or uniqueness gates, and has no leaderboard estimate. The cause of the earlier portal range error remains unknown.
 
 ### What can and cannot be said about GEMSDOE32 B2
 
@@ -65,7 +71,7 @@ The cached-data proposals need the official competition rasters or independently
 - The user-facing summary now makes `SUBMIT: NO` explicit and does not mark any file as ready.
 - The nine-site table labels all user-provided scores `OWNER-REPORTED`, marks new-file estimates `UNAVAILABLE`, and notes exact duplicates/overlap without implying that local uniqueness establishes organizer acceptance.
 - The B2 explanation is limited to what the decoded pixels and historical claim establish; it does not assert causation or predict a new score.
-- The candidate rankings are proposals only; the current stop and lack of inputs/data provenance mean no candidate was run, no TIFF was generated, no slot was used.
+- The candidate rankings are proposals only; the current stop and lack of inputs/data provenance mean no new candidate was run by this review and no review-generated TIFF was made. A separate concurrent main-branch TIFF was inherited during PR integration; it is documented as research-only because its uniqueness is unverified and the shared validator fails its outside-footprint nodata check. No slot was used.
 - Official competition references for manual review: [competition overview](https://www.drivendata.org/competitions/306/competition-doe-gems/), [problem description and metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/), [about](https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/), [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/), [official rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf), and [official reference solution](https://github.com/drivendataorg/gems-prize-reference-solution). Current leaderboard and account submission allowance were not checked in this run.
 
 ## What is needed before another experiment
@@ -106,6 +112,24 @@ Machine-readable card: [`evidence/repo_review_20261031.json`](../evidence/repo_r
     }
   },
   "raster_sha256": null,
+  "separate_inherited_research_artifact": {
+    "name": "WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z",
+    "sha256": "44e0f22fc78bfc5fbd0bf93efcb3ff454d1fc01085ae51b5661e6cf6eb16850e",
+    "role": "parallel-branch research artifact; not generated by this review",
+    "holdout_dti": null,
+    "ci95": null,
+    "registry_rasters_checked": 0,
+    "correlation_overlap_vs_registry": "NOT MEASURED",
+    "uniqueness": "NOT ESTABLISHED",
+    "validator": {
+      "no_nan_inside_footprint": true,
+      "values_in_0_1_inside_footprint": true,
+      "crs_shape_transform_match": true,
+      "overall": "FAIL: finite zeros outside footprint; null/NaN required by validator"
+    },
+    "ok_to_download": true,
+    "ok_to_submit": false
+  },
   "validator_output": {
     "no_nan_inside_footprint": "NOT RUN for new artifact",
     "values_in_0_1": "NOT RUN for new artifact",

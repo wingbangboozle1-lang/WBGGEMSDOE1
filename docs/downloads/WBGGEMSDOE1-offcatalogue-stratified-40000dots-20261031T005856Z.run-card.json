@@ -1,0 +1,42 @@
+{
+  "schema": "gemsdoe1-run-card-v1",
+  "generated_utc": "2026-10-31T00:59:00.878633+00:00",
+  "hypothesis": "Sparse, spatially stratified off-catalogue dots avoid wasting false-positive credit on already-mapped catalogue traces (the GEMSDOE32 B2 precision idea, 0.2778 USER-REPORTED), realised as a unique dot field with a fixed seed.",
+  "mechanism": "Distance-to-catalogue eligibility (> 3 px / 300 m from any catalogue pixel) -> equal per-quadrant random draw -> binary GeoTIFF, zeros outside footprint.",
+  "named_non_fault_mimic": "Linear topography / DEM scarp edges unrelated to faults can look like off-catalogue dot targets.",
+  "holdout_dti": null,
+  "holdout_ci95": null,
+  "n_withheld_positives": null,
+  "evaluator_version": null,
+  "leakage_note": "Catalogue-proximity emission was tested and leaked (AUC 1.0 vs withheld faults; clean holdout DTI 0.0000). This placement uses only a hard off-catalogue exclusion and makes no holdout efficacy claim.",
+  "registry_unique": null,
+  "registry_entries_available": 0,
+  "registry_entries_total": 0,
+  "raster_sha256": "44e0f22fc78bfc5fbd0bf93efcb3ff454d1fc01085ae51b5661e6cf6eb16850e",
+  "format_valid": true,
+  "values_in_0_1": true,
+  "crs": "EPSG:32611",
+  "shape": [
+    3730,
+    3292
+  ],
+  "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+  ],
+  "submission_name": "WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z",
+  "note": "WBGGEMSDOE1 off-catalogue stratified dots, 40,000 dots >300m from public catalogue, unique realization | format-valid research | no score...",
+  "note_length": 140,
+  "verdict": "negative",
+  "dots_on_catalogue": 0,
+  "n_dots": 40000,
+  "submission_clear": {
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "reason": "Format VALID and unique-by-construction, but no organizer score receipt exists and no clean holdout efficacy is established (catalogue-proximity holdout leaked; clean holdout DTI 0.0000). Cannot claim it beats 0.2778. An authenticated selector must approve any real weekly slot."
+  }
+}

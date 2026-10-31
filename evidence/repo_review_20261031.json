@@ -22,7 +22,8 @@
       "status": "complete",
       "focus": "Regression, lint, compile, readiness and raster validation",
       "results": {
-        "pytest": "266 passed, 15 Rasterio PendingDeprecationWarning, 39.29 seconds",
+        "pytest": "266 passed, 15 Rasterio PendingDeprecationWarning, 38.33 seconds",
+        "browser_test": "passed across 22 routes on desktop/mobile; zero JavaScript errors or horizontal overflow; latest candidate TIFF download SHA-256 matched",
         "ruff_e9_f": "passed",
         "compileall": "passed",
         "c1_tif_local_validator": "passed; local format/range only; promotion negative",

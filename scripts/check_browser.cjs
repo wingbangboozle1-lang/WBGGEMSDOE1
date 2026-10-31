@@ -19,11 +19,12 @@ const chromium = importedChromium.default || importedChromium;
   if (!base) throw new Error("BASE_URL must identify the running static site preview");
   const artifacts = path.join(root, ".cache/browser-review");
   fs.mkdirSync(artifacts, { recursive: true });
-  const wbg2 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg2/run_card.json")));
   const s2 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg_s2/run_card.json")));
   const wbg3 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg3_spipmr/run_card.json")));
   const focus9 = JSON.parse(fs.readFileSync(path.join(root, "evidence/focus9_exec/run_card.json")));
   const wbg4 = JSON.parse(fs.readFileSync(path.join(root, "evidence/wbg4/run_card.json")));
+  const repoReview = JSON.parse(fs.readFileSync(path.join(root, "evidence/repo_review_20261031.json")));
+  const currentCandidate = repoReview.latest_binary_candidate_from_upstream_pr_68;
   if (process.env.BROWSER_COMPAT_LIBS === "1") {
     // Minimal Linux containers may lack NSS/NSPR. Use the dependency's own
     // bundled compatibility libraries instead of downloading system packages.
@@ -72,11 +73,11 @@ const chromium = importedChromium.default || importedChromium;
     assert.equal(await page.locator("#site-table tbody tr:visible").count(), 1);
     await page.locator("#site-filter").fill("");
     const downloadPromise = page.waitForEvent("download");
-    await page.locator(`a[download][href*="${path.basename(wbg2.artifacts.tif)}"]`).click();
+    await page.locator(`a[download][href*="${path.basename(currentCandidate.path)}"]`).first().click();
     const download = await downloadPromise;
-    assert.equal(download.suggestedFilename(), path.basename(wbg2.artifacts.tif));
+    assert.equal(download.suggestedFilename(), path.basename(currentCandidate.path));
     const downloaded = fs.readFileSync(await download.path());
-    assert.equal(crypto.createHash("sha256").update(downloaded).digest("hex"), wbg2.raster_sha256);
+    assert.equal(crypto.createHash("sha256").update(downloaded).digest("hex"), currentCandidate.sha256);
     await page.goto(new URL("index.html", base).href, { waitUntil: "networkidle" });
     await page.screenshot({ path: path.join(artifacts, "desktop.png"), fullPage: true });
     await page.setViewportSize({ width: 390, height: 844 });
@@ -195,8 +196,8 @@ const chromium = importedChromium.default || importedChromium;
     assert.deepEqual(errors, []);
     const report = { generated_utc: new Date().toISOString(), browser: browser.version(), checked,
       desktop_viewport: [1440, 1100], mobile_viewport: [390, 844],
-      javascript_page_errors: errors, site_filter: "passed", wbg2_nine_site_table: "passed", primary_download_sha256: wbg2.raster_sha256,
-      primary_download_identity: "passed", wbg_s2_download_sha256: s2.artifact.tif_sha256,
+      javascript_page_errors: errors, site_filter: "passed", nine_site_historical_table: "passed", latest_candidate_download_sha256: currentCandidate.sha256,
+      latest_candidate_download_identity: "passed", wbg_s2_download_sha256: s2.artifact.tif_sha256,
       wbg_s2_download_identity: "passed", wbg3_download_sha256: wbg3.raster_sha256,
       wbg3_download_identity: "passed", focus9_demo_download_sha256: focus9.raster_sha256,
       focus9_demo_download_identity: "passed", focus9_no_submit_copy: "passed",

@@ -31,6 +31,7 @@ details[open]>summary{border-bottom:1px solid #e3e9e7}
 .download-btn.secondary{background:#475569}
 .download-btn.secondary:hover{background:#334155}
 .kbd{font-family:ui-monospace,monospace;font-size:12px;background:#eef4f2;padding:2px 6px;border-radius:4px}
+#main .hero{display:block;min-width:0}#main p,#main h1,#main h2,#main h3,#main li,#main code,#main a{overflow-wrap:anywhere}#main pre{max-width:100%;white-space:pre-wrap;overflow-wrap:anywhere}
 </style></head><body><a class="skip" href="#main">Skip to content</a>
 <header class="masthead"><div class="wrap"><nav class="nav" aria-label="Main navigation">
 <a class="brand" href="index.html"><svg viewBox="0 0 36 38" fill="none" aria-hidden="true"><path d="M3 29C12 27 4 16 13 15S21 5 31 6M4 35C15 34 11 22 20 22S25 11 34 12M2 21C8 21 4 9 13 9S18 1 25 2" stroke="#23665f" stroke-width="2" stroke-linecap="round"/></svg><span>WBG / GEMS<small>FAULT MAPPING · RESEARCH DESK</small></span></a>
@@ -57,8 +58,8 @@ SHA-256 <code>44e0f22fc78bfc5fbd0bf93efcb3ff454d1fc01085ae51b5661e6cf6eb16850e</
 <p><b>Local format:</b> one float32 band, EPSG:32611, 3,730 × 3,292, 100 m, finite values in [0, 1], zero outside the scored footprint. This local preflight does not guarantee portal acceptance or explain the earlier range error.<br>
 <b>Dots:</b> 40,000 points selected from cells more than 3 px from the local owner-mirror catalogue mask; zero on that mask. This is not proof of geological targeting.<br>
 <b>Unique:</b> <strong>UNVERIFIED</strong> — the candidate run card reports 0 of 179 registry entries compared. A seeded random field is not evidence of full registry uniqueness.</p>
-<p class="no"><b>SUBMIT: NOT CLEARED — DO NOT UPLOAD.</b> The candidate has <strong>no organizer score receipt</strong> and no candidate-specific HOLDOUT-DTI (its holdout score, evaluator, withheld-positive count and CI are null). The run card reports 0/0 registry entries checked, so uniqueness is unverified. A separate prior catalogue-distance canary is not evidence for this raster. We <strong>cannot claim this beats 0.2778</strong> or any leaderboard value. An authenticated selector must approve any weekly slot.<br>
-<b>Download: YES (research). Submit: NO (not cleared).</b></p>
+<p class="no"><b>SUBMIT: NOT CLEARED — DO NOT UPLOAD.</b> The candidate has <strong>no organizer score receipt</strong> and no candidate-specific HOLDOUT-DTI (its holdout score, evaluator, withheld-positive count and CI are null). No candidate-to-registry comparisons were made against the frozen 179-entry inventory, so uniqueness is unverified. A separate prior catalogue-distance canary is not evidence for this raster. We <strong>cannot claim this beats 0.2778</strong> or any leaderboard value. An authenticated selector must approve any weekly slot.<br>
+<b>Download: YES, for research. Submit: NO.</b> The file is not cleared for submission. No final dots were placed as part of this review; the inherited PR #68 TIFF was not generated here.</p>
 <p class="small"><b>Submission name (65 chars):</b> <code>WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z</code><br>
 <b>Note (133 chars):</b> <code>WBGGEMSDOE1 off-catalogue stratified 40k dots; format-valid research; registry uniqueness and score unverified; not cleared to submit</code></p>
 </div>
@@ -66,79 +67,83 @@ SHA-256 <code>44e0f22fc78bfc5fbd0bf93efcb3ff454d1fc01085ae51b5661e6cf6eb16850e</
 <!-- ================= NINE-SITE TABLE ================= -->
 <h2 class="h2" id="comparison">1. Nine focus sites — best supplied file, score, and uniqueness</h2>
 <p class="small">One row per site. Values are the best <strong>supplied historical claims</strong> from each site's GitHub page. None are organizer-confirmed; none carry a leaderboard estimate for a new file. <b>GEMSDOE32's 0.2778 is the highest supplied claim.</b> Every row is marked "DO NOT SUBMIT — copy" because these are existing history, not unique new submissions.</p>
-<div style="overflow-x:auto"><table class="data">
+<label class="small" for="site-filter">Filter the nine historical site rows</label>
+<input id="site-filter" type="search" aria-label="Filter historical sites" style="display:block;width:min(100%,320px);padding:8px;margin:8px 0 12px" placeholder="Search site or file">
+<div style="overflow-x:auto"><table class="data" id="site-table">
 <thead><tr>
 <th scope="col">Site</th><th scope="col">Best supplied historical file (learning only)</th><th scope="col">Reported value</th><th scope="col">Est. score for new submission</th><th scope="col">Unique new submission?</th><th scope="col">Download &amp; submit?</th>
 </tr></thead>
 <tbody>
-<tr><td><b>GEMSDOE32</b> <span class="warn">HIGHEST SUPPLIED CLAIM</span></td>
+<tr data-site="GEMSDOE32"><td><b>GEMSDOE32</b> <span class="warn">HIGHEST SUPPLIED CLAIM</span></td>
 <td class="file fn"><a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif?raw=1" target="_blank" rel="noopener">gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</a></td>
 <td>0.2778 <span class="small">USER-REPORTED</span></td>
 <td><span class="no">UNAVAILABLE</span> — no organizer receipt</td>
 <td><span class="no">No</span> — history; D2.8 pruned &gt;200 m from catalogue</td>
 <td class="no">DO NOT SUBMIT — copy</td>
 </tr>
-<tr><td><b>GEMSDOE36</b></td>
+<tr data-site="GEMSDOE36"><td><b>GEMSDOE36</b></td>
 <td class="file fn"><a href="https://github.com/buffedlizard55-lab/GEMSDOE36/blob/05979971df4775aadad34ae6749b0a7ac56d7832/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif?raw=1" target="_blank" rel="noopener">gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</a></td>
 <td>0.2750 <span class="small">USER-REPORTED</span></td>
 <td><span class="no">UNAVAILABLE</span></td>
 <td><span class="no">No</span> — contains all GEMSDOE32 B2 pixels + 1,200; family overlap</td>
 <td class="no">DO NOT SUBMIT — copy</td>
 </tr>
-<tr><td><b>GEMSDOE28</b></td>
+<tr data-site="GEMSDOE28"><td><b>GEMSDOE28</b></td>
 <td class="file fn"><a href="https://github.com/buffedlizard55-lab/GEMSDOE28/blob/2c839d10f57ec9b074829e93c84bc39935f52896/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif?raw=1" target="_blank" rel="noopener">gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif</a></td>
 <td>0.2710 <span class="small">USER-REPORTED</span></td>
 <td><span class="no">UNAVAILABLE</span></td>
 <td><span class="no">No</span> — history; B1-family ridge-thinning variant</td>
 <td class="no">DO NOT SUBMIT — copy</td>
 </tr>
-<tr><td><b>GEMSDOE31</b></td>
+<tr data-site="GEMSDOE31"><td><b>GEMSDOE31</b></td>
 <td class="file fn"><a href="https://github.com/buffedlizard55-lab/GEMSDOE31/blob/776bf4668a8c10631908c9bba9443a8f11ce5036/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif?raw=1" target="_blank" rel="noopener">gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif</a></td>
 <td>0.2708 <span class="small">USER-REPORTED</span></td>
 <td><span class="no">UNAVAILABLE</span></td>
 <td><span class="no">No</span> — pixel-identical to GEMSDOE28 SOLO base</td>
 <td class="no">DO NOT SUBMIT — copy</td>
 </tr>
-<tr><td><b>GEMSDOE33</b></td>
+<tr data-site="GEMSDOE33"><td><b>GEMSDOE33</b></td>
 <td class="file fn"><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/1d99d73fe14d9a87126ffca2db52c69336d6099b/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif?raw=1" target="_blank" rel="noopener">GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif</a></td>
 <td>0.2632 <span class="small">USER-REPORTED</span></td>
 <td><span class="no">UNAVAILABLE</span></td>
 <td><span class="no">No</span> — history; heavy overlap with inherited family</td>
 <td class="no">DO NOT SUBMIT — copy</td>
 </tr>
-<tr><td><b>GEMSDOE25</b></td>
+<tr data-site="GEMSDOE25"><td><b>GEMSDOE25</b></td>
 <td class="file fn"><a href="https://github.com/buffedlizard55-lab/GEMSDOE25/blob/af2b6f2543e5422a7e917638b70e038e6fd91cad/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif?raw=1" target="_blank" rel="noopener">gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</a></td>
 <td>0.2600 <span class="small">USER-REPORTED</span></td>
 <td><span class="no">UNAVAILABLE</span></td>
 <td><span class="no">No</span> — identical decoded predictions to GEMSDOE30</td>
 <td class="no">DO NOT SUBMIT — copy</td>
 </tr>
-<tr><td><b>GEMSDOE30</b></td>
+<tr data-site="GEMSDOE30"><td><b>GEMSDOE30</b></td>
 <td class="file fn"><a href="https://github.com/buffedlizard55-lab/GEMSDOE30/blob/9c0d637c0171407196b61b780444bc772ce75438/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif?raw=1" target="_blank" rel="noopener">gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif</a></td>
 <td>0.2600 <span class="small">USER-REPORTED</span></td>
 <td><span class="no">UNAVAILABLE</span></td>
 <td><span class="no">No</span> — same 44,090 positive pixels as GEMSDOE25</td>
 <td class="no">DO NOT SUBMIT — copy</td>
 </tr>
-<tr><td><b>GEMSDOE24</b></td>
+<tr data-site="GEMSDOE24"><td><b>GEMSDOE24</b></td>
 <td class="file fn"><a href="https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif?raw=1" target="_blank" rel="noopener">gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif</a></td>
 <td>0.2477 <span class="small">USER-REPORTED</span></td>
 <td><span class="no">UNAVAILABLE</span></td>
 <td><span class="no">No</span> — history; H19-5 ridge-thinning family</td>
 <td class="no">DO NOT SUBMIT — copy</td>
 </tr>
-<tr><td><b>GEMSDOE27</b></td>
+<tr data-site="GEMSDOE27"><td><b>GEMSDOE27</b></td>
 <td class="file fn"><a href="https://github.com/buffedlizard55-lab/GEMSDOE27/blob/bef7ae8e8f63b69d299c9214c75988c8f5055f9c/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif?raw=1" target="_blank" rel="noopener">gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif</a></td>
 <td>0.2449 <span class="small">USER-REPORTED</span></td>
 <td><span class="no">UNAVAILABLE</span></td>
 <td><span class="no">No</span> — history; topographic gap closure, below parent</td>
 <td class="no">DO NOT SUBMIT — copy</td>
 </tr>
+</tbody></table></div>
+<div style="overflow-x:auto;margin-top:14px"><table class="data" aria-label="Current repository research candidate"><tbody>
 <tr><td><b>NEW — WBGGEMSDOE1 (this repo)</b></td>
 <td class="file fn"><a class="download-btn" style="padding:4px 10px;font-size:12px" href="downloads/WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.tif" download>WBGGEMSDOE1-offcatalogue-stratified-40000dots-20261031T005856Z.tif</a></td>
 <td><span class="no">No organizer score</span></td>
 <td><span class="no">UNAVAILABLE</span> — no organizer receipt</td>
-<td><span class="warn">Unverified</span> — 0 registry rasters checked</td>
+<td><span class="warn">Unverified</span> — 0 of 179 registry entries compared</td>
 <td class="warn">DOWNLOAD YES · SUBMIT NOT CLEARED</td>
 </tr>
 </tbody></table></div>
@@ -199,4 +204,5 @@ SHA-256 <code>44e0f22fc78bfc5fbd0bf93efcb3ff454d1fc01085ae51b5661e6cf6eb16850e</
 </main>
 <footer class="footer"><div class="wrap footer-inner"><p><strong>WBG / GEMS</strong> &nbsp; Evidence before a weekly slot.<br>Fault predictions are not verified geothermal vents. Local validation is not organizer acceptance.</p>
 <div><a class="" href="data/run-card.json">Run card JSON</a><a class="" href="executive-summary-focus-sites.html">Nine-site table</a><a class="" href="how-to-submit.html">How to submit</a><a class="" href="standing-prompt.md">Standing brief</a><a class="" href="https://github.com/wingbangboozle1-lang/WBGGEMSDOE1">Source code ↗</a></div></div></footer>
-<div id="toast" role="status" aria-live="polite"></div></body></html>
+<div id="toast" role="status" aria-live="polite"></div>
+</body></html>

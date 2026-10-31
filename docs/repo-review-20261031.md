@@ -84,7 +84,8 @@ No new data source is asserted available solely because a link appears in a rese
 ### Pass 2 — run code and artifact checks
 
 - Installed exact versions from `requirements-lock.txt` in ignored `.venv` after the system Python correctly rejected global package installation under PEP 668.
-- `.venv/bin/python -m pytest -q`: **266 passed**, 15 Rasterio `PendingDeprecationWarning`s, in 39.29 seconds.
+- `.venv/bin/python -m pytest -q`: **266 passed**, 15 Rasterio `PendingDeprecationWarning`s, in 38.33 seconds.
+- `npm run test:browser`: **passed** across 22 routes on desktop and mobile; zero JavaScript errors or horizontal overflow, and the candidate TIFF download SHA-256 matched the run card.
 - `.venv/bin/ruff check scripts src tests --select E9,F --exclude test_template_evaluator.py`: **passed**. Removed three unused imports from the newly merged, unexecuted clean-candidate generator; no scientific or raster behavior changed.
 - `.venv/bin/python -m compileall -q scripts src tests`: **passed**.
 - Re-ran `scripts/validate_submission.py` on the C1 TIFF and ZIP: all local format/range checks passed and the stored negative verdict remains. Revalidated the PR #68 40,000-dot TIFF: all local format/range checks passed, but the generic validator reports `run_card_matches_exact_tiff: false` / `promotion_verdict: untracked` because it is not bound to the active registry run card. These are not upload-acceptance tests.
@@ -95,7 +96,7 @@ No new data source is asserted available solely because a link appears in a rese
 
 - Verified the Focus-9 table’s exact nine rows and historical values from the stored machine-readable audit; all are labeled owner-reported and none has a receipt. No historical raster is recommended for re-submission.
 - Confirmed the older C1 run card's negative verdict: low recorded holdout relative to its control, literal pre-placement overlap STOP, incomplete nine-snapshot registry coverage, no final dot clearance, no assigned lane, and no slot approval.
-- Reviewed the 40,000-dot artifact already merged into main in PR #68. It is easy to download and passes local format/range checks, but has no candidate-specific HOLDOUT-DTI, no registry comparison (0 entries checked), and generic run-card binding is untracked. Its "unique-by-construction" label is downgraded to **uniqueness unverified**. Do not upload.
+- Reviewed the 40,000-dot artifact already merged into main in PR #68. It is easy to download and passes local format/range checks, but has no candidate-specific HOLDOUT-DTI, was compared against 0 of the 179 frozen registry entries, and generic run-card binding is untracked. Its "unique-by-construction" label is downgraded to **uniqueness unverified**. Do not upload.
 - Did not run a new geological experiment or generate a new raster in this review because doing so would conflict with the missing lane assignment, the active STOP, and the explicit instruction not to pick a submission or spend a slot.
 - Did not freshly fetch DrivenData, USGS, GDR, or the public leaderboard: outbound access is restricted to GitHub, codeload, npm and PyPI hosts. Official source links are retained for later manual review; the fresh-access limitation is not hidden.
 

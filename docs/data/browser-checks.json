@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-29T20:42:14.814Z",
+  "generated_utc": "2026-10-31T01:27:54.983Z",
   "browser": "153.0.8010.0",
   "checked": [
     {
@@ -123,9 +123,9 @@
   ],
   "javascript_page_errors": [],
   "site_filter": "passed",
-  "wbg2_nine_site_table": "passed",
-  "primary_download_sha256": "f5b37051a26b3bc5d2d53dfd6fe1ca8c293cc62fb01a97aa8f36a959625430f3",
-  "primary_download_identity": "passed",
+  "nine_site_historical_table": "passed",
+  "latest_candidate_download_sha256": "44e0f22fc78bfc5fbd0bf93efcb3ff454d1fc01085ae51b5661e6cf6eb16850e",
+  "latest_candidate_download_identity": "passed",
   "wbg_s2_download_sha256": "6992387620fcb2d7f3a06d867b79b6ad770d7006b87d35b131e27a5035c62880",
   "wbg_s2_download_identity": "passed",
   "wbg3_download_sha256": "f158a890dcb5f897ef35282ed05d291e54c4df9b83cf891870193d329b160fb4",

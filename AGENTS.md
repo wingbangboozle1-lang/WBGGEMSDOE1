@@ -1,3 +1,5 @@
+> **31 Oct 2026 update:** start with [README §31 OCT START HERE](README.md) and [docs/executive-summary-20261031.html](docs/executive-summary-20261031.html). The verdict is DOWNLOAD (research only) · SUBMIT NO for every file.
+
 # Starting point for every session
 
 0a. **Read `docs/owner-brief-20261029.md` at the start of every session** (owner standing requirements, official links). Then read `README.md`. The 29 Oct executive summary is `docs/executive-summary-20261029.html`; no file is cleared unless its run card shows `ok_to_submit: true`.

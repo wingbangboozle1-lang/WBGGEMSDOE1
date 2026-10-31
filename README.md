@@ -1,3 +1,29 @@
+## 31 OCT 2026 START HERE — SUBMIT NO FOR EVERY FILE · DOWNLOAD ONLY THE RESEARCH TIF
+
+**Standing request (condensed from the 31 Oct message; `PROMPT.md` holds the full protocol):** DrivenData competition 306 (`competition-doe-gems`). Deliver, with no human inspection step and no hallucinated numbers:
+1. An executive summary per site for GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36 — best file, estimated score, uniqueness — with every number labelled HOLDOUT-DTI, ORGANIZER-CONFIRMED or USER-REPORTED. Projections are never written as scores.
+2. A unique, format-valid GeoTIFF (values in [0, 1], EPSG:32611, 3730 × 3292, matching transform), not a copy of any listed GEMSDOE submission, validated automatically.
+3. Why GEMSDOE32 B2 (user-reported 0.2778) scored highest, and whether a higher unique file is possible.
+4. 3–5 untested geological hypotheses, ranked, with the top one validated on a spatially blocked holdout before any slot is used.
+5. Pre-registered parallel-run protocol: a one-paragraph method lane; stop if rank correlation with any registry raster exceeds 0.90, or if more than 70% of dots fall within 3 px of one registry raster; leakage canary AUC above 0.90 means leakage; run card JSON at the end; budget 3 experiments or 2 hours.
+6. Flag irregularities. Use only free, official, verifiable sources. Do not choose submissions automatically; promotion is a separate selector step within the weekly cap of 3.
+7. Maintain this README, a submission how-to subpage, a PR to `main`, and next steps and limitations.
+
+**Status (31 Oct 2026):**
+- **Research download:** [`docs/downloads/wbggemsdoe1-rtp-hgm-distal-37k-20261031-zeros.tif`](docs/downloads/wbggemsdoe1-rtp-hgm-distal-37k-20261031-zeros.tif) — **DOWNLOAD: research only · SUBMIT: NO.** Format passes. Unique among the 482 local registry rasters (no exact copy). **Fails** the 70% lane rule: 11 rasters over 70%, the worst GEMSDOE25 gem1 magnetics at 77.1%. Holdout DTI **not measured** (the eligibility used the full catalogue).
+- **Executive summary:** [docs/executive-summary-20261031.html](docs/executive-summary-20261031.html) (machine-readable: [docs/data/executive_summary_20261031.json](docs/data/executive_summary_20261031.json)).
+- **Submission how-to:** [docs/how-to-submit-20261031.html](docs/how-to-submit-20261031.html).
+- **Holdout (HOLDOUT-DTI, 11 named files):** Spearman between the user-reported scores and the holdout is **−0.862** (p = 0.00064, n = 11). The proxy reverses the reported ordering, so it is not a leaderboard estimate. GEMSDOE32 B2 holdout DTI 0.0044 is the lowest of the 11.
+- **Leaderboard (fetched 31 Oct):** #1 **0.4544**, #2 0.3925, #46 0.3261. The brief's 0.4413 and 0.3195 do not match the page. 0.3195 is not in the top 46 today.
+- **Estimated leaderboard score: UNAVAILABLE for every file.** No organizer score exists, and this sandbox cannot log into DrivenData.
+- **Blockers:** (a) upload needs a DrivenData login, which Arena cannot use here, so the owner must upload; (b) the lane rule fails for the new file; (c) the NaN-versus-zeros convention is unresolved.
+
+**Next steps and limitations:** see the executive summary, section 7 (ranked) and section 5 (irregularities). Key limitations: the proxy cannot rank submissions; the candidate's holdout reading is invalid until eligibility is rebuilt per fold; the four external catalogues are missing from `data/external/`; the run did not use the 0.90 rank-correlation test in its named form (phi on the binary raster was used instead, and this is flagged). `scripts/session_audit_20261031.py` timed out (run 1) and crashed (run 2), and run 3 exited without output; it is superseded by the split scripts `holdout_focus_20261031.py` and `candidate_overlap_20261031.py`.
+
+**Verified this session:** 29 Oct overlap receipt reproduced exactly (B2 vs GEMSDOE36 1.0 and 0.974031); B2 is a verified subset of B1 (40,199) and of D2.8 (44,090); all restored inputs match their pins. Tests: 261 passed before the writer patch; 18 passed on the writer subset after it.
+
+---
+
 ## 29 OCT 2026 STANDING BRIEF — READ FIRST EVERY SESSION
 
 **Owner brief (condensed, official links kept):** [`docs/owner-brief-20261029.md`](docs/owner-brief-20261029.md). Read it at the start of every session, together with this README and [`AGENTS.md`](AGENTS.md).

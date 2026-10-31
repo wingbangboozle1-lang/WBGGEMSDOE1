@@ -1,0 +1,510 @@
+{
+  "generated_by": "scripts/build_exec_20261031.py",
+  "date": "2026-10-31",
+  "verdict": {
+    "download": "YES (research file only)",
+    "submit": "NO",
+    "estimated_score": "UNAVAILABLE"
+  },
+  "leaderboard_seen_2026_10_31": {
+    "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "rank_1": "0.4544",
+    "rank_2": "0.3925",
+    "rank_46": "0.3261"
+  },
+  "rank_check_user_vs_holdout": {
+    "spearman_user_vs_holdout": -0.8623853211009175,
+    "spearman_p": 0.0006361540613447472,
+    "n_files": 11,
+    "note": "Spearman between user-reported scores and holdout DTI across the 11 named files. Ties exist in the user scores. A negative or near-zero value means the holdout does not reproduce the reported ordering."
+  },
+  "rows": [
+    {
+      "site": "GEMSDOE32 B2",
+      "file_name": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "repo": "GEMSDOE32",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/07806249f4ed3efe70b4fbf866183c32392b7853/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "n_dots": 37654,
+      "user_reported_score": 0.2778,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "holdout_dti": 0.0044,
+      "holdout_ci95": [
+        0.0038,
+        0.005
+      ],
+      "holdout_n_withheld_positives": 22641,
+      "holdout_label": "HOLDOUT-DTI (seeds 20,21; mode all; n=22641; 95% CI fold-bootstrap)",
+      "estimated_leaderboard_score": "UNAVAILABLE",
+      "unique_vs_other_named_files": "NO",
+      "unique_flags": [
+        "100.0% of its dots within 3 px of GEMSDOE36 pinn",
+        "99.9% of its dots within 3 px of GEMSDOE28 rung30",
+        "100.0% of its dots within 3 px of GEMSDOE28 solo D2.8",
+        "100.0% of its dots within 3 px of GEMSDOE31 solo D28",
+        "99.9% of its dots within 3 px of GEMSDOE28 hf-euler",
+        "100.0% of its dots within 3 px of GEMSDOE33 analog-tip",
+        "100.0% of its dots within 3 px of GEMSDOE25 D2.8",
+        "100.0% of its dots within 3 px of GEMSDOE30 poisson",
+        "100.0% of its dots within 3 px of GEMSDOE24 H25-1",
+        "100.0% of its dots within 3 px of GEMSDOE27 topo-gap"
+      ],
+      "cand_overlap_with_this_file": {
+        "cand_within_3px_of_named": 0.22602702702702704,
+        "named_within_3px_of_cand": 0.21073458331120198,
+        "exceeds_70_cand": false
+      },
+      "submit": "NO"
+    },
+    {
+      "site": "GEMSDOE36 pinn",
+      "file_name": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "repo": "GEMSDOE36",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/05979971df4775aadad34ae6749b0a7ac56d7832/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+      "n_dots": 38854,
+      "user_reported_score": 0.275,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "holdout_dti": 0.0045,
+      "holdout_ci95": [
+        0.0039,
+        0.0051
+      ],
+      "holdout_n_withheld_positives": 22641,
+      "holdout_label": "HOLDOUT-DTI (seeds 20,21; mode all; n=22641; 95% CI fold-bootstrap)",
+      "estimated_leaderboard_score": "UNAVAILABLE",
+      "unique_vs_other_named_files": "NO",
+      "unique_flags": [
+        "97.4% of its dots within 3 px of GEMSDOE32 B2",
+        "97.3% of its dots within 3 px of GEMSDOE28 rung30",
+        "97.5% of its dots within 3 px of GEMSDOE28 solo D2.8",
+        "97.5% of its dots within 3 px of GEMSDOE31 solo D28",
+        "97.3% of its dots within 3 px of GEMSDOE28 hf-euler",
+        "97.5% of its dots within 3 px of GEMSDOE33 analog-tip",
+        "97.5% of its dots within 3 px of GEMSDOE25 D2.8",
+        "97.5% of its dots within 3 px of GEMSDOE30 poisson",
+        "97.6% of its dots within 3 px of GEMSDOE24 H25-1",
+        "97.6% of its dots within 3 px of GEMSDOE27 topo-gap"
+      ],
+      "cand_overlap_with_this_file": {
+        "cand_within_3px_of_named": 0.25083783783783786,
+        "named_within_3px_of_cand": 0.22965460441653368,
+        "exceeds_70_cand": false
+      },
+      "submit": "NO"
+    },
+    {
+      "site": "GEMSDOE28 rung30",
+      "file_name": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "repo": "GEMSDOE28",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/2c839d10f57ec9b074829e93c84bc39935f52896/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+      "n_dots": 37660,
+      "user_reported_score": 0.271,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "holdout_dti": 0.0302,
+      "holdout_ci95": [
+        0.0259,
+        0.0347
+      ],
+      "holdout_n_withheld_positives": 22641,
+      "holdout_label": "HOLDOUT-DTI (seeds 20,21; mode all; n=22641; 95% CI fold-bootstrap)",
+      "estimated_leaderboard_score": "UNAVAILABLE",
+      "unique_vs_other_named_files": "NO",
+      "unique_flags": [
+        "95.5% of its dots within 3 px of GEMSDOE32 B2",
+        "95.5% of its dots within 3 px of GEMSDOE36 pinn",
+        "99.8% of its dots within 3 px of GEMSDOE28 solo D2.8",
+        "99.8% of its dots within 3 px of GEMSDOE31 solo D28",
+        "100.0% of its dots within 3 px of GEMSDOE28 hf-euler",
+        "99.8% of its dots within 3 px of GEMSDOE33 analog-tip",
+        "100.0% of its dots within 3 px of GEMSDOE25 D2.8",
+        "100.0% of its dots within 3 px of GEMSDOE30 poisson",
+        "100.0% of its dots within 3 px of GEMSDOE24 H25-1",
+        "100.0% of its dots within 3 px of GEMSDOE27 topo-gap"
+      ],
+      "cand_overlap_with_this_file": {
+        "cand_within_3px_of_named": 0.22383783783783784,
+        "named_within_3px_of_cand": 0.19957514604354754,
+        "exceeds_70_cand": false
+      },
+      "submit": "NO"
+    },
+    {
+      "site": "GEMSDOE28 solo D2.8",
+      "file_name": "gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+      "repo": "GEMSDOE28",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/2c839d10f57ec9b074829e93c84bc39935f52896/docs/downloads/gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+      "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+      "n_dots": 40199,
+      "user_reported_score": 0.2708,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "holdout_dti": 0.0313,
+      "holdout_ci95": [
+        0.0269,
+        0.0361
+      ],
+      "holdout_n_withheld_positives": 22641,
+      "holdout_label": "HOLDOUT-DTI (seeds 20,21; mode all; n=22641; 95% CI fold-bootstrap)",
+      "estimated_leaderboard_score": "UNAVAILABLE",
+      "unique_vs_other_named_files": "NO",
+      "unique_flags": [
+        "95.4% of its dots within 3 px of GEMSDOE32 B2",
+        "95.4% of its dots within 3 px of GEMSDOE36 pinn",
+        "99.6% of its dots within 3 px of GEMSDOE28 rung30",
+        "identical positive set with GEMSDOE31 solo D28 (100%)",
+        "99.6% of its dots within 3 px of GEMSDOE28 hf-euler",
+        "99.9% of its dots within 3 px of GEMSDOE33 analog-tip",
+        "100.0% of its dots within 3 px of GEMSDOE25 D2.8",
+        "100.0% of its dots within 3 px of GEMSDOE30 poisson",
+        "100.0% of its dots within 3 px of GEMSDOE24 H25-1",
+        "100.0% of its dots within 3 px of GEMSDOE27 topo-gap"
+      ],
+      "cand_overlap_with_this_file": {
+        "cand_within_3px_of_named": 0.22702702702702704,
+        "named_within_3px_of_cand": 0.19905967810144531,
+        "exceeds_70_cand": false
+      },
+      "submit": "NO"
+    },
+    {
+      "site": "GEMSDOE31 solo D28",
+      "file_name": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "repo": "GEMSDOE31",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/776bf4668a8c10631908c9bba9443a8f11ce5036/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+      "n_dots": 40199,
+      "user_reported_score": 0.2708,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "holdout_dti": 0.0313,
+      "holdout_ci95": [
+        0.0269,
+        0.0361
+      ],
+      "holdout_n_withheld_positives": 22641,
+      "holdout_label": "HOLDOUT-DTI (seeds 20,21; mode all; n=22641; 95% CI fold-bootstrap)",
+      "estimated_leaderboard_score": "UNAVAILABLE",
+      "unique_vs_other_named_files": "NO",
+      "unique_flags": [
+        "95.4% of its dots within 3 px of GEMSDOE32 B2",
+        "95.4% of its dots within 3 px of GEMSDOE36 pinn",
+        "99.6% of its dots within 3 px of GEMSDOE28 rung30",
+        "identical positive set with GEMSDOE28 solo D2.8 (100%)",
+        "99.6% of its dots within 3 px of GEMSDOE28 hf-euler",
+        "99.9% of its dots within 3 px of GEMSDOE33 analog-tip",
+        "100.0% of its dots within 3 px of GEMSDOE25 D2.8",
+        "100.0% of its dots within 3 px of GEMSDOE30 poisson",
+        "100.0% of its dots within 3 px of GEMSDOE24 H25-1",
+        "100.0% of its dots within 3 px of GEMSDOE27 topo-gap"
+      ],
+      "cand_overlap_with_this_file": {
+        "cand_within_3px_of_named": 0.22702702702702704,
+        "named_within_3px_of_cand": 0.19905967810144531,
+        "exceeds_70_cand": false
+      },
+      "submit": "NO"
+    },
+    {
+      "site": "GEMSDOE28 hf-euler",
+      "file_name": "gems28-h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan.tif",
+      "repo": "GEMSDOE28",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/2c839d10f57ec9b074829e93c84bc39935f52896/docs/downloads/gems28-h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan.tif",
+      "sha256": "81d5b87bc8424f162a8f56aa9aac8fbe630c61646b9cac24d5ebbdc1b1951783",
+      "n_dots": 37860,
+      "user_reported_score": 0.2707,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "holdout_dti": 0.0302,
+      "holdout_ci95": [
+        0.0259,
+        0.0346
+      ],
+      "holdout_n_withheld_positives": 22641,
+      "holdout_label": "HOLDOUT-DTI (seeds 20,21; mode all; n=22641; 95% CI fold-bootstrap)",
+      "estimated_leaderboard_score": "UNAVAILABLE",
+      "unique_vs_other_named_files": "NO",
+      "unique_flags": [
+        "95.0% of its dots within 3 px of GEMSDOE32 B2",
+        "95.1% of its dots within 3 px of GEMSDOE36 pinn",
+        "99.5% of its dots within 3 px of GEMSDOE28 rung30",
+        "99.3% of its dots within 3 px of GEMSDOE28 solo D2.8",
+        "99.3% of its dots within 3 px of GEMSDOE31 solo D28",
+        "99.4% of its dots within 3 px of GEMSDOE33 analog-tip",
+        "99.5% of its dots within 3 px of GEMSDOE25 D2.8",
+        "99.5% of its dots within 3 px of GEMSDOE30 poisson",
+        "99.5% of its dots within 3 px of GEMSDOE24 H25-1",
+        "99.6% of its dots within 3 px of GEMSDOE27 topo-gap"
+      ],
+      "cand_overlap_with_this_file": {
+        "cand_within_3px_of_named": 0.2245945945945946,
+        "named_within_3px_of_cand": 0.19912836767036451,
+        "exceeds_70_cand": false
+      },
+      "submit": "NO"
+    },
+    {
+      "site": "GEMSDOE33 analog-tip",
+      "file_name": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "repo": "GEMSDOE33",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/1d99d73fe14d9a87126ffca2db52c69336d6099b/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+      "n_dots": 41865,
+      "user_reported_score": 0.2632,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "holdout_dti": 0.0546,
+      "holdout_ci95": [
+        0.0479,
+        0.0616
+      ],
+      "holdout_n_withheld_positives": 22641,
+      "holdout_label": "HOLDOUT-DTI (seeds 20,21; mode all; n=22641; 95% CI fold-bootstrap)",
+      "estimated_leaderboard_score": "UNAVAILABLE",
+      "unique_vs_other_named_files": "NO",
+      "unique_flags": [
+        "92.6% of its dots within 3 px of GEMSDOE32 B2",
+        "92.7% of its dots within 3 px of GEMSDOE36 pinn",
+        "97.0% of its dots within 3 px of GEMSDOE28 rung30",
+        "97.5% of its dots within 3 px of GEMSDOE28 solo D2.8",
+        "97.5% of its dots within 3 px of GEMSDOE31 solo D28",
+        "97.1% of its dots within 3 px of GEMSDOE28 hf-euler",
+        "99.7% of its dots within 3 px of GEMSDOE25 D2.8",
+        "99.7% of its dots within 3 px of GEMSDOE30 poisson",
+        "99.7% of its dots within 3 px of GEMSDOE24 H25-1",
+        "99.7% of its dots within 3 px of GEMSDOE27 topo-gap"
+      ],
+      "cand_overlap_with_this_file": {
+        "cand_within_3px_of_named": 0.2286216216216216,
+        "named_within_3px_of_cand": 0.19209363430072854,
+        "exceeds_70_cand": false
+      },
+      "submit": "NO"
+    },
+    {
+      "site": "GEMSDOE25 D2.8",
+      "file_name": "gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "repo": "GEMSDOE24",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "n_dots": 44090,
+      "user_reported_score": 0.26,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "holdout_dti": 0.1011,
+      "holdout_ci95": [
+        0.0862,
+        0.1167
+      ],
+      "holdout_n_withheld_positives": 22641,
+      "holdout_label": "HOLDOUT-DTI (seeds 20,21; mode all; n=22641; 95% CI fold-bootstrap)",
+      "estimated_leaderboard_score": "UNAVAILABLE",
+      "unique_vs_other_named_files": "NO",
+      "unique_flags": [
+        "88.2% of its dots within 3 px of GEMSDOE32 B2",
+        "88.3% of its dots within 3 px of GEMSDOE36 pinn",
+        "93.2% of its dots within 3 px of GEMSDOE28 rung30",
+        "93.7% of its dots within 3 px of GEMSDOE28 solo D2.8",
+        "93.7% of its dots within 3 px of GEMSDOE31 solo D28",
+        "93.2% of its dots within 3 px of GEMSDOE28 hf-euler",
+        "96.1% of its dots within 3 px of GEMSDOE33 analog-tip",
+        "identical positive set with GEMSDOE30 poisson (100%)",
+        "100.0% of its dots within 3 px of GEMSDOE24 H25-1",
+        "100.0% of its dots within 3 px of GEMSDOE27 topo-gap"
+      ],
+      "cand_overlap_with_this_file": {
+        "cand_within_3px_of_named": 0.22702702702702704,
+        "named_within_3px_of_cand": 0.18149240190519392,
+        "exceeds_70_cand": false
+      },
+      "submit": "NO"
+    },
+    {
+      "site": "GEMSDOE30 poisson",
+      "file_name": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "repo": "GEMSDOE30",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/9c0d637c0171407196b61b780444bc772ce75438/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+      "n_dots": 44090,
+      "user_reported_score": 0.26,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "holdout_dti": 0.1011,
+      "holdout_ci95": [
+        0.0862,
+        0.1167
+      ],
+      "holdout_n_withheld_positives": 22641,
+      "holdout_label": "HOLDOUT-DTI (seeds 20,21; mode all; n=22641; 95% CI fold-bootstrap)",
+      "estimated_leaderboard_score": "UNAVAILABLE",
+      "unique_vs_other_named_files": "NO",
+      "unique_flags": [
+        "88.2% of its dots within 3 px of GEMSDOE32 B2",
+        "88.3% of its dots within 3 px of GEMSDOE36 pinn",
+        "93.2% of its dots within 3 px of GEMSDOE28 rung30",
+        "93.7% of its dots within 3 px of GEMSDOE28 solo D2.8",
+        "93.7% of its dots within 3 px of GEMSDOE31 solo D28",
+        "93.2% of its dots within 3 px of GEMSDOE28 hf-euler",
+        "96.1% of its dots within 3 px of GEMSDOE33 analog-tip",
+        "identical positive set with GEMSDOE25 D2.8 (100%)",
+        "100.0% of its dots within 3 px of GEMSDOE24 H25-1",
+        "100.0% of its dots within 3 px of GEMSDOE27 topo-gap"
+      ],
+      "cand_overlap_with_this_file": {
+        "cand_within_3px_of_named": 0.22702702702702704,
+        "named_within_3px_of_cand": 0.18149240190519392,
+        "exceeds_70_cand": false
+      },
+      "submit": "NO"
+    },
+    {
+      "site": "GEMSDOE24 H25-1",
+      "file_name": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "repo": "GEMSDOE24",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/7ab1c8f77f0b4b8644e3929403a0dab65838b008/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+      "n_dots": 60069,
+      "user_reported_score": 0.2477,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "holdout_dti": 0.0966,
+      "holdout_ci95": [
+        0.0833,
+        0.1107
+      ],
+      "holdout_n_withheld_positives": 22641,
+      "holdout_label": "HOLDOUT-DTI (seeds 20,21; mode all; n=22641; 95% CI fold-bootstrap)",
+      "estimated_leaderboard_score": "UNAVAILABLE",
+      "unique_vs_other_named_files": "NO",
+      "unique_flags": [
+        "88.5% of its dots within 3 px of GEMSDOE32 B2",
+        "88.6% of its dots within 3 px of GEMSDOE36 pinn",
+        "93.5% of its dots within 3 px of GEMSDOE28 rung30",
+        "94.1% of its dots within 3 px of GEMSDOE28 solo D2.8",
+        "94.1% of its dots within 3 px of GEMSDOE31 solo D28",
+        "93.5% of its dots within 3 px of GEMSDOE28 hf-euler",
+        "96.2% of its dots within 3 px of GEMSDOE33 analog-tip",
+        "100.0% of its dots within 3 px of GEMSDOE25 D2.8",
+        "100.0% of its dots within 3 px of GEMSDOE30 poisson",
+        "100.0% of its dots within 3 px of GEMSDOE27 topo-gap"
+      ],
+      "cand_overlap_with_this_file": {
+        "cand_within_3px_of_named": 0.2387837837837838,
+        "named_within_3px_of_cand": 0.18004295060680217,
+        "exceeds_70_cand": false
+      },
+      "submit": "NO"
+    },
+    {
+      "site": "GEMSDOE27 topo-gap",
+      "file_name": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "repo": "GEMSDOE27",
+      "download_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/bef7ae8e8f63b69d299c9214c75988c8f5055f9c/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+      "n_dots": 61328,
+      "user_reported_score": 0.2449,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "holdout_dti": 0.0963,
+      "holdout_ci95": [
+        0.0829,
+        0.1105
+      ],
+      "holdout_n_withheld_positives": 22641,
+      "holdout_label": "HOLDOUT-DTI (seeds 20,21; mode all; n=22641; 95% CI fold-bootstrap)",
+      "estimated_leaderboard_score": "UNAVAILABLE",
+      "unique_vs_other_named_files": "NO",
+      "unique_flags": [
+        "86.7% of its dots within 3 px of GEMSDOE32 B2",
+        "86.8% of its dots within 3 px of GEMSDOE36 pinn",
+        "91.6% of its dots within 3 px of GEMSDOE28 rung30",
+        "92.2% of its dots within 3 px of GEMSDOE28 solo D2.8",
+        "92.2% of its dots within 3 px of GEMSDOE31 solo D28",
+        "91.7% of its dots within 3 px of GEMSDOE28 hf-euler",
+        "94.3% of its dots within 3 px of GEMSDOE33 analog-tip",
+        "98.0% of its dots within 3 px of GEMSDOE25 D2.8",
+        "98.0% of its dots within 3 px of GEMSDOE30 poisson",
+        "98.0% of its dots within 3 px of GEMSDOE24 H25-1"
+      ],
+      "cand_overlap_with_this_file": {
+        "cand_within_3px_of_named": 0.24181081081081082,
+        "named_within_3px_of_cand": 0.17885794416905818,
+        "exceeds_70_cand": false
+      },
+      "submit": "NO"
+    }
+  ],
+  "candidate": {
+    "site": "NEW (WBGGEMSDOE1)",
+    "file_name": "wbggemsdoe1-rtp-hgm-distal-37k-20261031-zeros.tif",
+    "repo": "WBGGEMSDOE1 (this repo)",
+    "download_url": "downloads/wbggemsdoe1-rtp-hgm-distal-37k-20261031-zeros.tif",
+    "sha256": "678970ad123c4b986bd77535323ebea933113efdfefe4892a29189877415c1ee",
+    "n_dots": 37000,
+    "user_reported_score": null,
+    "score_label": "NONE - no measured score",
+    "holdout_dti": null,
+    "holdout_ci95": null,
+    "holdout_n_withheld_positives": null,
+    "holdout_label": "HOLDOUT-DTI NOT MEASURED (full-catalogue exclusion makes a direct reading invalid)",
+    "estimated_leaderboard_score": "UNAVAILABLE",
+    "unique_vs_other_named_files": "YES vs the 11 named files (max 25.1%); NO vs the full 482-raster registry (lane)",
+    "unique_flags": [
+      "byte-unique and no exact positive-set copy among 482 local registry rasters",
+      "99.995% max literal overlap; 11 rasters over 70%",
+      "worst non-lattice: GEMSDOE25 'gem1-blind-magnetics' at 77.1% (lane duplicate by protocol)"
+    ],
+    "cand_overlap_by_site": {
+      "GEMSDOE32 B2": {
+        "cand_within_3px_of_named": 0.22602702702702704,
+        "named_within_3px_of_cand": 0.21073458331120198,
+        "exceeds_70_cand": false
+      },
+      "GEMSDOE36 pinn": {
+        "cand_within_3px_of_named": 0.25083783783783786,
+        "named_within_3px_of_cand": 0.22965460441653368,
+        "exceeds_70_cand": false
+      },
+      "GEMSDOE28 rung30": {
+        "cand_within_3px_of_named": 0.22383783783783784,
+        "named_within_3px_of_cand": 0.19957514604354754,
+        "exceeds_70_cand": false
+      },
+      "GEMSDOE28 solo D2.8": {
+        "cand_within_3px_of_named": 0.22702702702702704,
+        "named_within_3px_of_cand": 0.19905967810144531,
+        "exceeds_70_cand": false
+      },
+      "GEMSDOE31 solo D28": {
+        "cand_within_3px_of_named": 0.22702702702702704,
+        "named_within_3px_of_cand": 0.19905967810144531,
+        "exceeds_70_cand": false
+      },
+      "GEMSDOE28 hf-euler": {
+        "cand_within_3px_of_named": 0.2245945945945946,
+        "named_within_3px_of_cand": 0.19912836767036451,
+        "exceeds_70_cand": false
+      },
+      "GEMSDOE33 analog-tip": {
+        "cand_within_3px_of_named": 0.2286216216216216,
+        "named_within_3px_of_cand": 0.19209363430072854,
+        "exceeds_70_cand": false
+      },
+      "GEMSDOE25 D2.8": {
+        "cand_within_3px_of_named": 0.22702702702702704,
+        "named_within_3px_of_cand": 0.18149240190519392,
+        "exceeds_70_cand": false
+      },
+      "GEMSDOE30 poisson": {
+        "cand_within_3px_of_named": 0.22702702702702704,
+        "named_within_3px_of_cand": 0.18149240190519392,
+        "exceeds_70_cand": false
+      },
+      "GEMSDOE24 H25-1": {
+        "cand_within_3px_of_named": 0.2387837837837838,
+        "named_within_3px_of_cand": 0.18004295060680217,
+        "exceeds_70_cand": false
+      },
+      "GEMSDOE27 topo-gap": {
+        "cand_within_3px_of_named": 0.24181081081081082,
+        "named_within_3px_of_cand": 0.17885794416905818,
+        "exceeds_70_cand": false
+      }
+    },
+    "submit": "NO"
+  },
+  "organizer_confirmed": "NONE"
+}

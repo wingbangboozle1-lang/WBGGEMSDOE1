@@ -1,0 +1,230 @@
+{
+  "rows": [
+    {
+      "site": "GEMSDOE32 B2",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "repo": "GEMSDOE32",
+      "path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "n_dots": 37654,
+      "user_reported_score": 0.2778,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator": "gems57.holdout.evaluate, seeds 20,21, mode all",
+      "evaluator_sha256": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "holdout_dti": 0.004384809290509451,
+      "n_withheld_positives": 22641,
+      "ci95_fold_bootstrap": [
+        0.0037869162847374406,
+        0.0050359852677346216
+      ],
+      "fold_cells": 8,
+      "on_visible_catalogue": 0
+    },
+    {
+      "site": "GEMSDOE36 pinn",
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+      "repo": "GEMSDOE36",
+      "path": "docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "n_dots": 38854,
+      "user_reported_score": 0.275,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator": "gems57.holdout.evaluate, seeds 20,21, mode all",
+      "evaluator_sha256": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "holdout_dti": 0.00448199294412047,
+      "n_withheld_positives": 22641,
+      "ci95_fold_bootstrap": [
+        0.003919470198834819,
+        0.005095955659349624
+      ],
+      "fold_cells": 8,
+      "on_visible_catalogue": 0
+    },
+    {
+      "site": "GEMSDOE28 rung30",
+      "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+      "repo": "GEMSDOE28",
+      "path": "docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "n_dots": 37660,
+      "user_reported_score": 0.271,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator": "gems57.holdout.evaluate, seeds 20,21, mode all",
+      "evaluator_sha256": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "holdout_dti": 0.03023990707136331,
+      "n_withheld_positives": 22641,
+      "ci95_fold_bootstrap": [
+        0.025936331804603894,
+        0.03471371951989801
+      ],
+      "fold_cells": 8,
+      "on_visible_catalogue": 0
+    },
+    {
+      "site": "GEMSDOE28 solo D2.8",
+      "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+      "repo": "GEMSDOE28",
+      "path": "docs/downloads/gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+      "n_dots": 40199,
+      "user_reported_score": 0.2708,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator": "gems57.holdout.evaluate, seeds 20,21, mode all",
+      "evaluator_sha256": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "holdout_dti": 0.03127301096950355,
+      "n_withheld_positives": 22641,
+      "ci95_fold_bootstrap": [
+        0.026877130865404476,
+        0.03613899637869755
+      ],
+      "fold_cells": 8,
+      "on_visible_catalogue": 0
+    },
+    {
+      "site": "GEMSDOE31 solo D28",
+      "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+      "repo": "GEMSDOE31",
+      "path": "docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "n_dots": 40199,
+      "user_reported_score": 0.2708,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator": "gems57.holdout.evaluate, seeds 20,21, mode all",
+      "evaluator_sha256": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "holdout_dti": 0.03127301096950355,
+      "n_withheld_positives": 22641,
+      "ci95_fold_bootstrap": [
+        0.026877130865404476,
+        0.03613899637869755
+      ],
+      "fold_cells": 8,
+      "on_visible_catalogue": 0
+    },
+    {
+      "site": "GEMSDOE28 hf-euler",
+      "sha256": "81d5b87bc8424f162a8f56aa9aac8fbe630c61646b9cac24d5ebbdc1b1951783",
+      "repo": "GEMSDOE28",
+      "path": "docs/downloads/gems28-h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan.tif",
+      "n_dots": 37860,
+      "user_reported_score": 0.2707,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator": "gems57.holdout.evaluate, seeds 20,21, mode all",
+      "evaluator_sha256": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "holdout_dti": 0.03017346865364741,
+      "n_withheld_positives": 22641,
+      "ci95_fold_bootstrap": [
+        0.02589392883401893,
+        0.03462246062590143
+      ],
+      "fold_cells": 8,
+      "on_visible_catalogue": 0
+    },
+    {
+      "site": "GEMSDOE33 analog-tip",
+      "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+      "repo": "GEMSDOE33",
+      "path": "docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "n_dots": 41865,
+      "user_reported_score": 0.2632,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator": "gems57.holdout.evaluate, seeds 20,21, mode all",
+      "evaluator_sha256": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "holdout_dti": 0.05456282154537134,
+      "n_withheld_positives": 22641,
+      "ci95_fold_bootstrap": [
+        0.047926759055903885,
+        0.061611556449743
+      ],
+      "fold_cells": 8,
+      "on_visible_catalogue": 0
+    },
+    {
+      "site": "GEMSDOE25 D2.8",
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "repo": "GEMSDOE24",
+      "path": "docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "n_dots": 44090,
+      "user_reported_score": 0.26,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator": "gems57.holdout.evaluate, seeds 20,21, mode all",
+      "evaluator_sha256": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "holdout_dti": 0.10106964768349222,
+      "n_withheld_positives": 22641,
+      "ci95_fold_bootstrap": [
+        0.08623202628666382,
+        0.11668496719703031
+      ],
+      "fold_cells": 8,
+      "on_visible_catalogue": 0
+    },
+    {
+      "site": "GEMSDOE30 poisson",
+      "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+      "repo": "GEMSDOE30",
+      "path": "docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "n_dots": 44090,
+      "user_reported_score": 0.26,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator": "gems57.holdout.evaluate, seeds 20,21, mode all",
+      "evaluator_sha256": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "holdout_dti": 0.10106964768349222,
+      "n_withheld_positives": 22641,
+      "ci95_fold_bootstrap": [
+        0.08623202628666382,
+        0.11668496719703031
+      ],
+      "fold_cells": 8,
+      "on_visible_catalogue": 0
+    },
+    {
+      "site": "GEMSDOE24 H25-1",
+      "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+      "repo": "GEMSDOE24",
+      "path": "docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "n_dots": 60069,
+      "user_reported_score": 0.2477,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator": "gems57.holdout.evaluate, seeds 20,21, mode all",
+      "evaluator_sha256": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "holdout_dti": 0.09662518778451983,
+      "n_withheld_positives": 22641,
+      "ci95_fold_bootstrap": [
+        0.083295103363705,
+        0.11072887378319796
+      ],
+      "fold_cells": 8,
+      "on_visible_catalogue": 0
+    },
+    {
+      "site": "GEMSDOE27 topo-gap",
+      "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+      "repo": "GEMSDOE27",
+      "path": "docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "n_dots": 61328,
+      "user_reported_score": 0.2449,
+      "score_label": "USER-REPORTED (not organizer-confirmed)",
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator": "gems57.holdout.evaluate, seeds 20,21, mode all",
+      "evaluator_sha256": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "holdout_dti": 0.09629960357014325,
+      "n_withheld_positives": 22641,
+      "ci95_fold_bootstrap": [
+        0.08290508011112568,
+        0.11051553561728557
+      ],
+      "fold_cells": 8,
+      "on_visible_catalogue": 0
+    }
+  ],
+  "rank_check": {
+    "spearman_user_vs_holdout": -0.8623853211009175,
+    "spearman_p": 0.0006361540613447472,
+    "n_files": 11,
+    "note": "Spearman between user-reported scores and holdout DTI across the 11 named files. Ties exist in the user scores. A negative or near-zero value means the holdout does not reproduce the reported ordering."
+  }
+}

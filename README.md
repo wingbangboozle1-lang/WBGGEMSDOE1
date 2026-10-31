@@ -1,4 +1,10 @@
-## 29 OCT 2026 STANDING BRIEF — READ FIRST EVERY SESSION
+## 31 OCT 2026 — CURRENT REVIEW / READ FIRST EVERY SESSION
+
+**Current decision: SUBMIT NO. No file is cleared.** No TIFF or leaderboard score was generated in this review; the inherited lane is stopped and the required full competition inputs are absent. Read this current [repository review](docs/repo-review-20261031.md) before relying on any historical status below. The focus-site values are OWNER-REPORTED, not organizer-confirmed; a leaderboard estimate is unavailable. No weekly submission slot was used.
+
+The full standing work contract and official links are preserved in [`PROMPT.md`](PROMPT.md); read it at the start of each session along with this README and [`AGENTS.md`](AGENTS.md). The current review contains the nine-site table, B2 forensics, ranked future hypotheses, limitations, sources and the required run card. Core values remain **Maximize P(Win)** and **Own the Outcome**.
+
+## 29 OCT 2026 STANDING BRIEF — HISTORICAL CONTEXT
 
 **Owner brief (condensed, official links kept):** [`docs/owner-brief-20261029.md`](docs/owner-brief-20261029.md). Read it at the start of every session, together with this README and [`AGENTS.md`](AGENTS.md).
 

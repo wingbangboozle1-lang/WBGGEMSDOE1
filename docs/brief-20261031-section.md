@@ -12,18 +12,27 @@ defects and lane gates) → [`PROMPT.md`](PROMPT.md) (submission contract) →
 
 ### 1. The metric, reduced to one identity (verified line by line, 31 Oct)
 
-For a dot field whose dots are mutually farther apart than `2R+1 = 7 px` (R = 3 px), no two dots can
-claim the same hidden truth cell, so `FP_w = N − TP_w` and `FN_w = K − TP_w`, and
+For a dot field whose dots are mutually farther apart than `2R+1 = 7 px`, no two dots can claim the
+same hidden truth cell, and with `FN_w = K - TP_w` and `FP_w = N - A` (where
+`A = sum_x max_g k(d(x,g))` is each *dot's* own best credit, and `0 <= TP_w - A` because one dot may be
+the best claimant of several truth cells) the organizer metric is
 
 ```
-DTI = TP_w / (TP_w + 0.2 FP_w + 0.8 FN_w)  =  TP_w / (0.2 N + 0.8 K)
+DTI = TP_w / (0.2 N + 0.8 K + 0.2 (TP_w - A))        ->  DTI ~= TP_w / (0.2 N + 0.8 K)
 ```
 
-`TP_w` cancels out of the denominator. Consequences, all of which are arithmetic, not opinion:
+The correction term is small but real and its sign is known: the naive form flatters by
+`0.2(TP_w - A) / denom`. Measured with the canonical `vendor/gems57/metric.py:dti_exact` on our shipped
+field against the visible catalogue (`labels.tif`, a proxy truth): `TP_w = 820.5273`, `A = 561.5`,
+`N = 42,771`, `K = 60,988` -> `DTI = 0.014296` exact vs `0.014309` naive, a 0.09% overstatement. Every
+number below uses the naive form and inherits that < 1% error, which is smaller than the registry's own
+noise floor (median 0.0175 between near-identical rasters).
 
-* score is **linear in claimed credit**; every extra dot costs a fixed 0.2 of denominator; a dot is
-  worth adding iff its expected credit exceeds 0.2 — this is exactly the shared allocator's bar
-  (`vendor/gems57/emit.py`), now seen to be a consequence of the metric rather than a convention;
+Consequences, arithmetic on the naive form unless stated:
+
+* score is **linear in claimed credit to within that 1% correction**; every extra dot costs a fixed
+  0.2 of denominator, so a dot is worth adding iff its expected credit exceeds 0.2 - which is what the
+  shared allocator's accept bar (`vendor/gems57/emit.py`) encodes;
 * GEMSDOE32 `h33-h33-2-b2` (OWNER-REPORTED 0.2778, n = 37,654) implies `TP_w = 0.2778 × 17,447 =
   4,847`, i.e. a 12.9% weighted hit rate, **given** the only truth scale in this repo reproduced
   against a scored file (`K = 12,395`, `evidence/wbg6_null_calibration.json`);
@@ -115,10 +124,17 @@ that. Promotion remains a separate selector decision under the weekly cap; no sl
    checked in `docs/research-hypotheses-20261031.md`): USGS GeoDAWN aeromag/radiometric grids, OpenEI
    GDR submission 1391, GBCGE INGENIOUS. Use it to rank *within* lattice cells, not to redefine the
    habitat — §2 says the habitat is not the binding constraint at plateau counts.
-3. If the owner wants a second probe in the band, the cheap variation is `STEP_PX`/`MICRO_PX` in
+3. **Stale receipt, re-run before quoting it:** `evidence/wbg8/fit.json` was produced *before* two
+   corrections landed in `scripts/wbg8_lane.py` (measured dcat-band representatives replacing the
+   band-index proxies, and the leave-one-family-out `argmin` bug). The code is fixed; the receipt is
+   not. Re-run `.venv/bin/python scripts/wbg8_lane.py fit` **after** any finalize step (they share
+   `.cache/wbg8`) and re-derive the H2 verdict — if the grouped LOFO MAE comes back below the score sd
+   0.0833, the "absolute scores are not predictable" conclusion must be revisited, and `combos.npz`
+   plus the `sensitivity_in_K` block will finally exist.
+4. If the owner wants a second probe in the band, the cheap variation is `STEP_PX`/`MICRO_PX` in
    `scripts/wbg8_emit5.py` (n ∈ [37.6k, 44.1k]) — a count-only ablation of the plateau, not a new
    hypothesis. Do not re-run `emit`, `emit2` or `emit3`; their verdicts are final.
-4. Portal-side open item: the reported "Predicted values must be in range [0, 1]" error is still
+5. Portal-side open item: the reported "Predicted values must be in range [0, 1]" error is still
    unreproduced. Both twins pass all hard checks locally, so if the portal rejects one, submit the
    other; keep the receipts beside the files.
 

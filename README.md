@@ -1,8 +1,8 @@
-## 31 OCT 2026 — CURRENT REVIEW / READ FIRST EVERY SESSION
+## 31 OCT 2026 — CURRENT STATUS / READ FIRST EVERY SESSION
 
-**Current decision: SUBMIT NO. No file is cleared.** No TIFF or leaderboard score was generated in this review; the inherited lane is stopped and the required full competition inputs are absent. Read this current [repository review](docs/repo-review-20261031.md) before relying on any historical status below. The focus-site values are OWNER-REPORTED, not organizer-confirmed; a leaderboard estimate is unavailable. No weekly submission slot was used.
+**SUBMIT: NO — no TIFF is cleared.** Read the [31 Oct repository review](docs/repo-review-20261031.md) before acting on historical content below. No TIFF or leaderboard score was generated in that review; the inherited lane is stopped, required full inputs are absent, and the focus-site values are OWNER-REPORTED rather than ORGANIZER-CONFIRMED. New-file leaderboard estimates are unavailable; no weekly slot was used.
 
-The full standing work contract and official links are preserved in [`PROMPT.md`](PROMPT.md); read it at the start of each session along with this README and [`AGENTS.md`](AGENTS.md). The current review contains the nine-site table, B2 forensics, ranked future hypotheses, limitations, sources and the required run card. Core values remain **Maximize P(Win)** and **Own the Outcome**.
+Read [`PROMPT.md`](PROMPT.md), this README, and [`AGENTS.md`](AGENTS.md) at the start of every session. The full archived request is also in [`docs/standing-prompt.md`](docs/standing-prompt.md). Core values: **Maximize P(Win)** and **Own the Outcome**.
 
 ## 29 OCT 2026 STANDING BRIEF — HISTORICAL CONTEXT
 
@@ -18,7 +18,7 @@ The full standing work contract and official links are preserved in [`PROMPT.md`
 
 **Focus lane (three pre-registered arms E1 to E3, nine-site duplicate audit, gate decision):** [focus-unique-attempt-20261029.html](docs/focus-unique-attempt-20261029.html). Research-only TIFs are in [`docs/research/`](docs/research/). All three arms are format-valid and not copies, but each fails the 70% lane gate (overlap 0.739 to 0.765 vs GEMSDOE77). The literal lane rule cannot be passed by any dot field (r13 lattice).
 
-Estimated leaderboard score: **UNAVAILABLE** for every file here (no holdout or organizer score is computable in this sandbox). Live public leaderboard #1 is **0.4544**; the 50th row read this session is **0.3169** (the board moves: another read recorded 0.3167) (DrivenData page retrieved 2026-10-29). GEMSDOE32 B2 (0.2778, USER-REPORTED) is already in the competition: re-uploading it is a duplicate.
+A new-file leaderboard estimate is **UNAVAILABLE**: existing HOLDOUT-DTI results are not a validated leaderboard-score estimator, and no organizer receipt is present. The 0.4544 top-row and 0.3169 / 0.3167 rank-50 values are dated public-page observations from 27–29 Oct, not current live values. GEMSDOE32 B2 (0.2778, OWNER-REPORTED) is listed as a previous submission in the supplied history; re-uploading the same pixels would not be unique.
 
 ---
 

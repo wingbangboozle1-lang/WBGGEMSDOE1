@@ -36,7 +36,7 @@ def page(name, title, body):
            ("executive-summary.html", "Site comparison"),
            ("executive-summary-focus-sites.html", "Nine-site exec summary"),
            ("research.html", "Research"), ("evidence.html", "Evidence"),
-           ("repo-review-20261027.html", "Latest review"), ("how-to-submit.html", "How to submit")]
+           ("repo-review-20261031.md", "Latest review · 31 Oct"), ("how-to-submit.html", "How to submit")]
     links = "".join(link(path, label, "active" if path == name else "") for path, label in nav)
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,8 +48,8 @@ def page(name, title, body):
 <header class="masthead"><div class="wrap"><nav class="nav" aria-label="Main navigation">
 <a class="brand" href="index.html"><svg viewBox="0 0 36 38" fill="none" aria-hidden="true"><path d="M3 29C12 27 4 16 13 15S21 5 31 6M4 35C15 34 11 22 20 22S25 11 34 12M2 21C8 21 4 9 13 9S18 1 25 2" stroke="#23665f" stroke-width="2" stroke-linecap="round"/></svg><span>WBG / GEMS<small>FAULT MAPPING · RESEARCH DESK</small></span></a>
 <div class="navlinks">{links}{link(REPO, 'Repository ↗', 'repo')}</div></nav></div></header>
-<main id="main" class="wrap"><div class="breadcrumb">GEMS prize challenge <span>/</span> {escape(title)} <span>/</span> 26 OCT 2026 frozen experiment</div><p class="micro"><a href="review-20261028.md">28 October review: no submission approved; frozen generator disabled →</a></p><p class="micro"><a href="portfolio-review.html">27 October follow-up: four earlier releases and trust corrections →</a></p><p class="micro"><a href="repo-review-20261027.html">27 October 2026 review: all 9 monitored heads changed; no file cleared →</a></p>{body}</main>
-<footer class="footer"><div class="wrap footer-inner"><p><strong>WBG / GEMS</strong> &nbsp; Evidence before a weekly slot.<br>Fault predictions are not verified geothermal vents. Local validation is not organizer acceptance.</p><div>{link('data/run-card.json', 'Run card JSON')}{link('repo-review-20261027.html', 'Latest review')}{link('standing-prompt.md', 'Standing brief')}{link('parallel/main-b9a2d53/index.html', 'Parallel negative archives')}{link(REPO, 'Source code ↗')}</div></div></footer>
+<main id="main" class="wrap"><section class="alert-panel" style="border-left:6px solid #a32626"><p class="eyebrow">CURRENT DECISION · 31 OCTOBER 2026</p><p><strong>SUBMIT: NO — no TIFF is cleared.</strong> No new raster or score was produced in the current review. The active experiment ledger is stopped, required full inputs are absent, and existing unique-candidate arms fail the literal registry-overlap gate. Focus-site values are OWNER-REPORTED; no validated new-file leaderboard estimate is available. <a href="repo-review-20261031.md"><strong>Read the current repository review, nine-site table, hypotheses and run card →</strong></a></p></section><div class="breadcrumb">GEMS prize challenge <span>/</span> {escape(title)} <span>/</span> 26 OCT 2026 frozen experiment</div><p class="micro"><a href="review-20261028.md">28 October review: no submission approved; frozen generator disabled →</a></p><p class="micro"><a href="portfolio-review.html">27 October follow-up: four earlier releases and trust corrections →</a></p><p class="micro"><a href="repo-review-20261027.html">27 October 2026 review: all 9 monitored heads changed; no file cleared →</a></p>{body}</main>
+<footer class="footer"><div class="wrap footer-inner"><p><strong>WBG / GEMS</strong> &nbsp; Evidence before a weekly slot.<br>Fault predictions are not verified geothermal vents. Local validation is not organizer acceptance.</p><div>{link('data/run-card.json', 'Run card JSON')}{link('repo-review-20261031.md', 'Latest review · 31 Oct')}{link('standing-prompt.md', 'Standing brief')}{link('parallel/main-b9a2d53/index.html', 'Parallel negative archives')}{link(REPO, 'Source code ↗')}</div></div></footer>
 <div id="toast" role="status" aria-live="polite"></div></body></html>'''
 
 
@@ -249,7 +249,7 @@ def wbg7_banner():
     v = card["validator"]
     h = card["holdout"]
     tif = card["submission_name"] + ".tif"
-    return f'''<div class="alert" role="note" style="border-left:6px solid var(--amber)"><p><strong>NEW · WBG-7 unique submission:</strong> <strong>DOWNLOAD: research only</strong> — <a href="downloads/{tif}" download>{tif}</a> · <a href="downloads/{card['submission_name']}.zip" download>ZIP ↓</a>. Single-band float32, EPSG:32611, 3730×3292, <strong>values in [0,1] (no "[0,1]" portal error)</strong>, {v['in_footprint_positive_pixels']:,} off-catalogue dots, SHA-256 {card['raster_sha256'][:12]}…. <strong>OK to submit: NOT CLEARED</strong> — holdout-DTI {h['dti']:.4f} does not beat the 0.1661 same-evaluator best and no organizer score receipt exists; do not claim it beats 0.2778. <a href="executive-summary-focus-sites.html">Nine-site executive summary →</a> · <a href="evidence/wbg7/run_card.json">Run card →</a></p></div>'''
+    return f'''<div class="alert" role="note" style="border-left:6px solid var(--amber)"><p><strong>NEW · WBG-7 unique submission:</strong> <strong>DOWNLOAD: research only</strong> — <a href="downloads/{tif}" download>{tif}</a> · <a href="downloads/{card['submission_name']}.zip" download>ZIP ↓</a>. Single-band float32, EPSG:32611, 3730×3292, <strong>local range check passes; portal acceptance and the reported error's cause are unverified</strong>, {v['in_footprint_positive_pixels']:,} off-catalogue dots, SHA-256 {card['raster_sha256'][:12]}…. <strong>OK to submit: NOT CLEARED</strong> — holdout-DTI {h['dti']:.4f} does not beat the 0.1661 same-evaluator best and no organizer score receipt exists; do not claim it beats 0.2778. <a href="executive-summary-focus-sites.html">Nine-site executive summary →</a> · <a href="evidence/wbg7/run_card.json">Run card →</a></p></div>'''
 
 
 def focus9_banner():
@@ -285,15 +285,15 @@ def tipcont_experiment_banner():
 
 
 def decision_banner():
-    """First thing on the homepage: the single, unambiguous submit decision (29 Oct 2026)."""
+    """Dated historical summary; no live score estimate is inferred from holdout results."""
     audit = load("docs/data/nine_site_audit_20261029.json")
     best = next(f for f in audit["files"] if f["site"] == "GEMSDOE32")
     return ('<div class="alert" role="alert" style="border:4px solid #a32626;background:#fff"><div style="min-width:0">'
             '<p style="font-size:20px;margin:0 0 6px"><strong style="color:#a32626">SUBMIT: NO. No file is cleared.</strong></p>'
-            '<p><strong>DOWNLOAD:</strong> research only. <strong>Estimated leaderboard score:</strong> UNAVAILABLE for every file here '
-            '(no holdout or organizer score can be computed in this sandbox). Live public leaderboard #1 is 0.4544; the 50th row read this session is 0.3169 (the board moves: another read recorded 0.3167).</p>'
-            '<p>Best user-reported nine-site file: GEMSDOE32 B2, 0.2778 (USER-REPORTED, not organizer-confirmed). '
-            'It is already in the competition, so it is a duplicate and must not be uploaded again. '
+            '<p><strong>DOWNLOAD:</strong> research only. <strong>New-file leaderboard estimate:</strong> UNAVAILABLE; existing holdouts are not a validated leaderboard-score estimator and no organizer receipt is present. '
+            'The 0.4544 top-row and 0.3169 / 0.3167 rank-50 figures are dated historical page observations from 27–29 Oct, not a current live read.</p>'
+            '<p>Highest supplied nine-site value: GEMSDOE32 B2, 0.2778 (OWNER-REPORTED, not organizer-confirmed). '
+            'It is listed as a previous submission in the supplied history; re-uploading the same pixels is not unique. '
             f'Its SHA-256 is <code>{best["sha256"][:16]}…</code>.</p>'
             '<p><a href="executive-summary-20261029.html"><strong>Open the 29 Oct executive summary: nine-site decision table, '
             'why 0.2778 scored, blockers, and ranked hypotheses →</strong></a></p></div></div>')
